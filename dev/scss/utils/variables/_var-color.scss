@@ -1,0 +1,30 @@
+//*------------------------------------*\
+    //Variables Color
+//*------------------------------------*/
+
+//* Color palette *//
+$coral-pink: #fe7676;
+$pink-dark : #D46060;
+$white     : #fff;
+$white-two : #f6f6f6;
+$black     : #000;
+// Grey
+$grey      : #4a4a4a;
+$grey-white: #efefef;
+
+//* Color variables */
+$c-brand     : $coral-pink;
+$c-brand-dark: $pink-dark;
+
+$c-neutro  : $white;
+$c-neutro-2: rgba($c-neutro, .3);
+$c-neutro-3: $grey-white;
+$c-neutro-4: $white-two;
+
+
+
+$c-default     : $black;
+$c-default-over: rgba($black, .8);
+$c-default-2   : $grey;
+
+

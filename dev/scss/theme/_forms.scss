@@ -1,0 +1,71 @@
+/*------------------------------------*\
+	Transversal Elements
+    #Forms Styles
+\*------------------------------------*/
+input, select, textarea {
+  outline: none;
+  border: none;
+}
+
+label {
+  cursor: default;
+}
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+/*------------------------------------*\
+	Elementos Formularios
+\*------------------------------------*/
+
+.form {
+  color: $c-default;
+}
+  .form__row {
+    padding-bottom: 12px;
+  }
+
+  .form__row_away {
+    padding-top: 12px;
+  }
+
+  .form__btn {
+    text-align: center;
+  }
+
+
+  .form__label {
+    display: block;
+    padding-bottom: 6px;
+    @include font-rem(14px);
+    font-weight: $fw-bold;
+  }
+  .form__control {
+    width: 100%;
+    padding: 0 12px;
+    margin-bottom: 12px;
+    line-height: 40px;
+    font-family: $f-default;
+    border: 1px solid $c-default-2;
+  }
+  .form__note {
+    margin: -8px 0 0;
+    @include font-rem(12px);
+  }
+    .form__note_right {
+      text-align: right;
+    }
+
+
+
+/*------------------------------------*\
+	 Mensajes Error
+\*------------------------------------*/
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  
+}
+

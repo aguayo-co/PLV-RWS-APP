@@ -1,0 +1,240 @@
+/*------------------------------------*\
+	Page header menu
+\*------------------------------------*/
+.menu {
+  @include flexbox;
+  @include justify-content(space-around);
+  padding: 0 8px 0 16px;
+}
+
+  .menu__link {
+    display: block;
+    padding: 0 12px;
+    text-transform: uppercase;
+    color: $c-neutro;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+    &:hover {
+      color: $c-brand;
+    }
+  }
+
+  .menu__link_active {
+    color: $c-brand;
+  }
+
+  .menu-level2 {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100vw;
+    //- min-height= vp - hight barra negra
+    min-height: -webkit-calc(100vh - 70px);
+    min-height: -moz-calc(100vh - 70px);
+    min-height: -o-calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
+    color: $c-default;
+    background-color: $c-neutro;
+  }
+
+    .menu-level2__inner {
+      position: relative;
+      width: 96%;
+      max-width: 1280px;
+      margin: 36px auto;
+    }
+
+// Transition vue para el nivel 2
+.slide-fade-enter-active {
+  transition: all .2s ease;
+
+  .menu-level2__inner {
+    transition: all .4s ease;
+  }
+
+}
+.slide-fade-leave-active {
+  transition: all .3s ease;
+
+  .menu-level2__inner {
+    transition: all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0;
+
+  .menu-level2__inner {
+    transform: translateY(10px);
+  }
+
+}
+
+/*------------------------------------*\
+	Submenu mega menu
+\*------------------------------------*/
+.submenu-grid {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 50px;
+  @include flexbox;
+  @include justify-content(space-between);
+}
+
+//  Menu Nivel 2
+//- variable local ancho columna derecha
+$w-item-left: 60%;
+
+.level2__side {
+  width: 88%;
+  margin: 0 auto;
+  text-align: center;
+}
+  .menu-side__footer {
+    width: $w-item-left;
+    padding-top: 40px;
+    @include font-rem(14px);
+
+  }
+
+.submenu {
+  width: $w-item-left;
+}
+  .submenu__item {
+    position: relative;
+    text-transform: uppercase;
+    color: $c-default;
+    @include font-rem(18px);
+    font-weight: $fw-bold;
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+
+    .submenu__label {
+      display: block;
+    }
+
+  .submenu__item_active {
+    z-index: 9;
+    padding-top: 0;
+    @include font-rem(48px);
+    font-family: $f-fancy;
+    font-weight: $fw-semi-bold;
+
+    .submenu__label {
+      padding-bottom: 16px;
+      line-height: 1;
+      border-bottom: 1px solid $c-default;
+    }
+
+    .submenu__list {
+      font-family: $f-default;
+    }
+
+  }
+  //- Nivel 2: Promo
+  .menu-promo {
+    color: $c-default;
+    padding: 64px 0 0 30px;
+    text-align: center;
+  }
+    .menu-promo__img {
+      width: 100%;
+    }
+    .menu-promo__lead {
+      padding-top: 22px;
+    }
+
+      .menu-promo__title {
+        padding-bottom: 16px;
+      }
+
+      .menu-promo__txt {
+        margin: 0;
+        padding-bottom: 12px;
+      }
+
+      .menu-promo__foot {
+        margin-top: 10px;
+      }
+//  Menu Nivel 3
+.submenu__list {
+  padding-top: 40px;
+  padding-right: 30px;
+  float: right;
+  text-transform: none;
+  @include font-rem(16px);
+  font-weight: $fw-regular;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  -moz-column-gap: 50px;
+  -webkit-column-gap: 50px;
+  column-gap: 50px;
+}
+
+  .submenu__subitem {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    -moz-column-fill: balance;
+    column-fill: balance;
+  }
+
+  .subitem__link {
+    display: inline-block;
+    padding-bottom: 8px;
+    color: $c-default;
+  }
+
+// $bp-large: 1180px;
+@include media-query(large) {
+  .menu {
+    padding: 0 10px 0 20px;
+  }
+
+    .menu__link {
+      padding: 0 18px;
+    }
+
+  //  Menu Nivel 2
+  //- variable local ancho columna derecha
+  $w-item-left: 58%;
+
+  .menu-side__footer {
+    width: $w-item-left;
+  }
+
+  //- Nivel 2: Promo
+  .menu-promo {
+    padding-left: 10px;
+  }
+
+  //- Nivel 2: submenú
+  .submenu {
+    width: $w-item-left;
+  }
+    //  Menu Nivel 3
+    .submenu__list {
+      padding-right: 50px;
+      -moz-column-gap: 68px;
+      -webkit-column-gap: 68px;
+      column-gap: 68px;
+    }
+}
+
+// $bp-big: 1280px;
+@include media-query(big) {
+  .menu {
+    padding: 0 20px 0 40px;
+  }
+}
+
+// $bp-huge: 1440px;
+@include media-query(huge) {
+  .menu__link {
+    padding: 0 20px;
+  }
+}

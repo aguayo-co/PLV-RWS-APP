@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    #Titles
+\*------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+//title page
+.title {
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  color: $c-default;
+  @include font-rem(26px);
+  font-family: $f-fancy;
+  font-weight: $fw-semi-bold;
+  border-bottom: 1px solid $c-default;
+}
+
+//title bloque
+.title_line {
+  line-height: 0.97;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  @include font-rem(36px);
+  font-family: $f-fancy;
+  font-weight: $fw-semi-bold;
+  &::before {
+    content: '';
+    display: block;
+    max-width: 128px;
+    margin: 0 auto;
+    height: 3px;
+    background-color: $c-brand;
+  }
+}

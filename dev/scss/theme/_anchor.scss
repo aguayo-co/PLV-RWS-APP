@@ -1,0 +1,31 @@
+/*------------------------------------*\
+	texts links
+\*------------------------------------*/
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link {
+	&:hover {
+
+	}
+	&:focus,
+  &:active {
+
+  }
+}
+
+.link_underline {
+  display: inline-block;
+  padding-bottom: 2px;
+  color: $black;
+  font-size: inherit;
+  font-weight: $fw-bold;
+  border-bottom: 3px solid $c-brand;
+  transition: all 0.5s;
+  &:hover {
+    border-bottom-color: $c-default-2;
+
+  }
+}

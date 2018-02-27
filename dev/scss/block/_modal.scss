@@ -1,0 +1,73 @@
+/*------------------------------------*\
+	código para todos los menu desplegables
+\*------------------------------------*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 998;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 70px;
+  background-color: $c-default-over;
+}
+
+  .modal__slot {
+    position: relative;
+    padding-top: 50px;
+  }
+
+  .modal__btn_close {
+    top: 16px;
+    right: 20px;
+  }
+
+.modal_scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  
+  .modal__slot {
+    min-height: 100vh;
+  }
+
+}
+
+// Transition vue para el nivel 2
+.modal-fade-enter-active {
+  transition: all .2s ease;
+  .modal__slot {
+    transition: all .4s ease;
+  }
+}
+
+.modal-fade-leave-active {
+  transition: all .3s ease;
+  .modal__slot {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+}
+
+.modal-fade-enter,
+.modal-fade-leave-to {
+  opacity: 0;
+  .modal__slot {
+    transform: translateY(10px);
+  }
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .modal_scroll {
+    padding-bottom: 50px;
+
+    .modal__slot {
+      min-height: auto;
+      margin-bottom: 50px;
+    }
+
+  }
+
+}

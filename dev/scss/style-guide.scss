@@ -1,0 +1,63 @@
+//*------------------------------------*\
+    // #Main SCSS
+//*------------------------------------*/
+@import 'compass';
+
+@import
+  'utils/variables/var-color',
+  'utils/variables/var-typo',
+  'utils/variables/var-breakpoint',
+  'utils/mix/mix-mediaquery',
+  'utils/mix/mix-font-family',
+  'utils/mix/mix-font-rem',
+  'utils/mix/mix-zebra',
+  'utils/mix/mix-flex',
+  'utils/helpers/help-center',
+  'utils/helpers/help-clearfix';
+
+
+.style-block {
+  padding: 10px 0;
+}
+.style-font {
+  padding-top: 10px;
+  @include font-rem(30px);
+}
+.style-title {
+  margin-top: 15px;
+  padding:10px 0 15px;
+  color: #636363;
+  @include font-rem(40px);
+  border-top: 2px solid #636363;
+}
+.style-subtitle {
+  padding:10px 0 5px;
+  color: #636363;
+  @include font-rem(24px);
+}
+
+.style-headline {
+  display: inline-block;
+  margin: 0 20px 20px 0;
+  padding:5px 0;
+  @include font-rem(20px);
+  border-bottom: 2px solid #af00db;
+  strong {
+    color: #af00db;
+  }
+}
+.style-element {
+  padding: 10px 0 15px;
+  .band {
+    padding: 10px 10px 60px 10px;
+    display: inline-block;
+  }
+}
+
+@include media-query(medium) {
+  .style-element {
+    .band {
+      padding: 30px 50px 70px;
+    }
+  }
+}

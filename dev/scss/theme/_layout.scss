@@ -1,0 +1,51 @@
+/*------------------------------------*\
+  layout theme
+\*------------------------------------*/
+//- template
+.page{
+  min-height: 100vh;
+}
+
+.page_bg {
+  background-color: $c-neutro-3;
+}
+
+
+//- ancho de los contenidos
+.layout-inner {
+  width: 96%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+// Content registro
+.content-slot {
+  max-width: 524px;
+  margin: 0 auto;
+  padding: 44px 0 50px;
+  background-color: $c-neutro;
+}
+
+  .content-slot__inner {
+    width: 86%;
+    margin: 0 auto;
+  }
+.hide {
+  display: none;
+}
+
+//- flexbox
+.grid-flex {
+  @include flexbox;
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .content-slot {
+    margin-top: 44px;
+  }
+  .content-slot__inner {
+    width: 76%;
+
+  }
+}

@@ -1,0 +1,241 @@
+/*------------------------------------*\
+	Page header: menu
+\*------------------------------------*/
+.page-header {
+  position: relative;
+  z-index: 999;
+  width: 100%;
+  padding: 16px 0 18px;
+  color: $c-neutro;
+  background-color: $c-default;
+
+  ul {
+    list-style: none;
+  }
+
+}
+
+.header__bar {
+  width: 100%;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(space-between);
+}
+
+/* componente Pageheader-brand
+ */
+.page-brand {
+  color: $c-neutro;
+}
+
+.brand {
+  @include flexbox;
+  @include align-items(center);
+}
+  //LOGO IMG
+  .brand__logo {
+    width: 38px;
+    height: 39px;
+  }
+  .brand__typo {
+    padding-left: 16px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+    // Prilov
+    .brand__name {
+      display: block;
+      @include font-rem(23px);
+      font-weight: $fw-bold;
+      font-family: $f-default;
+    }
+    // Compra. Usa. Vende.
+    .brand__tagline {
+      display: block;
+      padding-top: 6px;
+      @include font-rem(10px);
+      font-weight: $fw-medium;
+      font-family: $f-fancy;
+    }
+
+/* componente Pageheader-search
+ */
+.seacrh {
+  width: 18%;
+  min-width: 176px;
+}
+
+.search__row {
+  position: relative;
+}
+
+  .seacrh__input {
+    width: 100%;
+    min-width: 176px;
+    padding: 4px 38px 4px 12px;
+    line-height: 1.66;
+    letter-spacing: -0.4px;
+    color:  $c-default-2;
+    font-family: $f-fancy;
+    font-weight: $fw-light;
+    @include font-rem(12px);
+    border-radius: 8px;
+  }
+  .seacrh__btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    z-index: 2;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin-top: -8px;
+    line-height: 18px;
+    text-align: center;
+    color:  $c-default-2;
+    font-family: 'ico-prilov';
+    @include font-rem(14px);
+    background-color: transparent;
+  }
+
+/* componente Pageheader-user:
+ * bloque css asociado menu-toggle:
+ * contiene animación
+*/
+
+.tool-user {
+  margin-left: 14px;
+}
+.tool-user__grid {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(space-between);
+  cursor: pointer;
+}
+  
+  .tool-user__item {
+    &:not(:last-child) {
+      margin-right: 14px;
+      padding-right: 14px;
+      border-right: 1px solid $c-neutro;
+    }
+    &.i-bag,
+    &.i-user {
+      &:before {
+        padding-right: 8px;
+      }
+    }
+    &.i-bag {
+      &:before {
+        @include font-rem(18px);
+      }
+    }
+    &.i-user {
+      &:before {
+        display: none;
+        @include font-rem(20px);
+      }
+    }
+  }
+
+//item usuario autenticado
+.tool-user__item_auth {
+  position: relative;
+}
+  .tool-user__avatar {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid $c-brand;
+  }
+    .tool-user__photo {
+      width: 100%;
+    }
+  
+  .tool-user__name {
+    padding-left: 8px;
+  }
+
+  .badge {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 15px;
+    text-align: center;
+    color: $c-neutro;
+    @include font-rem(12px);
+    background-color: $c-brand;
+    border-radius: 50%;
+  }
+  .badge_user {
+    position: absolute;
+    top: -2px;
+    left: 30px;
+    z-index: 2;
+
+  }
+
+  .tool-user__name {
+    display: none;
+    @include font-rem(14px);
+  }
+
+// menu desplegable usuario
+.user-auth__menu {
+  right: -10px;
+  display: inline-block;
+  min-width: 140px;
+  margin-top: 17px;
+  border: 1px solid $c-default;
+}
+.user-auth__list  {
+  padding: 8px 16px 14px;
+  white-space: nowrap;
+}
+  .user-auth__item {
+    &:not(:last-child) {
+      .user-auth__link {
+        border-bottom: 1px solid $c-neutro-2;
+      }
+    }
+  }
+  .user-auth__link {
+    display: block;
+    padding: 14px 2px 8px;
+    color: $c-default;
+    &:hover,
+    &.active {
+      color: $c-brand;
+
+    }
+  }
+
+// $bp-large: 1124px;
+@include media-query(large) {
+  .tool-user__name {
+    display: inline-block;
+  }
+  .tool-user__item {
+    &.i-user {
+      &:before {
+        display: inline;
+      }
+    }
+  }
+}
+
+// $bp-big: 1280px;
+@include media-query(big) {
+  .user-auth__menu {
+    left: 0;
+    right: initial;
+  }
+}
+

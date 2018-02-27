@@ -1,0 +1,16 @@
+//*----------------------------------------------------*\
+    //Mixin inner
+//*----------------------------------------------------*/
+
+// Mixin para hacer wrappers dinamicos:
+// párametros (width, max-width)
+// Si el mixin se quiere un sólo párametro: $width o $max-width
+//    Uso: .foo { @include inner($width: 90%);}
+// Todos los pararametros: $width, $max-width
+//    Uso: .foo { @include inner($width: 90%, $max-width: 1700px);}
+
+@mixin inner($width: null, $max-width: null, $margin: null) {
+  width: $width;
+  max-width: $max-width;
+  margin: $margin;
+}

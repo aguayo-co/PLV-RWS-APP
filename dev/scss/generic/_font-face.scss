@@ -1,0 +1,319 @@
+/*------------------------------------*\
+    #font-family, font-icon
+\*------------------------------------*/
+
+/* https://developers.google.com/fonts/docs/getting_started
+ * Embed Font
+ * To embed your selected fonts into a webpage,
+ * copy this code into the <head> of your HTML document.
+ */
+
+/*------------------------------------*\
+  ALL fonts Prilov STANDARD @IMPORT
+  Load Time: Slow
+  https: //fonts.google.com/?query=mons&selection.family=Montserrat:300,500,600,700|Roboto+Condensed:400,700|Roboto:100,400
+
+\*------------------------------------*/
+
+// variables
+// font-family: 'Roboto',sans-serif;
+// font-family: 'Roboto Condensed',sans-serif;
+// font-family: 'Montserrat',sans-serif;
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,500,600,700|Roboto+Condensed:400,700|Roboto:100,400');
+
+/*------------------------------------*\
+  Ico font
+\*------------------------------------*/
+@font-face {
+  font-family: 'ico-prilov';
+  src : url('#{$font-path}/ico-prilov.eot?vjwke4');
+  src : url('#{$font-path}/ico-prilov.eot?vjwke4#iefix') format('embedded-opentype'),
+  url('#{$font-path}/ico-prilov.ttf?vjwke4') format('truetype'),
+  url('#{$font-path}/ico-prilov.woff?vjwke4') format('woff'),
+  url('#{$font-path}/ico-prilov.svg?vjwke4#ico-prilov') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.i-,
+[class^="i-"],
+[class*=" i-"] {
+    &:before {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'ico-prilov' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+.i-prilov {
+  &:before {
+    content: $i-prilov;
+  }
+}
+
+.i-starts {
+  &:before {
+    content: $i-starts;
+  }
+}
+
+.i-it-girl {
+  &:before {
+    content: $i-it-girl;
+  }
+}
+
+.i-dress {
+  &:before {
+    content: $i-dress;
+  }
+}
+
+.i-start {
+  &:before {
+    content: $i-start;
+  }
+}
+
+.i-like {
+  &:before {
+    content: $i-like;
+  }
+}
+
+.i-edit {
+  &:before {
+    content: $i-edit;
+  }
+}
+
+.i-search {
+  &:before {
+    content: $i-search;
+  }
+}
+
+.i-view {
+  &:before {
+    content: $i-view;
+  }
+}
+
+.i-ok {
+  &:before {
+    content: $i-ok;
+  }
+}
+
+.i-filter {
+  &:before {
+    content: $i-filter;
+  }
+}
+
+.i-reload {
+  &:before {
+    content: $i-reload;
+  }
+}
+
+.i-close {
+  &:before {
+    content: $i-close;
+  }
+}
+
+.i-x {
+  &:before {
+    content: $i-x;
+  }
+}
+
+.i-back {
+  &:before {
+    content: $i-back;
+  }
+}
+
+.i-user {
+  &:before {
+    content: $i-user;
+  }
+}
+
+.i-bag {
+  &:before {
+    content: $i-bag;
+  }
+}
+
+.i-bell {
+  &:before {
+    content: $i-bell;
+  }
+}
+
+.i-car {
+  &:before {
+    content: $i-car;
+  }
+}
+
+.i-tag {
+  &:before {
+    content: $i-tag;
+  }
+}
+
+.i-shop {
+  &:before {
+    content: $i-shop;
+  }
+}
+
+.i-send {
+  &:before {
+    content: $i-send;
+  }
+}
+
+.i-feedback {
+  &:before {
+    content: $i-feedback;
+  }
+}
+
+.i-alert {
+  &:before {
+    content: $i-alert;
+  }
+}
+
+.i-help {
+  &:before {
+    content: $i-help;
+  }
+}
+
+.i-sell {
+  &:before {
+    content: $i-sell;
+  }
+}
+
+.i-card {
+  &:before {
+    content: $i-card;
+  }
+}
+
+.i-money {
+  &:before {
+    content: $i-money;
+  }
+}
+
+.i-trip {
+  &:before {
+    content: $i-trip;
+  }
+}
+
+.i-singup {
+  &:before {
+    content: $i-singup;
+  }
+}
+
+.i-insta {
+  &:before {
+    content: $i-insta;
+  }
+}
+
+.i-fb {
+  &:before {
+    content: $i-fb;
+  }
+}
+
+.i-twitter {
+  &:before {
+    content: $i-twitter;
+  }
+}
+
+.i-start-line {
+  &:before {
+    content: $i-start-line;
+  }
+}
+
+.i-heart {
+  &:before {
+    content: $i-heart;
+  }
+}
+
+.i-heart-on {
+  &:before {
+    content: $i-heart-on;
+  }
+}
+
+.i-alert-info {
+  &:before {
+    content: $i-alert-info;
+  }
+}
+
+.i-alert-circle {
+  &:before {
+    content: $i-alert-circle;
+  }
+}
+
+.i-alert-tri {
+  &:before {
+    content: $i-alert-tri;
+  }
+}
+
+.i-user {
+  &:before {
+    content: $i-user;
+  }
+}
+
+.i-user-x {
+  &:before {
+    content: $i-user-x;
+  }
+}
+
+.i-insta-red {
+  &:before {
+    content: $i-insta-red;
+  }
+}
+
+.i-twitter-red {
+  &:before {
+    content: $i-twitter-red;
+  }
+}
+
+.i-fb-red {
+  &:before {
+    content: $i-fb-red;
+  }
+}

@@ -1,0 +1,93 @@
+/*------------------------------------*\
+	código para todos los menu desplegables
+\*------------------------------------*/
+.toggle-box {
+  position: absolute;
+  top: 100%;
+  opacity: 1;
+  background-color: $c-neutro;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-origin: center top 0;
+  transform-origin: center top 0;
+  will-change: transform, opacity;
+}
+
+.toggle-box__list {
+  will-change: transform;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+/* v-enter-active: Estado activo para la entrada.
+ * Es aplicada durante la fase de entrada completa. 
+ * Se agrega antes que el elemento sea insertado,
+ * se quita cuando la transición/animación finaliza. 
+ * Esta clase puede ser usada para definir la duración,
+ * retraso y la curva de alivio para la transición de entrada.
+*/
+.toggle-scale-enter-active {
+  -webkit-transition: opacity 0.03s linear, -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.03s linear, -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* v-leave-active: Estado activo para la salida. 
+ * Es aplicada durante la fase de salida completa. 
+ * Se agrega inmediatamente cuando una transición de salida es disparada,
+ * se quita cuando la transición/animación finaliza. 
+ * Esta clase puede ser usada para definir la duración,
+ * retraso y la curva de alivio para la transición de salida.
+*/
+.toggle-scale-leave-active {
+  -webkit-transition: opacity 0.075s linear;
+  transition: opacity 0.075s linear;
+}
+
+/* v-enter: Estado inicial para la transición de entrada. 
+ * Se agrega antes que el elemento sea insertado,
+ * se quita un marco luego que el elemento fue insertado.
+ */
+.toggle-scale-enter {
+  display: inline-block; // opacity: 0;
+  overflow-y: hidden;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  &.toggle-box__list {
+    overflow-y: hidden;
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+  }
+}
+
+/* v-enter-to: Solo disponible en versiones >=2.1.8. 
+ * Estado final para la entrada. Se agrega un marco después de haber 
+ * insertado el elemento (al mismo tiempo que v-enter es removida),
+ * se quita cuando la transición/animación finaliza.
+ */
+.toggle-scale-enter-to {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+/* v-leave: Estado inicial para la salida. 
+ * Se agrega inmediatamente cuando se dispara una 
+ * transición de salida, se quita luego de un marco.
+ */
+.toggle-scale-leave {
+  display: inline-block;
+  opacity: 1;
+  overflow-y: hidden;
+}
+
+/*  v-leave-to: Solo disponible en versiones >=2.1.8. 
+ * Estado final para la salida. Se agrega un marco despúes 
+ * de que se dispare la transición de salida (al mismo tiempo que v-leave es removida), 
+ * se quita cuando la transición/animación finaliza.
+*/
+.toggle-scale-leave-to {
+  opacity: 0;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
