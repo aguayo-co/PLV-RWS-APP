@@ -34,7 +34,7 @@ transition(name='modal-fade')
               | <a class='link_underline' @click='close' href='#/password' title='Ir a recuperar contraseña'>Recuperar contraseña.</a>
           .form__row.form__row_away
             button.btn.btn_solid.btn_block(
-              @click.prevent='Login()') Iniciar sesión
+              @click.prevent='login()') Iniciar sesión
         .break
           span.break__txt O
         //- falta cerrar la modal
@@ -45,9 +45,30 @@ transition(name='modal-fade')
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'FormLogin',
+  data () {
+    return {
+      userEmail: '',
+      userPsw: '',
+      bearerToken: ''
+    }
+  },
   methods: {
+    login: function () {
+      axios.post('https://prilov.aguayo.co/api/users/login', {
+        email: this.userEmail,
+        password: this.userPsw
+      })
+        .then(response => {
+          this.bearerToken = response.data
+          console.log(response)
+        })
+        .catch(e => {
+          console.log('ERROR : ' + e)
+        })
+    },
     close: function () {
       this.$emit('close')
     }

@@ -13,7 +13,7 @@ main.content-slot
           for='nombre') Nombre
         input.form__control(
           v-model='nombre',
-          id='nombre',
+          id='username',
           type='text',
           v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('nombre')}"
           data-vv-name='nombre'
@@ -26,7 +26,7 @@ main.content-slot
           for='apellidos') Apellidos
         input.form__control(
           v-model='apellidos',
-          id='apellidos',
+          id='userLast',
           type='text',
           v-validate="'required|alpha_spaces'" :class="{'input': true, 'is-danger': errors.has('apellidos')}"
           data-vv-name='apellidos'
@@ -39,7 +39,7 @@ main.content-slot
           for='email') Correo
         input.form__control(
           v-model='email',
-          id='email',
+          id='userEmail',
           type='email',
           v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email')}"
           data-vv-name='email'
@@ -96,8 +96,8 @@ export default {
   data () {
     return {
       email: '',
-      name: '',
-      apellido: '',
+      nombre: '',
+      apellidos: '',
       emailConfirm: '',
       password: ''
       // googleSignInParams: {
@@ -109,23 +109,28 @@ export default {
     VuePassword
   },
   methods: {
+    signUp () {
+      axios.post('https://prilov.aguayo.co/api/users', {
+        first_name: this.nombre,
+        last_name: this.apellidos,
+        email: this.email,
+        password: this.password
+      })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(e => {
+          console.log('ERROR : ' + e)
+        })
+    },
     validateBeforeSubmit () {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          axios.post('http://35.224.119.98/rest/V1/customers', {
-            email: this.email,
-            nombre: this.nombre,
-            apellidos: this.apellidos,
-            password: this.password
-          })
-            .then(response => {})
-            .catch(e => {
-              console.log('ERROR : ' + e)
-            })
-          alert('Exito!')
+          this.signUp()
+          alert('Usuario creado exitosamente')
           return
         }
-        alert('Correct them errors!')
+        alert('Error en los campos del formulario')
       })
     }
   }

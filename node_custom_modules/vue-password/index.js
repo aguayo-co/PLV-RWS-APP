@@ -989,7 +989,7 @@
           strengthMessages: {
             type: Array,
             default: function() {
-              return ["Muy Debil", "Debil", "Madiana", "Fuerte", "Muy Fuerte"];
+              return ["Muy Debil", "Debil", "Mediana", "Fuerte", "Muy Fuerte"];
             }
           },
           value: { type: String, default: "" },
