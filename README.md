@@ -36,3 +36,19 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ``` bash
 npm install pug --save-dev
 ```
+
+### Incluye Axios
+-https://github.com/axios/axios
+    npm install axios --save -dev
+
+### Incluye Vee-Validate
+-https://github.com/baianat/vee-validate
+    npm install vee-validate --save -dev
+
+### Incluye Vue-password
+-https://github.com/skegel13/vue-password
+    $ npm install vue-password --save -dev
+
+# Rutas de archivos en node_custom_modules
+    vue-password : node_modules\vue-password\dist archivo index.js
+    vee-validate : node_modules\vee-validate\dist\locale archivo es.js

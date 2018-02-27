@@ -1,6 +1,6 @@
 <template lang="pug">
 //- HEADER PAGE
-.page-header
+.page-header(v-bind:style="fixedPosition")
   .layout-inner
     header.header__bar(
       :class="{ 'header__bar_fix':fixHeader }"
@@ -78,6 +78,14 @@ export default {
     PageHeaderBrand,
     PageHeaderMenu,
     PageHeaderSearch
+  },
+  data () {
+    return {
+      fixedPosition: {
+        position: 'fixed',
+        top: 0
+      }
+    }
   },
   methods: {
     open: function () {
