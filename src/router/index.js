@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import FormPass from '@/pages/FormPass'
-import FormSingUp from '@/pages/FormSingUp'
+import SingUp from '@/pages/SingUp'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
 
@@ -15,12 +15,12 @@ export default new Router({
     },
     {
       path: '/singup',
-      name: 'FormPass',
-      component: FormSingUp
+      name: 'SingUp',
+      component: SingUp
     },
     {
       path: '/password',
-      name: 'FormSingUp',
+      name: 'Pass',
       component: FormPass
     },
     { path: '/user',

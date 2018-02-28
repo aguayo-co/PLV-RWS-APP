@@ -1618,6 +1618,28 @@ body {
       height: 98%;
       background-color: #cbcbcb; } }
 
+/*------------------------------------*  Notificacciones
+\*------------------------------------*/
+/* line 4, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify {
+  padding: 20px 0; }
+
+/* line 7, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify__title {
+  margin-bottom: 10px; }
+
+/* line 11, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify__body {
+  padding: 20px 0; }
+
+/* line 15, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify__footer {
+  padding-top: 10px; }
+
+/* line 19, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify__row {
+  padding-bottom: 16px; }
+
 /*------------------------------------*    #Print styles
 \*------------------------------------*/
 @media print {
