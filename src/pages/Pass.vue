@@ -2,26 +2,21 @@
 .layout-slot
   .content-slot
     .content-slot__inner
-      h1.title Recuperar Contraseña
-      p Ingresa tu correo y te enviaremos un enlace para recuperar tu contraseña.
-      form.form.form_big(
-        v-on:submit='',
-        action='#',
-        method='post')
-        .form__row
-          label.form__label(
-            for='userEmail') Correo
-          input.form__control(
-            v-model='userEmail',
-            id='userEmail',
-            type='email')
-        .form__row.form__row_away
-          button.btn.btn_solid.btn_block(
-            @click.prevent='Login()') Enviar Correo
+      //- Formulario de registro
+      FormPass
+      //- Noti Error
+      FormSuccess
+
 </template>
 
 <script>
+import FormPass from '@/components/FormPass'
+import FormSuccess from '@/components/FormNotiSuccessPass'
 export default {
-  name: 'FormSingUp'
+  name: 'Pass',
+  components: {
+    FormPass,
+    FormSuccess
+  }
 }
 </script>

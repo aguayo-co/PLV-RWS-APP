@@ -2,7 +2,8 @@
     #Styles for text elements
 \*------------------------------------*/
 body {
-  color:  $c-default-2;
+  line-height: 1.4;
+  color:  $c-default;
   @include font-rem(14px);
   font-family: $f-default;
   font-weight: $fw-regular;

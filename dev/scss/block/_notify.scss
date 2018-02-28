@@ -29,9 +29,26 @@
 .notify__footer {
   width: 80%;
   margin: 0 auto;
-  padding-top: 10px;
 }
 
 .notify__row {
   padding-bottom: 16px;
 }
+
+.notify__info {
+  position: relative;
+  min-height: 32px;
+  margin-top: 8px;
+  padding-left: 40px;
+  strong {
+    font-weight: $fw-bold;
+  }
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -20px;
+    @include font-rem(32px);
+  }
+}
+
