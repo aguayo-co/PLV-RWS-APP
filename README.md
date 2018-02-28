@@ -36,3 +36,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ``` bash
 npm install pug --save-dev
 ```
+### Sticky
+#### Uso:
+* Menu Usuario
+* Menu Main Mobile
+#### URL:
+https://www.npmjs.com/package/vue-sticky-js
+#### Installation
+``` bash
+npm i -S vue-sticky-js
+```
+#### Directive
+``` bash
+v-sticky => Define a new sticky element
+```

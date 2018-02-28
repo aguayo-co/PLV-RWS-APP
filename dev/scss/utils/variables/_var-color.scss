@@ -9,8 +9,9 @@ $white     : #fff;
 $white-two : #f6f6f6;
 $black     : #000;
 // Grey
-$grey      : #4a4a4a;
-$grey-white: #efefef;
+$grey       : #4a4a4a;
+$grey-medium: #cbcbcb;
+$grey-white : #efefef;
 
 //* Color variables */
 $c-brand     : $coral-pink;
@@ -26,5 +27,7 @@ $c-neutro-4: $white-two;
 $c-default     : $black;
 $c-default-over: rgba($black, .8);
 $c-default-2   : $grey;
+$c-default-3   : $grey-medium;
+
 
 
