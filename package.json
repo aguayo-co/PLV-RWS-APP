@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "vee-validate": "^2.0.4",
     "vue": "^2.5.2",
-    "vue-sticky-js": "0.0.4"
+    "vue-sticky-js": "0.0.4",
     "vue-password": "^1.1.2",
     "vue-router": "^3.0.1"
   },
