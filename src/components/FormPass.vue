@@ -16,6 +16,8 @@
     .form__row.form__row_away
       button.btn.btn_solid.btn_block(
         @click.prevent='Login()') Enviar Correo
+
+    p.form__info.i-alert-info Recuerda revisar también la carpeta de <strong>correo no deseado.</strong>
 </template>
 
 <script>

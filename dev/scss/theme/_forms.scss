@@ -57,8 +57,23 @@ select {
     .form__note_right {
       text-align: right;
     }
-
-
+  
+    .form__info {
+      position: relative;
+      min-height: 40px;
+      padding: 16px 0 16px 48px;
+      @include font-rem(16px);
+      strong {
+        font-weight: $fw-bold;
+      }
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -20px;
+        @include font-rem(40px);
+      }
+    }
 
 /*------------------------------------*\
 	 Mensajes Error
