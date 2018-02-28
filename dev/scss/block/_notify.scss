@@ -8,7 +8,9 @@
 .notify__ico {
   &:before {
     display: block;
+    margin-bottom: 24px;
     text-align: center;
+    color: $c-default;
     @include font-rem(44px);
   }
 }

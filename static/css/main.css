@@ -1624,19 +1624,28 @@ body {
 .notify {
   padding: 20px 0; }
 
-/* line 7, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+/* line 9, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify__ico:before {
+  display: block;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #000;
+  font-size: 44px;
+  font-size: 2.75rem; }
+
+/* line 18, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__title {
   margin-bottom: 10px; }
 
-/* line 11, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+/* line 22, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__body {
   padding: 20px 0; }
 
-/* line 15, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+/* line 26, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__footer {
   padding-top: 10px; }
 
-/* line 19, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+/* line 30, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__row {
   padding-bottom: 16px; }
 
