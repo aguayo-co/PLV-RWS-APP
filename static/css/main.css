@@ -560,14 +560,19 @@ a {
   .btn:active {
     border-top-color: #D46060;
     border-left-color: #D46060; }
+  /* line 28, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+  .btn:before {
+    font-size: 20px;
+    font-size: 1.25rem;
+    padding-right: 12px; }
 
-/* line 30, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+/* line 34, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
 .btn_solid {
   color: #fff;
   border: 2px solid #000;
   background-color: #000; }
 
-/* line 36, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+/* line 40, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
 .btn_close {
   position: absolute;
   top: 0;
@@ -576,24 +581,24 @@ a {
   padding: 0 4px 5px;
   border-bottom: solid 3px #fe7676;
   cursor: pointer; }
-  /* line 45, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+  /* line 49, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
   .btn_close span {
     display: none; }
-  /* line 48, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+  /* line 52, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
   .btn_close:before {
     font-size: 22px;
     font-size: 1.375rem; }
 
-/* line 53, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+/* line 57, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
 .btn_block {
   display: block; }
 
 @media only screen and (min-width: 768px) {
-  /* line 59, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+  /* line 63, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
   .btn {
     width: auto;
     min-width: 220px; }
-  /* line 63, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
+  /* line 67, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_buttons.scss */
   .btn_block {
     width: 100%; } }
 

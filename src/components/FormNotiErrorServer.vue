@@ -6,7 +6,7 @@
     p Por favor intenta el registro nuevamente.
   .notify__footer
     .notify__row
-      a.btn.btn_solid.btn_block(
+      a.btn.btn_solid.btn_block.i-reload(
       href='#') Intentar nuevamente
 </template>
 
