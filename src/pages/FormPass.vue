@@ -13,14 +13,53 @@ main.content-slot
         input.form__control(
           v-model='userEmail',
           id='userEmail',
-          type='email')
+          type='email',
+          v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('correo')}",
+          data-vv-name='userEmail'
+        )
+        span.help.is-danger(
+          v-show="errors.has('userEmail')"
+        ) {{ errors.first('userEmail') }}
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
-          @click.prevent='Login()') Enviar Correo
+          @click.prevent='validateBeforeSubmit()') Enviar Correo
 </template>
 
 <script>
+import es from 'vee-validate/dist/locale/es'
+import VeeValidate, {Validator} from 'vee-validate'
+import axios from 'axios'
+import Vue from 'vue'
+Validator.localize('es', es)
+Vue.use(VeeValidate)
 export default {
-  name: 'FormSingUp'
+  name: 'FormSignUp',
+  data () {
+    return {
+      userEmail: ''
+    }
+  },
+  methods: {
+    recoverPass () {
+      axios.get('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
+      })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(e => {
+          console.log('ERROR : ' + e)
+        })
+    },
+    validateBeforeSubmit () {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.recoverPass()
+          alert('Exito!')
+          return
+        }
+        alert('Correct them errors!')
+      })
+    }
+  }
 }
 </script>
