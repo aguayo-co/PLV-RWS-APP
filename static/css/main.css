@@ -1646,11 +1646,17 @@ body {
 .notify__body {
   padding: 20px 0; }
 
-/* line 26, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+/* line 25, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+.notify__body_center {
+  text-align: center; }
+
+/* line 29, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__footer {
+  width: 80%;
+  margin: 0 auto;
   padding-top: 10px; }
 
-/* line 30, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
+/* line 35, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__row {
   padding-bottom: 16px; }
 

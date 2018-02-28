@@ -22,8 +22,13 @@
 .notify__body {
   padding: 20px 0; 
 }
+.notify__body_center {
+  text-align: center;
+}
 
 .notify__footer {
+  width: 80%;
+  margin: 0 auto;
   padding-top: 10px;
 }
 
