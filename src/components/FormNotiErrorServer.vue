@@ -1,15 +1,13 @@
 <template lang="pug">
 .notify
-  h1.title.notify__title Andrea, bienvenida a Prilov
+  .notify__ico.i-alert-tri
+    h1.title.notify__title Lo sentimos pero algo ha salido mal
   .notify__body
-    p Ya puedes publicar tu primera venta y realizar compras en toda la tienda.
+    p Por favor intenta el registro nuevamente.
   .notify__footer
     .notify__row
       a.btn.btn_solid.btn_block(
-      href='#') Publicar una venta
-    .notify__row
-      a.btn.btn_block(
-      href='#') Ir a la tienda
+      href='#') Intentar nuevamente
 </template>
 
 <script>

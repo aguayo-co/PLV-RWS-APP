@@ -4,6 +4,15 @@
 .notify {
   padding: 20px 0;
 }
+
+.notify__ico {
+  &:before {
+    display: block;
+    text-align: center;
+    @include font-rem(44px);
+  }
+}
+
 .notify__title {
   margin-bottom: 10px;
 }
@@ -19,10 +28,3 @@
 .notify__row {
   padding-bottom: 16px;
 }
-
-
-
-// $bp-big: 1024px;
-// @include media-query(wide) {
-  
-// }
