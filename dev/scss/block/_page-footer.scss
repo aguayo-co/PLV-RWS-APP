@@ -3,8 +3,8 @@
 \*------------------------------------*/
 .page-foot{
   position: relative;
-  margin-top: 84px;
   padding: 68px 50px 42px 0;
+  color: $c-default;
   background-color: $c-neutro-4;
   &:before {
     position: absolute;
@@ -85,14 +85,4 @@
   p {
     margin: 0;
   }
-}
-
-// $bp-big: 1280px;
-@include media-query(big) {
-  
-}
-
-// $bp-huge: 1440px;
-@include media-query(huge) {
-
 }

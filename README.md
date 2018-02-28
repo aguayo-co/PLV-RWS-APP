@@ -52,3 +52,17 @@ npm install pug --save-dev
 # Rutas de archivos en node_custom_modules
     vue-password : node_modules\vue-password\dist archivo index.js
     vee-validate : node_modules\vee-validate\dist\locale archivo es.js
+### Sticky
+#### Uso:
+* Menu Usuario
+* Menu Main Mobile
+#### URL:
+https://www.npmjs.com/package/vue-sticky-js
+#### Installation
+``` bash
+npm i -S vue-sticky-js
+```
+#### Directive
+``` bash
+v-sticky => Define a new sticky element
+```

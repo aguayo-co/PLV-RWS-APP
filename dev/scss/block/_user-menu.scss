@@ -1,0 +1,85 @@
+/*------------------------------------*\
+	User Menu
+\*------------------------------------*/
+//side paginas 2 slot menu usuario
+.side {
+  padding-right: 70px;
+  background-color: $c-neutro;
+}
+
+.user-nav {
+  color: $c-default;
+  min-width: 212px;
+}
+
+  .user-nav__list {
+    padding-bottom: 10px;
+  }
+
+  .user-nav__title {
+    padding-bottom: 24px;
+    text-transform: uppercase;
+    font-weight: $fw-bold;
+    @include font-rem(18px);
+  }
+
+  .user-nav__item {
+    padding-bottom: 30px;
+    @include font-rem(18px);
+  }
+
+    .user-nav__link {
+      position: relative;
+      padding-left: 36px;
+      color: $c-default;
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        display: block;
+        width: 22px;
+        margin-top: -8px;
+        line-height: 1;
+        text-align: center;
+        @include font-rem(16px);
+      }
+      &:hover {
+        color: $c-brand;
+      }
+    }
+// point Only mobile -tablet
+@include media-query(max-wide) {
+  .side {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 10;
+    max-width: 450px;
+    height: 100vh;
+    padding: 0 60px 80px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  }
+}
+
+// $bp-big: 1024px;
+@include media-query(wide) {
+  //side paginas 2 slot menu usuario
+  .side {
+    position: relative;
+    max-width: 284px;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 1px;
+      height: 98%;
+      background-color: $c-default-3;
+    }
+  }
+}
+

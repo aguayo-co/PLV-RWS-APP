@@ -1,20 +1,23 @@
 <template lang="pug">
-div.page.page_bg
+div.page
 
   //- Header template
   PageHeader(
     @open='openLogin')
 
+  //- main content
+  main.content-main
+
+    //- Router Page
+    router-view
+
+  //- footer template
+  PageFooter
+
   //- Modal Login
   FormLogin(
     v-show='isLoginShow'
     @close='closeLogin')
-
-  //- main content
-  <router-view/>
-
-  //- footer template
-  PageFooter
 </template>
 
 <script>
