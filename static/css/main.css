@@ -654,27 +654,39 @@ select {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
 
-/* line 53, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/*------------------------------------*	Mensajes formulario
+\*------------------------------------*/
+/* line 58, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.form__notify {
+  padding: 16px;
+  text-align: center;
+  background-color: #efefef; }
+  /* line 63, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  .form__notify p:first-child {
+    margin-top: 0;
+    padding-top: 0; }
+
+/* line 70, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__note {
   margin: -8px 0 0;
   font-size: 12px;
   font-size: 0.75rem; }
 
-/* line 57, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 74, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__note_right {
   text-align: right; }
 
-/* line 61, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 78, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__info {
   position: relative;
   min-height: 40px;
   padding: 16px 0 16px 48px;
   font-size: 16px;
   font-size: 1rem; }
-  /* line 66, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 83, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__info strong {
     font-weight: 700; }
-  /* line 69, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 86, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__info:before {
     position: absolute;
     left: 0;
@@ -1660,7 +1672,7 @@ body {
 
 /* line 18, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__title {
-  margin-bottom: 10px; }
+  margin-bottom: 0; }
 
 /* line 22, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_notify.scss */
 .notify__body {

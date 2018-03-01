@@ -13,6 +13,11 @@
         v-model='userEmail',
         id='userEmail',
         type='email')
+      .form__notify
+        p No hemos encontrado una cuenta asociada al correo: mailnoreconocido@gmail.com
+        p ¿Te gustaría crear una cuenta ahora?
+        a.btn(href="#") Crear cuenta
+
     .form__row.form__row_away
       button.btn.btn_solid.btn_block(
         @click.prevent='Login()') Enviar Correo
