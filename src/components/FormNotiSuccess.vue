@@ -14,6 +14,22 @@
 
 <script>
 export default {
-  name: 'FormSuccess'
+  name: 'FormSuccess',
+  data: function () {
+    return {
+      flagSignUp: 'SignUp'
+    }
+  },
+  methods: {
+    setSignUp () {
+      this.flagSignUp = 'SignUp'
+    },
+    setSuccess () {
+      this.flagSignUp = 'Success'
+    },
+    setError () {
+      this.flagSignUp = 'Error'
+    }
+  }
 }
 </script>

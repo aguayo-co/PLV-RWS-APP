@@ -3,11 +3,18 @@
   .content-slot
     .content-slot__inner
       //- Formulario de registro
-      FormSingUp
+      FormSingUp(
+        v-if="flagSignUp == 'SignUp'"
+        @setSuccess= 'setSuccess'
+        @setError= 'setError')
       //- Noti OK
-      FormSuccess
+      FormSuccess(
+        v-else-if="flagSignUp == 'Success'"
+        )
       //- Noti Error
-      FormError
+      FormError(
+        v-else
+        @setSignUp='setSignUp')
 
 </template>
 
@@ -21,6 +28,22 @@ export default {
     FormSingUp,
     FormSuccess,
     FormError
+  },
+  data: function () {
+    return {
+      flagSignUp: 'SignUp'
+    }
+  },
+  methods: {
+    setSignUp () {
+      this.flagSignUp = 'SignUp'
+    },
+    setSuccess () {
+      this.flagSignUp = 'Success'
+    },
+    setError () {
+      this.flagSignUp = 'Error'
+    }
   }
 }
 </script>
