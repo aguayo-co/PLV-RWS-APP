@@ -114,6 +114,10 @@ $w-item-left: 60%;
 
     .submenu__label {
       display: block;
+      cursor: pointer;
+      &:hover {
+        color: $c-brand;
+      }
     }
 
   .submenu__item_active {
@@ -127,6 +131,11 @@ $w-item-left: 60%;
       padding-bottom: 16px;
       line-height: 1;
       border-bottom: 1px solid $c-default;
+      cursor: default;
+      &:hover {
+        color: $c-default;
+      }
+
     }
 
     .submenu__list {
@@ -187,6 +196,9 @@ $w-item-left: 60%;
     display: inline-block;
     padding-bottom: 8px;
     color: $c-default;
+    &:hover {
+      color: $c-brand;
+    }
   }
 
 // $bp-large: 1180px;

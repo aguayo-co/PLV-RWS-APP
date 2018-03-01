@@ -86,6 +86,11 @@ export default {
               name: 'Método de envío',
               url: '#',
               ico: 'i-shipping'
+            },
+            {
+              name: 'Cerrar sesión',
+              url: '#',
+              ico: ''
             }
           ]
         }

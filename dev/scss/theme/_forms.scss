@@ -50,30 +50,47 @@ select {
     font-family: $f-default;
     border: 1px solid $c-default-2;
   }
-  .form__note {
-    margin: -8px 0 0;
-    @include font-rem(12px);
+
+/*------------------------------------*\
+	Mensajes formulario
+\*------------------------------------*/
+
+.form__notify {
+  padding: 16px;
+  text-align: center;
+  background-color: $c-neutro-3;
+  p {
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
   }
-    .form__note_right {
-      text-align: right;
-    }
+}
+
+.form__note {
+  margin: -8px 0 0;
+  @include font-rem(12px);
+}
+  .form__note_right {
+    text-align: right;
+  }
   
-    .form__info {
-      position: relative;
-      min-height: 40px;
-      padding: 16px 0 16px 48px;
-      @include font-rem(16px);
-      strong {
-        font-weight: $fw-bold;
-      }
-      &:before {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        margin-top: -20px;
-        @include font-rem(40px);
-      }
-    }
+.form__info {
+  position: relative;
+  min-height: 40px;
+  padding: 16px 0 16px 48px;
+  @include font-rem(16px);
+  strong {
+    font-weight: $fw-bold;
+  }
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -20px;
+    @include font-rem(40px);
+  }
+}
 
 /*------------------------------------*\
 	 Mensajes Error
