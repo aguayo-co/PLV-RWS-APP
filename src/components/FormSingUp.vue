@@ -120,6 +120,7 @@ export default {
         .then(response => {
           console.log(response)
           this.setSuccess()
+          this.setName(this.nombre)
         })
         .catch(e => {
           console.log(e.response.data.errors.exists[0]) // Aca se obtiene el error del servidor
@@ -142,6 +143,9 @@ export default {
     setError () {
       this.flagSignUp = 'Error'
       this.$emit('setError')
+    },
+    setName (nombre) {
+      this.$store.dispatch('setName', this.nombre)
     }
   }
 }

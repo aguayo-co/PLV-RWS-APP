@@ -1,6 +1,6 @@
 <template lang="pug">
   .notify
-    h1.title.notify__title Andrea, bienvenida a Prilov
+    h1.title.notify__title {{getName}}, bienvenida a Prilov
     .notify__body
       p Ya puedes publicar tu primera venta y realizar compras en toda la tienda.
     .notify__footer
@@ -29,6 +29,11 @@ export default {
     },
     setError () {
       this.flagSignUp = 'Error'
+    }
+  },
+  computed: {
+    getName () {
+      return this.$store.getters.getName
     }
   }
 }

@@ -48,10 +48,6 @@ npm install pug --save-dev
 ### Incluye Vue-password
 -https://github.com/skegel13/vue-password
     $ npm install vue-password --save -dev
-
-# Rutas de archivos en node_custom_modules
-    vue-password : node_modules\vue-password\dist archivo index.js
-    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
 ### Sticky
 #### Uso:
 * Menu Usuario
@@ -66,3 +62,12 @@ npm i -S vue-sticky-js
 ``` bash
 v-sticky => Define a new sticky element
 ```
+
+### Incluye vuex
+-https://vuex.vuejs.org/en/installation.html
+    npm install vuex --save-dev
+    
+# Rutas de archivos en node_custom_modules
+    vue-password : node_modules\vue-password\dist archivo index.js
+    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
+

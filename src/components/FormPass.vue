@@ -20,13 +20,13 @@ main.content-slot
         span.help.is-danger(
           v-show="errors.has('userEmail')"
         ) {{ errors.first('userEmail') }}
-      .form__row.form__row_away
-        button.btn.btn_solid.btn_block(
-          @click.prevent='validateBeforeSubmit()') Enviar Correo
-      .form__notify
+        .form__notify
         p No hemos encontrado una cuenta asociada al correo: mailnoreconocido@gmail.com
         p ¿Te gustaría crear una cuenta ahora?
         a.btn(href="#") Crear cuenta
+      .form__row.form__row_away
+        button.btn.btn_solid.btn_block(
+          @click.prevent='validateBeforeSubmit()') Enviar Correo
     p.form__info.i-alert-info Recuerda revisar también la carpeta de <strong>correo no deseado.</strong>
 </template>
 

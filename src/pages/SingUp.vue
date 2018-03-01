@@ -19,11 +19,38 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuex from 'vuex'
 import FormSingUp from '@/components/FormSingUp'
 import FormSuccess from '@/components/FormNotiSuccess'
 import FormError from '@/components/FormNotiErrorServer'
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    nombre: ''
+  },
+  mutations: {
+    setName (state, newName) {
+      this.state.nombre = newName
+    }
+  },
+  actions: {
+    setName ({commit, state}, newName) {
+      commit('setName', newName)
+    }
+  },
+  getters: {
+    getName: state => {
+      return state.nombre
+    }
+  }
+
+})
+
 export default {
   name: 'SingUp',
+  store: store,
   components: {
     FormSingUp,
     FormSuccess,
