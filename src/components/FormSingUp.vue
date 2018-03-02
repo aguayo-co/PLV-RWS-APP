@@ -111,6 +111,7 @@ export default {
   },
   methods: {
     signUp () {
+      // console.log(this.$store.get('userAuth'))
       axios.post('https://prilov.aguayo.co/api/users', {
         first_name: this.nombre,
         last_name: this.apellidos,
@@ -118,13 +119,14 @@ export default {
         password: this.password
       })
         .then(response => {
-          console.log(response)
+          console.log('response data api?' + response.data.api_token)
+          // this.$store.set('userAuth', {token: response.data.api_token})
           this.setSuccess()
           this.setName(this.nombre)
         })
         .catch(e => {
-          console.log(e.response.data.errors.exists[0]) // Aca se obtiene el error del servidor
-          alert(e.response.data.errors.exists[0])
+          // console.log(e.response.data.errors.exists[0]) // Aca se obtiene el error del servidor
+          // alert(e.response.data.errors.exists[0])
         })
     },
     validateBeforeSubmit () {
@@ -145,7 +147,9 @@ export default {
       this.$emit('setError')
     },
     setName (nombre) {
-      this.$store.dispatch('setName', this.nombre)
+      console.log(this.nombre)
+      console.log(this.$store.getters['signUp/getName'])
+      this.$store.dispatch('signUp/actionSetName', this.nombre)
     }
   }
 }

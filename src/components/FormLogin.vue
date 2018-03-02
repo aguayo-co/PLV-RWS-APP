@@ -51,8 +51,7 @@ export default {
   data () {
     return {
       userEmail: '',
-      userPsw: '',
-      bearerToken: ''
+      userPsw: ''
     }
   },
   methods: {
@@ -62,8 +61,7 @@ export default {
         password: this.userPsw
       })
         .then(response => {
-          this.bearerToken = response.data
-          console.log(response)
+          // this.$store.set('userAuth', {token: response.data.api_token})
         })
         .catch(e => {
           console.log('ERROR : ' + e)

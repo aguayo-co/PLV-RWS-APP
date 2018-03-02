@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     getName () {
-      return this.$store.getters.getName
+      return this.$store.getters['signUp/getName']
     }
   }
 }
