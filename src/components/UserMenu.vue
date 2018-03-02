@@ -1,7 +1,4 @@
 <template lang="pug">
-//- mobile
-//- Dammy Saldaña
-
 .side
   h2.headline Tu cuenta
   //- User Nav
