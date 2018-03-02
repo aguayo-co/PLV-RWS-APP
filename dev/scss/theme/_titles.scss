@@ -17,7 +17,6 @@ h6 {
   margin-bottom: 24px;
   text-align: center;
   text-transform: uppercase;
-  color: $c-default;
   @include font-rem(26px);
   font-family: $f-fancy;
   font-weight: $fw-semi-bold;
@@ -40,4 +39,12 @@ h6 {
     height: 3px;
     background-color: $c-brand;
   }
+}
+
+.headline {
+  padding: 10px 0 50px;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-medium;
+  @include font-rem(22px);
 }

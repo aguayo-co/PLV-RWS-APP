@@ -62,7 +62,7 @@
 
 /* componente Pageheader-search
  */
-.seacrh {
+.search {
   width: 18%;
   min-width: 176px;
 }
@@ -71,7 +71,7 @@
   position: relative;
 }
 
-  .seacrh__input {
+  .search__input {
     width: 100%;
     min-width: 176px;
     padding: 4px 38px 4px 12px;
@@ -83,7 +83,7 @@
     @include font-rem(12px);
     border-radius: 8px;
   }
-  .seacrh__btn {
+  .search__btn {
     position: absolute;
     right: 12px;
     top: 50%;
