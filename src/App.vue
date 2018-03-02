@@ -1,6 +1,5 @@
 <template lang="pug">
 div.page
-
   //- Header template
   PageHeader(
     @open='openLogin')

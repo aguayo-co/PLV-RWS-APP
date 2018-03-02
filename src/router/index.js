@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Pass from '@/pages/Pass'
+import Home from '@/pages/home'
 import SingUp from '@/pages/SingUp'
+import Pass from '@/pages/Pass'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
 
@@ -11,7 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home'
+      name: 'home',
+      component: Home
     },
     {
       path: '/singup',
