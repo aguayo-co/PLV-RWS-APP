@@ -3,8 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueMq from 'vue-mq'
 
 Vue.config.productionTip = false
+
+/* Setup breakpoints */
+Vue.use(VueMq, {
+  breakpoints: {
+    mobile: 1023,
+    desktop: Infinity
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

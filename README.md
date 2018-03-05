@@ -36,6 +36,24 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ``` bash
 npm install pug --save-dev
 ```
+---
+### Axios
+#### Installation
+``` bash
+npm install --save axios vue-axios
+```
+---
+### vue-mq
+#### Uso:
+Transversal renderizado vistas condicionales 
+Mobile/desktop
+#### URL:
+https://alligator.io/vuejs/vue-media-queries/
+#### Installation
+``` bash
+npm install vue-mq
+```
+---
 ### Sticky
 #### Uso:
 * Menu Usuario
