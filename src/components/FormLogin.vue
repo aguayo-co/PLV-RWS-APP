@@ -61,7 +61,20 @@ export default {
         password: this.userPsw
       })
         .then(response => {
-          // this.$store.set('userAuth', {token: response.data.api_token})
+          console.log(response.data)
+          // this.$store.tokenLocalStorage.getItem('token')
+          // this.$store.dispatch('signUp/actionSetToken', response.data.api_token)
+          this.$store.dispatch('actionSetToken', response.data.api_token)
+          this.$store.dispatch('signUp/actionSetName', response.data.first_name)
+          // this.$store.dispatch('actionSetAuth')
+          // this.$store.getters.getAuth()
+          console.log(this.$store.getters.getToken)
+          localStorage.setItem('token', JSON.stringify(this.$store.getters.getToken))
+          console.log('TOKEN EN LS')
+          localStorage.getItem('token')
+          this.close()
+          // console.log(this.userToken)
+          // this.$store.tokenLocalStorage.setItem('userAuth', {token: response.data.api_token})
         })
         .catch(e => {
           console.log('ERROR : ' + e)

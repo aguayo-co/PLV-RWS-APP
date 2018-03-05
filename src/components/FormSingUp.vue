@@ -123,6 +123,9 @@ export default {
           // this.$store.set('userAuth', {token: response.data.api_token})
           this.setSuccess()
           this.setName(this.nombre)
+          this.$store.dispatch('actionSetToken', response.data.api_token)
+          this.$store.dispatch('signUp/actionSetName', response.data.first_name)
+          localStorage.setItem('token', JSON.stringify(this.$store.getters.getToken))
         })
         .catch(e => {
           // console.log(e.response.data.errors.exists[0]) // Aca se obtiene el error del servidor

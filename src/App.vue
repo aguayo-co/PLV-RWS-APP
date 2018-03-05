@@ -27,6 +27,8 @@ import FormLogin from '@/components/FormLogin'
 import PageFooter from '@/components/PageFooter'
 Vue.use(Vuex)
 
+// eslint-disable-next-line
+
 const signUpModule = {
   namespaced: true,
   state: {
@@ -50,10 +52,46 @@ const signUpModule = {
 }
 
 const store = new Vuex.Store({
+  state: {
+    token: localStorage.getItem('token'),
+    auth: false
+  },
+  mutations: {
+    mutationSetToken (state, newToken) {
+      localStorage.setItem('token', newToken)
+      state.token = localStorage.getItem('token')
+    },
+    mutationSetAuth (state) {
+      if (!state.auth) {
+        state.auth = true
+      } else {
+        state.auth = false
+      }
+    }
+  },
+  actions: {
+    actionSetToken ({commit, state}, newToken) {
+      commit('mutationSetToken', newToken)
+    },
+    actionSetAuth ({commit, state}) {
+      commit('mutationSetAuth')
+    }
+  },
+  getters: {
+    getToken: state => {
+      return state.token
+    },
+    getAuth: state => {
+      if (state.auth) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   modules: {
     signUp: signUpModule
   }
-
 })
 
 export default {

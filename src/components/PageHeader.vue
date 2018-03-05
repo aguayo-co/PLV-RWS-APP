@@ -25,8 +25,7 @@
             //-vue variable productos en el carrito
             small.badge 1
           //- Is authenticated
-          li.tool-user__item.tool-user__item_auth(
-            v-if='isAuth')
+          li.tool-user__item.tool-user__item_auth(v-if= 'getAuth')
             figure.tool-user__grid(
               @click='toggleBox()')
               small.badge.badge_user 2
@@ -36,7 +35,7 @@
                   src='/static/img/demo/user-avatar.jpg',
                   alt='')
               //-vue variable user name
-              figcaption.tool-user__name Name User
+              figcaption.tool-user__name {{getName}}
             transition(name='toggle-scale')
               .user-auth__menu.toggle-box(
                   v-show='active')
@@ -62,8 +61,7 @@
                       href="",
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
-          li.tool-user__item.i-user(
-            v-else='',
+          li.tool-user__item.i-user(v-else
             @click='open') Ingresar
 </template>
 
@@ -90,6 +88,21 @@ export default {
   methods: {
     open: function () {
       this.$emit('open')
+    },
+    close: function () {
+      this.$emit('close')
+    }
+  },
+  computed: {
+    getName () {
+      return this.$store.getters['signUp/getName']
+    },
+    getAuth () {
+      if (this.$store.getters.getAuth != null && this.getName !== '') {
+        return true
+      } else {
+        return false
+      }
     }
   },
   props: ['brandHome']

@@ -41,7 +41,8 @@ export default {
   name: 'FormSignUp',
   data () {
     return {
-      userEmail: ''
+      userEmail: '',
+      success: false
     }
   },
   methods: {
@@ -59,11 +60,13 @@ export default {
       this.$validator.validateAll().then((result) => {
         if (result) {
           this.recoverPass()
-          alert('Exito!')
           return
         }
         alert('Correct them errors!')
       })
+    },
+    recoverSuccess () {
+      this.success = true
     }
   }
 }
