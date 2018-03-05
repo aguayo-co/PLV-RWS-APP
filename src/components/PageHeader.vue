@@ -2,9 +2,7 @@
 //- HEADER PAGE
 .page-header
   .layout-inner
-    header.header__bar(
-      :class="{ 'header__bar_fix':fixHeader }"
-    )
+    header.header__bar
       //- brand
       h1.page-brand(
         v-if='page')
@@ -25,8 +23,7 @@
             //-vue variable productos en el carrito
             small.badge 1
           //- Is authenticated
-          li.tool-user__item.tool-user__item_auth(
-            v-if='isAuth')
+          li.tool-user__item.tool-user__item_auth
             figure.tool-user__grid(
               @click='toggleBox()')
               small.badge.badge_user 2
@@ -61,10 +58,6 @@
                     a.user-auth__link(
                       href="",
                       title="Cerrar sesión de usuario") Cerrar sesión
-          //- Is NOT authenticated
-          li.tool-user__item.i-user(
-            v-else='',
-            @click='open') Ingresar
 </template>
 
 <script>
@@ -79,9 +72,18 @@ export default {
     PageHeaderMenu,
     PageHeaderSearch
   },
+  data () {
+    return {
+      active: false
+    }
+  },
   methods: {
     open: function () {
       this.$emit('open')
+    },
+    // submenu auth
+    toggleBox: function () {
+      this.active = !this.active
     }
   },
   props: ['brandHome']
