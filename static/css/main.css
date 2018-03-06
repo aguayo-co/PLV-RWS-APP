@@ -726,7 +726,7 @@ body {
   position: relative;
   z-index: 999;
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0 11px;
   color: #fff;
   background-color: #000; }
   .page-header ul {
@@ -988,6 +988,7 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 2;
   display: block;
   width: 22px;
   height: 22px;
@@ -998,11 +999,16 @@ body {
   opacity: 0;
   cursor: pointer;
   pointer-events: none; }
+<<<<<<< HEAD
+=======
+  /* line 33, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__close:before {
     color: #fff;
     font-size: 8px;
     font-size: 0.5rem; }
 
+<<<<<<< HEAD
 .submenu__back {
   position: absolute;
   top: 20px;
@@ -1014,16 +1020,26 @@ body {
     font-size: 18px;
     font-size: 1.125rem; }
 
+=======
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 @media only screen and (max-width: 1023px) {
   /* 
   ico menu hamburguesa
 */
+<<<<<<< HEAD
+=======
+  /* line 45, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-ico {
     position: relative;
     display: block;
     width: 32px;
     height: 22px;
     cursor: pointer; }
+<<<<<<< HEAD
+=======
+  /* line 52, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-ico__line {
     position: absolute;
     top: 50%;
@@ -1035,6 +1051,7 @@ body {
     -webkit-transition: .4s;
     transition: .4s;
     background-color: #fff; }
+<<<<<<< HEAD
     .menu-ico__line:first-child {
       -webkit-transform: translateY(-8px);
       transform: translateY(-8px); }
@@ -1047,25 +1064,118 @@ body {
   .menu-ico_open .menu-ico__line:nth-child(2) {
     -webkit-transform: scaleX(0);
     transform: scaleX(0); }
+=======
+    /* line 64, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu-ico__line:first-child {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px); }
+    /* line 69, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu-ico__line:last-child {
+      -webkit-transform: translateY(8px);
+      transform: translateY(8px); }
+  /* line 77, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-ico_open .menu-ico__line:first-child {
+    -webkit-transform: rotate(45deg) translate(0);
+    transform: rotate(45deg) translate(0); }
+  /* line 81, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-ico_open .menu-ico__line:nth-child(2) {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0); }
+  /* line 85, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-ico_open .menu-ico__line:last-child {
     -webkit-transform: rotate(-45deg) translate(0);
     transform: rotate(-45deg) translate(0); }
   /* 
   Menu slide left Mobile
 */
+<<<<<<< HEAD
   .page-menu {
+=======
+  /* line 96, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .page-menu:after {
+    content: '';
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
     position: fixed;
-    top: 60px;
+    top: 0;
+    bottom: 0;
+    right: 0;
     left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease; }
+  /* line 113, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .page-menu_open:after {
+    opacity: 1;
+    pointer-events: auto; }
+  /* line 119, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .page-menu__panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
     width: 100vw;
     max-width: 420px;
     height: 100vh;
+    overflow: scroll;
     background-color: #fff;
     -ms-touch-action: none;
     touch-action: none;
-    will-change: transform;
+    will-change: position;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
     -webkit-box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12); }
+<<<<<<< HEAD
+=======
+  /* line 141, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .page-menu_out {
+    top: -60px;
+    height: -o-calc(100vh + 60px);
+    height: calc(100vh + 60px); }
+    /* line 149, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .page-menu_out .menu__item:not(.menu__item_current) {
+      display: none; }
+  /* line 155, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .page-menu__top {
+    position: relative;
+    height: 60px;
+    padding: 10px 16px 11px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #000; }
+    /* line 162, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .page-menu__top .brand {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -moz-justify-content: center;
+      justify-content: center; }
+    /* line 165, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .page-menu__top:before {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      margin-top: -11px;
+      font-size: 22px;
+      font-size: 1.375rem; }
+  /* line 175, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-side__footer {
+    -webkit-box-ordinal-group: 3;
+    -moz-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    padding: 34px 0 48px;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: opacity .5s .2s ease;
+    transition: opacity .5s .2s ease; }
+  /* line 184, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu {
     -webkit-box-direction: normal;
     -webkit-box-orient: vertical;
@@ -1073,28 +1183,52 @@ body {
     -moz-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+<<<<<<< HEAD
     color: #000; }
+=======
+    color: #000;
+    background-color: #fff; }
+  /* line 190, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu__item {
     position: relative;
     z-index: 1;
-    padding: 0 16px;
     -webkit-box-ordinal-group: 3;
     -webkit-order: 2;
     -moz-order: 2;
     -ms-flex-order: 2;
     order: 2;
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+<<<<<<< HEAD
     font-weight: 400; }
+=======
+    font-weight: 400;
+    background-color: #fff;
+    opacity: 1; }
+    /* line 198, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu__item:after {
+      content: '';
+      display: block;
+      margin: 0 16px;
+      border-bottom: 1px solid #cbcbcb; }
+  /* line 206, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu__link {
     position: relative;
-    padding: 16px 16px 16px 60px;
+    z-index: 2;
+    padding: 15px 16px 15px 76px;
     color: #000;
     font-size: 22px;
     font-size: 1.375rem;
+<<<<<<< HEAD
     border-bottom: 1px solid #cbcbcb; }
+=======
+    overflow: hidden; }
+    /* line 214, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
     .menu__link:before {
       position: absolute;
-      left: 20px;
+      left: 28px;
       top: 50%;
       display: block;
       width: 28px;
@@ -1103,14 +1237,83 @@ body {
       text-align: center;
       font-size: 22px;
       font-size: 1.375rem; }
+<<<<<<< HEAD
+=======
+    /* line 226, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
     .menu__link.i-shop:before {
       margin-top: -8px;
       font-size: 16px;
       font-size: 1rem; }
+<<<<<<< HEAD
+=======
+    /* line 232, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu__link:after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 60px;
+      background-color: #000;
+      -webkit-transition: top .5s ease;
+      transition: top .5s ease;
+      pointer-events: none; }
+  /* line 249, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu__item_current {
+    z-index: 4;
+    -webkit-box-ordinal-group: 2;
+    -moz-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    height: 100vh; }
+    /* line 253, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu__item_current:after {
+      border: none; }
+    /* line 258, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu__item_current .submenu__close {
+      opacity: 1;
+      pointer-events: auto; }
+    /* line 263, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu__item_current .menu__link {
+      pointer-events: none;
+      color: #fff; }
+      /* line 266, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+      .menu__item_current .menu__link:after {
+        top: 0; }
+    /* line 271, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .menu__item_current .menu-side__footer {
+      opacity: 1; }
+  /* line 278, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu {
+    position: relative;
+    top: 0;
+    z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #fff;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease; }
+  /* line 289, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu_open {
+    top: -60px; }
+    /* line 292, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu_open .submenu__item:not(.submenu__item_current) {
+      display: none; }
+  /* line 299, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__item {
     position: relative;
     z-index: 1;
-    padding: 0 16px;
     -webkit-box-ordinal-group: 3;
     -webkit-order: 2;
     -moz-order: 2;
@@ -1118,6 +1321,7 @@ body {
     order: 2;
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
+<<<<<<< HEAD
     transition-property: z-index;
     -webkit-transition-property: z-index;
     transition-duration: 0.4s;
@@ -1126,13 +1330,28 @@ body {
     -webkit-transition-delay: 10s;
     transition-timing-function: ease-in-out;
     -webkit-transition-timing-function: ease-in-out; }
+=======
+    overflow: hidden;
+    -webkit-transition: top .2s ease;
+    transition: top .2s ease; }
+    /* line 307, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu__item:after {
+      content: '';
+      display: block;
+      margin: 0 16px;
+      border-bottom: 1px solid #cbcbcb; }
+  /* line 316, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__label {
+    position: relative;
     display: block;
     width: 100%;
-    padding: 16px;
+    height: 60px;
+    padding: 18px 16px 18px 28px;
     text-transform: uppercase;
     color: #000;
     font-size: 18px;
+<<<<<<< HEAD
     font-size: 1.125rem;
     border-bottom: 1px solid #cbcbcb; }
   .submenu {
@@ -1144,10 +1363,30 @@ body {
     background-color: #fff; }
   .menu__item_current {
     z-index: 4;
+=======
+    font-size: 1.125rem; }
+    /* line 326, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu__label:after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 60px;
+      background-color: #000;
+      -webkit-transition: top .5s .2s ease;
+      transition: top .5s .2s ease;
+      pointer-events: none; }
+  /* line 342, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu__item_current {
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
     -moz-order: 1;
     -ms-flex-order: 1;
+<<<<<<< HEAD
     order: 1;
     padding: 0; }
     .menu__item_current .submenu__close {
@@ -1165,17 +1404,53 @@ body {
         left: 50px; } }
 
 @media only screen and (min-width: 1024px) {
+=======
+    order: 1; }
+    /* line 344, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu__item_current:after {
+      border: none; }
+    /* line 348, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu__item_current .submenu__label {
+      color: #fff; }
+      /* line 350, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+      .submenu__item_current .submenu__label:after {
+        top: 0; }
+  /* line 359, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu__subitem:not(:last-child):after {
+    content: '';
+    display: block;
+    margin: 0 16px;
+    border-bottom: 1px solid #cbcbcb; }
+  /* line 368, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .subitem__link {
+    display: block;
+    padding: 18px 16px 18px 28px;
+    color: #000;
+    font-size: 18px;
+    font-size: 1.125rem; } }
+
+@media only screen and (min-width: 1024px) {
+  /* line 379, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu {
     -ms-flex-pack: justify;
     -webkit-justify-content: space-around;
     -moz-justify-content: space-around;
     justify-content: space-around;
     padding: 0 8px 0 16px; }
+<<<<<<< HEAD
+=======
+  /* line 384, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu__link {
     padding: 0 12px;
     color: #fff;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 500; }
+<<<<<<< HEAD
+=======
+  /* line 391, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-level2 {
     position: absolute;
     left: 0;
@@ -1187,6 +1462,10 @@ body {
     min-height: calc(100vh - 70px);
     color: #000;
     background-color: #fff; }
+<<<<<<< HEAD
+=======
+  /* line 404, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-level2__inner {
     position: relative;
     width: 96%;
@@ -1194,6 +1473,10 @@ body {
     margin: 36px auto; }
   /*------------------------------------*    Submenu mega menu
   \*------------------------------------*/
+<<<<<<< HEAD
+=======
+  /* line 415, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu-grid {
     position: relative;
     width: 90%;
@@ -1209,17 +1492,32 @@ body {
     -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
     justify-content: space-between; }
+<<<<<<< HEAD
+=======
+  /* line 427, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .level2__side {
     width: 88%;
     margin: 0 auto;
     text-align: center; }
+<<<<<<< HEAD
+=======
+  /* line 433, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-side__footer {
     width: 60%;
     padding-top: 40px;
     font-size: 14px;
     font-size: 0.875rem; }
+<<<<<<< HEAD
   .submenu {
     width: 60%; }
+=======
+  /* line 439, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu {
+    width: 60%; }
+  /* line 443, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__item {
     position: relative;
     text-transform: uppercase;
@@ -1229,11 +1527,22 @@ body {
     font-weight: 700;
     padding-top: 20px;
     margin-bottom: 20px; }
+<<<<<<< HEAD
   .submenu__label {
     display: block;
     cursor: pointer; }
     .submenu__label:hover {
       color: #fe7676; }
+=======
+  /* line 453, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu__label {
+    display: block;
+    cursor: pointer; }
+    /* line 456, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu__label:hover {
+      color: #fe7676; }
+  /* line 461, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__item_active {
     z-index: 9;
     padding-top: 0;
@@ -1241,19 +1550,34 @@ body {
     font-size: 3rem;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600; }
+<<<<<<< HEAD
+=======
+    /* line 467, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
     .submenu__item_active .submenu__label {
       padding-bottom: 16px;
       line-height: 1;
       border-bottom: 1px solid #000;
       cursor: default; }
+<<<<<<< HEAD
       .submenu__item_active .submenu__label:hover {
         color: #000; }
     .submenu__item_active .submenu__list {
       font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+=======
+      /* line 472, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+      .submenu__item_active .submenu__label:hover {
+        color: #000; }
+    /* line 476, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+    .submenu__item_active .submenu__list {
+      font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  /* line 480, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu-promo {
     color: #000;
     padding: 64px 0 0 30px;
     text-align: center; }
+<<<<<<< HEAD
   .menu-promo__img {
     width: 100%; }
   .menu-promo__lead {
@@ -1265,6 +1589,25 @@ body {
     padding-bottom: 12px; }
   .menu-promo__foot {
     margin-top: 10px; }
+=======
+  /* line 486, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-promo__img {
+    width: 100%; }
+  /* line 490, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-promo__lead {
+    padding-top: 22px; }
+  /* line 494, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-promo__title {
+    padding-bottom: 16px; }
+  /* line 498, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-promo__txt {
+    margin: 0;
+    padding-bottom: 12px; }
+  /* line 503, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-promo__foot {
+    margin-top: 10px; }
+  /* line 508, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__list {
     padding-top: 40px;
     padding-right: 30px;
@@ -1279,20 +1622,35 @@ body {
     -moz-column-gap: 50px;
     -webkit-column-gap: 50px;
     column-gap: 50px; }
+<<<<<<< HEAD
+=======
+  /* line 523, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__subitem {
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
+<<<<<<< HEAD
     -moz-column-fill: balance;
     column-fill: balance; }
+=======
+    -webkit-column-fill: balance;
+            column-fill: balance; }
+  /* line 531, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .subitem__link {
     display: inline-block;
     padding-bottom: 8px;
     color: #000; }
+<<<<<<< HEAD
+=======
+    /* line 535, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
     .subitem__link:hover {
       color: #fe7676; } }
 
 @media only screen and (min-width: 1180px) {
+<<<<<<< HEAD
   .menu {
     padding: 0 10px 0 20px; }
   .menu__link {
@@ -1303,6 +1661,24 @@ body {
     padding-left: 10px; }
   .submenu {
     width: 58%; }
+=======
+  /* line 544, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu {
+    padding: 0 10px 0 20px; }
+  /* line 548, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu__link {
+    padding: 0 18px; }
+  /* line 556, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-side__footer {
+    width: 58%; }
+  /* line 561, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .menu-promo {
+    padding-left: 10px; }
+  /* line 566, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+  .submenu {
+    width: 58%; }
+  /* line 570, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .submenu__list {
     padding-right: 50px;
     -moz-column-gap: 68px;
@@ -1310,27 +1686,47 @@ body {
     column-gap: 68px; } }
 
 @media only screen and (min-width: 1280px) {
+<<<<<<< HEAD
+=======
+  /* line 580, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu {
     padding: 0 20px 0 40px; } }
 
 @media only screen and (min-width: 1440px) {
+<<<<<<< HEAD
+=======
+  /* line 587, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .menu__link {
     padding: 0 20px; } }
 
 /*------------------------------------*  Transition menu
 \*------------------------------------*/
+<<<<<<< HEAD
+=======
+/* line 596, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 .slide-left-enter-active {
   -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
   transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
   transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
   transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1); }
 
+<<<<<<< HEAD
+=======
+/* line 603, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 .slide-left-leave-active {
   -webkit-transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
   transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
   transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1);
   transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1); }
 
+<<<<<<< HEAD
+=======
+/* line 610, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 .slide-left-enter,
 .slide-left-leave-to {
   -webkit-transform: translateX(-107%);
@@ -1338,24 +1734,72 @@ body {
   -webkit-transform: translateX(calc(-100% - 20px));
   transform: translateX(calc(-100% - 20px)); }
 
+<<<<<<< HEAD
+=======
+/* line 618, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 .slide-left-leave,
 .slide-left-enter-to {
   -webkit-transform: none;
   transform: none; }
 
+<<<<<<< HEAD
+=======
+/* line 626, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+.slide-down-enter-active {
+  -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.6, 1); }
+
+/* line 629, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+.slide-down-leave-active {
+  -webkit-transition: all 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: all 0.325s cubic-bezier(0, 0, 0.2, 1); }
+
+/* line 632, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+.slide-down-enter,
+.slide-down-leave-to {
+  max-height: 0; }
+
+/* line 636, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+.slide-down-leave,
+.slide-down-enter-to {
+  max-height: 100vh; }
+
+/* line 643, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 .slide-fade-enter-active {
   transition: all .2s ease; }
+<<<<<<< HEAD
+=======
+  /* line 645, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .slide-fade-enter-active .menu-level2__inner {
     transition: all .4s ease; }
 
+<<<<<<< HEAD
+=======
+/* line 650, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
 .slide-fade-leave-active {
   transition: all .3s ease; }
+<<<<<<< HEAD
+=======
+  /* line 652, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .slide-fade-leave-active .menu-level2__inner {
     transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1); }
 
+<<<<<<< HEAD
 .slide-fade-enter,
 .slide-fade-leave-to {
   opacity: 0; }
+=======
+/* line 657, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0; }
+  /* line 660, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_menu.scss */
+>>>>>>> 3af415f54fef2f4ba42a858677f4021608ed4ac6
   .slide-fade-enter .menu-level2__inner,
   .slide-fade-leave-to .menu-level2__inner {
     transform: translateY(10px); }
@@ -1545,7 +1989,7 @@ body {
   width: 100%;
   min-height: 100vh;
   padding-top: 70px;
-  background-color: rgba(0, 0, 0, 0.8); }
+  background-color: rgba(0, 0, 0, 0.5); }
 
 .modal__slot {
   position: relative;

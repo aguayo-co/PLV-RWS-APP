@@ -19,6 +19,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 2;
   display: block;
   width: 22px;
   height: 22px;
@@ -34,18 +35,7 @@
     @include font-rem(8px);
   }
 }
-.submenu__back {
-  position: absolute;
-  top: 20px;
-  left: 16px;
-  opacity: 0;
-  pointer-events: none;
 
-  &:before {
-    color: $c-neutro;
-    @include font-rem(18px);
-  }
-}
 
 // point Only mobile -tablet
 @include media-query(max-wide) {
@@ -81,7 +71,7 @@
        transform: translateY(8px);
     }
   }
-  // Menu Active 
+  // Ico Menu Active 
   .menu-ico_open {
     .menu-ico__line {
       &:first-child {
@@ -103,49 +93,127 @@
   Menu slide left Mobile
 */
   .page-menu {
+    &:after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      pointer-events: none;
+      background-color: $c-default-over;
+      transition: all .2s ease;
+    }
+  }
+  .page-menu_open {
+    &:after {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  //Mobile Contenedor
+  .page-menu__panel {
     position: fixed;
-    top: 60px;
+    top: 0;
     left: 0;
+    z-index: 2;
     width: 100vw;
     max-width: 420px;
     height: 100vh;
-    background-color : $c-neutro;
+    overflow: scroll;
+    background-color: $c-neutro;
     -ms-touch-action: none;
     touch-action: none;
-    will-change: transform;
+    will-change: position;
+    transition: all .5s ease;
     -webkit-box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
     0px 16px 24px 2px rgba(0, 0, 0, 0.14),
     0px 6px 30px 5px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
     0px 16px 24px 2px rgba(0, 0, 0, 0.14),
     0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+  }
+  //Mobile Contenedor: level 1 menu  desplegado
+  .page-menu_out {
+    top: -60px;
+    height: -webkit-calc(100vh + 60px);
+    height: -moz-calc(100vh + 60px);
+    height: -o-calc(100vh + 60px);
+    height: calc(100vh + 60px);
 
+    .menu__item {
+      &:not(.menu__item_current) {
+        display: none;
+      }
+    }
+  }
+  // header level 1: cerrar Menu
+  .page-menu__top {
+    position: relative;
+    height: 60px;
+    padding: 10px 16px 11px;
+    text-align: center;
+    overflow: hidden;
+    background-color: $c-default;
+    .brand {
+      @include justify-content(center);
+    }
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      margin-top: -11px;
+      @include font-rem(22px);
+    }
+  }
+  //MOBILE level 2: enlace bottom
+
+  .menu-side__footer {
+    @include order(2);
+    padding: 34px 0 48px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .5s .2s ease;
   }
 
+  //MOBILE level 1: menu
   .menu {
     @include flex-direction(column);
     color: $c-default;
+    background-color: $c-neutro;
   }
-
+  //MOBILE level 1: item
   .menu__item {
     position: relative;
     z-index: 1;
-    padding: 0 16px;
     @include order(2);
     font-family: $f-default;
     font-weight: $fw-regular;
+    background-color: $c-neutro;
+    opacity: 1;
+    &:after {
+      content: '';
+      display: block;
+      margin: 0 16px;
+      border-bottom: 1px solid $c-default-3;
+    }
   }
-
+  //MOBILE level 1: link
   .menu__link {
     position: relative;
-    padding: 16px 16px 16px 60px;
+    z-index: 2;
+    padding: 15px 16px 15px 76px;
     color: $c-default;
     @include font-rem(22px);
-    border-bottom: 1px solid $c-default-3;
+    overflow: hidden;
 
     &:before {
       position: absolute;
-      left: 20px;
+      left: 28px;
       top: 50%;
       display: block;
       width: 28px;
@@ -160,70 +228,148 @@
         @include font-rem(16px);
       }
     }
-  }
-  .submenu__item {
-    position: relative;
-    z-index: 1;
-    padding: 0 16px;
-    @include order(2);
-    font-family: $f-default;
-    font-weight: $fw-regular;
-    transition-property: z-index;
-    -webkit-transition-property: z-index;
-    transition-duration: 0.4s;
-    -webkit-transition-duration: 0.4s;
-    transition-delay:10s;
-    -webkit-transition-delay:10s;
-    transition-timing-function: ease-in-out;
-    -webkit-transition-timing-function: ease-in-out;
-  }
+    //MOBILE link cortina BG
+    &:after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 60px;
+      background-color: $c-default;
+      transition: top .5s ease;
+      pointer-events: none;
+    }
 
-  .submenu__label {
-    display: block;
-    width: 100%;
-    padding: 16px;
-    text-transform: uppercase;
-    color: $c-default;
-    @include font-rem(18px);
-    border-bottom: 1px solid $c-default-3;
   }
 
-
-  //- Nivel 2: submenu 
-  .submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: $c-neutro;
-  }
-
-  // item level 1 Activo
+  //Mobile level 1: item Activo
   .menu__item_current {
     z-index: 4;
     @include order(1);
-    padding: 0;
+    height: 100vh;
+    &:after {
+      border: none;
+    }
+
     //BTN cerrar submenu
     .submenu__close {
       opacity: 1;
       pointer-events: auto;
     }
-    //ico back
-    .submenu__back {
-      opacity: 1;
-      pointer-events: auto;
-    }
 
     .menu__link {
+      pointer-events: none;
       color: $c-neutro;
-      border-bottom: none;
-      padding-left: 100px;
-      background-color: $c-default;
-      &:before {
-        left: 50px;
+      &:after {
+        top: 0;
+      }
+
+    }
+    .menu-side__footer {
+      opacity: 1;
+    }
+
+  }
+
+  //- MOBILE level 2: submenu
+  .submenu {
+    position: relative;
+    top: 0;
+    z-index: 2;
+    @include flexbox;
+    @include flex-direction(column);
+    overflow: hidden;
+    background-color: $c-neutro;
+    transition: all .5s ease;
+  } 
+  //- MOBILE level 2: submenu desplegado
+  .submenu_open {
+    top: -60px;
+    .submenu__item {
+      &:not(.submenu__item_current) {
+         display: none;
       }
     }
+  }
+
+  //MOBILE level 2: item
+  .submenu__item {
+    position: relative;
+    z-index: 1;
+    @include order(2);
+    font-family: $f-default;
+    font-weight: $fw-regular;
+    overflow: hidden;
+    transition: top .2s ease;
+    &:after {
+      content: '';
+      display: block;
+      margin: 0 16px;
+      border-bottom: 1px solid $c-default-3;
+    }
+
+  } 
+  //MOBILE level 2: txt
+  .submenu__label {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60px;
+    padding: 18px 16px 18px 28px;
+    text-transform: uppercase;
+    color: $c-default;
+    @include font-rem(18px);
+    //MOBILE link cortina BG
+    &:after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 60px;
+      background-color: $c-default;
+      transition: top .5s .2s ease;
+      pointer-events: none;
+    }
+  }
+
+  //MOBILE level 2: item activo
+  .submenu__item_current {
+    @include order(1);
+    &:after {
+      border: none;
+    }
+
+    .submenu__label {
+      color: $c-neutro;
+      &:after {
+        top: 0;
+      }
+    }
+  }
+
+  //MOBILE level 3: item
+  .submenu__subitem {
+    &:not(:last-child) {
+      &:after {
+        content: '';
+        display: block;
+        margin: 0 16px;
+        border-bottom: 1px solid $c-default-3;
+      }
+    }
+  }
+  //MOBILE level 3: item
+  .subitem__link {
+    display: block;
+    padding: 18px 16px 18px 28px;
+    color: $c-default;
+    @include font-rem(18px);
   }
 
 }
@@ -445,36 +591,55 @@
 /*------------------------------------*\
   Transition menu
 \*------------------------------------*/
-  // Transition vue MENU MOBILE
-  .slide-left-enter-active {
-    -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
-    transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
-    transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
-    transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
-  }
 
-  .slide-left-leave-active {
-    -webkit-transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
-    transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
-    transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1);
-    transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
-  }
+// MENU MOBILE level 1 Transition vue
+.slide-left-enter-active {
+  -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+}
 
-  .slide-left-enter,
-  .slide-left-leave-to {
-    -webkit-transform: translateX(-107%);
-    transform: translateX(-107%);
-    -webkit-transform: translateX(calc(-100% - 20px));
-    transform: translateX(calc(-100% - 20px));
-  }
+.slide-left-leave-active {
+  -webkit-transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+}
 
-  .slide-left-leave,
-  .slide-left-enter-to {
-    -webkit-transform: none;
-    transform: none;
-  }
+.slide-left-enter,
+.slide-left-leave-to {
+  -webkit-transform: translateX(-107%);
+  transform: translateX(-107%);
+  -webkit-transform: translateX(calc(-100% - 20px));
+  transform: translateX(calc(-100% - 20px));
+}
 
-  // Transition vue para el nivel 2
+.slide-left-leave,
+.slide-left-enter-to {
+  -webkit-transform: none;
+  transform: none;
+}
+
+//MENU MOBILE submenu level 3
+
+.slide-down-enter-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.6, 1);
+}
+.slide-down-leave-active {
+  transition: all 0.325s cubic-bezier(0, 0, 0.2, 1);
+}
+.slide-down-enter,
+.slide-down-leave-to {
+  max-height: 0;
+}
+.slide-down-leave,
+.slide-down-enter-to {
+  max-height: 100vh;
+}
+
+
+  // Desktop Transition vue para el nivel 2
   .slide-fade-enter-active {
     transition: all .2s ease;
     .menu-level2__inner {

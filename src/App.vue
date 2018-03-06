@@ -48,10 +48,6 @@ export default {
     }
   },
   methods: {
-    // submenu auth
-    toggleBox: function () {
-      this.active = !this.active
-    },
     // Login modal
     openLogin: function () {
       this.isLoginShow = true

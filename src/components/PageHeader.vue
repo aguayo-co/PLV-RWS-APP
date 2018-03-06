@@ -79,9 +79,18 @@ export default {
     PageHeaderMenu,
     PageHeaderSearch
   },
+  data () {
+    return {
+      active: false
+    }
+  },
   methods: {
     open: function () {
       this.$emit('open')
+    },
+    // submenu auth
+    toggleBox: function () {
+      this.active = !this.active
     }
   },
   props: ['brandHome']
