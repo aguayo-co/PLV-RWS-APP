@@ -123,9 +123,10 @@ export default {
           // this.$store.set('userAuth', {token: response.data.api_token})
           this.setSuccess()
           this.setName(this.nombre)
-          this.$store.dispatch('actionSetToken', response.data.api_token)
-          this.$store.dispatch('signUp/actionSetName', response.data.first_name)
-          localStorage.setItem('token', JSON.stringify(this.$store.getters.getToken))
+          this.$store.dispatch('UserModule/actionSetToken', response.data.api_token)
+          this.$store.dispatch('UserModule/actionSetName', response.data.first_name)
+          localStorage.setItem('token', JSON.stringify(this.$store.getters['UserModule/getToken']))
+          localStorage.setItem('userName', JSON.stringify(this.$store.getters['UserModule/getUserName']))
         })
         .catch(e => {
           // console.log(e.response.data.errors.exists[0]) // Aca se obtiene el error del servidor
@@ -151,8 +152,8 @@ export default {
     },
     setName (nombre) {
       console.log(this.nombre)
-      console.log(this.$store.getters['signUp/getName'])
-      this.$store.dispatch('signUp/actionSetName', this.nombre)
+      console.log(this.$store.getters['UserModule/getUserName'])
+      this.$store.dispatch('UserModule/actionSetUserName', this.nombre)
     }
   }
 }

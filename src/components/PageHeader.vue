@@ -59,7 +59,7 @@
                   li.user-auth__item
                     a.user-auth__link(
                       @click='logout()'
-                      href="",
+                      href="/home",
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
           li.tool-user__item.i-user(v-else
@@ -98,17 +98,17 @@ export default {
       this.active = !this.active
     },
     logout: function () {
-      this.$store.dispatch('actionSetToken', null)
+      this.$store.dispatch('UserModule/actionSetToken', null)
       localStorage.setItem('token', null)
-      this.$store.dispatch('signUp/actionSetName', '')
+      this.$store.dispatch('UserModule/actionSetUserName', '')
     }
   },
   computed: {
     getName () {
-      return this.$store.getters['signUp/getName']
+      return this.$store.getters['UserModule/getUserName']
     },
     getAuth () {
-      if (this.$store.getters.getAuth != null && this.getName !== '') {
+      if (this.$store.getters['UserModule/getAuth'] != null && this.getName !== '') {
         return true
       } else {
         return false

@@ -20,10 +20,10 @@ main.content-slot
         span.help.is-danger(
           v-show="errors.has('userEmail')"
         ) {{ errors.first('userEmail') }}
-        .form__notify
-        p No hemos encontrado una cuenta asociada al correo: mailnoreconocido@gmail.com
-        p ¿Te gustaría crear una cuenta ahora?
-        a.btn(href="#") Crear cuenta
+        .form__notify(v-if='emailFound == false')
+          p No hemos encontrado una cuenta asociada al correo: {{userEmail}}
+          p ¿Te gustaría crear una cuenta ahora?
+          a.btn(href="#") Crear cuenta
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
           @click.prevent='validateBeforeSubmit()') Enviar Correo
@@ -38,11 +38,12 @@ import Vue from 'vue'
 Validator.localize('es', es)
 Vue.use(VeeValidate)
 export default {
-  name: 'FormSignUp',
+  name: 'FormPass',
   data () {
     return {
       userEmail: '',
-      success: false
+      emailFound: true,
+      recoverSuccess: false
     }
   },
   methods: {
@@ -50,10 +51,12 @@ export default {
       axios.get('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
       })
         .then(response => {
+          this.setRecoverSuccess()
           console.log(response)
         })
         .catch(e => {
           console.log('ERROR : ' + e)
+          this.emailFound = false
         })
     },
     validateBeforeSubmit () {
@@ -65,8 +68,9 @@ export default {
         alert('Correct them errors!')
       })
     },
-    recoverSuccess () {
-      this.success = true
+    setRecoverSuccess () {
+      this.recoverSuccess = true
+      this.$emit('setRecoverSuccess')
     }
   }
 }

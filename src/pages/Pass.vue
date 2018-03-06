@@ -3,9 +3,10 @@
   .content-slot
     .content-slot__inner
       //- Formulario de registro
-      FormPass
-      //- Noti Error
-      FormSuccess
+      FormPass(
+        v-if="recoverSuccess == false")
+      //- NotiSuccess
+      FormSuccess(v-else)
 
 </template>
 
@@ -17,6 +18,17 @@ export default {
   components: {
     FormPass,
     FormSuccess
+  },
+  data () {
+    return {
+      recoverSuccess: false,
+      userEmail: ''
+    }
+  },
+  methods: {
+    setRecoverSuccess () {
+      this.recoverSuccess = true
+    }
   }
 }
 </script>

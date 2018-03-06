@@ -39,34 +39,18 @@ Vue.use(Vuex)
 
 // eslint-disable-next-line
 
-const signUpModule = {
+const UserModule = {
   namespaced: true,
   state: {
-    nombre: ''
-  },
-  mutations: {
-    mutationSetName (state, newName) {
-      state.nombre = newName
-    }
-  },
-  actions: {
-    actionSetName ({commit, state}, newName) {
-      commit('mutationSetName', newName)
-    }
-  },
-  getters: {
-    getName: state => {
-      return state.nombre
-    }
-  }
-}
-
-const store = new Vuex.Store({
-  state: {
     token: localStorage.getItem('token'),
+    userName: localStorage.getItem('userName'),
     auth: false
   },
   mutations: {
+    mutationSetUserName (state, newUserName) {
+      localStorage.setItem('userName', newUserName)
+      state.userName = localStorage.getItem('userName')
+    },
     mutationSetToken (state, newToken) {
       localStorage.setItem('token', newToken)
       state.token = localStorage.getItem('token')
@@ -83,6 +67,9 @@ const store = new Vuex.Store({
     actionSetToken ({commit, state}, newToken) {
       commit('mutationSetToken', newToken)
     },
+    actionSetUserName ({commit, state}, newUserName) {
+      commit('mutationSetUserName', newUserName)
+    },
     actionSetAuth ({commit, state}) {
       commit('mutationSetAuth')
     }
@@ -91,6 +78,9 @@ const store = new Vuex.Store({
     getToken: state => {
       return state.token
     },
+    getUserName: state => {
+      return state.userName
+    },
     getAuth: state => {
       if (state.auth) {
         return true
@@ -98,9 +88,12 @@ const store = new Vuex.Store({
         return false
       }
     }
-  },
+  }
+}
+
+const store = new Vuex.Store({
   modules: {
-    signUp: signUpModule
+    UserModule: UserModule
   }
 })
 
