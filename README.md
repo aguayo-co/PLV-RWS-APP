@@ -48,6 +48,24 @@ npm install pug --save-dev
 ### Incluye Vue-password
 -https://github.com/skegel13/vue-password
     $ npm install vue-password --save -dev
+---
+### Axios
+#### Installation
+``` bash
+npm install --save axios vue-axios
+```
+---
+### vue-mq
+#### Uso:
+Transversal renderizado vistas condicionales 
+Mobile/desktop
+#### URL:
+https://alligator.io/vuejs/vue-media-queries/
+#### Installation
+``` bash
+npm install vue-mq
+```
+---
 ### Sticky
 #### Uso:
 * Menu Usuario

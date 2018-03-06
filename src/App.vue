@@ -1,8 +1,13 @@
 <template lang="pug">
 div.page
+
   //- Header template
-  PageHeader(
-    @open='openLogin')
+  mq-layout(mq='mobile')
+    PageHeaderMobile
+  mq-layout(mq='desktop')
+    //- Header template desktop
+    PageHeader(
+      @open='openLogin')
 
   //- main content
   main.content-main
@@ -11,7 +16,11 @@ div.page
     router-view
 
   //- footer template
-  PageFooter
+  mq-layout(mq='mobile')
+    h1 estoy en mobile
+  mq-layout(mq='desktop')
+    //- footer template desktop
+    PageFooter
 
   //- Modal Login
   FormLogin(
@@ -23,6 +32,7 @@ div.page
 import Vue from 'vue'
 import Vuex from 'vuex'
 import PageHeader from '@/components/PageHeader'
+import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
 import PageFooter from '@/components/PageFooter'
 Vue.use(Vuex)
@@ -99,6 +109,7 @@ export default {
   store: store,
   components: {
     PageHeader,
+    PageHeaderMobile,
     FormLogin,
     PageFooter
   },
@@ -108,10 +119,6 @@ export default {
     }
   },
   methods: {
-    // submenu auth
-    toggleBox: function () {
-      this.active = !this.active
-    },
     // Login modal
     openLogin: function () {
       // this.$store.set('userAuth', {token: 'puto token'})

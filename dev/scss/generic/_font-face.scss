@@ -130,24 +130,6 @@
   }
 }
 
-.i-x {
-  &:before {
-    content: unicode($i-x);
-  }
-}
-
-.i-close {
-  &:before {
-    content: unicode($i-close);
-  }
-}
-
-.i-back {
-  &:before {
-    content: unicode($i-back);
-  }
-}
-
 .i-bag {
   &:before {
     content: unicode($i-bag);
@@ -357,3 +339,52 @@
     content: unicode($i-data);
   }
 }
+
+.i-blog {
+  &:before {
+    content: unicode($i-blog);
+  }
+}
+
+.i-x {
+  &:before {
+    content: unicode($i-x);
+  }
+}
+
+.i-close {
+  &:before {
+    content: unicode($i-close);
+  }
+}
+
+.i-plus {
+  &:before {
+    content: unicode($i-plus);
+  }
+}
+
+.i-back {
+  &:before {
+    content: unicode($i-back);
+  }
+}
+
+.i-next {
+  &:before {
+    content: unicode($i-next);
+  }
+}
+
+.i-back-s {
+  &:before {
+    content: unicode($i-back-s);
+  }
+}
+
+.i-next-s {
+  &:before {
+    content: unicode($i-next-s);
+  }
+}
+

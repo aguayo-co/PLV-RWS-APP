@@ -1,11 +1,11 @@
 /*------------------------------------*\
-	Page header: menu
+	Page header
 \*------------------------------------*/
 .page-header {
   position: relative;
   z-index: 999;
   width: 100%;
-  padding: 16px 0 18px;
+  padding: 10px 0 11px;
   color: $c-neutro;
   background-color: $c-default;
 
@@ -22,8 +22,12 @@
   @include justify-content(space-between);
 }
 
-/* componente Pageheader-brand
- */
+
+/*------------------------------------*\
+  Page header: 
+  componente Pageheader-brand
+\*------------------------------------*/
+
 .page-brand {
   color: $c-neutro;
 }
@@ -60,8 +64,11 @@
       font-family: $f-fancy;
     }
 
-/* componente Pageheader-search
- */
+/*------------------------------------*\
+  Page header: 
+  componente Pageheader-search
+\*------------------------------------*/
+
 .search {
   width: 18%;
   min-width: 176px;
@@ -100,10 +107,12 @@
     background-color: transparent;
   }
 
-/* componente Pageheader-user:
- * bloque css asociado menu-toggle:
- * contiene animación
-*/
+/*------------------------------------*\
+  Page header: 
+  * componente Pageheader-user: 
+  * bloque css asociado menu-toggle: 
+  * contiene animación
+\*------------------------------------*/
 
 .tool-user {
   margin-left: 14px;
@@ -217,7 +226,29 @@
     }
   }
 
-// $bp-large: 1124px;
+/*
+    *Page header
+    *Responsive Desing
+*/
+
+// point Only mobile -tablet
+@include media-query(max-wide) {
+  .page-brand {
+    display: block;
+    width: 170px;
+    margin: 0 auto;
+  }
+}
+
+// $bp-wide: 1024px;
+@include media-query(wide) {
+  .page-header {
+    padding: 16px 0 18px;
+  }
+
+}
+
+// $bp-large: 1170px;
 @include media-query(large) {
   .tool-user__name {
     display: inline-block;

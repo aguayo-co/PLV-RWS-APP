@@ -83,6 +83,7 @@ export default {
         position: 'fixed',
         top: 0
       }
+      active: false
     }
   },
   methods: {
@@ -91,6 +92,8 @@ export default {
     },
     close: function () {
       this.$emit('close')
+      this.active = !this.active
+    toggleBox: function () {
     }
   },
   computed: {
