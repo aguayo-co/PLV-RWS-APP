@@ -706,19 +706,25 @@ body {
     display: -ms-flexbox;
     display: flex; } }
 
-.my-swiper {
+.banner-slider {
+  position: relative;
+  width: 100%;
   height: 300px;
-  width: 100%; }
-  .my-swiper .swiper-slide {
-    text-align: center;
-    font-size: 38px;
-    font-weight: 700;
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-  .my-swiper .swiper-pagination > .swiper-pagination-bullet {
-    background-color: red; }
+  overflow: hidden; }
+
+.swiper-box {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto; }
+
+.swiper-item {
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 /*------------------------------------*	Page header
 \*------------------------------------*/

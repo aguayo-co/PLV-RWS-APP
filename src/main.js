@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueMq from 'vue-mq'
+import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
 
 Vue.config.productionTip = false
 
@@ -12,7 +13,7 @@ Vue.use(VueMq, {
     mobile: 1023,
     desktop: Infinity
   }
-})
+}, VueAwesomeSwiper)
 
 /* eslint-disable no-new */
 new Vue({
