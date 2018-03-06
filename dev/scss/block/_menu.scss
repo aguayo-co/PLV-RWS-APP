@@ -71,7 +71,7 @@
        transform: translateY(8px);
     }
   }
-  // Menu Active 
+  // Ico Menu Active 
   .menu-ico_open {
     .menu-ico__line {
       &:first-child {
@@ -117,13 +117,14 @@
   }
   //Mobile Contenedor
   .page-menu__panel {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
     width: 100vw;
     max-width: 420px;
     height: 100vh;
+    overflow: scroll;
     background-color: $c-neutro;
     -ms-touch-action: none;
     touch-action: none;
@@ -169,6 +170,15 @@
       @include font-rem(22px);
     }
   }
+  //MOBILE level 2: enlace bottom
+
+  .menu-side__footer {
+    @include order(2);
+    padding: 34px 0 48px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .5s .2s ease;
+  }
 
   //MOBILE level 1: menu
   .menu {
@@ -190,7 +200,6 @@
       display: block;
       margin: 0 16px;
       border-bottom: 1px solid $c-default-3;
-
     }
   }
   //MOBILE level 1: link
@@ -259,6 +268,10 @@
       }
 
     }
+    .menu-side__footer {
+      opacity: 1;
+    }
+
   }
 
   //- MOBILE level 2: submenu
@@ -290,8 +303,14 @@
     font-family: $f-default;
     font-weight: $fw-regular;
     overflow: hidden;
-    border-bottom: 1px solid $c-default-3;
     transition: top .2s ease;
+    &:after {
+      content: '';
+      display: block;
+      margin: 0 16px;
+      border-bottom: 1px solid $c-default-3;
+    }
+
   } 
   //MOBILE level 2: txt
   .submenu__label {
@@ -299,39 +318,58 @@
     display: block;
     width: 100%;
     height: 60px;
-    padding: 16px;
+    padding: 18px 16px 18px 28px;
     text-transform: uppercase;
     color: $c-default;
     @include font-rem(18px);
-     //MOBILE link cortina BG
-     &:after {
-       content: '';
-       position: absolute;
-       top: -100%;
-       left: 0;
-       z-index: -1;
-       display: block;
-       width: 100%;
-       height: 60px;
-       background-color: $c-default;
-       transition: top .5s .2s ease;
-       pointer-events: none;
-     }
-
-  }
-  .menu-side__footer {
-    @include order(2);
+    //MOBILE link cortina BG
+    &:after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 60px;
+      background-color: $c-default;
+      transition: top .5s .2s ease;
+      pointer-events: none;
+    }
   }
 
   //MOBILE level 2: item activo
   .submenu__item_current {
     @include order(1);
+    &:after {
+      border: none;
+    }
+
     .submenu__label {
       color: $c-neutro;
       &:after {
         top: 0;
       }
     }
+  }
+
+  //MOBILE level 3: item
+  .submenu__subitem {
+    &:not(:last-child) {
+      &:after {
+        content: '';
+        display: block;
+        margin: 0 16px;
+        border-bottom: 1px solid $c-default-3;
+      }
+    }
+  }
+  //MOBILE level 3: item
+  .subitem__link {
+    display: block;
+    padding: 18px 16px 18px 28px;
+    color: $c-default;
+    @include font-rem(18px);
   }
 
 }
