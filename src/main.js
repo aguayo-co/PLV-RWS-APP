@@ -7,7 +7,6 @@ import VueMq from 'vue-mq'
 
 Vue.config.productionTip = false
 
-/* Setup breakpoints */
 Vue.use(VueMq, {
   breakpoints: {
     mobile: 1023,
