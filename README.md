@@ -29,41 +29,46 @@ npm test
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+## Sintaxis
+
+
 ## Dependencias
 
-### Incluye PUG
-- https://gist.github.com/levibostian/96cc285d4235d73f09cdc22f2590ccba
-``` bash
-npm install pug --save-dev
-```
-
-### Incluye Axios
--https://github.com/axios/axios
-    npm install axios --save -dev
-
-### Incluye Vee-Validate
--https://github.com/baianat/vee-validate
-    npm install vee-validate --save -dev
-
-### Incluye Vue-password
--https://github.com/skegel13/vue-password
-    $ npm install vue-password --save -dev
----
 ### Axios
 #### Installation
 ``` bash
 npm install --save axios vue-axios
 ```
 ---
-### vue-mq
-#### Uso:
-Transversal renderizado vistas condicionales 
-Mobile/desktop
-#### URL:
-https://alligator.io/vuejs/vue-media-queries/
+### Vuex
+URL: https://vuex.vuejs.org/en/installation.html
 #### Installation
 ``` bash
-npm install vue-mq
+npm install vuex --save-dev
+```   
+#### Rutas de archivos en node_custom_modules
+    vue-password : node_modules\vue-password\dist archivo index.js
+    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
+---
+### Incluye Vee-Validate
+URL: https://github.com/baianat/vee-validate
+#### Installation
+``` bash
+    npm install vee-validate --save -dev
+```
+---
+### Incluye Vue-password
+URL: https://github.com/skegel13/vue-password
+#### Installation
+``` bash
+    $ npm install vue-password --save -dev
+```
+---
+### Incluye PUG
+URL: https://gist.github.com/levibostian/96cc285d4235d73f09cdc22f2590ccba
+#### Installation
+``` bash
+npm install pug --save-dev
 ```
 ---
 ### Sticky
@@ -80,12 +85,14 @@ npm i -S vue-sticky-js
 ``` bash
 v-sticky => Define a new sticky element
 ```
-
-### Incluye vuex
--https://vuex.vuejs.org/en/installation.html
-    npm install vuex --save-dev
-    
-# Rutas de archivos en node_custom_modules
-    vue-password : node_modules\vue-password\dist archivo index.js
-    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
-
+---
+### vue-mq
+#### Uso:
+Transversal renderizado vistas condicionales 
+Mobile/desktop
+#### URL:
+https://alligator.io/vuejs/vue-media-queries/
+#### Installation
+``` bash
+npm install vue-mq
+```
