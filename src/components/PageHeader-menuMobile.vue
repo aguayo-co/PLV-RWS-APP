@@ -1,39 +1,43 @@
 <template lang="pug">
 //- TO DO VUE: Webservices menu - list VUE
-nav.page-menu
-  .page-menu__panel(
-    @click='level1 = undefined')
-    ul.menu
-      li.menu__item(
-        :class="{ menu__item_current :level1 == 1 }")
-        //- TO DO VUE: dinamizar esta funcionalidad
-        a.menu__link.i-shop(
-          href='#',
-          @click='level1 = 1') Shop
-        //-iconos menu activo
-        span.submenu__back.i-back
-        span.submenu__close.i-close(
-          href='#',
-          @click='level1 = undefined')
+.page-menu__panel(
+  :class="{ 'page-menu_out' :level1 != undefined }")
+  //- cerrar menu: X/brand
+  .page-menu__top.i-x(
+    @click='MenuClose')
+    span.brand
+      img.brand__logo(
+        src='/static/img/brand-prilov.png',
+        alt='Prilov Compra. Usa. Vende')
+  //- menu level 1
+  ul.menu
+    li.menu__item(
+      :class="{ 'menu__item_current' :level1 == 1 }")
+      //- TO DO VUE: dinamizar esta funcionalidad
+      a.menu__link.i-shop(
+        href='#',
+        @click='level1 = 1') Shop
+      //-iconos menu activo
+      span.submenu__close.i-back(
+        href='#',
+        @click='level1 = undefined')
 
-        //- Nivel 2: submenu
-        transition(name='slide-left')
-          ul.submenu(
-              v-show='level1 == 1'
-              :class="{ submenu_open :level2 != undefined }"
-            )
-            li.submenu__item(
-              :class="{ submenu__item_current :level2 == 2 }"
-            )
-              span.submenu__label(
-                @click='level2 = 2'
-              ) Moda Femenina
-              span.submenu__back.i-back
-              span.submenu__close.i-close(
-                href='#',
-                @click='level2 = undefined')
-              //- Nivel 3: Lista de enlaces
-              ul.submenu__list
+      //- Nivel 2: submenu
+      transition(name='slide-down')
+        ul.submenu(
+            v-show='level1 == 1'
+            :class="{ 'submenu_open' :level2 != undefined }")
+          li.submenu__item(
+            :class="{ 'submenu__item_current' :level2 == 2 }")
+            span.submenu__label(
+              @click='level2 = 2') Moda Femenina
+            span.submenu__close.i-close(
+              href='#',
+              @click='level2 = undefined')
+            //- Nivel 3: Lista de enlaces
+            transition(name='slide-down')
+              ul.submenu__list(
+                v-show='level2 == 2')
                 li.submenu__subitem
                   a.subitem__link(href="#") Tops
                 li.submenu__subitem
@@ -73,14 +77,14 @@ nav.page-menu
                 li.submenu__subitem
                   a.subitem__link(href='#') Pijamas
 
-            li.submenu__item(
-              :class="{ submenu__item_current :level2 == 3 }"
-            )
-              span.submenu__label(
-                @click='level2 = 3'
-              ) Complementos
-              //- Nivel 3: Lista de enlaces
-              ul.submenu__list
+          li.submenu__item(
+            :class="{ 'submenu__item_current' :level2 == 3 }")
+            span.submenu__label(
+              @click='level2 = 3') Complementos
+            //- Nivel 3: Lista de enlaces
+            transition(name='slide-down')
+              ul.submenu__list(
+                v-show='level2 == 3')
                 li.submenu__subitem
                   a.subitem__link(href='#') Accesorios
                 li.submenu__subitem
@@ -94,14 +98,15 @@ nav.page-menu
                 li.submenu__subitem
                   a.subitem__link(href='#') Sombreros y Gorros
 
-            li.submenu__item(
-              :class="{ submenu__item_current :level2 == 4 }"
-            )
-              span.submenu__label(
-                @click='level2 = 4'
-              ) Marcas
-              //- Nivel 3: Lista de enlaces
-              ul.submenu__list
+          li.submenu__item(
+            :class="{ 'submenu__item_current' :level2 == 4 }")
+            span.submenu__label(
+              @click='level2 = 4'
+            ) Marcas
+            //- Nivel 3: Lista de enlaces
+            transition(name='slide-down')
+              ul.submenu__list(
+                v-show='level2 == 4')
                 li.submenu__subitem
                   a.subitem__link(href='#') Adidas
                 li.submenu__subitem
@@ -131,25 +136,26 @@ nav.page-menu
                 li.submenu__subitem
                   a.subitem__link(href='#') Zara
 
-            li.submenu__item(
-              :class="{ submenu__item_current :level2 == 5 }"
-            )
-              span.submenu__label(
-                @click='level2 = 5'
-              ) Top Picks
-            li.menu-side__footer
-              a.link_underline(href='#') Ver todas las Prendas
+          li.submenu__item(
+            :class="{ 'submenu__item_current' :level2 == 5 }"
+          )
+            span.submenu__label(
+              @click='level2 = 5'
+            ) Top Picks
 
-        //- $End Nivel 2 Shop
+          li.menu-side__footer
+            a.link_underline(href='#') Ver todas las Prendas
 
-      li.menu__item
-        a.menu__link.i-bag(href='#') Instashop
-      li.menu__item
-        a.menu__link.i-closet(href='#') Closet Room
-      li.menu__item
-        a.menu__link.i-favorite(href='#') Prilovers
-      li.menu__item
-        a.menu__link.i-blog(href='#') Blog
+      //- $End Nivel 2 Shop
+
+    li.menu__item
+      a.menu__link.i-bag(href='#') Instashop
+    li.menu__item
+      a.menu__link.i-closet(href='#') Closet Room
+    li.menu__item
+      a.menu__link.i-favorite(href='#') Prilovers
+    li.menu__item
+      a.menu__link.i-blog(href='#') Blog
 </template>
 
 <script>
@@ -164,11 +170,14 @@ export default {
     }
   },
   methods: {
-
+    MenuClose: function () {
+      this.$emit('MenuClose')
+    },
     toggleNav: function () {
       this.active = !this.active
     }
 
   }
+
 }
 </script>

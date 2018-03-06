@@ -20,8 +20,13 @@
         title='Ir a la página de inicio')
         PageHeaderBrand
     //- Menu
-    transition(name='slide-left')
-      PageHeaderMenuMobile(v-show='menuOpen')
+
+    nav.page-menu(
+      :class="{ 'page-menu_open':menuOpen }")
+      transition(name='slide-left')
+        PageHeaderMenuMobile(
+          v-show='menuOpen',
+          @MenuClose='MenuOpen')
 </template>
 
 <script>

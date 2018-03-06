@@ -2,7 +2,9 @@
 //- HEADER PAGE
 .page-header
   .layout-inner
-    header.header__bar
+    header.header__bar(
+      :class="{ 'header__bar_fix':fixHeader }"
+    )
       //- brand
       h1.page-brand(
         v-if='page')
@@ -23,7 +25,8 @@
             //-vue variable productos en el carrito
             small.badge 1
           //- Is authenticated
-          li.tool-user__item.tool-user__item_auth
+          li.tool-user__item.tool-user__item_auth(
+            v-if='isAuth')
             figure.tool-user__grid(
               @click='toggleBox()')
               small.badge.badge_user 2
@@ -58,6 +61,10 @@
                     a.user-auth__link(
                       href="",
                       title="Cerrar sesión de usuario") Cerrar sesión
+          //- Is NOT authenticated
+          li.tool-user__item.i-user(
+            v-else='',
+            @click='open') Ingresar
 </template>
 
 <script>
