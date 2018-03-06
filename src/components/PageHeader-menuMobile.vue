@@ -1,5 +1,7 @@
 <template lang="pug">
 //- TO DO VUE: Webservices menu - list VUE
+//- TO DO style: ico y animación de flechas
+//- TO DO marckup: footer level 1
 .page-menu__panel(
   :class="{ 'page-menu_out' :level1 != undefined }")
   //- cerrar menu: X/brand
@@ -176,7 +178,6 @@ export default {
     toggleNav: function () {
       this.active = !this.active
     }
-
   }
 
 }
