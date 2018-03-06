@@ -58,6 +58,7 @@
                       title="Ir a Centro de mensajes") Centro de mensajes
                   li.user-auth__item
                     a.user-auth__link(
+                      @click='logout()'
                       href="",
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
@@ -79,11 +80,11 @@ export default {
   },
   data () {
     return {
+      active: false,
       fixedPosition: {
         position: 'fixed',
         top: 0
       }
-      active: false
     }
   },
   methods: {
@@ -92,8 +93,14 @@ export default {
     },
     close: function () {
       this.$emit('close')
-      this.active = !this.active
+    },
     toggleBox: function () {
+      this.active = !this.active
+    },
+    logout: function () {
+      this.$store.dispatch('actionSetToken', null)
+      localStorage.setItem('token', null)
+      this.$store.dispatch('signUp/actionSetName', '')
     }
   },
   computed: {
