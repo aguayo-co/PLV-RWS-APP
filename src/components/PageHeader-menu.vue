@@ -6,7 +6,7 @@ nav.page-menu
       //- TO DO VUE: dinamizar esta funcionalidad
       a.menu__link(
         href='#',
-        @click='toggleNav()',
+        @click='handler()',
         :class="{ 'menu__link_active':active }") Shop
       //- Nivel 2: submenu con Lista de enlaces, Promo, side de enlaces
       transition(name='slide-fade')
@@ -152,15 +152,24 @@ export default {
   data () {
     return {
       active: false,
-      show: false
+      show: false,
+      fixedPosition: {
+        position: 'fixed',
+        top: 0
+      }
     }
   },
   methods: {
-
+    fixPosition: function () {
+      this.$emit('fixedPosition')
+    },
     toggleNav: function () {
       this.active = !this.active
+    },
+    handler: function () {
+      this.fixPosition()
+      this.toggleNav()
     }
-
   }
 }
 </script>

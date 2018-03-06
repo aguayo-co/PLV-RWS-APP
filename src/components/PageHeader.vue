@@ -1,6 +1,6 @@
 <template lang="pug">
 //- HEADER PAGE
-.page-header
+.page-header(v-bind:style="fixedPosition")
   .layout-inner
     header.header__bar(
       :class="{ 'header__bar_fix':fixHeader }"
@@ -25,8 +25,7 @@
             //-vue variable productos en el carrito
             small.badge 1
           //- Is authenticated
-          li.tool-user__item.tool-user__item_auth(
-            v-if='isAuth')
+          li.tool-user__item.tool-user__item_auth(v-if= 'getAuth')
             figure.tool-user__grid(
               @click='toggleBox()')
               small.badge.badge_user 2
@@ -36,7 +35,7 @@
                   src='/static/img/demo/user-avatar.jpg',
                   alt='')
               //-vue variable user name
-              figcaption.tool-user__name Name User
+              figcaption.tool-user__name {{getName}}
             transition(name='toggle-scale')
               .user-auth__menu.toggle-box(
                   v-show='active')
@@ -59,11 +58,11 @@
                       title="Ir a Centro de mensajes") Centro de mensajes
                   li.user-auth__item
                     a.user-auth__link(
-                      href="",
+                      @click='logout()'
+                      href="/home",
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
-          li.tool-user__item.i-user(
-            v-else='',
+          li.tool-user__item.i-user(v-else
             @click='open') Ingresar
 </template>
 
@@ -81,16 +80,39 @@ export default {
   },
   data () {
     return {
-      active: false
+      active: false,
+      fixedPosition: {
+        position: 'fixed',
+        top: 0
+      }
     }
   },
   methods: {
     open: function () {
       this.$emit('open')
     },
-    // submenu auth
+    close: function () {
+      this.$emit('close')
+    },
     toggleBox: function () {
       this.active = !this.active
+    },
+    logout: function () {
+      this.$store.dispatch('UserModule/actionSetToken', null)
+      localStorage.setItem('token', null)
+      this.$store.dispatch('UserModule/actionSetUserName', '')
+    }
+  },
+  computed: {
+    getName () {
+      return this.$store.getters['UserModule/getUserName']
+    },
+    getAuth () {
+      if (this.$store.getters['UserModule/getAuth'] != null && this.getName !== '') {
+        return true
+      } else {
+        return false
+      }
     }
   },
   props: ['brandHome']
