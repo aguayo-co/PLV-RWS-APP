@@ -32,10 +32,14 @@ export default {
         { path: '/static/img/demo/banner-slider3.png' }
       ],
       swiperOption: {
-
+        sliderPerView: 'auto',
+        centeredSlides: true,
+        spaceBetween: 0,
         pagination: {
 
-          el: '.swiper-pagination'
+          el: '.swiper-pagination',
+          clickable: true,
+          dynamicBullets: true
 
         }
       }

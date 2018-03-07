@@ -3,8 +3,8 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  height: 440px;
-  overflow: hidden;
+  height: 448px;
+  //overflow: hidden;
 }
 .banner-slider__container {
 
@@ -111,10 +111,9 @@
   height: 100%;
   margin: 0 auto;
 }
-.swiper-item {
+.swiper-slide {
   height: 100%;
   text-align: center;
-  font-size: 18px;
   background: $white;
   display: flex;
   justify-content: center;
