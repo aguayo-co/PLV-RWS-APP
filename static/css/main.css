@@ -674,39 +674,52 @@ select {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
 
+/* line 55, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword__Input .input {
+  width: 100%;
+  padding: 0 12px;
+  margin-bottom: 12px;
+  line-height: 40px;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 1px solid #4a4a4a; }
+
+/* line 64, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword__Toggle {
+  height: 42px; }
+
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
-/* line 58, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 74, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__notify {
   padding: 16px;
   text-align: center;
   background-color: #efefef; }
-  /* line 63, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 79, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__notify p:first-child {
     margin-top: 0;
     padding-top: 0; }
 
-/* line 70, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 86, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__note {
   margin: -8px 0 0;
   font-size: 12px;
   font-size: 0.75rem; }
 
-/* line 74, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 90, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__note_right {
   text-align: right; }
 
-/* line 78, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 94, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__info {
   position: relative;
   min-height: 40px;
   padding: 16px 0 16px 48px;
   font-size: 16px;
   font-size: 1rem; }
-  /* line 83, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 99, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__info strong {
     font-weight: 700; }
-  /* line 86, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 102, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__info:before {
     position: absolute;
     left: 0;

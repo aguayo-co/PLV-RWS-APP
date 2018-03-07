@@ -1,44 +1,43 @@
 <template lang="pug">
-  main.content-slot
-    .content-slot__inner
-      h1.title Cambiar contraseña
-      form.form.form_big(
-        v-on:submit='',
-        action='#',
-        submit.prevent='validateBeforeSubmit',
-        method='post'
-      )
+  .form-slot
+    h1.title Cambiar contraseña
+    form.form.form_big(
+      v-on:submit='',
+      action='#',
+      submit.prevent='validateBeforeSubmit',
+      method='post'
+    )
 
-        .form__row
-          label.form__label(
-            for='password') Nueva Contraseña
-          vue-password(
-            v-model='password',
-            classes='input'
-            :user-inputs="[email]"
-            v-validate="'required|min:8|regex:^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'" :class="{'input': true, 'is-danger': errors.has('password')}"
-            data-vv-name='password'
-          )
-          span.help.is-danger(
-            v-show="errors.has('password')"
-          ) {{ errors.first('password') }}
+      .form__row
+        label.form__label(
+          for='password') Nueva Contraseña
+        vue-password(
+          v-model='password',
+          classes='input'
+          :user-inputs="[email]"
+          v-validate="'required|min:8|regex:^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'" :class="{'input': true, 'is-danger': errors.has('password')}"
+          data-vv-name='password'
+        )
+        span.help.is-danger(
+          v-show="errors.has('password')"
+        ) {{ errors.first('password') }}
 
-        .form__row
-          label.form__label(
-            for='password') Repetir Contraseña
-          vue-password(
-            v-model='password',
-            classes='input'
-            :user-inputs="[email]"
-            v-validate="'required|min:8|regex:^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'" :class="{'input': true, 'is-danger': errors.has('password')}"
-            data-vv-name='password'
-          )
-          span.help.is-danger(
-            v-show="errors.has('password')"
-          ) {{ errors.first('password') }}
-        .form__row.form__row_away
-          button.btn.btn_solid.btn_block(
-            @click.prevent='validateBeforeSubmit()') Cambiar contraseña
+      .form__row
+        label.form__label(
+          for='password') Repetir Contraseña
+        vue-password(
+          v-model='password',
+          classes='input'
+          :user-inputs="[email]"
+          v-validate="'required|min:8|regex:^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'" :class="{'input': true, 'is-danger': errors.has('password')}"
+          data-vv-name='password'
+        )
+        span.help.is-danger(
+          v-show="errors.has('password')"
+        ) {{ errors.first('password') }}
+      .form__row.form__row_away
+        button.btn.btn_solid.btn_block(
+          @click.prevent='validateBeforeSubmit()') Cambiar contraseña
 </template>
 
 <script>

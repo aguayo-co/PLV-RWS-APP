@@ -1,6 +1,5 @@
 <template lang="pug">
-main.content-slot
-  .content-slot__inner
+  .form-slot
     h1.title Recuperar Contraseña
     p Ingresa tu correo y te enviaremos un enlace para recuperar tu contraseña.
     form.form.form_big(

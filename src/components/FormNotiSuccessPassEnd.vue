@@ -2,8 +2,8 @@
   .notify
     .notify__ico.i-ok
       h2.title.notify__title Has cambiado exitosamente tu contraseña
-      .notify__footer
-        .notify__row
+      .notify__footer.form__row_away
+        p.notify__row
           //-TO-DO: poner URL de usuaria
           a.btn.btn_solid.btn_block(
           href='/') Ir a mi cuenta

@@ -50,6 +50,22 @@ select {
     font-family: $f-default;
     border: 1px solid $c-default-2;
   }
+  //componente VuePassword
+  .VuePassword__Input {
+    .input {
+      width: 100%;
+      padding: 0 12px;
+      margin-bottom: 12px;
+      line-height: 40px;
+      font-family: $f-default;
+      border: 1px solid $c-default-2;
+    }
+  }
+  .VuePassword__Toggle {
+    height: 42px;
+  }
+
+
 
 /*------------------------------------*\
 	Mensajes formulario
@@ -96,8 +112,5 @@ select {
 	 Mensajes Error
 \*------------------------------------*/
 
-// $bp-medium: 768px;
-@include media-query(medium) {
-  
-}
+
 
