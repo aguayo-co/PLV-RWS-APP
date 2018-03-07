@@ -50,6 +50,106 @@ select {
     font-family: $f-default;
     border: 1px solid $c-default-2;
   }
+  //componente VuePassword
+  .VuePassword__Input {
+    .input {
+      width: 100%;
+      padding: 0 12px;
+      margin-bottom: 12px;
+      line-height: 40px;
+      font-family: $f-default;
+      border: 1px solid $c-default-2;
+    }
+  }
+
+  .VuePassword {
+     .VuePassword__Toggle {
+       height: 42px;
+       .VuePassword__Toggle__Icon {
+          fill: $c-default-4;
+       }
+     }
+    // alerta seguridad
+    .VuePassword__Meter {
+      display: none;
+    }
+    //Alerta seguridad mensaje
+    .VuePassword__Message {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 0;
+      margin-top: -6px;
+      margin-bottom: 6px;
+      padding-right: 4px;
+      opacity: 0;
+      text-transform: capitalize;
+      @include font-rem(14px);
+      transition: all .2s ease-out;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        display: block;
+        height: 4px;
+        border-radius: 25px;
+      }
+      &:before {
+        left: 0;
+        width: 80%;
+        margin-top: -3px;
+        border: 1px solid $c-default-3;
+      }
+      &:after {
+        left: 1px;
+        width: 0;
+        margin-top: -2px;
+        transition: all .2s ease-out;
+      }
+    }
+
+    // alerta seguridad bg
+    .VuePassword--great,
+    .VuePassword--good,
+    .VuePassword--medium,
+    .VuePassword--weak,
+    .VuePassword--very-weak {
+      height: 20px;
+      opacity: 1;
+      color: $c-default-4;
+      &:after {
+        background-color: $c-brand;
+      }
+    }
+
+    .VuePassword--great {
+      &:after {
+        width: 80%;
+      }
+    }
+    .VuePassword--good {
+      &:after {
+        width: 65%;
+      }
+    }
+    .VuePassword--medium {
+      &:after {
+        width: 44%;
+      }
+    }
+    .VuePassword--weak {
+      &:after {
+        width: 20%;
+      }
+    }
+    .VuePassword--very-weak {
+      &:after {
+        width: 5%;
+      }
+    }
+  }
 
 /*------------------------------------*\
 	Mensajes formulario
@@ -96,8 +196,5 @@ select {
 	 Mensajes Error
 \*------------------------------------*/
 
-// $bp-medium: 768px;
-@include media-query(medium) {
-  
-}
+
 

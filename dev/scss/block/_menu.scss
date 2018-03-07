@@ -170,14 +170,14 @@
       @include font-rem(22px);
     }
   }
-  //MOBILE level 2: enlace bottom
 
+  //MOBILE level 2: enlace bottom
   .menu-side__footer {
     @include order(2);
     padding: 34px 0 48px;
     text-align: center;
     opacity: 0;
-    transition: opacity .5s .2s ease;
+    transition: opacity .1s ease;
   }
 
   //MOBILE level 1: menu
@@ -292,6 +292,9 @@
       &:not(.submenu__item_current) {
          display: none;
       }
+    }
+    .menu-side__footer {
+      display: none;
     }
   }
 
