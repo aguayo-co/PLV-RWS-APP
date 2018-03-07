@@ -25,16 +25,16 @@
       .form__row
         label.form__label(
           for='password') Repetir Contraseña
-        vue-password(
-          v-model='password',
-          classes='input'
-          :user-inputs="[email]"
-          v-validate="'required|min:8|regex:^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'" :class="{'input': true, 'is-danger': errors.has('password')}"
-          data-vv-name='password'
+        input.form__control(
+          v-model='passwordConfirm',
+          id='passwordConfirm',
+          type='password',
+          v-validate="{required: true,is: password}" :class="{'input': true, 'is-danger': errors.has('passwordConfirm')}"
+          data-vv-name='passwordConfirm'
         )
         span.help.is-danger(
-          v-show="errors.has('password')"
-        ) {{ errors.first('password') }}
+          v-show="errors.has('passwordConfirm')"
+        ) {{ errors.first('passwordConfirm') }}
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
           @click.prevent='validateBeforeSubmit()') Cambiar contraseña
@@ -56,7 +56,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      passwordConfirm: ''
     }
   },
   components: {
