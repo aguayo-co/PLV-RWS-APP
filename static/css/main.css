@@ -683,62 +683,124 @@ select {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
 
-/* line 64, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
-.VuePassword__Toggle {
+/* line 66, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword__Toggle {
   height: 42px; }
+  /* line 68, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  .VuePassword .VuePassword__Toggle .VuePassword__Toggle__Icon {
+    fill: #9b9b9b; }
 
-/* line 69, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 73, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .VuePassword .VuePassword__Meter {
-  display: inline-block;
-  width: 80%;
-  height: 4px;
-  margin-top: 0;
-  padding-left: 0;
-  padding-right: 0;
-  color: #fff;
-  border-radius: 25px;
-  border: 1px solid #4a4a4a; }
+  display: none; }
 
-/* line 80, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 77, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword__Message {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  padding-right: 4px;
+  opacity: 0;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-size: 0.875rem;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out; }
+  /* line 90, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  .VuePassword .VuePassword__Message:before, .VuePassword .VuePassword__Message:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    height: 4px;
+    border-radius: 25px; }
+  /* line 99, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  .VuePassword .VuePassword__Message:before {
+    left: 0;
+    width: 80%;
+    margin-top: -3px;
+    border: 1px solid #cbcbcb; }
+  /* line 105, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  .VuePassword .VuePassword__Message:after {
+    left: 1px;
+    width: 0;
+    margin-top: -2px;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out; }
+
+/* line 114, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .VuePassword .VuePassword--great,
 .VuePassword .VuePassword--good,
 .VuePassword .VuePassword--medium,
-.VuePassword .VuePassword--weak {
-  color: #fe7676; }
+.VuePassword .VuePassword--weak,
+.VuePassword .VuePassword--very-weak {
+  height: 20px;
+  opacity: 1;
+  color: #9b9b9b; }
+  /* line 122, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  .VuePassword .VuePassword--great:after,
+  .VuePassword .VuePassword--good:after,
+  .VuePassword .VuePassword--medium:after,
+  .VuePassword .VuePassword--weak:after,
+  .VuePassword .VuePassword--very-weak:after {
+    background-color: #fe7676; }
+
+/* line 128, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword--great:after {
+  width: 80%; }
+
+/* line 133, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword--good:after {
+  width: 65%; }
+
+/* line 138, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword--medium:after {
+  width: 44%; }
+
+/* line 143, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword--weak:after {
+  width: 20%; }
+
+/* line 148, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+.VuePassword .VuePassword--very-weak:after {
+  width: 5%; }
 
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
-/* line 92, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 158, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__notify {
   padding: 16px;
   text-align: center;
   background-color: #efefef; }
-  /* line 97, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 163, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__notify p:first-child {
     margin-top: 0;
     padding-top: 0; }
 
-/* line 104, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 170, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__note {
   margin: -8px 0 0;
   font-size: 12px;
   font-size: 0.75rem; }
 
-/* line 108, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 174, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__note_right {
   text-align: right; }
 
-/* line 112, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+/* line 178, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
 .form__info {
   position: relative;
   min-height: 40px;
   padding: 16px 0 16px 48px;
   font-size: 16px;
   font-size: 1rem; }
-  /* line 117, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 183, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__info strong {
     font-weight: 700; }
-  /* line 120, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
+  /* line 186, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/theme/_forms.scss */
   .form__info:before {
     position: absolute;
     left: 0;

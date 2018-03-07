@@ -1,16 +1,10 @@
 <template lang="pug">
 //- HEADER PAGE
-.page-header(v-bind:style="fixedPosition")
+.page-header
   .layout-inner
-    header.header__bar(
-      :class="{ 'header__bar_fix':fixHeader }"
-    )
+    header.header__bar
       //- brand
-      h1.page-brand(
-        v-if='page')
-        PageHeaderBrand
       a.page-brand(
-        v-else='',
         href='/',
         title='Ir a la página de inicio')
         PageHeaderBrand
@@ -80,11 +74,7 @@ export default {
   },
   data () {
     return {
-      active: false,
-      fixedPosition: {
-        position: 'fixed',
-        top: 0
-      }
+      active: false
     }
   },
   methods: {
@@ -115,7 +105,6 @@ export default {
         return false
       }
     }
-  },
-  props: ['brandHome']
+  }
 }
 </script>
