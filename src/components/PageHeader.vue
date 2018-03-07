@@ -99,6 +99,7 @@ export default {
     },
     logout: function () {
       this.$store.dispatch('UserModule/actionSetToken', null)
+      this.$store.dispatch('UserModule/actionSetAuth')
       localStorage.setItem('token', null)
       this.$store.dispatch('UserModule/actionSetUserName', '')
     }
@@ -108,7 +109,7 @@ export default {
       return this.$store.getters['UserModule/getUserName']
     },
     getAuth () {
-      if (this.$store.getters['UserModule/getAuth'] != null && this.getName !== '') {
+      if (this.$store.getters['UserModule/getAuth'] !== null && this.getName !== '') {
         return true
       } else {
         return false

@@ -91,9 +91,52 @@ const UserModule = {
   }
 }
 
+const PasswordModule = {
+  namespaced: true,
+  state: {
+    changePassToken: '',
+    userEmail: localStorage.getItem('userEmail'),
+    passState: 'requestForm'
+  },
+  mutations: {
+    mutationSetChangePassToken (state, newPassToken) {
+      state.changePassToken = newPassToken
+    },
+    mutationsSetPassState (state, newState) {
+      state.passState = newState
+    },
+    mutationsSetUserEmail (state, newEmail) {
+      state.userEmail = newEmail
+    }
+  },
+  getters: {
+    getPassToken: state => {
+      return state.changePassToken
+    },
+    getPassState: state => {
+      return state.passState
+    },
+    getUserEmail: state => {
+      return state.userEmail
+    }
+  },
+  actions: {
+    actionSetChangePassToken ({commit, state}, newPassToken) {
+      commit('mutationSetChangePassToken', newPassToken)
+    },
+    actionSetPassState ({commit, state}, newState) {
+      commit('mutationsSetPassState', newState)
+    },
+    actionSetUserEmail ({commit, state}, newEmail) {
+      commit('mutationsSetUserEmail', newEmail)
+    }
+  }
+}
+
 const store = new Vuex.Store({
   modules: {
-    UserModule: UserModule
+    UserModule: UserModule,
+    PasswordModule: PasswordModule
   }
 })
 

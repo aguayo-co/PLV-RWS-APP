@@ -66,6 +66,7 @@ export default {
           // this.$store.dispatch('signUp/actionSetToken', response.data.api_token)
           this.$store.dispatch('UserModule/actionSetToken', response.data.api_token)
           this.$store.dispatch('UserModule/actionSetUserName', response.data.first_name)
+          this.$store.dispatch('UserModule/actionSetAuth')
           // this.$store.dispatch('actionSetAuth')
           // this.$store.getters.getAuth()
           console.log(this.$store.getters['UserModule/getToken'])

@@ -41,8 +41,7 @@ export default {
   data () {
     return {
       userEmail: '',
-      emailFound: true,
-      recoverSuccess: false
+      emailFound: true
     }
   },
   methods: {
@@ -50,6 +49,8 @@ export default {
       axios.get('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
       })
         .then(response => {
+          localStorage.setItem('userEmail', this.userEmail)
+          this.$store.dispatch('PasswordModule/actionSetUserEmail', this.userEmail)
           this.setRecoverSuccess()
           console.log(response)
         })
@@ -68,8 +69,7 @@ export default {
       })
     },
     setRecoverSuccess () {
-      this.recoverSuccess = true
-      this.$emit('setRecoverSuccess')
+      this.$store.dispatch('PasswordModule/actionSetPassState', 'requestSended')
     }
   }
 }
