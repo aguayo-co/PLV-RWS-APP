@@ -66,7 +66,7 @@ select {
      .VuePassword__Toggle {
        height: 42px;
        .VuePassword__Toggle__Icon {
-          fill: #9b9b9b;
+          fill: $c-default-4;
        }
      }
     // alerta seguridad
@@ -118,7 +118,7 @@ select {
     .VuePassword--very-weak {
       height: 20px;
       opacity: 1;
-      color: #9b9b9b;
+      color: $c-default-4;
       &:after {
         background-color: $c-brand;
       }
