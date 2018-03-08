@@ -7,16 +7,16 @@
     // $bp-medium: 768px;
     // $bp-small-wide: 980px;
     // $bp-wide: 1024px;
-    // $bp-large: 1124px;
+    // $bp-large: 1170px;
     // $bp-big: 1280px;
     // $bp-huge: 1440px;
 
 // Use: @include media-query(wide) {PROPERTIES...}
 // @param $media-query - Punto de ruptura -->
-    //small
-    //max-small
+    //small 375px
     //small-m 480px;
-    //medium
+    //max-small-m max 479px
+    //medium 768px;
     //only-medium
     //max-medium
     //small-wide
@@ -33,12 +33,12 @@
     @media only screen and (min-width: $bp-small) { @content; }
   }
 
-  @if $media-query == max-small {
-    @media only screen and (max-width: $bp-medium - 1) { @content; }
-  }
-
   @if $media-query == small-m {
     @media only screen and (min-width: $bp-small-m) { @content; }
+  }
+
+  @if $media-query == max-small-m {
+    @media only screen and (max-width: $bp-small-m - 1) { @content; }
   }
 
   @if $media-query == medium {

@@ -30,7 +30,7 @@ npm test
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## Sintaxis
-
+https://eslint.org/
 
 ## Dependencias
 
@@ -46,10 +46,6 @@ URL: https://vuex.vuejs.org/en/installation.html
 ``` bash
 npm install vuex --save-dev
 ```   
-#### Rutas de archivos en node_custom_modules
-    vue-password : node_modules\vue-password\dist archivo index.js
-    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
----
 ### Incluye Vee-Validate
 URL: https://github.com/baianat/vee-validate
 #### Installation
@@ -63,6 +59,11 @@ URL: https://github.com/skegel13/vue-password
 ``` bash
     $ npm install vue-password --save -dev
 ```
+---
+#### Rutas de archivos en node_custom_modules
+    vue-password : node_modules\vue-password\dist archivo index.js
+    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
+
 ---
 ### Incluye PUG
 URL: https://gist.github.com/levibostian/96cc285d4235d73f09cdc22f2590ccba

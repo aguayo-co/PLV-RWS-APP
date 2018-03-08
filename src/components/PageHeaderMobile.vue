@@ -11,11 +11,7 @@
         span.menu-ico__line
         span.menu-ico__line
       //- brand
-      h1.page-brand(
-        v-if='page')
-        PageHeaderBrand
       a.page-brand(
-        v-else='',
         href='/',
         title='Ir a la página de inicio')
         PageHeaderBrand
