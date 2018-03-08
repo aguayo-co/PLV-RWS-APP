@@ -73,6 +73,7 @@ export default {
         .then(response => {
           console.log('response data api?' + response.data.api_token)
           // this.$store.set('userAuth', {token: response.data.api_token})
+          localStorage.removeItem('userEmail')
           this.setRecoverSuccess()
         })
         .catch(e => {
