@@ -2,8 +2,7 @@
 div.page
 
   //- Header template Mobile
-  mq-layout(mq='small')
-    PageHeaderMobile
+
   mq-layout(mq='medium')
     PageHeaderMobile
 
@@ -19,8 +18,6 @@ div.page
     router-view
 
   //- footer template Mobile
-  mq-layout(mq='small')
-    .footerMobile estoy en Mobile
   mq-layout(mq='medium')
     .footerMobile estoy en Mobile
   mq-layout(mq='large')
