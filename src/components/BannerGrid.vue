@@ -2,6 +2,10 @@
   //- banner promociones grid
   //- TO-DO: consumir servicios
   .banner-grid
+    h1(
+      v-if="$mq === 'small'") funciona small
+    h1(
+      v-if="$mq === 'large'") funciona large
     article.banner(
       v-for='banner in bannerGrid',
       :class='banner.name')
@@ -19,9 +23,11 @@
           .banner__foot(
             v-if="banner.button_text")
             span.btn {{ banner.button_text }}
+
 </template>
 
 <script>
+
 export default {
   name: 'BannerGrid',
   data () {

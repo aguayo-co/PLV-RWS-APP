@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 /* Setup breakpoints */
 Vue.use(VueMq, {
   breakpoints: {
+    small: 560,
     medium: 1024,
     large: Infinity
   }

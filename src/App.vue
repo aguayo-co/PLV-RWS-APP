@@ -2,14 +2,15 @@
 div.page
 
   //- Header template Mobile
+  PageHeaderMobile(
+    v-if="$mq === 'small'")
+  PageHeaderMobile(
+    v-if="$mq === 'medium'")
 
-  mq-layout(mq='medium')
-    PageHeaderMobile
-
-  mq-layout(mq='large')
-    //- Header template desktop
-    PageHeader(
-      @open='openLogin')
+  //- Header template desktop
+  PageHeader(
+    @open='openLogin',
+    v-if="$mq === 'large'")
 
   //- main content
   main.content-main
@@ -18,11 +19,14 @@ div.page
     router-view
 
   //- footer template Mobile
-  mq-layout(mq='medium')
-    .footerMobile estoy en Mobile
-  mq-layout(mq='large')
-    //- footer template desktop
-    PageFooter
+  .footerMobile(
+    v-if="$mq === 'small'") estoy en Mobile
+  .footerMobile(
+    v-if="$mq === 'medium'") estoy en Medium
+
+  //- footer template desktop
+  PageFooter(
+    v-if="$mq === 'large'")
 
   //- Modal Login
   FormLogin(
@@ -37,6 +41,7 @@ import PageHeader from '@/components/PageHeader'
 import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
 import PageFooter from '@/components/PageFooter'
+
 Vue.use(Vuex)
 
 // eslint-disable-next-line
