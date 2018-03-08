@@ -8,10 +8,26 @@
   margin: 0 auto;
   text-align: center;
 }
+  .banner__item {
+    color: $c-default;
+  }
+
   .banner__img {
     width: 100%;
   }
-  
+  .banner__lead {
+    padding: 40px 0 12px;
+  }
+  .banner__title {
+    display: inline-block;
+    padding-bottom: 12px;
+  }
+
+  .banner__txt {
+    margin: 0;
+    padding-bottom: 12px;
+    @include font-rem(18px);
+  }
 
 @media only screen and (min-width: 730px) {
 
@@ -25,6 +41,7 @@
     @include flex-wrap(wrap);
     width: 96%;
     max-width: 100%;
+    padding: 100px 0 120px;
     text-align: right
   }
 

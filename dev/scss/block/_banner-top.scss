@@ -38,7 +38,7 @@
 
 // point Only mobile 
 // 1 columna
-@media only screen and (max-width: 729px) {
+@media only screen and (max-width: 559px) {
   .banner-top__item {
     &:not(:first-child) {
       display: none;
@@ -47,7 +47,7 @@
 }
 
 // 2 columnas
-@media only screen and (min-width: 730px) and (max-width: 1079px) {
+@media only screen and (min-width: 560px) and (max-width: 1079px) {
   .banner-top__item {
     &:last-child {
       display: none;
@@ -55,14 +55,14 @@
   }
 }
 
-@media only screen and (min-width: 730px) {
+@media only screen and (min-width: 560px) {
   .banner-top {
     margin: 0 -10px;
   }
     .banner-top__item {
       width: 50%;
       margin: 0 10px;
-      padding: 16px 10px;
+      padding: 12px 10px;
     }
 }
 
@@ -74,6 +74,7 @@
   }
   .banner-top__item {
     margin: 0 18px;
+    padding: 16px 10px;
   }
 }
 

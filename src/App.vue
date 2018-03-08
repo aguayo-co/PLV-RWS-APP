@@ -1,10 +1,13 @@
 <template lang="pug">
 div.page
 
-  //- Header template
-  mq-layout(mq='mobile')
+  //- Header template Mobile
+  mq-layout(mq='small')
     PageHeaderMobile
-  mq-layout(mq='desktop')
+  mq-layout(mq='medium')
+    PageHeaderMobile
+
+  mq-layout(mq='large')
     //- Header template desktop
     PageHeader(
       @open='openLogin')
@@ -15,10 +18,12 @@ div.page
     //- Router Page
     router-view
 
-  //- footer template
-  mq-layout(mq='mobile')
-    h1 estoy en mobile
-  mq-layout(mq='desktop')
+  //- footer template Mobile
+  mq-layout(mq='small')
+    .footerMobile estoy en Mobile
+  mq-layout(mq='medium')
+    .footerMobile estoy en Mobile
+  mq-layout(mq='large')
     //- footer template desktop
     PageFooter
 

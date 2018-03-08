@@ -31,18 +31,18 @@ export default {
         {
           id: '',
           name: '',
-          title: 'Inscríbete en el Newsletter por 25% OFF',
-          subtitle: 'Recibe promociones',
-          button_text: 'Inscribirse',
+          title: 'Cómo Funciona Prilov',
+          subtitle: '',
+          button_text: 'Guía de la Prilover',
           image: '',
           url: '#'
         },
         {
           id: '',
           name: '',
-          title: 'Cómo Funciona Prilov',
-          subtitle: '',
-          button_text: 'Guía de la Prilover',
+          title: 'Inscríbete en el Newsletter por 25% OFF',
+          subtitle: 'Recibe promociones',
+          button_text: 'Inscribirse',
           image: '',
           url: '#'
         }

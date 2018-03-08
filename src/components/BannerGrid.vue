@@ -14,7 +14,7 @@
             :alt='banner.title')
         .banner__content
           .banner__lead
-            h3.banner__title {{ banner.title }}
+            h3.banner__title.title_line {{ banner.title }}
             p.banner__txt {{ banner.subtitle }}
           .banner__foot(
             v-if="banner.button_text")
