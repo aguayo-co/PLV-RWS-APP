@@ -2278,10 +2278,10 @@ body {
       align-items: flex-end; }
     /* line 103, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-grid.scss */
     .banner-wide .banner__figure {
-      width: 60%; }
+      width: 56%; }
     /* line 106, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-grid.scss */
     .banner-wide .banner__content {
-      width: 100%;
+      width: 46%;
       padding-right: 20px; } }
 
 @media only screen and (min-width: 768px) {

@@ -3,14 +3,11 @@ div.page
 
   //- Header template Mobile
   PageHeaderMobile(
-    v-if="$mq === 'small'")
-  PageHeaderMobile(
-    v-if="$mq === 'medium'")
-
+    v-if="mqMobile")
   //- Header template desktop
   PageHeader(
     @open='openLogin',
-    v-if="$mq === 'large'")
+    v-if="mqDesk")
 
   //- main content
   main.content-main
@@ -20,13 +17,10 @@ div.page
 
   //- footer template Mobile
   .footerMobile(
-    v-if="$mq === 'small'") estoy en Mobile
-  .footerMobile(
-    v-if="$mq === 'medium'") estoy en Medium
-
+    v-if="mqMobile") estoy en Mobile
   //- footer template desktop
   PageFooter(
-    v-if="$mq === 'large'")
+    v-if="mqDesk")
 
   //- Modal Login
   FormLogin(

@@ -2,13 +2,30 @@
   //- banner promociones grid
   //- TO-DO: consumir servicios
   .banner-grid
-    h1(
-      v-if="$mq === 'small'") funciona small
-    h1(
-      v-if="$mq === 'large'") funciona large
     article.banner(
       v-for='banner in bannerGrid',
-      :class='banner.name')
+      :class='banner.name',
+      v-if="mqSmallMax")
+      a.banner__item(
+        :href='banner.url',
+        :title='banner.button_text')
+        .banner__content
+          .banner__lead
+            h3.banner__title.title_line {{ banner.title }}
+            p.banner__txt {{ banner.subtitle }}
+        .banner__figure
+          img.banner__img(
+            :src='banner.image',
+            :alt='banner.title')
+        .banner__content
+          .banner__foot(
+            v-if="banner.button_text")
+            span.btn {{ banner.button_text }}
+
+    article.banner(
+      v-for='banner in bannerGrid',
+      :class='banner.name',
+      v-if="mqSmall")
       a.banner__item(
         :href='banner.url',
         :title='banner.button_text')
