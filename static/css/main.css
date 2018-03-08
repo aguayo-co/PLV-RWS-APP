@@ -2103,6 +2103,93 @@ body {
       min-height: auto;
       margin: 50px auto; } }
 
+/*------------------------------------*	Banner Top
+\*------------------------------------*/
+/* line 4, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+.banner-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  padding: 6px 0 6px; }
+
+/* line 9, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+.banner-top__item {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1px solid #000; }
+
+/* line 18, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+.banner-top__lead {
+  position: relative;
+  top: 50%;
+  display: block;
+  color: #000;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%); }
+
+/* line 25, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+.banner-top__title {
+  margin: 0;
+  padding-bottom: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  font-size: 1rem; }
+
+/* line 31, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+.banner-top__subtitle {
+  margin: 0;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  font-size: 0.75rem; }
+
+@media only screen and (max-width: 729px) {
+  /* line 43, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top__item:not(:first-child) {
+    display: none; } }
+
+@media only screen and (min-width: 730px) and (max-width: 1079px) {
+  /* line 52, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top__item:last-child {
+    display: none; } }
+
+@media only screen and (min-width: 730px) {
+  /* line 59, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top {
+    margin: 0 -10px; }
+  /* line 62, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top__item {
+    width: 50%;
+    margin: 0 10px;
+    padding: 16px 10px; } }
+
+@media only screen and (min-width: 1024px) {
+  /* line 71, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top {
+    margin: 0 -18px;
+    padding: 26px 0 32px; }
+  /* line 75, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top__item {
+    margin: 0 18px; } }
+
+@media only screen and (min-width: 1080px) {
+  /* line 81, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top__item {
+    width: 33.333%;
+    max-width: 100%; } }
+
+@media only screen and (min-width: 1180px) {
+  /* line 89, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_banner-top.scss */
+  .banner-top__item {
+    padding: 16px 14px; } }
+
 /*------------------------------------*	User Menu
 \*------------------------------------*/
 /* line 5, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_user-menu.scss */
