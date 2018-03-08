@@ -1,4 +1,5 @@
 <script>
+// https://github.com/jofftiquez/vue-media-query-mixin
 export default {
   name: 'VueMqMixin',
   install (Vue, options) {

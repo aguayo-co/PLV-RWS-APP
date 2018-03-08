@@ -4,12 +4,12 @@
   .banner-grid
     article.banner(
       v-for='banner in bannerGrid',
-      :class='banner.name',
-      v-if="mqSmallMax")
+      :class='banner.name')
       a.banner__item(
         :href='banner.url',
         :title='banner.button_text')
-        .banner__content
+        .banner__content(
+          v-if="mqSmallMax")
           .banner__lead
             h3.banner__title.title_line {{ banner.title }}
             p.banner__txt {{ banner.subtitle }}
@@ -18,23 +18,8 @@
             :src='banner.image',
             :alt='banner.title')
         .banner__content
-          .banner__foot(
-            v-if="banner.button_text")
-            span.btn {{ banner.button_text }}
-
-    article.banner(
-      v-for='banner in bannerGrid',
-      :class='banner.name',
-      v-if="mqSmall")
-      a.banner__item(
-        :href='banner.url',
-        :title='banner.button_text')
-        .banner__figure
-          img.banner__img(
-            :src='banner.image',
-            :alt='banner.title')
-        .banner__content
-          .banner__lead
+          .banner__lead(
+            v-if="mqSmall")
             h3.banner__title.title_line {{ banner.title }}
             p.banner__txt {{ banner.subtitle }}
           .banner__foot(
