@@ -1,0 +1,85 @@
+/*------------------------------------*\
+	Banner Grid
+\*------------------------------------*/
+//@include font-rem(12px);
+.banner-grid {
+  width: 96%;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+  .banner__img {
+    width: 100%;
+  }
+  
+
+@media only screen and (min-width: 730px) {
+
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .banner-grid {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include flex-wrap(wrap);
+    width: 96%;
+    max-width: 100%;
+    text-align: right
+  }
+
+  .banner-sm {
+    width: 44%;
+    text-align: center;
+  }
+
+  .banner-md {
+    width: 50%;
+  }
+  .banner-wide {
+    width: 100%;
+    padding-top: 30px;
+    .banner__item {
+      @include flexbox;
+      @include flex-direction(row-reverse);
+      @include align-items(flex-end);
+    }
+    .banner__content {
+      padding-right: 40px;
+    }
+  }
+}
+// $bp-medium: 1024px;
+@include media-query(wide) {
+  .banner-grid {
+    width: 80%;
+  }
+
+  .banner-sm {
+    width: 40%;
+  }
+
+  .banner-md {
+    width: 50%;
+    .banner__figure {
+      max-height: 382px;
+      overflow: hidden;
+    }
+
+  }
+}
+
+// $bp-medium: 1170px;
+@include media-query(large) {
+  .banner-grid {
+    width: 74.375%;
+  }
+  .banner-sm {
+    width: 34.4%;
+  }
+  .banner-md {
+    width: 55%;
+  }
+}
+
+
