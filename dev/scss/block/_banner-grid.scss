@@ -2,18 +2,21 @@
 	Banner Grid
 \*------------------------------------*/
 //@include font-rem(12px);
+.banner {
+  padding-bottom: 10px;
+}
+
 .banner-grid {
   max-width: 480px;
   margin: 0 auto;
-  padding: 34px 0 4px;
+  padding: 10px 0 30px;
   text-align: center;
 }
-  .banner{
-    padding-bottom: 30px;
-  }
-
   .banner__item {
     color: $c-default;
+  }
+  .banner__figure {
+    padding-bottom: 10px;
   }
 
   .banner__img {
@@ -37,38 +40,10 @@
     @include font-rem(18px);
   }
 
-// @media only screen and (min-width: 560px) {
-//   .banner-grid {
-//     @include flexbox;
-//     @include justify-content(space-between);
-//     @include flex-wrap(wrap);
-//     width: 96%;
-//     max-width: 100%;
-//   }
-//   .banner-sm {
-//     width: 44%;
-//   }
-//   .banner-md {
-//     width: 50%;
-//   }
-//   .banner-wide {
-//     width: 100%;
-//     padding-top: 30px;
-//   }
-//   .banner__lead {
-//     padding: 24px 0 12px;
-//   }
-//   .banner__foot {
-//     .btn {
-//       width: auto;
-//       min-width: 220px;
-//     }
-//   }
-
-
-// }
-
 @media only screen and (min-width: 560px) {
+  .banner {
+    padding-bottom: 30px;
+  }
 
   .banner-grid {
     @include flexbox;
@@ -76,10 +51,14 @@
     @include flex-wrap(wrap);
     width: 96%;
     max-width: 100%;
+    padding-top: 34px;
     padding-bottom: 34px;
   }
 
   .banner {
+    padding-bottom: 0;
+  }
+  .banner__figure {
     padding-bottom: 0;
   }
 
