@@ -1,4 +1,4 @@
-# Prilov-app 
+# Prilov-app
 > Prilov.com: Compra, Usa, Vende
 
 ## Build Setup
@@ -45,7 +45,7 @@ URL: https://vuex.vuejs.org/en/installation.html
 #### Installation
 ``` bash
 npm install vuex --save-dev
-```   
+```
 ### Incluye Vee-Validate
 URL: https://github.com/baianat/vee-validate
 #### Installation
@@ -89,11 +89,23 @@ v-sticky => Define a new sticky element
 ---
 ### vue-mq
 #### Uso:
-Transversal renderizado vistas condicionales 
+Transversal renderizado vistas condicionales
 Mobile/desktop
 #### URL:
 https://alligator.io/vuejs/vue-media-queries/
 #### Installation
 ``` bash
 npm install vue-mq
+```
+---
+---
+### vue-flickity
+#### Uso:
+Componente para Slider
+Mobile/desktop
+#### URL:
+https://github.com/drewjbartlett/vue-flickity
+#### Installation
+``` bash
+npm install vue-flickity
 ```

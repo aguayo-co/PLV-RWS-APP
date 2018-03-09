@@ -965,16 +965,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/dev\/scss\/main.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/dev\/scss\/main-min.css",
-		"oF": 0,
-		"oS": 3
-		},
 	"\/dev\/scss\/main.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1231,6 +1221,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/utils\/variables\/_var-typo.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/vendor\/_flickity.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/vendor\/_flickity.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -1863,6 +1866,16 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/static\/img\/demo\/banner-slider-m2.jpg": {
+		"ft": 16384,
+		"iS": 75316,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/banner-slider-m2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
 	"\/static\/img\/demo\/banner-slider-m2.png": {
 		"ft": 32768,
 		"iS": 180238,
@@ -1885,6 +1898,16 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/static\/img\/demo\/banner-slider1.jpg": {
+		"ft": 16384,
+		"iS": 132936,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/banner-slider1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
 	"\/static\/img\/demo\/banner-slider1.png": {
 		"ft": 32768,
 		"iS": 890669,
@@ -1894,6 +1917,16 @@
 		"oIPL": 0,
 		"opt": 0,
 		"oT": 1,
+		"q": 100
+		},
+	"\/static\/img\/demo\/banner-slider2.jpg": {
+		"ft": 16384,
+		"iS": 142676,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/banner-slider2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
 		"q": 100
 		},
 	"\/static\/img\/demo\/banner-slider2.png": {

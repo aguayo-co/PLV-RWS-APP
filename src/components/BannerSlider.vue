@@ -3,7 +3,7 @@
   flickity.banner-slider__container(:options='flickityOptions')
     .banner-slider__cell(v-for='slide in slides')
       .banner-slider__slide
-        .banner-slider__slot
+        .banner-slider__slot(:class='slide.orientation')
           h3(:class='slide.font_color').banner-slider__title {{ slide.texto_principal }}
           a.banner-slider__btn.btn(:href='slide.url',) Promo Code:
             span.banner-slider__code {{ slide.button_text }}
@@ -31,13 +31,13 @@ export default {
           priority: 1,
           name: '',
           slug: '',
-          image: '/static/img/demo/banner-slider1.png',
+          image: '/static/img/demo/banner-slider1.jpg',
           image_mobile: '/static/img/demo/banner-slider-m1.jpg',
           url: '#',
           texto_principal: 'Te regalamos en tu primera compra',
           texto_pequeño: '**Oferta válida hasta el 31 de enero de 2018',
           button_text: 'primeracompra',
-          orientation: '[left, right]',
+          orientation: 'left',
           font_color: 'bg_white'
         },
         {
@@ -45,13 +45,13 @@ export default {
           priority: 2,
           name: '',
           slug: '',
-          image: '/static/img/demo/banner-slider2.png',
-          image_mobile: '/static/img/demo/banner-slider-m2.png',
+          image: '/static/img/demo/banner-slider2.jpg',
+          image_mobile: '/static/img/demo/banner-slider-m2.jpg',
           url: '#',
           texto_principal: 'Te regalamos en tu primera compra',
           texto_pequeño: '**Oferta válida hasta el 16 de marzo de 2018',
           button_text: 'comprasegura',
-          orientation: '[left, right]',
+          orientation: 'right',
           font_color: 'bg_black'
         }
       ],
