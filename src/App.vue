@@ -17,7 +17,7 @@ div.page
 
   //- footer template Mobile
   .footerMobile(
-    v-if="mqMobile") estoy en Mobile
+    v-if="mqMobile")
   //- footer template desktop
   PageFooter(
     v-if="mqDesk")

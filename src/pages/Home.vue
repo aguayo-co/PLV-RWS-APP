@@ -19,7 +19,8 @@
 
       ProductGrid
 
-      p.section_product__footer
+      p.section_product__footer(
+          v-if="mqTablet")
         span.btn__wrapper
           a.btn.i-send(href="") Ver más prendas
 
