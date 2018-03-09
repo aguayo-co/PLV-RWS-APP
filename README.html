@@ -65,13 +65,22 @@ npm test
 <pre><code class="bash">npm install vuex --save-dev
 </code></pre>
 
+<hr />
+
+<h3 id="vue.jsserver-siderendering">Vue.js Server-Side Rendering</h3>
+
+<pre><code class="bash">npm install vue vue-server-renderer --save 
+</code></pre>
+
+<hr />
+
 <h3 id="incluyevee-validate">Incluye Vee-Validate</h3>
 
 <p>URL: https://github.com/baianat/vee-validate</p>
 
 <h4 id="installation">Installation</h4>
 
-<pre><code class="bash">    npm install vee-validate --save -dev
+<pre><code class="bash">npm install vee-validate --save -dev
 </code></pre>
 
 <hr />
@@ -82,7 +91,7 @@ npm test
 
 <h4 id="installation">Installation</h4>
 
-<pre><code class="bash">    $ npm install vue-password --save -dev
+<pre><code class="bash">npm install vue-password --save -dev
 </code></pre>
 
 <hr />
@@ -131,20 +140,35 @@ vee-validate : node_modules\vee-validate\dist\locale archivo es.js
 
 <hr />
 
-<h3 id="vue-mq">vue-mq</h3>
+<h3 id="vue-awesome-swiper">vue-awesome-swiper</h3>
 
 <h4 id="uso:">Uso:</h4>
 
-<p>Transversal renderizado vistas condicionales
-Mobile/desktop</p>
+<p>Home Slider Prilovers</p>
 
 <h4 id="url:">URL:</h4>
 
-<p>https://alligator.io/vuejs/vue-media-queries/</p>
+<p>https://surmon-china.github.io/vue-awesome-swiper/
+https://github.com/surmon-china/vue-awesome-swiper</p>
 
 <h4 id="installation">Installation</h4>
 
-<pre><code class="bash">npm install vue-mq
+<pre><code class="bash">npm install vue-awesome-swiper --save
+</code></pre>
+
+<h4 id="mountwithcomponent">mount with component</h4>
+
+<pre><code class="bash">// require styles
+import 'swiper/dist/css/swiper.css'
+
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
+export default {
+  components: {
+    swiper,
+    swiperSlide
+  }
+}
 </code></pre>
 
 </body>

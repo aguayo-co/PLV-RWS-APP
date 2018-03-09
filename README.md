@@ -45,19 +45,26 @@ URL: https://vuex.vuejs.org/en/installation.html
 #### Installation
 ``` bash
 npm install vuex --save-dev
-```   
+```
+---
+### Vue.js Server-Side Rendering
+``` bash
+npm install vue vue-server-renderer --save 
+```
+---
 ### Incluye Vee-Validate
 URL: https://github.com/baianat/vee-validate
 #### Installation
 ``` bash
-    npm install vee-validate --save -dev
+npm install vee-validate --save -dev
 ```
 ---
+
 ### Incluye Vue-password
 URL: https://github.com/skegel13/vue-password
 #### Installation
 ``` bash
-    $ npm install vue-password --save -dev
+npm install vue-password --save -dev
 ```
 ---
 #### Rutas de archivos en node_custom_modules
@@ -87,13 +94,27 @@ npm i -S vue-sticky-js
 v-sticky => Define a new sticky element
 ```
 ---
-### vue-mq
+### vue-awesome-swiper
 #### Uso:
-Transversal renderizado vistas condicionales 
-Mobile/desktop
+Home Slider Prilovers
 #### URL:
-https://alligator.io/vuejs/vue-media-queries/
+https://surmon-china.github.io/vue-awesome-swiper/
+https://github.com/surmon-china/vue-awesome-swiper
 #### Installation
 ``` bash
-npm install vue-mq
+npm install vue-awesome-swiper --save
+```
+#### mount with component
+``` bash
+// require styles
+import 'swiper/dist/css/swiper.css'
+
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
+export default {
+  components: {
+    swiper,
+    swiperSlide
+  }
+}
 ```

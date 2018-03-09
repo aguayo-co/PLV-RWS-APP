@@ -58,6 +58,28 @@
   display: block;
 }
 
+.btn__wrapper {
+  display: block;
+  text-align: center;
+  &:after,
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 25%;
+    max-width: 240px;
+    height: 1px;
+    margin: 0 24px;
+    border-bottom: 1px solid $c-default;
+  }
+  .btn {
+    width: auto;
+  }
+}
+
+
+
+
 // $bp-medium: 768px;
 @include media-query(medium) {
   .btn {
