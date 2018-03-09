@@ -15,13 +15,11 @@
 
 <script>
 import Flickity from 'vue-flickity'
-import VflickityLoaded from 'flickity-imagesloaded'
 
 export default {
   name: 'BannerSlider',
   components: {
-    Flickity,
-    VflickityLoaded
+    Flickity
   },
   data () {
     return {
@@ -62,7 +60,6 @@ export default {
         prevNextButtons: false,
         pageDots: true,
         cellSelector: '.banner-slider__cell',
-        autoPlay: 5000,
         imagesLoaded: true,
         resize: true,
         adaptiveHeight: true
