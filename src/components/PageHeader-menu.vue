@@ -27,7 +27,7 @@ nav.page-menu
                     li.submenu__subitem(
                       v-for="(grandChildren, indexG) in children.children"
                       )
-                      a.subitem__link(href="#") {{grandChildren.name}}
+                      a.subitem__link(:href='grandChildren.url') {{grandChildren.name}}
               //- Nivel 2: Promo
               .menu-promo
                 img.menu-promo__img(src='/static/img/demo/menu-promo-001.jpg' alt='Producto destacado Denim')
@@ -96,7 +96,6 @@ export default {
     })
       .then(response => {
         this.menu = response.data.data[0].items[0]
-        console.log(this.menu.children[0].children[0].name)
       })
       .catch(e => {
         console.log('ERROR : ' + e)

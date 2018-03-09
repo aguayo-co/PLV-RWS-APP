@@ -6,26 +6,27 @@ footer.page-foot.i-heart-on
       nav.foot-nav
         //- Footer Menu lista
         dl.foot-nav__list(
-            v-for='list in footNavList')
-          dt.foot__title {{ list.title }}
+            v-for='(list, index) in footer')
+          dt.foot__title(v-if= "index < 4") {{ list.name }}
           dd.foot-nav__item(
-            v-for='items in list.items')
+            v-for='(items, indexG) in list.children')
             a.foot-nav__link(
+              v-if="index < 4"
               :href='items.url') {{ items.name }}
         //- Footer Menu lista redes
         dl.foot-nav__list.foot-nav__list_center
           dt.foot__title Síguenos
           dd.foot-nav__item
             a.foot-nav__link.i-insta-red(
-              href='#')
+              href='https://www.instagram.com/prilovchile/?hl=es-la')
                 span.hide Instagram
           dd.foot-nav__item
             a.foot-nav__link.i-twitter-red(
-              href='#')
+              href='https://twitter.com/prilovchile?lang=es')
                 span.hide Twitter
           dd.foot-nav__item
             a.foot-nav__link.i-fb-red(
-              href='#')
+              href='https://www.facebook.com/prilovchile')
                 span.hide Facebook
       .foot-news
         h4.foot__title Newsletter
@@ -55,48 +56,23 @@ footer.page-foot.i-heart-on
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'PageFooter',
   data () {
     return {
-      footNavList: [
-        {
-          title: 'List 1',
-          items: [
-            {
-              name: 'item 1',
-              url: '#'
-            },
-            {
-              name: 'item 2',
-              url: '#'
-            }
-          ]
-        },
-        {
-          title: 'List 2',
-          items: [
-            {
-              name: 'item 1',
-              url: '#'
-            },
-            {
-              name: 'item 2',
-              url: '#'
-            }
-          ]
-        },
-        {
-          title: 'List 3',
-          items: [
-            {
-              name: 'item 1',
-              url: '#'
-            }
-          ]
-        }
-      ]
+      footer: {}
     }
+  },
+  async created () {
+    await axios.get('https://prilov.aguayo.co/api/menus', {
+    })
+      .then(response => {
+        this.footer = response.data.data[1].items
+      })
+      .catch(e => {
+        console.log('ERROR : ' + e)
+      })
   }
 }
 </script>
