@@ -965,6 +965,16 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/dev\/scss\/main-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/dev\/scss\/main.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -973,8 +983,8 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "\/dev\/scss\/main.css",
-		"oF": 0,
+		"oAP": "\/static\/css\/main.css",
+		"oF": 2,
 		"oS": 0,
 		"uL": 1
 		},
@@ -1555,6 +1565,13 @@
 		"oAP": "\/src\/components\/BannerGrid.vue",
 		"oF": 0
 		},
+	"\/src\/components\/BannerSlider.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/BannerSlider.vue",
+		"oF": 0
+		},
 	"\/src\/components\/BannerTop.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -1820,6 +1837,16 @@
 		"iS": 250663,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/banner-slider-m1.jpg": {
+		"ft": 16384,
+		"iS": 92748,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/banner-slider-m1.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,

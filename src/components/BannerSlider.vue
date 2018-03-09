@@ -1,43 +1,72 @@
 <template lang="pug">
 .banner-slider
-  swiper.banner-slider__container(:options='swiperOption')
-    swiper-slide.banner-slider__slide(v-for='slide in slides')
-      .banner-slider__slot
-        h3.bg_white.banner-slider__title Te regalamos en tu primera compra
-        a.banner-slider__btn.btn Promo Code:
-          span.banner-slider__code Primera Compra
-        span.banner-slider__copy **Oferta válida hasta el 31 de enero de 2018
-      img.banner-slider__img(:src='slide.path')
-    swiper-pagination
+  flickity.banner-slider__container(:options='flickityOptions')
+    .banner-slider__cell(v-for='slide in slides')
+      .banner-slider__slide
+        .banner-slider__slot
+          h3(:class='slide.font_color').banner-slider__title {{ slide.texto_principal }}
+          a.banner-slider__btn.btn(:href='slide.url',) Promo Code:
+            span.banner-slider__code {{ slide.button_text }}
+          span.banner-slider__copy {{ slide.texto_pequeño }}
+        picture.banner-slider__crop
+          source.banner-slider__img(media='(max-width: 640px)', :srcset='slide.image_mobile')
+          img.banner-slider__img(:src='slide.image')
 </template>
 
 <script>
-import Vue from 'vue'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-Vue.use(VueAwesomeSwiper)
+import Flickity from 'vue-flickity'
+import VflickityLoaded from 'flickity-imagesloaded'
 
 export default {
   name: 'BannerSlider',
   components: {
-    VueAwesomeSwiper
+    Flickity,
+    VflickityLoaded
   },
   data () {
     return {
       slides: [
-        { path: '/static/img/demo/banner-slider1.png'},
-        { path: '/static/img/demo/banner-slider2.png'},
-        { path: '/static/img/demo/banner-slider3.png'}
-      ],
-      swiperOption: {
-        sliderPerView: 'auto',
-        centeredSlides: true,
-        spaceBetween: 0,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-          dynamicBullets: true
+        {
+          title: '',
+          priority: 1,
+          name: '',
+          slug: '',
+          image: '/static/img/demo/banner-slider1.png',
+          image_mobile: '/static/img/demo/banner-slider-m1.jpg',
+          url: '#',
+          texto_principal: 'Te regalamos en tu primera compra',
+          texto_pequeño: '**Oferta válida hasta el 31 de enero de 2018',
+          button_text: 'primeracompra',
+          orientation: '[left, right]',
+          font_color: 'bg_white'
+        },
+        {
+          title: '',
+          priority: 2,
+          name: '',
+          slug: '',
+          image: '/static/img/demo/banner-slider2.png',
+          image_mobile: '/static/img/demo/banner-slider-m2.png',
+          url: '#',
+          texto_principal: 'Te regalamos en tu primera compra',
+          texto_pequeño: '**Oferta válida hasta el 16 de marzo de 2018',
+          button_text: 'comprasegura',
+          orientation: '[left, right]',
+          font_color: 'bg_black'
         }
+      ],
+      flickityOptions: {
+        contain: true,
+        cellAlign: 'left',
+        initialIndex: 0,
+        prevNextButtons: false,
+        pageDots: true,
+        cellSelector: '.banner-slider__cell',
+        autoPlay: 5000,
+        imagesLoaded: true,
+        resize: true,
+        adaptiveHeight: true
+        // any options from Flickity can be used
       }
     }
   }
