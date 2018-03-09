@@ -3,8 +3,7 @@
   //- TO-DO: consumir servicios
   .banner-grid
     article.banner(
-      v-for='banner in bannerGrid',
-      :class='banner.name')
+      v-for='banner in bannerGrid')
       a.banner__item(
         :href='banner.url',
         :title='banner.button_text')
@@ -37,7 +36,7 @@ export default {
       bannerGrid: [
         {
           id: '',
-          name: 'banner-sm',
+          name: '',
           title: 'Blazers',
           subtitle: '¿Ya tienes el tuyo?',
           button_text: 'Mira los Blazers',
@@ -46,7 +45,7 @@ export default {
         },
         {
           id: '',
-          name: 'banner-md',
+          name: '',
           title: 'Maaji',
           subtitle: '¡Nos encantan todos!',
           button_text: 'Ver el catálogo de Maajis',
@@ -55,7 +54,7 @@ export default {
         },
         {
           id: '',
-          name: 'banner-wide',
+          name: '',
           title: 'Denim',
           subtitle: '¡Siempre tiene ONDA!',
           button_text: 'Ver todos los denim',
