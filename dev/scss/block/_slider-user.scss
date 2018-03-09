@@ -1,0 +1,109 @@
+/*------------------------------------*\
+	Producto grid Home
+\*------------------------------------*/
+.slider-user {
+  padding: 20px 0;
+  .swiper-container {
+    &.swiper-container-horizontal {
+      padding-bottom: 52px;
+    }
+    &>.swiper-pagination-progressbar {
+      width: 100%;
+      max-width: 360px;
+      left: 50%;
+      bottom: 0;
+      top: inherit;
+      height: 6px;
+      border-radius: 25px;
+      border: 1px solid $c-default-3;
+      transform: translateX(-50%);
+      background-color: $c-neutro;
+    }
+  }
+  .swiper-pagination-progressbar {
+    .swiper-pagination-progressbar-fill {
+      background: $c-brand;
+    }
+  }
+}
+
+.slider-user__item {
+  display: block;
+  text-align: center;
+  color: $c-default;
+}
+
+.slider-user__avatar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 50%;
+  border: 6px solid $c-neutro;
+  transition: all .2s ease-in-out;
+  &:hover {
+    border: 8px solid $c-brand;
+  }
+}
+.slider-user__picture {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+.slider-user__name {
+  padding: 16px 4px;
+  @include font-rem(12px);
+  font-family: $f-fancy;
+  font-weight: $fw-medium;
+}
+
+.slider-user__group {
+  @include font-rem(14px);
+  text-transform: uppercase;
+  &:before {
+    position: relative;
+    top: 2px;
+    vertical-align: top;
+    padding-right: 4px;
+    @include font-rem(14px);
+  }
+}
+
+
+// $bp-big: 1170px;
+@include media-query(medium) {
+  .slider-user__avatar {
+    width: 140px;
+    height: 140px;
+     &:hover {
+       border: 12px solid $c-brand;
+     }
+
+  }
+  .slider-user__name {
+    @include font-rem(14px);
+  }
+
+  .slider-user__group {
+    @include font-rem(18px);
+    text-transform: uppercase;
+    &:before {
+      @include font-rem(18px);
+    }
+  }
+
+}
+
+@media only screen and (max-width: 559px) {}
+
+@media only screen and (min-width: 560px) and (max-width: 1079px) {}
+
+@media only screen and (min-width: 560px) {}
+
+
+

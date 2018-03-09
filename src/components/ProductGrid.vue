@@ -27,43 +27,40 @@
     7. EN MOBBILE No existe botón 'ver más productos'
 
   //-- TO-DO: consumir servicios
+  .product-grid
+    //-- TO-DO: consumir servicios
+    article.slot.slot_grid(
+      v-for='product in products')
+      a.slot__product(
+        :href='product.url',
+        :title='product.title')
+        img.slot__img(
+          :src="product.file",
+          alt="product.title")
 
-  .layout-inner
-    .product-section
-      .product-grid
-        //-- TO-DO: consumir servicios
-        article.slot.slot_grid(
-          v-for='product in products')
-          a.slot__product(
-            :href='product.url',
-            :title='product.title')
-            img.slot__img(
-              :src="product.file",
-              alt="product.title")
+        //-title/dimensions
+        .slot__lead
+          .slot__title {{ product.title }}
+          .slot__size
+            .slot__size-txt {{ product.dimensions }}
 
-            //-title/dimensions
-            .slot__lead
-              .slot__title {{ product.title }}
-              .slot__size
-                .slot__size-txt {{ product.dimensions }}
+        //- brand/price
+        .slot__info
+          .slot__brand {{ product.brand }}
+          .slot__price ${{ product.price }}
 
-            //- brand/price
-            .slot__info
-              .slot__brand {{ product.brand }}
-              .slot__price ${{ product.price }}
-
-          //- user: picture/first_name/last_name
-          a.slot__user(
-            :href='user',
-            :title='product.first_name')
-            .slot__user-img
-              .slot__avatar
-                img.slot__picture(
-                  :src="product.picture",
-                  :alt="product.first_name")
-            .slot__user-info
-              .slot__prilover {{ product.first_name }} {{ product.last_name }}
-              .slot__group.i-it-girl It <span class="txt_brand">girl</span>
+      //- user: picture/first_name/last_name
+      a.slot__user(
+        :href='user',
+        :title='product.first_name')
+        .slot__user-img
+          .slot__avatar
+            img.slot__picture(
+              :src="product.picture",
+              :alt="product.first_name")
+        .slot__user-info
+          .slot__prilover {{ product.first_name }} {{ product.last_name }}
+          .slot__group.i-it-girl It <span class="txt_brand">girl</span>
 
 </template>
 
@@ -83,10 +80,10 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-001.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-009.jpg',
           first_name: 'Mariana',
           last_name: 'Gómez',
-          slot__group: 'it girl'
+          slot__group: 'Prilover Star'
         },
         {
           url: '/',
@@ -97,10 +94,10 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-002.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-007.jpg',
           first_name: 'Juliana',
           last_name: 'Rocha',
-          slot__group: 'it girl'
+          slot__group: 'Prilover Star'
         },
         {
           url: '/',
@@ -111,7 +108,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-003.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-005.jpg',
           first_name: 'Vale',
           last_name: 'Caballero',
           slot__group: 'it girl'
@@ -125,7 +122,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-004.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-003.jpg',
           first_name: 'Genevieve',
           last_name: 'Gibson',
           slot__group: 'it girl'
@@ -139,7 +136,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-005.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-001.jpg',
           first_name: 'Giovanna',
           last_name: 'Bustos',
           slot__group: 'it girl'
@@ -153,7 +150,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-006.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-002.jpg',
           first_name: 'Dani',
           last_name: 'Herzko',
           slot__group: 'it girl'
@@ -167,7 +164,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-007.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-004.jpg',
           first_name: 'Trini',
           last_name: 'Garcés ',
           slot__group: 'it girl'
@@ -181,7 +178,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-008.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-006.jpg',
           first_name: 'Loreto',
           last_name: '',
           slot__group: 'it girl'
@@ -195,7 +192,7 @@ export default {
           status_id: '',
           file: '/static/img/demo/product-009.jpg',
           user: '/',
-          picture: '/static/img/demo/user-avatar.jpg',
+          picture: '/static/img/demo/user-avatar-008.jpg',
           first_name: 'Isi',
           last_name: 'Fierro',
           slot__group: 'it girl'

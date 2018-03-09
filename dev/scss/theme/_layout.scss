@@ -20,8 +20,10 @@
   max-width: 1180px;
   margin: 0 auto;
 }
-.layer-out {
-  overflow: hidden;
+
+.layout-band {
+  width: 100%;
+  background-color: $c-neutro-4;
 }
 
 // Content registro
