@@ -219,12 +219,16 @@
   .slot__group {
     @include font-rem(18px);
     &:before {
-      @include font-rem(26px);
       top: 0;
       vertical-align: text-bottom;
-
+      @include font-rem(26px);
     }
   }
+  .section_product__footer {
+    padding-bottom: 168px;
+    text-align: center;
+  }
+
 
 }
 // $bp-wide: 1024px;

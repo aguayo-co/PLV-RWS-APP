@@ -60,7 +60,10 @@
               :alt="product.first_name")
         .slot__user-info
           .slot__prilover {{ product.first_name }} {{ product.last_name }}
-          .slot__group.i-it-girl It <span class="txt_brand">girl</span>
+          .slot__group.i-it-girl(
+            v-if='product.slot__group == 1') It <span class="txt_brand">girl</span>
+          .slot__group.i-starts(
+            v-if='product.slot__group == 2') Prilover <span class="txt_brand">Star</span>
 
 </template>
 
@@ -83,7 +86,7 @@ export default {
           picture: '/static/img/demo/user-avatar-009.jpg',
           first_name: 'Mariana',
           last_name: 'Gómez',
-          slot__group: 'Prilover Star'
+          slot__group: '2'
         },
         {
           url: '/',
@@ -97,7 +100,7 @@ export default {
           picture: '/static/img/demo/user-avatar-007.jpg',
           first_name: 'Juliana',
           last_name: 'Rocha',
-          slot__group: 'Prilover Star'
+          slot__group: '2'
         },
         {
           url: '/',
@@ -111,7 +114,7 @@ export default {
           picture: '/static/img/demo/user-avatar-005.jpg',
           first_name: 'Vale',
           last_name: 'Caballero',
-          slot__group: 'it girl'
+          slot__group: '1'
         },
         {
           url: '/',
@@ -125,7 +128,7 @@ export default {
           picture: '/static/img/demo/user-avatar-003.jpg',
           first_name: 'Genevieve',
           last_name: 'Gibson',
-          slot__group: 'it girl'
+          slot__group: '1'
         },
         {
           url: '/',
@@ -139,7 +142,7 @@ export default {
           picture: '/static/img/demo/user-avatar-001.jpg',
           first_name: 'Giovanna',
           last_name: 'Bustos',
-          slot__group: 'it girl'
+          slot__group: '1'
         },
         {
           url: '/',
@@ -153,7 +156,7 @@ export default {
           picture: '/static/img/demo/user-avatar-002.jpg',
           first_name: 'Dani',
           last_name: 'Herzko',
-          slot__group: 'it girl'
+          slot__group: '2'
         },
         {
           url: '/',
@@ -167,7 +170,7 @@ export default {
           picture: '/static/img/demo/user-avatar-004.jpg',
           first_name: 'Trini',
           last_name: 'Garcés ',
-          slot__group: 'it girl'
+          slot__group: '1'
         },
         {
           url: '/',
@@ -181,7 +184,7 @@ export default {
           picture: '/static/img/demo/user-avatar-006.jpg',
           first_name: 'Loreto',
           last_name: '',
-          slot__group: 'it girl'
+          slot__group: '2'
         },
         {
           url: '/',
@@ -195,7 +198,7 @@ export default {
           picture: '/static/img/demo/user-avatar-008.jpg',
           first_name: 'Isi',
           last_name: 'Fierro',
-          slot__group: 'it girl'
+          slot__group: '2'
         }
       ]
     }

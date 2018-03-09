@@ -2,11 +2,8 @@
 	Producto grid Home
 \*------------------------------------*/
 .slider-user {
-  padding: 20px 0;
+  padding-bottom: 20px;
   .swiper-container {
-    &.swiper-container-horizontal {
-      padding-bottom: 52px;
-    }
     &>.swiper-pagination-progressbar {
       width: 100%;
       max-width: 360px;
@@ -30,7 +27,7 @@
 .slider-user__item {
   display: block;
   text-align: center;
-  color: $c-default;
+  color: $c-default-2;
 }
 
 .slider-user__avatar {
@@ -63,6 +60,8 @@
 }
 
 .slider-user__group {
+  position: relative;
+  padding-top: 12px;
   @include font-rem(14px);
   text-transform: uppercase;
   &:before {
@@ -72,11 +71,49 @@
     padding-right: 4px;
     @include font-rem(14px);
   }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 44px;
+    height: 1px;
+    margin-left: -22px;
+    background-color: $c-default;
+  }
+}
+.slider-footer {
+  text-align: right;
+  padding: 20px 20px 0 0;
+  .link_underline {
+    display: inline-block;
+    margin: 0 20px;
+  }
+
 }
 
+@media only screen and (max-width: 767px) {
+  .slider-user {
+    .swiper-container {
+      &>.swiper-pagination-progressbar {
+        display: none;
+      }
+    }
+  }
+}
 
 // $bp-big: 1170px;
 @include media-query(medium) {
+  .slider-user {
+    padding: 20px 0;
+    .swiper-container {
+      &.swiper-container-horizontal {
+        padding-bottom: 52px;
+      }
+    }
+  }
+
   .slider-user__avatar {
     width: 140px;
     height: 140px;
@@ -93,17 +130,14 @@
     @include font-rem(18px);
     text-transform: uppercase;
     &:before {
-      @include font-rem(18px);
+      top: 0;
+      @include font-rem(22px);
     }
   }
 
 }
 
-@media only screen and (max-width: 559px) {}
 
-@media only screen and (min-width: 560px) and (max-width: 1079px) {}
-
-@media only screen and (min-width: 560px) {}
 
 
 

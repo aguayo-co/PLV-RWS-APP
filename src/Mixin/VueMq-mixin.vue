@@ -11,6 +11,7 @@ export default {
           mqSmallMax: false,
           mqSmall: false,
           mqMobile: false,
+          mqTablet: false,
           mqDesk: false
           // wSM: false,
           // wMD: false,
@@ -39,6 +40,9 @@ export default {
             mobile: {
               max: 1023
             },
+            tablet: {
+              min: 768
+            },
             desk: {
               min: 1024
             }
@@ -62,6 +66,7 @@ export default {
           this.mqSmallMax = w <= mediaQuery.smallmax.max
           this.mqSmall = w >= mediaQuery.small.min
           this.mqMobile = w <= mediaQuery.mobile.max
+          this.mqTablet = w >= mediaQuery.tablet.min
           this.mqDesk = w >= mediaQuery.desk.min
           // this.wSM = w >= mediaQuery.sm.min && w <= mediaQuery.sm.max
           // this.wMD = w >= mediaQuery.md.min && w <= mediaQuery.md.max

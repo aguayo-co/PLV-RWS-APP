@@ -30,7 +30,6 @@ h6 {
 }
 
 .title_head {
-  padding-bottom: 18px;
   text-align: center;
   text-transform: uppercase;
   @include font-rem(26px);
@@ -38,6 +37,7 @@ h6 {
   font-weight: $fw-light;
 }
 .title_subhead {
+  padding-top: 18px;
   text-align: center;
   text-transform: uppercase;
   color: $c-default-2;
