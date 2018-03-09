@@ -121,7 +121,7 @@
         return "El campo " + e + " debe ser una dirección ip válida.";
       },
       is: function(e) {
-        return "El correo no coincide con el anterior.";
+        return "Los campos no coinciden.";
       },
       length: function(e, n) {
         var o = n[0],

@@ -4,21 +4,24 @@
     .content-slot__inner
       //- Formulario recuperar PASS
       FormPass(
-        v-if="recoverSuccess == false")
+        v-if="getPassState == 'requestForm'")
       //- NotiSuccess
-      FormSuccess(v-else)
+      FormSuccess(v-else-if ="getPassState == 'requestSended'")
 
       //- Formulario Confirmar PASS
-      FormPassEnd
+      FormPassEnd(v-else-if="getPassState == 'requestChange'")
       //- NotiSuccess
-      FormNotiSuccessPassEnd
-
+      FormNotiSuccessPassEnd(v-else-if="getPassState == 'recoverPassSuccess'")
+      //- Error
+      FormNotiErrorServer(v-else)
 </template>
 
 <script>
 import FormPass from '@/components/FormPass'
+import axios from 'axios'
 import FormSuccess from '@/components/FormNotiSuccessPass'
 import FormPassEnd from '@/components/FormPassEnd'
+import FomrNotierrorServer from '@/components/FormNotiErrorServer'
 import FormNotiSuccessPassEnd from '@/components/FormNotiSuccessPassEnd'
 export default {
   name: 'Pass',
@@ -26,18 +29,38 @@ export default {
     FormPass,
     FormSuccess,
     FormPassEnd,
-    FormNotiSuccessPassEnd
+    FormNotiSuccessPassEnd,
+    FomrNotierrorServer
   },
   data () {
     return {
-      recoverSuccess: false,
-      userEmail: ''
+      userEmail: this.$store.getters['PasswordModule/getUserEmail'],
+      token: this.$route.query.token
     }
   },
-  methods: {
-    setRecoverSuccess () {
-      this.recoverSuccess = true
+  computed: {
+    getPassState () {
+      return this.$store.getters['PasswordModule/getPassState']
+    },
+    getToken () {
+      return this.$store.getters['PasswordModule/getPassToken']
     }
+  },
+  async created () {
+    console.log(this.$route.query.token)
+    this.$store.dispatch('PasswordModule/actionSetChangePassToken', this.$route.query.token)
+    await axios.post('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
+      token: this.$route.query.token
+    })
+      .then(response => {
+        console.log('response ' + response)
+        this.$store.dispatch('PasswordModule/actionSetPassState', 'requestChange')
+        // this.$store.set('userAuth', {token: response.data.api_token})
+      })
+      .catch(e => {
+        console.log(e) // Aca se obtiene el error del servidor
+        // alert(e.response.data.errors.exists[0])
+      })
   }
 }
 </script>
