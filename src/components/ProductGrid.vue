@@ -1,7 +1,7 @@
 <template lang="pug">
   //- slot producto Grilla
   //- Description:
-    Imagen aspect ratio: 2 : 3
+    Imagen aspect ratio: 2: 3
     1. lista de 9 productos bajo un criterio
     de ordenamiento determinado.
     2. Cuando un usuario (logueado) da clic en el corazón,
@@ -31,18 +31,177 @@
   .layout-inner
     .product-section
       .product-grid
-        ProductSlot
-        ProductSlot
-        ProductSlot
+        //-- TO-DO: consumir servicios
+        article.slot.slot_grid(
+          v-for='product in products')
+          a.slot__product(
+            :href='product.url',
+            :title='product.title')
+            img.slot__img(
+              :src="product.file",
+              alt="product.title")
+
+            //-title/dimensions
+            .slot__lead
+              .slot__title {{ product.title }}
+              .slot__size
+                .slot__size-txt {{ product.dimensions }}
+
+            //- brand/price
+            .slot__info
+              .slot__brand {{ product.brand }}
+              .slot__price ${{ product.price }}
+
+          //- user: picture/first_name/last_name
+          a.slot__user(
+            :href='user',
+            :title='product.first_name')
+            .slot__user-img
+              .slot__avatar
+                img.slot__picture(
+                  :src="product.picture",
+                  :alt="product.first_name")
+            .slot__user-info
+              .slot__prilover {{ product.first_name }} {{ product.last_name }}
+              .slot__group.i-it-girl It <span class="txt_brand">girl</span>
+
 </template>
 
 <script>
-import ProductSlot from '@/components/ProductSlot'
 
 export default {
   name: 'ProductGrid',
-  components: {
-    ProductSlot
+  data () {
+    return {
+      products: [
+        {
+          url: '/',
+          title: 'Blusa Rayas',
+          dimensions: 'm',
+          brand: 'Nicopoly',
+          price: '12.000',
+          status_id: '',
+          file: '/static/img/demo/product-001.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Mariana',
+          last_name: 'Gómez',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Chaqueta Mostaza',
+          dimensions: 's',
+          brand: 'Rubinella',
+          price: '16.000',
+          status_id: '',
+          file: '/static/img/demo/product-002.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Juliana',
+          last_name: 'Rocha',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Vestido Maaji',
+          dimensions: 's',
+          brand: 'Maaji',
+          price: '50.000',
+          status_id: '',
+          file: '/static/img/demo/product-003.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Vale',
+          last_name: 'Caballero',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Sandalias de Cuero y Tachas Saville Row',
+          dimensions: 'xs',
+          brand: 'Straadivaruois & Zara Home Juntos',
+          price: '40.000',
+          status_id: '',
+          file: '/static/img/demo/product-004.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Genevieve',
+          last_name: 'Gibson',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Chaqueta Ecocuero Dorada',
+          dimensions: 'm',
+          brand: 'Soviet',
+          price: '12.000',
+          status_id: '',
+          file: '/static/img/demo/product-005.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Giovanna',
+          last_name: 'Bustos',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Jeans Ripped',
+          dimensions: '40',
+          brand: 'Zara',
+          price: '14.000',
+          status_id: '',
+          file: '/static/img/demo/product-006.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Dani',
+          last_name: 'Herzko',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Chaqueta Ecocuero Negra',
+          dimensions: 's',
+          brand: 'Forever 21 ',
+          price: '15.000',
+          status_id: '',
+          file: '/static/img/demo/product-007.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Trini',
+          last_name: 'Garcés ',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Blazer Rojo',
+          dimensions: '46',
+          brand: 'Desconocida',
+          price: '8.000',
+          status_id: '',
+          file: '/static/img/demo/product-008.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Loreto',
+          last_name: '',
+          slot__group: 'it girl'
+        },
+        {
+          url: '/',
+          title: 'Blusa H&M Studio',
+          dimensions: 's',
+          brand: 'H&M ',
+          price: '12.000',
+          status_id: '',
+          file: '/static/img/demo/product-009.jpg',
+          user: '/',
+          picture: '/static/img/demo/user-avatar.jpg',
+          first_name: 'Isi',
+          last_name: 'Fierro',
+          slot__group: 'it girl'
+        }
+      ]
+    }
   }
 }
 </script>

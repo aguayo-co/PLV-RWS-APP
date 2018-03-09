@@ -2560,11 +2560,12 @@ body {
 /* line 76, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__size {
   display: table-cell;
-  vertical-align: middle; }
+  vertical-align: middle;
+  text-align: right; }
 
-/* line 81, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 82, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__size-txt {
-  display: block;
+  display: inline-block;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -2578,7 +2579,7 @@ body {
   background-color: #000;
   border-radius: 25px; }
 
-/* line 96, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 97, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2595,20 +2596,20 @@ body {
   border-top: 1px solid #000;
   border-bottom: 1px solid #000; }
 
-/* line 105, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 106, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__brand {
   padding-right: 6px;
   font-size: 10px;
   font-size: 0.625rem; }
 
-/* line 109, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 110, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__price {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 18px;
   font-size: 1.125rem; }
 
-/* line 115, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 116, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__user {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2620,11 +2621,11 @@ body {
   padding: 6px 0;
   color: #000; }
 
-/* line 121, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 122, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__user-img {
   padding-right: 14px; }
 
-/* line 125, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 126, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__avatar {
   display: inline-block;
   vertical-align: middle;
@@ -2633,7 +2634,7 @@ body {
   overflow: hidden;
   text-align: center;
   border-radius: 25px; }
-  /* line 133, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 134, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__avatar .slot__picture {
     position: relative;
     top: 50%;
@@ -2643,23 +2644,23 @@ body {
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
 
-/* line 143, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 144, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__user-info {
   display: inline-block;
   vertical-align: middle; }
 
-/* line 147, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 148, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__prilover {
   font-size: 12px;
   font-size: 0.75rem;
   font-weight: 700; }
 
-/* line 152, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 153, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__group {
   font-size: 14px;
   font-size: 0.875rem;
   text-transform: uppercase; }
-  /* line 155, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 156, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__group:before {
     position: relative;
     top: 2px;
@@ -2669,56 +2670,56 @@ body {
     font-size: 0.875rem; }
 
 @media only screen and (min-width: 375px) {
-  /* line 166, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 167, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__title {
     padding-right: 16px; }
-  /* line 170, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 171, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__brand {
     padding-right: 16px; } }
 
 @media only screen and (min-width: 768px) {
-  /* line 179, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 180, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__title {
     font-weight: 700;
     font-size: 16px;
     font-size: 1rem; }
-  /* line 184, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 185, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__lead {
     padding: 14px 0; }
-  /* line 188, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 189, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__size-txt {
     width: 36px;
     height: 36px;
     line-height: 36px;
     font-size: 16px;
     font-size: 1rem; }
-  /* line 195, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 196, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__info {
     padding: 14px 0; }
-  /* line 199, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 200, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__brand {
     font-size: 14px;
     font-size: 0.875rem; }
-  /* line 202, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 203, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__price {
     font-size: 24px;
     font-size: 1.5rem; }
-  /* line 207, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 208, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__user {
     padding: 14px 0; }
-  /* line 210, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 211, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__avatar {
     width: 54px;
     height: 54px; }
-  /* line 215, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 216, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__prilover {
     font-size: 16px;
     font-size: 1rem; }
-  /* line 218, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 219, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__group {
     font-size: 18px;
     font-size: 1.125rem; }
-    /* line 220, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+    /* line 221, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
     .slot__group:before {
       font-size: 26px;
       font-size: 1.625rem;
@@ -2726,23 +2727,23 @@ body {
       vertical-align: text-bottom; } }
 
 @media only screen and (min-width: 1024px) {
-  /* line 232, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 233, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__title {
     font-weight: 700;
     font-size: 18px;
     font-size: 1.125rem; }
-  /* line 237, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 238, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__size-txt {
     width: 48px;
     height: 48px;
     line-height: 48px;
     font-size: 21px;
     font-size: 1.3125rem; }
-  /* line 245, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 246, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__brand {
     font-size: 16px;
     font-size: 1rem; }
-  /* line 249, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 250, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__price {
     font-size: 36px;
     font-size: 2.25rem; } }
