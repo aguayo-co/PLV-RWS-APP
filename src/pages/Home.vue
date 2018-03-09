@@ -3,7 +3,24 @@
   BannerTop
   BannerSlider
   BannerGrid
+  .layout-band
+    section.section_slider
+      header.section__head
+        h2.title_head Prilovers <span class="txt_brand">We Love</span>
+        h3.title_subhead(
+          v-if="mqTablet") Mueve tu closet y forma parte de la comunidad más grande
+      SliderPrilovers
+
   .layout-inner
+    section.section_product
+      header.section__head.section__head_big
+        h2.title_head <span class="txt_brand">Im</span>perdibles
+        h3.title_subhead Lo que más nos gusta de Prilov
+
+      ProductGrid
+
+      //- .section_product__footer
+      //-   a.btn(href="") Ver más prendas
 
 </template>
 
@@ -11,13 +28,17 @@
 import BannerTop from '@/components/BannerTop'
 import BannerSlider from '@/components/BannerSlider'
 import BannerGrid from '@/components/BannerGrid'
+import SliderPrilovers from '@/components/SliderPrilovers'
+import ProductGrid from '@/components/ProductGrid'
 
 export default {
   name: 'Home',
   components: {
     BannerTop,
     BannerSlider,
-    BannerGrid
+    BannerGrid,
+    SliderPrilovers,
+    ProductGrid
   }
 }
 </script>

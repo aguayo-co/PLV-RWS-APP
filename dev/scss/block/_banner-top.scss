@@ -66,11 +66,17 @@
     }
 }
 
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .banner-top {
+    padding: 26px 0 32px;
+  }
+}
+
 // $bp-big: 1024px;
 @include media-query(wide) {
   .banner-top {
     margin: 0 -18px;
-    padding: 26px 0 32px;
   }
   .banner-top__item {
     margin: 0 18px;
