@@ -2643,92 +2643,106 @@ body {
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
 
-/* line 144, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 143, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__user-info {
   display: inline-block;
   vertical-align: middle; }
 
-/* line 148, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 147, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__prilover {
   font-size: 12px;
   font-size: 0.75rem;
   font-weight: 700; }
 
-/* line 153, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+/* line 152, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
 .slot__group {
   font-size: 14px;
   font-size: 0.875rem;
   text-transform: uppercase; }
+  /* line 155, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  .slot__group:before {
+    position: relative;
+    top: 2px;
+    vertical-align: top;
+    padding-right: 4px;
+    font-size: 14px;
+    font-size: 0.875rem; }
 
 @media only screen and (min-width: 375px) {
-  /* line 160, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 166, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__title {
     padding-right: 16px; }
-  /* line 164, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 170, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__brand {
     padding-right: 16px; } }
 
 @media only screen and (min-width: 768px) {
-  /* line 173, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 179, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__title {
     font-weight: 700;
     font-size: 16px;
     font-size: 1rem; }
-  /* line 178, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 184, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__lead {
     padding: 14px 0; }
-  /* line 182, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 188, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__size-txt {
     width: 36px;
     height: 36px;
     line-height: 36px;
     font-size: 16px;
     font-size: 1rem; }
-  /* line 189, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 195, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__info {
     padding: 14px 0; }
-  /* line 193, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 199, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__brand {
     font-size: 14px;
     font-size: 0.875rem; }
-  /* line 196, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 202, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__price {
     font-size: 24px;
     font-size: 1.5rem; }
-  /* line 201, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 207, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__user {
     padding: 14px 0; }
-  /* line 204, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 210, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__avatar {
     width: 54px;
     height: 54px; }
-  /* line 209, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 215, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__prilover {
     font-size: 16px;
     font-size: 1rem; }
-  /* line 212, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 218, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__group {
     font-size: 18px;
-    font-size: 1.125rem; } }
+    font-size: 1.125rem; }
+    /* line 220, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+    .slot__group:before {
+      font-size: 26px;
+      font-size: 1.625rem;
+      top: 0;
+      vertical-align: text-bottom; } }
 
 @media only screen and (min-width: 1024px) {
-  /* line 220, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 232, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__title {
     font-weight: 700;
     font-size: 18px;
     font-size: 1.125rem; }
-  /* line 225, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 237, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__size-txt {
     width: 48px;
     height: 48px;
     line-height: 48px;
     font-size: 21px;
     font-size: 1.3125rem; }
-  /* line 233, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 245, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__brand {
     font-size: 16px;
     font-size: 1rem; }
-  /* line 237, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
+  /* line 249, Volumes/Transcend/Aguayo/proyectos/Prilov/prilov-app/dev/scss/block/_slot-product.scss */
   .slot__price {
     font-size: 36px;
     font-size: 2.25rem; } }

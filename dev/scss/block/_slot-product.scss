@@ -137,7 +137,6 @@
       display: block;
       width: 100%;
       transform: translate(-50%, -50%);
-
     }
   }
 
@@ -153,6 +152,13 @@
   .slot__group {
     @include font-rem(14px);
     text-transform: uppercase;
+    &:before {
+      position: relative;
+      top: 2px;
+      vertical-align: top;
+      padding-right: 4px;
+      @include font-rem(14px);
+    }
   }
 
 // $bp-medium: 375px;
@@ -211,6 +217,12 @@
   }
   .slot__group {
     @include font-rem(18px);
+    &:before {
+      @include font-rem(26px);
+      top: 0;
+      vertical-align: text-bottom;
+
+    }
   }
 
 }

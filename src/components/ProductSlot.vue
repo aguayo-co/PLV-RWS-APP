@@ -57,7 +57,7 @@
             alt="")
       .slot__user-info
         .slot__prilover Genevieve Gibson
-        .slot__group It <span class="txt_brand">girl</span>
+        .slot__group.i-it-girl It <span class="txt_brand">girl</span>
 </template>
 
 <script>
