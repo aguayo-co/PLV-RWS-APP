@@ -114,6 +114,7 @@
 @include media-query(wide) {
   .banner-grid {
     width: 80%;
+    max-width: 952px;
   }
 
   .banner-sm {

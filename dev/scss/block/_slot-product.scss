@@ -1,0 +1,242 @@
+/*------------------------------------*\
+	Producto grid Home
+\*------------------------------------*/
+.product-section {
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.product-grid {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  margin: 0 -10px;
+}
+
+  .slot_grid {
+    width: 50%;
+    padding: 0 10px 54px;
+  }
+
+
+@media only screen and (min-width: 560px) {
+  .slot_grid {
+    width: 33.333%;
+  }
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .product-grid {
+    margin: 0 -14px;
+  }
+
+  .slot_grid {
+    padding: 0 14px;
+  }
+
+}
+
+// $bp-wide: 1024px;
+@include media-query(wide) {
+  .product-grid {
+    margin: 0;
+  }
+    .slot_grid {
+      padding: 0 17px 110px;
+    }
+}
+
+/*------------------------------------*\
+	Producto slot
+\*------------------------------------*/
+
+.slot__product {
+  display: block;
+  color: $c-default;
+  font-family: $f-fancy;
+  font-weight: $fw-medium;
+}
+  .slot__img {
+    width: 100%;
+    vertical-align: bottom;
+  }
+  .slot__lead {
+    display: table;
+    width: 100%;
+    padding: 6px 0;
+  }
+  .slot__title {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 6px;
+    @include font-rem(12px);
+  }
+  .slot__size {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .slot__size-txt {
+    display: block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $c-neutro;
+    @include font-rem(12px);
+    font-family: $f-normal;
+    font-weight: $fw-regular;
+    background-color: $c-default;
+    border-radius: 25px;
+  }
+  //- brand/price
+  .slot__info {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    padding: 6px 0;
+    border-top: 1px solid $c-default;
+    border-bottom: 1px solid $c-default;
+  }
+
+  .slot__brand {
+    padding-right: 6px;
+    @include font-rem(10px);
+  }
+  .slot__price {
+    font-family: $f-normal;
+    font-weight: $fw-thin;
+    @include font-rem(18px);
+  }
+  //- user: picture/first_name/last_name
+  .slot__user {
+    @include flexbox;
+    @include align-items(center);
+    padding: 6px 0;
+    color: $c-default;
+  }
+  .slot__user-img {
+    padding-right: 14px;
+  }
+
+  .slot__avatar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 25px;
+    .slot__picture {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 100%;
+      transform: translate(-50%, -50%);
+
+    }
+  }
+
+  .slot__user-info {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .slot__prilover {
+    @include font-rem(12px);
+    font-weight: $fw-bold;
+  }
+
+  .slot__group {
+    @include font-rem(14px);
+    text-transform: uppercase;
+  }
+
+// $bp-medium: 375px;
+@include media-query(small) {
+  .slot__title {
+    padding-right: 16px;
+  }
+
+  .slot__brand {
+    padding-right: 16px;
+  }
+
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  //-title/dimensions
+  .slot__title {
+    font-weight: $fw-bold;
+    @include font-rem(16px);
+  }
+
+  .slot__lead {
+    padding: 14px 0;
+  }
+
+  .slot__size-txt {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    @include font-rem(16px);
+  }
+   //- brand/price
+  .slot__info {
+    padding: 14px 0;
+  }
+
+  .slot__brand {
+     @include font-rem(14px);
+  }
+  .slot__price {
+    @include font-rem(24px);
+  }
+
+  //- user: picture/first_name/last_name
+  .slot__user {
+    padding: 14px 0;
+  }
+  .slot__avatar {
+    width: 54px;
+    height: 54px;
+  }
+
+  .slot__prilover {
+    @include font-rem(16px);
+  }
+  .slot__group {
+    @include font-rem(18px);
+  }
+
+}
+// $bp-wide: 1024px;
+@include media-query(wide) { 
+  //-title/dimensions
+  .slot__title {
+    font-weight: $fw-bold;
+    @include font-rem(18px);
+  }
+
+  .slot__size-txt {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    @include font-rem(21px);
+  }
+
+  //- brand/price
+  .slot__brand {
+    @include font-rem(16px);
+  }
+
+  .slot__price {
+    @include font-rem(36px);
+  }
+
+}
+
