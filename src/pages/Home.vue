@@ -19,8 +19,9 @@
 
       ProductGrid
 
-      //- .section_product__footer
-      //-   a.btn(href="") Ver más prendas
+      p.section_product__footer
+        span.btn__wrapper
+          a.btn.i-send(href="") Ver más prendas
 
 </template>
 

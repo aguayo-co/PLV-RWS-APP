@@ -315,19 +315,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/dev\/scss\/block\/_slot-product.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_slot-product.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
 	"\/dev\/scss\/block\/_toggle-box.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1030,19 +1017,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/dev\/scss\/theme\/_buttons.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/theme\/_buttons.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
 	"\/dev\/scss\/theme\/_forms.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1539,47 +1513,6 @@
 		"oAP": "\/build\/node_modules",
 		"oF": 0
 		},
-	"\/package-lock.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/package-lock-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/package.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/package-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/README.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/README.html",
-		"oF": 0
-		},
-	"\/README.md": {
-		"cB": 0,
-		"cS": 0,
-		"eF": 1,
-		"eL": 1,
-		"ema": 1,
-		"eSQ": 1,
-		"ft": 4096,
-		"oA": 0,
-		"oAP": "\/README.html",
-		"oF": 0,
-		"oFM": 0,
-		"oS": 0,
-		"pHT": 0,
-		"pME": 1,
-		"rFN": 0,
-		"uCM": 0
-		},
 	"\/src\/App.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -1772,13 +1705,6 @@
 		"oAP": "\/src\/Mixin\/VueMq-mixin.vue",
 		"oF": 0
 		},
-	"\/src\/pages\/Home.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/pages\/Home.vue",
-		"oF": 0
-		},
 	"\/src\/pages\/Pass.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -1816,16 +1742,6 @@
 		"oA": 0,
 		"oAP": "\/static\/.gitkeep",
 		"oF": 0
-		},
-	"\/static\/css\/main.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/static\/css\/main-min.css",
-		"oF": 0,
-		"oS": 3
 		},
 	"\/static\/fonts\/ico-prilov.eot": {
 		"cB": 0,
