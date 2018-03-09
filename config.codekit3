@@ -302,6 +302,32 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_slider-user.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_slider-user.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_slot-product.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_slot-product.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_toggle-box.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1694,6 +1720,27 @@
 		"oAP": "\/src\/components\/PageHeaderMobile.vue",
 		"oF": 0
 		},
+	"\/src\/components\/ProductGrid.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/ProductGrid.vue",
+		"oF": 0
+		},
+	"\/src\/components\/ProductSlot.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/ProductSlot.vue",
+		"oF": 0
+		},
+	"\/src\/components\/SliderPrilovers.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/SliderPrilovers.vue",
+		"oF": 0
+		},
 	"\/src\/components\/UserData.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -1717,6 +1764,13 @@
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
+		},
+	"\/src\/Mixin\/VueMq-mixin.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/Mixin\/VueMq-mixin.vue",
+		"oF": 0
 		},
 	"\/src\/pages\/Home.vue": {
 		"cB": 0,
@@ -1956,6 +2010,186 @@
 		"iS": 125846,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/menu-promo-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-001.jpg": {
+		"ft": 16384,
+		"iS": 149839,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-002.jpg": {
+		"ft": 16384,
+		"iS": 105997,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-003.jpg": {
+		"ft": 16384,
+		"iS": 110150,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-004.jpg": {
+		"ft": 16384,
+		"iS": 118751,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-004.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-005.jpg": {
+		"ft": 16384,
+		"iS": 144608,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-005.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-006.jpg": {
+		"ft": 16384,
+		"iS": 107935,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-006.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-007.jpg": {
+		"ft": 16384,
+		"iS": 127073,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-007.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-008.jpg": {
+		"ft": 16384,
+		"iS": 103818,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-008.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/product-009.jpg": {
+		"ft": 16384,
+		"iS": 137447,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/product-009.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-001.jpg": {
+		"ft": 16384,
+		"iS": 21937,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-002.jpg": {
+		"ft": 16384,
+		"iS": 27876,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-003.jpg": {
+		"ft": 16384,
+		"iS": 29608,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-004.jpg": {
+		"ft": 16384,
+		"iS": 32767,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-004.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-005.jpg": {
+		"ft": 16384,
+		"iS": 34911,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-005.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-006.jpg": {
+		"ft": 16384,
+		"iS": 26746,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-006.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-007.jpg": {
+		"ft": 16384,
+		"iS": 24266,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-007.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-008.jpg": {
+		"ft": 16384,
+		"iS": 25105,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-008.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/user-avatar-009.jpg": {
+		"ft": 16384,
+		"iS": 31054,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/user-avatar-009.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
