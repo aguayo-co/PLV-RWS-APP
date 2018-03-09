@@ -16,115 +16,18 @@ nav.page-menu
               //- Nivel 2: submenu
               ul.submenu
                 //- EVENTO CLICK:
-                    Agregar clase dinámicamente
-                    .submenu__item_active,
-                    __item_active
-                    cambiar orden de index a 0
-                    cambiar .submenu__list show a true
-                li.submenu__item.submenu(
+                li.submenu__item(
                   v-for= "(children, index) in menu.children"
-                  :class="{submenu__item_active:children == selected}"
-                  @click="menuHandler(children)"
+                  :class="[{submenu:children != selected}, {submenu__item_active:children == selected}]"
+                  @click="menuHandler(children, index)"
                   )
                   span.submenu__label {{children.name}}
                   //- Nivel 3: Lista de enlaces
-                  //- (v-for="(grandChildren,indexG) in menu.children.children")
-                  //- {{grandChildren.name}}
                   ul.submenu__list(v-show= "selected == children")
                     li.submenu__subitem(
                       v-for="(grandChildren, indexG) in children.children"
                       )
                       a.subitem__link(href="#") {{grandChildren.name}}
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Poleras
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Blusas y camisas
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Monos
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Chalecos
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Abrigos
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Parkas
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Chaquetas
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Polerones
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Vestidos
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Kimonos
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Pantalones
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Capris
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Leggings
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Jardineras
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Faldas
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Ropa Interior
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Pantalones cortos
-                    //- li.submenu__subitem
-                    //-   a.subitem__link(href='#') Pijamas
-
-                //- li.submenu__item
-                //-   span.submenu__label Complementos
-                //-   //- Nivel 3: Lista de enlaces
-                //-   ul.submenu__list(v-show="show")
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Accesorios
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Zapatos
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Cinturones
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Anteojos
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Bisutería
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Sombreros y Gorros
-
-                //- li.submenu__item
-                //-   span.submenu__label Marcas
-                //-   //- Nivel 3: Lista de enlaces
-                //-   ul.submenu__list(v-show="show")
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Adidas
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Americanino
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Asos
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Converse
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Forever 21
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Foster
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') H&M
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Maaji
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Mango
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Nike
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Rapsodia
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Opposite
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') TopShop
-                //-     li.submenu__subitem
-                //-       a.subitem__link(href='#') Zara
-
-                //- li.submenu__item
-                //-   span.submenu__label Top Picks
-
               //- Nivel 2: Promo
               .menu-promo
                 img.menu-promo__img(src='/static/img/demo/menu-promo-001.jpg' alt='Producto destacado Denim')
@@ -182,15 +85,16 @@ export default {
       this.fixPosition()
       this.toggleNav()
     },
-    menuHandler: function (children) {
+    menuHandler: function (children, index) {
       this.selected = children
+      var clicked = this.menu.children.splice(index, 1)
+      this.menu.children.splice(0, 0, clicked[0])
     }
   },
   async created () {
     await axios.get('https://prilov.aguayo.co/api/menus', {
     })
       .then(response => {
-        console.log(response.data.data[0].items[0])
         this.menu = response.data.data[0].items[0]
         console.log(this.menu.children[0].children[0].name)
       })
