@@ -1901,7 +1901,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m1.jpg": {
 		"ft": 16384,
-		"iS": 92748,
+		"iS": 88482,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m1.jpg",
 		"oF": 0,
@@ -1909,100 +1909,34 @@
 		"opt": 0,
 		"q": 100
 		},
-	"\/static\/img\/demo\/banner-slider-m1.png": {
-		"ft": 32768,
-		"iS": 217581,
-		"oA": 0,
-		"oAP": "\/static\/img\/demo\/banner-slider-m1.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
 	"\/static\/img\/demo\/banner-slider-m2.jpg": {
 		"ft": 16384,
-		"iS": 75316,
+		"iS": 85290,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m2.jpg",
 		"oF": 0,
 		"oIPL": 0,
-		"opt": 1,
-		"q": 100
-		},
-	"\/static\/img\/demo\/banner-slider-m2.png": {
-		"ft": 32768,
-		"iS": 180238,
-		"oA": 0,
-		"oAP": "\/static\/img\/demo\/banner-slider-m2.png",
-		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"\/static\/img\/demo\/banner-slider-m3.png": {
-		"ft": 32768,
-		"iS": 187169,
-		"oA": 0,
-		"oAP": "\/static\/img\/demo\/banner-slider-m3.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
 		"q": 100
 		},
 	"\/static\/img\/demo\/banner-slider1.jpg": {
 		"ft": 16384,
-		"iS": 132936,
+		"iS": 123923,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider1.jpg",
 		"oF": 0,
 		"oIPL": 0,
-		"opt": 1,
-		"q": 100
-		},
-	"\/static\/img\/demo\/banner-slider1.png": {
-		"ft": 32768,
-		"iS": 890669,
-		"oA": 0,
-		"oAP": "\/static\/img\/demo\/banner-slider1.png",
-		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
-		"oT": 1,
 		"q": 100
 		},
 	"\/static\/img\/demo\/banner-slider2.jpg": {
 		"ft": 16384,
-		"iS": 142676,
+		"iS": 165340,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider2.jpg",
 		"oF": 0,
 		"oIPL": 0,
-		"opt": 1,
-		"q": 100
-		},
-	"\/static\/img\/demo\/banner-slider2.png": {
-		"ft": 32768,
-		"iS": 637294,
-		"oA": 0,
-		"oAP": "\/static\/img\/demo\/banner-slider2.png",
-		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"\/static\/img\/demo\/banner-slider3.png": {
-		"ft": 32768,
-		"iS": 593308,
-		"oA": 0,
-		"oAP": "\/static\/img\/demo\/banner-slider3.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
 		"q": 100
 		},
 	"\/static\/img\/demo\/menu-promo-001.jpg": {
