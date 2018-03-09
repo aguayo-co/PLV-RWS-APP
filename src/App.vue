@@ -1,13 +1,13 @@
 <template lang="pug">
 div.page
 
-  //- Header template
-  mq-layout(mq='mobile')
-    PageHeaderMobile
-  mq-layout(mq='desktop')
-    //- Header template desktop
-    PageHeader(
-      @open='openLogin')
+  //- Header template Mobile
+  PageHeaderMobile(
+    v-if="mqMobile")
+  //- Header template desktop
+  PageHeader(
+    @open='openLogin',
+    v-if="mqDesk")
 
   //- main content
   main.content-main
@@ -15,12 +15,12 @@ div.page
     //- Router Page
     router-view
 
-  //- footer template
-  mq-layout(mq='mobile')
-    h1 estoy en mobile
-  mq-layout(mq='desktop')
-    //- footer template desktop
-    PageFooter
+  //- footer template Mobile
+  .footerMobile(
+    v-if="mqMobile")
+  //- footer template desktop
+  PageFooter(
+    v-if="mqDesk")
 
   //- Modal Login
   FormLogin(
@@ -35,6 +35,7 @@ import PageHeader from '@/components/PageHeader'
 import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
 import PageFooter from '@/components/PageFooter'
+
 Vue.use(Vuex)
 
 // eslint-disable-next-line
@@ -166,5 +167,4 @@ export default {
     }
   }
 }
-
 </script>

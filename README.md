@@ -30,7 +30,7 @@ npm test
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## Sintaxis
-
+https://eslint.org/
 
 ## Dependencias
 
@@ -45,24 +45,32 @@ URL: https://vuex.vuejs.org/en/installation.html
 #### Installation
 ``` bash
 npm install vuex --save-dev
-```   
-#### Rutas de archivos en node_custom_modules
-    vue-password : node_modules\vue-password\dist archivo index.js
-    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
+```
+---
+### Vue.js Server-Side Rendering
+``` bash
+npm install vue vue-server-renderer --save 
+```
 ---
 ### Incluye Vee-Validate
 URL: https://github.com/baianat/vee-validate
 #### Installation
 ``` bash
-    npm install vee-validate --save -dev
+npm install vee-validate --save -dev
 ```
 ---
+
 ### Incluye Vue-password
 URL: https://github.com/skegel13/vue-password
 #### Installation
 ``` bash
-    $ npm install vue-password --save -dev
+npm install vue-password --save -dev
 ```
+---
+#### Rutas de archivos en node_custom_modules
+    vue-password : node_modules\vue-password\dist archivo index.js
+    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
+
 ---
 ### Incluye PUG
 URL: https://gist.github.com/levibostian/96cc285d4235d73f09cdc22f2590ccba
@@ -86,13 +94,37 @@ npm i -S vue-sticky-js
 v-sticky => Define a new sticky element
 ```
 ---
-### vue-mq
+### vue-awesome-swiper
 #### Uso:
-Transversal renderizado vistas condicionales 
-Mobile/desktop
+Home Slider Prilovers
 #### URL:
-https://alligator.io/vuejs/vue-media-queries/
+https://surmon-china.github.io/vue-awesome-swiper/
+https://github.com/surmon-china/vue-awesome-swiper
 #### Installation
 ``` bash
-npm install vue-mq
+npm install vue-awesome-swiper --save
+```
+#### mount with component
+``` bash
+// require styles
+import 'swiper/dist/css/swiper.css'
+
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
+export default {
+  components: {
+    swiper,
+    swiperSlide
+  }
+}
+```
+### vue-flickity
+#### Uso:
+Componente para Slider
+Mobile/desktop
+#### URL:
+https://github.com/drewjbartlett/vue-flickity
+#### Installation
+``` bash
+npm install vue-flickity
 ```

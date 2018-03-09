@@ -1,0 +1,147 @@
+/*------------------------------------*\
+	Banner Grid
+\*------------------------------------*/
+//@include font-rem(12px);
+.banner {
+  padding-bottom: 10px;
+}
+
+.banner-grid {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 10px 0 30px;
+  text-align: center;
+}
+  .banner__item {
+    color: $c-default;
+  }
+  .banner__figure {
+    padding-bottom: 10px;
+  }
+
+  .banner__img {
+    width: 100%;
+  }
+  .banner__content {
+    width: 96%;
+    margin: 0 auto;
+  }
+  .banner__lead {
+    padding: 24px 0 12px;
+  }
+  .banner__title {
+    display: inline-block;
+    padding-bottom: 12px;
+  }
+
+  .banner__txt {
+    margin: 0;
+    padding-bottom: 12px;
+    @include font-rem(18px);
+  }
+
+@media only screen and (min-width: 560px) {
+  .banner {
+    padding-bottom: 30px;
+  }
+
+  .banner-grid {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include flex-wrap(wrap);
+    width: 96%;
+    max-width: 100%;
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+
+  .banner {
+    padding-bottom: 0;
+  }
+  .banner__figure {
+    padding-bottom: 0;
+  }
+
+
+  .banner-sm {
+    width: 44%;
+    text-align: center;
+  }
+
+  .banner-md {
+    width: 50%;
+  }
+  .banner-wide {
+    width: 100%;
+    padding-top: 30px;
+    .banner__item {
+      @include flexbox;
+      @include flex-direction(row-reverse);
+      @include align-items(flex-end);
+    }
+    .banner__figure {
+      width: 56%;
+    }
+    .banner__content {
+      width: 46%;
+      padding-right: 20px;
+    }
+  }
+}
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .banner-grid {
+    padding: 100px 0 120px;
+    text-align: right
+  }
+  .banner__lead {
+    padding: 40px 0 12px;
+  }
+
+  .banner-wide {
+    .banner__figure {
+      width: auto;
+    }
+
+    .banner__content {
+      width: auto;
+      padding-right: 40px;
+    }
+  }
+}
+
+// $bp-medium: 1024px;
+@include media-query(wide) {
+  .banner-grid {
+    width: 80%;
+    max-width: 952px;
+  }
+
+  .banner-sm {
+    width: 40%;
+  }
+
+  .banner-md {
+    width: 50%;
+    .banner__figure {
+      max-height: 382px;
+      overflow: hidden;
+    }
+
+  }
+}
+
+// $bp-medium: 1170px;
+@include media-query(large) {
+  .banner-grid {
+    width: 74.375%;
+  }
+  .banner-sm {
+    width: 34.4%;
+  }
+  .banner-md {
+    width: 55%;
+  }
+}
+
+

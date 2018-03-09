@@ -29,13 +29,23 @@
   'theme/layout';
 
 @import
+  'block/banner-slider',
   'block/page-header',
   'block/menu',
   'block/toggle-box',
   'block/page-footer',
   'block/modal',
+  'block/banner-top',
+  'block/banner-grid',
   'block/user-menu',
-  'block/notify';
+  'block/notify',
+  'block/slot-product',
+  'block/slider-user';
+
+
+
+@import
+  'vendor/flickity';
 
 @import
   'generic/print';
