@@ -854,7 +854,6 @@ body {
   /* inherit height from gallery */
   overflow: hidden;
   margin-right: 10px;
-  border-radius: 5px;
   counter-increment: banner-slider__cell; }
 
 .banner-slider__slide {
