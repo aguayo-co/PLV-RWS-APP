@@ -839,7 +839,6 @@ body {
   /* inherit height from gallery */
   overflow: hidden;
   margin-right: 10px;
-  background: #8C8;
   border-radius: 5px;
   counter-increment: banner-slider__cell; }
 
