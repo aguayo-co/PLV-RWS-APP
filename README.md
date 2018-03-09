@@ -118,3 +118,13 @@ export default {
   }
 }
 ```
+### vue-flickity
+#### Uso:
+Componente para Slider
+Mobile/desktop
+#### URL:
+https://github.com/drewjbartlett/vue-flickity
+#### Installation
+``` bash
+npm install vue-flickity
+```
