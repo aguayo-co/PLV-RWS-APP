@@ -4,10 +4,11 @@
     .banner-slider__cell(v-for='slide in slides')
       .banner-slider__slide
         .banner-slider__slot(:class='slide.orientation')
-          h3(:class='slide.font_color').banner-slider__title {{ slide.texto_principal }}
-          a.banner-slider__btn.btn(:href='slide.url',) Promo Code:
-            span.banner-slider__code {{ slide.button_text }}
-          span.banner-slider__copy {{ slide.texto_pequeño }}
+          .banner-slider__position
+            h3(:class='slide.font_color').banner-slider__title {{ slide.texto_principal }}
+            a.banner-slider__btn.btn(:href='slide.url',) Promo Code:
+              span.banner-slider__code {{ slide.button_text }}
+            span.banner-slider__copy {{ slide.texto_pequeño }}
         picture.banner-slider__crop
           source.banner-slider__img(media='(max-width: 640px)', :srcset='slide.image_mobile')
           img.banner-slider__img(:src='slide.image')

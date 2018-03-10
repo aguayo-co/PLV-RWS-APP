@@ -845,7 +845,7 @@ body {
 .banner-slider {
   position: relative;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   overflow: hidden; }
 
@@ -854,7 +854,7 @@ body {
 
 .banner-slider__cell {
   width: 100%;
-  height: 70vh;
+  height: 65vh;
   /* inherit height from gallery */
   overflow: hidden;
   margin-right: 10px;
@@ -876,10 +876,12 @@ body {
   height: auto; }
 
 .banner-slider__slot {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  bottom: 12%;
   max-width: 570px;
+  height: 100%;
   padding: 0 5% 0 5%; }
   .banner-slider__slot.left {
     text-align: left; }
@@ -890,6 +892,10 @@ body {
       margin: 15px 0 15px auto; }
     .banner-slider__slot.right .banner-slider__copy {
       display: inline; }
+  .banner-slider__slot.center {
+    text-align: center; }
+    .banner-slider__slot.center .banner-slider__position {
+      margin: 0 auto; }
 
 .banner-slider__title {
   display: inline;
@@ -910,7 +916,7 @@ body {
 
 .banner-slider__btn {
   display: block;
-  width: 80%;
+  width: 90%;
   max-width: 270px;
   margin: 15px 0; }
 
@@ -920,6 +926,8 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 2px 5px;
+  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.8; }
 
 .banner-slider__code {
@@ -937,8 +945,9 @@ body {
 
 /**Banner Slider *Desktop */
 @media only screen and (min-width: 768px) {
+  .banner-slider__cell {
+    min-height: 300px; }
   .banner-slider__slot {
-    bottom: 15%;
     max-width: 620px; }
     .banner-slider__slot.right .banner-slider__copy {
       margin-right: 30px; }
@@ -957,14 +966,8 @@ body {
   .banner-slider__cell {
     min-height: 440px; }
   .banner-slider__slot {
-    top: -35%;
     bottom: inherit;
-    padding: 0;
-    -ms-transform: translateY(50%);
-    -moz-transform: translateY(50%);
-    -o-transform: translateY(50%);
-    -webkit-transform: translateY(50%);
-    transform: translateY(50%); }
+    padding: 0; }
     .banner-slider__slot.right .banner-slider__btn {
       margin: 15px 30px 15px auto; }
   .banner-slider__title {
@@ -975,7 +978,17 @@ body {
     margin: 15px 0 15px 30px; }
   .banner-slider__copy {
     display: inline-block;
-    margin-left: 30px; } }
+    margin-left: 30px;
+    font-size: 14px;
+    font-size: 0.875rem; } }
+
+@media screen and (min-device-width: 550px) and (orientation: landscape) {
+  .banner-slider__cell {
+    min-height: 300px; } }
+
+@media screen and (min-device-width: 250px) and (max-device-width: 350px) {
+  .banner-slider__cell {
+    height: 80vh; } }
 
 /*------------------------------------*	Page header
 \*------------------------------------*/
