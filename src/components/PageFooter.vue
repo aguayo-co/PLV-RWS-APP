@@ -6,28 +6,16 @@ footer.page-foot.i-heart-on
       nav.foot-nav
         //- Footer Menu lista
         dl.foot-nav__list(
-            v-for='(list, index) in footer')
-          dt.foot__title(v-if= "index < 4") {{ list.name }}
+            v-for='list in footer')
+          dt.foot__title {{ list.name }}
           dd.foot-nav__item(
-            v-for='(items, indexG) in list.children')
+            v-for='items in list.children')
             a.foot-nav__link(
-              v-if="index < 4"
-              :href='items.url') {{ items.name }}
-        //- Footer Menu lista redes
-        dl.foot-nav__list.foot-nav__list_center
-          dt.foot__title Síguenos
-          dd.foot-nav__item
-            a.foot-nav__link.i-insta-red(
-              href='https://www.instagram.com/prilovchile/?hl=es-la')
-                span.hide Instagram
-          dd.foot-nav__item
-            a.foot-nav__link.i-twitter-red(
-              href='https://twitter.com/prilovchile?lang=es')
-                span.hide Twitter
-          dd.foot-nav__item
-            a.foot-nav__link.i-fb-red(
-              href='https://www.facebook.com/prilovchile')
-                span.hide Facebook
+              :href='items.url',
+              :class='items.icon',
+              :target='items.target')
+              span {{ items.name }}
+
       .foot-news
         h4.foot__title Newsletter
         p.foot__txt Inscríbete en el Newsletter para recibir promociones, descuentos especiales y noticias.
@@ -41,15 +29,14 @@ footer.page-foot.i-heart-on
             label.form__label(
               for='userEmail') Correo
             input.form__control(
-              v-model='userEmail',
               id='userEmail',
               type='email'
             )
             a.link_underline(
-              href="") Ver Política de Datos
+              href="#") Ver Política de Datos
+
           .form__row.form__row_away.form__btn
-            button.btn.btn_solid(
-              @click.prevent='') Inscribir en el Newsletter
+            button.btn.btn_solid Inscribir en el Newsletter
     .foot-legal
       p.foot-legal__copy Copyright © 2017 prilov.com. Todos los derechos reservados.
 
