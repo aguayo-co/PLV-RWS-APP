@@ -302,6 +302,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_product-slot.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-slot.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_slider-user.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -311,19 +324,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_slider-user.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/block\/_slot-product.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_slot-product.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -999,8 +999,8 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "\/static\/css\/main.css",
-		"oF": 2,
+		"oAP": "\/dev\/scss\/main.css",
+		"oF": 0,
 		"oS": 0,
 		"uL": 1
 		},
@@ -2355,13 +2355,6 @@
 		"oAP": "\/src\/components\/PageHeader-search.vue",
 		"oF": 0
 		},
-	"\/src\/components\/PageHeader-user.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/PageHeader-user.vue",
-		"oF": 0
-		},
 	"\/src\/components\/PageHeader.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2540,6 +2533,16 @@
 		"iS": 262606,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/banner-003.jpg": {
+		"ft": 16384,
+		"iS": 250663,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/banner-003.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,

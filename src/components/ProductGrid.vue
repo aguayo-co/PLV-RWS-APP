@@ -31,6 +31,10 @@
     //-- TO-DO: consumir servicios
     article.slot.slot_grid(
       v-for='product in products')
+      //-- a.slot__ico(
+        :href='product.add'
+        :title='product.icotitle') {{product.icotext}}
+      a.slot__ico.i-heart(href='/',title='Agrega a Favoritos') Agregar a Favoritos
       a.slot__product(
         :href='product.url',
         :title='product.title')
