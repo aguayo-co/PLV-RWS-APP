@@ -42,6 +42,7 @@ export default {
         slidesPerView: 8,
         spaceBetween: 40,
         freeMode: true,
+        loop: true,
         pagination: {
           el: '.swiper-pagination',
           type: 'progressbar',

@@ -47,6 +47,16 @@
 
   .foot-nav__item {
     padding-bottom: 24px;
+    .i-,
+    [class^="i-"],
+    [class*=" i-"] {
+      display: block;
+      text-align: center;
+      span {
+        display: none;
+      }
+    }
+
   }
 
     .foot-nav__link {

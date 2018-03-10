@@ -2,7 +2,7 @@
 	Producto grid Home
 \*------------------------------------*/
 .section_product {
-  width: 100%;
+  width: 96%;
   max-width: 1070px;
   margin: 0 auto;
   overflow: hidden;
@@ -47,6 +47,17 @@
       padding: 0 17px 110px;
     }
 }
+
+// $bp-wide: 1024px;
+@include media-query(big) {
+  .section_product {
+    max-width: 1314px;
+  }
+    .slot_grid {
+      width: 25%;
+    }
+}
+
 
 /*------------------------------------*\
 	Producto slot
