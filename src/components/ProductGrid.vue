@@ -34,7 +34,11 @@
       //-- a.slot__ico(
         :href='product.add'
         :title='product.icotitle') {{product.icotext}}
-      a.slot__ico.i-heart(href='/',title='Agrega a Favoritos') Agregar a Favoritos
+      a.slot__ico.i-heart(
+        @click='myActive'
+        :class='{active: isActive}'
+        href='#'
+        title='Agrega a Favoritos') Agregar a Favoritos
       a.slot__product(
         :href='product.url',
         :title='product.title')
@@ -77,6 +81,7 @@ export default {
   name: 'ProductGrid',
   data () {
     return {
+      isActive: false,
       products: [
         {
           url: '/',
@@ -205,6 +210,12 @@ export default {
           slot__group: '2'
         }
       ]
+    }
+  },
+  methods: {
+    myActive: function (e) {
+      this.isActive = !this.isActive
+      e.preventDefault()
     }
   }
 }
