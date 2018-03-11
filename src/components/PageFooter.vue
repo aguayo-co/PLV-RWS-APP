@@ -27,9 +27,9 @@ footer.page-foot.i-heart-on
         )
           .form__row
             label.form__label(
-              for='userEmail') Correo
+              for='subscriberEmail') Correo
             input.form__control(
-              id='userEmail',
+              id='subscriberEmail',
               type='email'
             )
             a.link_underline(
