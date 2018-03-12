@@ -57,8 +57,18 @@
   }
   &.center {
     text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    @include prefixer(transform, translateX(-50%), ("webkit", "moz"));
+    left: 50%;
     .banner-slider__position {
       margin: 0 auto;
+    }
+    .banner-slider__btn {
+      margin: 15px auto;
+    }
+    .banner-slider__copy {
+      margin-left: 0;
     }
   }
 }
@@ -159,10 +169,17 @@
     margin-left: 30px;
     @include font-rem(14px);
   }
+  .banner-slider__slot {
+    &.center {
+      .banner-slider__title {
+        @include font-rem(55px);
+      }
+    }
+  }
 }
 @media screen and (min-device-width: 550px) and (orientation : landscape) {
   .banner-slider__cell {
-    min-height: 300px;
+    min-height: 420px;
   }
 }
 @media screen and (min-device-width: 250px) and (max-device-width: 350px) {
