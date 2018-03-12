@@ -1594,7 +1594,19 @@ body {
     padding: 18px 16px 18px 28px;
     color: #000;
     font-size: 18px;
-    font-size: 1.125rem; } }
+    font-size: 1.125rem; }
+  .menu-footer {
+    color: #000; }
+  .menu-social__title {
+    color: #000;
+    text-align: center; }
+  .menu-social__list {
+    display: block;
+    margin: 0 auto; }
+  .menu-social__item {
+    display: inline-block; }
+    .menu-social__item span {
+      display: none; } }
 
 @media only screen and (min-width: 1024px) {
   .menu {

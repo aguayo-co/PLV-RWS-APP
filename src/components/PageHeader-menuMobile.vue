@@ -158,9 +158,27 @@
       a.menu__link.i-favorite(href='#') Prilovers
     li.menu__item.i-next
       a.menu__link.i-blog(href='#') Blog
+
+  //- menu footer
+  ul.menu-footer
+    li.menu-footer__item Ayuda
+    li.menu-footer__item Nosotros
+    li.menu-footer__item Contáctanos
+
+  .menu-social
+    p.menu-social__title {{ nameFooter }}
+    ul.menu-social__list
+      li.menu-social__item(
+        v-for='items in footer.children')
+        a.foot-nav__link(
+          :href='items.url',
+          :class='items.icon',
+          :target='items.target')
+          span {{ items.name }}
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'PageHeaderMenuMobile',
   data () {
@@ -168,9 +186,23 @@ export default {
       active: false,
       show: false,
       level1: undefined,
-      level2: undefined
+      level2: undefined,
+      footer: {},
+      nameFooter: undefined
     }
   },
+  async created () {
+    await axios.get('https://prilov.aguayo.co/api/menus/footer', {
+    })
+      .then(response => {
+        this.footer = response.data.items[3]
+        this.nameFooter = response.data.items[3].name
+      })
+      .catch(e => {
+        console.log('ERROR : ' + e)
+      })
+  },
+
   methods: {
     MenuClose: function () {
       this.$emit('MenuClose')

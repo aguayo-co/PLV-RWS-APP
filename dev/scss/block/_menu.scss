@@ -424,6 +424,28 @@
     @include font-rem(18px);
   }
 
+  //MOBILE menu-footer
+
+  .menu-footer {
+    color: $c-default;
+  }
+
+    .menu-social__title {
+      color: $c-default;
+      text-align: center;
+    }
+    .menu-social__list {
+      display: block;
+      margin: 0 auto;
+      
+    }
+    .menu-social__item {
+      display: inline-block;
+      span {
+        display: none;
+      }
+    }
+
 }
 
 // $bp-wide: 1024px;
