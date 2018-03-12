@@ -35,8 +35,8 @@
         :href='product.add'
         :title='product.icotitle') {{product.icotext}}
       a.slot__ico.i-heart(
-        @click='myActive'
-        :class='{active: isActive}'
+        @click.prevent='myActive(product)'
+        :class='{active: isActive == product}'
         href='#'
         title='Agrega a Favoritos') Agregar a Favoritos
       a.slot__product(
@@ -81,7 +81,7 @@ export default {
   name: 'ProductGrid',
   data () {
     return {
-      isActive: false,
+      isActive: undefined,
       products: [
         {
           url: '/',
@@ -214,8 +214,10 @@ export default {
   },
   methods: {
     myActive: function (e) {
-      this.isActive = !this.isActive
-      e.preventDefault()
+      this.isActive = e
+    },
+    NotActive: function (e) {
+      this.isActive = undefined
     }
   }
 }
