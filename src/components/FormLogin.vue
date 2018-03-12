@@ -39,7 +39,7 @@ transition(name='modal-fade')
           span.break__txt O
         //- falta cerrar la modal
         a.btn.btn_block(
-          href='#/SingUp',
+          href='#/SignUp',
           title='Ir a Registro',
           @click='close') Regístrate
 </template>

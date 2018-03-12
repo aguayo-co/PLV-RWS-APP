@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home'
-import SingUp from '@/pages/SingUp'
+import SignUp from '@/pages/SignUp'
 import Pass from '@/pages/Pass'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
@@ -16,9 +16,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/singup',
-      name: 'SingUp',
-      component: SingUp
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
     },
     {
       path: '/password',
