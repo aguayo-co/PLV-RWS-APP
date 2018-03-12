@@ -35,8 +35,8 @@
                   v-show='active')
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
-                    a.user-auth__link(
-                      href="",
+                    router-link.user-auth__link(
+                      to="/user",
                       title="Ir a tu cuenta") Tu cuenta
                   li.user-auth__item
                     a.user-auth__link(

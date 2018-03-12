@@ -2,7 +2,7 @@
 	Producto grid Home
 \*------------------------------------*/
 .section_product {
-  width: 100%;
+  width: 96%;
   max-width: 1070px;
   margin: 0 auto;
   overflow: hidden;
@@ -14,11 +14,82 @@
   margin: 0 -10px;
 }
 
-  .slot_grid {
-    width: 50%;
-    padding: 0 10px 54px;
-  }
+.slot {
+  position: relative;
+}
 
+.slot_grid {
+  width: 50%;
+  padding: 0 10px 54px;
+}
+
+.slot__ico {
+  position: absolute;
+  top: 6px;
+  right: 24px;
+  width: 50px;
+  height: 50px;
+  @include font-rem(0px);
+  text-align: center;
+  border-radius: 50%;
+  background-color: $c-neutro;
+  transition: cubic-bezier(0.25, 0.8, 0.25, 1);
+  &:before {
+    transition: cubic-bezier(0.55, 0, 0.55, 0.2);
+    position: relative;
+    line-height: 1.6;
+    color: $c-brand;
+    @include font-rem(30px);
+  }
+  &:not(.active){
+   &:before {
+    animation: no-ripple 1s ease-out;
+   }
+  }
+  &.active {
+    overflow: hidden;
+    &:before {
+      content: unicode($i-heart-on);
+      color: $c-brand;
+      animation: ripple 1s ease-out;
+      //transform: scale(0);
+    }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1, 0);
+    opacity: 0;
+    height: 0;
+  }
+  20% {
+    transform: scale(0.25, 0.25);
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+    height: 100%;
+  }
+}
+
+@keyframes no-ripple {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0;
+    height: 0;
+  }
+  20% {
+    transform: scale(0.25, 0.25);
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 0);
+    height: 100%;
+  }
+}
 
 @media only screen and (min-width: 560px) {
   .slot_grid {
@@ -47,6 +118,17 @@
       padding: 0 17px 110px;
     }
 }
+
+// $bp-wide: 1024px;
+@include media-query(big) {
+  .section_product {
+    max-width: 1314px;
+  }
+    .slot_grid {
+      width: 25%;
+    }
+}
+
 
 /*------------------------------------*\
 	Producto slot
@@ -232,7 +314,7 @@
 
 }
 // $bp-wide: 1024px;
-@include media-query(wide) { 
+@include media-query(wide) {
   //-title/dimensions
   .slot__title {
     font-weight: $fw-bold;

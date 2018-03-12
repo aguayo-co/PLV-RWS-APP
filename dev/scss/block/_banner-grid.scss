@@ -2,26 +2,27 @@
 	Banner Grid
 \*------------------------------------*/
 //@include font-rem(12px);
-.banner {
-  padding-bottom: 10px;
-}
-
 .banner-grid {
   max-width: 480px;
   margin: 0 auto;
   padding: 10px 0 30px;
   text-align: center;
 }
+.banner {
+  padding-bottom: 10px;
+}
+
   .banner__item {
     color: $c-default;
   }
+
   .banner__figure {
     padding-bottom: 10px;
   }
-
   .banner__img {
     width: 100%;
   }
+
   .banner__content {
     width: 96%;
     margin: 0 auto;
@@ -33,7 +34,6 @@
     display: inline-block;
     padding-bottom: 12px;
   }
-
   .banner__txt {
     margin: 0;
     padding-bottom: 12px;
@@ -41,10 +41,6 @@
   }
 
 @media only screen and (min-width: 560px) {
-  .banner {
-    padding-bottom: 30px;
-  }
-
   .banner-grid {
     @include flexbox;
     @include justify-content(space-between);
@@ -55,38 +51,35 @@
     padding-bottom: 34px;
   }
 
-  .banner {
-    padding-bottom: 0;
-  }
-  .banner__figure {
-    padding-bottom: 0;
-  }
+    .banner {
+      width: 50%;
+      padding-bottom: 0;
+      &:first-child {
+        width: 44%;
+        text-align: center;
+      }
 
-
-  .banner-sm {
-    width: 44%;
-    text-align: center;
-  }
-
-  .banner-md {
-    width: 50%;
-  }
-  .banner-wide {
-    width: 100%;
-    padding-top: 30px;
-    .banner__item {
-      @include flexbox;
-      @include flex-direction(row-reverse);
-      @include align-items(flex-end);
+      &:last-child {
+        width: 100%;
+        padding-top: 30px;
+        .banner__item {
+          @include flexbox;
+          @include flex-direction(row-reverse);
+          @include align-items(flex-end);
+        }
+        .banner__figure {
+          width: 56%;
+        }
+        .banner__content {
+          width: 46%;
+          padding-right: 20px;
+        }
+      }
     }
+
     .banner__figure {
-      width: 56%;
+      padding-bottom: 0;
     }
-    .banner__content {
-      width: 46%;
-      padding-right: 20px;
-    }
-  }
 }
 // $bp-medium: 768px;
 @include media-query(medium) {
@@ -97,15 +90,16 @@
   .banner__lead {
     padding: 40px 0 12px;
   }
+  .banner {
+    &:last-child {
+      .banner__figure {
+        width: auto;
+      }
 
-  .banner-wide {
-    .banner__figure {
-      width: auto;
-    }
-
-    .banner__content {
-      width: auto;
-      padding-right: 40px;
+      .banner__content {
+        width: auto;
+        padding-right: 40px;
+      }
     }
   }
 }
@@ -116,18 +110,16 @@
     width: 80%;
     max-width: 952px;
   }
-
-  .banner-sm {
-    width: 40%;
-  }
-
-  .banner-md {
+  .banner {
     width: 50%;
     .banner__figure {
       max-height: 382px;
       overflow: hidden;
     }
 
+    &:first-child {
+      width: 40%;
+    }
   }
 }
 
@@ -136,12 +128,10 @@
   .banner-grid {
     width: 74.375%;
   }
-  .banner-sm {
-    width: 34.4%;
-  }
-  .banner-md {
+  .banner {
     width: 55%;
+    &:first-child {
+      width: 34.4%;
+    }
   }
 }
-
-

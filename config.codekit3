@@ -302,6 +302,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_product-slot.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-slot.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_slider-user.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -311,19 +324,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_slider-user.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/block\/_slot-product.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_slot-product.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -1264,6 +1264,655 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dist\/favico\/android-chrome-144x144.png": {
+		"ft": 32768,
+		"iS": 5789,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-144x144.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/android-chrome-192x192.png": {
+		"ft": 32768,
+		"iS": 8071,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-192x192.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/android-chrome-256x256.png": {
+		"ft": 32768,
+		"iS": 12011,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-256x256.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/android-chrome-36x36.png": {
+		"ft": 32768,
+		"iS": 1389,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-36x36.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/android-chrome-48x48.png": {
+		"ft": 32768,
+		"iS": 1856,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-48x48.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/android-chrome-72x72.png": {
+		"ft": 32768,
+		"iS": 2619,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-72x72.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/android-chrome-96x96.png": {
+		"ft": 32768,
+		"iS": 3641,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/android-chrome-96x96.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-114x114.png": {
+		"ft": 32768,
+		"iS": 2892,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-114x114.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-120x120.png": {
+		"ft": 32768,
+		"iS": 3116,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-120x120.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-144x144.png": {
+		"ft": 32768,
+		"iS": 3918,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-144x144.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-152x152.png": {
+		"ft": 32768,
+		"iS": 4302,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-152x152.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-180x180.png": {
+		"ft": 32768,
+		"iS": 5405,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-180x180.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-57x57.png": {
+		"ft": 32768,
+		"iS": 1724,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-57x57.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-60x60.png": {
+		"ft": 32768,
+		"iS": 1719,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-60x60.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-72x72.png": {
+		"ft": 32768,
+		"iS": 1948,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-72x72.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon-76x76.png": {
+		"ft": 32768,
+		"iS": 2045,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon-76x76.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/apple-touch-icon.png": {
+		"ft": 32768,
+		"iS": 5405,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/apple-touch-icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/browserconfig.xml": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/browserconfig.xml",
+		"oF": 0
+		},
+	"\/dist\/favico\/favicon-16x16.png": {
+		"ft": 32768,
+		"iS": 808,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/favicon-16x16.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/favicon-32x32.png": {
+		"ft": 32768,
+		"iS": 1400,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/favicon-32x32.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favico\/manifest.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/dist\/favico\/manifest-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/dist\/favico\/mstile-150x150.png": {
+		"ft": 32768,
+		"iS": 4307,
+		"oA": 0,
+		"oAP": "\/dist\/favico\/mstile-150x150.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/favicon.ico": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/favicon.ico",
+		"oF": 0
+		},
+	"\/dist\/index.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/index.html",
+		"oF": 0
+		},
+	"\/dist\/static\/css\/app.f1edf46319fbc4a1e67d629d4c5df5c4.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/dist\/static\/css\/app.f1edf46319fbc4a1e67d629d4c5df5c4-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/dist\/static\/css\/app.f1edf46319fbc4a1e67d629d4c5df5c4.css.map": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/css\/app.f1edf46319fbc4a1e67d629d4c5df5c4.css.map",
+		"oF": 0
+		},
+	"\/dist\/static\/css\/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/dist\/static\/css\/main-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/dist\/static\/fonts\/ico-prilov.eot": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/fonts\/ico-prilov.eot",
+		"oF": 0
+		},
+	"\/dist\/static\/fonts\/ico-prilov.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/static\/fonts\/ico-prilov.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/static\/fonts\/ico-prilov.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/fonts\/ico-prilov.ttf",
+		"oF": 0
+		},
+	"\/dist\/static\/fonts\/ico-prilov.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/fonts\/ico-prilov.woff",
+		"oF": 0
+		},
+	"\/dist\/static\/img\/brand-prilov.png": {
+		"ft": 32768,
+		"iS": 11231,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/brand-prilov.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-001.jpg": {
+		"ft": 16384,
+		"iS": 120102,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-002.jpg": {
+		"ft": 16384,
+		"iS": 262606,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-003.jpg": {
+		"ft": 16384,
+		"iS": 250663,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-slider-m1.jpg": {
+		"ft": 16384,
+		"iS": 88482,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-slider-m1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-slider-m2.jpg": {
+		"ft": 16384,
+		"iS": 85290,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-slider-m2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-slider1.jpg": {
+		"ft": 16384,
+		"iS": 123923,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-slider1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/banner-slider2.jpg": {
+		"ft": 16384,
+		"iS": 165340,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/banner-slider2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/menu-promo-001.jpg": {
+		"ft": 16384,
+		"iS": 125846,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/menu-promo-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-001.jpg": {
+		"ft": 16384,
+		"iS": 149839,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-002.jpg": {
+		"ft": 16384,
+		"iS": 105997,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-003.jpg": {
+		"ft": 16384,
+		"iS": 110150,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-004.jpg": {
+		"ft": 16384,
+		"iS": 118751,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-004.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-005.jpg": {
+		"ft": 16384,
+		"iS": 144608,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-005.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-006.jpg": {
+		"ft": 16384,
+		"iS": 107935,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-006.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-007.jpg": {
+		"ft": 16384,
+		"iS": 127073,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-007.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-008.jpg": {
+		"ft": 16384,
+		"iS": 103818,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-008.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/product-009.jpg": {
+		"ft": 16384,
+		"iS": 137447,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/product-009.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-001.jpg": {
+		"ft": 16384,
+		"iS": 21937,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-001.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-002.jpg": {
+		"ft": 16384,
+		"iS": 27876,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-003.jpg": {
+		"ft": 16384,
+		"iS": 29608,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-004.jpg": {
+		"ft": 16384,
+		"iS": 32767,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-004.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-005.jpg": {
+		"ft": 16384,
+		"iS": 34911,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-005.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-006.jpg": {
+		"ft": 16384,
+		"iS": 26746,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-006.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-007.jpg": {
+		"ft": 16384,
+		"iS": 24266,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-007.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-008.jpg": {
+		"ft": 16384,
+		"iS": 25105,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-008.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar-009.jpg": {
+		"ft": 16384,
+		"iS": 31054,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar-009.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/img\/demo\/user-avatar.jpg": {
+		"ft": 16384,
+		"iS": 6370,
+		"oA": 0,
+		"oAP": "\/dist\/static\/img\/demo\/user-avatar.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/dist\/static\/js\/app.13d43f4f60ffd6310572.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/app.13d43f4f60ffd6310572-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/dist\/static\/js\/app.13d43f4f60ffd6310572.js.map": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/app.13d43f4f60ffd6310572.js.map",
+		"oF": 0
+		},
+	"\/dist\/static\/js\/manifest.2ae2e69a05c33dfc65f8.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/manifest.2ae2e69a05c33dfc65f8-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/dist\/static\/js\/manifest.2ae2e69a05c33dfc65f8.js.map": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/manifest.2ae2e69a05c33dfc65f8.js.map",
+		"oF": 0
+		},
+	"\/dist\/static\/js\/vendor.51c140203753626bccba.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/vendor.51c140203753626bccba-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/dist\/static\/js\/vendor.51c140203753626bccba.js.map": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/vendor.51c140203753626bccba.js.map",
+		"oF": 0
+		},
+	"\/dist\/static\/js\/vendor\/modernizr-2.8.3.min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/dist\/static\/js\/vendor\/modernizr-2.8.3.min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/favico\/android-chrome-144x144.png": {
 		"ft": 32768,
 		"iS": 5789,
@@ -1657,6 +2306,13 @@
 		"oAP": "\/src\/components\/FormPassEnd.vue",
 		"oF": 0
 		},
+	"\/src\/components\/FormSingUp-2.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/FormSingUp-2.vue",
+		"oF": 0
+		},
 	"\/src\/components\/FormSingUp.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -1697,13 +2353,6 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/PageHeader-search.vue",
-		"oF": 0
-		},
-	"\/src\/components\/PageHeader-user.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/PageHeader-user.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PageHeader.vue": {
