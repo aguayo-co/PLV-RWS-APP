@@ -2418,9 +2418,9 @@ body {
 .slot__ico {
   position: absolute;
   top: 6px;
-  right: 24px;
-  width: 50px;
-  height: 50px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
   font-size: 0px;
   font-size: 0rem;
   text-align: center;
@@ -2430,10 +2430,10 @@ body {
   .slot__ico:before {
     transition: cubic-bezier(0.55, 0, 0.55, 0.2);
     position: relative;
-    line-height: 1.6;
+    line-height: 1.7;
     color: #fe7676;
-    font-size: 30px;
-    font-size: 1.875rem; }
+    font-size: 20px;
+    font-size: 1.25rem; }
   .slot__ico:not(.active):before {
     animation: no-ripple 1s ease-out; }
   .slot__ico.active {
@@ -2477,13 +2477,22 @@ body {
   .product-grid {
     margin: 0 -14px; }
   .slot_grid {
-    padding: 0 14px 54px; } }
+    padding: 0 14px 54px; }
+  .slot__ico {
+    right: 20px;
+    width: 40px;
+    height: 40px; }
+    .slot__ico:before {
+      font-size: 24px;
+      font-size: 1.5rem; } }
 
 @media only screen and (min-width: 1024px) {
   .product-grid {
     margin: 0; }
   .slot_grid {
-    padding: 0 17px 110px; } }
+    padding: 0 17px 110px; }
+  .slot__ico {
+    right: 24px; } }
 
 @media only screen and (min-width: 1280px) {
   .section_product {
