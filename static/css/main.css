@@ -2013,6 +2013,58 @@ body {
   .foot-legal p {
     margin: 0; }
 
+/*------------------------------------*	Footer Menu Mobile
+\*------------------------------------*/
+.page-foot-mb {
+  padding: 20px 30px 15px 30px;
+  background-color: #000; }
+
+.foot-nav-mb__list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  justify-content: space-around;
+  list-style-type: none; }
+
+.foot-nav-mb__item {
+  text-align: center; }
+
+.foot-nav-mb__link {
+  position: relative;
+  display: block;
+  height: auto;
+  color: #fff;
+  padding-bottom: 2px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.5s; }
+  .foot-nav-mb__link.active {
+    border-bottom-color: #fe7676; }
+
+.foot-nav-mb__name:before {
+  display: block;
+  padding-bottom: 4px;
+  font-size: 16px;
+  font-size: 1rem; }
+
+.foot-nav-mb__name.i-brand {
+  display: block;
+  position: relative;
+  top: -14px;
+  width: 60px;
+  height: 60px;
+  background: url(../img/brand-prilov.png) no-repeat center center #000;
+  background-size: 50px 53px;
+  font-size: 0px;
+  font-size: 0rem; }
+  .foot-nav-mb__name.i-brand:before {
+    font-size: 0px;
+    font-size: 0rem; }
+
 /*------------------------------------*	código para todos los menu desplegables
 \*------------------------------------*/
 .modal {

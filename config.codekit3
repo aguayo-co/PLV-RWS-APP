@@ -7,7 +7,7 @@
 		"uuidString": "9F145909-4507-4002-BCE4-8387D2944E41"
 		}
 	],
-"creatorBuild": "26148",
+"creatorBuild": "26261",
 "files": {
 	"\/.babelrc": {
 		"cB": 0,
@@ -29,6 +29,16 @@
 		"oA": 0,
 		"oAP": "\/.eslintignore",
 		"oF": 0
+		},
+	"\/.eslintrc-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/.eslintrc-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"\/.eslintrc.js": {
 		"ft": 64,
@@ -289,6 +299,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_page-footer_mb.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_page-footer_mb.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_page-header.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -298,6 +321,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_page-header.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_product-slot.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-slot.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -2175,6 +2211,22 @@
 		"oAP": "\/build\/node_modules",
 		"oF": 0
 		},
+	"\/package-lock.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-lock-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/README.html": {
 		"cB": 0,
 		"ft": 8192,
@@ -2277,18 +2329,18 @@
 		"oAP": "\/src\/components\/FormPassEnd.vue",
 		"oF": 0
 		},
+	"\/src\/components\/FormSignUp.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/FormSignUp.vue",
+		"oF": 0
+		},
 	"\/src\/components\/FormSingUp-2.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/FormSingUp-2.vue",
-		"oF": 0
-		},
-	"\/src\/components\/FormSingUp.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PageFooter.vue": {
@@ -2338,6 +2390,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/PageHeaderMobile.vue",
+		"oF": 0
+		},
+	"\/src\/components\/ProductGrid.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/ProductGrid.vue",
 		"oF": 0
 		},
 	"\/src\/components\/ProductSlot.vue": {
@@ -2399,11 +2458,11 @@
 		"oAP": "\/src\/pages\/Pass.vue",
 		"oF": 0
 		},
-	"\/src\/pages\/SingUp.vue": {
+	"\/src\/pages\/SignUp.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/pages\/SingUp.vue",
+		"oAP": "\/src\/pages\/SignUp.vue",
 		"oF": 0
 		},
 	"\/src\/pages\/User.vue": {
@@ -2429,6 +2488,16 @@
 		"oA": 0,
 		"oAP": "\/static\/.gitkeep",
 		"oF": 0
+		},
+	"\/static\/css\/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/static\/css\/main-min.css",
+		"oF": 0,
+		"oS": 3
 		},
 	"\/static\/fonts\/ico-prilov.eot": {
 		"cB": 0,
@@ -2504,7 +2573,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m1.jpg": {
 		"ft": 16384,
-		"iS": 88482,
+		"iS": 99597,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m1.jpg",
 		"oF": 0,
@@ -2514,7 +2583,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m2.jpg": {
 		"ft": 16384,
-		"iS": 85290,
+		"iS": 81219,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m2.jpg",
 		"oF": 0,
@@ -2836,7 +2905,7 @@
 	},
 "projectAttributes": {
 	"creationDate": 542162067,
-	"displayValue": "prilov-app",
+	"displayValue": "Repositorio-Prilov",
 	"displayValueWasSetByUser": 0,
 	"iconImageName": "meme-angryBaby"
 	},
@@ -3409,6 +3478,10 @@
 		"id-match": {
 			"active": 0,
 			"optionString": "'^[a-z]+([A-Z][a-z]+)*$', {'properties': false, 'onlyDeclarations': true}"
+			},
+		"implicit-arrow-linebreak": {
+			"active": 0,
+			"optionString": "'beside'"
 			},
 		"indent": {
 			"active": 0,
