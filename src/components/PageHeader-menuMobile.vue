@@ -13,7 +13,7 @@
         alt='Prilov Compra. Usa. Vende')
   //- menu level 1
   ul.menu
-    li.menu__item(
+    li.menu__item.i-next(
       :class="{ 'menu__item_current' :level1 == 1 }")
       //- TO DO VUE: dinamizar esta funcionalidad
       a.menu__link.i-shop(
@@ -29,7 +29,7 @@
         ul.submenu(
             v-show='level1 == 1'
             :class="{ 'submenu_open' :level2 != undefined }")
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 2 }")
             span.submenu__label(
               @click='level2 = 2') Moda Femenina
@@ -79,7 +79,7 @@
                 li.submenu__subitem
                   a.subitem__link(href='#') Pijamas
 
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 3 }")
             span.submenu__label(
               @click='level2 = 3') Complementos
@@ -100,7 +100,7 @@
                 li.submenu__subitem
                   a.subitem__link(href='#') Sombreros y Gorros
 
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 4 }")
             span.submenu__label(
               @click='level2 = 4'
@@ -138,7 +138,7 @@
                 li.submenu__subitem
                   a.subitem__link(href='#') Zara
 
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 5 }"
           )
             span.submenu__label(
@@ -150,13 +150,13 @@
 
       //- $End Nivel 2 Shop
 
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-bag(href='#') Instashop
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-closet(href='#') Closet Room
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-favorite(href='#') Prilovers
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-blog(href='#') Blog
 </template>
 

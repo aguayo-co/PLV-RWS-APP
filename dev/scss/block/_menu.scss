@@ -41,7 +41,6 @@
   }
 }
 
-
 // point Only mobile -tablet
 @include media-query(max-wide) {
 /* 
@@ -206,6 +205,15 @@
       margin: 0 16px;
       border-bottom: 1px solid $c-default-3;
     }
+    &:before {
+      position: absolute;
+      right: 26px;
+      top: 24px;
+      -ms-transform    : rotate(90deg);
+      -moz-transform   : rotate(90deg);
+      -o-transform     : rotate(90deg);
+      -webkit-transform: rotate(90deg);
+    }
   }
   //MOBILE level 1: link
   .menu__link {
@@ -250,6 +258,23 @@
 
   }
 
+  .submenu {
+    .submenu__item {
+      .submenu__close {
+        z-index: 0;
+      }
+      .submenu__label {
+        z-index: 1;
+      }
+    }
+    .submenu__item_current {
+      .submenu__close {
+        z-index: 1;
+      }
+    }
+  }
+
+
   //Mobile level 1: item Activo
   .menu__item_current {
     z-index: 4;
@@ -261,6 +286,7 @@
 
     //BTN cerrar submenu
     .submenu__close {
+      z-index: 2;
       opacity: 1;
       pointer-events: auto;
     }
@@ -318,8 +344,26 @@
       margin: 0 16px;
       border-bottom: 1px solid $c-default-3;
     }
-
+    &:before {
+      content: unicode($i-next);
+      position: absolute;
+      right: 26px;
+      top: 24px;
+      display: block;
+      z-index: 1;
+      -ms-transform    : rotate(90deg);
+      -moz-transform   : rotate(90deg);
+      -o-transform     : rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      // background-color: $c-neutro;
+    }
+    &.submenu__item_current {
+      &:before {
+        display: none;
+      }
+    }
   } 
+
   //MOBILE level 2: txt
   .submenu__label {
     position: relative;
