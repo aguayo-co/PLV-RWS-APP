@@ -3,7 +3,9 @@
   //- Datos personales
   .layout-inner
     .content-grid
-      UserMenu
+      UserMenu(
+        v-if="mqTablet"
+      )
       router-view
 </template>
 

@@ -53,6 +53,13 @@
         -moz-osx-font-smoothing: grayscale;
     }
 }
+.i_flip {
+  &:before {
+    display: inline-block;
+    transform: rotate(-180deg);
+  }
+}
+
 
 @function unicode($str) {
   @return unquote("\"")+$str+unquote("\"");

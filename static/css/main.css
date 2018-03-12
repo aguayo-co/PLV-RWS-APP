@@ -255,6 +255,10 @@ template {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.i_flip:before {
+  display: inline-block;
+  transform: rotate(-180deg); }
+
 .i-prilov:before {
   content: "\e900"; }
 
@@ -466,9 +470,12 @@ a {
     font-size: 1.25rem;
     padding-right: 12px; }
 
+.btn_small {
+  width: auto;
+  padding: 14px 24px; }
+
 .btn_solid {
   color: #fff;
-  border: 2px solid #000;
   background-color: #000; }
 
 .btn_close {
@@ -529,6 +536,23 @@ select {
 .form {
   color: #000; }
 
+.form__set {
+  border: none;
+  max-width: 440px;
+  margin: 0 auto; }
+
+.form__legend {
+  padding-bottom: 24px;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300; }
+
+.form__grid_center {
+  text-align: center; }
+
 .form__row {
   padding-bottom: 12px; }
 
@@ -552,6 +576,23 @@ select {
   line-height: 40px;
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
+
+.form__edit {
+  width: 100%;
+  color: #707070;
+  line-height: 1.6;
+  font-size: 16px;
+  font-size: 1rem;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400; }
+
+.form__edit:-webkit-autofill,
+.form__edit:-webkit-autofill:hover,
+.form__edit:-webkit-autofill:focus .form__edit:-webkit-autofill,
+.form__edit:-webkit-autofill:hover .form__edit:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s; }
 
 .VuePassword__Input .input {
   width: 100%;
@@ -629,6 +670,33 @@ select {
 
 .VuePassword .VuePassword--very-weak:after {
   width: 5%; }
+
+@media only screen and (min-width: 1024px) {
+  .form__set {
+    max-width: 100%; }
+  .form__grid {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between; }
+    .form__grid .form__row {
+      flex-grow: 1; }
+      .form__grid .form__row:not(:last-child) {
+        margin-right: 12px; }
+  .form__grid_center {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+    .form__grid_center .form__row {
+      flex-grow: 0; } }
 
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
@@ -726,6 +794,16 @@ h6 {
     height: 3px;
     background-color: #fe7676; }
 
+.subhead {
+  padding-bottom: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  border-bottom: 1px solid #efefef; }
+
 .headline {
   padding: 10px 0 50px;
   text-transform: uppercase;
@@ -741,8 +819,18 @@ h6 {
     padding-bottom: 10px;
     font-size: 80px;
     font-size: 5rem; }
+  .title_page {
+    text-transform: uppercase;
+    font-size: 34px;
+    font-size: 2.125rem;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500; }
   .title_subhead {
-    letter-spacing: 4px; } }
+    letter-spacing: 4px; }
+  .subhead {
+    text-align: left;
+    font-size: 30px;
+    font-size: 1.875rem; } }
 
 /*------------------------------------*    #Styles for text elements
 \*------------------------------------*/
@@ -2666,6 +2754,256 @@ body {
       top: 0;
       font-size: 22px;
       font-size: 1.375rem; } }
+
+/*------------------------------------*	Single Section
+\*------------------------------------*/
+.single__inner {
+  padding-top: 30px; }
+
+.single__header {
+  text-align: center;
+  margin-bottom: 40px; }
+
+.single__title {
+  text-align: center;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-size: 1.75rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  border-bottom: 1px solid #000; }
+
+.user-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.user-data__title {
+  padding-top: 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500; }
+
+.user-data__avatar {
+  width: 114px;
+  height: 114px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%; }
+
+.user-data__img {
+  width: 100%;
+  vertical-align: bottom; }
+
+.user-data__notify {
+  padding: 8px 0; }
+
+.user-data__list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0; }
+
+.user-data__value {
+  color: #4a4a4a;
+  font-size: 16px;
+  font-size: 1rem; }
+  .user-data__value:before {
+    color: #fe7676;
+    padding-right: 10px; }
+  .user-data__value:not(:last-child) {
+    padding-right: 30px; }
+
+.i_flip:before {
+  padding-right: 0;
+  padding-left: 10px; }
+
+.user-data__track {
+  padding: 2px 0;
+  border-bottom: 3px solid #fe7676; }
+  .user-data__track:not(:last-child) {
+    margin-right: 30px; }
+
+.user-data__actions {
+  padding: 8px 0;
+  text-align: center; }
+
+.user-data_info {
+  padding: 50px 0; }
+
+.user-data__form {
+  padding-bottom: 30px; }
+
+@media only screen and (min-width: 768px) {
+  .single__inner {
+    width: 84%;
+    margin: 0 auto; } }
+
+@media only screen and (min-width: 1024px) {
+  .single {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1; }
+  .single__header {
+    text-align: left; }
+  .single__title {
+    font-size: 32px;
+    font-size: 2rem; }
+  .user-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+  .user-data__title {
+    padding-top: 8px 0;
+    text-align: left;
+    font-size: 36px;
+    font-size: 2.25rem; }
+  .user-data__avatar {
+    margin-right: 28px; }
+  .user-data__notify {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .user-data__list {
+    padding: 4px 40px 4px 0; }
+  .user-data__actions {
+    padding-top: 20px;
+    text-align: left; } }
+
+/*------------------------------------*	dividers
+\*------------------------------------*/
+.dividers {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 30px 0; }
+
+.dividers__title {
+  display: block; }
+
+.dividers__item {
+  position: relative;
+  padding: 12px 100px 12px 0;
+  color: #707070;
+  font-size: 16px;
+  font-size: 1rem;
+  border-bottom: 1px solid #efefef;
+  transition: all .2s ease-in-out; }
+
+.dividers__edit {
+  display: block;
+  transition: all .2s ease-in-out; }
+  .dividers__edit:before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -10px;
+    font-size: 20px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #cbcbcb;
+    transition: all .2s ease-in-out; }
+  .dividers__edit:hover {
+    color: #fe7676; }
+    .dividers__edit:hover:before {
+      color: #fe7676; }
+  .dividers__edit .form__edit {
+    background-color: transparent; }
+    .dividers__edit .form__edit:focus {
+      color: #000; }
+
+.dividers__edit_active:before {
+  color: #fe7676; }
+
+.dividers__select {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  z-index: 2;
+  margin-top: -9px;
+  transition: all .2s ease-in-out; }
+  .dividers__select:before {
+    font-size: 18px;
+    font-size: 1.125rem;
+    color: #cbcbcb; }
+  .dividers__select:hover:before {
+    color: #fe7676; }
+
+.dividers__item_select .dividers__select:before {
+  color: #fe7676; }
+
+.dividers__bottom {
+  padding: 12px 0;
+  text-align: right;
+  font-size: 16px;
+  font-size: 1rem; }
+  .dividers__bottom:hover {
+    color: #fe7676; }
+
+.dividers__plus {
+  color: #4a4a4a;
+  padding: 0 16px;
+  transition: all .2s ease-in-out; }
+  .dividers__plus:before {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+    margin-right: 12px;
+    cursor: pointer;
+    line-height: 18px;
+    text-align: center;
+    color: #4a4a4a;
+    font-size: 10px;
+    font-size: 0.625rem;
+    border: 1px solid #707070;
+    border-radius: 50%; }
+  .dividers__plus:hover {
+    color: #fe7676; }
+    .dividers__plus:hover:before {
+      color: #fe7676;
+      border-color: #fe7676; }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
