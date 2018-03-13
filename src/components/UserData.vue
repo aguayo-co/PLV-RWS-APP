@@ -31,13 +31,16 @@ section.single
                 :src="data.picture",
                 :alt="'Perfil' + ' ' + data.first_name")
           .user-header__item
-            h2.user-data__title
+            h3.user-data__title
               | {{ data.first_name }} {{ data.last_name }}
+            ul.user-data__list
+              li Cambiar contraseña   |
+              li Eliminar cuenta
             .user-data__notify
               ul.user-data__list
                 li.user-data__value.i-like 20
                 li.user-data__value.i-like.i_flip 0
-                li.user-data__value.i-less 0
+                li.user-data__value.i-less-circle 0
               ul.user-data__list
                 li.user-data__track {{ data.followers_count }} Seguidores
                 li.user-data__track {{ data.following_count }} Siguiendo
@@ -47,13 +50,74 @@ section.single
             title="Ser Priloverstar") Ser Prilovestar
 
         .user-data_info
-          h3.subhead Direcciones
+          legend.subhead Direcciones
           ul.dividers
             li.dividers__item(
-              v-for="(addressList, index) in data.addresses")
-              span.dividers__edit.i-edit {{ addressList.address }},  {{ addressList.region }},  {{ addressList.zone }}
-              span.dividers__select.i-heart-on(
-                @click="UserNewAddress = true") <small class="hide" >Seleccionar</small>
+              v-for="addressList in data.addresses")
+              .dividers__grid.dividers__list(
+                :class="{'dividers__list_active' :isActive == addressList}"
+              ) {{ addressList.address }},  {{ addressList.region }},  {{ addressList.city }}, {{ addressList.zone }}
+                span.dividers__actions
+                  a.dividers__select.i-star-on(
+                    @click.preven="UserNewAddress = true",
+                    href="#",
+                    title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
+                  a.dividers__edit.i-edit-line(
+                    @click.prevent="IsActive(addressList)",
+                    href="#",
+                    title="Editar Dirección") <small class="hide"> Editar </small>
+              //-TO-DO: efect transition
+              .user-data__form(
+                v-if="isActive == addressList")
+                  fieldset.form__set
+                    legend.form__legend Editar Dirección
+                    .form__grid
+                      .form__row
+                        label.form__label(
+                          :for="addressList.id + 'address'") Dirección
+                        input.form__control(
+                          :id="addressList.id + 'address'",
+                          v-model="addressList.address",
+                          type='text')
+                      .form__row
+                        label.form__label(
+                          :for="addressList.id + 'region'") Región
+                        input.form__control(
+                          :id="addressList.id  + 'region'",
+                          v-model='addressList.region',
+                          type='text')
+                    .form__grid
+                      .form__row
+                        label.form__label(
+                          :for="addressList.id  + 'city'") Ciudad
+                        input.form__control(
+                          :id="addressList.id  + 'city'",
+                          v-model="addressList.city",
+                          type='text')
+                      .form__row
+                        label.form__label(
+                          :for="addressList.id + 'comuna'") Comuna
+                        input.form__control(
+                          :id="addressList.id + 'comuna'",
+                          v-model="addressList.zone",
+                          type='text')
+                    .form__grid.form__row_away
+                      .form__row
+                        a.link_underline(
+                          @click.prevent="NotActive(addressList)",
+                          href="#",
+                          title="Eliminar") Eliminar dirección
+                      .form__group
+                        .form__row
+                          a.btn.btn_small(
+                            @click.prevent="NotActive(addressList)",
+                            href="#",
+                            title="Cancelar Edición") Cancelar
+                        .form__row
+                          a.btn.btn_solid.btn_small(
+                            @click.prevent="NotActive(addressList)",
+                            href="#",
+                            title="Guardar Cambios") Editar dirección
 
             //- clic "nueva dirección"
               Se despliega un cuadro con los inputs de:
@@ -79,70 +143,60 @@ section.single
               6. Para eliminar la dirección debe seleccionar
               el ícono de edición y la opción eliminar."
             li.dividers__bottom(
-              v-if="newAddress == false")
-              span.dividers__plus.i-plus(
-                @click="NewAddress()") Nueva dirección
+              :class="{'dividers__bottom_active' :newAddress == true}")
+              a.dividers__add.i-plus(
+                @click.prevent="NewAddress()",
+                href="#",
+                title="Agregar dirección") Nueva dirección
+            //-TO-DO: efect transition
+            .user-data__form(
+              v-if="newAddress == true",
+              v-effect="slide")
+                fieldset.form__set
+                  legend.form__legend Nueva dirección
+                  .form__grid
+                    .form__row
+                      label.form__label(
+                        for='new-address') Dirección
+                      input.form__control(
+                        id='new-address',
+                        v-on:keyup.enter="data.addresses.address",
+                        v-model="data.addresses.address",
+                        type='text')
+                    .form__row
+                      label.form__label(
+                        for='new-address-region') Región
+                      input.form__control(
+                        id='new-address-region',
+                        v-model='data.addresses.region',
+                        type='text')
+                  .form__grid
+                    .form__row
+                      label.form__label(
+                        for='new-address-city') Ciudad
+                      input.form__control(
+                        id='new-address-city',
+                        v-model="data.addresses.city",
+                        type='text')
+                    .form__row
+                      label.form__label(
+                        for='new-address-zone') Comuna
+                      input.form__control(
+                        id='new-address-zone'
+                        v-model="data.addresses.zone",
+                        type='text')
 
-          .user-data__form(
-            v-if="newAddress == true")
-              fieldset.form__set
-                legend.form__legend Nueva dirección
-                .form__grid
-                  .form__row
-                    label.form__label(
-                      for='userAddress') Dirección
-                    input.form__control(
-                      id='userAddress',
-                      type='text',
-                      v-model="data.addresses.address")
-                  //- .form__row
-                  //-   label.form__label(
-                  //-     for='addressNumber') Número
-                  //-   input.form__control(
-                  //-     id='addressNumber',
-                  //-     type='text',
-                  //-     placeholder="")
-                  .form__row
-                    label.form__label(
-                      for='addressDepto') Depto/Villa/block
-                    input.form__control(
-                      id='addressDepto',
-                      type='text',
-                      v-model="data.addresses.region")
-                  .form__row
-                    label.form__label(
-                      for='addressCity') Ciudad
-                    input.form__control(
-                      id='addressCity',
-                      type='text',
-                      v-model="data.addresses.zone")
-                //- .form__grid
-                //-   .form__row
-                //-     label.form__label(
-                //-       for='addressCity') Ciudad
-                //-     input.form__control(
-                //-       id='addressCity',
-                //-       type='text')
-                //-   .form__row
-                //-     label.form__label(
-                //-       for='addressRegion') Región
-                //-     input.form__control(
-                //-       v-model='addressRegion',
-                //-       id='addressRegion',
-                //-       type='text')
-                //-   .form__row
-                //-     label.form__label(
-                //-       for='addressComuna') Comuna
-                //-     input.form__control(
-                //-       id='addressComuna',
-                //-       type='text')
-                .form__grid.form__grid_center.form__row_away
-                  .form__row
-                    span.btn(
-                      @click="NewAddress()") Cancelar
-                  .form__row
-                    span.btn.btn_solid(
-                      @click="AddAddress()") Agregar nueva dirección
+                  .form__grid.form__grid_center.form__row_away
+                    .form__row
+                      a.btn.btn_small(
+                        @click.prevent="NewAddress()",
+                        href="#",
+                        title="Cancelar Edición") Cancelar
+                    .form__row
+                      a.btn.btn_solid.btn_small(
+                        @click.prevent="NewAddress()",
+                        href="#",
+                        title="Guardar Cambios") Editar dirección
 
           //- Bloque Editar Correo Perfil de usuaria
             1. Se debe seleccionar el ícono de editar
@@ -154,15 +208,20 @@ section.single
           .dividers
             label.subhead.dividers__title(
             for='editEmail') Correo
-            .dividers__item.dividers__edit.i-edit(
-                :class="{'dividers__edit_active' :editedEmail == true}")
-              input.form__edit(
-                v-model='data.email',
-                id='editEmail',
-                type='email',
-                :placeholder="data.email",
-                @change="EditEmail()",
-                @input="EditEmail()")
+            .dividers__item(
+                :class="{'dividers__item_active' :editEmail == true}")
+              .dividers__grid
+                input.form__edit(
+                  v-model='data.email',
+                  id='editEmail',
+                  type='email',
+                  :disabled="editEmail == false"
+                  :placeholder="data.email")
+                span.dividers__actions
+                  a.dividers__edit.i-edit-line(
+                    @click.prevent="EditEmail()",
+                    href="#",
+                    title="Editar correo") <small class="hide"> Editar </small>
 
           //- Bloque Editar Teléfono Perfil de usuaria
             1. Selecciona el ícono de edición frente al
@@ -170,29 +229,22 @@ section.single
           .dividers
             label.subhead.dividers__title(
             for='editPhone') Teléfono
-            .dividers__item.dividers__edit.i-edit(
-              :class="{'dividers__edit_active' :editedTel == true}")
-              input.form__edit(
-                v-model='data.phone',
-                id='editPhone',
-                type='tel',
-                :placeholder="data.phone",
-                @change="EditTel()",
-                @input="EditTel()")
+            .dividers__item(
+              :class="{'dividers__item_active' :editTel == true}")
+              .dividers__grid
+                input.form__edit(
+                  v-model='data.phone',
+                  id='editPhone',
+                  :placeholder="data.phone",
+                  :disabled="editTel == false"
+                  type='tel')
 
-          .form__grid.form__grid_center.form__row_away(
-            v-if="editedUser == false")
-            .form__row
-              span.btn.i-edit(
-                title="Editar Perfil",
-                @click="EditUser()") Editar Perfil
-          .form__grid.form__grid_center.form__row_away(
-            v-else="")
-            .form__row
-              span.btn(
-                @click="EditCancel()") Cancelar
-            .form__row
-              buttom.btn.btn_solid Guardar
+                span.dividers__actions
+                  a.dividers__edit.i-edit-line(
+                    @click.prevent="EditTel()",
+                    href="#",
+                    title="Editar Teléfono") <small class="hide"> Editar </small>
+
 </template>
 
 <script>
@@ -200,12 +252,11 @@ export default {
   name: 'UserData',
   data () {
     return {
+      isActive: '',
       selectAddress: '',
       newAddress: false,
-      editedEmail: false,
-      editedTel: false,
-      editedUser: false,
-      editedProfile: false,
+      editEmail: false,
+      editTel: false,
       user: [
         {
           id: '1',
@@ -229,13 +280,15 @@ export default {
               id: '3',
               address: 'Pasaje la Lenga  1539',
               region: 'Cerro Navia',
-              zone: 'Santiago'
+              city: 'Santiago',
+              zone: ''
             },
             {
               id: '4',
               address: 'Los flamencos 1300',
               region: 'Mapú',
-              zone: 'Santiago'
+              city: 'Santiago',
+              zone: ''
             }
           ],
           group_ids: [1],
@@ -251,41 +304,22 @@ export default {
       ]
     }
   },
+
   methods: {
+    IsActive: function (e) {
+      this.isActive = e
+    },
+    NotActive: function (e) {
+      this.isActive = ''
+    },
     NewAddress: function () {
       this.newAddress = !this.newAddress
     },
-    AddAddress: function () {
-      this.user.push({
-        addresses: ({
-          address: '',
-          region: '',
-          zone: ''
-        })
-      })
-    },
     EditEmail: function () {
-      this.editedEmail = true
-      this.editedUser = true
+      this.editEmail = !this.editEmail
     },
     EditTel: function () {
-      this.editedTel = true
-      this.editedUser = true
-    },
-    EditUser: function () {
-      // btn send mail|tel|address|name
-      this.editedUser = true
-      // btn edit img|cover|description
-      // active btn pass|delete
-      this.editedProfile = true
-    },
-    EditCancel: function () {
-      // cierrra todo
-      this.newAddress = false
-      this.editedEmail = false
-      this.editedTel = false
-      this.editedUser = false
-      this.editedProfile = false
+      this.editTel = !this.editTel
     }
   }
 }

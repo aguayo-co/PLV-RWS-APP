@@ -164,25 +164,48 @@
 }
 
 .dividers__item {
-  position: relative;
-  padding: 12px 100px 12px 0;
+  padding: 16px 0;
   color: $c-default-5;
   @include font-rem(16px);
   border-bottom: 1px solid $c-neutro-3;
-  transition: all .2s ease-in-out;
+  transition: all .3s ease-in-out;
+  .user-data__form {
+    padding-top: 30px;
+  }
+  .form__edit {
+    padding-left: 0;
+    transition: all .3s ease-in-out;
+  }
+
+}
+.dividers__grid {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  margin: 0;
+}
+
+.dividers__actions {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
 }
 
 .dividers__edit {
-  display: block;
+  padding: 0 15px;
+  display: inline-block;
+  cursor: pointer;
   transition: all .2s ease-in-out;
   &:before {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin-top: -10px;
-    @include font-rem(20px);
-    cursor: pointer;
+    // width: 30px;
+    // height: 30px;
+    // display: block;
+    // text-align: center;
+    // line-height: 30px;
+    @include font-rem(24px);
     color: $c-default-3;
+    // border-radius: 50%;
+    // background-color: #fff;
     transition: all .2s ease-in-out;
   }
   &:hover {
@@ -191,26 +214,32 @@
       color: $c-brand;
     }
   }
-  .form__edit {
-    background-color: transparent;
-    &:focus {
-      color: $c-default;
-    }
-  }
 }
-  .dividers__edit_active {
+
+.dividers__item_active {
+  padding-left: 10px;
+  background-color: $c-neutro-3;
+  .dividers__edit {
     &:before {
       color: $c-brand;
     }
   }
-
+  .form__edit {
+    padding-left: 10px;
+    // pointer-events: auto;
+  }
+}
+.dividers__list_active {
+  color: $c-default;
+  .dividers__edit {
+    &:before {
+      color: $c-brand;
+    }
+  }
+}
 
   .dividers__select {
-    position: absolute;
-    top: 50%;
-    right: 40px;
-    z-index: 2;
-    margin-top: -9px;
+    padding: 0 15px;
     transition: all .2s ease-in-out;
     &:before {
       @include font-rem(18px);
@@ -240,7 +269,7 @@
   }
 }
 
-  .dividers__plus {
+  .dividers__add {
     color: $c-default-2;
     padding: 0 16px;
     transition: all .2s ease-in-out;
@@ -267,6 +296,35 @@
         color: $c-brand;
         border-color: $c-brand;
       }
-
     }
   }
+
+.dividers__bottom_active {
+  color: $c-brand;
+  .dividers__add {
+    &:before {
+      content: unicode($i-less);
+      @include font-rem(2px);
+    }
+  }
+}
+
+.slide-toggle-enter-active,
+.slide-toggle-leave-active {
+  -webkit-transition: max-height 1.8s ease-in-out;
+  -moz-transition: max-height 1.8s ease-in-out;
+  -o-transition: max-height 1.8s ease-in-out;
+  transition: max-height 1.8s ease-in-out;
+}
+.slide-toggle-enter,
+.slide-toggle-leave-to,
+.slide-toggle {
+  will-change: max-height;
+  max-height: 0;
+  overflow-y: hidden;
+}
+
+.slide-toggle-enter-to,
+.slide-toggle-leave {
+  max-height: 600px;
+}

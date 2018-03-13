@@ -77,15 +77,14 @@ select {
     font-family: $f-default;
     font-weight: $fw-regular;
   }
-  .form__edit:-webkit-autofill,
-  .form__edit:-webkit-autofill:hover,
-  .form__edit:-webkit-autofill:focus .form__edit:-webkit-autofill,
-  .form__edit:-webkit-autofill:hover .form__edit:-webkit-autofill:focus {
-    -webkit-text-fill-color: $c-default;
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
+  // .form__edit:-webkit-autofill,
+  // .form__edit:-webkit-autofill:hover,
+  // .form__edit:-webkit-autofill:focus .form__edit:-webkit-autofill,
+  // .form__edit:-webkit-autofill:hover .form__edit:-webkit-autofill:focus {
+  //   -webkit-text-fill-color: $c-default;
+  //   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  //   transition: background-color 5000s ease-in-out 0s;
+  // }
 
   //componente VuePassword
   .VuePassword__Input {
@@ -198,6 +197,8 @@ select {
   .form__grid {
     @include flexbox;
     @include justify-content(space-between);
+    @include align-items(center);
+
     .form__row {
       flex-grow: 1;
       &:not(:last-child) {
@@ -212,7 +213,10 @@ select {
       flex-grow: 0;
     }
   }
-
+  .form__group {
+    @include flexbox;
+    @include justify-content(flex-end);
+  }
 }
 
 
