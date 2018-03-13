@@ -677,6 +677,38 @@ select {
       .form__group .form__row:not(:last-child) {
         margin-right: 12px; } }
 
+.help {
+  background-color: #efefef; }
+  .help ul {
+    padding: 8px 29px; }
+    .help ul li {
+      line-height: 1.4; }
+  .help a {
+    border-bottom: 2px solid #fe7676;
+    color: #000;
+    font-weight: 700; }
+
+.is-danger .form__control {
+  border: 1px solid #fe7676; }
+
+.is-danger .help {
+  position: relative;
+  display: block;
+  padding: 5px 8px;
+  line-height: 1.2;
+  color: #fff;
+  background-color: #fe7676; }
+  .is-danger .help:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -9px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 10px 0 10px;
+    border-color: #fe7676 transparent transparent transparent; }
+
 @media only screen and (min-width: 1080px) {
   .form__grid_reverse {
     -webkit-box-direction: normal;

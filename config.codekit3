@@ -7,7 +7,7 @@
 		"uuidString": "9F145909-4507-4002-BCE4-8387D2944E41"
 		}
 	],
-"creatorBuild": "26268",
+"creatorBuild": "26148",
 "files": {
 	"\/.babelrc": {
 		"cB": 0,
@@ -29,6 +29,16 @@
 		"oA": 0,
 		"oAP": "\/.eslintignore",
 		"oF": 0
+		},
+	"\/.eslintrc-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/.eslintrc-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"\/.eslintrc.js": {
 		"ft": 64,
@@ -2345,11 +2355,11 @@
 		"oAP": "\/src\/components\/FormPassEnd.vue",
 		"oF": 0
 		},
-	"\/src\/components\/FormSingUp.vue": {
+	"\/src\/components\/FormSignUp.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp.vue",
+		"oAP": "\/src\/components\/FormSignUp.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PageFooter.vue": {
@@ -2474,11 +2484,11 @@
 		"oAP": "\/src\/pages\/Pass.vue",
 		"oF": 0
 		},
-	"\/src\/pages\/SingUp.vue": {
+	"\/src\/pages\/SignUp.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/pages\/SingUp.vue",
+		"oAP": "\/src\/pages\/SignUp.vue",
 		"oF": 0
 		},
 	"\/src\/pages\/User.vue": {
@@ -2559,7 +2569,7 @@
 		},
 	"\/static\/img\/demo\/banner-001.jpg": {
 		"ft": 16384,
-		"iS": 104371,
+		"iS": 120102,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-001.jpg",
 		"oF": 0,
@@ -2569,7 +2579,7 @@
 		},
 	"\/static\/img\/demo\/banner-002.jpg": {
 		"ft": 16384,
-		"iS": 298179,
+		"iS": 262606,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-002.jpg",
 		"oF": 0,
@@ -2589,7 +2599,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m1.jpg": {
 		"ft": 16384,
-		"iS": 92748,
+		"iS": 88482,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m1.jpg",
 		"oF": 0,
@@ -2599,7 +2609,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m2.jpg": {
 		"ft": 16384,
-		"iS": 75316,
+		"iS": 85290,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m2.jpg",
 		"oF": 0,
@@ -2609,7 +2619,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider1.jpg": {
 		"ft": 16384,
-		"iS": 132936,
+		"iS": 123923,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider1.jpg",
 		"oF": 0,
@@ -2619,7 +2629,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider2.jpg": {
 		"ft": 16384,
-		"iS": 142676,
+		"iS": 165340,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider2.jpg",
 		"oF": 0,
@@ -2789,7 +2799,7 @@
 		},
 	"\/static\/img\/demo\/user-avatar-007.jpg": {
 		"ft": 16384,
-		"iS": 21937,
+		"iS": 24266,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/user-avatar-007.jpg",
 		"oF": 0,
@@ -2931,7 +2941,6 @@
 	"animateCSSInjections": 1,
 	"autoBuildNewItems": 1,
 	"autoprefixerBrowserString": "> 1%, last 2 versions, Firefox ESR, Opera 12.1",
-	"autoprefixerEnableIEGrid": 0,
 	"babelAuxiliaryCommentAfter": "",
 	"babelAuxiliaryCommentBefore": "",
 	"babelConfigFileHandlingType": 0,
@@ -3495,10 +3504,6 @@
 		"id-match": {
 			"active": 0,
 			"optionString": "'^[a-z]+([A-Z][a-z]+)*$', {'properties': false, 'onlyDeclarations': true}"
-			},
-		"implicit-arrow-linebreak": {
-			"active": 0,
-			"optionString": "'beside'"
 			},
 		"indent": {
 			"active": 0,
