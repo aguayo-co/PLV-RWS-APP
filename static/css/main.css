@@ -973,6 +973,11 @@ body {
 .page {
   min-height: 100vh; }
 
+.page.is-modal {
+  height: 0;
+  overflow-y: hidden;
+}
+
 .layout {
   background-color: #fff; }
 
@@ -1058,7 +1063,7 @@ body {
   -moz-justify-content: space-between;
   justify-content: space-between; }
 
-/*------------------------------------*  Page header: 
+/*------------------------------------*  Page header:
   componente Pageheader-brand
 \*------------------------------------*/
 .page-brand {
@@ -1101,7 +1106,7 @@ body {
   font-weight: 500;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-/*------------------------------------*  Page header: 
+/*------------------------------------*  Page header:
   componente Pageheader-search
 \*------------------------------------*/
 .search {
@@ -1141,9 +1146,9 @@ body {
   font-size: 0.875rem;
   background-color: transparent; }
 
-/*------------------------------------*  Page header: 
-  * componente Pageheader-user: 
-  * bloque css asociado menu-toggle: 
+/*------------------------------------*  Page header:
+  * componente Pageheader-user:
+  * bloque css asociado menu-toggle:
   * contiene animación
 \*------------------------------------*/
 .tool-user {
@@ -1315,7 +1320,7 @@ body {
     font-size: 0.5rem; }
 
 @media only screen and (max-width: 1023px) {
-  /* 
+  /*
   ico menu hamburguesa
 */
   .menu-ico {
@@ -1350,7 +1355,7 @@ body {
   .menu-ico_open .menu-ico__line:last-child {
     -webkit-transform: rotate(-45deg) translate(0);
     transform: rotate(-45deg) translate(0); }
-  /* 
+  /*
   Menu slide left Mobile
 */
   .page-menu:after {
@@ -2023,9 +2028,9 @@ body {
   transform: scale(1); }
 
 /* v-enter-active: Estado activo para la entrada.
- * Es aplicada durante la fase de entrada completa. 
+ * Es aplicada durante la fase de entrada completa.
  * Se agrega antes que el elemento sea insertado,
- * se quita cuando la transición/animación finaliza. 
+ * se quita cuando la transición/animación finaliza.
  * Esta clase puede ser usada para definir la duración,
  * retraso y la curva de alivio para la transición de entrada.
 */
@@ -2035,10 +2040,10 @@ body {
   transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1);
   transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1); }
 
-/* v-leave-active: Estado activo para la salida. 
- * Es aplicada durante la fase de salida completa. 
+/* v-leave-active: Estado activo para la salida.
+ * Es aplicada durante la fase de salida completa.
  * Se agrega inmediatamente cuando una transición de salida es disparada,
- * se quita cuando la transición/animación finaliza. 
+ * se quita cuando la transición/animación finaliza.
  * Esta clase puede ser usada para definir la duración,
  * retraso y la curva de alivio para la transición de salida.
 */
@@ -2046,7 +2051,7 @@ body {
   -webkit-transition: opacity 0.075s linear;
   transition: opacity 0.075s linear; }
 
-/* v-enter: Estado inicial para la transición de entrada. 
+/* v-enter: Estado inicial para la transición de entrada.
  * Se agrega antes que el elemento sea insertado,
  * se quita un marco luego que el elemento fue insertado.
  */
@@ -2060,8 +2065,8 @@ body {
     -webkit-transform: scale(1.25);
     transform: scale(1.25); }
 
-/* v-enter-to: Solo disponible en versiones >=2.1.8. 
- * Estado final para la entrada. Se agrega un marco después de haber 
+/* v-enter-to: Solo disponible en versiones >=2.1.8.
+ * Estado final para la entrada. Se agrega un marco después de haber
  * insertado el elemento (al mismo tiempo que v-enter es removida),
  * se quita cuando la transición/animación finaliza.
  */
@@ -2070,8 +2075,8 @@ body {
   -webkit-transform: scale(1);
   transform: scale(1); }
 
-/* v-leave: Estado inicial para la salida. 
- * Se agrega inmediatamente cuando se dispara una 
+/* v-leave: Estado inicial para la salida.
+ * Se agrega inmediatamente cuando se dispara una
  * transición de salida, se quita luego de un marco.
  */
 .toggle-scale-leave {
@@ -2079,9 +2084,9 @@ body {
   opacity: 1;
   overflow-y: hidden; }
 
-/*  v-leave-to: Solo disponible en versiones >=2.1.8. 
- * Estado final para la salida. Se agrega un marco despúes 
- * de que se dispare la transición de salida (al mismo tiempo que v-leave es removida), 
+/*  v-leave-to: Solo disponible en versiones >=2.1.8.
+ * Estado final para la salida. Se agrega un marco despúes
+ * de que se dispare la transición de salida (al mismo tiempo que v-leave es removida),
  * se quita cuando la transición/animación finaliza.
 */
 .toggle-scale-leave-to {

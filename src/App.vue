@@ -1,5 +1,7 @@
 <template lang="pug">
-div.page
+div.page(
+  v-bind:class='{ "is-modal": modal }'
+  )
 
   //- Header template Mobile
   PageHeaderMobile(
@@ -40,57 +42,7 @@ Vue.use(Vuex)
 
 // eslint-disable-next-line
 
-const UserModule = {
-  namespaced: true,
-  state: {
-    token: localStorage.getItem('token'),
-    userName: localStorage.getItem('userName'),
-    auth: false
-  },
-  mutations: {
-    mutationSetUserName (state, newUserName) {
-      localStorage.setItem('userName', newUserName)
-      state.userName = localStorage.getItem('userName')
-    },
-    mutationSetToken (state, newToken) {
-      localStorage.setItem('token', newToken)
-      state.token = localStorage.getItem('token')
-    },
-    mutationSetAuth (state) {
-      if (!state.auth) {
-        state.auth = true
-      } else {
-        state.auth = false
-      }
-    }
-  },
-  actions: {
-    actionSetToken ({commit, state}, newToken) {
-      commit('mutationSetToken', newToken)
-    },
-    actionSetUserName ({commit, state}, newUserName) {
-      commit('mutationSetUserName', newUserName)
-    },
-    actionSetAuth ({commit, state}) {
-      commit('mutationSetAuth')
-    }
-  },
-  getters: {
-    getToken: state => {
-      return state.token
-    },
-    getUserName: state => {
-      return state.userName
-    },
-    getAuth: state => {
-      if (state.auth) {
-        return true
-      } else {
-        return false
-      }
-    }
-  }
-}
+/*
 
 const PasswordModule = {
   namespaced: true,
@@ -133,17 +85,16 @@ const PasswordModule = {
     }
   }
 }
-
 const store = new Vuex.Store({
   modules: {
     UserModule: UserModule,
     PasswordModule: PasswordModule
   }
 })
+*/
 
 export default {
   name: 'app',
-  store: store,
   components: {
     PageHeader,
     PageHeaderMobile,
@@ -165,6 +116,14 @@ export default {
     closeLogin: function () {
       this.isLoginShow = false
     }
+  },
+  computed: {
+    modal () {
+      return this.$store.getters['ui/modal']
+    }
+  },
+  created: function () {
+    if (localStorage.getItem('userId') !== null && localStorage.getItem('token') !== null) this.$store.dispatch('user/loadUser')
   }
 }
 </script>
