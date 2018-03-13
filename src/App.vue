@@ -1,5 +1,7 @@
 <template lang="pug">
-div.page
+div.page(
+  v-bind:class='{ "is-modal": modal }'
+  )
 
   //- Header template Mobile
   PageHeaderMobile(
@@ -113,6 +115,11 @@ export default {
     },
     closeLogin: function () {
       this.isLoginShow = false
+    }
+  },
+  computed: {
+    modal () {
+      return this.$store.getters['ui/modal']
     }
   },
   created: function () {

@@ -7,7 +7,7 @@ const state = {
 
 // getters
 const getters = {
-
+  modal: state => state.modal
 }
 
 // actions
