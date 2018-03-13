@@ -1571,10 +1571,18 @@ body {
     color: #000;
     text-align: center; }
   .menu-social__list {
-    display: block;
-    margin: 0 auto; }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
   .menu-social__item {
-    display: inline-block; }
+    padding: 0 10px; }
     .menu-social__item span {
       display: none; } }
 

@@ -435,12 +435,11 @@
       text-align: center;
     }
     .menu-social__list {
-      display: block;
-      margin: 0 auto;
-      
+      @include flexbox;
+      @include justify-content(center);
     }
     .menu-social__item {
-      display: inline-block;
+      padding: 0 10px;
       span {
         display: none;
       }
