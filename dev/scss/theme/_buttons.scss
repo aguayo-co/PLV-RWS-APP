@@ -81,6 +81,22 @@
   }
 }
 
+.btn_edit {
+  display: block;
+  width: 26px;
+  height: 26px;
+  line-height: 24px;
+  text-align: center;
+  color: $c-neutro;
+  cursor: pointer;
+  background-color: $c-brand;
+  border-radius: 50%;
+  &:hover {
+    background-color: $c-default;
+  }
+}
+
+
 // $bp-medium: 768px;
 @include media-query(medium) {
   .btn {

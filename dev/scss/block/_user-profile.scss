@@ -5,15 +5,50 @@
     @include flexbox;
     @include flex-direction(column);
   }
+  .user-header-edit {
+    .form__edit {
+      padding: 5px 10px;
+      border: 1px solid $c-neutro-3;
+    }
+    .form__label {
+      color: $c-default-5;
+    }
+  }
+  .user-header-edit__item {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    color: $c-default;
+  }
+  .user-header-edit__grid {
+    @include flexbox;
+    @include justify-content(center);
+    @include flex-wrap(wrap);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 16px 0;
+    .form__row {
+      flex-grow: 1;
+      margin: 0 6px;
+    }
+    .form__label {
+      font-weight: $fw-regular;
+    }
+  }
 
   .user-data__title {
     padding-top: 16px;
     line-height: 1.2;
     text-align: center;
     text-transform: uppercase;
+    overflow-wrap: break-word;
     @include font-rem(20px);
     font-family: $f-fancy;
     font-weight: $fw-medium;
+  }
+  .user-edit__actions {
+    padding: 14px 0 0 16px;
   }
 
   .user-data__avatar {
@@ -40,6 +75,13 @@
     margin: 0;
     padding: 8px 0;
   }
+  .user-data-nav {
+    @include flexbox;
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+  }
+
 
   .user-data__value {
     color: $c-default-2;
@@ -101,15 +143,26 @@
       @include font-rem(32px);
     }
     .user-header {
-      @include flexbox;
       @include flex-direction(row);
-      @include align-items(center);
     }
     .user-data__title {
-      padding-top: 8px 0;
+      padding-top: 8px;
       text-align: left;
       @include font-rem(36px);
     }
+    .user-header-edit__item {
+      @include justify-content(start);
+      @include align-items(start);
+    }
+    .user-header-edit__grid {
+      @include justify-content(start);
+      margin: 0;
+    }
+
+    .user-edit__actions {
+      padding: 8px 0 0 16px;
+    }
+
     .user-data__avatar {
       margin-right: 28px;
     }

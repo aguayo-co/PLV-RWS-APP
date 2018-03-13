@@ -93,6 +93,7 @@ select {
     padding: 14px 24px;
   }
 
+
 // $bp-wide: 1024px;
 @include media-query(wide) {
   .form__set {
@@ -179,20 +180,25 @@ select {
     @include flex-direction (row); 
     @include justify-content(space-between);
     @include align-items(center);
-  }
-  .form__group {
-    @include justify-content(flex-end);
-    width: 50%;
-    padding-left: 8px;
-    .form__row {
-      flex-grow: 1;
+    .form__grid_group {
+      @include flex-direction (row);
+      @include justify-content(flex-end);
+      padding-bottom: 0;
+      width: 50%;
+      padding-left: 8px;
+      .form__row {
+        flex-grow: 1;
+        &:not(:last-child) {
+          margin-right: 12px;
+        }
+      }
     }
-
+      .form__grid-item {
+        width: 100%;
+        min-width: 100px;
+      }
   }
-  .form__group_item {
-    width: 100%;
-    min-width: 100px;
-  }
+  
 }
 
 

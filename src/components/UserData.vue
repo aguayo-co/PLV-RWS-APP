@@ -1,6 +1,5 @@
 <template lang="pug">
 section.single
-  //- <pre>{{ $data.user.addresses }}</pre>
   .single__inner
     //- User Profile
     header.single__header
@@ -31,11 +30,38 @@ section.single
                 :src="data.picture",
                 :alt="'Perfil' + ' ' + data.first_name")
           .user-header__item
-            h3.user-data__title
-              | {{ data.first_name }} {{ data.last_name }}
-            ul.user-data__list
-              li Cambiar contraseña   |
-              li Eliminar cuenta
+            .user-header-edit(
+              :class="{'user-header-edit_active' :editName == true}")
+              a.user-header-edit__item(
+                @click.prevent="EditName()",
+                href="#",
+                title="Editar Nombre y apellido")
+                h3.user-data__title
+                  | {{ data.first_name }} {{ data.last_name }}
+                span.user-edit__actions
+                  span.btn_edit.i-edit-line <small class="hide"> Editar </small>
+              transition(slide-toggle)
+                .user-header-edit__grid(
+                  v-show="editName == true")
+                  .form__row
+                    label.form__label(
+                      for='nombre') Editar Nombre
+                    input.form__edit(
+                      v-model='data.first_name',
+                      id='username'
+                    )
+                  .form__row
+                    label.form__label(
+                      for='apellidos') Editar Apellidos
+                    input.form__edit(
+                      v-model='data.last_name',
+                      id='userLast',
+                      type='text'
+                    )
+
+            ul.user-data-nav
+              li.user-data-nav__item Cambiar contraseña   |
+              li.user-data-nav__item Eliminar cuenta
             .user-data__notify
               ul.user-data__list
                 li.user-data__value.i-like 20
@@ -109,14 +135,14 @@ section.single
                           @click.prevent="NotActive(addressList)",
                           href="#",
                           title="Eliminar") Eliminar dirección
-                      .form__group
+                      .form__grid_group
                         .form__row
-                          a.btn.form__group_item(
+                          a.btn.form__grid-item(
                             @click.prevent="NotActive(addressList)",
                             href="#",
                             title="Cancelar Edición") Cancelar
                         .form__row
-                          a.btn.btn_solid.form__group_item(
+                          a.btn.btn_solid.form__grid-item(
                             @click.prevent="NotActive(addressList)",
                             href="#",
                             title="Guardar Cambios") Editar dirección
@@ -257,6 +283,7 @@ export default {
       isActive: '',
       selectAddress: '',
       newAddress: false,
+      editName: false,
       editEmail: false,
       editTel: false,
       user: [
@@ -313,6 +340,9 @@ export default {
     },
     NotActive: function (e) {
       this.isActive = ''
+    },
+    EditName: function () {
+      this.editName = !this.editName
     },
     NewAddress: function () {
       this.newAddress = !this.newAddress
