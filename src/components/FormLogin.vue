@@ -38,8 +38,8 @@ transition(name='modal-fade')
         .break
           span.break__txt O
         //- falta cerrar la modal
-        a.btn.btn_block(
-          href='#/SignUp',
+        router-link.btn.btn_block(
+          to='SignUp',
           title='Ir a Registro',
           @click='close') Regístrate
 </template>
