@@ -48,6 +48,7 @@ select {
   }
   .form__row_top {
     padding-top: 12px;
+    width: 100%;
   }
 
 
@@ -82,7 +83,7 @@ select {
     font-weight: $fw-regular;
   }
   .form__edit_txt {
-    
+    line-height: 1.4;
   }
 
 .form__grid_reverse {

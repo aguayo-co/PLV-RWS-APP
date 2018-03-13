@@ -19,7 +19,12 @@
     @include align-items(center);
     @include justify-content(center);
     color: $c-default;
+    &.edit__item_bottom {
+      @include align-items(flex-end);
+    }
+
   }
+  
   .user-header-edit__grid {
     @include flexbox;
     @include justify-content(center);
@@ -66,6 +71,12 @@
 
   .user-data__notify {
     padding: 8px 0;
+  }
+
+  .user-data__txt {
+    @include font-rem(16px);
+    line-height: 1.4;
+    margin: 0;
   }
 
   .user-data__list {

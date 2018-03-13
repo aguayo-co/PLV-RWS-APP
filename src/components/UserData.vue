@@ -77,7 +77,7 @@ section.single
 
         //-editar About perfil
         .user-header-edit
-          .user-header-edit__item
+          .user-header-edit__item.edit__item_bottom
             p.user-data__txt(
               v-if="editAbout == false",
               @click.prevent="EditAbout()") {{ data.about }}
