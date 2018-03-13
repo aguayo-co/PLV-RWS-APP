@@ -161,11 +161,11 @@
 
   //- menu footer
   ul.menu-footer
-    li.menu-footer__item 
+    li.menu-footer__item
       a.menu-footer__link(href="#") Ayuda
-    li.menu-footer__item 
+    li.menu-footer__item
       a.menu-footer__link(href="#") Nosotros
-    li.menu-footer__item 
+    li.menu-footer__item
       a.menu-footer__link(href="#") Contáctanos
 
   .menu-social.i-heart-on
