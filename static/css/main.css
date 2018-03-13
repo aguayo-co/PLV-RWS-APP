@@ -1184,7 +1184,7 @@ body {
   white-space: nowrap; }
 
 .user-auth__item:not(:last-child) .user-auth__link {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+  border-bottom: 1px solid #efefef; }
 
 .user-auth__link {
   display: block;
@@ -1215,8 +1215,7 @@ body {
 
 @media only screen and (min-width: 1280px) {
   .user-auth__menu {
-    left: 0;
-    right: initial; } }
+    right: 0; } }
 
 /*------------------------------------*	Page header menu
 \*------------------------------------*/
