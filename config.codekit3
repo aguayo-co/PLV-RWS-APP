@@ -30,6 +30,16 @@
 		"oAP": "\/.eslintignore",
 		"oF": 0
 		},
+	"\/.eslintrc-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/.eslintrc-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/.eslintrc.js": {
 		"ft": 64,
 		"ma": 0,
@@ -237,6 +247,32 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_dividers.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_dividers.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_layout-single.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_layout-single.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_menu.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -289,7 +325,7 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/dev\/scss\/block\/_page-header.scss": {
+	"\/dev\/scss\/block\/_product-slot.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -297,7 +333,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_page-header.css",
+		"oAP": "\/dev\/scss\/block\/_product-slot.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -1013,32 +1049,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/theme\/_anchor.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/theme\/_buttons.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/theme\/_buttons.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/theme\/_forms.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/theme\/_forms.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -2175,6 +2185,22 @@
 		"oAP": "\/build\/node_modules",
 		"oF": 0
 		},
+	"\/package-lock.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-lock-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/README.html": {
 		"cB": 0,
 		"ft": 8192,
@@ -2277,18 +2303,11 @@
 		"oAP": "\/src\/components\/FormPassEnd.vue",
 		"oF": 0
 		},
-	"\/src\/components\/FormSingUp-2.vue": {
+	"\/src\/components\/FormSignUp.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp-2.vue",
-		"oF": 0
-		},
-	"\/src\/components\/FormSingUp.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp.vue",
+		"oAP": "\/src\/components\/FormSignUp.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PageFooter.vue": {
@@ -2312,13 +2331,6 @@
 		"oAP": "\/src\/components\/PageHeader-menu.vue",
 		"oF": 0
 		},
-	"\/src\/components\/PageHeader-menuMobile.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/PageHeader-menuMobile.vue",
-		"oF": 0
-		},
 	"\/src\/components\/PageHeader-search.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2340,6 +2352,13 @@
 		"oAP": "\/src\/components\/PageHeaderMobile.vue",
 		"oF": 0
 		},
+	"\/src\/components\/ProductGrid.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/ProductGrid.vue",
+		"oF": 0
+		},
 	"\/src\/components\/ProductSlot.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2354,11 +2373,11 @@
 		"oAP": "\/src\/components\/SliderPrilovers.vue",
 		"oF": 0
 		},
-	"\/src\/components\/UserData.vue": {
+	"\/src\/components\/UserData-edit.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/components\/UserData.vue",
+		"oAP": "\/src\/components\/UserData-edit.vue",
 		"oF": 0
 		},
 	"\/src\/components\/UserMenu.vue": {
@@ -2399,11 +2418,11 @@
 		"oAP": "\/src\/pages\/Pass.vue",
 		"oF": 0
 		},
-	"\/src\/pages\/SingUp.vue": {
+	"\/src\/pages\/SignUp.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/pages\/SingUp.vue",
+		"oAP": "\/src\/pages\/SignUp.vue",
 		"oF": 0
 		},
 	"\/src\/pages\/User.vue": {

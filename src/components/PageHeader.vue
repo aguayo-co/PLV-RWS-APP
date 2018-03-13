@@ -19,7 +19,8 @@
             //-vue variable productos en el carrito
             small.badge 1
           //- Is authenticated
-          li.tool-user__item.tool-user__item_auth(v-if= 'getAuth')
+          li.tool-user__item.tool-user__item_auth(
+            v-if= 'getAuth')
             figure.tool-user__grid(
               @click='toggleBox()')
               small.badge.badge_user 2
@@ -40,7 +41,7 @@
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
-                      to="/user",
+                      to="user/data",
                       title="Ir a tu cuenta") Tu cuenta
                   li.user-auth__item
                     a.user-auth__link(
@@ -55,9 +56,9 @@
                       href="",
                       title="Ir a Centro de mensajes") Centro de mensajes
                   li.user-auth__item
-                    a.user-auth__link(
+                    router-link.user-auth__link(
                       @click='logout()'
-                      href="/home",
+                      to="/home",
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
           li.tool-user__item.i-user(v-else

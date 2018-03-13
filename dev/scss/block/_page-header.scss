@@ -211,7 +211,7 @@
   .user-auth__item {
     &:not(:last-child) {
       .user-auth__link {
-        border-bottom: 1px solid $c-neutro-2;
+        border-bottom: 1px solid $c-neutro-3;
       }
     }
   }
@@ -265,8 +265,7 @@
 // $bp-big: 1280px;
 @include media-query(big) {
   .user-auth__menu {
-    left: 0;
-    right: initial;
+    right: 0;
   }
 }
 

@@ -11,8 +11,8 @@
         span.menu-ico__line
         span.menu-ico__line
       //- brand
-      a.page-brand(
-        href='/',
+      router-link.page-brand(
+        to='/home',
         title='Ir a la página de inicio')
         PageHeaderBrand
     //- Menu
