@@ -46,6 +46,10 @@ select {
   .form__row {
     padding-bottom: 12px;
   }
+  .form__row_top {
+    padding-top: 12px;
+  }
+
 
   .form__row_away {
     padding-top: 12px;
@@ -76,6 +80,9 @@ select {
     @include font-rem(16px);
     font-family: $f-default;
     font-weight: $fw-regular;
+  }
+  .form__edit_txt {
+    
   }
 
 .form__grid_reverse {
