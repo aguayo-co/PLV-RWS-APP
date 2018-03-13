@@ -38,8 +38,8 @@
 
         .form__row
           input#check1.form__input-check(type="checkbox", name="checkbox", checked)
-          label.form__label.form__label_check.i-ok(for="check1") Estoy de acuerdo con la
-            a.form__label-link(href="#")  politica de privacidad
+          label.form__label.form__label_check.i-ok(for="check1") Estoy de acuerdo con la&nbsp;
+            a.form__label-link(href="#") politica de privacidad
             |  de Prilov
 </template>
 
