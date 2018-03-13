@@ -656,12 +656,89 @@ select {
   background-color: #fff;
   background-image: url(../../static/img/arrow-select.svg);
   background-size: 11px 9px;
-  background-position: 97% center;
+  background-position: 98% center;
   background-repeat: no-repeat;
   -webkit-appearance: none;
   -moz-appearance: none;
   padding-right: 0\0;
   background: none\0; }
+
+.form__textarea {
+  width: 100%;
+  padding: 10px 12px;
+  line-height: 1.4;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 1px solid #4a4a4a; }
+
+.form__input-radio {
+  position: absolute;
+  z-index: -1; }
+  .form__input-radio:checked + .form__label_radio:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 1;
+    width: 9px;
+    height: 9px;
+    font-size: 12px;
+    font-size: 0.75rem;
+    color: #000;
+    border-radius: 50%;
+    background-color: #fe7676; }
+
+.form__label_radio {
+  position: relative;
+  padding-left: 28px;
+  font-weight: 400; }
+  .form__label_radio strong {
+    display: block; }
+  .form__label_radio:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 2px solid #cbcbcb;
+    border-radius: 50%; }
+
+.form__input-check {
+  position: absolute;
+  z-index: -1; }
+  .form__input-check:checked + .form__label_check:before {
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    z-index: 1;
+    display: block;
+    font-size: 8px;
+    font-size: 0.5rem;
+    font-weight: 700;
+    color: #fe7676;
+    border-radius: 50%; }
+
+.form__label_check {
+  position: relative;
+  padding-left: 28px;
+  font-weight: 400;
+  color: #9b9b9b; }
+  .form__label_check:before {
+    display: none; }
+  .form__label_check:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 2px solid #cbcbcb;
+    border-radius: 3px; }
+
+.form__label-link {
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #fe7676; }
 
 @media only screen and (min-width: 1024px) {
   .form__set {
