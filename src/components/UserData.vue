@@ -16,6 +16,7 @@ section.single
       v-for="data in user")
       //-TO-DO if AUTH datos dinámicos USER
       form.form(
+        id="form-user-data"
         v-on:submit='',
         action='#',
         method='post')
@@ -70,6 +71,13 @@ section.single
               ul.user-data__list
                 li.user-data__track {{ data.followers_count }} Seguidores
                 li.user-data__track {{ data.following_count }} Siguiendo
+        .form__row_top
+          p.user-data__about {{ data.about }}
+          textarea.form-txt-edit(
+            v-model="data.about",
+            name="about",
+            maxlength="340",
+            form="form-user-data")
         .user-data__actions
           a.btn.btn_small.i-start-line(
             href="#",
