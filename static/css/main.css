@@ -690,6 +690,38 @@ select {
       .form__group .form__row:not(:last-child) {
         margin-right: 12px; } }
 
+.help {
+  background-color: #efefef; }
+  .help ul {
+    padding: 8px 29px; }
+    .help ul li {
+      line-height: 1.4; }
+  .help a {
+    border-bottom: 2px solid #fe7676;
+    color: #000;
+    font-weight: 700; }
+
+.is-danger .form__control {
+  border: 1px solid #fe7676; }
+
+.is-danger .help {
+  position: relative;
+  display: block;
+  padding: 5px 8px;
+  line-height: 1.2;
+  color: #fff;
+  background-color: #fe7676; }
+  .is-danger .help:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -9px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 10px 0 10px;
+    border-color: #fe7676 transparent transparent transparent; }
+
 @media only screen and (min-width: 1080px) {
   .form__grid_reverse {
     -webkit-box-direction: normal;
@@ -1554,7 +1586,57 @@ body {
     padding: 18px 16px 18px 28px;
     color: #000;
     font-size: 18px;
-    font-size: 1.125rem; } }
+    font-size: 1.125rem; }
+  .menu-footer {
+    padding: 35px 0 20px 50px;
+    color: #000; }
+  .menu-footer__item {
+    display: block;
+    margin-bottom: 10px; }
+  .menu-footer__link {
+    display: inline-block;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 2px solid #fe7676; }
+  .menu-social {
+    position: relative;
+    padding: 46px 0 42px;
+    background-color: #f6f6f6; }
+    .menu-social:before {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      z-index: 4;
+      display: block;
+      color: #fe7676;
+      font-size: 24px;
+      font-size: 1.5rem;
+      -ms-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%); }
+  .menu-social__title {
+    padding-bottom: 20px;
+    margin: 0;
+    color: #000;
+    text-align: center;
+    font-weight: 700; }
+  .menu-social__list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+  .menu-social__item {
+    padding: 0 10px; }
+    .menu-social__item span {
+      display: none; } }
 
 @media only screen and (min-width: 1024px) {
   .menu {

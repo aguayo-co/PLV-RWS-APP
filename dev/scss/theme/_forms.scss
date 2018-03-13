@@ -132,6 +132,49 @@ select {
   }
 }
 
+  // Errores de formlario
+
+  .help {
+    background-color: $c-neutro-3;
+    ul {
+      padding: 8px 29px;
+      li {
+        line-height: 1.4;
+      }
+    }
+    a {
+      border-bottom: 2px solid $c-brand;
+      color: $c-default;
+      font-weight: $fw-bold;
+    }
+  }
+
+  .is-danger {
+    .form__control {
+      border: 1px solid $c-brand; 
+    }
+    .help {
+      position: relative;
+      display: block;
+      padding: 5px 8px;
+      line-height: 1.2;
+      color: $c-neutro;
+      background-color: $c-brand;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        bottom: -9px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 9px 10px 0 10px;
+        border-color: $c-brand transparent transparent transparent;
+      }
+    }
+  }
+
+
 @media only screen and (min-width: 1080px) {
   .form__grid_reverse {
     @include flex-direction (row); 
