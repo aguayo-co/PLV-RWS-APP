@@ -1,30 +1,31 @@
 <template lang="pug">
-div.page
+body.theme
+  div.page
 
-  //- Header template Mobile
-  PageHeaderMobile(
-    v-if="mqMobile")
-  //- Header template desktop
-  PageHeader(
-    @open='openLogin',
-    v-if="mqDesk")
+    //- Header template Mobile
+    PageHeaderMobile(
+      v-if="mqMobile")
+    //- Header template desktop
+    PageHeader(
+      @open='openLogin',
+      v-if="mqDesk")
 
-  //- main content
-  main.content-main
+    //- main content
+    main.content-main
 
-    //- Router Page
-    router-view
-  //- footer template Mobile
-  //- Componente PageFooterMobile.vue
-  PageFooterMobile(
-    v-if="mqMobile")
-  //- footer template desktop
-  PageFooter(
-    v-if="mqDesk")
-  //- Modal Login
-  FormLogin(
-    v-show='isLoginShow'
-    @close='closeLogin')
+      //- Router Page
+      router-view
+    //- footer template Mobile
+    //- Componente PageFooterMobile.vue
+    PageFooterMobile(
+      v-if="mqMobile")
+    //- footer template desktop
+    PageFooter(
+      v-if="mqDesk")
+    //- Modal Login
+    FormLogin(
+      v-show='isLoginShow'
+      @close='closeLogin')
 </template>
 
 <script>
