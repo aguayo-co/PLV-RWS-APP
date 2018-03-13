@@ -273,19 +273,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/dev\/scss\/block\/_menu.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_menu.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
 	"\/dev\/scss\/block\/_modal.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -2514,16 +2501,6 @@
 		"oA": 0,
 		"oAP": "\/static\/.gitkeep",
 		"oF": 0
-		},
-	"\/static\/css\/main.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/static\/css\/main-min.css",
-		"oF": 0,
-		"oS": 3
 		},
 	"\/static\/fonts\/ico-prilov.eot": {
 		"cB": 0,
