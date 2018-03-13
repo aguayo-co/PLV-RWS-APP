@@ -62,9 +62,9 @@ section.single
                     )
 
             //-Enlaces Modal
-            ul.user-data-nav
-              li.user-data-nav__item Cambiar contraseña   |
-              li.user-data-nav__item Eliminar cuenta
+            //- ul.user-data-nav
+            //-   li.user-data-nav__item Cambiar contraseña   |
+            //-   li.user-data-nav__item Eliminar cuenta
             //-Notificaciones
             .user-data__notify
               ul.user-data__list
@@ -77,12 +77,12 @@ section.single
 
         //-editar About perfil
         .user-header-edit
-          .user-header-edit__item.edit__item_bottom
+          .user-header-edit__item.edit__item_top
             .form__row_top
               p.user-data__txt(
                 v-if="editAbout == false",
                 @click.prevent="EditAbout()") {{ data.about }}
-              textarea.form__edit.form__edit_txt(
+              textarea.form__edit_txt(
                 v-model="data.about",
                 name="about",
                 maxlength="340",

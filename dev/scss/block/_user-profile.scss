@@ -19,13 +19,14 @@
     @include align-items(center);
     @include justify-content(center);
     color: $c-default;
-    &.edit__item_bottom {
+    &.edit__item_top {
       @include align-items(start);
       .user-edit__actions {
-        margin-top: 12px;
+        margin-top: 16px;
       }
     }
   }
+
   
   .user-header-edit__grid {
     @include flexbox;
@@ -76,10 +77,12 @@
   }
 
   .user-data__txt {
-    @include font-rem(16px);
-    line-height: 1.4;
+    width: 100%;
     margin: 0;
-    padding: 8px;
+    padding: 6px;
+    line-height: 1.4;
+    @include font-rem(16px);
+    border: 1px solid $c-neutro;
   }
 
   .user-data__list {
@@ -95,7 +98,6 @@
     margin: 0;
     padding: 8px 0;
   }
-
 
   .user-data__value {
     color: $c-default-2;

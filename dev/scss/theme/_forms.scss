@@ -74,21 +74,23 @@ select {
   }
   .form__edit {
     width: 100%;
-    color: $c-default-5;
     line-height: 1.6;
+    color: $c-default-5;
     @include font-rem(16px);
     font-family: $f-default;
     font-weight: $fw-regular;
   }
   .form__edit_txt {
     width: 100%;
+    min-height: 170px;
     padding: 6px;
-    border: 1px transparent solid;
     line-height: 1.4;
     color: $c-default-5;
     @include font-rem(16px);
     font-family: $f-default;
     font-weight: $fw-regular;
+    border: 1px solid $c-neutro-3;
+
   }
 
 .form__grid_reverse {
@@ -124,6 +126,14 @@ select {
   -moz-appearance:    none;
   padding-right:0\0;
   background: none\0;
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .form__edit_txt {
+    width: 100%;
+    min-height: 100px;
+  }
 }
 
 // $bp-wide: 1024px;
