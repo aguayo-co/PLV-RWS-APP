@@ -20,9 +20,11 @@
     @include justify-content(center);
     color: $c-default;
     &.edit__item_bottom {
-      @include align-items(flex-end);
+      @include align-items(start);
+      .user-edit__actions {
+        margin-top: 12px;
+      }
     }
-
   }
   
   .user-header-edit__grid {
@@ -77,6 +79,7 @@
     @include font-rem(16px);
     line-height: 1.4;
     margin: 0;
+    padding: 8px;
   }
 
   .user-data__list {

@@ -613,7 +613,15 @@ select {
   font-weight: 400; }
 
 .form__edit_txt {
-  line-height: 1.4; }
+  width: 100%;
+  padding: 6px;
+  border: 1px transparent solid;
+  line-height: 1.4;
+  color: #707070;
+  font-size: 16px;
+  font-size: 1rem;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400; }
 
 .form__grid_reverse {
   display: -webkit-box;
@@ -687,6 +695,7 @@ select {
     -moz-align-items: center;
     align-items: center; }
     .form__grid .form__row {
+      width: 50%;
       flex-grow: 1; }
       .form__grid .form__row:not(:last-child) {
         margin-right: 12px; }
@@ -3090,11 +3099,13 @@ body {
   justify-content: center;
   color: #000; }
   .user-header-edit__item.edit__item_bottom {
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    -webkit-align-items: flex-end;
-    -moz-align-items: flex-end;
-    align-items: flex-end; }
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: start;
+    -moz-align-items: start;
+    align-items: start; }
+    .user-header-edit__item.edit__item_bottom .user-edit__actions {
+      margin-top: 12px; }
 
 .user-header-edit__grid {
   display: -webkit-box;
@@ -3153,7 +3164,8 @@ body {
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.4;
-  margin: 0; }
+  margin: 0;
+  padding: 8px; }
 
 .user-data__list {
   display: -webkit-box;

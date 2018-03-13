@@ -50,8 +50,6 @@ select {
     padding-top: 12px;
     width: 100%;
   }
-
-
   .form__row_away {
     padding-top: 12px;
   }
@@ -83,7 +81,14 @@ select {
     font-weight: $fw-regular;
   }
   .form__edit_txt {
+    width: 100%;
+    padding: 6px;
+    border: 1px transparent solid;
     line-height: 1.4;
+    color: $c-default-5;
+    @include font-rem(16px);
+    font-family: $f-default;
+    font-weight: $fw-regular;
   }
 
 .form__grid_reverse {
@@ -133,6 +138,7 @@ select {
     @include align-items(center);
 
     .form__row {
+      width: 50%;
       flex-grow: 1;
       &:not(:last-child) {
         margin-right: 12px;
@@ -227,8 +233,6 @@ select {
   }
   
 }
-
-
 
 /*------------------------------------*\
 	Mensajes formulario
