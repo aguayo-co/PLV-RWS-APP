@@ -578,6 +578,9 @@ select {
 .form__row {
   padding-bottom: 12px; }
 
+.form__row_top {
+  padding-top: 12px; }
+
 .form__row_away {
   padding-top: 12px; }
 

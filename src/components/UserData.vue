@@ -16,6 +16,7 @@ section.single
       v-for="data in user")
       //-TO-DO if AUTH datos dinámicos USER
       form.form(
+        id="form-user-data"
         v-on:submit='',
         action='#',
         method='post')
@@ -40,6 +41,7 @@ section.single
                   | {{ data.first_name }} {{ data.last_name }}
                 span.user-edit__actions
                   span.btn_edit.i-edit-line <small class="hide"> Editar </small>
+              //-TO-do animate slide
               transition(slide-toggle)
                 .user-header-edit__grid(
                   v-show="editName == true")
@@ -59,9 +61,11 @@ section.single
                       type='text'
                     )
 
+            //-Enlaces Modal
             ul.user-data-nav
               li.user-data-nav__item Cambiar contraseña   |
               li.user-data-nav__item Eliminar cuenta
+            //-Notificaciones
             .user-data__notify
               ul.user-data__list
                 li.user-data__value.i-like 20
@@ -70,11 +74,32 @@ section.single
               ul.user-data__list
                 li.user-data__track {{ data.followers_count }} Seguidores
                 li.user-data__track {{ data.following_count }} Siguiendo
+
+        //-editar About perfil
+        .user-header-edit
+          .user-header-edit__item
+            p.user-data__txt(
+              v-if="editAbout == false",
+              @click.prevent="EditAbout()") {{ data.about }}
+            .form__row_top(
+              v-if="editAbout == true")
+              textarea.form__edit.form__edit_txt(
+                v-model="data.about",
+                name="about",
+                maxlength="340",
+                form="form-user-data")
+            a.user-edit__actions(
+              @click.prevent="EditAbout()",
+              href="#"
+              title="Editar perfil")
+              span.btn_edit.i-edit-line <small class="hide"> Editar </small>
+        //-Btn Prilovers Star
         .user-data__actions
           a.btn.btn_small.i-start-line(
             href="#",
             title="Ser Priloverstar") Ser Prilovestar
 
+        //-Información direcciones
         .user-data_info
           legend.subhead Direcciones
           ul.dividers
@@ -302,6 +327,7 @@ export default {
       selectAddress: '',
       newAddress: false,
       editName: false,
+      editAbout: false,
       editEmail: false,
       editTel: false,
       user: [
@@ -361,6 +387,9 @@ export default {
     },
     EditName: function () {
       this.editName = !this.editName
+    },
+    EditAbout: function () {
+      this.editAbout = !this.editAbout
     },
     NewAddress: function () {
       this.newAddress = !this.newAddress
