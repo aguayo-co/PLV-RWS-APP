@@ -26,10 +26,14 @@
               span.tool-user__avatar
                 //-vue variable Notificaciones usuario
                 img.tool-user__photo(
-                  src='/static/img/demo/user-avatar.jpg',
+                  v-if='user.picture'
+                  src='user.picture',
                   alt='')
+                span.tool-user__letter(
+                  v-else
+                ) {{ user.first_name.charAt(0) }}
               //-vue variable user name
-              figcaption.tool-user__name {{getName}}
+              figcaption.tool-user__name {{ user.first_name }}
             transition(name='toggle-scale')
               .user-auth__menu.toggle-box(
                   v-show='active')
@@ -89,22 +93,15 @@ export default {
       this.active = !this.active
     },
     logout: function () {
-      this.$store.dispatch('UserModule/actionSetToken', null)
-      this.$store.dispatch('UserModule/actionSetAuth')
-      localStorage.setItem('token', null)
-      this.$store.dispatch('UserModule/actionSetUserName', '')
+      this.$store.dispatch('user/logOut')
     }
   },
   computed: {
-    getName () {
-      return this.$store.getters['UserModule/getUserName']
+    user () {
+      return this.$store.state['user']
     },
     getAuth () {
-      if (this.$store.getters['UserModule/getAuth'] !== null && this.getName !== '') {
-        return true
-      } else {
-        return false
-      }
+      return this.$store.getters['user/auth']
     }
   }
 }

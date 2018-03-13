@@ -80,6 +80,7 @@ export default {
     },
     toggleNav: function () {
       this.active = !this.active
+      this.$store.dispatch('switchModal')
     },
     handler: function () {
       this.fixPosition()
@@ -96,6 +97,7 @@ export default {
     })
       .then(response => {
         this.menu = response.data.data[0].items[0]
+        this.selected = this.menu.children[0]
       })
       .catch(e => {
         console.log('ERROR : ' + e)
