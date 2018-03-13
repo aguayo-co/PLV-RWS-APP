@@ -16,6 +16,7 @@ select {
   -webkit-border-radius: 0;
 }
 
+
 /*------------------------------------*\
 	Elementos Formularios
 \*------------------------------------*/
@@ -23,6 +24,25 @@ select {
 .form {
   color: $c-default;
 }
+.form__set {
+  border: none;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.form__legend {
+  padding-bottom: 24px;
+  margin: 0;
+  text-transform: uppercase;
+  @include font-rem(18px);
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+}
+ .form__grid_center {
+   text-align: center;
+ }
+
+
   .form__row {
     padding-bottom: 12px;
   }
@@ -34,7 +54,6 @@ select {
   .form__btn {
     text-align: center;
   }
-
 
   .form__label {
     display: block;
@@ -50,106 +69,139 @@ select {
     font-family: $f-default;
     border: 1px solid $c-default-2;
   }
-  //componente VuePassword
-  .VuePassword__Input {
-    .input {
-      width: 100%;
-      padding: 0 12px;
-      margin-bottom: 12px;
-      line-height: 40px;
-      font-family: $f-default;
-      border: 1px solid $c-default-2;
+  .form__edit {
+    width: 100%;
+    color: $c-default-5;
+    line-height: 1.6;
+    @include font-rem(16px);
+    font-family: $f-default;
+    font-weight: $fw-regular;
+  }
+
+.form__grid_reverse {
+  @include flexbox;
+  @include justify-content(center);
+  @include flex-direction (column-reverse);
+  text-align: center;
+  .form__grid_group {
+    @include flexbox;
+    @include flex-direction (column-reverse);
+    padding-bottom: 20px;
+  }
+}
+  .form__group-item {
+    padding: 14px 24px;
+  }
+
+
+// $bp-wide: 1024px;
+@include media-query(wide) {
+  .form__set {
+    max-width: 100%;
+  }
+
+  .form__grid {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+
+    .form__row {
+      flex-grow: 1;
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
     }
   }
 
-  .VuePassword {
-     .VuePassword__Toggle {
-       height: 42px;
-       .VuePassword__Toggle__Icon {
-          fill: $c-default-4;
-       }
-     }
-    // alerta seguridad
-    .VuePassword__Meter {
-      display: none;
+  .form__grid_center {
+    @include justify-content(center);
+    .form__row {
+      flex-grow: 0;
     }
-    //Alerta seguridad mensaje
-    .VuePassword__Message {
+  }
+
+  .form__group {
+    @include flexbox;
+    @include justify-content(center); 
+    .form__row {
+      flex-grow: 0;
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+}
+
+  // Errores de formlario
+
+  .help {
+    background-color: $c-neutro-3;
+    ul {
+      padding: 8px 29px;
+      li {
+        line-height: 1.4;
+      }
+    }
+    a {
+      border-bottom: 2px solid $c-brand;
+      color: $c-default;
+      font-weight: $fw-bold;
+    }
+  }
+
+  .is-danger {
+    .form__control {
+      border: 1px solid $c-brand; 
+    }
+    .help {
       position: relative;
       display: block;
-      width: 100%;
-      height: 0;
-      margin-top: -6px;
-      margin-bottom: 6px;
-      padding-right: 4px;
-      opacity: 0;
-      text-transform: capitalize;
-      @include font-rem(14px);
-      transition: all .2s ease-out;
-
-      &:before,
-      &:after {
+      padding: 5px 8px;
+      line-height: 1.2;
+      color: $c-neutro;
+      background-color: $c-brand;
+      &:before {
         content: '';
         position: absolute;
-        top: 50%;
-        display: block;
-        height: 4px;
-        border-radius: 25px;
-      }
-      &:before {
-        left: 0;
-        width: 80%;
-        margin-top: -3px;
-        border: 1px solid $c-default-3;
-      }
-      &:after {
-        left: 1px;
+        left: 10px;
+        bottom: -9px;
         width: 0;
-        margin-top: -2px;
-        transition: all .2s ease-out;
-      }
-    }
-
-    // alerta seguridad bg
-    .VuePassword--great,
-    .VuePassword--good,
-    .VuePassword--medium,
-    .VuePassword--weak,
-    .VuePassword--very-weak {
-      height: 20px;
-      opacity: 1;
-      color: $c-default-4;
-      &:after {
-        background-color: $c-brand;
-      }
-    }
-
-    .VuePassword--great {
-      &:after {
-        width: 80%;
-      }
-    }
-    .VuePassword--good {
-      &:after {
-        width: 65%;
-      }
-    }
-    .VuePassword--medium {
-      &:after {
-        width: 44%;
-      }
-    }
-    .VuePassword--weak {
-      &:after {
-        width: 20%;
-      }
-    }
-    .VuePassword--very-weak {
-      &:after {
-        width: 5%;
+        height: 0;
+        border-style: solid;
+        border-width: 9px 10px 0 10px;
+        border-color: $c-brand transparent transparent transparent;
       }
     }
   }
+
+
+@media only screen and (min-width: 1080px) {
+  .form__grid_reverse {
+    @include flex-direction (row); 
+    @include justify-content(space-between);
+    @include align-items(center);
+    .form__grid_group {
+      @include flex-direction (row);
+      @include justify-content(flex-end);
+      padding-bottom: 0;
+      width: 50%;
+      padding-left: 8px;
+      .form__row {
+        flex-grow: 1;
+        &:not(:last-child) {
+          margin-right: 12px;
+        }
+      }
+    }
+      .form__grid-item {
+        width: 100%;
+        min-width: 100px;
+      }
+  }
+  
+}
+
+
 
 /*------------------------------------*\
 	Mensajes formulario
@@ -195,3 +247,107 @@ select {
 /*------------------------------------*\
 	 Mensajes Error
 \*------------------------------------*/
+  // .form__edit:-webkit-autofill,
+  // .form__edit:-webkit-autofill:hover,
+  // .form__edit:-webkit-autofill:focus .form__edit:-webkit-autofill,
+  // .form__edit:-webkit-autofill:hover .form__edit:-webkit-autofill:focus {
+  //   -webkit-text-fill-color: $c-default;
+  //   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  //   transition: background-color 5000s ease-in-out 0s;
+  // }
+  //componente VuePassword
+  // .VuePassword__Input {
+  //   .input {
+  //     width: 100%;
+  //     padding: 0 12px;
+  //     margin-bottom: 12px;
+  //     line-height: 40px;
+  //     font-family: $f-default;
+  //     border: 1px solid $c-default-2;
+  //   }
+  // }
+  // .VuePassword {
+  //    .VuePassword__Toggle {
+  //      height: 42px;
+  //      .VuePassword__Toggle__Icon {
+  //         fill: $c-default-4;
+  //      }
+  //    }
+  //   // alerta seguridad
+  //   .VuePassword__Meter {
+  //     display: none;
+  //   }
+  //   //Alerta seguridad mensaje
+  //   .VuePassword__Message {
+  //     position: relative;
+  //     display: block;
+  //     width: 100%;
+  //     height: 0;
+  //     margin-top: -6px;
+  //     margin-bottom: 6px;
+  //     padding-right: 4px;
+  //     opacity: 0;
+  //     text-transform: capitalize;
+  //     @include font-rem(14px);
+  //     transition: all .2s ease-out;
+  //     &:before,
+  //     &:after {
+  //       content: '';
+  //       position: absolute;
+  //       top: 50%;
+  //       display: block;
+  //       height: 4px;
+  //       border-radius: 25px;
+  //     }
+  //     &:before {
+  //       left: 0;
+  //       width: 80%;
+  //       margin-top: -3px;
+  //       border: 1px solid $c-default-3;
+  //     }
+  //     &:after {
+  //       left: 1px;
+  //       width: 0;
+  //       margin-top: -2px;
+  //       transition: all .2s ease-out;
+  //     }
+  //   }
+  //   // alerta seguridad bg
+  //   .VuePassword--great,
+  //   .VuePassword--good,
+  //   .VuePassword--medium,
+  //   .VuePassword--weak,
+  //   .VuePassword--very-weak {
+  //     height: 20px;
+  //     opacity: 1;
+  //     color: $c-default-4;
+  //     &:after {
+  //       background-color: $c-brand;
+  //     }
+  //   }
+  //   .VuePassword--great {
+  //     &:after {
+  //       width: 80%;
+  //     }
+  //   }
+  //   .VuePassword--good {
+  //     &:after {
+  //       width: 65%;
+  //     }
+  //   }
+  //   .VuePassword--medium {
+  //     &:after {
+  //       width: 44%;
+  //     }
+  //   }
+  //   .VuePassword--weak {
+  //     &:after {
+  //       width: 20%;
+  //     }
+  //   }
+  //   .VuePassword--very-weak {
+  //     &:after {
+  //       width: 5%;
+  //     }
+  //   }
+  // }
