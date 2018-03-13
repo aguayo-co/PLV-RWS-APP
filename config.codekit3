@@ -1092,6 +1092,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/theme\/_forms.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/theme\/_forms.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/theme\/_layout.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1606,6 +1619,16 @@
 		"oA": 0,
 		"oAP": "\/dist\/static\/fonts\/ico-prilov.woff",
 		"oF": 0
+		},
+	"\/dist\/static\/img\/arrow-select.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/static\/img\/arrow-select.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/dist\/static\/img\/brand-prilov.png": {
 		"ft": 32768,
@@ -2426,6 +2449,13 @@
 		"oAP": "\/src\/components\/UserData-edit.vue",
 		"oF": 0
 		},
+	"\/src\/components\/UserData.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/UserData.vue",
+		"oF": 0
+		},
 	"\/src\/components\/UserMenu.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2495,6 +2525,16 @@
 		"oAP": "\/static\/.gitkeep",
 		"oF": 0
 		},
+	"\/static\/css\/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/static\/css\/main-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/static\/fonts\/ico-prilov.eot": {
 		"cB": 0,
 		"ft": 8192,
@@ -2525,6 +2565,16 @@
 		"oA": 0,
 		"oAP": "\/static\/fonts\/ico-prilov.woff",
 		"oF": 0
+		},
+	"\/static\/img\/arrow-select.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/static\/img\/arrow-select.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/static\/img\/brand-prilov.png": {
 		"ft": 32768,
