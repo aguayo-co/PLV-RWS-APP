@@ -135,25 +135,34 @@ section.single
                       .form__row
                         label.form__label(
                           :for="addressList.id + 'region'") Región
-                        input.form__control(
-                          :id="addressList.id  + 'region'",
-                          v-model='addressList.region',
-                          type='text')
+                        select.form__select
+                          option 
+                          option item2
+                          option item3
+                          option item4
+                          option item5
+                          option item6
                     .form__grid
                       .form__row
                         label.form__label(
                           :for="addressList.id  + 'city'") Ciudad
-                        input.form__control(
-                          :id="addressList.id  + 'city'",
-                          v-model="addressList.city",
-                          type='text')
+                        select.form__select
+                          option 
+                          option item2
+                          option item3
+                          option item4
+                          option item5
+                          option item6
                       .form__row
                         label.form__label(
                           :for="addressList.id + 'comuna'") Comuna
-                        input.form__control(
-                          :id="addressList.id + 'comuna'",
-                          v-model="addressList.zone",
-                          type='text')
+                        select.form__select
+                          option 
+                          option item2
+                          option item3
+                          option item4
+                          option item5
+                          option item6
                     .form__grid_reverse.form__row_away
                       .form__row
                         a.link_underline(
@@ -219,25 +228,34 @@ section.single
                     .form__row
                       label.form__label(
                         for='new-address-region') Región
-                      input.form__control(
-                        id='new-address-region',
-                        v-model='data.addresses.region',
-                        type='text')
+                      select.form__select
+                        option 
+                        option item2
+                        option item3
+                        option item4
+                        option item5
+                        option item6
                   .form__grid
                     .form__row
                       label.form__label(
                         for='new-address-city') Ciudad
-                      input.form__control(
-                        id='new-address-city',
-                        v-model="data.addresses.city",
-                        type='text')
+                      select.form__select
+                        option 
+                        option item2
+                        option item3
+                        option item4
+                        option item5
+                        option item6
                     .form__row
                       label.form__label(
                         for='new-address-zone') Comuna
-                      input.form__control(
-                        id='new-address-zone'
-                        v-model="data.addresses.zone",
-                        type='text')
+                      select.form__select
+                        option 
+                        option item2
+                        option item3
+                        option item4
+                        option item5
+                        option item6
 
                   .form__grid.form__grid_center.form__row_away
                     .form__row
