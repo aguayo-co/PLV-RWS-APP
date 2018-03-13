@@ -1566,10 +1566,40 @@ body {
     font-size: 18px;
     font-size: 1.125rem; }
   .menu-footer {
+    padding: 35px 0 20px 50px;
     color: #000; }
-  .menu-social__title {
+  .menu-footer__item {
+    display: block;
+    margin-bottom: 10px; }
+  .menu-footer__link {
+    display: inline-block;
+    font-weight: 700;
     color: #000;
-    text-align: center; }
+    border-bottom: 2px solid #fe7676; }
+  .menu-social {
+    position: relative;
+    padding: 46px 0 42px;
+    background-color: #f6f6f6; }
+    .menu-social:before {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      z-index: 4;
+      display: block;
+      color: #fe7676;
+      font-size: 24px;
+      font-size: 1.5rem;
+      -ms-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%); }
+  .menu-social__title {
+    padding-bottom: 20px;
+    margin: 0;
+    color: #000;
+    text-align: center;
+    font-weight: 700; }
   .menu-social__list {
     display: -webkit-box;
     display: -webkit-flex;
