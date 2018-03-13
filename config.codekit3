@@ -7,7 +7,7 @@
 		"uuidString": "9F145909-4507-4002-BCE4-8387D2944E41"
 		}
 	],
-"creatorBuild": "26148",
+"creatorBuild": "26268",
 "files": {
 	"\/.babelrc": {
 		"cB": 0,
@@ -237,6 +237,32 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_dividers.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_dividers.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_layout-single.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_layout-single.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_menu.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -350,6 +376,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_user-menu.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_user-profile.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_user-profile.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -2306,13 +2345,6 @@
 		"oAP": "\/src\/components\/FormPassEnd.vue",
 		"oF": 0
 		},
-	"\/src\/components\/FormSingUp-2.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp-2.vue",
-		"oF": 0
-		},
 	"\/src\/components\/FormSingUp.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2388,6 +2420,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/SliderPrilovers.vue",
+		"oF": 0
+		},
+	"\/src\/components\/UserData-edit.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/UserData-edit.vue",
 		"oF": 0
 		},
 	"\/src\/components\/UserData.vue": {
@@ -2520,7 +2559,7 @@
 		},
 	"\/static\/img\/demo\/banner-001.jpg": {
 		"ft": 16384,
-		"iS": 120102,
+		"iS": 104371,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-001.jpg",
 		"oF": 0,
@@ -2530,7 +2569,7 @@
 		},
 	"\/static\/img\/demo\/banner-002.jpg": {
 		"ft": 16384,
-		"iS": 262606,
+		"iS": 298179,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-002.jpg",
 		"oF": 0,
@@ -2550,7 +2589,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m1.jpg": {
 		"ft": 16384,
-		"iS": 88482,
+		"iS": 92748,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m1.jpg",
 		"oF": 0,
@@ -2560,7 +2599,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider-m2.jpg": {
 		"ft": 16384,
-		"iS": 85290,
+		"iS": 75316,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider-m2.jpg",
 		"oF": 0,
@@ -2570,7 +2609,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider1.jpg": {
 		"ft": 16384,
-		"iS": 123923,
+		"iS": 132936,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider1.jpg",
 		"oF": 0,
@@ -2580,7 +2619,7 @@
 		},
 	"\/static\/img\/demo\/banner-slider2.jpg": {
 		"ft": 16384,
-		"iS": 165340,
+		"iS": 142676,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/banner-slider2.jpg",
 		"oF": 0,
@@ -2750,7 +2789,7 @@
 		},
 	"\/static\/img\/demo\/user-avatar-007.jpg": {
 		"ft": 16384,
-		"iS": 24266,
+		"iS": 21937,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/user-avatar-007.jpg",
 		"oF": 0,
@@ -2892,6 +2931,7 @@
 	"animateCSSInjections": 1,
 	"autoBuildNewItems": 1,
 	"autoprefixerBrowserString": "> 1%, last 2 versions, Firefox ESR, Opera 12.1",
+	"autoprefixerEnableIEGrid": 0,
 	"babelAuxiliaryCommentAfter": "",
 	"babelAuxiliaryCommentBefore": "",
 	"babelConfigFileHandlingType": 0,
@@ -3455,6 +3495,10 @@
 		"id-match": {
 			"active": 0,
 			"optionString": "'^[a-z]+([A-Z][a-z]+)*$', {'properties': false, 'onlyDeclarations': true}"
+			},
+		"implicit-arrow-linebreak": {
+			"active": 0,
+			"optionString": "'beside'"
 			},
 		"indent": {
 			"active": 0,

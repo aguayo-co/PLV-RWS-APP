@@ -30,10 +30,14 @@
     padding-right: 12px;
   }
 }
+.btn_small {
+  width: auto;
+  padding: 14px 24px;
+}
+
 
 .btn_solid {
   color: $c-neutro;
-  border: 2px solid $c-default;
   background-color: $c-default;
 }
 

@@ -1,0 +1,1 @@
+module.exports={root:!0,parserOptions:{parser:"babel-eslint"},env:{browser:!0},extends:["plugin:vue/essential","standard"],plugins:["vue"],rules:{"generator-star-spacing":"off","no-debugger":"production"===process.env.NODE_ENV?"error":"off","no-useless-escape":0}};

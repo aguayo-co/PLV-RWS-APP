@@ -3,7 +3,7 @@
   .content-slot
     .content-slot__inner
       //- Formulario de registro
-      FormSingUp(
+      FormSignUp(
         v-if="flagSignUp == 'SignUp'"
         @setSuccess= 'setSuccess'
         @setError= 'setError')
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import FormSingUp from '@/components/FormSingUp'
+import FormSignUp from '@/components/FormSignUp'
 import FormSuccess from '@/components/FormNotiSuccess'
 import FormError from '@/components/FormNotiErrorServer'
 
 export default {
-  name: 'SingUp',
+  name: 'SignUp',
   components: {
-    FormSingUp,
+    FormSignUp,
     FormSuccess,
     FormError
   },
