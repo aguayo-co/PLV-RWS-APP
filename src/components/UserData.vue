@@ -52,6 +52,8 @@ section.single
         .user-data_info
           legend.subhead Direcciones
           ul.dividers
+            //- To-Do: Funcionalidad seleccionar
+                addresss pricipal class:.dividers__item_select
             li.dividers__item(
               v-for="addressList in data.addresses")
               .dividers__grid.dividers__list(
@@ -101,7 +103,7 @@ section.single
                           :id="addressList.id + 'comuna'",
                           v-model="addressList.zone",
                           type='text')
-                    .form__grid.form__row_away
+                    .form__grid_reverse.form__row_away
                       .form__row
                         a.link_underline(
                           @click.prevent="NotActive(addressList)",
@@ -109,12 +111,12 @@ section.single
                           title="Eliminar") Eliminar dirección
                       .form__group
                         .form__row
-                          a.btn.btn_small(
+                          a.btn.form__group_item(
                             @click.prevent="NotActive(addressList)",
                             href="#",
                             title="Cancelar Edición") Cancelar
                         .form__row
-                          a.btn.btn_solid.btn_small(
+                          a.btn.btn_solid.form__group_item(
                             @click.prevent="NotActive(addressList)",
                             href="#",
                             title="Guardar Cambios") Editar dirección

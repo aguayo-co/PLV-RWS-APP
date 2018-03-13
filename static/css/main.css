@@ -595,82 +595,40 @@ select {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400; }
 
-.VuePassword__Input .input {
-  width: 100%;
-  padding: 0 12px;
-  margin-bottom: 12px;
-  line-height: 40px;
-  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border: 1px solid #4a4a4a; }
+.form__grid_reverse {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-direction: reverse;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column-reverse;
+  -moz-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+  text-align: center; }
+  .form__grid_reverse .form__grid_group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column-reverse;
+    -moz-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    padding-bottom: 20px; }
 
-.VuePassword .VuePassword__Toggle {
-  height: 42px; }
-  .VuePassword .VuePassword__Toggle .VuePassword__Toggle__Icon {
-    fill: #9b9b9b; }
-
-.VuePassword .VuePassword__Meter {
-  display: none; }
-
-.VuePassword .VuePassword__Message {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 0;
-  margin-top: -6px;
-  margin-bottom: 6px;
-  padding-right: 4px;
-  opacity: 0;
-  text-transform: capitalize;
-  font-size: 14px;
-  font-size: 0.875rem;
-  transition: all .2s ease-out; }
-  .VuePassword .VuePassword__Message:before, .VuePassword .VuePassword__Message:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    display: block;
-    height: 4px;
-    border-radius: 25px; }
-  .VuePassword .VuePassword__Message:before {
-    left: 0;
-    width: 80%;
-    margin-top: -3px;
-    border: 1px solid #cbcbcb; }
-  .VuePassword .VuePassword__Message:after {
-    left: 1px;
-    width: 0;
-    margin-top: -2px;
-    transition: all .2s ease-out; }
-
-.VuePassword .VuePassword--great,
-.VuePassword .VuePassword--good,
-.VuePassword .VuePassword--medium,
-.VuePassword .VuePassword--weak,
-.VuePassword .VuePassword--very-weak {
-  height: 20px;
-  opacity: 1;
-  color: #9b9b9b; }
-  .VuePassword .VuePassword--great:after,
-  .VuePassword .VuePassword--good:after,
-  .VuePassword .VuePassword--medium:after,
-  .VuePassword .VuePassword--weak:after,
-  .VuePassword .VuePassword--very-weak:after {
-    background-color: #fe7676; }
-
-.VuePassword .VuePassword--great:after {
-  width: 80%; }
-
-.VuePassword .VuePassword--good:after {
-  width: 65%; }
-
-.VuePassword .VuePassword--medium:after {
-  width: 44%; }
-
-.VuePassword .VuePassword--weak:after {
-  width: 20%; }
-
-.VuePassword .VuePassword--very-weak:after {
-  width: 5%; }
+.form__group-item {
+  padding: 14px 24px; }
 
 @media only screen and (min-width: 1024px) {
   .form__set {
@@ -709,11 +667,15 @@ select {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end; } }
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+    .form__group .form__row {
+      flex-grow: 0; }
+      .form__group .form__row:not(:last-child) {
+        margin-right: 12px; } }
 
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
@@ -946,167 +908,6 @@ body {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex; } }
-
-.banner-slider {
-  position: relative;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  overflow: hidden; }
-
-.banner-slider__container {
-  height: auto; }
-
-.banner-slider__cell {
-  width: 100%;
-  height: 65vh;
-  /* inherit height from gallery */
-  overflow: hidden;
-  margin-right: 10px;
-  counter-increment: banner-slider__cell; }
-
-.banner-slider__slide {
-  position: relative;
-  min-height: 100%;
-  height: 100%; }
-
-.banner-slider__crop {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; }
-
-.banner-slider__img {
-  width: 100%;
-  height: auto; }
-
-.banner-slider__slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  max-width: 570px;
-  height: 100%;
-  padding: 0 5% 0 5%; }
-  .banner-slider__slot.left {
-    text-align: left; }
-  .banner-slider__slot.right {
-    right: 0;
-    text-align: right; }
-    .banner-slider__slot.right .banner-slider__btn {
-      margin: 15px 0 15px auto; }
-    .banner-slider__slot.right .banner-slider__copy {
-      display: inline; }
-  .banner-slider__slot.center {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    transform: translateX(-50%);
-    left: 50%; }
-    .banner-slider__slot.center .banner-slider__position {
-      margin: 0 auto; }
-    .banner-slider__slot.center .banner-slider__btn {
-      margin: 15px auto; }
-    .banner-slider__slot.center .banner-slider__copy {
-      margin-left: 0; }
-
-.banner-slider__title {
-  display: inline;
-  text-transform: uppercase;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 35px;
-  font-size: 2.1875rem;
-  line-height: 1.5;
-  padding: 2px 5px; }
-
-.bg_white {
-  background-color: #fff; }
-
-.bg_black {
-  color: #fff;
-  background-color: #000; }
-
-.banner-slider__btn {
-  display: block;
-  width: 90%;
-  max-width: 270px;
-  margin: 15px 0; }
-
-.banner-slider__copy {
-  display: inline-block;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 2px 5px;
-  font-size: 12px;
-  font-size: 0.75rem;
-  line-height: 1.8; }
-
-.banner-slider__code {
-  text-transform: uppercase;
-  font-size: 16px;
-  font-size: 1rem;
-  padding-left: 10px; }
-
-@media only screen and (min-width: 640px) {
-  .banner-slider__cell {
-    height: 50vh;
-    /* inherit height from gallery */ }
-  .banner-slider__btn {
-    width: 60%; } }
-
-/**Banner Slider *Desktop */
-@media only screen and (min-width: 768px) {
-  .banner-slider__cell {
-    min-height: 300px; }
-  .banner-slider__slot {
-    max-width: 620px; }
-    .banner-slider__slot.right .banner-slider__copy {
-      margin-right: 30px; }
-  .banner-slider__title {
-    font-size: 45px;
-    font-size: 2.8125rem; } }
-
-/**Banner Slider *Desktop */
-@media only screen and (min-width: 980px) {
-  .banner-slider__cell {
-    height: 60vh;
-    /* inherit height from gallery */ } }
-
-/**Banner Slider *Desktop */
-@media only screen and (min-width: 1024px) {
-  .banner-slider__cell {
-    min-height: 440px; }
-  .banner-slider__slot {
-    bottom: inherit;
-    padding: 0; }
-    .banner-slider__slot.right .banner-slider__btn {
-      margin: 15px 30px 15px auto; }
-  .banner-slider__title {
-    font-size: 60px;
-    font-size: 3.75rem;
-    line-height: 1.4; }
-  .banner-slider__btn {
-    margin: 15px 0 15px 30px; }
-  .banner-slider__copy {
-    display: inline-block;
-    margin-left: 30px;
-    font-size: 14px;
-    font-size: 0.875rem; }
-  .banner-slider__slot.center .banner-slider__title {
-    font-size: 55px;
-    font-size: 3.4375rem; } }
-
-@media screen and (min-device-width: 550px) and (orientation: landscape) {
-  .banner-slider__cell {
-    min-height: 420px; } }
-
-@media screen and (min-device-width: 250px) and (max-device-width: 350px) {
-  .banner-slider__cell {
-    height: 80vh; } }
 
 /*------------------------------------*	Page header
 \*------------------------------------*/
@@ -1880,91 +1681,6 @@ body {
   .slide-fade-leave-to .menu-level2__inner {
     transform: translateY(10px); }
 
-/*------------------------------------*	código para todos los menu desplegables
-\*------------------------------------*/
-.toggle-box {
-  position: absolute;
-  top: 100%;
-  opacity: 1;
-  background-color: #fff;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transform-origin: center top 0;
-  transform-origin: center top 0;
-  will-change: transform, opacity; }
-
-.toggle-box__list {
-  will-change: transform;
-  -webkit-transform: scale(1);
-  transform: scale(1); }
-
-/* v-enter-active: Estado activo para la entrada.
- * Es aplicada durante la fase de entrada completa. 
- * Se agrega antes que el elemento sea insertado,
- * se quita cuando la transición/animación finaliza. 
- * Esta clase puede ser usada para definir la duración,
- * retraso y la curva de alivio para la transición de entrada.
-*/
-.toggle-scale-enter-active {
-  -webkit-transition: opacity 0.03s linear, -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
-  transition: opacity 0.03s linear, -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
-  transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1);
-  transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1); }
-
-/* v-leave-active: Estado activo para la salida. 
- * Es aplicada durante la fase de salida completa. 
- * Se agrega inmediatamente cuando una transición de salida es disparada,
- * se quita cuando la transición/animación finaliza. 
- * Esta clase puede ser usada para definir la duración,
- * retraso y la curva de alivio para la transición de salida.
-*/
-.toggle-scale-leave-active {
-  -webkit-transition: opacity 0.075s linear;
-  transition: opacity 0.075s linear; }
-
-/* v-enter: Estado inicial para la transición de entrada. 
- * Se agrega antes que el elemento sea insertado,
- * se quita un marco luego que el elemento fue insertado.
- */
-.toggle-scale-enter {
-  display: inline-block;
-  overflow-y: hidden;
-  -webkit-transform: scale(0.8);
-  transform: scale(0.8); }
-  .toggle-scale-enter.toggle-box__list {
-    overflow-y: hidden;
-    -webkit-transform: scale(1.25);
-    transform: scale(1.25); }
-
-/* v-enter-to: Solo disponible en versiones >=2.1.8. 
- * Estado final para la entrada. Se agrega un marco después de haber 
- * insertado el elemento (al mismo tiempo que v-enter es removida),
- * se quita cuando la transición/animación finaliza.
- */
-.toggle-scale-enter-to {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1); }
-
-/* v-leave: Estado inicial para la salida. 
- * Se agrega inmediatamente cuando se dispara una 
- * transición de salida, se quita luego de un marco.
- */
-.toggle-scale-leave {
-  display: inline-block;
-  opacity: 1;
-  overflow-y: hidden; }
-
-/*  v-leave-to: Solo disponible en versiones >=2.1.8. 
- * Estado final para la salida. Se agrega un marco despúes 
- * de que se dispare la transición de salida (al mismo tiempo que v-leave es removida), 
- * se quita cuando la transición/animación finaliza.
-*/
-.toggle-scale-leave-to {
-  opacity: 0;
-  -webkit-transform: scale(1);
-  transform: scale(1); }
-
 /*------------------------------------*	Page Footer
 \*------------------------------------*/
 .page-foot {
@@ -2064,6 +1780,91 @@ body {
 
 /*------------------------------------*	código para todos los menu desplegables
 \*------------------------------------*/
+.toggle-box {
+  position: absolute;
+  top: 100%;
+  opacity: 1;
+  background-color: #fff;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-origin: center top 0;
+  transform-origin: center top 0;
+  will-change: transform, opacity; }
+
+.toggle-box__list {
+  will-change: transform;
+  -webkit-transform: scale(1);
+  transform: scale(1); }
+
+/* v-enter-active: Estado activo para la entrada.
+ * Es aplicada durante la fase de entrada completa. 
+ * Se agrega antes que el elemento sea insertado,
+ * se quita cuando la transición/animación finaliza. 
+ * Esta clase puede ser usada para definir la duración,
+ * retraso y la curva de alivio para la transición de entrada.
+*/
+.toggle-scale-enter-active {
+  -webkit-transition: opacity 0.03s linear, -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.03s linear, -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1); }
+
+/* v-leave-active: Estado activo para la salida. 
+ * Es aplicada durante la fase de salida completa. 
+ * Se agrega inmediatamente cuando una transición de salida es disparada,
+ * se quita cuando la transición/animación finaliza. 
+ * Esta clase puede ser usada para definir la duración,
+ * retraso y la curva de alivio para la transición de salida.
+*/
+.toggle-scale-leave-active {
+  -webkit-transition: opacity 0.075s linear;
+  transition: opacity 0.075s linear; }
+
+/* v-enter: Estado inicial para la transición de entrada. 
+ * Se agrega antes que el elemento sea insertado,
+ * se quita un marco luego que el elemento fue insertado.
+ */
+.toggle-scale-enter {
+  display: inline-block;
+  overflow-y: hidden;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8); }
+  .toggle-scale-enter.toggle-box__list {
+    overflow-y: hidden;
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25); }
+
+/* v-enter-to: Solo disponible en versiones >=2.1.8. 
+ * Estado final para la entrada. Se agrega un marco después de haber 
+ * insertado el elemento (al mismo tiempo que v-enter es removida),
+ * se quita cuando la transición/animación finaliza.
+ */
+.toggle-scale-enter-to {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1); }
+
+/* v-leave: Estado inicial para la salida. 
+ * Se agrega inmediatamente cuando se dispara una 
+ * transición de salida, se quita luego de un marco.
+ */
+.toggle-scale-leave {
+  display: inline-block;
+  opacity: 1;
+  overflow-y: hidden; }
+
+/*  v-leave-to: Solo disponible en versiones >=2.1.8. 
+ * Estado final para la salida. Se agrega un marco despúes 
+ * de que se dispare la transición de salida (al mismo tiempo que v-leave es removida), 
+ * se quita cuando la transición/animación finaliza.
+*/
+.toggle-scale-leave-to {
+  opacity: 0;
+  -webkit-transform: scale(1);
+  transform: scale(1); }
+
+/*------------------------------------*	código para todos los menu desplegables
+\*------------------------------------*/
 .modal {
   position: fixed;
   top: 0;
@@ -2114,6 +1915,211 @@ body {
     .modal_scroll .modal__slot {
       min-height: auto;
       margin: 50px auto; } }
+
+/*------------------------------------*  Notificacciones
+\*------------------------------------*/
+.notify {
+  padding: 20px 0; }
+
+.notify__ico:before {
+  display: block;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #000;
+  font-size: 44px;
+  font-size: 2.75rem; }
+
+.notify__title {
+  margin-bottom: 0; }
+
+.notify__body {
+  padding: 20px 0; }
+
+.notify__body_center {
+  text-align: center; }
+
+.notify__footer {
+  width: 80%;
+  margin: 0 auto; }
+
+.notify__row {
+  padding-bottom: 16px; }
+
+.notify__info {
+  position: relative;
+  min-height: 32px;
+  margin-top: 8px;
+  padding-left: 40px; }
+  .notify__info strong {
+    font-weight: 700; }
+  .notify__info:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -20px;
+    font-size: 32px;
+    font-size: 2rem; }
+
+.banner-slider {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden; }
+
+.banner-slider__container {
+  height: auto; }
+
+.banner-slider__cell {
+  width: 100%;
+  height: 65vh;
+  /* inherit height from gallery */
+  overflow: hidden;
+  margin-right: 10px;
+  counter-increment: banner-slider__cell; }
+
+.banner-slider__slide {
+  position: relative;
+  min-height: 100%;
+  height: 100%; }
+
+.banner-slider__crop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.banner-slider__img {
+  width: 100%;
+  height: auto; }
+
+.banner-slider__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  max-width: 570px;
+  height: 100%;
+  padding: 0 5% 0 5%; }
+  .banner-slider__slot.left {
+    text-align: left; }
+  .banner-slider__slot.right {
+    right: 0;
+    text-align: right; }
+    .banner-slider__slot.right .banner-slider__btn {
+      margin: 15px 0 15px auto; }
+    .banner-slider__slot.right .banner-slider__copy {
+      display: inline; }
+  .banner-slider__slot.center {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 50%; }
+    .banner-slider__slot.center .banner-slider__position {
+      margin: 0 auto; }
+    .banner-slider__slot.center .banner-slider__btn {
+      margin: 15px auto; }
+    .banner-slider__slot.center .banner-slider__copy {
+      margin-left: 0; }
+
+.banner-slider__title {
+  display: inline;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 35px;
+  font-size: 2.1875rem;
+  line-height: 1.5;
+  padding: 2px 5px; }
+
+.bg_white {
+  background-color: #fff; }
+
+.bg_black {
+  color: #fff;
+  background-color: #000; }
+
+.banner-slider__btn {
+  display: block;
+  width: 90%;
+  max-width: 270px;
+  margin: 15px 0; }
+
+.banner-slider__copy {
+  display: inline-block;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  line-height: 1.8; }
+
+.banner-slider__code {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-size: 1rem;
+  padding-left: 10px; }
+
+@media only screen and (min-width: 640px) {
+  .banner-slider__cell {
+    height: 50vh;
+    /* inherit height from gallery */ }
+  .banner-slider__btn {
+    width: 60%; } }
+
+/**Banner Slider *Desktop */
+@media only screen and (min-width: 768px) {
+  .banner-slider__cell {
+    min-height: 300px; }
+  .banner-slider__slot {
+    max-width: 620px; }
+    .banner-slider__slot.right .banner-slider__copy {
+      margin-right: 30px; }
+  .banner-slider__title {
+    font-size: 45px;
+    font-size: 2.8125rem; } }
+
+/**Banner Slider *Desktop */
+@media only screen and (min-width: 980px) {
+  .banner-slider__cell {
+    height: 60vh;
+    /* inherit height from gallery */ } }
+
+/**Banner Slider *Desktop */
+@media only screen and (min-width: 1024px) {
+  .banner-slider__cell {
+    min-height: 440px; }
+  .banner-slider__slot {
+    bottom: inherit;
+    padding: 0; }
+    .banner-slider__slot.right .banner-slider__btn {
+      margin: 15px 30px 15px auto; }
+  .banner-slider__title {
+    font-size: 60px;
+    font-size: 3.75rem;
+    line-height: 1.4; }
+  .banner-slider__btn {
+    margin: 15px 0 15px 30px; }
+  .banner-slider__copy {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 14px;
+    font-size: 0.875rem; }
+  .banner-slider__slot.center .banner-slider__title {
+    font-size: 55px;
+    font-size: 3.4375rem; } }
+
+@media screen and (min-device-width: 550px) and (orientation: landscape) {
+  .banner-slider__cell {
+    min-height: 420px; } }
+
+@media screen and (min-device-width: 250px) and (max-device-width: 350px) {
+  .banner-slider__cell {
+    height: 80vh; } }
 
 /*------------------------------------*	Banner Top
 \*------------------------------------*/
@@ -2318,119 +2324,113 @@ body {
     .banner:first-child {
       width: 34.4%; } }
 
-/*------------------------------------*	User Menu
+/*------------------------------------*	Producto grid Home
 \*------------------------------------*/
-.side {
-  padding-right: 70px;
-  background-color: #fff; }
-
-.user-nav {
-  color: #000;
-  min-width: 212px; }
-
-.user-nav__list {
-  padding-bottom: 10px; }
-
-.user-nav__title {
-  padding-bottom: 24px;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 18px;
-  font-size: 1.125rem; }
-
-.user-nav__item {
-  padding-bottom: 30px;
-  font-size: 18px;
-  font-size: 1.125rem; }
-
-.user-nav__link {
-  position: relative;
-  padding-left: 36px;
-  color: #000; }
-  .user-nav__link:before {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    display: block;
-    width: 22px;
-    margin-top: -8px;
-    line-height: 1;
-    text-align: center;
-    font-size: 16px;
-    font-size: 1rem; }
-  .user-nav__link:hover {
-    color: #fe7676; }
-
-@media only screen and (max-width: 1023px) {
-  .side {
+.slider-user {
+  padding-bottom: 20px; }
+  .slider-user .swiper-container > .swiper-pagination-progressbar {
     width: 100%;
-    position: fixed;
-    left: 0;
-    z-index: 10;
-    max-width: 450px;
-    height: 100vh;
-    padding: 0 60px 80px;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar; } }
+    max-width: 360px;
+    left: 50%;
+    bottom: 0;
+    top: inherit;
+    height: 6px;
+    border-radius: 25px;
+    border: 1px solid #cbcbcb;
+    transform: translateX(-50%);
+    background-color: #fff; }
+  .slider-user .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: #fe7676; }
 
-@media only screen and (min-width: 1024px) {
-  .side {
-    position: relative;
-    max-width: 284px; }
-    .side::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      display: block;
-      width: 1px;
-      height: 98%;
-      background-color: #cbcbcb; } }
-
-/*------------------------------------*  Notificacciones
-\*------------------------------------*/
-.notify {
-  padding: 20px 0; }
-
-.notify__ico:before {
+.slider-user__item {
   display: block;
-  margin-bottom: 24px;
   text-align: center;
-  color: #000;
-  font-size: 44px;
-  font-size: 2.75rem; }
+  color: #4a4a4a; }
 
-.notify__title {
-  margin-bottom: 0; }
+.slider-user__avatar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  transition: all .2s ease-in-out; }
+  .slider-user__avatar:hover {
+    border: 8px solid #fe7676; }
 
-.notify__body {
-  padding: 20px 0; }
-
-.notify__body_center {
-  text-align: center; }
-
-.notify__footer {
-  width: 80%;
-  margin: 0 auto; }
-
-.notify__row {
-  padding-bottom: 16px; }
-
-.notify__info {
+.slider-user__picture {
   position: relative;
-  min-height: 32px;
-  margin-top: 8px;
-  padding-left: 40px; }
-  .notify__info strong {
-    font-weight: 700; }
-  .notify__info:before {
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 100%;
+  transform: translate(-50%, -50%); }
+
+.slider-user__name {
+  padding: 16px 4px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500; }
+
+.slider-user__group {
+  position: relative;
+  padding-top: 12px;
+  font-size: 14px;
+  font-size: 0.875rem;
+  text-transform: uppercase; }
+  .slider-user__group:before {
+    position: relative;
+    top: 2px;
+    vertical-align: top;
+    padding-right: 4px;
+    font-size: 14px;
+    font-size: 0.875rem; }
+  .slider-user__group:after {
+    content: '';
     position: absolute;
-    left: 0;
-    top: 50%;
-    margin-top: -20px;
-    font-size: 32px;
-    font-size: 2rem; }
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 44px;
+    height: 1px;
+    margin-left: -22px;
+    background-color: #000; }
+
+.slider-footer {
+  text-align: right;
+  padding: 20px 20px 0 0; }
+  .slider-footer .link_underline {
+    display: inline-block;
+    margin: 0 20px; }
+
+@media only screen and (max-width: 767px) {
+  .slider-user .swiper-container > .swiper-pagination-progressbar {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  .slider-user {
+    padding: 20px 0; }
+    .slider-user .swiper-container.swiper-container-horizontal {
+      padding-bottom: 52px; }
+  .slider-user__avatar {
+    width: 140px;
+    height: 140px; }
+    .slider-user__avatar:hover {
+      border: 12px solid #fe7676; }
+  .slider-user__name {
+    font-size: 14px;
+    font-size: 0.875rem; }
+  .slider-user__group {
+    font-size: 18px;
+    font-size: 1.125rem;
+    text-transform: uppercase; }
+    .slider-user__group:before {
+      top: 0;
+      font-size: 22px;
+      font-size: 1.375rem; } }
 
 /*------------------------------------*	Producto grid Home
 \*------------------------------------*/
@@ -2734,114 +2734,6 @@ body {
     font-size: 36px;
     font-size: 2.25rem; } }
 
-/*------------------------------------*	Producto grid Home
-\*------------------------------------*/
-.slider-user {
-  padding-bottom: 20px; }
-  .slider-user .swiper-container > .swiper-pagination-progressbar {
-    width: 100%;
-    max-width: 360px;
-    left: 50%;
-    bottom: 0;
-    top: inherit;
-    height: 6px;
-    border-radius: 25px;
-    border: 1px solid #cbcbcb;
-    transform: translateX(-50%);
-    background-color: #fff; }
-  .slider-user .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-    background: #fe7676; }
-
-.slider-user__item {
-  display: block;
-  text-align: center;
-  color: #4a4a4a; }
-
-.slider-user__avatar {
-  display: inline-block;
-  vertical-align: middle;
-  width: 120px;
-  height: 120px;
-  overflow: hidden;
-  text-align: center;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  transition: all .2s ease-in-out; }
-  .slider-user__avatar:hover {
-    border: 8px solid #fe7676; }
-
-.slider-user__picture {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  display: block;
-  width: 100%;
-  transform: translate(-50%, -50%); }
-
-.slider-user__name {
-  padding: 16px 4px;
-  font-size: 12px;
-  font-size: 0.75rem;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500; }
-
-.slider-user__group {
-  position: relative;
-  padding-top: 12px;
-  font-size: 14px;
-  font-size: 0.875rem;
-  text-transform: uppercase; }
-  .slider-user__group:before {
-    position: relative;
-    top: 2px;
-    vertical-align: top;
-    padding-right: 4px;
-    font-size: 14px;
-    font-size: 0.875rem; }
-  .slider-user__group:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    display: block;
-    width: 44px;
-    height: 1px;
-    margin-left: -22px;
-    background-color: #000; }
-
-.slider-footer {
-  text-align: right;
-  padding: 20px 20px 0 0; }
-  .slider-footer .link_underline {
-    display: inline-block;
-    margin: 0 20px; }
-
-@media only screen and (max-width: 767px) {
-  .slider-user .swiper-container > .swiper-pagination-progressbar {
-    display: none; } }
-
-@media only screen and (min-width: 768px) {
-  .slider-user {
-    padding: 20px 0; }
-    .slider-user .swiper-container.swiper-container-horizontal {
-      padding-bottom: 52px; }
-  .slider-user__avatar {
-    width: 140px;
-    height: 140px; }
-    .slider-user__avatar:hover {
-      border: 12px solid #fe7676; }
-  .slider-user__name {
-    font-size: 14px;
-    font-size: 0.875rem; }
-  .slider-user__group {
-    font-size: 18px;
-    font-size: 1.125rem;
-    text-transform: uppercase; }
-    .slider-user__group:before {
-      top: 0;
-      font-size: 22px;
-      font-size: 1.375rem; } }
-
 /*------------------------------------*	Single Section
 \*------------------------------------*/
 .single__inner {
@@ -2861,6 +2753,79 @@ body {
   font-weight: 600;
   border-bottom: 1px solid #000; }
 
+/*------------------------------------*	User Menu
+\*------------------------------------*/
+.side {
+  padding-right: 70px;
+  background-color: #fff; }
+
+.user-nav {
+  color: #000;
+  min-width: 212px; }
+
+.user-nav__list {
+  padding-bottom: 10px; }
+
+.user-nav__title {
+  padding-bottom: 24px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  font-size: 1.125rem; }
+
+.user-nav__item {
+  padding-bottom: 30px;
+  font-size: 18px;
+  font-size: 1.125rem; }
+
+.user-nav__link {
+  position: relative;
+  padding-left: 36px;
+  color: #000; }
+  .user-nav__link:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    display: block;
+    width: 22px;
+    margin-top: -8px;
+    line-height: 1;
+    text-align: center;
+    font-size: 16px;
+    font-size: 1rem; }
+  .user-nav__link:hover {
+    color: #fe7676; }
+
+@media only screen and (max-width: 1023px) {
+  .side {
+    position: fixed;
+    left: 0;
+    z-index: 10;
+    display: none;
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    padding: 0 60px 80px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar; } }
+
+@media only screen and (min-width: 1024px) {
+  .side {
+    position: relative;
+    max-width: 284px; }
+    .side::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 1px;
+      height: 98%;
+      background-color: #cbcbcb; } }
+
+/*------------------------------------*	User Profile
+\*------------------------------------*/
 .user-header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3136,24 +3101,6 @@ body {
     content: "\e905";
     font-size: 2px;
     font-size: 0.125rem; }
-
-.slide-toggle-enter-active,
-.slide-toggle-leave-active {
-  -webkit-transition: max-height 1.8s ease-in-out;
-  -moz-transition: max-height 1.8s ease-in-out;
-  -o-transition: max-height 1.8s ease-in-out;
-  transition: max-height 1.8s ease-in-out; }
-
-.slide-toggle-enter,
-.slide-toggle-leave-to,
-.slide-toggle {
-  will-change: max-height;
-  max-height: 0;
-  overflow-y: hidden; }
-
-.slide-toggle-enter-to,
-.slide-toggle-leave {
-  max-height: 600px; }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co

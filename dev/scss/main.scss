@@ -29,22 +29,27 @@
   'theme/layout';
 
 @import
-  'block/banner-slider',
   'block/page-header',
   'block/menu',
-  'block/toggle-box',
   'block/page-footer',
+  'block/toggle-box',
   'block/modal',
+  'block/notify',
+  'block/banner-slider',
   'block/banner-top',
   'block/banner-grid',
+  'block/slider-user';
+
+//Product
+@import
+  'block/product-slot';
+
+//User
+@import
+  'block/layout-single',
   'block/user-menu',
-  'block/notify',
-  'block/product-slot',
-  'block/slider-user',
-  'block/single';
-
-
-
+  'block/user-profile',
+  'block/dividers';
 
 @import
   'vendor/flickity';
