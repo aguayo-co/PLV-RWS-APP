@@ -131,23 +131,27 @@ select {
   }
 }
 
+@media only screen and (min-width: 1080px) {
+  .form__grid_reverse {
+    @include flex-direction (row); 
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+  .form__group {
+    @include justify-content(flex-end);
+    width: 50%;
+    padding-left: 8px;
+    .form__row {
+      flex-grow: 1;
+    }
 
-// .form__grid_reverse {
-//   @include flexbox;
-//   @include justify-content(center);
-//   @include flex-direction (column-reverse); // @include justify-content(space-between);
-//   // @include align-items(center);
-// }
+  }
+  .form__group_item {
+    width: 100%;
+    min-width: 100px;
+  }
+}
 
-// .form__group_item {
-//   // width: auto;
-//   // min-width: 220px;
-//   padding: 14px 24px;
-// }
-// .form__group {
-//   @include flexbox;
-//   @include justify-content(flex-end);
-// }
 
 
 /*------------------------------------*\
