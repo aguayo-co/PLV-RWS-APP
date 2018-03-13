@@ -136,7 +136,7 @@ section.single
                         label.form__label(
                           :for="addressList.id + 'region'") Región
                         select.form__select
-                          option 
+                          option
                           option item2
                           option item3
                           option item4
@@ -147,7 +147,7 @@ section.single
                         label.form__label(
                           :for="addressList.id  + 'city'") Ciudad
                         select.form__select
-                          option 
+                          option
                           option item2
                           option item3
                           option item4
@@ -157,7 +157,7 @@ section.single
                         label.form__label(
                           :for="addressList.id + 'comuna'") Comuna
                         select.form__select
-                          option 
+                          option
                           option item2
                           option item3
                           option item4
@@ -229,7 +229,7 @@ section.single
                       label.form__label(
                         for='new-address-region') Región
                       select.form__select
-                        option 
+                        option
                         option item2
                         option item3
                         option item4
@@ -240,7 +240,7 @@ section.single
                       label.form__label(
                         for='new-address-city') Ciudad
                       select.form__select
-                        option 
+                        option
                         option item2
                         option item3
                         option item4
@@ -250,7 +250,7 @@ section.single
                       label.form__label(
                         for='new-address-zone') Comuna
                       select.form__select
-                        option 
+                        option
                         option item2
                         option item3
                         option item4
