@@ -93,6 +93,25 @@ select {
     padding: 14px 24px;
   }
 
+//Input select
+
+.form__select {
+  width: 100%;
+  padding: 0 38px 0 12px;
+  margin-bottom: 12px;
+  height: 42px;
+  font-family: $f-default;
+  border: 1px solid $c-default-2;
+  background-color: #fff;
+  background-image: url(../../static/img/arrow-select.svg);
+  background-size: 11px 9px;
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  padding-right:0\0;
+  background: none\0;
+}
 
 // $bp-wide: 1024px;
 @include media-query(wide) {

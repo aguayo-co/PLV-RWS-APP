@@ -194,25 +194,34 @@ section.single
                     .form__row
                       label.form__label(
                         for='new-address-region') Región
-                      input.form__control(
-                        id='new-address-region',
-                        v-model='data.addresses.region',
-                        type='text')
+                      select.form__select
+                        option 
+                        option item2
+                        option item3
+                        option item4
+                        option item5
+                        option item6
                   .form__grid
                     .form__row
                       label.form__label(
                         for='new-address-city') Ciudad
-                      input.form__control(
-                        id='new-address-city',
-                        v-model="data.addresses.city",
-                        type='text')
+                      select.form__select
+                        option 
+                        option item2
+                        option item3
+                        option item4
+                        option item5
+                        option item6
                     .form__row
                       label.form__label(
                         for='new-address-zone') Comuna
-                      input.form__control(
-                        id='new-address-zone'
-                        v-model="data.addresses.zone",
-                        type='text')
+                      select.form__select
+                        option 
+                        option item2
+                        option item3
+                        option item4
+                        option item5
+                        option item6
 
                   .form__grid.form__grid_center.form__row_away
                     .form__row

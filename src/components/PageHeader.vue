@@ -102,9 +102,11 @@ export default {
     },
     getAuth () {
       if (this.$store.getters['UserModule/getAuth'] !== null && this.getName !== '') {
-        return true
-      } else {
+        // return true
         return false
+      } else {
+        // return false
+        return true
       }
     }
   }
