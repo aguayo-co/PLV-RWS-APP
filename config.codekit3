@@ -325,19 +325,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/dev\/scss\/block\/_page-header.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_page-header.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
 	"\/dev\/scss\/block\/_product-slot.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -386,19 +373,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_user-menu.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/block\/_user-profile.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/block\/_user-profile.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -1075,32 +1049,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/theme\/_anchor.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/theme\/_buttons.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/theme\/_buttons.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"\/dev\/scss\/theme\/_forms.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dev\/scss\/theme\/_forms.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -2383,13 +2331,6 @@
 		"oAP": "\/src\/components\/PageHeader-menu.vue",
 		"oF": 0
 		},
-	"\/src\/components\/PageHeader-menuMobile.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/PageHeader-menuMobile.vue",
-		"oF": 0
-		},
 	"\/src\/components\/PageHeader-search.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2437,13 +2378,6 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/UserData-edit.vue",
-		"oF": 0
-		},
-	"\/src\/components\/UserData.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/UserData.vue",
 		"oF": 0
 		},
 	"\/src\/components\/UserMenu.vue": {
@@ -2514,16 +2448,6 @@
 		"oA": 0,
 		"oAP": "\/static\/.gitkeep",
 		"oF": 0
-		},
-	"\/static\/css\/main.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/static\/css\/main-min.css",
-		"oF": 0,
-		"oS": 3
 		},
 	"\/static\/fonts\/ico-prilov.eot": {
 		"cB": 0,
