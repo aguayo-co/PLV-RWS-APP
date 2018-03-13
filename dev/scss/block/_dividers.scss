@@ -1,0 +1,152 @@
+/*------------------------------------*\
+	dividers
+\*------------------------------------*/
+
+.dividers {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 30px 0;
+}
+
+.dividers__title {
+  display: block;
+}
+
+.dividers__item {
+  padding: 16px 0;
+  color: $c-default-5;
+  @include font-rem(16px);
+  border-bottom: 1px solid $c-neutro-3;
+  transition: all .3s ease-in-out;
+  .user-data__form {
+    padding-top: 30px;
+  }
+  .form__edit {
+    padding-left: 0;
+    transition: all .3s ease-in-out;
+  }
+}
+
+.dividers__grid {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  margin: 0;
+}
+
+.dividers__actions {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+
+.dividers__edit {
+  padding: 0 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:before {
+    @include font-rem(24px);
+    color: $c-default-3;
+    transition: all .2s ease-in-out;
+  }
+  &:hover {
+    color: $c-brand;
+    &:before {
+      color: $c-brand;
+    }
+  }
+}
+
+.dividers__item_active {
+  padding-left: 10px;
+  background-color: $c-neutro-3;
+  .dividers__edit {
+    &:before {
+      color: $c-brand;
+    }
+  }
+  .form__edit {
+    padding-left: 10px;
+  }
+}
+
+.dividers__list_active {
+  color: $c-default;
+  .dividers__edit {
+    &:before {
+      color: $c-brand;
+    }
+  }
+}
+
+.dividers__select {
+  padding: 0 15px;
+  transition: all .2s ease-in-out;
+  &:before {
+    @include font-rem(18px);
+    color: $c-default-3;
+  }
+  &:hover {
+    &:before {
+      color: $c-brand;
+    }
+  }
+}
+
+.dividers__item_select {
+  .dividers__select {
+    &:before {
+      color: $c-brand;
+    }
+  }
+}
+
+.dividers__bottom {
+  padding: 12px 0;
+  text-align: right;
+  @include font-rem(16px);
+  &:hover {
+    color: $c-brand;
+  }
+}
+
+.dividers__add {
+  color: $c-default-2;
+  padding: 0 16px;
+  transition: all .2s ease-in-out;
+  &:before {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+    margin-right: 12px;
+    cursor: pointer;
+    line-height: 18px;
+    text-align: center;
+    color: $c-default-2;
+    @include font-rem(10px);
+    border: 1px solid $c-default-5;
+    border-radius: 50%;
+  }
+  &:hover {
+    color: $c-brand;
+    &:before {
+      color: $c-brand;
+      border-color: $c-brand;
+    }
+  }
+}
+
+.dividers__bottom_active {
+  color: $c-brand;
+  .dividers__add {
+    &:before {
+      content: unicode($i-less);
+      @include font-rem(2px);
+    }
+  }
+}

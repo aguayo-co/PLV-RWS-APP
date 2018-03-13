@@ -53,6 +53,13 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+.i_flip {
+  &:before {
+    display: inline-block;
+    transform: rotate(-180deg);
+  }
+}
+
 
 @function unicode($str) {
   @return unquote("\"")+$str+unquote("\"");
@@ -82,21 +89,9 @@
   }
 }
 
-.i-start {
-  &:before {
-    content: unicode($i-start);
-  }
-}
-
 .i-like {
   &:before {
     content: unicode($i-like);
-  }
-}
-
-.i-edit {
-  &:before {
-    content: unicode($i-edit);
   }
 }
 
@@ -223,12 +218,6 @@
 .i-twitter {
   &:before {
     content: unicode($i-twitter);
-  }
-}
-
-.i-start-line {
-  &:before {
-    content: unicode($i-start-line);
   }
 }
 
@@ -389,3 +378,40 @@
     content: unicode($i-next-s);
   }
 }
+.i-less {
+  &:before {
+    content: unicode($i-less);
+  }
+}
+
+.i-less-circle {
+  &:before {
+    content: unicode($i-less-circle);
+  }
+}
+
+.i-edit-line {
+  &:before {
+    content: unicode($i-edit-line);
+  }
+}
+
+.i-edit {
+  &:before {
+    content: unicode($i-edit);
+  }
+}
+
+.i-start {
+  &:before {
+    content: unicode($i-start);
+  }
+}
+
+.i-star-on {
+  &:before {
+    content: unicode($i-star-on);
+  }
+}
+
+
