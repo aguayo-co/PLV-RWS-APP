@@ -2029,6 +2029,11 @@ body {
   -webkit-justify-content: space-around;
   -moz-justify-content: space-around;
   justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
   list-style-type: none; }
 
 .foot-nav-mb__item {
@@ -2054,7 +2059,7 @@ body {
 .foot-nav-mb__name.i-brand {
   display: block;
   position: relative;
-  top: -14px;
+  top: -6px;
   width: 60px;
   height: 60px;
   background: url(../img/brand-prilov.png) no-repeat center center #000;

@@ -14,21 +14,10 @@ div.page
 
     //- Router Page
     router-view
-
   //- footer template Mobile
-  .footerMobile(
+  //- Componente PageFooterMobile.vue
+  PageFooterMobile(
     v-if="mqMobile")
-    footer.page-foot-mb
-      nav.foot-nav-mb
-        ul.foot-nav-mb__list
-          li.foot-nav-mb__item(v-for='list in footer')
-            a.foot-nav-mb__link(
-              @click.prevent='itemActive(list)'
-              :class='{active: isActive == list}',
-              :href='list.url',
-              :title='list.title')
-              span.foot-nav-mb__name(
-              :class='list.icon') {{ list.name }}
   //- footer template desktop
   PageFooter(
     v-if="mqDesk")
@@ -45,6 +34,7 @@ import PageHeader from '@/components/PageHeader'
 import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
 import PageFooter from '@/components/PageFooter'
+import PageFooterMobile from '@/components/PageFooterMobile'
 
 Vue.use(Vuex)
 
@@ -158,44 +148,12 @@ export default {
     PageHeader,
     PageHeaderMobile,
     FormLogin,
-    PageFooter
+    PageFooter,
+    PageFooterMobile
   },
   data () {
     return {
-      isActive: undefined,
-      isLoginShow: false,
-      footer: [
-        {
-          url: '/',
-          icon: 'i-search',
-          title: 'Buscar en el sitio',
-          name: 'Buscar'
-        },
-        {
-          url: '/',
-          icon: 'i-sale',
-          title: 'Ir al carrito de compras',
-          name: 'Carrito'
-        },
-        {
-          url: '/',
-          icon: 'i-brand',
-          title: 'Ir al home',
-          name: 'Inicio'
-        },
-        {
-          url: '/',
-          icon: 'i-tag',
-          title: 'Ir a vender',
-          name: 'Vender'
-        },
-        {
-          url: '/',
-          icon: 'i-user',
-          title: 'Ir a mi perfil',
-          name: 'Mi perfil'
-        }
-      ]
+      isLoginShow: false
     }
   },
   methods: {
@@ -207,12 +165,6 @@ export default {
     },
     closeLogin: function () {
       this.isLoginShow = false
-    },
-    itemActive: function (e) {
-      this.isActive = e
-    },
-    NotitemActive: function (e) {
-      this.isActive = undefined
     }
   }
 }

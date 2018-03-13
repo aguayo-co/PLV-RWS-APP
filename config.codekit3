@@ -2350,6 +2350,13 @@
 		"oAP": "\/src\/components\/PageFooter.vue",
 		"oF": 0
 		},
+	"\/src\/components\/PageFooterMobile.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/PageFooterMobile.vue",
+		"oF": 0
+		},
 	"\/src\/components\/PageHeader-brand.vue": {
 		"cB": 0,
 		"ft": 8192,
