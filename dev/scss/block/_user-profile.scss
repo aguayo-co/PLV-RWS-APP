@@ -84,7 +84,17 @@
     @include font-rem(16px);
     border: 1px solid $c-neutro;
   }
-
+  .user-data__caption-i {
+    text-align: center;
+    text-transform: uppercase;
+    &:before {
+      display: inline-block;
+      padding-bottom: 4px;
+      color: $c-default-2;
+      vertical-align: middle;
+      padding-right: 6px;
+    }
+  }
   .user-data__list {
     @include flexbox;
     @include justify-content(center);
@@ -191,5 +201,8 @@
     .user-data__actions {
       padding-top: 20px;
       text-align: left;
+    }
+    .user-data__caption-i {
+    text-align: left;
     }
   }

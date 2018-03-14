@@ -2821,6 +2821,11 @@ body {
   .slider-user__product .slot__ico {
     right: 8px; } }
 
+/*------------------------------------*	Product User in Producto
+\*------------------------------------*/
+.user-data__product .user-data__avatar {
+  border: 5px solid #fe7676; }
+
 /*------------------------------------*	Producto grid Home
 \*------------------------------------*/
 .section_product {
@@ -3332,6 +3337,16 @@ body {
   font-size: 1rem;
   border: 1px solid #fff; }
 
+.user-data__caption-i {
+  text-align: center;
+  text-transform: uppercase; }
+  .user-data__caption-i:before {
+    display: inline-block;
+    padding-bottom: 4px;
+    color: #4a4a4a;
+    vertical-align: middle;
+    padding-right: 6px; }
+
 .user-data__list {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3448,6 +3463,8 @@ body {
     padding: 4px 40px 4px 0; }
   .user-data__actions {
     padding-top: 20px;
+    text-align: left; }
+  .user-data__caption-i {
     text-align: left; } }
 
 /*------------------------------------*	dividers
