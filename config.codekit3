@@ -208,6 +208,19 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/dev\/scss\/block\/_anim-search.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_anim-search.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_banner-grid.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -338,6 +351,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_page-footer_mb.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_page-footer_mb.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_page-header.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -373,6 +399,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_product-slot.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_product-user.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-user.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -2405,6 +2444,13 @@
 		"oAP": "\/src\/components\/PageFooter.vue",
 		"oF": 0
 		},
+	"\/src\/components\/PageFooterMobile.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/PageFooterMobile.vue",
+		"oF": 0
+		},
 	"\/src\/components\/PageHeader-brand.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2466,6 +2512,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/ProductSlot.vue",
+		"oF": 0
+		},
+	"\/src\/components\/ProductUser.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/ProductUser.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PublicarVenta-step2.vue": {
