@@ -40,8 +40,7 @@ transition(name='modal-fade')
         //- falta cerrar la modal
         router-link.btn.btn_block(
           to='SignUp',
-          title='Ir a Registro',
-          @click='close') Regístrate
+          title='Ir a Registro') Regístrate
 </template>
 
 <script>
@@ -83,7 +82,7 @@ export default {
         })
     },
     close: function () {
-      this.$emit('close')
+      this.$store.dispatch('ui/closeModal')
     }
   }
 }
