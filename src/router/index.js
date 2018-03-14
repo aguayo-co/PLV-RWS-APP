@@ -27,7 +27,8 @@ export default new Router({
       name: 'password',
       component: Pass
     },
-    { path: '/user',
+    {
+      path: '/user',
       name: 'user',
       component: User,
       children: [
@@ -37,20 +38,15 @@ export default new Router({
         }
       ]
     },
-    { path: '/publicar-venta',
+    {
+      path: '/publicar-venta',
       name: 'publicar-venta',
       component: PublicarVenta
     },
-    { path: '/producto',
+    {
+      path: '/producto/:product-slug',
       name: Producto,
       component: Producto
     }
-    //provisional, no borrar proxima implementacion bajo
-    // indicacion de Juan David
-    //
-    // { path: '/producto/:product-slug',
-    //   name: Producto,
-    //   component: Producto
-    // }
   ]
 })
