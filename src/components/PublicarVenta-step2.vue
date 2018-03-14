@@ -214,11 +214,11 @@
                 .slot__lead
                   .slot__title {{ product.title }}
                   .slot__size
-                    .slot__size-txt {{ product.dimensions }}
+                    .slot__size-txt {{ product.size_id }}
 
                 //- brand/price
                 .slot__info
-                  .slot__brand {{ product.brand }}
+                  .slot__brand {{ brands[product.brand].name }}
                   .slot__price ${{ product.price | currency }}
 
               //- user: picture/first_name/last_name
@@ -349,8 +349,8 @@ export default {
         {
           id: 1,
           name: 'Letras',
-          description: 'Talla en letras desde XXS hasta XXXL',
-          values: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+          description: 'Talla en letras desde XS hasta XXXL',
+          values: ['XS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
         },
         {
           id: 2,
