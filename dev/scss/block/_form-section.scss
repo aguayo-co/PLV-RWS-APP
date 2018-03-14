@@ -174,8 +174,25 @@
     border-color: $c-brand;
     background-color: $c-brand;
   }
+}
+.layout_section {
+  max-width: 400px;
+  margin: 32px auto;
+  text-align: center;
+  .title {
+    display: inline-block;
+  }
 
 }
+@media only screen and (min-width: 620px) {
+  .layout_section {
+    margin: 50px auto;
+    max-width: 800px;
+  }
+}
+
+
+
 
 
 

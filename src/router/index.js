@@ -6,6 +6,7 @@ import Pass from '@/pages/Pass'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
 import PublicarVenta from '@/pages/publicar-venta'
+import Producto from '@/pages/Producto'
 
 Vue.use(Router)
 
@@ -39,6 +40,17 @@ export default new Router({
     { path: '/publicar-venta',
       name: 'publicar-venta',
       component: PublicarVenta
+    },
+    { path: '/producto',
+      name: Producto,
+      component: Producto
     }
+    //provisional, no borrar proxima implementacion bajo
+    // indicacion de Juan David
+    //
+    // { path: '/producto/:product-slug',
+    //   name: Producto,
+    //   component: Producto
+    // }
   ]
 })
