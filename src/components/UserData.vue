@@ -62,9 +62,9 @@ section.single
                     )
 
             //-Enlaces Modal
-            ul.user-data-nav
-              li.user-data-nav__item Cambiar contraseña   |
-              li.user-data-nav__item Eliminar cuenta
+            //- ul.user-data-nav
+            //-   li.user-data-nav__item Cambiar contraseña   |
+            //-   li.user-data-nav__item Eliminar cuenta
             //-Notificaciones
             .user-data__notify
               ul.user-data__list
@@ -77,16 +77,16 @@ section.single
 
         //-editar About perfil
         .user-header-edit
-          .user-header-edit__item
-            p.user-data__txt(
-              v-if="editAbout == false",
-              @click.prevent="EditAbout()") {{ data.about }}
-            .form__row_top(
-              v-if="editAbout == true")
-              textarea.form__edit.form__edit_txt(
+          .user-header-edit__item.edit__item_top
+            .form__row_top
+              p.user-data__txt(
+                v-if="editAbout == false",
+                @click.prevent="EditAbout()") {{ data.about }}
+              textarea.form__edit_txt(
                 v-model="data.about",
                 name="about",
                 maxlength="340",
+                v-if="editAbout == true",
                 form="form-user-data")
             a.user-edit__actions(
               @click.prevent="EditAbout()",
@@ -136,7 +136,7 @@ section.single
                         label.form__label(
                           :for="addressList.id + 'region'") Región
                         select.form__select
-                          option 
+                          option
                           option item2
                           option item3
                           option item4
@@ -147,7 +147,7 @@ section.single
                         label.form__label(
                           :for="addressList.id  + 'city'") Ciudad
                         select.form__select
-                          option 
+                          option
                           option item2
                           option item3
                           option item4
@@ -157,7 +157,7 @@ section.single
                         label.form__label(
                           :for="addressList.id + 'comuna'") Comuna
                         select.form__select
-                          option 
+                          option
                           option item2
                           option item3
                           option item4
@@ -229,7 +229,7 @@ section.single
                       label.form__label(
                         for='new-address-region') Región
                       select.form__select
-                        option 
+                        option
                         option item2
                         option item3
                         option item4
@@ -240,7 +240,7 @@ section.single
                       label.form__label(
                         for='new-address-city') Ciudad
                       select.form__select
-                        option 
+                        option
                         option item2
                         option item3
                         option item4
@@ -250,7 +250,7 @@ section.single
                       label.form__label(
                         for='new-address-zone') Comuna
                       select.form__select
-                        option 
+                        option
                         option item2
                         option item3
                         option item4
