@@ -260,6 +260,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_form-section.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_form-section.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_layout-single.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -334,6 +347,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_page-header.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_product-detail.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-detail.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -2428,6 +2454,13 @@
 		"oAP": "\/src\/components\/ProductGrid.vue",
 		"oF": 0
 		},
+	"\/src\/components\/producto-detalle.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/producto-detalle.vue",
+		"oF": 0
+		},
 	"\/src\/components\/ProductSlot.vue": {
 		"cB": 0,
 		"ft": 8192,
@@ -2435,18 +2468,25 @@
 		"oAP": "\/src\/components\/ProductSlot.vue",
 		"oF": 0
 		},
+	"\/src\/components\/PublicarVenta-step2.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/PublicarVenta-step2.vue",
+		"oF": 0
+		},
+	"\/src\/components\/slider-producto.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/slider-producto.vue",
+		"oF": 0
+		},
 	"\/src\/components\/SliderPrilovers.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/SliderPrilovers.vue",
-		"oF": 0
-		},
-	"\/src\/components\/UserData-edit.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/UserData-edit.vue",
 		"oF": 0
 		},
 	"\/src\/components\/UserData.vue": {
@@ -2492,6 +2532,20 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/pages\/Pass.vue",
+		"oF": 0
+		},
+	"\/src\/pages\/Producto.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/pages\/Producto.vue",
+		"oF": 0
+		},
+	"\/src\/pages\/publicar-venta.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/pages\/publicar-venta.vue",
 		"oF": 0
 		},
 	"\/src\/pages\/SignUp.vue": {
@@ -2782,6 +2836,46 @@
 		"iS": 137447,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/product-009.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada-002.jpg": {
+		"ft": 16384,
+		"iS": 135704,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada-003.jpg": {
+		"ft": 16384,
+		"iS": 159669,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada-004.jpg": {
+		"ft": 16384,
+		"iS": 67584,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada-004.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada.jpg": {
+		"ft": 16384,
+		"iS": 86380,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
