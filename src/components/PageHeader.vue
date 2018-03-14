@@ -62,7 +62,7 @@
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
           li.tool-user__item.i-user(v-else
-            @click='open') Ingresar
+            @click='logIn') Ingresar
 </template>
 
 <script>
@@ -84,8 +84,8 @@ export default {
     }
   },
   methods: {
-    open: function () {
-      this.$emit('open')
+    logIn: function () {
+      this.$store.dispatch('ui/showModal', 'FormLogin')
     },
     close: function () {
       this.$emit('close')

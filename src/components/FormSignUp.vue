@@ -95,7 +95,7 @@
             ) {{ detail }}
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
-          @click.prevent='validateBeforeSubmit()') Registrarse
+          @click.prevent='validateBeforeSubmit') Registrarse
     .break
       span.break__txt O
 </template>

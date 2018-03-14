@@ -21,5 +21,6 @@ new Vue({
 })
 
 router.beforeEach((to, from, next) => {
-  store.dispatch('ui/clearBody')
+  store.dispatch('ui/closeModal')
+  next()
 })

@@ -1,11 +1,11 @@
 <template lang="pug">
-.layout-page
-
+.layout-inner
+  p soy un slider
 </template>
 
 <script>
 
 export default {
-  name: 'ProductoDetalle'
+  name: 'SliderProducto'
 }
 </script>

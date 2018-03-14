@@ -20,7 +20,7 @@ nav.page-menu
                 //- EVENTO CLICK:
                 li.submenu__item(
                   v-for= "(children, index) in item.children"
-                  :class="[{ submenu:children != selected }, { submenu__item_active:children == selected },{ submenu__item_active:index == 0 }]"
+                  :class="[{ submenu:children != selected }, { submenu__item_active:children == selected }]"
                   @click="menuHandler(children, index)"
                   )
                   span.submenu__label {{children.name}}
