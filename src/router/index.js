@@ -5,6 +5,7 @@ import SignUp from '@/pages/SignUp'
 import Pass from '@/pages/Pass'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
+import PublicarVenta from '@/pages/publicar-venta'
 
 Vue.use(Router)
 
@@ -32,6 +33,10 @@ export default new Router({
           component: UserData
         }
       ]
+    },
+    { path: '/publicar-venta',
+      name: PublicarVenta,
+      component: PublicarVenta
     }
   ]
 })

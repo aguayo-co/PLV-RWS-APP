@@ -150,3 +150,31 @@
     }
   }
 }
+
+//tablas
+.dividers_table {
+  text-align: center;
+  color: $c-default;
+}
+
+.dividers__head{
+  @include font-rem(18px);
+}
+
+.dividers__term {
+  font-weight: $fw-bold;
+  @include font-rem(50px);
+}
+@media only screen and (min-width: 620px) {
+  .dividers_table {
+    text-align: left;
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+  .dividers__term {
+    @include font-rem(36px);
+  }
+
+}
+
