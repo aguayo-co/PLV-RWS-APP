@@ -69,30 +69,82 @@
                   v-for='condition in conditions'
                   v-bind:value='condition.id'
                 ) {{ condition.name }}
-          .form__row
+          .form__row.color(
+            v-bind:class='{ "is-danger": errorLog.color }'
+            v-on:click='toggleColors.first = !toggleColors.first')
             label.form__label(
-              for='product-color-first') Color
-            select.form__select(
-              id='product-color-first'
-              v-model='product.color_ids[1]')
-              optgroup(label='Color principal')
-                option(
-                  v-for='color in colors'
-                  v-bind:value='color.id'
-                ) {{ color.name }}
-
-          .form__row
+              for='product-color-first') Color principal
+            span.help(
+              v-if="errorLog.color"
+            ) {{ errorLog.color }}
+            input.form__select(
+              type='text',
+              id='product-color-first',
+              v-model='product.color[0]',
+              disabled)
+            .toggle-select(
+              v-show='toggleColors.first')
+              ul.toggle-select__list
+                li.toggle-select__item(
+                  v-for='color in colors',
+                  @click='chooseColor(color.id, 1)'
+                )
+                  span.color-circle(
+                    v-bind:style='{ backgroundColor: color.hex_code }'
+                  )
+                  span {{ color.name }}
+          .form__row.color(
+            v-on:click='toggleColors.second = !toggleColors.second')
             label.form__label(
-              for="product-talla") Talla
-            select.form__select(
-              id="product-talla")
-              optgroup(label="Talla")
-                option
-                option item2
-                option item3
-                option item4
-                option item5
-                option item6
+              for='product-color-second') Color adicional
+            input.form__select(
+              type='text',
+              id='product-color-second',
+              v-model='product.color[1]',
+              disabled)
+            .toggle-select(
+              v-show='toggleColors.second')
+              ul.toggle-select__list
+                li.toggle-select__item(
+                  v-for='color in colors',
+                  @click='chooseColor(color.id, 2)'
+                )
+                  span.color-circle(
+                    v-bind:style='{ backgroundColor: color.hex_code }'
+                  )
+                  span {{ color.name }}
+          .form__row
+            label.form__label Selecciona un esquema de tallas
+            .size(
+              v-for='size in sizes')
+              input.form__input-radio(
+                type='radio',
+                v-bind:id='"sizeScheme-"+size.id',
+                v-model='product.sizeScheme',
+                v-bind:value='size.id'
+                v-on:change='chooseSize(size.id)'
+                :checked='sizeScheme == size.id-1')
+              label.form__label.form__label_radio(
+                v-bind:for='"sizeScheme-"+size.id')
+                strong.form__headline {{ size.name }}
+                p.form__disclaimer {{ size.description }}
+            .form__row(
+              v-show='toggleSize && sizeScheme != 2'
+              v-bind:class='{ "is-danger": errorLog.size }')
+              label.form__label(
+                for="product-talla") Selecciona la talla de tu producto
+              span.help(
+                v-if="errorLog.size"
+              ) {{ errorLog.size }}
+              select.form__select(
+                ref='size'
+                id='product-talla'
+                v-model='product.size_id')
+                optgroup(label='Talla')
+                  option(
+                    v-for='sizeValue in sizes[sizeScheme].values'
+                    v-bind:value='sizeValue'
+                  ) {{ sizeValue }}
           .form__row(
             v-bind:class='{ "is-danger": errorLog.brand }')
             label.form__label(
@@ -279,13 +331,41 @@ export default {
         color_ids: [],
         condition_id: null,
         brand: null,
-        file: []
+        file: [],
+        color: [ null, null ]
       },
       categories: {},
       conditions: {},
       colors: {},
       brands: {},
-      errorLog: {}
+      errorLog: {},
+      toggleColors: {
+        first: false,
+        second: false
+      },
+      toggleSize: false,
+      sizeScheme: 0,
+      sizes: [
+        {
+          id: 1,
+          name: 'Letras',
+          description: 'Talla en letras desde XXS hasta XXXL',
+          values: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+        },
+        {
+          id: 2,
+          name: 'Números',
+          description: 'Talla en números desde 1 hasta 60',
+          values: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+            34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+        },
+        {
+          id: 3,
+          name: 'Única',
+          description: 'La talla es única o estándar',
+          values: ['U']
+        }
+      ]
     }
   },
   methods: {
@@ -295,6 +375,8 @@ export default {
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
       if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría'
       if (!this.product.condition) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
+      if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
+      if (!this.product.size_id) this.errorLog.size = 'Debes seleccionar una talla para tu producto'
       if (!this.product.brand) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
       if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar las medidas de tu producto'
       if (!this.product.price) {
@@ -311,6 +393,14 @@ export default {
       } else {
         this.$refs.title.focus()
       }
+    },
+    chooseColor: function (colorId, colorPosition) {
+      this.product.color[colorPosition - 1] = this.colors[colorId - 1].name
+      this.product.color_ids[colorPosition - 1] = colorId
+    },
+    chooseSize: function (sizeId) {
+      this.sizeScheme = sizeId - 1
+      this.toggleSize = true
     }
   },
   created: function () {
