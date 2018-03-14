@@ -2705,6 +2705,21 @@ body {
     background-color: #fff; }
   .slider-user .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
     background: #fe7676; }
+  .slider-user .swiper-button-next,
+  .slider-user .swiper-button-prev {
+    font-size: 20px;
+    font-size: 1.25rem;
+    background: none; }
+  .slider-user .swiper-button-next {
+    right: 0; }
+  .slider-user .swiper-button-prev {
+    left: 0; }
+
+.slider-user__product .swiper-container {
+  padding: 0 40px; }
+
+.slider-user__product .slot__ico {
+  right: 6px; }
 
 .slider-user__item {
   display: block;
@@ -2779,6 +2794,10 @@ body {
     padding: 20px 0; }
     .slider-user .swiper-container.swiper-container-horizontal {
       padding-bottom: 52px; }
+    .slider-user .swiper-button-next,
+    .slider-user .swiper-button-prev {
+      font-size: 30px;
+      font-size: 1.875rem; }
   .slider-user__avatar {
     width: 140px;
     height: 140px; }
@@ -2794,7 +2813,13 @@ body {
     .slider-user__group:before {
       top: 0;
       font-size: 22px;
-      font-size: 1.375rem; } }
+      font-size: 1.375rem; }
+  .slider-user__product .slot__ico {
+    right: 8px; } }
+
+@media only screen and (min-width: 1024px) {
+  .slider-user__product .slot__ico {
+    right: 8px; } }
 
 /*------------------------------------*	Producto grid Home
 \*------------------------------------*/
