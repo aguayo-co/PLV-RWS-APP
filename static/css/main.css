@@ -1302,6 +1302,16 @@ body {
   justify-content: space-between;
   cursor: pointer; }
 
+.tool-user__letter {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 185%;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #000;
+  border: 1px solid #fe7676; }
+
 .tool-user__item:not(:last-child) {
   margin-right: 14px;
   padding-right: 14px;
@@ -2283,7 +2293,9 @@ body {
 /*------------------------------------*  Notificacciones
 \*------------------------------------*/
 .notify {
-  padding: 20px 0; }
+  padding: 20px 0;
+  font-size: 16px;
+  font-size: 1rem; }
 
 .notify__ico:before {
   display: block;
@@ -2298,6 +2310,11 @@ body {
 
 .notify__body {
   padding: 20px 0; }
+
+.notify__body_section {
+  padding: 40px 0 50px;
+  font-size: 18px;
+  font-size: 1.125rem; }
 
 .notify__body_center {
   text-align: center; }
@@ -3763,6 +3780,18 @@ body {
   color: #fff;
   border-color: #fe7676;
   background-color: #fe7676; }
+
+.layout_section {
+  max-width: 400px;
+  margin: 32px auto;
+  text-align: center; }
+  .layout_section .title {
+    display: inline-block; }
+
+@media only screen and (min-width: 620px) {
+  .layout_section {
+    margin: 50px auto;
+    max-width: 800px; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
