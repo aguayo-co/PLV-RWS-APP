@@ -95,7 +95,7 @@
             ) {{ detail }}
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
-          @click.prevent='validateBeforeSubmit()') Registrarse
+          @click.prevent='validateBeforeSubmit') Registrarse
     .break
       span.break__txt O
 </template>
@@ -136,14 +136,11 @@ export default {
         password: this.password
       })
         .then(response => {
-          console.log('response data api?' + response.data.api_token)
-          // this.$store.set('userAuth', {token: response.data.api_token})
+          console.log(response.data)
           this.setSuccess()
-          this.setName(this.nombre)
-          this.$store.dispatch('UserModule/actionSetToken', response.data.api_token)
-          this.$store.dispatch('UserModule/actionSetName', response.data.first_name)
-          localStorage.setItem('token', JSON.stringify(this.$store.getters['UserModule/getToken']))
-          localStorage.setItem('userName', JSON.stringify(this.$store.getters['UserModule/getUserName']))
+          localStorage.setItem('token', response.data.api_token)
+          localStorage.setItem('userId', response.data.id)
+          this.$store.dispatch('user/setUser', response.data)
         })
         .catch(e => {
           if (e.response.data.errors.exists) this.infoTexts.emailExist = 'Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?'
@@ -189,11 +186,6 @@ export default {
     setError: function () {
       this.flagSignUp = 'Error'
       this.$emit('setError')
-    },
-    setName: function (nombre) {
-      console.log(this.nombre)
-      console.log(this.$store.getters['UserModule/getUserName'])
-      this.$store.dispatch('UserModule/actionSetUserName', this.nombre)
     }
   }
 }

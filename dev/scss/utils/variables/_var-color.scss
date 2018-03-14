@@ -10,6 +10,8 @@ $white-two : #f6f6f6;
 $black     : #000;
 // Grey
 $grey       : #4a4a4a;
+$grey-text: #707070;
+
 $grey-medium: #cbcbcb;
 $grey-warm: #9b9b9b;
 $grey-white : #efefef;
@@ -17,6 +19,8 @@ $grey-white : #efefef;
 //* Color variables */
 $c-brand     : $coral-pink;
 $c-brand-dark: $pink-dark;
+$c-brand-light: #fcadac;
+
 
 $c-neutro  : $white;
 $c-neutro-2: rgba($c-neutro, .3);
@@ -30,6 +34,9 @@ $c-default-over     : rgba($black, .5);
 $c-default-2        : $grey;
 $c-default-3        : $grey-medium;
 $c-default-4        : $grey-warm;
+$c-default-5 :$grey-text;
+
+
 
 
 

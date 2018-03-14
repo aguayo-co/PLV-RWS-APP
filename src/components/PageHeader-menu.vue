@@ -2,23 +2,25 @@
 //- TO DO VUE: Webservices menu - list VUE
 nav.page-menu
   ul.menu
-    li.menu__item
-      //- TO DO VUE: dinamizar esta funcionalidad
+    li.menu__item(
+      v-for='item in menu.items'
+    )
       a.menu__link(
+        v-if='!item.url'
         href='#',
-        @click='handler()',
-        :class="{ 'menu__link_active':active }") Shop
+        @click='handler(item)',
+        :class="{ 'menu__link_active':active }") {{ item.name }}
       //- Nivel 2: submenu con Lista de enlaces, Promo, side de enlaces
       transition(name='slide-fade')
-        .menu-level2(v-show='active')
+        .menu-level2(v-show='active' v-if='!item.url')
           .menu-level2__inner
             .submenu-grid
               //- Nivel 2: submenu
               ul.submenu
                 //- EVENTO CLICK:
                 li.submenu__item(
-                  v-for= "(children, index) in menu.children"
-                  :class="[{submenu:children != selected}, {submenu__item_active:children == selected}]"
+                  v-for= "(children, index) in item.children"
+                  :class="[{ submenu:children != selected }, { submenu__item_active:children == selected }]"
                   @click="menuHandler(children, index)"
                   )
                   span.submenu__label {{children.name}}
@@ -45,17 +47,10 @@ nav.page-menu
                 span Cerrar
               li.menu-side__footer
                 a.link_underline(href='#') Ver todas las Prendas
-
-      //- $End Nivel 2 Shop
-
-    li.menu__item
-      a.menu__link(href='#') Instashop
-    li.menu__item
-      a.menu__link(href='#') Closet Room
-    li.menu__item
-      a.menu__link(href='#') Prilovers
-    li.menu__item
-      a.menu__link(href='#') Blog
+      router-link.menu__link(
+          v-if='item.url'
+          v-bind:to='item.url'
+      ) {{ item.name }}
 </template>
 
 <script>
@@ -75,15 +70,13 @@ export default {
     }
   },
   methods: {
-    fixPosition: function () {
-      this.$emit('fixedPosition')
-    },
     toggleNav: function () {
       this.active = !this.active
+      this.$store.dispatch('ui/switchModal')
     },
-    handler: function () {
-      this.fixPosition()
+    handler: function (item) {
       this.toggleNav()
+      this.selected = item.children[0]
     },
     menuHandler: function (children, index) {
       this.selected = children
@@ -92,10 +85,10 @@ export default {
     }
   },
   async created () {
-    await axios.get('https://prilov.aguayo.co/api/menus', {
+    await axios.get('https://prilov.aguayo.co/api/menus/principal', {
     })
       .then(response => {
-        this.menu = response.data.data[0].items[0]
+        this.menu = response.data
       })
       .catch(e => {
         console.log('ERROR : ' + e)

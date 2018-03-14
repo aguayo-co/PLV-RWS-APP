@@ -140,6 +140,7 @@
     box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
     0px 16px 24px 2px rgba(0, 0, 0, 0.14),
     0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    background-color: $c-neutro-4;
   }
   //Mobile Contenedor: level 1 menu  desplegado
   .page-menu_out {
@@ -423,6 +424,65 @@
     color: $c-default;
     @include font-rem(18px);
   }
+
+  //MOBILE menu-footer
+
+  .menu-footer {
+    padding: 35px 0 20px 50px;
+    color: $c-default;
+    background-color: $c-neutro;
+  }
+  
+    .menu-footer__item {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+      .menu-footer__link {
+        display: inline-block;
+        font-weight: $fw-bold;
+        color: $c-default;
+        border-bottom: 2px solid $c-brand;
+      }
+
+  .menu-social {
+    position: relative;
+    padding: 46px 0 42px;
+    background-color: $c-neutro-4;
+    &:before {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      z-index: 4;
+      display: block;
+      color: #fe7676;
+      font-size: 24px;
+      font-size: 1.5rem;
+      -ms-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+  }
+
+    .menu-social__title {
+      padding-bottom: 20px;
+      margin: 0;
+      color: $c-default;
+      text-align: center;
+      font-weight: $fw-bold;
+    }
+    .menu-social__list {
+      @include flexbox;
+      @include justify-content(center);
+    }
+    .menu-social__item {
+      padding: 0 10px;
+      span {
+        display: none;
+      }
+    }
 
 }
 
