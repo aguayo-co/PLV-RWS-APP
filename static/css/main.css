@@ -1309,8 +1309,7 @@ body {
   text-align: center;
   font-size: 185%;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #000;
-  border: 1px solid #fe7676; }
+  background-color: #000; }
 
 .tool-user__item:not(:last-child) {
   margin-right: 14px;
@@ -3792,6 +3791,128 @@ body {
   .layout_section {
     margin: 50px auto;
     max-width: 800px; } }
+
+/*------------------------------------*	upload file croppa
+\*------------------------------------*/
+.upfile {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px 0; }
+  .upfile canvas {
+    width: 100% !important;
+    height: auto !important; }
+  .upfile svg {
+    display: none; }
+
+.upfile__main {
+  position: relative; }
+  .upfile__main:before {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    color: #fe7676;
+    font-size: 20px;
+    font-size: 1.25rem; }
+
+.upfile__grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+
+.upfile__item {
+  position: relative;
+  width: 100%;
+  border: 2px dashed #fe7676;
+  background-color: rgba(239, 239, 239, 0.5); }
+
+.upfile__title {
+  padding: 20px 0;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  font-size: 1.25rem; }
+
+.upfile__label {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  color: #fe7676;
+  text-align: center;
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  font-size: 1.25rem; }
+
+.upfile__text {
+  padding-bottom: 20px; }
+
+.upfile__btn {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  border: 2px solid #000;
+  background-color: #fff; }
+
+.croppa-container {
+  position: relative;
+  z-index: 2; }
+
+.upfile__group .upfile__item:not(:last-child) {
+  margin-right: 32px; }
+
+@media only screen and (min-width: 768px) {
+  .upfile {
+    max-width: 100%; }
+  .upfile {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+  .upfile__main {
+    max-width: 400px;
+    padding-right: 68px; }
+    .upfile__main:before {
+      top: 50%;
+      right: 24px; }
+  .upfile__group {
+    max-width: 58%; }
+  .upfile__title {
+    padding: 30px 0;
+    font-size: 30px;
+    font-size: 1.875rem; }
+  .upfile__btn {
+    padding: 16px;
+    font-size: 16px;
+    font-size: 1rem; } }
+
+@media only screen and (min-width: 1024px) {
+  .upfile__group {
+    max-width: 68%; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
