@@ -1,6 +1,11 @@
 /*------------------------------------*\
 	código para todos los menu desplegables
 \*------------------------------------*/
+.page.is-modal {
+  height: 0;
+  overflow-y: hidden;
+}
+
 .modal {
   position: fixed;
   top: 0;
