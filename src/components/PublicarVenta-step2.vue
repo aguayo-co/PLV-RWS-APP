@@ -218,7 +218,9 @@
 
                 //- brand/price
                 .slot__info
-                  .slot__brand {{ brands[product.brand].name }}
+                  .slot__brand(
+                      v-if='product.brand'
+                  ) {{ brands[product.brand - 1].name }}
                   .slot__price ${{ product.price | currency }}
 
               //- user: picture/first_name/last_name
