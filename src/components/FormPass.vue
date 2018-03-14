@@ -30,12 +30,7 @@
 </template>
 
 <script>
-import es from 'vee-validate/dist/locale/es'
-import VeeValidate, {Validator} from 'vee-validate'
 import axios from 'axios'
-import Vue from 'vue'
-Validator.localize('es', es)
-Vue.use(VeeValidate)
 export default {
   name: 'FormPass',
   data () {
