@@ -17,7 +17,9 @@
     action='#',
     submit.prevent='',
     method='post')
-    //-Formulario setep 2
+    //-Formulario step 1 formlario Foto
+      //-croppa
+    //-Formulario step Formulario producto
     PublicarVentaStep2
 
 </template>

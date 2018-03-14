@@ -124,6 +124,17 @@
   @include justify-content(space-between);
   cursor: pointer;
 }
+  .tool-user__letter {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 185%;
+    font-family: $f-fancy;
+    background-color: $c-default;
+    border: 1px solid $c-brand;
+  }
+
   
   .tool-user__item {
     &:not(:last-child) {
