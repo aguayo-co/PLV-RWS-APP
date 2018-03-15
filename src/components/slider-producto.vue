@@ -2,7 +2,7 @@
 .layout-inner
   section.section_product
     header.section__head.section__head_big
-      h2.title_head Otras prendas que <span class="txt_brand">te pueden interesar</span>
+      h2.title_head.title_head-small Otras prendas que <span class="txt_brand">te pueden interesar</span>
       h3.title_subhead Elegimos otras prendas que creemos te pueden interesar
     //- banner promociones grid
     //- TO-DO: consumir servicios
@@ -69,7 +69,7 @@ export default {
     return {
       isActive: undefined,
       swiperOption: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 44,
         freeMode: true,
         loop: true,
@@ -79,21 +79,15 @@ export default {
         },
         breakpoints: {
           1280: {
-            slidesPerView: 3,
             spaceBetween: 60
           },
           1024: {
-            slidesPerView: 3,
             spaceBetween: 50
           },
           768: {
-            slidesPerView: 3,
             spaceBetween: 50
           },
-          560: {
-            slidesPerView: 2
-          },
-          370: {
+          550: {
             slidesPerView: 2
           }
         }
