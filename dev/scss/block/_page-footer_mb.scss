@@ -1,0 +1,54 @@
+/*------------------------------------*\
+	Footer Menu Mobile
+\*------------------------------------*/
+.page-foot-mb {
+  padding: 20px 30px 15px 30px;
+  background-color: $c-default;
+}
+
+.foot-nav-mb__list {
+  @include flexbox;
+  @include justify-content(space-around);
+  @include align-items(center);
+  list-style-type: none;
+}
+
+.foot-nav-mb__item {
+  position: relative;
+  text-align: center;
+}
+
+.foot-nav-mb__link {
+  position: relative;
+  display: block;
+  height: auto;
+  color: $c-neutro;
+  padding-bottom: 2px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.5s;
+  &.active {
+    border-bottom-color: $c-brand;
+  }
+}
+
+.foot-nav-mb__name {
+  &:before {
+    display: block;
+    padding-bottom: 4px;
+    @include font-rem(16px);
+  }
+  &.i-brand {
+    display: block;
+    position: relative;
+    top: -6px;
+    width: 60px;
+    height: 60px;
+    background: url(../img/brand-prilov.png) no-repeat center center $c-default;
+    background-size: 50px 53px;
+    @include font-rem(0px);
+    &:before {
+      @include font-rem(0px);
+    }
+  }
+}
+

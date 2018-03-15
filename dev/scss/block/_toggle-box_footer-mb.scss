@@ -1,0 +1,102 @@
+/*------------------------------------*\
+	código para todos los menú desplegables
+\*------------------------------------*/
+.toggle-box_footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 70px;
+  opacity: 1;
+  background-color: $c-neutro;
+  // -webkit-transform: scale(1);
+  // transform: scale(1);
+  -webkit-transform: translateX(40px);
+  transform: translateX(40px);
+  -webkit-transform-origin: center bottom 0;
+  transform-origin: center bottom 0;
+  will-change: transform, opacity;
+  overflow: hidden;
+}
+
+.toggle-box_footer__list {
+  list-style-type: none;
+  text-align: left;
+}
+/* v-enter-active: Estado activo para la entrada.
+ * Es aplicada durante la fase de entrada completa. 
+ * Se agrega antes que el elemento sea insertado,
+ * se quita cuando la transición/animación finaliza. 
+ * Esta clase puede ser usada para definir la duración,
+ * retraso y la curva de alivio para la transición de entrada.
+*/
+.toggle-footermb-enter-active {
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+/* v-leave-active: Estado activo para la salida. 
+ * Es aplicada durante la fase de salida completa. 
+ * Se agrega inmediatamente cuando una transición de salida es disparada,
+ * se quita cuando la transición/animación finaliza. 
+ * Esta clase puede ser usada para definir la duración,
+ * retraso y la curva de alivio para la transición de salida.
+*/
+.toggle-footermb-leave-active {
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+/* v-enter: Estado inicial para la transición de entrada. 
+ * Se agrega antes que el elemento sea insertado,
+ * se quita un marco luego que el elemento fue insertado.
+ */
+.toggle-footermb-enter {
+  //display: inline-block; // opacity: 0;
+  overflow: hidden;
+  right: 0;
+  -webkit-transform: translateX(100px);
+  transform: translateX(100px);
+  opacity: 0;
+  // &.toggle-box_footer__list {
+  //   overflow: hidden;
+  //   -webkit-transform: translateX(30px);
+  //   transform: translateX(30px);
+  // }
+}
+
+/* v-enter-to: Solo disponible en versiones >=2.1.8. 
+ * Estado final para la entrada. Se agrega un marco después de haber 
+ * insertado el elemento (al mismo tiempo que v-enter es removida),
+ * se quita cuando la transición/animación finaliza.
+ */
+.toggle-footermb-enter-to {
+  opacity: 1;
+  right: 0;
+  -webkit-transform: translateX(40px);
+  transform: translateX(40px);
+}
+
+/* v-leave: Estado inicial para la salida. 
+ * Se agrega inmediatamente cuando se dispara una 
+ * transición de salida, se quita luego de un marco.
+ */
+.toggle-footermb-leave {
+  display: inline-block;
+  opacity: .3;
+  right: 0;
+  -webkit-transform: translateX(40px);
+  transform: translateX(40px);
+}
+/*  v-leave-to: Solo disponible en versiones >=2.1.8. 
+ * Estado final para la salida. Se agrega un marco despúes 
+ * de que se dispare la transición de salida (al mismo tiempo que v-leave es removida), 
+ * se quita cuando la transición/animación finaliza.
+*/
+.toggle-footermb-leave-to {
+  opacity: 0;
+  right: 0;
+  -webkit-transform: translateX(100px);
+  transform: translateX(100px);
+}
