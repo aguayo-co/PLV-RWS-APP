@@ -55,7 +55,6 @@ export default {
       editTel: false
     }
   },
-
   methods: {
     IsActive: function (e) {
       this.isActive = e
