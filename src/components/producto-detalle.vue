@@ -23,20 +23,23 @@
             img(:src='image', alt='')
     .detail-content
       header.detail-content__header
-        h2.detail-content__title {{ product.title }}
+        h1.detail-content__title {{ product.title }}
       .detail-content__group
         span.detail-content__label Producto {{ product.condition.name }}
-        h3.detail-content__brand {{ product.brand.name }}
+        p.detail-content__brand {{ product.brand.name }}
         p.detail-content__size Talla: {{ product.dimensions }} | Colores: {{ product.colors[0].name }}
         p.detail-content__price_old {{ product.original_price }}
-        p.detail-content__price {{ product.price }}
-      a.btn.btn_solid Comprar
-      a.btn.i-heart Agregar a Favoritos
+        p.detail-content__price ${{ product.price }}
+        .detail-content__actions
+          a.btn.btn_solid(
+            href="#") Comprar 
+          a.btn.i-heart(
+            href="#") Agregar a Favoritos
       p.detail-content__subtitle Descripción
       p.detail-content__txt {{ product.description }}
       p.detail-content__subtitle Despacho
-      p.detail-content__txt.i-ok Envíos a todo Chile
-        span.detail-content__txt.detail-content__txt_small Mediante Chile-express o Correos de Chile
+      p.detail-content__txt.i-ok 
+        |Envíos a todo Chile <small class="detail-content__txt-small"> Mediante Chile-express o Correos de Chile</small>
       p.detail-content__txt.i-ok Coordinar entrega con vendedora en Viña
 </template>
 
