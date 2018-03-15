@@ -2959,8 +2959,7 @@ body {
 
 .detail-content .btn {
   display: block;
-  max-width: 330px;
-  margin: 0 auto; }
+  max-width: 330px; }
   .detail-content .btn:before {
     color: #fe7676; }
   .detail-content .btn:hover:before {
@@ -3005,7 +3004,7 @@ body {
   .grid-detail__gallery .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
     margin: 0 14px; }
   .detail-content .btn {
-    margin-bottom: 16px; }
+    margin: 0 auto 16px; }
   .detail-content__header {
     text-align: center; }
   .detail-content__group {

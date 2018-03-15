@@ -79,7 +79,6 @@
     .btn {
       display: block;
       max-width: 330px;
-      margin: 0 auto;
       &:before {
         color: $c-brand;
       }
@@ -143,7 +142,7 @@
   //Contenido de detall
   .detail-content {
     .btn {
-      margin-bottom: 16px;
+      margin: 0 auto 16px;
     }
   }
     .detail-content__header {
