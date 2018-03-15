@@ -7,7 +7,6 @@
 .detail-content__header {
   display: block;
 } 
-
   .detail-content__title {
     display: inline-block;
     padding: 14px 0 8px;
@@ -64,6 +63,8 @@
     font-weight: $fw-bold;
   }
   .detail-content__txt {
+    margin: 0;
+    line-height: 1.2;
     &.i-ok {
       position: relative;
       padding: 0 0 10px 20px;
@@ -94,7 +95,6 @@
     }
   }
 }
-
 
 @include media-query(max-wide) {
   //Slider moblie
@@ -171,10 +171,6 @@
     }
     .detail-content__subtitle {
       @include font-rem(16px);
-    }
-    .detail-content__txt {
-      margin: 0;
-      line-height: 1.2;
     }
 }
 
@@ -272,7 +268,3 @@
     max-width: 85px;
   }
 }
-
-
-
-
