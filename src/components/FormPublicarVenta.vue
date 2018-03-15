@@ -220,7 +220,7 @@ div
               select.form__select(
                 ref='brand'
                 id='product-marca'
-                v-model='product.brand')
+                v-model='product.brand_id')
                 optgroup(label='Marca')
                   option(
                     v-for='brand in brands'
@@ -236,7 +236,8 @@ div
               input.form__control(
                 ref='dimensions'
                 id='product-medidas',
-                type='text')
+                type='text',
+                v-model='product.dimensions')
             .form__row(
               v-bind:class='{ "is-danger": errorLog.price }')
               label.form__label(
@@ -285,8 +286,8 @@ div
                   //- brand/price
                   .slot__info
                     .slot__brand(
-                        v-if='product.brand'
-                    ) {{ brands[product.brand - 1].name }}
+                        v-if='product.brand_id'
+                    ) {{ brands[product.brand_id - 1].name }}
                     .slot__price ${{ product.price | currency }}
 
                 //- user: picture/first_name/last_name
@@ -442,15 +443,58 @@ export default {
     }
   },
   methods: {
+    createProduct: function () {
+      const imageBlobs = []
+
+      var data = {
+        title: this.product.title,
+        description: this.product.description,
+        dimensions: this.product.dimensions,
+        original_price: this.product.originalPrice,
+        price: this.product.price,
+        commission: this.product.commission,
+        user_id: this.$store.getters['user/id'],
+        brand_id: this.product.brand_id,
+        category_id: this.product.category_id,
+        size_id: 2,
+        color_ids: this.product.color_ids,
+        condition_id: this.product.condition_id,
+        status_id: 1
+      }
+
+      const headers = {
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.getters['user/token'],
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+
+      this.images.forEach(function (image) {
+        if (image.hasImage()) {
+          image.generateBlob(function (blob) {
+            imageBlobs.push(new File([blob], 'imagen-zapato-prueba'))
+            data.images = imageBlobs
+            console.log(data)
+            axios.post('https://prilov.aguayo.co/api/products', data, headers)
+              .then(response => {
+                console.log(response.data)
+              })
+              .catch(e => {
+                console.log(e)
+              })
+          })
+        }
+      })
+    },
     validateBeforeSubmit: function (e) {
       this.errorLog = {}
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
-      if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría'
-      if (!this.product.condition) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
+      if (!this.product.category_id) this.errorLog.category = 'Debes seleccionar una categoría'
+      if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
       if (!this.product.size_id) this.errorLog.size = 'Debes seleccionar una talla para tu producto'
-      if (!this.product.brand) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
+      if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
       if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar las medidas de tu producto'
       if (!this.product.price) {
         this.errorLog.price = 'Debes ingresar el precio de tu producto'
@@ -459,12 +503,12 @@ export default {
       }
       if (!this.product.originalPrice) this.errorLog.originalPrice = 'Debes indicarnos el precio original de tu producto'
       if (!this.product.commission) this.errorLog.commission = 'Debes escoger una opción de comisión'
-      if (!this.product.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
-
-      if (!this.images[0].hasImage()) this.errorLog.image = 'Debes subir al menos una foto para tu producto'
+      if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
 
       if (Object.keys(this.errorLog).length === 0) {
         console.log('valid')
+        console.log(this.product)
+        this.createProduct()
       } else {
         this.$refs.title.focus()
       }
@@ -478,7 +522,6 @@ export default {
       this.toggleSize = true
     },
     handleImages: function (index) {
-      console.log('trin' + this.images[0].generateDataUrl())
       if (this.images[0].hasImage()) this.toggleImage = true
     }
   },
