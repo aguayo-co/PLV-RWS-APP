@@ -98,7 +98,6 @@ section.single
           //- router-link.btn.btn_small.i-start-line(
           //-   to="#",
           //-   title="Ser Priloverstar") Ser Prilovestar
-          
           router-link.btn.btn_small.i-sale(
             to="/publicar-venta",
             title="Publicar Producto") Publicar una venta
