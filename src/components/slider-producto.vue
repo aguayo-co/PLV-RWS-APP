@@ -48,7 +48,7 @@
                 .slot__prilover {{ product.first_name }} {{ product.last_name }}
                 .slot__group.i-it-girl(
                   v-if='product.slot__group == 1') It <span class="txt_brand">girl</span>
-                .slot__group.i-starts(
+                .slot__group.i-star-on(
                   v-if='product.slot__group == 2') Prilover <span class="txt_brand">Star</span>
         //- Paginador en este caso dots
         .swiper-button-next.i-next-s(slot='button-prev')
