@@ -45,7 +45,7 @@ const mutations = {
     state.first_name = user.first_name
     state.last_name = user.last_name
     state.picture = user.picture
-    state.token = user.token
+    state.token = localStorage.getItem('token')
     state.auth = true
   },
   clear (state, user) {
