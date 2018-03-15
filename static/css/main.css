@@ -2894,12 +2894,6 @@ body {
 .detail-content__header {
   display: block; }
 
-.detail-content__title,
-.detail-content__brand,
-.detail-content__subtitle,
-.detail-content__txt {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
 .detail-content__title {
   display: inline-block;
   padding: 14px 0 8px;
@@ -2907,6 +2901,7 @@ body {
   font-size: 22px;
   font-size: 1.375rem;
   font-weight: 700;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   text-align: center;
   border-bottom: 1px solid #000; }
@@ -2918,15 +2913,16 @@ body {
 .detail-content__label {
   display: inline-block;
   padding: 3px 8px;
-  margin-bottom: 25px;
   color: #fe7676;
   border: 1px solid #fe7676;
   border-radius: 10px; }
 
 .detail-content__brand {
-  padding-bottom: 12px;
+  padding: 12px 0;
+  margin: 0;
   font-size: 16px;
   font-size: 1rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500; }
 
 .detail-content__size {
@@ -2940,11 +2936,12 @@ body {
   margin: 0; }
 
 .detail-content__price {
-  margin: 0; }
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100; }
 
 .detail-content__subtitle {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500; }
+  font-weight: 700; }
 
 .detail-content__txt.i-ok {
   position: relative;
@@ -2960,13 +2957,13 @@ body {
     border-radius: 50%;
     padding: 4px 3px; }
 
-.detail-content .btn {
+.detail-content__actions .btn {
   display: block;
   max-width: 330px;
   margin: 0 auto; }
-  .detail-content .btn:before {
+  .detail-content__actions .btn:before {
     color: #fe7676; }
-  .detail-content .btn:hover:before {
+  .detail-content__actions .btn:hover:before {
     color: #fff; }
 
 @media only screen and (max-width: 1023px) {
@@ -3039,6 +3036,8 @@ body {
     font-size: 0.75rem; } }
 
 @media only screen and (min-width: 1024px) {
+  .detail-content__actions .btn {
+    margin: 0; }
   .grid-detail {
     display: -webkit-box;
     display: -webkit-flex;
