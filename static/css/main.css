@@ -3808,11 +3808,11 @@ body {
   position: relative; }
   .upfile__main:before {
     position: absolute;
-    top: 50%;
-    right: 24px;
     color: #fe7676;
     font-size: 20px;
     font-size: 1.25rem; }
+  .upfile__main .upfile__btn {
+    padding: 16px; }
 
 .upfile__grid {
   display: -webkit-box;
@@ -3879,6 +3879,17 @@ body {
 .upfile__group .upfile__item:not(:last-child) {
   margin-right: 32px; }
 
+@media only screen and (max-width: 767px) {
+  .upfile__main {
+    padding-bottom: 40px; }
+    .upfile__main:before {
+      bottom: 0;
+      left: 50%;
+      margin-left: -10px; }
+    .upfile__main .upfile__title {
+      font-size: 24px;
+      font-size: 1.5rem; } }
+
 @media only screen and (min-width: 768px) {
   .upfile {
     max-width: 100%; }
@@ -3903,8 +3914,8 @@ body {
     max-width: 58%; }
   .upfile__title {
     padding: 30px 0;
-    font-size: 30px;
-    font-size: 1.875rem; }
+    font-size: 24px;
+    font-size: 1.5rem; }
   .upfile__btn {
     padding: 16px;
     font-size: 16px;
@@ -3912,7 +3923,10 @@ body {
 
 @media only screen and (min-width: 1024px) {
   .upfile__group {
-    max-width: 68%; } }
+    max-width: 68%; }
+  .upfile__title {
+    font-size: 30px;
+    font-size: 1.875rem; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
