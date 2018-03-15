@@ -1,4 +1,5 @@
 <template lang="pug">
+.layout-inner
   section.single
     .single__inner
       //- User Profile
