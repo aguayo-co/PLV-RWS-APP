@@ -13,7 +13,7 @@
         alt='Prilov Compra. Usa. Vende')
   //- menu level 1
   ul.menu
-    li.menu__item(
+    li.menu__item.i-next(
       :class="{ 'menu__item_current' :level1 == 1 }")
       //- TO DO VUE: dinamizar esta funcionalidad
       a.menu__link.i-shop(
@@ -29,7 +29,7 @@
         ul.submenu(
             v-show='level1 == 1'
             :class="{ 'submenu_open' :level2 != undefined }")
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 2 }")
             span.submenu__label(
               @click='level2 = 2') Moda Femenina
@@ -79,7 +79,7 @@
                 li.submenu__subitem
                   a.subitem__link(href='#') Pijamas
 
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 3 }")
             span.submenu__label(
               @click='level2 = 3') Complementos
@@ -100,7 +100,7 @@
                 li.submenu__subitem
                   a.subitem__link(href='#') Sombreros y Gorros
 
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 4 }")
             span.submenu__label(
               @click='level2 = 4'
@@ -138,7 +138,7 @@
                 li.submenu__subitem
                   a.subitem__link(href='#') Zara
 
-          li.submenu__item(
+          li.submenu__item.i-next(
             :class="{ 'submenu__item_current' :level2 == 5 }"
           )
             span.submenu__label(
@@ -150,17 +150,38 @@
 
       //- $End Nivel 2 Shop
 
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-bag(href='#') Instashop
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-closet(href='#') Closet Room
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-favorite(href='#') Prilovers
-    li.menu__item
+    li.menu__item.i-next
       a.menu__link.i-blog(href='#') Blog
+
+  //- menu footer
+  ul.menu-footer
+    li.menu-footer__item
+      a.menu-footer__link(href="#") Ayuda
+    li.menu-footer__item
+      a.menu-footer__link(href="#") Nosotros
+    li.menu-footer__item
+      a.menu-footer__link(href="#") Contáctanos
+
+  .menu-social.i-heart-on
+    p.menu-social__title {{ nameFooter }}
+    ul.menu-social__list
+      li.menu-social__item(
+        v-for='items in footer.children')
+        a.foot-nav__link(
+          :href='items.url',
+          :class='items.icon',
+          :target='items.target')
+          span {{ items.name }}
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'PageHeaderMenuMobile',
   data () {
@@ -168,9 +189,23 @@ export default {
       active: false,
       show: false,
       level1: undefined,
-      level2: undefined
+      level2: undefined,
+      footer: {},
+      nameFooter: undefined
     }
   },
+  async created () {
+    await axios.get('https://prilov.aguayo.co/api/menus/footer', {
+    })
+      .then(response => {
+        this.footer = response.data.items[3]
+        this.nameFooter = response.data.items[3].name
+      })
+      .catch(e => {
+        console.log('ERROR : ' + e)
+      })
+  },
+
   methods: {
     MenuClose: function () {
       this.$emit('MenuClose')

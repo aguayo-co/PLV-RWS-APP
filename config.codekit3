@@ -30,6 +30,16 @@
 		"oAP": "\/.eslintignore",
 		"oF": 0
 		},
+	"\/.eslintrc-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/.eslintrc-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/.eslintrc.js": {
 		"ft": 64,
 		"ma": 0,
@@ -198,6 +208,19 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/dev\/scss\/block\/_anim-search.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_anim-search.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_banner-grid.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -233,6 +256,45 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_banner-top.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_dividers.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_dividers.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_form-section.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_form-section.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_layout-single.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_layout-single.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -289,6 +351,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_page-footer_mb.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_page-footer_mb.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_page-header.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -302,6 +377,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_product-detail.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-detail.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_product-slot.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -311,6 +399,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_product-slot.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_product-user.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_product-user.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -341,6 +442,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/dev\/scss\/block\/_toggle-box_footer-mb.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_toggle-box_footer-mb.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/dev\/scss\/block\/_user-menu.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -350,6 +464,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/dev\/scss\/block\/_user-menu.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/dev\/scss\/block\/_user-profile.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/dev\/scss\/block\/_user-profile.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -1571,6 +1698,16 @@
 		"oAP": "\/dist\/static\/fonts\/ico-prilov.woff",
 		"oF": 0
 		},
+	"\/dist\/static\/img\/arrow-select.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/static\/img\/arrow-select.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
 	"\/dist\/static\/img\/brand-prilov.png": {
 		"ft": 32768,
 		"iS": 11231,
@@ -2306,18 +2443,11 @@
 		"oAP": "\/src\/components\/FormPassEnd.vue",
 		"oF": 0
 		},
-	"\/src\/components\/FormSingUp-2.vue": {
+	"\/src\/components\/FormSignUp.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp-2.vue",
-		"oF": 0
-		},
-	"\/src\/components\/FormSingUp.vue": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/components\/FormSingUp.vue",
+		"oAP": "\/src\/components\/FormSignUp.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PageFooter.vue": {
@@ -2325,6 +2455,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/PageFooter.vue",
+		"oF": 0
+		},
+	"\/src\/components\/PageFooterMobile.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/PageFooterMobile.vue",
 		"oF": 0
 		},
 	"\/src\/components\/PageHeader-brand.vue": {
@@ -2376,11 +2513,46 @@
 		"oAP": "\/src\/components\/ProductGrid.vue",
 		"oF": 0
 		},
+	"\/src\/components\/producto-detalle.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/producto-detalle.vue",
+		"oF": 0
+		},
 	"\/src\/components\/ProductSlot.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/src\/components\/ProductSlot.vue",
+		"oF": 0
+		},
+	"\/src\/components\/ProductUser.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/ProductUser.vue",
+		"oF": 0
+		},
+	"\/src\/components\/PublicarVenta-step1.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/PublicarVenta-step1.vue",
+		"oF": 0
+		},
+	"\/src\/components\/PublicarVenta-step2.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/PublicarVenta-step2.vue",
+		"oF": 0
+		},
+	"\/src\/components\/slider-producto.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/components\/slider-producto.vue",
 		"oF": 0
 		},
 	"\/src\/components\/SliderPrilovers.vue": {
@@ -2435,11 +2607,25 @@
 		"oAP": "\/src\/pages\/Pass.vue",
 		"oF": 0
 		},
-	"\/src\/pages\/SingUp.vue": {
+	"\/src\/pages\/Producto.vue": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/src\/pages\/SingUp.vue",
+		"oAP": "\/src\/pages\/Producto.vue",
+		"oF": 0
+		},
+	"\/src\/pages\/publicar-venta.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/pages\/publicar-venta.vue",
+		"oF": 0
+		},
+	"\/src\/pages\/SignUp.vue": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/pages\/SignUp.vue",
 		"oF": 0
 		},
 	"\/src\/pages\/User.vue": {
@@ -2459,22 +2645,42 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/src\/store\/index.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/src\/store\/index-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/src\/store\/modules\/ui.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/store\/modules\/ui-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/src\/store\/modules\/user.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/store\/modules\/user-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/static\/.gitkeep": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/static\/.gitkeep",
 		"oF": 0
-		},
-	"\/static\/css\/main.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/static\/css\/main-min.css",
-		"oF": 0,
-		"oS": 3
 		},
 	"\/static\/fonts\/ico-prilov.eot": {
 		"cB": 0,
@@ -2506,6 +2712,16 @@
 		"oA": 0,
 		"oAP": "\/static\/fonts\/ico-prilov.woff",
 		"oF": 0
+		},
+	"\/static\/img\/arrow-select.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/static\/img\/arrow-select.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/static\/img\/brand-prilov.png": {
 		"ft": 32768,
@@ -2683,6 +2899,46 @@
 		"iS": 137447,
 		"oA": 0,
 		"oAP": "\/static\/img\/demo\/product-009.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada-002.jpg": {
+		"ft": 16384,
+		"iS": 135704,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada-002.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada-003.jpg": {
+		"ft": 16384,
+		"iS": 159669,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada-003.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada-004.jpg": {
+		"ft": 16384,
+		"iS": 67584,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada-004.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/static\/img\/demo\/producto\/mochila-dorada.jpg": {
+		"ft": 16384,
+		"iS": 86380,
+		"oA": 0,
+		"oAP": "\/static\/img\/demo\/producto\/mochila-dorada.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,

@@ -41,27 +41,16 @@
 </template>
 
 <script>
-import es from 'vee-validate/dist/locale/es'
-import VeeValidate, {Validator} from 'vee-validate'
 import axios from 'axios'
-import Vue from 'vue'
-import VuePassword from 'vue-password'
-// import GSignInButton from 'vue-google-signin-button'
-Validator.localize('es', es)
-// Vue.use(GSignInButton)
-Vue.use(VeeValidate)
+
 export default {
   name: 'FormPassEnd',
-  locale: 'es',
   data () {
     return {
       email: '',
       password: '',
       passwordConfirm: ''
     }
-  },
-  components: {
-    VuePassword
   },
   methods: {
     recover () {
@@ -82,13 +71,6 @@ export default {
         })
     },
     validateBeforeSubmit () {
-      this.$validator.validateAll().then((result) => {
-        if (result) {
-          this.recover()
-          return
-        }
-        alert('Error en los campos del formulario') // Para validar cuando se presiona registrar
-      })
     },
     setRecoverSuccess () {
       this.$store.dispatch('PasswordModule/actionSetPassState', 'recoverPassSuccess')

@@ -1,0 +1,17 @@
+/*------------------------------------*\
+	código para todos los menu desplegables
+\*------------------------------------*/
+.anim-search {
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  left: -41px;
+  top: -89px;
+  width: 100%;
+  min-width: 330px;
+  padding: 15px;
+  background-color: $c-neutro-3;
+  .search {
+    width: 100%;
+  }
+}
