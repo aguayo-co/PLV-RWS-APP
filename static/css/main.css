@@ -859,6 +859,7 @@ select {
     -moz-justify-content: center;
     justify-content: center; }
     .form__grid_center .form__row {
+      width: auto;
       flex-grow: 0; }
   .form__group {
     display: -webkit-box;

@@ -313,6 +313,7 @@ select {
   .form__grid_center {
     @include justify-content(center);
     .form__row {
+      width: auto;
       flex-grow: 0;
     }
   }
