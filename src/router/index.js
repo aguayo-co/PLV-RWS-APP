@@ -44,16 +44,9 @@ export default new Router({
       component: PublicarVenta
     },
     {
-      path: '/producto/',
+      path: '/producto/:slug',
       name: Producto,
       component: Producto
     }
-    // Provisional, no borrar proxima implementacion bajo
-    // indicacion de Juan David
-    //
-    // { path: '/producto/:product-slug',
-    //   name: Producto,
-    //   component: Producto
-    // }
   ]
 })
