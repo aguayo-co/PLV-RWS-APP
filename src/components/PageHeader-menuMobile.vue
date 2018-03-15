@@ -18,7 +18,7 @@
       //- TO DO VUE: dinamizar esta funcionalidad
       a.menu__link.i-shop(
         href='#',
-        @click='level1 = 1') Shop
+        @click='level1 = 1') {{ menu.items[0].name }}
       //-iconos menu activo
       span.submenu__close.i-back(
         href='#',
@@ -151,7 +151,7 @@
       //- $End Nivel 2 Shop
 
     li.menu__item.i-next
-      a.menu__link.i-bag(href='#') Instashop
+      a.menu__link.i-bag(href='#') {{ menu.items[1].name }}
     li.menu__item.i-next
       a.menu__link.i-closet(href='#') Closet Room
     li.menu__item.i-next
@@ -191,15 +191,25 @@ export default {
       level1: undefined,
       level2: undefined,
       footer: {},
+      menu: {},
       nameFooter: undefined
     }
   },
-  async created () {
-    await axios.get('https://prilov.aguayo.co/api/menus/footer', {
+  created () {
+    axios.get('https://prilov.aguayo.co/api/menus/principal', {
     })
       .then(response => {
-        this.footer = response.data.items[3]
-        this.nameFooter = response.data.items[3].name
+        this.menu = response.data
+        axios.get('https://prilov.aguayo.co/api/menus/footer', {
+        })
+          .then(response => {
+            this.footer = response.data.items[3]
+            this.nameFooter = response.data.items[3].name
+            console.log(response.data)
+          })
+          .catch(e => {
+            console.log('ERROR : ' + e)
+          })
       })
       .catch(e => {
         console.log('ERROR : ' + e)
