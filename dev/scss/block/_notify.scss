@@ -3,6 +3,7 @@
 \*------------------------------------*/
 .notify {
   padding: 20px 0;
+  @include font-rem(16px);
 }
 
 .notify__ico {
@@ -22,6 +23,12 @@
 .notify__body {
   padding: 20px 0; 
 }
+.notify__body_section {
+  padding: 40px 0 50px;
+  @include font-rem(18px);
+
+}
+
 .notify__body_center {
   text-align: center;
 }
