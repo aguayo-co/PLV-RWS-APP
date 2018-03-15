@@ -51,7 +51,8 @@ export default new Router({
     },
     {
       path: '/style-guide',
-      name: StyleGuide
+      name: StyleGuide,
+      component: StyleGuide
     }
   ]
 })

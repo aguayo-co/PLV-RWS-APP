@@ -243,6 +243,13 @@ select {
   border-bottom: 2px solid $c-brand;
 }
 
+.form__text {
+  margin-top: 0;
+  font-family: $f-fancy;
+  @include font-rem(12px);
+  font-weight: $fw-medium;
+}
+
 // $bp-medium: 768px;
 @include media-query(medium) {
   .form__edit_txt {
@@ -327,6 +334,10 @@ select {
         margin-right: 12px;
       }
     }
+  }
+
+  .form__text {
+    @include font-rem(16px);
   }
 
 }
