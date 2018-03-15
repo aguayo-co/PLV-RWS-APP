@@ -5,29 +5,29 @@
       .grid-detail__wrapper
         //slider
         // swiper1
-        swiper.gallery-main(:options='swiperOptionTop', ref='swiperTop')
-          swiper-slide.slide-1.gallery__img
-            img(src="/static/img/demo/producto/mochila-dorada.jpg", alt="")
-          swiper-slide.slide-2.gallery__img
-            img(src="/static/img/demo/producto/mochila-dorada-002.jpg", alt="")
-          swiper-slide.slide-3.gallery__img
-            img(src="/static/img/demo/producto/mochila-dorada-003.jpg", alt="")
+        swiper.gallery-main(
+          :options='swiperOptionTop',
+          ref='swiperTop')
+          swiper-slide.slide-1.gallery__img(
+            v-for='(image,index) in product.images'
+            :key='index')
+            img(:src='image', alt='')
           .swiper-pagination(slot='pagination')
         // swiper2 Thumbs
-        swiper.gallery-thumb(:options='swiperOptionThumbs', ref='swiperThumbs')
-          swiper-slide.slide-1
-            img(src="/static/img/demo/producto/mochila-dorada.jpg", alt="")
-          swiper-slide.slide-2
-            img(src="/static/img/demo/producto/mochila-dorada-002.jpg", alt="")
-          swiper-slide.slide-3
-            img(src="/static/img/demo/producto/mochila-dorada-003.jpg", alt="")
+        swiper.gallery-thumb(
+          :options='swiperOptionThumbs',
+          ref='swiperThumbs')
+          swiper-slide.slide-1(
+            v-for='(image,index) in product.images'
+            :key='index')
+            img(:src='image', alt='')
     .detail-content
       header.detail-content__header
         h2.detail-content__title {{ product.title }}
       .detail-content__group
-        span.detail-content__label Prenda usada
-        h3.detail-content__brand Levi's
-        p.detail-content__size Talla: {{ product.dimensions }} | Color: Blanco
+        span.detail-content__label Producto {{ product.condition.name }}
+        h3.detail-content__brand {{ product.brand.name }}
+        p.detail-content__size Talla: {{ product.dimensions }} | Colores: {{ product.colors[0].name }}
         p.detail-content__price_old {{ product.original_price }}
         p.detail-content__price {{ product.price }}
       a.btn.btn_solid Comprar
@@ -43,27 +43,19 @@
 <script>
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import axios from 'axios'
 export default {
   name: 'ProductoDetalle',
   components: {
     swiper,
     swiperSlide
   },
+  props: ['product'],
   data () {
     return {
       swiperOptionTop: {
         spaceBetween: 10,
         loop: true,
-        loopedSlides: 5,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          dynamicBullets: true
-        }
+        loopedSlides: 4
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
@@ -71,32 +63,17 @@ export default {
         direction: 'vertical',
         autoHeight: true,
         touchRatio: 1,
-        loop: true,
-        loopedSlides: 5,
+        loop: false,
+        loopedSlides: 4,
         slideToClickedSlide: true
-      },
-      product: {}
+      }
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      const swiperTop = this.$refs.swiperTop.swiper
-      const swiperThumbs = this.$refs.swiperThumbs.swiper
-      swiperTop.controller.control = swiperThumbs
-      swiperThumbs.controller.control = swiperTop
-    })
-  },
-  async created () {
-    await axios.get('https://prilov.aguayo.co/api/products/3/zapatos-dorados', {
-    })
-      .then(response => {
-        console.log(response)
-        this.product = response.data
-        // this.nameFooter = response.data.items[3].name
-      })
-      .catch(e => {
-        console.log('ERROR : ' + e)
-      })
+    const swiperTop = this.$refs.swiperTop.swiper
+    const swiperThumbs = this.$refs.swiperThumbs.swiper
+    swiperTop.controller.control = swiperThumbs
+    swiperThumbs.controller.control = swiperTop
   }
 }
 </script>
