@@ -83,7 +83,6 @@ select {
     }
   }
 
-
   .form__control {
     width: 100%;
     padding: 0 12px;
@@ -160,6 +159,7 @@ select {
 .form__input-radio {
   position: absolute;
   z-index: -1;
+  opacity: 0;
   &:checked + .form__label_radio {
     &:before {
       content: '';
@@ -258,6 +258,36 @@ select {
     @include font-rem(18px);
   }
 
+}
+
+//toggle color form
+.toggle-select {
+  margin-top: -12px;
+}
+
+.toggle-select__list {
+  list-style: none;
+  margin: 0 0 12px 0;
+  padding: 4px 8px;
+  border-bottom: 1px solid $c-default-2;
+  border-left: 1px solid $c-default-2;
+  border-right: 1px solid $c-default-2;
+  span {
+    vertical-align: middle;
+  }
+}
+.color-circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius:50%; 
+  border: 1px solid $c-default-3;
+}
+.toggle-select__item {
+  padding: 4px;
+  @include font-rem(16px);
 }
 
 // $bp-wide: 1024px;
