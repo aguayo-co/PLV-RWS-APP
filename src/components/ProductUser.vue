@@ -37,7 +37,7 @@
         .user-card__block
           .user-bullet
             p.user-bullet__txt Compradora compulsiva en rehabilitación, todo lo que ves en mi perfil está disponible y en excelente estado. Todas las ventas se hacen por Prilov.
-            a(href='/' title='Enviar mensaje privado').user-bullet__link.i-send Enviar mensaje privado
+            a(href='/' title='Enviar mensaje privado').user-bullet__link.i-email Enviar mensaje privado
 </template>
 
 <script>
