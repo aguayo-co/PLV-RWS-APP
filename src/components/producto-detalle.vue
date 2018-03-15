@@ -32,13 +32,13 @@
         p.detail-content__price ${{ product.price }}
         .detail-content__actions
           a.btn.btn_solid(
-            href="#") Comprar 
+            href="#") Comprar
           a.btn.i-heart(
             href="#") Agregar a Favoritos
       p.detail-content__subtitle Descripción
       p.detail-content__txt {{ product.description }}
       p.detail-content__subtitle Despacho
-      p.detail-content__txt.i-ok 
+      p.detail-content__txt.i-ok
         |Envíos a todo Chile <small class="detail-content__txt-small"> Mediante Chile-express o Correos de Chile</small>
       p.detail-content__txt.i-ok Coordinar entrega con vendedora en Viña
 </template>
