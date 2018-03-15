@@ -43,6 +43,9 @@ export default new Router({
       name: Producto,
       component: Producto
     }
+    // Provisional, no borrar proxima implementacion bajo
+    // indicacion de Juan David
+    //
     // { path: '/producto/:product-slug',
     //   name: Producto,
     //   component: Producto
