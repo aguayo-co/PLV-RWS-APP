@@ -7,7 +7,6 @@ import User from '@/pages/User'
 import UserData from '@/components/UserData'
 import PublicarVenta from '@/pages/publicar-venta'
 import Producto from '@/pages/Producto'
-import StyleGuide from '@/pages/Style-guide'
 
 Vue.use(Router)
 
@@ -48,11 +47,6 @@ export default new Router({
       path: '/producto/:slug',
       name: Producto,
       component: Producto
-    },
-    {
-      path: '/style-guide',
-      name: StyleGuide,
-      component: StyleGuide
     }
   ]
 })
