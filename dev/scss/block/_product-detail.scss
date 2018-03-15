@@ -10,14 +10,13 @@
 } 
   .detail-content__title,
   .detail-content__brand,
-  .detail-content__size,
   .detail-content__subtitle,
   .detail-content__txt {
     font-family: $f-fancy;
   }
   .detail-content__title {
     display: inline-block;
-    padding: 14px 20px 8px;
+    padding: 14px 0 8px;
     margin: 0 0 26px;
     @include font-rem(22px);
     font-weight: $fw-bold;
@@ -47,6 +46,8 @@
   .detail-content__size {
     padding-bottom: 12px;
     margin: 0;
+    @include font-rem(18px);
+    font-weight: $fw-regular;
   }
   .detail-content__price_old {
     margin: 0;
