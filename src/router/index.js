@@ -14,6 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'home',
       component: Home
     },
     {
@@ -23,10 +24,12 @@ export default new Router({
     },
     {
       path: '/password',
-      name: 'Pass',
+      name: 'password',
       component: Pass
     },
-    { path: '/user',
+    {
+      path: '/user',
+      name: 'user',
       component: User,
       children: [
         {
@@ -35,11 +38,13 @@ export default new Router({
         }
       ]
     },
-    { path: '/publicar-venta',
-      name: PublicarVenta,
+    {
+      path: '/publicar-venta',
+      name: 'publicar-venta',
       component: PublicarVenta
     },
-    { path: '/producto',
+    {
+      path: '/producto/',
       name: Producto,
       component: Producto
     }

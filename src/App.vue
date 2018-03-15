@@ -29,14 +29,11 @@ div.page(
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuex from 'vuex'
+
 import PageHeader from '@/components/PageHeader'
 import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
 import PageFooter from '@/components/PageFooter'
-
-Vue.use(Vuex)
 
 export default {
   name: 'app',
