@@ -2957,6 +2957,15 @@ body {
     border-radius: 50%;
     padding: 4px 3px; }
 
+.detail-content .btn {
+  display: block;
+  max-width: 330px;
+  margin: 0 auto; }
+  .detail-content .btn:before {
+    color: #fe7676; }
+  .detail-content .btn:hover:before {
+    color: #fff; }
+
 @media only screen and (max-width: 1023px) {
   .gallery-thumb {
     display: none; }
@@ -3104,15 +3113,6 @@ body {
   .gallery-thumb .swiper-slide img {
     width: 100%;
     max-width: 85px; } }
-
-.detail-content .btn {
-  display: block;
-  max-width: 330px;
-  margin: 0 auto; }
-  .detail-content .btn:before {
-    color: #fe7676; }
-  .detail-content .btn:hover:before {
-    color: #fff; }
 
 /*------------------------------------*	Product User in Producto
 \*------------------------------------*/

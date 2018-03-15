@@ -75,6 +75,22 @@
       }
     }
   }
+  .detail-content {
+    .btn {
+      display: block;
+      max-width: 330px;
+      margin: 0 auto;
+      &:before {
+        color: $c-brand;
+      }
+      &:hover {
+        &:before {
+          color: $c-neutro;
+        }
+      }
+    }
+  }
+
 
 @include media-query(max-wide) {
   //Slider moblie
@@ -251,21 +267,7 @@
     max-width: 85px;
   }
 }
-.detail-content {
-  .btn {
-    display: block;
-    max-width: 330px;
-    margin: 0 auto;
-    &:before {
-      color: $c-brand;
-    }
-    &:hover {
-      &:before {
-        color: $c-neutro;
-      }
-    }
-  }
-}
+
 
 
 
