@@ -262,12 +262,12 @@ section.single
 
                   .form__grid.form__grid_center.form__row_away
                     .form__row
-                      a.btn.btn_small(
+                      a.btn(
                         @click.prevent="NewAddress()",
                         href="#",
                         title="Cancelar Edición") Cancelar
                     .form__row
-                      a.btn.btn_solid.btn_small(
+                      a.btn.btn_solid(
                         @click.prevent="NewAddress()",
                         href="#",
                         title="Guardar Cambios") Editar dirección
