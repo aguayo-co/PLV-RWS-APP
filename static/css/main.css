@@ -2906,6 +2906,12 @@ body {
   text-align: center;
   border-bottom: 1px solid #000; }
 
+.detail-content__txt-small {
+  display: block;
+  padding: 5px 0;
+  font-size: 12px;
+  font-size: 0.75rem; }
+
 .detail-content__price_old {
   color: #fe7676;
   text-decoration: line-through; }
@@ -2948,7 +2954,7 @@ body {
   padding: 0 0 10px 20px; }
   .detail-content__txt.i-ok:before {
     position: absolute;
-    top: 0;
+    top: 4px;
     left: 0;
     color: #fe7676;
     font-size: 6px;
@@ -3028,12 +3034,7 @@ body {
     font-size: 1rem; }
   .detail-content__txt {
     margin: 0;
-    line-height: 1.2; }
-  .detail-content__txt_small {
-    display: block;
-    padding: 5px 0;
-    font-size: 12px;
-    font-size: 0.75rem; } }
+    line-height: 1.2; } }
 
 @media only screen and (min-width: 1024px) {
   .detail-content__actions .btn {

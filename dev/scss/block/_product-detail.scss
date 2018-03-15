@@ -20,6 +20,12 @@
     border-bottom: 1px solid $c-default;
   }
 
+.detail-content__txt-small {
+  display: block;
+  padding: 5px 0;
+  @include font-rem(12px);
+}
+
   .detail-content__price_old {
     color: $c-brand;
     text-decoration:line-through;
@@ -63,7 +69,7 @@
       padding: 0 0 10px 20px;
       &:before {
         position: absolute;
-        top: 0;
+        top: 4px;
         left: 0;
         color: $c-brand;
         @include font-rem(6px);
@@ -91,8 +97,6 @@
 
 
 @include media-query(max-wide) {
- 
-
   //Slider moblie
   .gallery-thumb {
     display: none;
@@ -171,11 +175,6 @@
     .detail-content__txt {
       margin: 0;
       line-height: 1.2;
-    }
-    .detail-content__txt_small {
-      display: block;
-      padding: 5px 0;
-      @include font-rem(12px);
     }
 }
 
