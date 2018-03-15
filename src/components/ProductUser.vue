@@ -1,4 +1,5 @@
 <template lang="pug">
+.layout-inner
   section.single
     .single__inner
       //- User Profile
@@ -54,7 +55,6 @@ export default {
       editTel: false
     }
   },
-
   methods: {
     IsActive: function (e) {
       this.isActive = e
