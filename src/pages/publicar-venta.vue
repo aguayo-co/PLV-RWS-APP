@@ -5,26 +5,16 @@
     action='#',
     submit.prevent='',
     method='post')
-    .layout-band
-      .layout-inner
-        header.page__head.steps__header
-          h1.title__main Publicar una venta
-          h2.title_subhead ¿No lo usas?, ¡Vendelo!
-        //-Formulario step 1 formlario Foto
-        PublicarVentaStep1
-    //-Formulario step Formulario producto
-    PublicarVentaStep2
+    FormPublicarVenta
 </template>
 
 <script>
-import PublicarVentaStep1 from '@/components/PublicarVenta-step1'
-import PublicarVentaStep2 from '@/components/PublicarVenta-step2'
+import FormPublicarVenta from '@/components/FormPublicarVenta'
 
 export default {
   name: 'PublicarVenta',
   components: {
-    PublicarVentaStep1,
-    PublicarVentaStep2
+    FormPublicarVenta
   }
   // data () {
   //   return {
