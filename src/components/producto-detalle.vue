@@ -12,8 +12,6 @@
             img(src="/static/img/demo/producto/mochila-dorada-002.jpg", alt="")
           swiper-slide.slide-3.gallery__img
             img(src="/static/img/demo/producto/mochila-dorada-003.jpg", alt="")
-          swiper-slide.slide-4.gallery__img
-            img(src="/static/img/demo/producto/mochila-dorada-004.jpg", alt="")
           .swiper-pagination(slot='pagination')
         // swiper2 Thumbs
         swiper.gallery-thumb(:options='swiperOptionThumbs', ref='swiperThumbs')
@@ -23,15 +21,15 @@
             img(src="/static/img/demo/producto/mochila-dorada-002.jpg", alt="")
           swiper-slide.slide-3
             img(src="/static/img/demo/producto/mochila-dorada-003.jpg", alt="")
-          swiper-slide.slide-4
-            img(src="/static/img/demo/producto/mochila-dorada-004.jpg", alt="")
     .detail-content
-      p.detail-content__title {{ product.title }}
-      span.detail-content__label Prenda usada
-      h3.detail-content__brand {{ product.brand.name }}
-      p.detail-content__size Talla: {{ product.dimensions }} | Color: {{ product.colors["0"].name }}
-      p.detail-content__price_old {{ product.original_price }}
-      p.detail-content__price {{ product.price }}
+      header.detail-content__header
+        h2.detail-content__title {{ product.title }}
+      .detail-content__group
+        span.detail-content__label Prenda usada
+        h3.detail-content__brand Levi's
+        p.detail-content__size Talla: {{ product.dimensions }} | Color: Blanco
+        p.detail-content__price_old {{ product.original_price }}
+        p.detail-content__price {{ product.price }}
       a.btn.btn_solid Comprar
       a.btn.i-heart Agregar a Favoritos
       p.detail-content__subtitle Descripción
@@ -89,7 +87,7 @@ export default {
     })
   },
   async created () {
-    await axios.get('https://prilov.aguayo.co/api/products/3', {
+    await axios.get('https://prilov.aguayo.co/api/products/3/zapatos-dorados', {
     })
       .then(response => {
         console.log(response)
