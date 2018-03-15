@@ -54,19 +54,7 @@
   .detail-content__price {
     margin: 0;
   }
-  .btn {
-    display: block;
-    max-width: 330px;
-    margin: 0 auto;
-    &:before {
-      color: $c-brand;
-    }
-    &:hover {
-      &:before {
-        color: $c-neutro;
-      }
-    }
-  }
+  
   .detail-content__subtitle {
     font-family: $f-fancy;
     font-weight: $fw-medium;
@@ -263,3 +251,21 @@
     max-width: 85px;
   }
 }
+.detail-content {
+  .btn {
+    display: block;
+    max-width: 330px;
+    margin: 0 auto;
+    &:before {
+      color: $c-brand;
+    }
+    &:hover {
+      &:before {
+        color: $c-neutro;
+      }
+    }
+  }
+}
+
+
+

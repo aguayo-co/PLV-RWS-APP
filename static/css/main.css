@@ -2939,15 +2939,6 @@ body {
 .detail-content__price {
   margin: 0; }
 
-.btn {
-  display: block;
-  max-width: 330px;
-  margin: 0 auto; }
-  .btn:before {
-    color: #fe7676; }
-  .btn:hover:before {
-    color: #fff; }
-
 .detail-content__subtitle {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500; }
@@ -3113,6 +3104,15 @@ body {
   .gallery-thumb .swiper-slide img {
     width: 100%;
     max-width: 85px; } }
+
+.detail-content .btn {
+  display: block;
+  max-width: 330px;
+  margin: 0 auto; }
+  .detail-content .btn:before {
+    color: #fe7676; }
+  .detail-content .btn:hover:before {
+    color: #fff; }
 
 /*------------------------------------*	Product User in Producto
 \*------------------------------------*/
