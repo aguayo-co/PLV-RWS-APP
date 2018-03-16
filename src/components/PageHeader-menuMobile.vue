@@ -11,30 +11,27 @@
       img.brand__logo(
         src='/static/img/brand-prilov.png',
         alt='Prilov Compra. Usa. Vende')
-  //- menu level 1
   ul.menu
-    //- li.menu__item.i-next(v-for='item in menu.items',
-    //-   :class="{ 'menu__item_current' :level1 == 1 }")
-    li.menu__item.i-next(v-for='item in menu.items')
-      //- TO DO VUE: dinamizar esta funcionalidad
-      a.menu__link.i-shop(
-        v-if='menu.items',
-        href='#',
-        @click='handler(item)',
-        :class="{ 'menu__item_current':active }") {{ item.name }}
-      //-iconos menu activo
+    li.menu__item.i-next(
+      v-if='menu.items',
+      v-for="(item, index) in menu.items",
+      :class="{ 'menu__item_current' :level1 == 1 }",
+      @click='level1 = 1')
+      span.menu__link(:class="item.icon",
+        href='#') {{ item.name }}
       span.submenu__close.i-back(
         href='#',
-        @click='active = false')
-
+        @click='level1 = undefined')
       //- Nivel 2: submenu
       transition(name='slide-down')
         ul.submenu(
-            v-show='active'
-            :class="{ 'submenu_open' :level2 != undefined }")
-          li.submenu__item.i-next(v-for= "(children, index) in item.children", :class="{ 'submenu__item_current' :level2 == 2 }")
+          v-show='level1 == 1',
+          :class="{ 'submenu_open' :level2 != undefined }")
+          li.submenu__item.i-next(
+            v-for= "(children, index) in item.children",
+            :class="{ 'submenu__item_current' :level2 == 2 }")
             span.submenu__label(
-              @click='level2 = 2') {{children.name}}
+              @click='level2 = 2') {{ children.name }}
             span.submenu__close.i-close(
               href='#',
               @click='level2 = undefined')
@@ -42,8 +39,12 @@
             transition(name='slide-down')
               ul.submenu__list(
                 v-show='level2 == 2')
-                li.submenu__subitem(v-for="(grandChildren, indexG) in children.children")
-                  a.subitem__link(href="#") {{grandChildren.name}}
+                li.submenu__subitem(
+                  v-for="(grandChildren, indexG) in children.children")
+                  a.subitem__link(:href='grandChildren.url') {{ grandChildren.name }}
+          li.menu-side__footer
+            a.link_underline(href='#') Ver todas las Prendas
+
   //- menu footer
   ul.menu-footer
     li.menu-footer__item
@@ -72,26 +73,28 @@ export default {
   data () {
     return {
       active: false,
-      show: false,
+      // show: false,
       selected: undefined,
-      // level1: undefined,
-      // level2: undefined,
+      level1: undefined,
+      level2: undefined,
       menu: {},
       footer: {},
-      nameFooter: undefined
+      nameFooter: undefined,
+      showDetails: false,
+      isActive: false,
+      activeItem: undefined
     }
   },
   methods: {
     MenuClose: function () {
       this.$emit('MenuClose')
     },
-    handler: function (item) {
-      this.toggleNav()
-      this.selected = item.children[0]
-    },
     toggleNav: function () {
       this.active = !this.active
     },
+    prueba: function () {
+      console.log('esto es un click')
+    }
   },
   created () {
     axios.get('https://prilov.aguayo.co/api/menus/principal', {
@@ -100,6 +103,7 @@ export default {
         this.menu = response.data
         console.log('items de menu principal')
         console.log(response.data)
+        // console.log(response.data.items[0].children[0].name)
       })
       .catch(e => {
         console.log('ERROR : ' + e)
