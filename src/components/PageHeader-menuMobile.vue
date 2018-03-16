@@ -13,26 +13,28 @@
         alt='Prilov Compra. Usa. Vende')
   //- menu level 1
   ul.menu
-    li.menu__item.i-next(
-      :class="{ 'menu__item_current' :level1 == 1 }")
+    //- li.menu__item.i-next(v-for='item in menu.items',
+    //-   :class="{ 'menu__item_current' :level1 == 1 }")
+    li.menu__item.i-next(v-for='item in menu.items')
       //- TO DO VUE: dinamizar esta funcionalidad
       a.menu__link.i-shop(
+        v-if='menu.items',
         href='#',
-        @click='level1 = 1') {{ menu.items[0].name }}
+        @click='handler(item)',
+        :class="{ 'menu__item_current':active }") {{ item.name }}
       //-iconos menu activo
       span.submenu__close.i-back(
         href='#',
-        @click='level1 = undefined')
+        @click='active = false')
 
       //- Nivel 2: submenu
       transition(name='slide-down')
         ul.submenu(
-            v-show='level1 == 1'
+            v-show='active'
             :class="{ 'submenu_open' :level2 != undefined }")
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 2 }")
+          li.submenu__item.i-next(v-for= "(children, index) in item.children", :class="{ 'submenu__item_current' :level2 == 2 }")
             span.submenu__label(
-              @click='level2 = 2') Moda Femenina
+              @click='level2 = 2') {{children.name}}
             span.submenu__close.i-close(
               href='#',
               @click='level2 = undefined')
@@ -40,125 +42,8 @@
             transition(name='slide-down')
               ul.submenu__list(
                 v-show='level2 == 2')
-                li.submenu__subitem
-                  a.subitem__link(href="#") Tops
-                li.submenu__subitem
-                  a.subitem__link(href='#') Poleras
-                li.submenu__subitem
-                  a.subitem__link(href='#') Blusas y camisas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Monos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Chalecos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Abrigos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Parkas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Chaquetas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Polerones
-                li.submenu__subitem
-                  a.subitem__link(href='#') Vestidos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Kimonos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Pantalones
-                li.submenu__subitem
-                  a.subitem__link(href='#') Capris
-                li.submenu__subitem
-                  a.subitem__link(href='#') Leggings
-                li.submenu__subitem
-                  a.subitem__link(href='#') Jardineras
-                li.submenu__subitem
-                  a.subitem__link(href='#') Faldas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Ropa Interior
-                li.submenu__subitem
-                  a.subitem__link(href='#') Pantalones cortos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Pijamas
-
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 3 }")
-            span.submenu__label(
-              @click='level2 = 3') Complementos
-            //- Nivel 3: Lista de enlaces
-            transition(name='slide-down')
-              ul.submenu__list(
-                v-show='level2 == 3')
-                li.submenu__subitem
-                  a.subitem__link(href='#') Accesorios
-                li.submenu__subitem
-                  a.subitem__link(href='#') Zapatos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Cinturones
-                li.submenu__subitem
-                  a.subitem__link(href='#') Anteojos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Bisutería
-                li.submenu__subitem
-                  a.subitem__link(href='#') Sombreros y Gorros
-
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 4 }")
-            span.submenu__label(
-              @click='level2 = 4'
-            ) Marcas
-            //- Nivel 3: Lista de enlaces
-            transition(name='slide-down')
-              ul.submenu__list(
-                v-show='level2 == 4')
-                li.submenu__subitem
-                  a.subitem__link(href='#') Adidas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Americanino
-                li.submenu__subitem
-                  a.subitem__link(href='#') Asos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Converse
-                li.submenu__subitem
-                  a.subitem__link(href='#') Forever 21
-                li.submenu__subitem
-                  a.subitem__link(href='#') Foster
-                li.submenu__subitem
-                  a.subitem__link(href='#') H&M
-                li.submenu__subitem
-                  a.subitem__link(href='#') Maaji
-                li.submenu__subitem
-                  a.subitem__link(href='#') Mango
-                li.submenu__subitem
-                  a.subitem__link(href='#') Nike
-                li.submenu__subitem
-                  a.subitem__link(href='#') Rapsodia
-                li.submenu__subitem
-                  a.subitem__link(href='#') Opposite
-                li.submenu__subitem
-                  a.subitem__link(href='#') TopShop
-                li.submenu__subitem
-                  a.subitem__link(href='#') Zara
-
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 5 }"
-          )
-            span.submenu__label(
-              @click='level2 = 5'
-            ) Top Picks
-
-          li.menu-side__footer
-            a.link_underline(href='#') Ver todas las Prendas
-
-      //- $End Nivel 2 Shop
-
-    li.menu__item.i-next
-      a.menu__link.i-bag(href='#') {{ menu.items[1].name }}
-    li.menu__item.i-next
-      a.menu__link.i-closet(href='#') Closet Room
-    li.menu__item.i-next
-      a.menu__link.i-favorite(href='#') Prilovers
-    li.menu__item.i-next
-      a.menu__link.i-blog(href='#') Blog
-
+                li.submenu__subitem(v-for="(grandChildren, indexG) in children.children")
+                  a.subitem__link(href="#") {{grandChildren.name}}
   //- menu footer
   ul.menu-footer
     li.menu-footer__item
@@ -188,41 +73,48 @@ export default {
     return {
       active: false,
       show: false,
-      level1: undefined,
-      level2: undefined,
-      footer: {},
+      selected: undefined,
+      // level1: undefined,
+      // level2: undefined,
       menu: {},
+      footer: {},
       nameFooter: undefined
     }
+  },
+  methods: {
+    MenuClose: function () {
+      this.$emit('MenuClose')
+    },
+    handler: function (item) {
+      this.toggleNav()
+      this.selected = item.children[0]
+    },
+    toggleNav: function () {
+      this.active = !this.active
+    },
   },
   created () {
     axios.get('https://prilov.aguayo.co/api/menus/principal', {
     })
       .then(response => {
         this.menu = response.data
-        axios.get('https://prilov.aguayo.co/api/menus/footer', {
-        })
-          .then(response => {
-            this.footer = response.data.items[3]
-            this.nameFooter = response.data.items[3].name
-            console.log(response.data)
-          })
-          .catch(e => {
-            console.log('ERROR : ' + e)
-          })
+        console.log('items de menu principal')
+        console.log(response.data)
       })
       .catch(e => {
         console.log('ERROR : ' + e)
       })
-  },
-
-  methods: {
-    MenuClose: function () {
-      this.$emit('MenuClose')
-    },
-    toggleNav: function () {
-      this.active = !this.active
-    }
+    axios.get('https://prilov.aguayo.co/api/menus/footer', {
+    })
+      .then(response => {
+        this.footer = response.data.items[3]
+        this.nameFooter = response.data.items[3].name
+        console.log('items de footer item Siguenos')
+        console.log(response.data)
+      })
+      .catch(e => {
+        console.log('ERROR : ' + e)
+      })
   }
 
 }
