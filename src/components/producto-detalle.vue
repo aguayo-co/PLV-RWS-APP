@@ -25,24 +25,24 @@
     .detail__content
       header.detail__header
         h1.detail__title {{ product.title }}
+      p.detail__tag.tag Producto {{ product.condition.name }}
+      p.detail__brand {{ product.brand.name }}
+      p.detail__size Talla: {{ product.dimensions }} | Colores: {{ product.colors[0].name }}
+      .detail__value
+        p.detail__through.through ${{ product.original_price }}
+        p.detail__price.txt-light ${{ product.price }}
+      .detail__actions
+        a.detail__btn.btn.btn_solid(
+          href="#") Comprar
+        a.detail__btn.btn.i-heart(
+          href="#") Agregar a Favoritos
       .detail__lead
-        p.detail__tag.tag Producto {{ product.condition.name }}
-        p.detail__brand {{ product.brand.name }}
-        p.detail__size Talla: {{ product.dimensions }} | Colores: {{ product.colors[0].name }}
-        .detail__value
-          p.detail__through.through ${{ product.original_price }}
-          p.detail__price.txt-light ${{ product.price }}
-        .detail__actions
-          a.btn.btn_solid(
-            href="#") Comprar
-          a.btn.i-heart(
-            href="#") Agregar a Favoritos
-      h2.detail__subtitle Descripción
-      p.detail__txt {{ product.description }}
-      h2.detail__subtitle Despacho
-      p.detailt__txt.i-ok
-        |Envíos a todo Chile <small class="detail__txt_small"> Mediante Chile-express o Correos de Chile</small>
-      p.detail__txt.i-ok Coordinar entrega con vendedora en Viña
+        h2.detail__subtitle Descripción
+        p.detail__txt {{ product.description }}
+        h2.detail__subtitle Despacho
+        p.detail__txt.detail__txt_ico.i-ok
+          |Envíos a todo Chile <small class="detail__txt_small"> Mediante Chile-express o Correos de Chile</small>
+        p.detail__txt.detail__txt_ico.i-ok Coordinar entrega con vendedora en Viña
 </template>
 
 <script>
