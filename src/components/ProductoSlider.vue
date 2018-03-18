@@ -60,7 +60,7 @@ import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-  name: 'SliderProducto',
+  name: 'ProductoSlider',
   components: {
     swiper,
     swiperSlide

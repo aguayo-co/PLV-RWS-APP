@@ -59,7 +59,7 @@
 
       //- user: picture/first_name/last_name
       a.slot__user(
-        :href='user',
+        :href='product.user',
         :title='product.first_name')
         .slot__user-img
           .slot__avatar
@@ -78,7 +78,7 @@
 <script>
 
 export default {
-  name: 'ProductGrid',
+  name: 'ProductoGrid',
   data () {
     return {
       isActive: undefined,

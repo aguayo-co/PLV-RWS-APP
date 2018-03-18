@@ -31,7 +31,7 @@ import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-  name: 'SliderPrilovers',
+  name: 'PriloversSlider',
   components: {
     swiper,
     swiperSlide
