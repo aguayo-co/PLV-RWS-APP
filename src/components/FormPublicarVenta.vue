@@ -7,7 +7,7 @@ div
         h2.title_subhead ¿No lo usas?, ¡Vendelo!
       .upfile
         .upfile__main.i-plus
-          h4.upfile__title Foto Principal
+          h3.upfile__title Foto Principal
           .upfile__item
             .upfile__label
               .upfile__text.i-upload(
@@ -25,7 +25,7 @@ div
               :prevent-white-space="true"
               @new-image-drawn='handleImages(0)')
         .upfile__group
-          h4.upfile__title Fotos Secundarias (opcionales)
+          h3.upfile__title Fotos Secundarias (opcionales)
           .upfile__grid
             .upfile__item
               .upfile__label
@@ -72,7 +72,7 @@ div
           p.form-section__subtitle Una buena descripción hace que los compradores encuentren rápidamente tus productos.
 
         .form__row(
-          v-bind:class='{ "is-danger": errorLog.title }')
+          :class='{ "is-danger": errorLog.title }')
           label.form__label(
             for='product-name') Nombre
           span.help(
@@ -84,7 +84,7 @@ div
             v-model='product.title',
             type='text')
         .form__row(
-          v-bind:class='{ "is-danger": errorLog.description }')
+          :class='{ "is-danger": errorLog.description }')
           label.form__label(
             for='product-description') Descripción
           span.help(
@@ -103,7 +103,7 @@ div
         .form-section__grid
           .form-section__item
             .form__row(
-              v-bind:class='{ "is-danger": errorLog.category }')
+              :class='{ "is-danger": errorLog.category }')
               label.form__label(
                 for='product-categoria') Categoría
               span.help(
@@ -116,10 +116,10 @@ div
                 optgroup(label='Categoría')
                   option(
                     v-for='category in categories'
-                    v-bind:value='category.id'
+                    :value='category.id'
                   ) {{ category.name }}
             .form__row(
-              v-bind:class='{ "is-danger": errorLog.condition }')
+              :class='{ "is-danger": errorLog.condition }')
               label.form__label(
                 for='product-estado') Estado del producto
               span.help(
@@ -132,11 +132,11 @@ div
                 optgroup(label='Estado del producto')
                   option(
                     v-for='condition in conditions'
-                    v-bind:value='condition.id'
+                    :value='condition.id'
                   ) {{ condition.name }}
             .form__row.color(
-              v-bind:class='{ "is-danger": errorLog.color }'
-              v-on:click='toggleColors.first = !toggleColors.first')
+              :class='{ "is-danger": errorLog.color }'
+              @click='toggleColors.first = !toggleColors.first')
               label.form__label(
                 for='product-color-first') Color principal
               span.help(
@@ -155,11 +155,11 @@ div
                     @click='chooseColor(color.id, 1)'
                   )
                     span.color-circle(
-                      v-bind:style='{ backgroundColor: color.hex_code }'
+                      :style='{ backgroundColor: color.hex_code }'
                     )
                     span {{ color.name }}
             .form__row.color(
-              v-on:click='toggleColors.second = !toggleColors.second')
+              @click='toggleColors.second = !toggleColors.second')
               label.form__label(
                 for='product-color-second') Color adicional
               input.form__select(
@@ -175,7 +175,7 @@ div
                     @click='chooseColor(color.id, 2)'
                   )
                     span.color-circle(
-                      v-bind:style='{ backgroundColor: color.hex_code }'
+                      :style='{ backgroundColor: color.hex_code }'
                     )
                     span {{ color.name }}
             .form__row
@@ -184,18 +184,18 @@ div
                 v-for='size in sizes')
                 input.form__input-radio(
                   type='radio',
-                  v-bind:id='"sizeScheme-"+size.id',
+                  :id='"sizeScheme-"+size.id',
                   v-model='product.sizeScheme',
-                  v-bind:value='size.id'
-                  v-on:change='chooseSize(size.id)'
+                  :value='size.id'
+                  @change='chooseSize(size.id)'
                   :checked='sizeScheme == size.id-1')
                 label.form__label.form__label_radio(
-                  v-bind:for='"sizeScheme-"+size.id')
+                  :for='"sizeScheme-"+size.id')
                   strong.form__headline {{ size.name }}
                   p.form__disclaimer {{ size.description }}
               .form__row(
                 v-show='toggleSize && sizeScheme != 2'
-                v-bind:class='{ "is-danger": errorLog.size }')
+                :class='{ "is-danger": errorLog.size }')
                 label.form__label(
                   for="product-talla") Selecciona la talla de tu producto
                 span.help(
@@ -208,10 +208,10 @@ div
                   optgroup(label='Talla')
                     option(
                       v-for='sizeValue in sizes[sizeScheme].values'
-                      v-bind:value='sizeValue'
+                      :value='sizeValue'
                     ) {{ sizeValue }}
             .form__row(
-              v-bind:class='{ "is-danger": errorLog.brand }')
+              :class='{ "is-danger": errorLog.brand }')
               label.form__label(
                 for='product-marca') Marca
               span.help(
@@ -224,10 +224,10 @@ div
                 optgroup(label='Marca')
                   option(
                     v-for='brand in brands'
-                    v-bind:value='brand.id'
+                    :value='brand.id'
                   ) {{ brand.name }}
             .form__row(
-              v-bind:class='{ "is-danger": errorLog.dimensions }')
+              :class='{ "is-danger": errorLog.dimensions }')
               label.form__label(
                 for='product-medidas') Medidas
               span.help(
@@ -239,7 +239,7 @@ div
                 type='text',
                 v-model='product.dimensions')
             .form__row(
-              v-bind:class='{ "is-danger": errorLog.price }')
+              :class='{ "is-danger": errorLog.price }')
               label.form__label(
                 for='product-precio') Precio de venta
               span.help(
@@ -252,7 +252,7 @@ div
                   v-model='product.price'
                   type='number')
             .form__row(
-              v-bind:class='{ "is-danger": errorLog.originalPrice }')
+              :class='{ "is-danger": errorLog.originalPrice }')
               label.form__label(
                 for='product-original-price') Precio al que compraste tu producto
               span.help(
@@ -312,7 +312,7 @@ div
         fieldset.form-section
           legend.subhead.form-section__title Exposición del producto
           .form__row(
-            v-bind:class='{ "is-danger": errorLog.commission }')
+            :class='{ "is-danger": errorLog.commission }')
             span.help(
               v-if="errorLog.commission"
             ) {{ errorLog.commission }}
@@ -363,7 +363,7 @@ div
 
       .form-section.form-section_footer
         .form__row(
-          v-bind:class='{ "is-danger": errorLog.checkTerms }')
+          :class='{ "is-danger": errorLog.checkTerms }')
           span.help(
             v-if="errorLog.checkTerms"
           ) {{ errorLog.checkTerms }}
