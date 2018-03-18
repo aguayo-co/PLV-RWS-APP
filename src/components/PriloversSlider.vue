@@ -1,25 +1,25 @@
 <template lang="pug">
   //- banner promociones grid
   //- TO-DO: consumir servicios
-  .slider-user
+  .slider-fullwide
     swiper(
       :options='swiperOption')
       swiper-slide(
         v-for="(user, index) in users" :key="index")
-        a.slider-user__item(:href='user.url')
-          .slider-user__avatar
-            img.slider-user__picture(
+        a.slide-group__item(:href='user.url')
+          .slide-group__avatar
+            img.slide-group__picture(
               :src='user.picture',
               :alt='user.first_name')
-          .slider-user__name {{ user.first_name }} {{ user.last_name }}
+          .slide-group__name {{ user.first_name }} {{ user.last_name }}
 
-          .slider-user__group.i-it-girl(
+          .slide-group__type.i-it-girl(
             v-if='user.slot__group == 1') It <span class="txt_brand">girl</span>
-          .slider-user__group.i-starts(
+          .slide-group__type.i-star-on(
             v-if='user.slot__group == 2') Prilover <span class="txt_brand">Star</span>
       .swiper-pagination(slot='pagination')
 
-    .slider-footer(
+    .slider-fullwide__footer(
       v-if="mqTablet")
       a.link_underline(href="#") Más sobre PriloverStars
       a.link_underline(href="#") Más sobre IT Girls
