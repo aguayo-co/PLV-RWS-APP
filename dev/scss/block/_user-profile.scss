@@ -26,7 +26,6 @@
       }
     }
   }
-
   
   .user-header-edit__grid {
     @include flexbox;
@@ -72,6 +71,22 @@
     vertical-align: bottom;
   }
 
+  .user-data__group {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    text-align: center;
+    @include font-rem(16px);
+    &.i-star-on {
+      &::before {
+        position: relative;
+        top: -2px;
+        padding-right: 10px;
+        font-size: 90%;
+      }
+    }
+
+  }
+
   .user-data__notify {
     padding: 8px 0;
   }
@@ -110,6 +125,7 @@
   }
 
   .user-data__value {
+    min-width: 70px;
     color: $c-default-2;
     @include font-rem(16px);
     &:before {
@@ -129,6 +145,7 @@
   }
 
   .user-data__track {
+    min-width: 72px;
     padding: 2px 0;
     border-bottom: 3px solid $c-brand;
     &:not(:last-child) {
@@ -152,7 +169,7 @@
   // $bp-medium: 768px;
   @include media-query(medium) {
     .single__inner {
-      width: 84%;
+      width: 86%;
       margin: 0 auto;
     }
   }
@@ -192,11 +209,22 @@
     .user-data__avatar {
       margin-right: 28px;
     }
+
+    .user-data__group {
+      text-align: left;
+      @include font-rem(18px);
+      margin-right: 28px;
+    }
+
     .user-data__notify {
       @include flexbox;
     }
     .user-data__list {
-      padding: 4px 40px 4px 0;
+      padding: 4px 0;
+
+      &:not(:last-child) {
+        padding-right: 20px;
+      }
     }
     .user-data__actions {
       padding-top: 20px;
@@ -206,3 +234,112 @@
     text-align: left;
     }
   }
+
+/*------------------------------------*\
+	Info User in Producto
+\*------------------------------------*/
+.product-user {
+  padding-top: 32px;
+}
+
+.user-card {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(space-around);
+}
+
+.user-data__avatar_border {
+  border: 5px solid $c-brand;
+}
+
+.user-card__header {
+  width: 100%;
+}
+.user-card__tip {
+  position: relative;
+  width: 100%;
+  min-width: 220px;
+  padding: 20px;
+  background-color: $c-neutro-4;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+}
+
+// Description User
+@media only screen and (max-width: 640px) {
+  .user-card__content {
+    padding-top: 20px;
+  }
+
+  .user-card__tip {
+    &:before {
+      top: -14px;
+      left: 50%;
+      border-width: 0 11px 14px 11px;
+      border-bottom-color: $c-neutro-4;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.user-card__actions {
+  text-align: right;
+  margin: 0;
+}
+
+.user-card__link {
+  position: relative;
+  display: inline-block;
+  padding-left: 38px;
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: $c-brand;
+    @include font-rem(20px);
+  }
+}
+
+// $bp-small-medium: 640px;
+@include media-query(small-medium) {
+
+  .user-card {
+    @include flex-direction(row);
+  }
+  .user-card__tip {
+    &:before {
+      top: 50%;
+      left: -21px;
+      border-style: solid;
+      border-width: 20px 30px 20px 0;
+      border-right-color: $c-neutro-4;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+
+}
+//$bp-medium: 768px;
+@include media-query(medium) {
+  .product-user {
+    padding-top: 56px;
+  }
+}
+
+//$bp-wide: 1024px;
+@include media-query(wide) {
+  .user-card__content {
+    width: 100%;
+    padding-left: 50px;
+  }
+}
+

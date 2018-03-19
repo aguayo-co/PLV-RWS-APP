@@ -2,7 +2,7 @@
 div
   .layout-band
     .layout-inner
-      header.page__head.steps__header
+      header.page__head
         h1.title__main Publicar una venta
         h2.title_subhead ¿No lo usas?, ¡Vendelo!
       .upfile
@@ -42,7 +42,7 @@ div
             .upfile__item
               .upfile__label
                 .upfile__text.i-upload(
-                  v-if="mqTablet") Arrastra una foto o
+                  v-if="mqDesk") Arrastra una foto o
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[2]',
@@ -55,7 +55,7 @@ div
               v-if="mqDesk")
               .upfile__label
                 .upfile__text.i-upload(
-                  v-if="mqTablet") Arrastra una foto o
+                  v-if="mqDesk") Arrastra una foto o
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[3]',

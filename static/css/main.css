@@ -433,6 +433,12 @@ template {
 .i-star-on:before {
   content: "\e939"; }
 
+.i-email:before {
+  content: "\e93a"; }
+
+.i-upload:before {
+  content: "\e93b"; }
+
 /*------------------------------------*	texts links
 \*------------------------------------*/
 a {
@@ -3077,6 +3083,18 @@ body {
   width: 100%;
   vertical-align: bottom; }
 
+.user-data__group {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+  font-size: 1rem; }
+  .user-data__group.i-star-on::before {
+    position: relative;
+    top: -2px;
+    padding-right: 10px;
+    font-size: 90%; }
+
 .user-data__notify {
   padding: 8px 0; }
 
@@ -3125,6 +3143,7 @@ body {
   padding: 8px 0; }
 
 .user-data__value {
+  min-width: 70px;
   color: #4a4a4a;
   font-size: 16px;
   font-size: 1rem; }
@@ -3139,6 +3158,7 @@ body {
   padding-left: 10px; }
 
 .user-data__track {
+  min-width: 72px;
   padding: 2px 0;
   border-bottom: 3px solid #fe7676; }
   .user-data__track:not(:last-child) {
@@ -3156,7 +3176,7 @@ body {
 
 @media only screen and (min-width: 768px) {
   .single__inner {
-    width: 84%;
+    width: 86%;
     margin: 0 auto; } }
 
 @media only screen and (min-width: 1024px) {
@@ -3205,6 +3225,11 @@ body {
     padding: 8px 0 0 16px; }
   .user-data__avatar {
     margin-right: 28px; }
+  .user-data__group {
+    text-align: left;
+    font-size: 18px;
+    font-size: 1.125rem;
+    margin-right: 28px; }
   .user-data__notify {
     display: -webkit-box;
     display: -webkit-flex;
@@ -3212,12 +3237,115 @@ body {
     display: -ms-flexbox;
     display: flex; }
   .user-data__list {
-    padding: 4px 40px 4px 0; }
+    padding: 4px 0; }
+    .user-data__list:not(:last-child) {
+      padding-right: 20px; }
   .user-data__actions {
     padding-top: 20px;
     text-align: left; }
   .user-data__caption-i {
     text-align: left; } }
+
+/*------------------------------------*	Info User in Producto
+\*------------------------------------*/
+.product-user {
+  padding-top: 32px; }
+
+.user-card {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  justify-content: space-around; }
+
+.user-data__avatar_border {
+  border: 5px solid #fe7676; }
+
+.user-card__header {
+  width: 100%; }
+
+.user-card__tip {
+  position: relative;
+  width: 100%;
+  min-width: 220px;
+  padding: 20px;
+  background-color: #f6f6f6; }
+  .user-card__tip:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent; }
+
+@media only screen and (max-width: 640px) {
+  .user-card__content {
+    padding-top: 20px; }
+  .user-card__tip:before {
+    top: -14px;
+    left: 50%;
+    border-width: 0 11px 14px 11px;
+    border-bottom-color: #f6f6f6;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); } }
+
+.user-card__actions {
+  text-align: right;
+  margin: 0; }
+
+.user-card__link {
+  position: relative;
+  display: inline-block;
+  padding-left: 38px; }
+  .user-card__link:before {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: #fe7676;
+    font-size: 20px;
+    font-size: 1.25rem; }
+
+@media only screen and (min-width: 640px) {
+  .user-card {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+  .user-card__tip:before {
+    top: 50%;
+    left: -21px;
+    border-style: solid;
+    border-width: 20px 30px 20px 0;
+    border-right-color: #f6f6f6;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); } }
+
+@media only screen and (min-width: 768px) {
+  .product-user {
+    padding-top: 56px; } }
+
+@media only screen and (min-width: 1024px) {
+  .user-card__content {
+    width: 100%;
+    padding-left: 50px; } }
 
 /*------------------------------------*	dividers
 \*------------------------------------*/
@@ -3698,7 +3826,17 @@ body {
   .upfile__btn {
     padding: 16px;
     font-size: 16px;
-    font-size: 1rem; } }
+    font-size: 1rem; }
+  .upfile__text {
+    padding-bottom: 20px; }
+    .upfile__text::before {
+      display: block;
+      padding-bottom: 20px;
+      font-size: 80px;
+      font-size: 5rem; }
+  .upfile__main .upfile__text::before {
+    font-size: 100px;
+    font-size: 6.25rem; } }
 
 @media only screen and (min-width: 1024px) {
   .upfile__group {
@@ -3991,87 +4129,6 @@ body {
   .detail__content {
     padding-left: 30px;
     width: 90%; } }
-
-/*------------------------------------*	Product User in Producto
-\*------------------------------------*/
-.user-card {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  align-items: center;
-  -ms-flex-pack: justify;
-  -webkit-justify-content: space-around;
-  -moz-justify-content: space-around;
-  justify-content: space-around; }
-  .user-card .user-data__avatar {
-    border: 5px solid #fe7676; }
-
-.user-card__block {
-  width: 100%; }
-
-.user-bullet {
-  position: relative;
-  padding: 20px;
-  background-color: #f6f6f6;
-  width: 100%;
-  text-align: right; }
-  .user-bullet:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 50%;
-    left: -21px;
-    border-top: 20px solid transparent;
-    border-right: 30px solid #f6f6f6;
-    border-bottom: 20px solid transparent;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%); }
-
-.user-bullet {
-  text-align: right; }
-
-.user-bullet__txt {
-  text-align: left; }
-
-.user-bullet__link {
-  position: relative;
-  display: inline-block;
-  color: #000;
-  padding: 2px 0;
-  margin-left: 30px;
-  border-bottom: 3px solid #fe7676; }
-  .user-bullet__link:before {
-    position: absolute;
-    left: -30px;
-    top: 7px;
-    color: #fe7676;
-    font-size: 20px;
-    font-size: 1.25rem; }
-
-@media only screen and (min-width: 640px) {
-  .user-card {
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row; }
-  .user-bullet {
-    max-width: 390px; } }
 
 /*------------------------------------*	Producto grid Home
 \*------------------------------------*/

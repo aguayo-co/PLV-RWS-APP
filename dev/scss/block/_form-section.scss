@@ -329,7 +329,22 @@
     padding: 16px;
     @include font-rem(16px);
   }
+  .upfile__text {
+    padding-bottom: 20px;
+    &::before {
+      display: block;
+      padding-bottom: 20px;
+      @include font-rem(80px);
+    }
+  }
 
+  .upfile__main {
+    .upfile__text {
+      &::before {
+        @include font-rem(100px);
+      }
+    }
+  }
 }
 
 @include media-query(wide) {
