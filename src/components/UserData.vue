@@ -60,6 +60,8 @@ section.single
                       id='userLast',
                       type='text'
                     )
+                  .form__row.user-edit__save
+                    button.btn-tag Guardar
 
             //-Enlaces Modal
             //- ul.user-data-nav
@@ -82,12 +84,15 @@ section.single
               p.user-data__txt(
                 v-if="editAbout == false",
                 @click.prevent="EditAbout()") {{ data.about }}
-              textarea.form__edit_txt(
-                v-model="data.about",
-                name="about",
-                maxlength="340",
-                v-if="editAbout == true",
-                form="form-user-data")
+              .user-data__txt(
+                v-if="editAbout == true")
+                textarea.form__edit_txt(
+                  v-model="data.about",
+                  name="about",
+                  maxlength="340",
+                  form="form-user-data")
+                .form__row.form__row_away.user-edit_right
+                  button.btn-tag Guardar
             a.user-edit__actions(
               @click.prevent="EditAbout()",
               href="#"

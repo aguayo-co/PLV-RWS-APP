@@ -3059,14 +3059,29 @@ body {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 16px 0; }
   .user-header-edit__grid .form__row {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     margin: 0 6px; }
   .user-header-edit__grid .form__label {
     font-weight: 400; }
+  .user-header-edit__grid .user-edit_right {
+    text-align: right; }
+  .user-header-edit__grid .user-edit__save {
+    -webkit-align-self: flex-end;
+    -moz-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    text-align: right;
+    margin-bottom: 5px;
+    width: 100%;
+    margin-top: 12px; }
 
 .user-data__title {
   padding-top: 16px;
