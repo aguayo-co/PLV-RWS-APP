@@ -38,21 +38,21 @@
   'block/banner-slider',
   'block/banner-top',
   'block/banner-grid',
-  'block/slider-user',
-  'block/product-detail';
+  'block/slider-fullwide';
+
+  //User
+@import 
+'block/layout-single',
+'block/user-menu',
+'block/user-profile',
+'block/dividers',
+'block/form-section';
 
 //Product
 @import
-  'block/product-user',
-  'block/product-slot';
-
-//User
-@import
-  'block/layout-single',
-  'block/user-menu',
-  'block/user-profile',
-  'block/dividers',
-  'block/form-section';
+  'block/product-detail',
+  'block/product-slot',
+  'block/slider-slot';
 
 @import
   'vendor/flickity';

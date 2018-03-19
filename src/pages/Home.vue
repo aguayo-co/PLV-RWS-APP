@@ -9,14 +9,14 @@
         h2.title_head Prilovers <span class="txt_brand">We Love</span>
         h3.title_subhead(
           v-if="mqTablet") Mueve tu closet y forma parte de la comunidad más grande
-      SliderPrilovers
+      PriloversSlider
 
   section.section_product
     header.section__head.section__head_big
       h2.title_head <span class="txt_brand">Im</span>perdibles
       h3.title_subhead Lo que más nos gusta de Prilov
 
-    ProductGrid
+    ProductoGrid
 
     p.section_product__footer(
         v-if="mqTablet")
@@ -29,8 +29,8 @@
 import BannerTop from '@/components/BannerTop'
 import BannerSlider from '@/components/BannerSlider'
 import BannerGrid from '@/components/BannerGrid'
-import SliderPrilovers from '@/components/SliderPrilovers'
-import ProductGrid from '@/components/ProductGrid'
+import PriloversSlider from '@/components/PriloversSlider'
+import ProductoGrid from '@/components/ProductoGrid'
 
 export default {
   name: 'Home',
@@ -38,8 +38,8 @@ export default {
     BannerTop,
     BannerSlider,
     BannerGrid,
-    SliderPrilovers,
-    ProductGrid
+    PriloversSlider,
+    ProductoGrid
   }
 }
 </script>

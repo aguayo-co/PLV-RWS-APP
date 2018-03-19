@@ -1,9 +1,7 @@
 /*------------------------------------*\
-	Producto grid Home
+	Slider prilover Home
 \*------------------------------------*/
-
-
-.slider-user {
+.slider-fullwide {
   padding-bottom: 20px;
   .swiper-container {
     &>.swiper-pagination-progressbar {
@@ -24,38 +22,15 @@
       background: $c-brand;
     }
   }
-  .swiper-button-next,
-  .swiper-button-prev {
-    @include font-rem(20px);
-    background: none;
-  }
-  .swiper-button-next {
-    right: 0;
-  }
-  .swiper-button-prev {
-    left: 0;
-  }
-  //- Espacio entre los slot 
-  // .slot {
-  //   margin: 0 30px;
-  // } 
 }
-//- Modificador solo para dar espacio a las Arrows
-.slider-user__product {
-  .swiper-container {
-    padding: 0 40px;
-  }
-  .slot__ico {
-    right: 6px;
-  }
-}
-.slider-user__item {
+
+.slide-group__item {
   display: block;
   text-align: center;
   color: $c-default-2;
 }
 
-.slider-user__avatar {
+.slide-group__avatar {
   display: inline-block;
   vertical-align: middle;
   width: 120px;
@@ -69,7 +44,8 @@
     border: 8px solid $c-brand;
   }
 }
-.slider-user__picture {
+
+.slide-group__picture {
   position: relative;
   top: 50%;
   left: 50%;
@@ -77,14 +53,15 @@
   width: 100%;
   transform: translate(-50%, -50%);
 }
-.slider-user__name {
+
+.slide-group__name {
   padding: 16px 4px;
   @include font-rem(12px);
   font-family: $f-fancy;
   font-weight: $fw-medium;
 }
 
-.slider-user__group {
+.slide-group__type {
   position: relative;
   padding-top: 12px;
   @include font-rem(14px);
@@ -108,18 +85,18 @@
     background-color: $c-default;
   }
 }
-.slider-footer {
+
+.slider-fullwide__footer {
   text-align: right;
   padding: 20px 20px 0 0;
   .link_underline {
     display: inline-block;
     margin: 0 20px;
   }
-
 }
 
 @media only screen and (max-width: 767px) {
-  .slider-user {
+  .slider-fullwide {
     .swiper-container {
       &>.swiper-pagination-progressbar {
         display: none;
@@ -128,22 +105,18 @@
   }
 }
 
-// $bp-big: 1170px;
+// $bp-medium: 768px;
 @include media-query(medium) {
-  .slider-user {
+  .slider-fullwide {
     padding: 20px 0;
     .swiper-container {
       &.swiper-container-horizontal {
         padding-bottom: 52px;
       }
     }
-    .swiper-button-next,
-    .swiper-button-prev {
-      @include font-rem(30px);
-    }
   }
 
-  .slider-user__avatar {
+  .slide-group__avatar {
     width: 140px;
     height: 140px;
      &:hover {
@@ -151,11 +124,11 @@
      }
 
   }
-  .slider-user__name {
+  .slide-group__name {
     @include font-rem(14px);
   }
 
-  .slider-user__group {
+  .slide-group__type {
     @include font-rem(18px);
     text-transform: uppercase;
     &:before {
@@ -164,21 +137,4 @@
     }
   }
 
-  .slider-user__product {
-    .slot__ico {
-      right: 8px;
-    }
-  }
-
 }
-
-@include media-query(wide) {
-  .slider-user__product {
-    .slot__ico {
-      right: 8px;
-    }
-  }
-}
-
-
-
