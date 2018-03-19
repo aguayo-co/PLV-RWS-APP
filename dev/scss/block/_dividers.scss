@@ -32,12 +32,16 @@
   @include justify-content(space-between);
   @include align-items(center);
   margin: 0;
+  transition: all .2s ease-in-out;
 }
 
 .dividers__actions {
   @include flexbox;
   @include justify-content(space-between);
   @include align-items(center);
+  padding: 0;
+  background-color: transparent;
+  transition: all .2s ease-in-out;
 }
 
 .dividers__edit {
@@ -59,7 +63,7 @@
 }
 
 .dividers__item_active {
-  padding-left: 10px;
+  padding: 12px;
   background-color: $c-neutro-3;
   .dividers__edit {
     &:before {
@@ -67,9 +71,35 @@
     }
   }
   .form__edit {
-    padding-left: 10px;
+    padding: 12px;
+  }
+  .dividers__actions {
+    background-color: $c-neutro;
+  }
+
+}
+
+ @media only screen and (max-width: 600px) {
+
+  .dividers__item_active {
+    .dividers__grid {
+      @include flex-direction(column);
+    }
+    .dividers__actions {
+      width: 100%;
+      padding: 10px 0 10px 10px;
+      margin-top: 1px;
+    }
   }
 }
+@media only screen and (min-width: 601px) {
+  .dividers__item_active {
+    .dividers__actions {
+      width: 180px;
+      padding: 12px 0 11px 12px;
+    }
+  }
+ }
 
 .dividers__list_active {
   color: $c-default;

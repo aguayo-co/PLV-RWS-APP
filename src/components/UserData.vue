@@ -292,6 +292,8 @@ section.single
                   :disabled="editEmail == false"
                   :placeholder="data.email")
                 span.dividers__actions
+                  button.btn-tag(
+                    v-show="editEmail == true") Guardar
                   a.dividers__edit.i-edit-line(
                     @click.prevent="EditEmail()",
                     href="#",
@@ -314,6 +316,8 @@ section.single
                   type='tel')
 
                 span.dividers__actions
+                  button.btn-tag(
+                    v-show="editTel == true") Guardar
                   a.dividers__edit.i-edit-line(
                     @click.prevent="EditTel()",
                     href="#",
