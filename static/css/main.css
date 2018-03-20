@@ -219,6 +219,74 @@ template {
 [hidden] {
   display: none; }
 
+/*-----------------------------*  CSS solo para maquetar la
+  guia de estilos
+\*-----------------------------*/
+/*Estilos de Bloque*/
+.sg-page {
+  padding: 20px 0;
+  background-color: #f9f9f9; }
+  .sg-page code {
+    display: block;
+    background-color: #f6f6f6;
+    padding: 20px;
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    overflow-x: scroll; }
+
+/*Estilos de Bloque*/
+.sg-head {
+  padding: 40px 20px; }
+  .sg-head .title__main {
+    display: block;
+    width: 100%;
+    margin: 0 auto 20px 0; }
+  .sg-head .title {
+    text-align: left;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none; }
+
+/*Estilos de Bloque*/
+.sg-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 20px; }
+
+.sg-box__row {
+  width: 100%; }
+  .sg-box__row .title_subhead {
+    padding-bottom: 20px; }
+
+.sg-box__col {
+  width: 50%; }
+
+.sg-box__head {
+  padding: 20px 0;
+  border-bottom: 1px solid #f6f6f6; }
+
+.sg-box__el {
+  border: 1px dashed #f6f6f6;
+  background-color: #fff; }
+
+@media only screen and (min-width: 640px) {
+  .sg-page code {
+    overflow-x: hidden; } }
+
+@media only screen and (min-width: 980px) {
+  /*Estilos de Bloque*/
+  .sg-page {
+    max-width: 80%;
+    margin: 0 auto; } }
+
 /*------------------------------------*    #font-family, font-icon
 \*------------------------------------*/
 /* https://developers.google.com/fonts/docs/getting_started
@@ -655,7 +723,7 @@ select {
 .form__edit {
   width: 100%;
   line-height: 1.6;
-  color: #707070;
+  color: #f9f9f9;
   font-size: 16px;
   font-size: 1rem;
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -666,7 +734,7 @@ select {
   min-height: 170px;
   padding: 6px;
   line-height: 1.4;
-  color: #707070;
+  color: #f9f9f9;
   font-size: 16px;
   font-size: 1rem;
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -3025,7 +3093,7 @@ body {
   border: 1px solid #efefef; }
 
 .user-header-edit .form__label {
-  color: #707070; }
+  color: #f9f9f9; }
 
 .user-header-edit__item {
   display: -webkit-box;
@@ -3394,7 +3462,7 @@ body {
 
 .dividers__item {
   padding: 16px 0;
-  color: #707070;
+  color: #f9f9f9;
   font-size: 16px;
   font-size: 1rem;
   border-bottom: 1px solid #efefef;
@@ -3532,7 +3600,7 @@ body {
     color: #4a4a4a;
     font-size: 10px;
     font-size: 0.625rem;
-    border: 1px solid #707070;
+    border: 1px solid #f9f9f9;
     border-radius: 50%; }
   .dividers__add:hover {
     color: #fe7676; }

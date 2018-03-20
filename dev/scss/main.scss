@@ -16,6 +16,7 @@
 
 @import
   'generic/normalize',
+  'generic/styleguide',
   'generic/font-face';
 
 @import
@@ -41,7 +42,7 @@
   'block/slider-fullwide';
 
   //User
-@import 
+@import
 'block/layout-single',
 'block/user-menu',
 'block/user-profile',
