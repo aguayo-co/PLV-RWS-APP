@@ -9,6 +9,9 @@ div
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
           .upfile__item
+            a.delete(
+              v-show='toggleImageDelete[0]',
+              @click='removeImage(0)') Eliminar
             .upfile__label
               .upfile__text.i-upload(
                 v-if="mqDesk") Arrastra una foto o
@@ -22,12 +25,16 @@ div
               :height="450",
               :quality="2",
               placeholder="",
-              :prevent-white-space="true"
-              @new-image-drawn='handleImages(0)')
+              :prevent-white-space="true",
+              @new-image-drawn='addImage(0)',
+              @draw='handleMainImage')
         .upfile__group
           h3.upfile__title Fotos Secundarias (opcionales)
           .upfile__grid
             .upfile__item
+              a.delete(
+                v-show='toggleImageDelete[1]',
+                @click='removeImage(1)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
@@ -38,8 +45,12 @@ div
                 :height="600",
                 :quality="2",
                 placeholder="",
-                :prevent-white-space="true")
+                :prevent-white-space="true",
+                @new-image-drawn='addImage(1)')
             .upfile__item
+              a.delete(
+                v-show='toggleImageDelete[2]',
+                @click='removeImage(2)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
@@ -50,9 +61,13 @@ div
                 :height="600",
                 :quality="2",
                 placeholder="",
-                :prevent-white-space="true")
+                :prevent-white-space="true",
+                @new-image-drawn='addImage(2)')
             .upfile__item(
               v-if="mqDesk")
+              a.delete(
+                v-show='toggleImageDelete[3]',
+                @click='removeImage(3)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
@@ -63,7 +78,8 @@ div
                 :height="600",
                 :quality="2",
                 placeholder="",
-                :prevent-white-space="true")
+                :prevent-white-space="true",
+                @new-image-drawn='addImage(3)')
   .step
     //-Formulario set 1
     .layout-inner
@@ -274,7 +290,7 @@ div
                   :title='product.title')
                   img.slot__img(
                     v-if='toggleImage'
-                    :src='images[0].generateDataUrl()',
+                    :src='imageURL',
                     :alt='product.title')
 
                   //-title/dimensions
@@ -381,7 +397,7 @@ div
 </template>
 
 <script>
-import axios from 'axios'
+import productAPI from '../api/product'
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 Vue.component('croppa', Croppa.component)
@@ -391,7 +407,9 @@ export default {
   data () {
     return {
       images: [],
+      imageURL: null,
       toggleImage: false,
+      toggleImageDelete: [ false, false, false, false ],
       checkTerms: true,
       product: {
         title: null,
@@ -408,8 +426,8 @@ export default {
         file: [],
         color: [ null, null ]
       },
-      categories: {},
       conditions: {},
+      categories: {},
       colors: {},
       brands: {},
       errorLog: {},
@@ -446,45 +464,18 @@ export default {
     createProduct: function () {
       const imageBlobs = []
 
-      var data = {
-        title: this.product.title,
-        description: this.product.description,
-        dimensions: this.product.dimensions,
-        original_price: this.product.originalPrice,
-        price: this.product.price,
-        commission: this.product.commission,
-        user_id: this.$store.getters['user/id'],
-        brand_id: this.product.brand_id,
-        category_id: this.product.category_id,
-        size_id: 2,
-        color_ids: this.product.color_ids,
-        condition_id: this.product.condition_id,
-        status_id: 1
-      }
-
-      const headers = {
-        headers: {
-          'Authorization': 'Bearer ' + this.$store.getters['user/token'],
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-
-      this.images.forEach(function (image) {
+      this.images.forEach(function (image, index, array) {
         if (image.hasImage()) {
-          image.generateBlob(function (blob) {
-            imageBlobs.push(new File([blob], 'imagen-zapato-prueba'))
-            data.images = imageBlobs
-            console.log(data)
-            axios.post('https://prilov.aguayo.co/api/products', data, headers)
-              .then(response => {
-                console.log(response.data)
-              })
-              .catch(e => {
-                console.log(e)
-              })
-          })
+          imageBlobs.push(image.generateDataUrl())
         }
       })
+      productAPI.create(this.product, imageBlobs, this.$store.getters['user/id'], this.$store.getters['user/token'])
+        .then(response => {
+          console.log(response)
+        })
+        .catch(e => {
+          console.log(e)
+        })
     },
     validateBeforeSubmit: function (e) {
       this.errorLog = {}
@@ -506,8 +497,6 @@ export default {
       if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
 
       if (Object.keys(this.errorLog).length === 0) {
-        console.log('valid')
-        console.log(this.product)
         this.createProduct()
       } else {
         this.$refs.title.focus()
@@ -521,33 +510,47 @@ export default {
       this.sizeScheme = sizeId - 1
       this.toggleSize = true
     },
-    handleImages: function (index) {
-      if (this.images[0].hasImage()) this.toggleImage = true
+    handleMainImage: function () {
+      if (this.images[0].hasImage()) {
+        this.toggleImage = true
+        this.imageURL = this.images[0].generateDataUrl()
+      }
+    },
+    addImage: function (index) {
+      if (this.images[index].hasImage()) {
+        if (index === 0) this.handleMainImage()
+        this.toggleImageDelete[index] = true
+      }
+    },
+    removeImage: function (index) {
+      this.toggleImageDelete[index] = false
+      this.images[index].remove()
+      if (index === 0) this.toggleImage = false
     }
   },
   created: function () {
-    axios.get('https://prilov.aguayo.co/api/categories/shop')
+    productAPI.getShopCategories()
       .then(response => {
         this.categories = response.data.children
       })
       .catch(e => {
-
+        console.log(e)
       })
-    axios.get('https://prilov.aguayo.co/api/conditions')
+    productAPI.getAllConditions()
       .then(response => {
         this.conditions = response.data.data
       })
       .catch(e => {
         console.log(e)
       })
-    axios.get('https://prilov.aguayo.co/api/colors')
+    productAPI.getAllColors()
       .then(response => {
         this.colors = response.data.data
       })
       .catch(e => {
         console.log(e)
       })
-    axios.get('https://prilov.aguayo.co/api/brands')
+    productAPI.getAllBrands()
       .then(response => {
         this.brands = response.data.data
       })
