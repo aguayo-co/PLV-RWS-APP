@@ -6,7 +6,7 @@
 .btn {
   display: inline-block;
   width: 100%;
-  padding: 18px;
+  padding: 16px;
   text-align: center;
   color: $c-default;
   @include font-rem(16px);
@@ -95,6 +95,17 @@
     background-color: $c-default;
   }
 }
+
+.btn-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  color: $c-brand;
+  @include font-rem(14px);
+  border: 1px solid $c-brand;
+  border-radius: 25px;
+  background-color: $c-neutro;
+}
+
 
 
 // $bp-medium: 768px;

@@ -413,5 +413,18 @@
     content: unicode($i-star-on);
   }
 }
+// V6
+.i-email {
+  &:before {
+    content: unicode($i-email);
+  }
+}
+
+.i-upload {
+  &:before {
+    content: unicode($i-upload);
+  }
+}
+
 
 

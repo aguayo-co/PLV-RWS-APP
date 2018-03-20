@@ -1,73 +1,122 @@
-//Detalle de producto
-.grid-detail__wrapper {
-  .swiper-container[data-v-c9e3ddcc] {
-    padding-top: 0;
+/*------------------------------------*\
+	Detalle producto
+\*------------------------------------*/
+.detail {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.detail__gallery {
+  width: 100%;
+}
+
+.detail__tabs {
+  @include flexbox;
+  @include flex-direction(column);
+}
+
+.detail__thumb {
+  padding-bottom: 10px;
+  opacity: .5;
+  cursor: pointer;
+  transform: scale(.9);
+  transition: all .2s ease-out;
+  &:before {
+    display: none;
+    padding: 0 20px;
+    color: $c-neutro;
+    @include font-rem(24px);
+    transform: scale(.9);
   }
 }
-.detail-content__header {
-  display: block;
-} 
-  .detail-content__title {
-    display: inline-block;
-    padding: 14px 0 8px;
-    margin: 0 0 26px;
-    @include font-rem(22px);
-    font-weight: $fw-bold;
-    font-family: $f-fancy;
-    text-transform: uppercase;
+
+.detail__thumb_active {
+  opacity: 1;
+  transform: scale(1);
+  &:before {
+    transform: scale(1);
+  }
+}
+
+.detail__tabs_initial {
+  .detail__thumb {
+    &:first-child {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+// Descripción
+.detail__content {
+  @include font-rem(16px);
+}
+  .detail__header {
+    padding: 24px 0;
     text-align: center;
-    border-bottom: 1px solid $c-default;
   }
-
-.detail-content__txt-small {
-  display: block;
-  padding: 5px 0;
-  @include font-rem(12px);
-}
-
-  .detail-content__price_old {
-    color: $c-brand;
-    text-decoration:line-through;
-  }
-
-  .detail-content__label {
-    display: inline-block;
-    padding: 3px 8px;
-    color: $c-brand;
-    border: 1px solid $c-brand;
-    border-radius: 10px;
-  }
-  .detail-content__brand {
-    padding: 12px 0;
+    .detail__title {
+      display: block;
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      @include font-rem(22px);
+      font-weight: $fw-bold;
+      font-family: $f-fancy;
+      border-bottom: 1px solid $c-default;
+    }
+  .detail__tag {
     margin: 0;
     @include font-rem(16px);
+  }
+
+  .detail__brand {
+    padding: 2px 0;
     font-family: $f-fancy;
     font-weight: $fw-medium;
   }
-  .detail-content__size {
-    padding-bottom: 12px;
-    margin: 0;
-    @include font-rem(18px);
-    font-weight: $fw-regular;
+  .detail__value {
+    padding-bottom: 16px;
+    text-align: center;
   }
-  .detail-content__price_old {
-    margin: 0;
+    .detail__through {
+      margin: 0;
+      color: $c-brand;
+    }
+    .detail__price {
+      margin: 0;
+      @include font-rem(36px);
+    }
+  .detail__actions {
+    text-align: center;
+    padding-bottom: 10px;
   }
-  .detail-content__price {
-    margin: 0;
-    font-family: $f-normal;
-    font-weight: $fw-thin;
+  .detail__btn {
+    margin-bottom: 16px;
+    &:before {
+      color: $c-brand;
+    }
+    &:hover {
+      &:before {
+        color: $c-neutro;
+      }
+    }
   }
-  
-  .detail-content__subtitle {
-    font-weight: $fw-bold;
+  .detail__lead {
+    @include font-rem(16px);
   }
-  .detail-content__txt {
-    margin: 0;
-    line-height: 1.2;
-    &.i-ok {
+    .detail__subtitle {
+      font-weight: $fw-bold;
+      @include font-rem(16px);
+      margin: 0;
+      padding-bottom: 12px;
+    }
+    .detail__txt {
+      margin: 0;
+      padding-bottom: 12px;
+    }
+
+    .detail__txt_ico {
       position: relative;
-      padding: 0 0 10px 20px;
+      padding-left: 20px;
       &:before {
         position: absolute;
         top: 4px;
@@ -79,192 +128,176 @@
         padding: 4px 3px;
       }
     }
-  }
-.detail-content__actions {
-  .btn {
-    display: block;
-    max-width: 330px;
-    margin: 0 auto;
-    &:before {
-      color: $c-brand;
+    .detail__txt_small {
+      display: block;
+      @include font-rem(12px);
     }
-    &:hover {
-      &:before {
-        color: $c-neutro;
-      }
-    }
-  }
-}
 
-@include media-query(max-wide) {
-  //Slider moblie
-  .gallery-thumb {
+
+/*------------------------------------*\
+  Detalle producto: img responsive
+  Slider Una columna: se ocultan los thumbs
+  y se remplazan por corazones
+  Rangos:
+  de 0 a 419px
+  de 620px a 879px
+\*------------------------------------*/
+
+//Thumb btn heart
+@media only screen and (max-width: 419px) {
+  .detail__tabs {
+    @include flex-direction(row);
+    @include justify-content(center);
+    margin-top: -34px;
+  }
+
+  .detail__thumb {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+    &:before {
+      display: block;
+    }
+  }
+  .detail__img {
     display: none;
   }
-  .gallery__img {
-    img {
-      width: 100%;
+}
+//Thumb btn heart
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+  .detail__tabs {
+    @include flex-direction(row);
+    @include justify-content(center);
+    margin-top: -34px;
+  }
+  .detail__thumb {
+    &:before {
+      display: block;
     }
   }
-  .grid-detail__gallery {
-    max-width: 300px;
-    margin: 0 auto;
-    display: block;
-    .swiper-pagination-bullet {
-      height: 30px;
-      opacity: .6;
-      background: none;
-      &:before {
-        content: '\e923';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        display: block;
-        -ms-transform    : translate(-50%, -50%);
-        -moz-transform   : translate(-50%, -50%);
-        -o-transform     : translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        transform        : translate(-50%, -50%);
-        font-family: 'ico-prilov' !important;
-        @include font-rem(25px);
-        font-size: 1.375rem;
-        color: $c-neutro;
-      }
-    } 
-    .swiper-pagination-bullet-active {
-      opacity: 1;
-      &:before {
-        content: '\e923';
-        @include font-rem(22px);
-        color: $c-neutro;
-      }
-    }
+  .detail__img {
+    display: none;
   }
-  .grid-detail__gallery .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 0 14px;
+}
+/*------------------------------------*\
+  Detalle producto: img responsive
+ // Gallery thums visible
+  Rangos:
+  de 420 a 619
+\*------------------------------------*/
+@media only screen and (min-width: 420px) and (max-width: 767px) {
+  .detail__gallery {
+    @include flexbox;
+    @include flex-direction(row-reverse);
   }
-
-  //Contenido de detall
-  .detail-content {
-    .btn {
-      margin-bottom: 16px;
-    }
+  .detail__tabs {
+    // max-width: 26.2%;
+    max-width: 22%;
+    padding-right: 20px;
   }
-    .detail-content__header {
-      text-align: center;
-    } 
-    .detail-content__group {
-      text-align: center;
-    }
-    .detail-content__label {
-      @include font-rem(11px);
-    }
-    .detail-content__price_old {
-      padding-bottom: 10px;
-      text-align: center;
-      @include font-rem(18px);
-    }
-    .detail-content__price {
-      padding-bottom: 16px;
-      text-align: center;
-      @include font-rem(36px);
-    }
-    .detail-content__subtitle {
-      @include font-rem(16px);
-    }
 }
 
-@include media-query(wide) {
-   .detail-content__actions {
-     .btn {
-       margin: 0;
-     }
-   }
-
-  .grid-detail {
+/*------------------------------------*\
+  Detalle producto: img responsive
+  2 columnas
+  Estilos bloque 620 en adelante
+\*------------------------------------*/
+// detalle producto 2 columnas
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .detail {
+    max-width: 100%;
     @include flexbox;
-    padding-top: 40px;
+    @include justify-content(space-between);
   }
-    .grid-detail__gallery {
-      width: 50%;
-    }
-    .grid-detail__wrapper {
-      @include flexbox;
-      @include flex-direction(row-reverse);
+
+  .detail__content {
+    padding-left: 20px;
+    @include font-rem(18px);
+  }
+
+  .detail__header {
+    text-align: left;
+  }
+
+  .detail__title {
+    display: inline-block;
+  }
+
+  .detail__value {
+    padding-bottom: 16px;
+    text-align: left;
+  }
+
+  .detail__actions {
+    text-align: left;
+  }
+}
+
+// Gallery 2 columnas thums visible
+@media only screen and (min-width: 850px) {
+  .detail__gallery {
+    @include flexbox;
+    @include flex-direction(row-reverse);
+    padding-right: 20px;
+    width: 55%;
+  }
+    .detail__picture {
       width: 100%;
     }
-      .gallery__img {
-        img {
-          display: block;
-          margin: 0 auto;
-        }
-      }
-    .gallery-thumb {
-      width: 20%;
-      .swiper-wrapper {
-        .swiper-slide[data-v-c9e3ddcc] {
-          width: 100%;
-        }
-      }
-    }
-    .swiper-pagination {
-      display: none;
+    .detail__tabs {
+      // max-width: 26.2%;
+      max-width: 22%;
+      padding-right: 20px;
     }
 
-  .detail-content {
-    width: 50%; 
-    .btn {
-      margin-bottom: 16px;
-    }
+  .detail__content {
+    width: 45%;
+    padding-left: 20px;
   }
-    .detail-content__title {
-      display: inline-block;
-      @include font-rem(36px);
-      text-align: left;
+    .detail__title {
+      @include font-rem(34px);
     }
-    .detail-content__label {
-      @include font-rem(13px);
-    }
-    .detail-content__brand {
+
+    .detail__brand {
       @include font-rem(20px);
     }
-    .detail-content__size {
-      @include font-rem(18px);
-    }
-    .detail-content__price_old {
-      @include font-rem(18px);
-    }
-    .detail-content__price {
+    .detail__price {
       @include font-rem(48px);
-      padding-bottom: 14px;
     }
-    .detail-content__subtitle {
+    .detail__btn {
+      width: 100%;
+      max-width: 332px;
+    }
+
+    .detail__lead {
+      max-width: 500px;
       @include font-rem(18px);
     }
-    .detail-content__txt {
-      @include font-rem(16px);
-    }
-  //Estilos traidos del ejemplo
-  .swiper-container {
-    padding-top: 50px;
-  }
-  .gallery-main {
+      .detail__subtitle {
+        @include font-rem(18px);
+      }
+}
+
+
+// $bp-medium: 1024px;
+@include media-query(wide) {
+  
+}
+
+// $bp-large: 1170px;
+@include media-query(large) {
+  .detail__gallery {
+    padding-right: 30px;
     width: 100%;
-  }
-  .gallery-thumb {
-    box-sizing: border-box;
-    padding: 10px 0;
-  }
-  .gallery-thumb .swiper-slide {
-    height: 100%;
-    opacity: 0.4;
-  }
-  .gallery-thumb .swiper-slide-active {
-    opacity: 1;
   }
 
-  .gallery-thumb .swiper-slide img {
-    width: 100%;
-    max-width: 85px;
+  .detail__picture {
+    padding-left: 10px;
+  }
+
+  .detail__content {
+    padding-left: 30px;
+    width: 90%;
   }
 }

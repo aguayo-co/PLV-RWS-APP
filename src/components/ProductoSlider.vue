@@ -1,58 +1,59 @@
 <template lang="pug">
-.layout-inner
-  section.section_product
-    header.section__head.section__head_big
-      h2.title_head.title_head-small Otras prendas que <span class="txt_brand">te pueden interesar</span>
-      h3.title_subhead Elegimos otras prendas que creemos te pueden interesar
-    //- banner promociones grid
-    //- TO-DO: consumir servicios
-    .slider-user.slider-user__product
-      swiper(
-        :options='swiperOption')
-        swiper-slide(
-          v-for='(product, index) in products' :key='index')
-          article.slot
-            a.slot__ico.i-heart(
-              @click.prevent='myActive(product)'
-              :class='{active: isActive == product}'
-              href='#'
-              title='Agrega a Favoritos') Agregar a Favoritos
-            a.slot__product(
-              :href='product.url',
-              :title='product.title')
-              img.slot__img(
-                :src="product.file",
-                alt="product.title")
 
-              //-title/dimensions
-              .slot__lead
-                .slot__title {{ product.title }}
-                .slot__size
-                  .slot__size-txt {{ product.dimensions }}
+section.layout-inner
+  header.section__subhead
+    h2.title_head.title_head-small Otras prendas que <span class="txt_brand">te pueden interesar</span>
+    h3.title_subhead(
+      v-if="mqTablet") Elegimos otras prendas que creemos te pueden interesar
+  //- banner promociones grid
+  //- TO-DO: consumir servicios
+  .slider-slot
+    swiper(
+      :options='swiperOption')
+      swiper-slide(
+        v-for='(product, index) in products' :key='index')
+        article.slot
+          a.slot__ico.i-heart(
+            @click.prevent='myActive(product)'
+            :class='{active: isActive == product}'
+            href='#'
+            title='Agrega a Favoritos') Agregar a Favoritos
+          a.slot__product(
+            :href='product.url',
+            :title='product.title')
+            img.slot__img(
+              :src="product.file",
+              alt="product.title")
 
-              //- brand/price
-              .slot__info
-                .slot__brand {{ product.brand }}
-                .slot__price ${{ product.price }}
+            //-title/dimensions
+            .slot__lead
+              .slot__title {{ product.title }}
+              .slot__size
+                .slot__size-txt {{ product.dimensions }}
 
-            //- user: picture/first_name/last_name
-            a.slot__user(
-              :href='product.user',
-              :title='product.first_name')
-              .slot__user-img
-                .slot__avatar
-                  img.slot__picture(
-                    :src="product.picture",
-                    :alt="product.first_name")
-              .slot__user-info
-                .slot__prilover {{ product.first_name }} {{ product.last_name }}
-                .slot__group.i-it-girl(
-                  v-if='product.slot__group == 1') It <span class="txt_brand">girl</span>
-                .slot__group.i-star-on(
-                  v-if='product.slot__group == 2') Prilover <span class="txt_brand">Star</span>
-        //- Paginador en este caso dots
-        .swiper-button-next.i-next-s(slot='button-prev')
-        .swiper-button-prev.i-back-s(slot='button-next')
+            //- brand/price
+            .slot__info
+              .slot__brand {{ product.brand }}
+              .slot__price ${{ product.price }}
+
+          //- user: picture/first_name/last_name
+          a.slot__user(
+            :href='product.user',
+            :title='product.first_name')
+            .slot__user-img
+              .slot__avatar
+                img.slot__picture(
+                  :src="product.picture",
+                  :alt="product.first_name")
+            .slot__user-info
+              .slot__prilover {{ product.first_name }} {{ product.last_name }}
+              .slot__group.i-it-girl(
+                v-if='product.slot__group == 1') It <span class="txt_brand">girl</span>
+              .slot__group.i-star-on(
+                v-if='product.slot__group == 2') Prilover <span class="txt_brand">Star</span>
+      //- Paginador en este caso dots
+      .swiper-button-next.i-next-s(slot='button-prev')
+      .swiper-button-prev.i-back-s(slot='button-next')
 </template>
 
 <script>
@@ -60,7 +61,7 @@ import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-  name: 'SliderProducto',
+  name: 'ProductoSlider',
   components: {
     swiper,
     swiperSlide
@@ -69,7 +70,7 @@ export default {
     return {
       isActive: undefined,
       swiperOption: {
-        slidesPerView: 3,
+        slidesPerView: 4,
         spaceBetween: 44,
         freeMode: true,
         loop: true,
@@ -79,16 +80,23 @@ export default {
         },
         breakpoints: {
           1280: {
-            spaceBetween: 60
-          },
-          1024: {
+            slidesPerView: 3,
             spaceBetween: 50
           },
+          868: {
+            spaceBetween: 30
+          },
           768: {
+            slidesPerView: 2,
             spaceBetween: 50
           },
           550: {
-            slidesPerView: 2
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          450: {
+            slidesPerView: 1,
+            spaceBetween: 50
           }
         }
       },

@@ -43,6 +43,12 @@ h6 {
   margin: 0 auto;
   padding: 24px 0 20px;
 }
+.section__subhead {
+  width: 96%;
+  margin: 0 auto;
+  padding: 58px 0 48px;
+}
+
 
 .title_head {
   text-align: center;
@@ -111,6 +117,11 @@ h6 {
   .section__head_big {
     padding: 100px 0;
   }
+  //contenedor section 
+  .section__subhead {
+    padding: 88px 0;
+  }
+
 
 
   .title_head {
