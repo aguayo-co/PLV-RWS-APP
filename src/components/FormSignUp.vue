@@ -8,7 +8,7 @@
       method='post'
     )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.nombre }'
+        :class='{ "is-danger": errorTexts.nombre }'
       )
         label.form__label(
           for='nombre') Nombre
@@ -22,7 +22,7 @@
           data-vv-name='nombre'
         )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.apellidos }'
+        :class='{ "is-danger": errorTexts.apellidos }'
       )
         label.form__label(
           for='apellidos') Apellidos
@@ -36,7 +36,7 @@
           data-vv-name='apellidos'
         )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.email }'
+        :class='{ "is-danger": errorTexts.email }'
       )
         label.form__label(
           for='email') Correo
@@ -54,7 +54,7 @@
         ) {{ infoTexts.emailExist }}
           a(href='#') ¡Recupérala aquí!
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.emailConfirm }'
+        :class='{ "is-danger": errorTexts.emailConfirm }'
       )
         label.form__label(
           for='emailConfirm') Confirma tu correo
@@ -68,7 +68,7 @@
           data-vv-name='emailConfirm'
         )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.password }'
+        :class='{ "is-danger": errorTexts.password }'
       )
         label.form__label(
           for='password') Contraseña
@@ -84,7 +84,7 @@
         )
         span.password-bar(
           v-if='errorTexts.passwordDetail.length > 0',
-          v-bind:class='"level-"+(3-errorTexts.passwordDetail.length)'
+          :class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
         div.helper(
           v-if='errorTexts.passwordDetail.length > 0'

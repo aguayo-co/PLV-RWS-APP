@@ -450,6 +450,49 @@ select {
   }
 }
 
+.password-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  @include font-rem(12px);
+  border: 1px solid $c-default-3;
+  border-radius: 25px;
+  transition: all .2s ease-out;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 25px;
+    background-color: $c-brand;
+  }
+  &.level-1 {
+    &:before {
+      width: 25%;
+    }
+  }
+
+  &.level-2 {
+    &:before {
+      width: 50%;
+    }
+  }
+
+  &.level-3 {
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+
 /*------------------------------------*\
 	Mensajes formulario
 \*------------------------------------*/
@@ -490,25 +533,10 @@ select {
   }
 }
 
-  // .form__edit:-webkit-autofill,
-  // .form__edit:-webkit-autofill:hover,
-  // .form__edit:-webkit-autofill:focus .form__edit:-webkit-autofill,
-  // .form__edit:-webkit-autofill:hover .form__edit:-webkit-autofill:focus {
-  //   -webkit-text-fill-color: $c-default;
-  //   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-  //   transition: background-color 5000s ease-in-out 0s;
+
   // }
   //componente VuePassword
-  // .VuePassword__Input {
-  //   .input {
-  //     width: 100%;
-  //     padding: 0 12px;
-  //     margin-bottom: 12px;
-  //     line-height: 40px;
-  //     font-family: $f-default;
-  //     border: 1px solid $c-default-2;
-  //   }
-  // }
+ 
   // .VuePassword {
   //    .VuePassword__Toggle {
   //      height: 42px;

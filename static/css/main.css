@@ -1015,6 +1015,36 @@ select {
 .is-danger .form__control {
   border: 1px solid #fe7676; }
 
+.password-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-size: 0.75rem;
+  border: 1px solid #cbcbcb;
+  border-radius: 25px;
+  transition: all .2s ease-out; }
+  .password-bar:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 25px;
+    background-color: #fe7676; }
+  .password-bar.level-1:before {
+    width: 25%; }
+  .password-bar.level-2:before {
+    width: 50%; }
+  .password-bar.level-3:before {
+    width: 100%; }
+
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
