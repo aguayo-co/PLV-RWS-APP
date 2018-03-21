@@ -5,7 +5,8 @@ const state = {
   modal: false,
   modalWindow: {
     enabled: false,
-    name: null
+    name: null,
+    parameters: {}
   }
 }
 
@@ -23,8 +24,8 @@ const actions = {
   switchModal (context) {
     context.commit('switchModal')
   },
-  showModal (context, componentName) {
-    context.commit('modalWindow', componentName)
+  showModal (context, { name, parameters }) {
+    context.commit('modalWindow', { name, parameters })
   },
   closeModal (context) {
     context.commit('closeModal')
@@ -39,9 +40,10 @@ const mutations = {
   noModal (state) {
     state.modal = false
   },
-  modalWindow (state, componentName) {
+  modalWindow (state, { name, parameters }) {
     state.modalWindow.enabled = true
-    state.modalWindow.name = componentName
+    state.modalWindow.name = name
+    state.modalWindow.parameters = parameters
     state.modal = true
   },
   closeModal (state) {
