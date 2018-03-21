@@ -3,7 +3,7 @@
 //- TO DO style: ico y animación de flechas
 //- TO DO marckup: footer level 1
 .page-menu__panel(
-  :class="{ 'page-menu_out' :level1 != undefined }")
+  :class="{ 'page-menu_out' :isActive1 != undefined }")
   //- cerrar menu: X/brand
   .page-menu__top.i-x(
     @click='MenuClose')
@@ -12,41 +12,45 @@
         src='/static/img/brand-prilov.png',
         alt='Prilov Compra. Usa. Vende')
   ul.menu
-    li.menu__item.i-next(
-      v-if='menu.items',
+    li.menu__item(
       v-for="(item, index) in menu.items",
-      :class="{ 'menu__item_current' :level1 == 1 }",
-      @click='level1 = 1')
-      span.menu__link(:class="item.icon",
-        href='#') {{ item.name }}
-      span.submenu__close.i-back(
+      :class="{'menu__item_current' : isActive1 == index, 'i-next' : !item.url}")
+      a.menu__link(
+        v-if='!item.url',
+        :class="item.icon",
         href='#',
-        @click='level1 = undefined')
+        @click="itemLevel1(index), isActive1 == index") {{ item.name }}
+        span.submenu__close.i-back(
+          href='#',
+          @click.stop='subMenuClose')
       //- Nivel 2: submenu
       transition(name='slide-down')
-        ul.submenu(
-          v-show='level1 == 1',
-          :class="{ 'submenu_open' :level2 != undefined }")
+        ul.submenu(v-if='!item.url',
+          v-show='isActive1 == index'
+          :class="{ 'submenu_open' :isActive2 != undefined }")
           li.submenu__item.i-next(
-            v-for= "(children, index) in item.children",
-            :class="{ 'submenu__item_current' :level2 == 2 }")
+            v-for= "(children, indexChildren) in item.children",
+            :class="{ 'submenu__item_current' : isActive2 == indexChildren }")
             span.submenu__label(
-              @click='level2 = 2') {{ children.name }}
+              @click="itemLevel2(indexChildren)") {{ children.name }}
             span.submenu__close.i-close(
               href='#',
-              @click='level2 = undefined')
+              @click.stop='subMenuClose2')
             //- Nivel 3: Lista de enlaces
             transition(name='slide-down')
               ul.submenu__list(
-                v-show='level2 == 2')
+                v-show='isActive2 == indexChildren')
                 li.submenu__subitem(
                   v-for="(grandChildren, indexG) in children.children")
                   a.subitem__link(:href='grandChildren.url') {{ grandChildren.name }}
-          li.menu-side__footer
-            a.link_underline(href='#') Ver todas las Prendas
+      router-link.menu__link(
+        v-if='item.url'
+        v-bind:to='item.url'
+        :class="item.icon"
+      ) {{ item.name }}
 
   //- menu footer
-  ul.menu-footer
+  ul.menu-footer(v-show='isActive1 == undefined')
     li.menu-footer__item
       a.menu-footer__link(href="#") Ayuda
     li.menu-footer__item
@@ -54,7 +58,7 @@
     li.menu-footer__item
       a.menu-footer__link(href="#") Contáctanos
 
-  .menu-social.i-heart-on
+  .menu-social.i-heart-on(v-show='isActive1 == undefined')
     p.menu-social__title {{ nameFooter }}
     ul.menu-social__list
       li.menu-social__item(
@@ -72,8 +76,9 @@ export default {
   name: 'PageHeaderMenuMobile',
   data () {
     return {
+      isActive1: undefined,
+      isActive2: undefined,
       active: false,
-      // show: false,
       selected: undefined,
       level1: undefined,
       level2: undefined,
@@ -81,19 +86,33 @@ export default {
       footer: {},
       nameFooter: undefined,
       showDetails: false,
-      isActive: false,
-      activeItem: undefined
+      activeItem: undefined,
+      activeLiIndex: null
     }
   },
   methods: {
     MenuClose: function () {
       this.$emit('MenuClose')
     },
-    toggleNav: function () {
-      this.active = !this.active
+    itemLevel1: function (indexItem) {
+      this.isActive1 = indexItem
+      console.log('submenu1')
+      console.log(this.isActive1)
     },
-    prueba: function () {
-      console.log('esto es un click')
+    itemLevel2: function (f) {
+      this.isActive2 = f
+      console.log('submenu2')
+      console.log(this.isActive2)
+    },
+    subMenuClose: function () {
+      console.log('click boton cerrar')
+      this.isActive1 = undefined
+      console.log('__')
+    },
+    subMenuClose2: function () {
+      console.log('click boton cerrar')
+      this.isActive2 = undefined
+      console.log('__')
     }
   },
   created () {
@@ -120,6 +139,5 @@ export default {
         console.log('ERROR : ' + e)
       })
   }
-
 }
 </script>
