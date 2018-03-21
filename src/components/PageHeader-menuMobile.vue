@@ -56,16 +56,14 @@
 
   //- menu footer
   ul.menu-footer(v-show='active == undefined')
-    li.menu-footer__item
-      a.menu-footer__link(href="#") {{ footer.name }}
-    li.menu-footer__item
-      a.menu-footer__link(href="#") Nosotros
-    li.menu-footer__item
-      a.menu-footer__link(href="#") Contáctanos
+    li.menu-footer__item(
+      v-for='(items, indice) in footer.items')
+      a.menu-footer__link(v-if="indice != footer.items.length - 1",
+      :href="items.url") {{ items.name }}
 
   .menu-social.i-heart-on(v-show='active == undefined')
     p.menu-social__title {{ footer.name }}
-    ul.menu-social__list
+    ul.menu-social__list(v-if='footer.items')
       li.menu-social__item(
         v-for='items in footer.items[3].children')
         a.foot-nav__link(
