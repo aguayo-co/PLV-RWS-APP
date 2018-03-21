@@ -36,8 +36,16 @@
   cursor: pointer;
   pointer-events: none;
   &:before {
+    display: inline-block;
+    margin: -6px -1px 0 0;
+    vertical-align: middle;
     color: $c-neutro;
     @include font-rem(8px);
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
   }
 }
 
@@ -271,6 +279,14 @@
     .submenu__item_current {
       .submenu__close {
         z-index: 1;
+        &:before {
+          margin: 0;
+          transform: rotate(0);
+          -webkit-transform: rotate(0);
+          -moz-transform: rotate(0);
+          -o-transform: rotate(0);
+          -ms-transform: rotate(0);
+        }
       }
     }
   }
@@ -346,7 +362,7 @@
       border-bottom: 1px solid $c-default-3;
     }
     &:before {
-      content: unicode($i-next);
+      // content: unicode($i-next);
       position: absolute;
       right: 26px;
       top: 24px;
@@ -356,7 +372,6 @@
       -moz-transform   : rotate(90deg);
       -o-transform     : rotate(90deg);
       -webkit-transform: rotate(90deg);
-      // background-color: $c-neutro;
     }
     &.submenu__item_current {
       &:before {

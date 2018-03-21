@@ -3,7 +3,7 @@
 //- TO DO style: ico y animación de flechas
 //- TO DO marckup: footer level 1
 .page-menu__panel(
-  :class="{ 'page-menu_out' :isActive1 != undefined }")
+  :class="{ 'page-menu_out' :active != undefined }")
   //- cerrar menu: X/brand
   .page-menu__top.i-x(
     @click='MenuClose')
@@ -14,24 +14,25 @@
   ul.menu
     li.menu__item(
       v-for="(item, index) in menu.items",
-      :class="{'menu__item_current' : isActive1 == index, 'i-next' : !item.url}")
+      :class="{'menu__item_current' : active == index, 'i-next' : !item.url}")
       a.menu__link(
         v-if='!item.url',
         :class="item.icon",
         href='#',
-        @click="itemLevel1(index), isActive1 == index") {{ item.name }}
+        @click="itemLevel1(index), active == index") {{ item.name }}
         span.submenu__close.i-back(
           href='#',
           @click.stop='subMenuClose')
       //- Nivel 2: submenu
       transition(name='slide-down')
         ul.submenu(v-if='!item.url',
-          v-show='isActive1 == index'
-          :class="{ 'submenu_open' :isActive2 != undefined }")
-          li.submenu__item.i-next(
+          v-show='active == index'
+          :class="{ 'submenu_open' :selected != undefined }")
+          li.submenu__item(
             v-for= "(children, indexChildren) in item.children",
-            :class="{ 'submenu__item_current' : isActive2 == indexChildren }")
-            span.submenu__label(
+            :class="{ 'submenu__item_current' : selected == indexChildren, 'i-next' : !children.url }")
+            a.submenu__label(
+              v-if='!children.url',
               @click="itemLevel2(indexChildren)") {{ children.name }}
             span.submenu__close.i-close(
               href='#',
@@ -39,10 +40,14 @@
             //- Nivel 3: Lista de enlaces
             transition(name='slide-down')
               ul.submenu__list(
-                v-show='isActive2 == indexChildren')
+                v-show='selected == indexChildren')
                 li.submenu__subitem(
                   v-for="(grandChildren, indexG) in children.children")
                   a.subitem__link(:href='grandChildren.url') {{ grandChildren.name }}
+            router-link.submenu__label(
+              v-if='children.url'
+              v-bind:to='children.url'
+            ) {{ children.name }}
       router-link.menu__link(
         v-if='item.url'
         v-bind:to='item.url'
@@ -50,19 +55,19 @@
       ) {{ item.name }}
 
   //- menu footer
-  ul.menu-footer(v-show='isActive1 == undefined')
+  ul.menu-footer(v-show='active == undefined')
     li.menu-footer__item
-      a.menu-footer__link(href="#") Ayuda
+      a.menu-footer__link(href="#") {{ footer.name }}
     li.menu-footer__item
       a.menu-footer__link(href="#") Nosotros
     li.menu-footer__item
       a.menu-footer__link(href="#") Contáctanos
 
-  .menu-social.i-heart-on(v-show='isActive1 == undefined')
-    p.menu-social__title {{ nameFooter }}
+  .menu-social.i-heart-on(v-show='active == undefined')
+    p.menu-social__title {{ footer.name }}
     ul.menu-social__list
       li.menu-social__item(
-        v-for='items in footer.children')
+        v-for='items in footer.items[3].children')
         a.foot-nav__link(
           :href='items.url',
           :class='items.icon',
@@ -76,18 +81,10 @@ export default {
   name: 'PageHeaderMenuMobile',
   data () {
     return {
-      isActive1: undefined,
-      isActive2: undefined,
-      active: false,
+      active: undefined,
       selected: undefined,
-      level1: undefined,
-      level2: undefined,
       menu: {},
-      footer: {},
-      nameFooter: undefined,
-      showDetails: false,
-      activeItem: undefined,
-      activeLiIndex: null
+      footer: {}
     }
   },
   methods: {
@@ -95,24 +92,16 @@ export default {
       this.$emit('MenuClose')
     },
     itemLevel1: function (indexItem) {
-      this.isActive1 = indexItem
-      console.log('submenu1')
-      console.log(this.isActive1)
+      this.active = indexItem
     },
     itemLevel2: function (f) {
-      this.isActive2 = f
-      console.log('submenu2')
-      console.log(this.isActive2)
+      this.selected = f
     },
     subMenuClose: function () {
-      console.log('click boton cerrar')
-      this.isActive1 = undefined
-      console.log('__')
+      this.active = undefined
     },
     subMenuClose2: function () {
-      console.log('click boton cerrar')
-      this.isActive2 = undefined
-      console.log('__')
+      this.selected = undefined
     }
   },
   created () {
@@ -120,9 +109,6 @@ export default {
     })
       .then(response => {
         this.menu = response.data
-        console.log('items de menu principal')
-        console.log(response.data)
-        // console.log(response.data.items[0].children[0].name)
       })
       .catch(e => {
         console.log('ERROR : ' + e)
@@ -130,9 +116,7 @@ export default {
     axios.get('https://prilov.aguayo.co/api/menus/footer', {
     })
       .then(response => {
-        this.footer = response.data.items[3]
-        this.nameFooter = response.data.items[3].name
-        console.log('items de footer item Siguenos')
+        this.footer = response.data
         console.log(response.data)
       })
       .catch(e => {
