@@ -53,7 +53,7 @@ div
                 @click='removeImage(2)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
-                  v-if="mqDesk") Arrastra una foto o
+                  v-if="mqTablet") Arrastra una foto o
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[2]',
@@ -70,7 +70,7 @@ div
                 @click='removeImage(3)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
-                  v-if="mqDesk") Arrastra una foto o
+                  v-if="mqTablet") Arrastra una foto o
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[3]',
