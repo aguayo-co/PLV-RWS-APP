@@ -22,7 +22,6 @@
         v-if="mqTablet")
       span.btn__wrapper
         a.btn.i-send(href="") Ver más prendas
-
 </template>
 
 <script>
