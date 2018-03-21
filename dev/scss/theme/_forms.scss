@@ -145,6 +145,54 @@ select {
   padding-right:0\0;
   background: none\0;
 }
+.form__asisted-box {
+  position: relative;
+  display: inline-block;
+  min-width: 180px;
+}
+
+.form__asisted {
+  width: 100%;
+  height: 28px;
+  position: absolute;
+  z-index: 1;
+  background-color:$c-neutro;
+  color: $c-neutro;
+  border: 1px solid gray;
+}
+.form__asisted-line {
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 100%;
+  height: 28px;
+  line-height: 28px;
+  letter-spacing: 28px;
+  text-align: right;
+  text-transform: uppercase;
+  @include font-rem(28px);
+  &::before {
+    content: '';
+    display: block;
+    width: 33.333%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: 1px solid #000;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 33.333%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #000;
+  }
+
+}
+
 
 //Input textarea
 .form__textarea {
@@ -361,43 +409,44 @@ select {
 	 Mensajes Error
 \*------------------------------------*/
 
-.help {
+.helper {
   background-color: $c-neutro-3;
-  ul {
-    padding: 8px 29px;
-    li {
-      line-height: 1.4;
-    }
-  }
   a {
     border-bottom: 2px solid $c-brand;
     color: $c-default;
     font-weight: $fw-bold;
   }
 }
+.helper__list {
+  margin: 0;
+  padding: 8px 16px 8px 28px;
+  line-height: 1.6;
+  @include font-rem(12px);
+}
 
+
+.help {
+  position: relative;
+  display: block;
+  padding: 5px 8px;
+  line-height: 1.2;
+  color: $c-neutro;
+  background-color: $c-brand;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -9px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 10px 0 10px;
+    border-color: $c-brand transparent transparent transparent;
+  }
+}
 .is-danger {
   .form__control {
     border: 1px solid $c-brand;
-  }
-  .help {
-    position: relative;
-    display: block;
-    padding: 5px 8px;
-    line-height: 1.2;
-    color: $c-neutro;
-    background-color: $c-brand;
-    &:before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      bottom: -9px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 9px 10px 0 10px;
-      border-color: $c-brand transparent transparent transparent;
-    }
   }
 }
 
