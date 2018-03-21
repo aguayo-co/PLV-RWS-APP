@@ -6,15 +6,20 @@
           .notify
             header.modal__header
               //-v-if preload
-              //- .notify__ico
-              //-   .prilov-preload
+              .prilov-preload
+                .preload
+                  span.preload__spin.preload__spin_1
+                  span.preload__spin.preload__spin_2
+                  span.preload__spin.preload__spin_3
+                  span.preload__spin.preload__spin_4
+
               //v-if OK
               //- .notify__ico.i-ok
               //-   h2.title.notify__title ¡Listo! pronto tu producto aparecerá en Prilov
               //-   h2.title.notify__title Lo sentimos pero algo ha salido mal
               //v-if error
-              .notify__ico.i-alert-tri
-                h2.title.notify__title Lo sentimos pero algo ha salido mal
+              //- .notify__ico.i-alert-tri
+              //-   h2.title.notify__title Lo sentimos pero algo ha salido mal
               .btn_close.modal__btn_close.i-x(
                 @click='close')
                 span Cerrar
