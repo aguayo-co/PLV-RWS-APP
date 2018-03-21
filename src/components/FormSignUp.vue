@@ -86,10 +86,10 @@
           v-if='errorTexts.passwordDetail.length > 0',
           v-bind:class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
-        div.help(
+        div.helper(
           v-if='errorTexts.passwordDetail.length > 0'
         )
-          ul
+          ul.helper__list
             li(
               v-for='detail in errorTexts.passwordDetail'
             ) {{ detail }}
