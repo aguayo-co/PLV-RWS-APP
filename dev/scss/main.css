@@ -1543,6 +1543,9 @@ body {
   background-color: #000; }
   .page-header ul {
     list-style: none; }
+  .page-header.fixedPrueba {
+    position: fixed;
+    transition: all 2s; }
 
 .header__bar {
   width: 100%;
@@ -1766,16 +1769,6 @@ body {
     *Responsive Desing
 */
 @media only screen and (max-width: 1023px) {
-  body {
-    padding-top: 60px; }
-  .page-header {
-    position: fixed;
-    top: 0;
-    transition: top .3s ease; }
-    .page-header.fixedPrueba {
-      top: 0; }
-    .page-header.fixedPrueba2 {
-      top: -60px; }
   .page-brand {
     display: block;
     width: 170px;
@@ -2025,8 +2018,6 @@ body {
       background-color: #000;
       transition: top .5s ease;
       pointer-events: none; }
-    .menu__link:hover {
-      color: #000; }
   .submenu .submenu__item .submenu__close {
     z-index: 0; }
   .submenu .submenu__item .submenu__label {

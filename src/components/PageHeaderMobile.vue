@@ -1,6 +1,7 @@
 <template lang="pug">
 //- HEADER PAGE
-.page-header
+.page-header(v-if="scroll == 2 || scroll != null",
+:class="{'fixedPrueba' : scroll == 1, 'fixedPrueba2' : scroll == 0}", ref="header")
   .layout-inner
     header.header__bar
       span.menu-ico(
@@ -39,11 +40,9 @@ export default {
   data () {
     return {
       menuOpen: false,
-      header: {
-        height: 0,
-        window: 0,
-        windowScrollTop: 0
-      }
+      scroll: 2,
+      sTop: undefined,
+      lastScrollTop: 0
     }
   },
   created () {
@@ -52,10 +51,16 @@ export default {
   methods: {
     MenuOpen: function () {
       this.menuOpen = !this.menuOpen
+    },
+    handleScroll: function () {
+      this.sTop = window.pageYOffset || document.documentElement.scrollTop
+      if (this.sTop > this.lastScrollTop) {
+        this.scroll = 0
+      } else {
+        this.scroll = 1
+      }
+      this.lastScrollTop = this.sTop
     }
-    // handleScroll: _.throttle(function () {
-    //   this.header.windowScrollTop = window.pageYOffset || document.documentElement.scrollTop
-    // }, 100)
   }
 }
 </script>

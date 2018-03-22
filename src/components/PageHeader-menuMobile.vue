@@ -115,7 +115,6 @@ export default {
     })
       .then(response => {
         this.footer = response.data
-        console.log(response.data)
       })
       .catch(e => {
         console.log('ERROR : ' + e)

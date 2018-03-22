@@ -244,6 +244,20 @@
 
 // point Only mobile -tablet
 @include media-query(max-wide) {
+  body {
+    padding-top: 60px;
+  }
+  .page-header {
+    position: fixed;
+    top: 0;
+    transition: top .3s ease;
+    &.fixedPrueba {
+      top: 0;
+    }
+    &.fixedPrueba2 {
+      top: -60px;
+    }
+  }
   .page-brand {
     display: block;
     width: 170px;

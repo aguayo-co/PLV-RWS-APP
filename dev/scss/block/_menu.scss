@@ -264,6 +264,9 @@
       transition: top .5s ease;
       pointer-events: none;
     }
+    &:hover {
+      color: $c-default;
+    }
 
   }
 
