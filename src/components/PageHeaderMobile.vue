@@ -1,7 +1,7 @@
 <template lang="pug">
 //- HEADER PAGE
 .page-header(v-if="scroll == 2 || scroll != null",
-:class="{'fixedPrueba' : scroll == 1, 'fixedPrueba2' : scroll == 0}", ref="header")
+:class="{'js-header_down' : scroll == 1, 'js-header_up' : scroll == 0}", ref="header")
   .layout-inner
     header.header__bar
       span.menu-ico(

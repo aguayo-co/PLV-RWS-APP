@@ -1772,9 +1772,9 @@ body {
     position: fixed;
     top: 0;
     transition: top .3s ease; }
-    .page-header.fixedPrueba {
+    .page-header.js-header_down {
       top: 0; }
-    .page-header.fixedPrueba2 {
+    .page-header.js-header_up {
       top: -60px; }
   .page-brand {
     display: block;

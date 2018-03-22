@@ -251,10 +251,10 @@
     position: fixed;
     top: 0;
     transition: top .3s ease;
-    &.fixedPrueba {
+    &.js-header_down {
       top: 0;
     }
-    &.fixedPrueba2 {
+    &.js-header_up {
       top: -60px;
     }
   }
