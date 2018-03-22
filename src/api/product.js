@@ -55,6 +55,18 @@ export default {
     return axios.post(apiURL + 'products', data, headers)
   },
 
+  getAllProducts: function () {
+
+  },
+
+  getProductById: function (productId) {
+
+  },
+
+  getProductBySlug: function (productSlug) {
+
+  },
+
   getShopCategories: function () {
     return axios.get(apiURL + 'categories/shop')
   },
