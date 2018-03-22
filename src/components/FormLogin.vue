@@ -54,7 +54,7 @@ transition(name='modal-fade')
 </template>
 
 <script>
-import axios from 'axios'
+import userAPI from '@/api/user'
 export default {
   name: 'FormLogin',
   data () {
@@ -83,10 +83,11 @@ export default {
       }
     },
     login: function () {
-      axios.post('https://prilov.aguayo.co/api/users/login', {
+      const payload = {
         email: this.email,
         password: this.password
-      })
+      }
+      userAPI.login(payload)
         .then(response => {
           console.log(response.data)
           localStorage.setItem('token', response.data.api_token)
@@ -96,7 +97,30 @@ export default {
           this.close()
         })
         .catch(e => {
-          console.log('ERROR : ' + e)
+          var modal
+
+          if (this.$store.getters['ui/loginAttempts'] > 3) {
+            modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Parece que ocurrió un error',
+                body: Object.values(e.response.data.errors)[0]
+              }
+            }
+          } else {
+            modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Ya has intentado autenticarte varias veces',
+                primaryButtonTitle: '¿Olvidaste tu contraseña?',
+                primaryButtonURL: 'password'
+              }
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
+          this.$store.dispatch('ui/loginAttempt')
         })
     },
     close: function () {

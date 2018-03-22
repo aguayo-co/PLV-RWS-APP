@@ -28,7 +28,7 @@
                 //-vue variable Notificaciones usuario
                 img.tool-user__photo(
                   v-if='user.picture'
-                  src='user.picture',
+                  :src='user.picture',
                   alt='')
                 span.tool-user__letter(
                   v-else
@@ -85,7 +85,10 @@ export default {
   },
   methods: {
     logIn: function () {
-      this.$store.dispatch('ui/showModal', 'FormLogin')
+      const payload = {
+        name: 'FormLogin'
+      }
+      this.$store.dispatch('ui/showModal', payload)
     },
     close: function () {
       this.$emit('close')
