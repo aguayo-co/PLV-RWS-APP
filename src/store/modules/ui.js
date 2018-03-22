@@ -7,13 +7,15 @@ const state = {
     enabled: false,
     name: null,
     parameters: {}
-  }
+  },
+  loginAttempts: 0
 }
 
 // getters
 const getters = {
   modal: state => state.modal,
-  modalWindow: state => state.modalWindow
+  modalWindow: state => state.modalWindow,
+  loginAttempts: state => state.loginAttempts
 }
 
 // actions
@@ -29,6 +31,9 @@ const actions = {
   },
   closeModal (context) {
     context.commit('closeModal')
+  },
+  loginAttempt (context) {
+    context.commit('loginAttempt')
   }
 }
 
@@ -50,6 +55,9 @@ const mutations = {
     state.modalWindow.enabled = false
     state.modalWindow.name = null
     state.modal = false
+  },
+  loginAttempt (state) {
+    state.loginAttempts += 1
   }
 }
 

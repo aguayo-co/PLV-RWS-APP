@@ -46,12 +46,12 @@
                 router-link.btn.btn_solid.btn_block(
                   :class='attributes.primaryButtonClass'
                   v-if='attributes.primaryButtonTitle'
-                  to='attributes.primaryButtonURL') {{ attributes.primaryButtonTitle }}
+                  :to='attributes.primaryButtonURL') {{ attributes.primaryButtonTitle }}
               .notify__row
                 router-link.btn.btn_block(
                   :class='attributes.secondaryButtonClass'
                   v-if='attributes.secondaryButtonTitle'
-                  to='attributes.secondaryButtonURL') {{ attributes.secondaryButtonTitle }}
+                  :to='attributes.secondaryButtonURL') {{ attributes.secondaryButtonTitle }}
   </template>
 
 <script>

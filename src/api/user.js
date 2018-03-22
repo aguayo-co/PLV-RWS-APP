@@ -14,5 +14,13 @@ export default {
     }
 
     return axios.post(apiURL + 'users', payload)
+  },
+
+  login: function (user) {
+    const payload = {
+      email: user.email,
+      password: user.password
+    }
+    return axios.post(apiURL + 'users/login', payload)
   }
 }
