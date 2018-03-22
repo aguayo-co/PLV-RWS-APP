@@ -725,6 +725,50 @@ select {
   padding-right: 0\0;
   background: none\0; }
 
+.form__asisted-box {
+  position: relative;
+  display: inline-block;
+  min-width: 180px; }
+
+.form__asisted {
+  width: 100%;
+  height: 28px;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  color: #fff;
+  border: 1px solid gray; }
+
+.form__asisted-line {
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 100%;
+  height: 28px;
+  line-height: 28px;
+  letter-spacing: 28px;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-size: 1.75rem; }
+  .form__asisted-line::before {
+    content: '';
+    display: block;
+    width: 33.333%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: 1px solid #000; }
+  .form__asisted-line::after {
+    content: '';
+    display: block;
+    width: 33.333%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #000; }
+
 .form__textarea {
   width: 100%;
   padding: 10px 12px;
@@ -946,28 +990,28 @@ select {
 
 /*------------------------------------*	 Mensajes Error
 \*------------------------------------*/
-.help {
+.helper {
   background-color: #efefef; }
-  .help ul {
-    padding: 8px 29px; }
-    .help ul li {
-      line-height: 1.4; }
-  .help a {
+  .helper a {
     border-bottom: 2px solid #fe7676;
     color: #000;
     font-weight: 700; }
 
-.is-danger .form__control {
-  border: 1px solid #fe7676; }
+.helper__list {
+  margin: 0;
+  padding: 8px 16px 8px 28px;
+  line-height: 1.6;
+  font-size: 12px;
+  font-size: 0.75rem; }
 
-.is-danger .help {
+.help {
   position: relative;
   display: block;
   padding: 5px 8px;
   line-height: 1.2;
   color: #fff;
   background-color: #fe7676; }
-  .is-danger .help:before {
+  .help:before {
     content: '';
     position: absolute;
     left: 10px;
@@ -977,6 +1021,39 @@ select {
     border-style: solid;
     border-width: 9px 10px 0 10px;
     border-color: #fe7676 transparent transparent transparent; }
+
+.is-danger .form__control {
+  border: 1px solid #fe7676; }
+
+.password-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-size: 0.75rem;
+  border: 1px solid #cbcbcb;
+  border-radius: 25px;
+  transition: all .2s ease-out; }
+  .password-bar:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 25px;
+    background-color: #fe7676; }
+  .password-bar.level-1:before {
+    width: 25%; }
+  .password-bar.level-2:before {
+    width: 50%; }
+  .password-bar.level-3:before {
+    width: 100%; }
 
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
@@ -1198,6 +1275,115 @@ body {
 .media-img {
   width: 100%;
   vertical-align: bottom; }
+
+.preload {
+  position: relative;
+  width: 160px;
+  height: 48px;
+  margin: 0 auto; }
+
+.preload__spin {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+  border-radius: 25px;
+  background: #fe7676;
+  transform: translateY(0);
+  -webkit-transform: translatey(0);
+  -webkit-animation: preloader 2s 1s infinite ease-in-out;
+  -moz-animation: preloader 2s 1s infinite ease-in-out;
+  -ms-animation: preloader 2s 1s infinite ease-in-out;
+  -animation: preloader 2s 1s infinite ease-in-out;
+  animation: preloader 2s 1s infinite ease-in-out; }
+
+.preload__spin_1 {
+  -webkit-animation-delay: .4s;
+  -moz-animation-delay: .4s;
+  -ms-animation-delay: .4s;
+  animation-delay: .4s; }
+
+.preload__spin_2 {
+  left: 40px;
+  -webkit-animation-delay: .6s;
+  -moz-animation-delay: .6s;
+  -ms-animation-delay: .6s;
+  animation-delay: .6s; }
+
+.preload__spin_3 {
+  left: 80px;
+  -webkit-animation-delay: .8s;
+  -moz-animation-delay: .8s;
+  -ms-animation-delay: .8s;
+  animation-delay: .8s; }
+
+.preload__spin_4 {
+  left: 120px;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  animation-delay: 1s; }
+
+@-webkit-keyframes preloader {
+  0% {
+    opacity: 0.3;
+    -webkit-transform: translateY(0); }
+  50% {
+    opacity: 1;
+    -webkit-transform: translateY(-28px);
+    background: #FE7676; }
+  75% {
+    opacity: 0.5;
+    -webkit-transform: translateY(0); }
+  100% {
+    opacity: 0.3;
+    -webkit-transform: translateY(0); } }
+
+@-moz-keyframes preloader {
+  0% {
+    opacity: 0.3;
+    -moz-transform: translateY(0); }
+  50% {
+    opacity: 1;
+    -moz-transform: translateY(-28px);
+    background: #FE7676; }
+  75% {
+    opacity: 0.5;
+    -moz-transform: translateY(0); }
+  100% {
+    opacity: 0.3;
+    -moz-transform: translateY(0); } }
+
+@-ms-keyframes preloader {
+  0% {
+    opacity: 0.3;
+    -ms-transform: translateY(0); }
+  50% {
+    opacity: 1;
+    -ms-transform: translateY(-28px);
+    background: #FE7676; }
+  75% {
+    opacity: 0.5;
+    -ms-transform: translateY(0); }
+  100% {
+    opacity: 0.3;
+    -ms-transform: translateY(0); } }
+
+@keyframes preloader {
+  0% {
+    opacity: 0.3;
+    transform: translateY(0); }
+  50% {
+    opacity: 1;
+    transform: translateY(-28px);
+    background: #FE7676; }
+  75% {
+    opacity: 0.5;
+    transform: translateY(0); }
+  100% {
+    opacity: 0.3;
+    transform: translateY(0); } }
 
 /*------------------------------------*	Transversal Elements
     #Styles for tables
