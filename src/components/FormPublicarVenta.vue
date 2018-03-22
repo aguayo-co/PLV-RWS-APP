@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+.layout-form
   .layout-band
     .layout-inner
       header.page__head
@@ -195,6 +195,7 @@ div
                     )
                     span {{ color.name }}
             .form__row
+
               label.form__label Selecciona un esquema de tallas
               .size(
                 v-for='size in sizes')
@@ -281,8 +282,7 @@ div
                   v-model='product.originalPrice',
                   type='number')
           .form-section__item
-
-            .form-section__slot
+            .form-section__slot.sticky
               h3.form-section__head Así se verá tu publicación
               article.slot
                 a.slot__product(
@@ -471,7 +471,23 @@ export default {
       })
       productAPI.create(this.product, imageBlobs, this.$store.getters['user/id'], this.$store.getters['user/token'])
         .then(response => {
-          console.log(response)
+          const productURL = response.data.slug
+          const payload = {
+            name: 'ModalExitoPublicarVenta',
+            parameters: {
+              productURL: productURL
+            }
+          }
+          if (response.data.status === 0) payload.parameters.productPending = true
+
+          this.$store.dispatch('ui/showModal', payload)
+            .then(() => {
+              if (payload.parameters.productPending) {
+                // this.$router.push('home')
+              } else {
+                // this.$router.push({ name: 'product', params: { productURL } })
+              }
+            })
         })
         .catch(e => {
           console.log(e)
