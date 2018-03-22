@@ -38,7 +38,6 @@
               p.form__note.form__note_right
                 |¿Olvidaste tu contraseña?
                 | <a class='link_underline' href='#/password' title='Ir a recuperar contraseña'>Recuperar contraseña.</a>
-            
           .form-section.form-section_footer
             .form__row.form__row_away
               button.btn.btn_solid(
