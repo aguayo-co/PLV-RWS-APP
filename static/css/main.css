@@ -1061,6 +1061,7 @@ select {
   border: 1px solid #fe7676; }
 
 .helper {
+  display: block;
   background-color: #efefef; }
   .helper a {
     border-bottom: 2px solid #fe7676;
@@ -1125,6 +1126,7 @@ select {
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
+  display: block;
   padding: 16px;
   text-align: center;
   background-color: #efefef; }

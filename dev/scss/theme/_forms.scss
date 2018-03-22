@@ -505,6 +505,7 @@ select {
 }
 
 .helper {
+  display: block;
   background-color: $c-neutro-3;
   a {
     border-bottom: 2px solid $c-brand;
@@ -583,6 +584,7 @@ select {
 	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
+  display: block;
   padding: 16px;
   text-align: center;
   background-color: $c-neutro-3;
