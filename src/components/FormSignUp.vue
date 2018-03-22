@@ -67,7 +67,7 @@
           type='email',
           data-vv-name='emailConfirm'
         )
-      .form__row(
+      .form__row.form__row_visibility(
         :class='{ "is-danger": errorTexts.password }'
       )
         label.form__label(
@@ -78,10 +78,12 @@
         input.form__control(
           v-model='password',
           id='password',
-          type='password',
+          :type="viewPass ? 'text' : 'password'",
           data-vv-name='password',
           v-on:input='validatePassword'
         )
+        span.form__visibility.i-view(
+        @click='visibilityPass')
         span.password-bar(
           :class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
@@ -118,7 +120,8 @@ export default {
       errorTexts: {
         passwordDetail: []
       },
-      infoTexts: {}
+      infoTexts: {},
+      viewPass: false
       // googleSignInParams: {
       //   client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com'
       // }
@@ -190,6 +193,9 @@ export default {
       if (this.password.length < 8) this.errorTexts.passwordDetail.push('Tu contraseña debe tener al menos 8 caracteres')
       if (!/[a-zA-Z]/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos una letra')
       if (!/\d+/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos un número')
+    },
+    visibilityPass: function () {
+      this.viewPass = !this.viewPass
     }
   }
 }

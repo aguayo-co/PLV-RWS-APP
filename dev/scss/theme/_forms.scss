@@ -385,6 +385,15 @@ select {
   @include font-rem(12px);
   font-weight: $fw-medium;
 }
+.form__row_visibility {
+  position: relative;
+}
+.form__visibility {
+ position: absolute;
+ top: 36px;
+ right: 10px;
+ cursor: pointer;
+}
 
 // $bp-medium: 768px;
 @include media-query(medium) {
