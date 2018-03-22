@@ -34,6 +34,7 @@ export default new Router({
       children: [
         {
           path: 'data',
+          name: 'user-data',
           component: UserData
         }
       ]
