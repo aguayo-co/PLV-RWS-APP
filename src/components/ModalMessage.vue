@@ -1,3 +1,17 @@
+/*
+  * To use this component keep in mind the following attributes:
+  *   attributes: {
+  *     type: preload | positive | alert // Type of Modal to show
+  *     title: string
+  *     body: string
+  *     primaryButtonTitle: string
+  *     primaryButtonURL: string
+  *     primaryButtonClass: string
+  *     secondaryButtonTitle: string
+  *     secondaryButtonURL: string
+  *     secondaryButtonClass: string
+  *   }
+*/
 <template lang="pug">
   transition(name='modal-fade')
     section.modal.modal_scroll
@@ -5,38 +19,45 @@
         .content-slot__inner
           .notify
             header.modal__header
-              //-v-if preload
-              .prilov-preload
+              .prilov-preload(
+                v-if='attributes.type === "preload"')
                 .preload
                   span.preload__spin.preload__spin_1
                   span.preload__spin.preload__spin_2
                   span.preload__spin.preload__spin_3
                   span.preload__spin.preload__spin_4
 
-              //v-if OK
-              //- .notify__ico.i-ok
-              //-   h2.title.notify__title ¡Listo! pronto tu producto aparecerá en Prilov
-              //-   h2.title.notify__title Lo sentimos pero algo ha salido mal
-              //v-if error
-              //- .notify__ico.i-alert-tri
-              //-   h2.title.notify__title Lo sentimos pero algo ha salido mal
+              .notify__ico.i-ok(
+                v-if='attributes.type === "positive"')
+                h2.title.notify__title {{ attributes.title }}
+
+              .notify__ico.i-alert-tri(
+                v-if='attributes.type === "alert"')
+                h2.title.notify__title {{ attributes.title }}
+
               .btn_close.modal__btn_close.i-x(
                 @click='close')
                 span Cerrar
+
             .notify__body.notify__body_center
-              p Por favor intenta el registro nuevamente.
+              p {{ attributes.body }}
             .notify__footer
               .notify__row
-                router-link.btn.btn_solid.btn_block.i-reload(
-                  to='SignUp') Intentar nuevamente
+                router-link.btn.btn_solid.btn_block(
+                  :class='attributes.primaryButtonClass'
+                  v-if='attributes.primaryButtonTitle'
+                  to='attributes.primaryButtonURL') {{ attributes.primaryButtonTitle }}
               .notify__row
                 router-link.btn.btn_block(
-                  to='/user/data') Ver mi Perfil
+                  :class='attributes.secondaryButtonClass'
+                  v-if='attributes.secondaryButtonTitle'
+                  to='attributes.secondaryButtonURL') {{ attributes.secondaryButtonTitle }}
   </template>
 
 <script>
 export default {
   name: 'ModalMessage',
+  props: ['attributes'],
   methods: {
     close: function () {
       this.$store.dispatch('ui/closeModal')
