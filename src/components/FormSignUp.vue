@@ -49,7 +49,7 @@
           type='email',
           data-vv-name='email'
         )
-        span.help(
+        span.helper(
           v-if='infoTexts.emailExist'
         ) {{ infoTexts.emailExist }}
           a(href='#') ¡Recupérala aquí!
@@ -83,7 +83,6 @@
           v-on:input='validatePassword'
         )
         span.password-bar(
-          v-if='errorTexts.passwordDetail.length > 0',
           :class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
         div.helper(
@@ -101,7 +100,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import userAPI from '@/api/user'
 
 // import GSignInButton from 'vue-google-signin-button'
 // Vue.use(GSignInButton)
@@ -129,21 +128,34 @@ export default {
   methods: {
     signUp: function () {
       // console.log(this.$store.get('userAuth'))
-      axios.post('https://prilov.aguayo.co/api/users', {
+      const payload = {
         first_name: this.nombre,
         last_name: this.apellidos,
         email: this.email,
         password: this.password
-      })
+      }
+      userAPI.create(payload)
         .then(response => {
-          console.log(response.data)
-          this.setSuccess()
           localStorage.setItem('token', response.data.api_token)
           localStorage.setItem('userId', response.data.id)
           this.$store.dispatch('user/setUser', response.data)
+          this.$router.push('user/data')
         })
         .catch(e => {
-          if (e.response.data.errors.exists) this.infoTexts.emailExist = 'Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?'
+          if (e.response.data.errors.exists) {
+            this.infoTexts.emailExist = 'Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?'
+            this.validatePassword()
+          } else {
+            const modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Parece que ocurrió un error',
+                body: Object.values(e.response.data.errors)[0]
+              }
+            }
+            this.$store.dispatch('ui/showModal', modal)
+          }
           this.validatePassword()
         })
     },
@@ -178,14 +190,6 @@ export default {
       if (this.password.length < 8) this.errorTexts.passwordDetail.push('Tu contraseña debe tener al menos 8 caracteres')
       if (!/[a-zA-Z]/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos una letra')
       if (!/\d+/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos un número')
-    },
-    setSuccess: function () {
-      this.flagSignUp = 'Success'
-      this.$emit('setSuccess')
-    },
-    setError: function () {
-      this.flagSignUp = 'Error'
-      this.$emit('setError')
     }
   }
 }

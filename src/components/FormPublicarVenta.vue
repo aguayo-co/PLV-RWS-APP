@@ -194,38 +194,58 @@
                       :style='{ backgroundColor: color.hex_code }'
                     )
                     span {{ color.name }}
+
             .form__row
-              label.form__label Selecciona un esquema de tallas
-              .size(
-                v-for='size in sizes')
-                input.form__input-radio(
-                  type='radio',
-                  :id='"sizeScheme-"+size.id',
-                  v-model='product.sizeScheme',
-                  :value='size.id'
-                  @change='chooseSize(size.id)'
-                  :checked='sizeScheme == size.id-1')
-                label.form__label.form__label_radio(
-                  :for='"sizeScheme-"+size.id')
-                  strong.form__headline {{ size.name }}
-                  p.form__disclaimer {{ size.description }}
-              .form__row(
-                v-show='toggleSize && sizeScheme != 2'
-                :class='{ "is-danger": errorLog.size }')
-                label.form__label(
-                  for="product-talla") Selecciona la talla de tu producto
-                span.help(
-                  v-if="errorLog.size"
-                ) {{ errorLog.size }}
-                select.form__select(
-                  ref='size'
-                  id='product-talla'
-                  v-model='product.size_id')
-                  optgroup(label='Talla')
-                    option(
-                      v-for='sizeValue in sizes[sizeScheme].values'
-                      :value='sizeValue'
-                    ) {{ sizeValue }}
+              label.form__label(
+                for="productSize") Ingresa la talla de tu producto (ej: 32, XS ó 3XL)
+              .form-asisted__box
+                input.form-asisted__model(
+                  v-model="sizeCharAt",
+                  id="productSize",
+                  type="text",
+                  maxlength="3")
+                .form-asisted__value
+                  span.form-asisted__item - {{ sizeCharAt.charAt(0) }}
+                  span.form-asisted__item - {{ sizeCharAt.charAt(1) }}
+                  span.form-asisted__item - {{ sizeCharAt.charAt(2) }}
+            .form__row.form__row_check
+              input.form__input-check(
+                type="checkbox"
+                id='sizeU',
+                checked)
+              label.form__label.form__label_check.i-ok(
+                for='sizeU') ¿ó tu producto es talla única?
+            //- label.form__label Selecciona un esquema de tallas
+            //- .size(
+            //-   v-for='size in sizes')
+            //-   input.form__input-radio(
+            //-     type='radio',
+            //-     :id='"sizeScheme-"+size.id',
+            //-     v-model='product.sizeScheme',
+            //-     :value='size.id'
+            //-     @change='chooseSize(size.id)'
+            //-     :checked='sizeScheme == size.id-1')
+            //-   label.form__label.form__label_radio(
+            //-     :for='"sizeScheme-"+size.id')
+            //-     strong.form__headline {{ size.name }}
+            //-     p.form__disclaimer {{ size.description }}
+            //- .form__row(
+            //-   v-show='toggleSize && sizeScheme != 2'
+            //-   :class='{ "is-danger": errorLog.size }')
+            //-   label.form__label(
+            //-     for="product-talla") Selecciona la talla de tu producto
+            //-   span.help(
+            //-     v-if="errorLog.size"
+            //-   ) {{ errorLog.size }}
+            //-   select.form__select(
+            //-     ref='size'
+            //-     id='product-talla'
+            //-     v-model='product.size_id')
+            //-     optgroup(label='Talla')
+            //-       option(
+            //-         v-for='sizeValue in sizes[sizeScheme].values'
+            //-         :value='sizeValue'
+            //-       ) {{ sizeValue }}
             .form__row(
               :class='{ "is-danger": errorLog.brand }')
               label.form__label(
@@ -281,8 +301,7 @@
                   v-model='product.originalPrice',
                   type='number')
           .form-section__item
-
-            .form-section__slot
+            .form-section__slot.sticky
               h3.form-section__head Así se verá tu publicación
               article.slot
                 a.slot__product(
@@ -378,18 +397,20 @@
             dt.dividers__term $ {{ product.price - (product.price * product.commission / 100 ) | currency }}
 
       .form-section.form-section_footer
-        .form__row(
+        .form__row.form__check(
           :class='{ "is-danger": errorLog.checkTerms }')
           span.help(
             v-if="errorLog.checkTerms"
           ) {{ errorLog.checkTerms }}
-          input#check1.form__input-check(
+          input.form__input-check(
             ref='checkTerms',
             v-model='checkTerms',
             type="checkbox",
             name="checkbox",
+            id='checkTerms',
             checked)
-          label.form__label.form__label_check.i-ok(for="check1")
+          label.form__label.form__label_check.i-ok(
+            for='checkTerms')
             | Estoy de acuerdo con la <a class="form__label-link" href="#">politica de privacidad</a> de Prilov
         .form__row.form__row_away
           button.btn.btn_solid(
@@ -406,6 +427,7 @@ export default {
   name: 'FormPublicarVenta',
   data () {
     return {
+      sizeCharAt: '',
       images: [],
       imageURL: null,
       toggleImage: false,
@@ -471,7 +493,23 @@ export default {
       })
       productAPI.create(this.product, imageBlobs, this.$store.getters['user/id'], this.$store.getters['user/token'])
         .then(response => {
-          console.log(response)
+          const productURL = response.data.slug
+          const payload = {
+            name: 'ModalExitoPublicarVenta',
+            parameters: {
+              productURL: productURL
+            }
+          }
+          if (response.data.status === 0) payload.parameters.productPending = true
+
+          this.$store.dispatch('ui/showModal', payload)
+            .then(() => {
+              if (payload.parameters.productPending) {
+                // this.$router.push('home')
+              } else {
+                // this.$router.push({ name: 'product', params: { productURL } })
+              }
+            })
         })
         .catch(e => {
           console.log(e)

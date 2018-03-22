@@ -52,12 +52,12 @@
           .form__row(
             :class='{ "is-danger": errorTexts.email }')
             label.form__label(
-              for='email') Correo
+              for='emailUser') Correo
             span.help(
               v-show='errorTexts.email') {{ errorTexts.email }}
             input.form__control(
               v-model='email',
-              id='email',
+              id='emailUser',
               type='email',
               data-vv-name='email')
             span.help(
@@ -103,12 +103,12 @@
           .form__row(
             :class='{ "is-danger": errorTexts.password }')
             label.form__label(
-              for='password') Contraseña
+              for='passwordUser') Contraseña
             span.help(
               v-if="errorTexts.password") {{ errorTexts.password }}
             input.form__control(
               v-model='password',
-              id='password',
+              id='passwordUser',
               type='password',
               data-vv-name='password',
               v-on:input='validatePassword')

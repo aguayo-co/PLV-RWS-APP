@@ -8,6 +8,10 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
+  state: {
+    apiDomain: process.env.API_DOMAIN,
+    apiUrl: process.env.API_URL
+  },
   modules: {
     ui,
     user

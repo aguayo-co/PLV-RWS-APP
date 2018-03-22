@@ -389,7 +389,11 @@ export default {
       ]
     }
   },
-
+  // computed: {
+  //   user () {
+  //     return this.$store.state['user']
+  //   }
+  // },
   methods: {
     IsActive: function (e) {
       this.isActive = e
