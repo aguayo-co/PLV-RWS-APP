@@ -27,7 +27,8 @@
     "vue-mq": "^0.1.1",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.13",
-    "vue-sticky-js": "0.0.4"
+    "vue-sticky-js": "0.0.4",
+    "vuex-map-fields": "^1.1.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
