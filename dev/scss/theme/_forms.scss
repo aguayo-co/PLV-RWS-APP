@@ -145,6 +145,7 @@ select {
   padding-right:0\0;
   background: none\0;
 }
+// input sistido para talla
 .form__asisted-box {
   position: relative;
   display: inline-block;
@@ -156,10 +157,11 @@ select {
   height: 28px;
   position: absolute;
   z-index: 1;
-  background-color:$c-neutro;
+  background-color: $c-neutro;
   color: $c-neutro;
   border: 1px solid gray;
 }
+
 .form__asisted-line {
   pointer-events: none;
   position: relative;
@@ -190,10 +192,7 @@ select {
     bottom: 0;
     border: 1px solid #000;
   }
-
 }
-
-
 //Input textarea
 .form__textarea {
   width: 100%;
@@ -285,10 +284,98 @@ select {
   }
 }
 
+/*------------------------------------*\
+	form switch
+\*------------------------------------*/
+.form__switch {
+  position: relative;
+  display: inline-block;
+  width: 62px;
+  height: 28px;
+}
+.switch__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 62px;
+  height: 28px;
+  opacity: 0;
+} 
+// Unchecked
+.switch__label {
+   display: block;
+   cursor: pointer;
+   color: $c-default-4;
+   &:before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 1;
+     width: 62px;
+     height: 28px;
+     border-radius: 14px;
+     background-color: $c-default-4;
+     transition: background-color 0.28s cubic-bezier(.4, 0, .2, 1);
+   }
+   &:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    border-radius: 14px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .04), 0 3px 1px -2px rgba(0, 0, 0, .1), 0 1px 5px 0 rgba(0, 0, 0, .02);
+    background-color: $c-neutro;
+    transition: all 0.28s cubic-bezier(.4, 0, .2, 1);
+    transition-property: left, background-color;
+   }
+ } 
+.switch__status {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  line-height: 1;
+  text-align: center;
+  &:before {
+    content: 'Deshabilitado';
+    @include font-rem(12px);
+  }
+}
+
+// Checked
+.switch__input {
+  &:checked+.switch__label {
+    color: $c-brand;
+    &:before {
+      background-color: $c-brand;
+    }
+    &:after {
+      left: 37px;
+    }
+    .switch__status {
+      &:before {
+        content: 'Habilitado';
+      }
+    }
+  }
+}
+
 .form__label-link {
   color: $c-default;
   font-weight: $fw-bold;
   border-bottom: 2px solid $c-brand;
+}
+
+.form__text {
+  margin-top: 0;
+  font-family: $f-fancy;
+  @include font-rem(12px);
+  font-weight: $fw-medium;
 }
 
 // $bp-medium: 768px;
@@ -305,7 +392,6 @@ select {
     margin: 0;
     @include font-rem(18px);
   }
-
 }
 
 //toggle color form
@@ -377,6 +463,10 @@ select {
     }
   }
 
+  .form__text {
+    @include font-rem(16px);
+  }
+
 }
 
 @media only screen and (min-width: 1080px) {
@@ -406,8 +496,13 @@ select {
 }
 
 /*------------------------------------*\
-	 Mensajes Error
+	Mensajes Error
 \*------------------------------------*/
+.is-danger {
+  .form__control {
+    border: 1px solid $c-brand;
+  }
+}
 
 .helper {
   background-color: $c-neutro-3;
@@ -417,14 +512,13 @@ select {
     font-weight: $fw-bold;
   }
 }
+
 .helper__list {
   margin: 0;
   padding: 8px 16px 8px 28px;
   line-height: 1.6;
   @include font-rem(12px);
 }
-
-
 .help {
   position: relative;
   display: block;
@@ -444,12 +538,7 @@ select {
     border-color: $c-brand transparent transparent transparent;
   }
 }
-.is-danger {
-  .form__control {
-    border: 1px solid $c-brand;
-  }
-}
-
+//registro fortaleza password
 .password-bar {
   position: relative;
   display: block;
@@ -478,20 +567,17 @@ select {
       width: 25%;
     }
   }
-
   &.level-2 {
     &:before {
       width: 50%;
     }
   }
-
   &.level-3 {
     &:before {
       width: 100%;
     }
   }
 }
-
 
 /*------------------------------------*\
 	Mensajes formulario
@@ -507,6 +593,12 @@ select {
     }
   }
 }
+
+.form__mesagge {
+  margin-top: 0;
+  @include font-rem(16px);
+}
+
 
 .form__note {
   margin: -8px 0 0;
@@ -533,92 +625,4 @@ select {
   }
 }
 
-
-  // }
-  //componente VuePassword
- 
-  // .VuePassword {
-  //    .VuePassword__Toggle {
-  //      height: 42px;
-  //      .VuePassword__Toggle__Icon {
-  //         fill: $c-default-4;
-  //      }
-  //    }
-  //   // alerta seguridad
-  //   .VuePassword__Meter {
-  //     display: none;
-  //   }
-  //   //Alerta seguridad mensaje
-  //   .VuePassword__Message {
-  //     position: relative;
-  //     display: block;
-  //     width: 100%;
-  //     height: 0;
-  //     margin-top: -6px;
-  //     margin-bottom: 6px;
-  //     padding-right: 4px;
-  //     opacity: 0;
-  //     text-transform: capitalize;
-  //     @include font-rem(14px);
-  //     transition: all .2s ease-out;
-  //     &:before,
-  //     &:after {
-  //       content: '';
-  //       position: absolute;
-  //       top: 50%;
-  //       display: block;
-  //       height: 4px;
-  //       border-radius: 25px;
-  //     }
-  //     &:before {
-  //       left: 0;
-  //       width: 80%;
-  //       margin-top: -3px;
-  //       border: 1px solid $c-default-3;
-  //     }
-  //     &:after {
-  //       left: 1px;
-  //       width: 0;
-  //       margin-top: -2px;
-  //       transition: all .2s ease-out;
-  //     }
-  //   }
-  //   // alerta seguridad bg
-  //   .VuePassword--great,
-  //   .VuePassword--good,
-  //   .VuePassword--medium,
-  //   .VuePassword--weak,
-  //   .VuePassword--very-weak {
-  //     height: 20px;
-  //     opacity: 1;
-  //     color: $c-default-4;
-  //     &:after {
-  //       background-color: $c-brand;
-  //     }
-  //   }
-  //   .VuePassword--great {
-  //     &:after {
-  //       width: 80%;
-  //     }
-  //   }
-  //   .VuePassword--good {
-  //     &:after {
-  //       width: 65%;
-  //     }
-  //   }
-  //   .VuePassword--medium {
-  //     &:after {
-  //       width: 44%;
-  //     }
-  //   }
-  //   .VuePassword--weak {
-  //     &:after {
-  //       width: 20%;
-  //     }
-  //   }
-  //   .VuePassword--very-weak {
-  //     &:after {
-  //       width: 5%;
-  //     }
-  //   }
-  // }
+  
