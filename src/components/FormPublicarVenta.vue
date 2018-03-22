@@ -195,6 +195,7 @@
                     )
                     span {{ color.name }}
             .form__row
+
               label.form__label Selecciona un esquema de tallas
               .size(
                 v-for='size in sizes')
@@ -281,8 +282,7 @@
                   v-model='product.originalPrice',
                   type='number')
           .form-section__item
-
-            .form-section__slot
+            .form-section__slot.sticky
               h3.form-section__head Así se verá tu publicación
               article.slot
                 a.slot__product(

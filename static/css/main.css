@@ -3929,6 +3929,10 @@ body {
   .form-section__slot {
     max-width: 280px;
     margin: 0 0 0 auto; }
+    .form-section__slot.sticky {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 30px; }
   .form-section_footer .btn {
     max-width: 320px; } }
 
