@@ -46,6 +46,16 @@ body {
 .through {
   text-decoration: line-through;
 }
+//borde bottom pink
+.txt-underline {
+  display: inline-block;
+  padding-bottom: 2px;
+  color: $black;
+  font-size: inherit;
+  font-weight: $fw-bold;
+  border-bottom: 3px solid $c-brand;
+  transition: all 0.5s;
+}
 
 .txt-light {
   font-family: $f-normal;

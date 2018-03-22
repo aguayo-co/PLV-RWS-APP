@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+.layout-form
   .layout-band
     .layout-inner
       header.page__head
