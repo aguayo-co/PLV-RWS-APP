@@ -1,8 +1,7 @@
 /**
  * API Calls related to users and their properties
  */
-import axios from 'axios'
-const apiURL = 'https://prilov.aguayo.co/api/'
+import Vue from 'vue'
 
 export default {
   create: function (user) {
@@ -13,7 +12,7 @@ export default {
       password: user.password
     }
 
-    return axios.post(apiURL + 'users', payload)
+    return Vue.axios.post('/api/users', payload)
   },
 
   login: function (user) {
@@ -21,6 +20,6 @@ export default {
       email: user.email,
       password: user.password
     }
-    return axios.post(apiURL + 'users/login', payload)
+    return Vue.axios.post('/api/users/login', payload)
   }
 }
