@@ -1,0 +1,76 @@
+/*-----------------------------*\
+  CSS solo para maquetar la
+  guia de estilos
+\*-----------------------------*/
+/*Estilos de Bloque*/
+.sg-page {
+  padding: 20px 0;
+  background-color: $c-default-5;
+  code {
+    display: block;
+    background-color: $c-neutro-4;
+    padding: 20px;
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    overflow-x: scroll;
+  }
+}
+/*Estilos de Bloque*/
+.sg-head {
+  padding: 40px 20px;
+  .title__main {
+    display: block;
+    width: 100%;
+    margin: 0 auto 20px 0;
+  }
+  .title {
+    text-align: left;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+/*Estilos de Bloque*/
+.sg-box {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  padding: 0 20px;
+}
+
+.sg-box__row {
+  width: 100%;
+  .title_subhead {
+    padding-bottom: 20px;
+  }
+}
+
+.sg-box__col {
+  width: 50%;
+}
+
+.sg-box__head {
+  padding: 20px 0;
+  border-bottom: 1px solid $c-neutro-4;
+}
+.sg-box__el {
+  border: 1px dashed $c-neutro-4;
+  background-color: $c-neutro;
+}
+
+// $bp-medium: 640px;
+@include media-query(small-medium) {
+  .sg-page {
+    code {
+      overflow-x: hidden;
+    }
+  }
+}
+// $bp-medium: 1024px;
+@include media-query(small-wide) {
+  /*Estilos de Bloque*/
+  .sg-page {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}

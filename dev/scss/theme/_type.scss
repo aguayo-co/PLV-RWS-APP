@@ -34,4 +34,24 @@ body {
 .txt_brand {
   color: $c-brand;
 }
+// borde rosado 
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  color: $c-brand;
+  border: 1px solid $c-brand;
+  border-radius: 25px;
+}
+// texto tachado 
+.through {
+  text-decoration: line-through;
+}
+
+.txt-light {
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+}
+
+
+
 

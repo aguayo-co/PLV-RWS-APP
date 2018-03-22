@@ -1,22 +1,22 @@
 <template lang="pug">
 .layout-page
   ProductoDetalle(:product='product')
-  ProductUser(:user='user')
-  SliderProducto
+  ProductoUser(:user='user')
+  ProductoSlider
 </template>
 
 <script>
 import axios from 'axios'
-import ProductoDetalle from '@/components/producto-detalle'
-import ProductUser from '@/components/ProductUser'
-import SliderProducto from '@/components/slider-producto'
+import ProductoDetalle from '@/components/ProductoDetalle'
+import ProductoUser from '@/components/ProductoUser'
+import ProductoSlider from '@/components/ProductoSlider'
 
 export default {
   name: 'Producto',
   components: {
     ProductoDetalle,
-    ProductUser,
-    SliderProducto
+    ProductoUser,
+    ProductoSlider
   },
   data () {
     return {
