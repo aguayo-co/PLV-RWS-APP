@@ -44,24 +44,29 @@
         .form-section.form-section_footer
           .form__row
             button.btn.btn_solid Publicar
-  //- 3a Usuaria no registrada
-  FormPublicarSignUp
   //- 1.1a Usuaria registrada a la que le faltan datos
   FormPublicarUserData
+  //- 2a Usuaria no logueada
+      2b Usuaria registrada no logueada
+  FormPublicarLogin
+  //- 3a Usuaria no registrada
+  FormPublicarSignUp
 
 </template>
 
 <script>
 import FormPublicarVenta from '@/components/FormPublicarVenta'
-import FormPublicarSignUp from '@/components/FormPublicarSignUp'
 import FormPublicarUserData from '@/components/FormPublicarUserData'
+import FormPublicarLogin from '@/components/FormPublicarLogin'
+import FormPublicarSignUp from '@/components/FormPublicarSignUp'
 
 export default {
   name: 'PublicarVenta',
   components: {
     FormPublicarVenta,
-    FormPublicarSignUp,
-    FormPublicarUserData
+    FormPublicarUserData,
+    FormPublicarLogin,
+    FormPublicarSignUp
   }
 }
 </script>
