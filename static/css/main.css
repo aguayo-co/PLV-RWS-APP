@@ -3497,6 +3497,14 @@ body {
   .single__title {
     font-size: 32px;
     font-size: 2rem; }
+  .single__subtitle {
+    padding: 32px 0;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-size: 1.125rem;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300; }
   .user-header {
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
@@ -4194,7 +4202,7 @@ body {
 \*------------------------------------*/
 .box {
   padding: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-size: 14px;
   font-size: 0.875rem;
   background-color: #f6f6f6; }
@@ -4233,6 +4241,7 @@ body {
 @media only screen and (min-width: 768px) {
   .box {
     padding: 24px;
+    margin-bottom: 32px;
     font-size: 18px;
     font-size: 1.125rem; }
   .box__title {

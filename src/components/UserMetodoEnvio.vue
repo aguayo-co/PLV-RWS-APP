@@ -3,7 +3,7 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Método de envío
-      p.headline Habilita los métodos de envío disponibles para tus productos
+      p.single__subtitle Habilita los métodos de envío disponibles para tus productos
       form.form(
         id="form-user-data"
         v-on:submit='',
@@ -37,7 +37,7 @@ section.single
                   label.switch__label(
                     for="saleswoman")
                       span.switch__status
-          .form__row
+          .form__row.form__row_away.form__btn
             button.btn.btn_solid Guardar
 
 </template>

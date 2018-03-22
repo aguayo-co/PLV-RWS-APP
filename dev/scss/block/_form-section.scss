@@ -382,7 +382,7 @@
 \*------------------------------------*/
 .box {
   padding: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   @include font-rem(14px);
   background-color: $c-neutro-4;
 }
@@ -417,6 +417,7 @@
 @include media-query(medium) {
   .box {
     padding: 24px;
+    margin-bottom: 32px;
     @include font-rem(18px);
   }
 
