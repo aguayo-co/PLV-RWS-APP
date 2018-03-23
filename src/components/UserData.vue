@@ -320,7 +320,7 @@ section.single
                   :placeholder="email")
                 span.dividers__actions
                   button.btn-tag(
-                    v-show="editEmail == true", v-on:click="updateEmail") Guardar
+                    v-show="editEmail == true") Guardar
                   a.dividers__edit.i-edit-line(
                     @click.prevent="toggle('editEmail')",
                     href="#",
