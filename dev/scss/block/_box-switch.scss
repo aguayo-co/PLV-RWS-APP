@@ -1,0 +1,50 @@
+/*------------------------------------*\
+	box | switch
+\*------------------------------------*/
+
+.box {
+  padding: 16px;
+  margin-bottom: 24px;
+  @include font-rem(14px);
+  background-color: $c-neutro-4;
+}
+
+.box__title {
+  margin-bottom: 10px;
+  @include font-rem(16px);
+}
+
+.box__grid {
+  @include flexbox;
+  @include justify-content(center);
+}
+
+.box__lead {
+  padding-right: 20px;
+}
+
+.box__txt {
+  margin: 0 0 10px 0;
+  color: $c-default-5;
+}
+
+.box__switch {
+  padding-top: 4px;
+}
+
+.box__disclaimer {
+  color: $c-brand;
+  margin: 0;
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .box {
+    padding: 24px;
+    margin-bottom: 32px;
+    @include font-rem(18px);
+  }
+  .box__title {
+    @include font-rem(20px);
+  }
+}
