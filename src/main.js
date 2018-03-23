@@ -6,6 +6,7 @@ import router from './router'
 import VueMqMixin from '@/Mixin/VueMq-mixin'
 import store from './store'
 import axiosPlugin from './axios'
+import prilovHelpers from './helpers'
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,9 @@ Vue.use(VueMqMixin)
 
 // Load global Axios instances.
 Vue.use(axiosPlugin, store)
+
+// Load our helpers!
+Vue.use(prilovHelpers)
 
 Vue.filter('currency', function (value) {
   if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')

@@ -1,15 +1,6 @@
 import { mapGetters } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 
-const getNestedObject = (nestedObj, pathArr) => {
-  return pathArr.reduce((obj, key) =>
-      (obj && obj[key] !== 'undefined') ? obj[key] : null, nestedObj);
-}
-
-const getFirstError = (e, field) => {
-  return getNestedObject(e, ['response', 'data', 'errors', field, 0])
-}
-
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
 // de cada uno.
@@ -103,8 +94,8 @@ export default {
         this.errorLog.first_name = null
         this.errorLog.last_name = null
       }).catch((e) => {
-        this.errorLog.first_name = getFirstError(e, 'first_name')
-        this.errorLog.last_name = getFirstError(e, 'last_name')
+        this.errorLog.first_name = this.$getFirstError(e, 'first_name')
+        this.errorLog.last_name = this.$getFirstError(e, 'last_name')
       })
     },
     updateEmail: function () {
@@ -117,8 +108,8 @@ export default {
         this.new_email = null
         this.errorLog.email = null
       }).catch((e) => {
-        const emailError = getFirstError(e, 'email')
-        const existsError = getFirstError(e, 'exists')
+        const emailError = this.$getFirstError(e, 'email')
+        const existsError = this.$getFirstError(e, 'exists')
         this.errorLog.email = existsError || emailError
       })
     },
@@ -132,7 +123,7 @@ export default {
         this.new_about = null
         this.errorLog.about = null
       }).catch((e) => {
-        this.errorLog.about = getFirstError(e, 'about')
+        this.errorLog.about = this.$getFirstError(e, 'about')
       })
     },
     updatePhone: function () {
@@ -145,7 +136,7 @@ export default {
         this.new_phone = null
         this.errorLog.phone = null
       }).catch((e) => {
-        this.errorLog.phone = getFirstError(e, 'phone')
+        this.errorLog.phone = this.$getFirstError(e, 'phone')
       })
     }
   }
