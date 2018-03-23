@@ -3,7 +3,7 @@
 //- TO DO style: ico y animación de flechas
 //- TO DO marckup: footer level 1
 .page-menu__panel(
-  :class="{ 'page-menu_out' :level1 != undefined }")
+  :class="{ 'page-menu_out' :active != undefined }")
   //- cerrar menu: X/brand
   .page-menu__top.i-x(
     @click='MenuClose')
@@ -11,168 +11,61 @@
       img.brand__logo(
         src='/static/img/brand-prilov.png',
         alt='Prilov Compra. Usa. Vende')
-  //- menu level 1
   ul.menu
-    li.menu__item.i-next(
-      :class="{ 'menu__item_current' :level1 == 1 }")
-      //- TO DO VUE: dinamizar esta funcionalidad
-      a.menu__link.i-shop(
+    li.menu__item(
+      v-for="(item, index) in menu.items",
+      :class="{'menu__item_current' : active == index, 'i-next' : !item.url}")
+      a.menu__link(
+        v-if='!item.url',
+        :class="item.icon",
         href='#',
-        @click='level1 = 1') Shop
-      //-iconos menu activo
-      span.submenu__close.i-back(
-        href='#',
-        @click='level1 = undefined')
-
+        @click="itemLevel1(index), active == index") {{ item.name }}
+        span.submenu__close.i-back(
+          href='#',
+          @click.stop='subMenuClose')
       //- Nivel 2: submenu
       transition(name='slide-down')
-        ul.submenu(
-            v-show='level1 == 1'
-            :class="{ 'submenu_open' :level2 != undefined }")
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 2 }")
-            span.submenu__label(
-              @click='level2 = 2') Moda Femenina
+        ul.submenu(v-if='!item.url',
+          v-show='active == index'
+          :class="{ 'submenu_open' :selected != undefined }")
+          li.submenu__item(
+            v-for= "(children, indexChildren) in item.children",
+            :class="{ 'submenu__item_current' : selected == indexChildren, 'i-next' : !children.url }")
+            a.submenu__label(
+              v-if='!children.url',
+              @click="itemLevel2(indexChildren)") {{ children.name }}
             span.submenu__close.i-close(
               href='#',
-              @click='level2 = undefined')
+              @click.stop='subMenuClose2')
             //- Nivel 3: Lista de enlaces
             transition(name='slide-down')
               ul.submenu__list(
-                v-show='level2 == 2')
-                li.submenu__subitem
-                  a.subitem__link(href="#") Tops
-                li.submenu__subitem
-                  a.subitem__link(href='#') Poleras
-                li.submenu__subitem
-                  a.subitem__link(href='#') Blusas y camisas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Monos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Chalecos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Abrigos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Parkas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Chaquetas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Polerones
-                li.submenu__subitem
-                  a.subitem__link(href='#') Vestidos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Kimonos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Pantalones
-                li.submenu__subitem
-                  a.subitem__link(href='#') Capris
-                li.submenu__subitem
-                  a.subitem__link(href='#') Leggings
-                li.submenu__subitem
-                  a.subitem__link(href='#') Jardineras
-                li.submenu__subitem
-                  a.subitem__link(href='#') Faldas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Ropa Interior
-                li.submenu__subitem
-                  a.subitem__link(href='#') Pantalones cortos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Pijamas
-
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 3 }")
-            span.submenu__label(
-              @click='level2 = 3') Complementos
-            //- Nivel 3: Lista de enlaces
-            transition(name='slide-down')
-              ul.submenu__list(
-                v-show='level2 == 3')
-                li.submenu__subitem
-                  a.subitem__link(href='#') Accesorios
-                li.submenu__subitem
-                  a.subitem__link(href='#') Zapatos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Cinturones
-                li.submenu__subitem
-                  a.subitem__link(href='#') Anteojos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Bisutería
-                li.submenu__subitem
-                  a.subitem__link(href='#') Sombreros y Gorros
-
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 4 }")
-            span.submenu__label(
-              @click='level2 = 4'
-            ) Marcas
-            //- Nivel 3: Lista de enlaces
-            transition(name='slide-down')
-              ul.submenu__list(
-                v-show='level2 == 4')
-                li.submenu__subitem
-                  a.subitem__link(href='#') Adidas
-                li.submenu__subitem
-                  a.subitem__link(href='#') Americanino
-                li.submenu__subitem
-                  a.subitem__link(href='#') Asos
-                li.submenu__subitem
-                  a.subitem__link(href='#') Converse
-                li.submenu__subitem
-                  a.subitem__link(href='#') Forever 21
-                li.submenu__subitem
-                  a.subitem__link(href='#') Foster
-                li.submenu__subitem
-                  a.subitem__link(href='#') H&M
-                li.submenu__subitem
-                  a.subitem__link(href='#') Maaji
-                li.submenu__subitem
-                  a.subitem__link(href='#') Mango
-                li.submenu__subitem
-                  a.subitem__link(href='#') Nike
-                li.submenu__subitem
-                  a.subitem__link(href='#') Rapsodia
-                li.submenu__subitem
-                  a.subitem__link(href='#') Opposite
-                li.submenu__subitem
-                  a.subitem__link(href='#') TopShop
-                li.submenu__subitem
-                  a.subitem__link(href='#') Zara
-
-          li.submenu__item.i-next(
-            :class="{ 'submenu__item_current' :level2 == 5 }"
-          )
-            span.submenu__label(
-              @click='level2 = 5'
-            ) Top Picks
-
-          li.menu-side__footer
-            a.link_underline(href='#') Ver todas las Prendas
-
-      //- $End Nivel 2 Shop
-
-    li.menu__item.i-next
-      a.menu__link.i-bag(href='#') Instashop
-    li.menu__item.i-next
-      a.menu__link.i-closet(href='#') Closet Room
-    li.menu__item.i-next
-      a.menu__link.i-favorite(href='#') Prilovers
-    li.menu__item.i-next
-      a.menu__link.i-blog(href='#') Blog
+                v-show='selected == indexChildren')
+                li.submenu__subitem(
+                  v-for="(grandChildren, indexG) in children.children")
+                  a.subitem__link(:href='grandChildren.url') {{ grandChildren.name }}
+            router-link.submenu__label(
+              v-if='children.url'
+              v-bind:to='children.url'
+            ) {{ children.name }}
+      router-link.menu__link(
+        v-if='item.url'
+        v-bind:to='item.url'
+        :class="item.icon"
+      ) {{ item.name }}
 
   //- menu footer
-  ul.menu-footer
-    li.menu-footer__item
-      a.menu-footer__link(href="#") Ayuda
-    li.menu-footer__item
-      a.menu-footer__link(href="#") Nosotros
-    li.menu-footer__item
-      a.menu-footer__link(href="#") Contáctanos
+  ul.menu-footer(v-show='active == undefined')
+    li.menu-footer__item(
+      v-for='(items, indice) in footer.items')
+      a.menu-footer__link(v-if="indice != footer.items.length - 1",
+      :href="items.url") {{ items.name }}
 
-  .menu-social.i-heart-on
-    p.menu-social__title {{ nameFooter }}
-    ul.menu-social__list
+  .menu-social.i-heart-on(v-show='active == undefined')
+    p.menu-social__title {{ footer.name }}
+    ul.menu-social__list(v-if='footer.items')
       li.menu-social__item(
-        v-for='items in footer.children')
+        v-for='items in footer.items[3].children')
         a.foot-nav__link(
           :href='items.url',
           :class='items.icon',
@@ -186,34 +79,46 @@ export default {
   name: 'PageHeaderMenuMobile',
   data () {
     return {
-      active: false,
-      show: false,
-      level1: undefined,
-      level2: undefined,
-      footer: {},
-      nameFooter: undefined
+      active: undefined,
+      selected: undefined,
+      menu: {},
+      footer: {}
     }
   },
-  async created () {
-    await axios.get('https://prilov.aguayo.co/api/menus/footer', {
-    })
-      .then(response => {
-        this.footer = response.data.items[3]
-        this.nameFooter = response.data.items[3].name
-      })
-      .catch(e => {
-        console.log('ERROR : ' + e)
-      })
-  },
-
   methods: {
     MenuClose: function () {
       this.$emit('MenuClose')
     },
-    toggleNav: function () {
-      this.active = !this.active
+    itemLevel1: function (indexItem) {
+      this.active = indexItem
+    },
+    itemLevel2: function (f) {
+      this.selected = f
+    },
+    subMenuClose: function () {
+      this.active = undefined
+    },
+    subMenuClose2: function () {
+      this.selected = undefined
     }
+  },
+  created () {
+    axios.get('https://prilov.aguayo.co/api/menus/principal', {
+    })
+      .then(response => {
+        this.menu = response.data
+      })
+      .catch(e => {
+        console.log('ERROR : ' + e)
+      })
+    axios.get('https://prilov.aguayo.co/api/menus/footer', {
+    })
+      .then(response => {
+        this.footer = response.data
+      })
+      .catch(e => {
+        console.log('ERROR : ' + e)
+      })
   }
-
 }
 </script>
