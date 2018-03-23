@@ -3439,6 +3439,27 @@ body {
 .user-edit__actions {
   padding: 14px 0 0 16px; }
 
+.user-header__item {
+  text-align: center; }
+
+/*------------------------------------*	User Profile avatar edit
+\*------------------------------------*/
+.user-over {
+  position: relative; }
+  .user-over:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    background-color: #fff;
+    transition: all .2s ease-out; }
+
 .user-data__avatar {
   width: 114px;
   height: 114px;
@@ -3449,6 +3470,34 @@ body {
 .user-data__img {
   width: 100%;
   vertical-align: bottom; }
+
+.user-avatar-edit {
+  position: relative;
+  z-index: 3;
+  display: inline-block; }
+  .user-avatar-edit .user-edit__actions {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    padding: 0; }
+
+.user-avatar__upfile {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  opacity: 0;
+  transition: all .2s .2s ease-out; }
+
+.user-avatar_active {
+  min-height: 500px;
+  text-align: center; }
+  .user-avatar_active:after {
+    opacity: .97;
+    pointer-events: all; }
+  .user-avatar_active .user-avatar__upfile {
+    opacity: 1; }
+  .user-avatar_active .user-edit__save {
+    padding-top: 16px; }
 
 .user-data__group {
   margin-bottom: 0;
@@ -3573,6 +3622,8 @@ body {
     -moz-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row; }
+  .user-header__item {
+    text-align: left; }
   .user-data__title {
     padding-top: 8px;
     text-align: left;
@@ -3598,8 +3649,16 @@ body {
     margin: 0; }
   .user-edit__actions {
     padding: 8px 0 0 16px; }
+  /*------------------------------------*	    User Profile avatar edit desktop
+    \*------------------------------------*/
+  .user-avatar_active {
+    min-height: 390px; }
   .user-data__avatar {
     margin-right: 28px; }
+  .user-avatar-edit .user-edit__actions {
+    right: 28px; }
+  .user-avatar__upfile {
+    top: 0; }
   .user-data__group {
     text-align: left;
     font-size: 18px;

@@ -20,91 +20,115 @@ section.single
         v-on:submit='',
         action='#',
         method='post')
-        .user-header
-          .user-header__item
-            .user-data__avatar
-              //- clic en foto de perfil de usuario
-                Se despliega un input (file) donde el usuario
-                puede subir y editar su foto de perfil.
-              img.user-data__img(
-                :src="data.picture",
-                :alt="'Perfil' + ' ' + data.first_name")
-          .user-header__item
-            .user-header-edit(
-              :class="{'user-header-edit_active' :editName == true}")
-              a.user-header-edit__item(
-                @click.prevent="EditName()",
-                href="#",
-                title="Editar Nombre y apellido")
-                h3.user-data__title
-                  | {{ data.first_name }} {{ data.last_name }}
+        .user-over(
+          :class="{'user-avatar_active' :editAvatar == true}")
+          .user-header
+            .user-header__item
+              .user-avatar-edit
                 span.user-edit__actions
-                  span.btn_edit.i-edit-line <small class="hide"> Editar </small>
-              //-TO-do animate slide
-              transition(slide-toggle)
-                .user-header-edit__grid(
-                  v-show="editName == true")
-                  .form__row
-                    label.form__label(
-                      for='nombre') Editar Nombre
-                    input.form__edit(
-                      v-model='data.first_name',
-                      id='username'
-                    )
-                  .form__row
-                    label.form__label(
-                      for='apellidos') Editar Apellidos
-                    input.form__edit(
-                      v-model='data.last_name',
-                      id='userLast',
-                      type='text'
-                    )
-                  .form__row.user-edit__save
+                  span.btn_edit.i-edit-line(
+                    @click.prevent="EditAvatar()") <small class="hide"> Editar </small>
+                .user-data__avatar
+                  //- clic en foto de perfil de usuario
+                    Se despliega un input (file) donde el usuario
+                    puede subir y editar su foto de perfil.
+                  img.user-data__img(
+                    :src="data.picture",
+                    :alt="'Perfil' + ' ' + data.first_name")
+              .user-avatar__upfile(
+                v-show="editAvatar == true")
+                .upfile__small
+                  p.form__label Foto de perfil
+                  .upfile__item
+                    .upfile__label
+                      .upfile__text.i-upload(
+                        v-if="mqDesk") Arrastra una foto o
+                      .upfile__btn Sube una imagen
+                    croppa(
+                      :width="300",
+                      :height="300",
+                      :quality="2",
+                      placeholder="",
+                      :prevent-white-space="true")
+                  .user-edit__save
+                      button.btn-tag Guardar
+            .user-header__item
+              .user-header-edit(
+                :class="{'user-header-edit_active' :editName == true}")
+                a.user-header-edit__item(
+                  @click.prevent="EditName()",
+                  href="#",
+                  title="Editar Nombre y apellido")
+                  h3.user-data__title
+                    | {{ data.first_name }} {{ data.last_name }}
+                  span.user-edit__actions
+                    span.btn_edit.i-edit-line <small class="hide"> Editar </small>
+                //-TO-do animate slide
+                transition(slide-toggle)
+                  .user-header-edit__grid(
+                    v-show="editName == true")
+                    .form__row
+                      label.form__label(
+                        for='nombre') Editar Nombre
+                      input.form__edit(
+                        v-model='data.first_name',
+                        id='username'
+                      )
+                    .form__row
+                      label.form__label(
+                        for='apellidos') Editar Apellidos
+                      input.form__edit(
+                        v-model='data.last_name',
+                        id='userLast',
+                        type='text'
+                      )
+                    .form__row.user-edit__save
+                      button.btn-tag Guardar
+
+              //-Enlaces Modal
+              //- ul.user-data-nav
+              //-   li.user-data-nav__item Cambiar contraseña   |
+              //-   li.user-data-nav__item Eliminar cuenta
+              //-Notificaciones
+              .user-data__notify
+                ul.user-data__list
+                  li.user-data__value.i-like 20
+                  li.user-data__value.i-like.i_flip 0
+                  li.user-data__value.i-less-circle 0
+                ul.user-data__list
+                  li.user-data__track {{ data.followers_count }} Seguidores
+                  li.user-data__track {{ data.following_count }} Siguiendo
+
+          //-editar About perfil
+          .user-header-edit
+            .user-header-edit__item.edit__item_top
+              .form__row_top
+                .user-data__txt(
+                  v-if="editAbout == false",
+                  @click.prevent="EditAbout()")
+                  p.user-data__txt {{ data.about }}
+                .user-data__txt(
+                  v-if="editAbout == true")
+                  textarea.form__edit_txt(
+                    v-model="data.about",
+                    name="about",
+                    maxlength="340",
+                    form="form-user-data")
+                  .form__row.form__row_away.user-edit_right
                     button.btn-tag Guardar
-
-            //-Enlaces Modal
-            //- ul.user-data-nav
-            //-   li.user-data-nav__item Cambiar contraseña   |
-            //-   li.user-data-nav__item Eliminar cuenta
-            //-Notificaciones
-            .user-data__notify
-              ul.user-data__list
-                li.user-data__value.i-like 20
-                li.user-data__value.i-like.i_flip 0
-                li.user-data__value.i-less-circle 0
-              ul.user-data__list
-                li.user-data__track {{ data.followers_count }} Seguidores
-                li.user-data__track {{ data.following_count }} Siguiendo
-
-        //-editar About perfil
-        .user-header-edit
-          .user-header-edit__item.edit__item_top
-            .form__row_top
-              p.user-data__txt(
-                v-if="editAbout == false",
-                @click.prevent="EditAbout()") {{ data.about }}
-              .user-data__txt(
-                v-if="editAbout == true")
-                textarea.form__edit_txt(
-                  v-model="data.about",
-                  name="about",
-                  maxlength="340",
-                  form="form-user-data")
-                .form__row.form__row_away.user-edit_right
-                  button.btn-tag Guardar
-            a.user-edit__actions(
-              @click.prevent="EditAbout()",
-              href="#"
-              title="Editar perfil")
-              span.btn_edit.i-edit-line <small class="hide"> Editar </small>
-        //-Btn Prilovers Star
-        .user-data__actions
-          //- router-link.btn.btn_small.i-start-line(
-          //-   to="#",
-          //-   title="Ser Priloverstar") Ser Prilovestar
-          router-link.btn.btn_small.i-sale(
-            to="/publicar-venta",
-            title="Publicar Producto") Publicar una venta
+              a.user-edit__actions(
+                @click.prevent="EditAbout()",
+                href="#"
+                title="Editar perfil")
+                span.btn_edit.i-edit-line <small class="hide"> Editar </small>
+          //-Btn Prilovers Star
+          .user-data__actions
+            //- router-link.btn.btn_small.i-start-line(
+            //-   to="#",
+            //-   title="Ser Priloverstar") Ser Prilovestar
+            router-link.btn.btn_small.i-sale(
+              to="/publicar-venta",
+              title="Publicar Producto") Publicar una venta
 
         //-Información direcciones
         .user-data_info
@@ -330,6 +354,10 @@ section.single
 </template>
 
 <script>
+import Vue from 'vue'
+import Croppa from 'vue-croppa'
+Vue.component('croppa', Croppa.component)
+
 export default {
   name: 'UserData',
   data () {
@@ -337,6 +365,7 @@ export default {
       isActive: '',
       selectAddress: '',
       newAddress: false,
+      editAvatar: false,
       editName: false,
       editAbout: false,
       editEmail: false,
@@ -399,6 +428,9 @@ export default {
     },
     NotActive: function (e) {
       this.isActive = ''
+    },
+    EditAvatar: function () {
+      this.editAvatar = !this.editAvatar
     },
     EditName: function () {
       this.editName = !this.editName
