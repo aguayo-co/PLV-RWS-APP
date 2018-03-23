@@ -26,7 +26,7 @@ section.single
           .user-avatar-edit
             span.user-edit__actions
               span.btn_edit.i-edit-line(
-                @click.prevent="EditAvatar()") <small class="hide"> Editar </small>
+                @click.prevent="toggle('editAvatar')") <small class="hide"> Editar </small>
             .user-data__avatar
               //- clic en foto de perfil de usuario
                 Se despliega un input (file) donde el usuario
