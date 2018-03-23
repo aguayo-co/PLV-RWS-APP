@@ -96,21 +96,26 @@ section.single
         //-editar About perfil
         .user-header-edit
           .user-header-edit__item.edit__item_top
-            .form__row_top
-              .user-data__txt(
-                v-if="editAbout == false",
-                @click.prevent="toggle('editAbout')")
-                p.user-data__txt {{ about }}
+            .user-data__box-txt(
+              v-if="editAbout == false",
+              @click.prevent="toggle('editAbout')")
+              p.user-data__txt(
+                v-if="about == null")
+                span.user-data__holder Aún no has ingresado una descripción para tu perfil
+              p.user-data__txt(
+                v-else="") {{ about }}
+            .form__row_block(
+              v-if="editAbout == true")
               form.form_user.user-data__txt(
                 id="form-user-about"
                 v-on:submit='',
                 action='#',
-                method='post',
-                v-if="editAbout == true")
+                method='post')
                 textarea.form__edit_txt(
                   v-model="about",
                   name="about",
                   maxlength="340",
+                  placeholder="Aún no has ingresado una descripción para tu perfil",
                   form="form-user-data")
                 .form__row.form__row_away.user-edit_right
                   button.btn-tag Guardar
@@ -132,9 +137,13 @@ section.single
       .user-data_info
         .subhead Direcciones
         ul.dividers
+          li.dividers__item(
+            v-if="addresses == null")
+            span.user-data__holder Aún no has ingresado una dirección para tus compras
           //- To-Do: Funcionalidad seleccionar
               addresss pricipal class:.dividers__item_select
           li.dividers__item(
+            v-else="",
             v-for="addressList in addresses")
             .dividers__grid.dividers__list(
               :class="{'dividers__list_active' :isActive == addressList}"
@@ -324,7 +333,10 @@ section.single
             .dividers__item(
                 :class="{'dividers__item_active' :editEmail == true}")
               .dividers__grid
+                span.user-data__holder(
+                  v-if="email == null") Aún no has ingresado tú Correo electrónico
                 input.form__edit(
+                  v-else="",
                   v-model='email',
                   id='editEmail',
                   type='email',
@@ -352,7 +364,10 @@ section.single
             .dividers__item(
               :class="{'dividers__item_active' :editTel == true}")
               .dividers__grid
+                span.user-data__holder(
+                  v-if="phone == null") Aún no has ingresado tú número de teléfono
                 input.form__edit(
+                  v-else=""
                   v-model='phone',
                   id='editPhone',
                   :placeholder="phone",
