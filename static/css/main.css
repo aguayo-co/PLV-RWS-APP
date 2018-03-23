@@ -3413,8 +3413,6 @@ body {
     margin: 0 6px; }
   .user-header-edit__grid .form__label {
     font-weight: 400; }
-  .user-header-edit__grid .user-edit_right {
-    text-align: right; }
   .user-header-edit__grid .user-edit__save {
     -webkit-align-self: flex-end;
     -moz-align-self: flex-end;
@@ -3441,6 +3439,9 @@ body {
 
 .user-header__item {
   text-align: center; }
+
+.user-edit_right {
+  text-align: right; }
 
 /*------------------------------------*	User Profile avatar edit
 \*------------------------------------*/
