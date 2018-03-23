@@ -67,7 +67,7 @@
           type='email',
           data-vv-name='emailConfirm'
         )
-      .form__row.form__row_visibility(
+      .form__row(
         :class='{ "is-danger": errorTexts.password }'
       )
         label.form__label(
@@ -75,15 +75,16 @@
         span.help(
           v-if="errorTexts.password"
         ) {{ errorTexts.password }}
-        input.form__control(
-          v-model='password',
-          id='password',
-          :type="viewPass ? 'text' : 'password'",
-          data-vv-name='password',
-          v-on:input='validatePassword'
-        )
-        span.form__visibility.i-view(
-        @click='visibilityPass')
+        .form__password
+          input.form__control(
+            v-model='password',
+            id='password',
+            :type="viewPass ? 'text' : 'password'",
+            data-vv-name='password',
+            :input='validatePassword'
+          )
+          span.form__visible.i-view(
+            @click='visiblePass')
         span.password-bar(
           :class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
@@ -194,7 +195,7 @@ export default {
       if (!/[a-zA-Z]/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos una letra')
       if (!/\d+/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos un número')
     },
-    visibilityPass: function () {
+    visiblePass: function () {
       this.viewPass = !this.viewPass
     }
   }

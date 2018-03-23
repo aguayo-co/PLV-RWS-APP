@@ -49,7 +49,7 @@ transition(name='modal-fade')
         .break
           span.break__txt O
         router-link.btn.btn_block(
-          to='SignUp',
+          to='signup',
           title='Ir a Registro') Regístrate
 </template>
 
