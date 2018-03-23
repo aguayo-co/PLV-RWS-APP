@@ -1,0 +1,172 @@
+/*------------------------------------*\
+	upload file croppa
+\*------------------------------------*/
+
+.upfile {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px 0 50px;
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  svg {
+    display: none;
+  }
+}
+
+.upfile__main {
+  position: relative;
+  &:before {
+    position: absolute;
+    color: $c-brand;
+    @include font-rem(20px);
+  }
+  .upfile__btn {
+    padding: 16px;
+  }
+}
+.upfile__small {
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+.upfile__grid {
+  @include flexbox;
+  @include justify-content(center);
+}
+
+.upfile__item {
+  position: relative;
+  width: 100%;
+  border: 2px dashed $c-brand;
+  background-color: rgba($c-neutro-3, .5);
+}
+
+.upfile__title {
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+   @include font-rem(20px);
+}
+
+.upfile__label {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  color: $c-brand;
+  text-align: center;
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-family: $f-normal;
+  font-weight: $fw-regular;
+  @include font-rem(20px);
+}
+
+.upfile__text {
+  padding-bottom: 20px;
+}
+
+.upfile__btn {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  color: $c-default;
+  @include font-rem(14px);
+  font-family: $f-default;
+  font-weight: $fw-regular;
+  border: 2px solid $c-default;
+}
+
+.croppa-container {
+  position: relative;
+  z-index: 2;
+}
+.upfile__group {
+  .upfile__item {
+    &:not(:last-child){
+      margin-right: 32px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .upfile__main {
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    &:before {
+      bottom: 0;
+      left: 50%;
+      margin-left: -10px;
+    }
+    .upfile__title {
+      @include font-rem(24px);
+    }
+  }
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .upfile {
+    max-width: 100%;
+  }
+
+  .upfile {
+    @include flexbox;
+    @include justify-content(center);
+  }
+  .upfile__main {
+    max-width: 400px;
+    padding-right: 68px; 
+    &:before {
+      top: 50%;
+      right: 24px;
+    }
+  }
+  .upfile__group {
+    max-width: 58%;
+  }
+  .upfile__title {
+    padding-bottom: 30px;
+    @include font-rem(24px);
+  }
+
+  .upfile__btn {
+    padding: 16px;
+    @include font-rem(16px);
+  }
+  .upfile__text {
+    padding-bottom: 20px;
+    &::before {
+      display: block;
+      padding-bottom: 20px;
+      @include font-rem(80px);
+    }
+  }
+
+  .upfile__main {
+    .upfile__text {
+      &::before {
+        @include font-rem(100px);
+      }
+    }
+  }
+}
+
+@include media-query(wide) {
+   .upfile__group {
+      max-width: 68%;
+   }
+   .upfile__title {
+      @include font-rem(30px);
+   }
+
+}

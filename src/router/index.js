@@ -8,6 +8,7 @@ import UserData from '@/components/UserData'
 import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import PublicarVenta from '@/pages/publicar-venta'
 import Producto from '@/pages/Producto'
+import Compra from '@/pages/compra'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/producto/:slug',
       name: 'product',
       component: Producto
+    },
+    {
+      path: '/compra',
+      name: 'compra',
+      component: Compra
     }
   ]
 })
