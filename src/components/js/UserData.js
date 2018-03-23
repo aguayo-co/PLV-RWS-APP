@@ -8,6 +8,7 @@ export default {
       isActive: '',
       selectAddress: '',
       newAddress: false,
+      editAvatar: false,
       editName: false,
       editAbout: false,
       editEmail: false,
