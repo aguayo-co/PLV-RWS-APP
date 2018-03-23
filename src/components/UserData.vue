@@ -99,10 +99,10 @@ section.single
                 p.user-data__txt {{ about }}
               form.form_user.user-data__txt(
                 id="form-user-about"
-                v-on:submit.prevent='',
+                v-on:submit.prevent='updateAbout',
                 v-if="editAbout == true")
                 textarea.form__edit_txt(
-                  v-model="about",
+                  v-model="new_about",
                   name="about",
                   maxlength="340",
                   form="form-user-data")
@@ -332,24 +332,24 @@ section.single
         .dividers
           form.form_user(
             id="form-user-phone"
-            v-on:submit.prevent='')
+            v-on:submit.prevent='updatePhone')
             label.subhead.dividers__title(
             for='editPhone') Teléfono
             .dividers__item(
-              :class="{'dividers__item_active' :editTel == true}")
+              :class="{'dividers__item_active' :editPhone == true}")
               .dividers__grid
                 input.form__edit(
                   v-model='phone',
                   id='editPhone',
                   :placeholder="phone",
-                  :disabled="editTel == false"
+                  :disabled="editPhone == false"
                   type='tel')
 
                 span.dividers__actions
                   button.btn-tag(
                     v-show="editTel == true") Guardar
                   a.dividers__edit.i-edit-line(
-                    @click.prevent="toggle('editTel')",
+                    @click.prevent="toggle('editPhone')",
                     href="#",
                     title="Editar Teléfono") <small class="hide"> Editar </small>
 

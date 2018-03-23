@@ -7,7 +7,9 @@ import { mapFields } from 'vuex-map-fields'
 const editableProps = {
   first_name: null,
   last_name: null,
-  email: null
+  about: null,
+  email: null,
+  phone: null
 }
 
 // Los valores de los formularios los almacenamos en local
@@ -42,7 +44,7 @@ export default {
       editName: false,
       editAbout: false,
       editEmail: false,
-      editTel: false,
+      editPhone: false,
       newUserData: editableProps
     }
   },
@@ -98,6 +100,26 @@ export default {
         this.toggle('editEmail')
         // Obliga a usar valores de Vuex.
         this.new_email = null
+      })
+    },
+    updateAbout: function () {
+      const data = {
+        about: this.new_about
+      }
+      this.$store.dispatch('user/update', data).then(() => {
+        this.toggle('editAbout')
+        // Obliga a usar valores de Vuex.
+        this.new_about = null
+      })
+    },
+    updatePhone: function () {
+      const data = {
+        phone: this.new_phone
+      }
+      this.$store.dispatch('user/update', data).then(() => {
+        this.toggle('editPhone')
+        // Obliga a usar valores de Vuex.
+        this.new_phone = null
       })
     }
   }
