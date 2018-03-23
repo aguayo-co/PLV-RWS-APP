@@ -25,7 +25,14 @@ div.page(
 
   //- Modal Login
   FormLogin(
-    v-show='modalWindow.enabled && modalWindow.name == "FormLogin"')
+    v-if='modalWindow.enabled && modalWindow.name == "FormLogin"')
+  //- Modal publicar venta
+  ModalExitoPublicarVenta(
+    v-if='modalWindow.enabled && modalWindow.name == "ModalExitoPublicarVenta"',
+    :attributes='modalWindow.parameters')
+  ModalMessage(
+    v-if='modalWindow.enabled && modalWindow.name == "ModalMessage"',
+    :attributes='modalWindow.parameters')
 </template>
 
 <script>
@@ -33,6 +40,8 @@ div.page(
 import PageHeader from '@/components/PageHeader'
 import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
+import ModalExitoPublicarVenta from '@/components/ModalExitoPublicarVenta'
+import ModalMessage from '@/components/ModalMessage'
 import PageFooter from '@/components/PageFooter'
 
 export default {
@@ -41,6 +50,8 @@ export default {
     PageHeader,
     PageHeaderMobile,
     FormLogin,
+    ModalExitoPublicarVenta,
+    ModalMessage,
     PageFooter
   },
   data () {

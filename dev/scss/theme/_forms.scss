@@ -145,7 +145,47 @@ select {
   padding-right:0\0;
   background: none\0;
 }
+// input asistido para talla
+.form-asisted__box {
+  position: relative;
+  display: block;
+  width: 180px;
+  margin: 0 auto 12px;
+}
 
+.form-asisted__model {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  text-align: right;
+  @include font-rem(28px);
+  background-color: $c-neutro;
+}
+
+.form-asisted__value {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 100%;
+  height: 42px;
+  text-align: right;
+  text-transform: uppercase;
+  pointer-events: none;
+  @include font-rem(28px);
+
+  .form-asisted__item {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 40px;
+    height: 42px;
+    margin: 0 10px;
+    line-height: 42px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+  }
+}
 //Input textarea
 .form__textarea {
   width: 100%;
@@ -196,16 +236,43 @@ select {
     border-radius: 50%;
   }
 }
+
+//checkbox
+.form__row_check {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+//label de input checkbox
+.form__label_check {
+  position: relative;
+  display: inline-block;
+  padding-left: 28px;
+  padding-bottom: 2px;
+  &:before {
+    display: none;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 2px solid $c-default-4;
+    border-radius: 3px;
+  }
+}
 //Input checkbox 
 .form__input-check {
   position: absolute;
   z-index: -1;
   opacity: 0;
-  &:checked + .form__label_check {
+  &:checked+.form__label_check {
     &:before {
       position: absolute;
-      top: 4px;
-      left: 2px;
+      top: 6px;
+      left: 3px;
       z-index: 1;
       display: block;
       @include font-rem(8px);
@@ -215,25 +282,94 @@ select {
     }
   }
 }
-//label de input checkbox
-.form__label_check {
+
+.form__check {
+  .form__label_check {
+    color: $c-default-4;
+    &:after {
+      border-color: $c-default-3;
+    }
+  }
+}
+
+/*------------------------------------*\
+	form switch
+\*------------------------------------*/
+.form__switch {
   position: relative;
   display: inline-block;
-  padding-left: 28px;
-  font-weight: $fw-regular;
-  color: $c-default-4;
-  &:before {
-    display: none;
-  }
-  &:after {
+  width: 62px;
+  height: 28px;
+}
+.switch__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 62px;
+  height: 28px;
+  opacity: 0;
+} 
+// Unchecked
+.switch__label {
+   display: block;
+   cursor: pointer;
+   color: $c-default-4;
+   &:before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 1;
+     width: 62px;
+     height: 28px;
+     border-radius: 14px;
+     background-color: $c-default-4;
+     transition: background-color 0.28s cubic-bezier(.4, 0, .2, 1);
+   }
+   &:after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 13px;
-    height: 13px;
-    border: 2px solid $c-default-3;
-    border-radius: 3px;
+    top: 3px;
+    left: 3px;
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    border-radius: 14px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .04), 0 3px 1px -2px rgba(0, 0, 0, .1), 0 1px 5px 0 rgba(0, 0, 0, .02);
+    background-color: $c-neutro;
+    transition: all 0.28s cubic-bezier(.4, 0, .2, 1);
+    transition-property: left, background-color;
+   }
+ } 
+.switch__status {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  line-height: 1;
+  text-align: center;
+  &:before {
+    content: 'Deshabilitado';
+    @include font-rem(12px);
+  }
+}
+
+// Checked
+.switch__input {
+  &:checked+.switch__label {
+    color: $c-brand;
+    &:before {
+      background-color: $c-brand;
+    }
+    &:after {
+      left: 37px;
+    }
+    .switch__status {
+      &:before {
+        content: 'Habilitado';
+      }
+    }
   }
 }
 
@@ -248,6 +384,15 @@ select {
   font-family: $f-fancy;
   @include font-rem(12px);
   font-weight: $fw-medium;
+}
+.form__row_visibility {
+  position: relative;
+}
+.form__visibility {
+ position: absolute;
+ top: 36px;
+ right: 10px;
+ cursor: pointer;
 }
 
 // $bp-medium: 768px;
@@ -264,7 +409,6 @@ select {
     margin: 0;
     @include font-rem(18px);
   }
-
 }
 
 //toggle color form
@@ -369,17 +513,17 @@ select {
 }
 
 /*------------------------------------*\
-	 Mensajes Error
+	Mensajes Error
 \*------------------------------------*/
-
-.help {
-  background-color: $c-neutro-3;
-  ul {
-    padding: 8px 29px;
-    li {
-      line-height: 1.4;
-    }
+.is-danger {
+  .form__control {
+    border: 1px solid $c-brand;
   }
+}
+
+.helper {
+  display: block;
+  background-color: $c-neutro-3;
   a {
     border-bottom: 2px solid $c-brand;
     color: $c-default;
@@ -387,27 +531,68 @@ select {
   }
 }
 
-.is-danger {
-  .form__control {
-    border: 1px solid $c-brand;
+.helper__list {
+  margin: 0;
+  padding: 8px 16px 8px 28px;
+  line-height: 1.6;
+  @include font-rem(12px);
+}
+.help {
+  position: relative;
+  display: block;
+  padding: 5px 8px;
+  line-height: 1.2;
+  color: $c-neutro;
+  background-color: $c-brand;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -9px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 10px 0 10px;
+    border-color: $c-brand transparent transparent transparent;
   }
-  .help {
-    position: relative;
+}
+//registro fortaleza password
+.password-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  @include font-rem(12px);
+  border: 1px solid $c-default-3;
+  border-radius: 25px;
+  transition: all .2s ease-out;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
     display: block;
-    padding: 5px 8px;
-    line-height: 1.2;
-    color: $c-neutro;
+    width: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 25px;
     background-color: $c-brand;
+  }
+  &.level-1 {
     &:before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      bottom: -9px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 9px 10px 0 10px;
-      border-color: $c-brand transparent transparent transparent;
+      width: 25%;
+    }
+  }
+  &.level-2 {
+    &:before {
+      width: 50%;
+    }
+  }
+  &.level-3 {
+    &:before {
+      width: 100%;
     }
   }
 }
@@ -416,6 +601,7 @@ select {
 	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
+  display: block;
   padding: 16px;
   text-align: center;
   background-color: $c-neutro-3;
@@ -426,6 +612,12 @@ select {
     }
   }
 }
+
+.form__mesagge {
+  margin-top: 0;
+  @include font-rem(16px);
+}
+
 
 .form__note {
   margin: -8px 0 0;
@@ -452,107 +644,4 @@ select {
   }
 }
 
-  // .form__edit:-webkit-autofill,
-  // .form__edit:-webkit-autofill:hover,
-  // .form__edit:-webkit-autofill:focus .form__edit:-webkit-autofill,
-  // .form__edit:-webkit-autofill:hover .form__edit:-webkit-autofill:focus {
-  //   -webkit-text-fill-color: $c-default;
-  //   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-  //   transition: background-color 5000s ease-in-out 0s;
-  // }
-  //componente VuePassword
-  // .VuePassword__Input {
-  //   .input {
-  //     width: 100%;
-  //     padding: 0 12px;
-  //     margin-bottom: 12px;
-  //     line-height: 40px;
-  //     font-family: $f-default;
-  //     border: 1px solid $c-default-2;
-  //   }
-  // }
-  // .VuePassword {
-  //    .VuePassword__Toggle {
-  //      height: 42px;
-  //      .VuePassword__Toggle__Icon {
-  //         fill: $c-default-4;
-  //      }
-  //    }
-  //   // alerta seguridad
-  //   .VuePassword__Meter {
-  //     display: none;
-  //   }
-  //   //Alerta seguridad mensaje
-  //   .VuePassword__Message {
-  //     position: relative;
-  //     display: block;
-  //     width: 100%;
-  //     height: 0;
-  //     margin-top: -6px;
-  //     margin-bottom: 6px;
-  //     padding-right: 4px;
-  //     opacity: 0;
-  //     text-transform: capitalize;
-  //     @include font-rem(14px);
-  //     transition: all .2s ease-out;
-  //     &:before,
-  //     &:after {
-  //       content: '';
-  //       position: absolute;
-  //       top: 50%;
-  //       display: block;
-  //       height: 4px;
-  //       border-radius: 25px;
-  //     }
-  //     &:before {
-  //       left: 0;
-  //       width: 80%;
-  //       margin-top: -3px;
-  //       border: 1px solid $c-default-3;
-  //     }
-  //     &:after {
-  //       left: 1px;
-  //       width: 0;
-  //       margin-top: -2px;
-  //       transition: all .2s ease-out;
-  //     }
-  //   }
-  //   // alerta seguridad bg
-  //   .VuePassword--great,
-  //   .VuePassword--good,
-  //   .VuePassword--medium,
-  //   .VuePassword--weak,
-  //   .VuePassword--very-weak {
-  //     height: 20px;
-  //     opacity: 1;
-  //     color: $c-default-4;
-  //     &:after {
-  //       background-color: $c-brand;
-  //     }
-  //   }
-  //   .VuePassword--great {
-  //     &:after {
-  //       width: 80%;
-  //     }
-  //   }
-  //   .VuePassword--good {
-  //     &:after {
-  //       width: 65%;
-  //     }
-  //   }
-  //   .VuePassword--medium {
-  //     &:after {
-  //       width: 44%;
-  //     }
-  //   }
-  //   .VuePassword--weak {
-  //     &:after {
-  //       width: 20%;
-  //     }
-  //   }
-  //   .VuePassword--very-weak {
-  //     &:after {
-  //       width: 5%;
-  //     }
-  //   }
-  // }
+  

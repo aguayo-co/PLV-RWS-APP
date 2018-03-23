@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+.layout-form
   .layout-band
     .layout-inner
       header.page__head
@@ -9,6 +9,9 @@ div
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
           .upfile__item
+            a.delete(
+              v-show='toggleImageDelete[0]',
+              @click='removeImage(0)') Eliminar
             .upfile__label
               .upfile__text.i-upload(
                 v-if="mqDesk") Arrastra una foto o
@@ -22,12 +25,16 @@ div
               :height="450",
               :quality="2",
               placeholder="",
-              :prevent-white-space="true"
-              @new-image-drawn='handleImages(0)')
+              :prevent-white-space="true",
+              @new-image-drawn='addImage(0)',
+              @draw='handleMainImage')
         .upfile__group
           h3.upfile__title Fotos Secundarias (opcionales)
           .upfile__grid
             .upfile__item
+              a.delete(
+                v-show='toggleImageDelete[1]',
+                @click='removeImage(1)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
@@ -38,11 +45,15 @@ div
                 :height="600",
                 :quality="2",
                 placeholder="",
-                :prevent-white-space="true")
+                :prevent-white-space="true",
+                @new-image-drawn='addImage(1)')
             .upfile__item
+              a.delete(
+                v-show='toggleImageDelete[2]',
+                @click='removeImage(2)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
-                  v-if="mqDesk") Arrastra una foto o
+                  v-if="mqTablet") Arrastra una foto o
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[2]',
@@ -50,12 +61,16 @@ div
                 :height="600",
                 :quality="2",
                 placeholder="",
-                :prevent-white-space="true")
+                :prevent-white-space="true",
+                @new-image-drawn='addImage(2)')
             .upfile__item(
               v-if="mqDesk")
+              a.delete(
+                v-show='toggleImageDelete[3]',
+                @click='removeImage(3)') Eliminar
               .upfile__label
                 .upfile__text.i-upload(
-                  v-if="mqDesk") Arrastra una foto o
+                  v-if="mqTablet") Arrastra una foto o
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[3]',
@@ -63,7 +78,8 @@ div
                 :height="600",
                 :quality="2",
                 placeholder="",
-                :prevent-white-space="true")
+                :prevent-white-space="true",
+                @new-image-drawn='addImage(3)')
   .step
     //-Formulario set 1
     .layout-inner
@@ -178,38 +194,58 @@ div
                       :style='{ backgroundColor: color.hex_code }'
                     )
                     span {{ color.name }}
+
             .form__row
-              label.form__label Selecciona un esquema de tallas
-              .size(
-                v-for='size in sizes')
-                input.form__input-radio(
-                  type='radio',
-                  :id='"sizeScheme-"+size.id',
-                  v-model='product.sizeScheme',
-                  :value='size.id'
-                  @change='chooseSize(size.id)'
-                  :checked='sizeScheme == size.id-1')
-                label.form__label.form__label_radio(
-                  :for='"sizeScheme-"+size.id')
-                  strong.form__headline {{ size.name }}
-                  p.form__disclaimer {{ size.description }}
-              .form__row(
-                v-show='toggleSize && sizeScheme != 2'
-                :class='{ "is-danger": errorLog.size }')
-                label.form__label(
-                  for="product-talla") Selecciona la talla de tu producto
-                span.help(
-                  v-if="errorLog.size"
-                ) {{ errorLog.size }}
-                select.form__select(
-                  ref='size'
-                  id='product-talla'
-                  v-model='product.size_id')
-                  optgroup(label='Talla')
-                    option(
-                      v-for='sizeValue in sizes[sizeScheme].values'
-                      :value='sizeValue'
-                    ) {{ sizeValue }}
+              label.form__label(
+                for="productSize") Ingresa la talla de tu producto (ej: 32, XS ó 3XL)
+              .form-asisted__box
+                input.form-asisted__model(
+                  v-model="sizeCharAt",
+                  id="productSize",
+                  type="text",
+                  maxlength="3")
+                .form-asisted__value
+                  span.form-asisted__item - {{ sizeCharAt.charAt(0) }}
+                  span.form-asisted__item - {{ sizeCharAt.charAt(1) }}
+                  span.form-asisted__item - {{ sizeCharAt.charAt(2) }}
+            .form__row.form__row_check
+              input.form__input-check(
+                type="checkbox"
+                id='sizeU',
+                checked)
+              label.form__label.form__label_check.i-ok(
+                for='sizeU') ¿ó tu producto es talla única?
+            //- label.form__label Selecciona un esquema de tallas
+            //- .size(
+            //-   v-for='size in sizes')
+            //-   input.form__input-radio(
+            //-     type='radio',
+            //-     :id='"sizeScheme-"+size.id',
+            //-     v-model='product.sizeScheme',
+            //-     :value='size.id'
+            //-     @change='chooseSize(size.id)'
+            //-     :checked='sizeScheme == size.id-1')
+            //-   label.form__label.form__label_radio(
+            //-     :for='"sizeScheme-"+size.id')
+            //-     strong.form__headline {{ size.name }}
+            //-     p.form__disclaimer {{ size.description }}
+            //- .form__row(
+            //-   v-show='toggleSize && sizeScheme != 2'
+            //-   :class='{ "is-danger": errorLog.size }')
+            //-   label.form__label(
+            //-     for="product-talla") Selecciona la talla de tu producto
+            //-   span.help(
+            //-     v-if="errorLog.size"
+            //-   ) {{ errorLog.size }}
+            //-   select.form__select(
+            //-     ref='size'
+            //-     id='product-talla'
+            //-     v-model='product.size_id')
+            //-     optgroup(label='Talla')
+            //-       option(
+            //-         v-for='sizeValue in sizes[sizeScheme].values'
+            //-         :value='sizeValue'
+            //-       ) {{ sizeValue }}
             .form__row(
               :class='{ "is-danger": errorLog.brand }')
               label.form__label(
@@ -265,8 +301,7 @@ div
                   v-model='product.originalPrice',
                   type='number')
           .form-section__item
-
-            .form-section__slot
+            .form-section__slot.sticky
               h3.form-section__head Así se verá tu publicación
               article.slot
                 a.slot__product(
@@ -274,7 +309,7 @@ div
                   :title='product.title')
                   img.slot__img(
                     v-if='toggleImage'
-                    :src='images[0].generateDataUrl()',
+                    :src='imageURL',
                     :alt='product.title')
 
                   //-title/dimensions
@@ -362,18 +397,20 @@ div
             dt.dividers__term $ {{ product.price - (product.price * product.commission / 100 ) | currency }}
 
       .form-section.form-section_footer
-        .form__row(
+        .form__row.form__check(
           :class='{ "is-danger": errorLog.checkTerms }')
           span.help(
             v-if="errorLog.checkTerms"
           ) {{ errorLog.checkTerms }}
-          input#check1.form__input-check(
+          input.form__input-check(
             ref='checkTerms',
             v-model='checkTerms',
             type="checkbox",
             name="checkbox",
+            id='checkTerms',
             checked)
-          label.form__label.form__label_check.i-ok(for="check1")
+          label.form__label.form__label_check.i-ok(
+            for='checkTerms')
             | Estoy de acuerdo con la <a class="form__label-link" href="#">politica de privacidad</a> de Prilov
         .form__row.form__row_away
           button.btn.btn_solid(
@@ -381,7 +418,7 @@ div
 </template>
 
 <script>
-import axios from 'axios'
+import productAPI from '../api/product'
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 Vue.component('croppa', Croppa.component)
@@ -390,8 +427,11 @@ export default {
   name: 'FormPublicarVenta',
   data () {
     return {
+      sizeCharAt: '',
       images: [],
+      imageURL: null,
       toggleImage: false,
+      toggleImageDelete: [ false, false, false, false ],
       checkTerms: true,
       product: {
         title: null,
@@ -408,8 +448,8 @@ export default {
         file: [],
         color: [ null, null ]
       },
-      categories: {},
       conditions: {},
+      categories: {},
       colors: {},
       brands: {},
       errorLog: {},
@@ -446,45 +486,34 @@ export default {
     createProduct: function () {
       const imageBlobs = []
 
-      var data = {
-        title: this.product.title,
-        description: this.product.description,
-        dimensions: this.product.dimensions,
-        original_price: this.product.originalPrice,
-        price: this.product.price,
-        commission: this.product.commission,
-        user_id: this.$store.getters['user/id'],
-        brand_id: this.product.brand_id,
-        category_id: this.product.category_id,
-        size_id: 2,
-        color_ids: this.product.color_ids,
-        condition_id: this.product.condition_id,
-        status_id: 1
-      }
-
-      const headers = {
-        headers: {
-          'Authorization': 'Bearer ' + this.$store.getters['user/token'],
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-
-      this.images.forEach(function (image) {
+      this.images.forEach(function (image, index, array) {
         if (image.hasImage()) {
-          image.generateBlob(function (blob) {
-            imageBlobs.push(new File([blob], 'imagen-zapato-prueba'))
-            data.images = imageBlobs
-            console.log(data)
-            axios.post('https://prilov.aguayo.co/api/products', data, headers)
-              .then(response => {
-                console.log(response.data)
-              })
-              .catch(e => {
-                console.log(e)
-              })
-          })
+          imageBlobs.push(image.generateDataUrl())
         }
       })
+      productAPI.create(this.product, imageBlobs, this.$store.getters['user/id'], this.$store.getters['user/token'])
+        .then(response => {
+          const productURL = response.data.slug
+          const payload = {
+            name: 'ModalExitoPublicarVenta',
+            parameters: {
+              productURL: productURL
+            }
+          }
+          if (response.data.status === 0) payload.parameters.productPending = true
+
+          this.$store.dispatch('ui/showModal', payload)
+            .then(() => {
+              if (payload.parameters.productPending) {
+                // this.$router.push('home')
+              } else {
+                // this.$router.push({ name: 'product', params: { productURL } })
+              }
+            })
+        })
+        .catch(e => {
+          console.log(e)
+        })
     },
     validateBeforeSubmit: function (e) {
       this.errorLog = {}
@@ -506,8 +535,6 @@ export default {
       if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
 
       if (Object.keys(this.errorLog).length === 0) {
-        console.log('valid')
-        console.log(this.product)
         this.createProduct()
       } else {
         this.$refs.title.focus()
@@ -521,33 +548,47 @@ export default {
       this.sizeScheme = sizeId - 1
       this.toggleSize = true
     },
-    handleImages: function (index) {
-      if (this.images[0].hasImage()) this.toggleImage = true
+    handleMainImage: function () {
+      if (this.images[0].hasImage()) {
+        this.toggleImage = true
+        this.imageURL = this.images[0].generateDataUrl()
+      }
+    },
+    addImage: function (index) {
+      if (this.images[index].hasImage()) {
+        if (index === 0) this.handleMainImage()
+        this.toggleImageDelete[index] = true
+      }
+    },
+    removeImage: function (index) {
+      this.toggleImageDelete[index] = false
+      this.images[index].remove()
+      if (index === 0) this.toggleImage = false
     }
   },
   created: function () {
-    axios.get('https://prilov.aguayo.co/api/categories/shop')
+    productAPI.getShopCategories()
       .then(response => {
         this.categories = response.data.children
       })
       .catch(e => {
-
+        console.log(e)
       })
-    axios.get('https://prilov.aguayo.co/api/conditions')
+    productAPI.getAllConditions()
       .then(response => {
         this.conditions = response.data.data
       })
       .catch(e => {
         console.log(e)
       })
-    axios.get('https://prilov.aguayo.co/api/colors')
+    productAPI.getAllColors()
       .then(response => {
         this.colors = response.data.data
       })
       .catch(e => {
         console.log(e)
       })
-    axios.get('https://prilov.aguayo.co/api/brands')
+    productAPI.getAllBrands()
       .then(response => {
         this.brands = response.data.data
       })

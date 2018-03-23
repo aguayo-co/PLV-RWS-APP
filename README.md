@@ -1,8 +1,8 @@
-# Prilov-app 
+# Prilov-app
 > Prilov.com: Compra, Usa, Vende
 
 ## Build Setup
-> Single page Aplication
+> Single page Application
 
 ``` bash
 # install dependencies
@@ -49,7 +49,7 @@ npm install vuex --save-dev
 ---
 ### Vue.js Server-Side Rendering
 ``` bash
-npm install vue vue-server-renderer --save 
+npm install vue vue-server-renderer --save
 ```
 ---
 ### Incluye Vee-Validate

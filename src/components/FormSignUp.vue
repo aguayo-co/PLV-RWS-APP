@@ -8,7 +8,7 @@
       method='post'
     )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.nombre }'
+        :class='{ "is-danger": errorTexts.nombre }'
       )
         label.form__label(
           for='nombre') Nombre
@@ -22,7 +22,7 @@
           data-vv-name='nombre'
         )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.apellidos }'
+        :class='{ "is-danger": errorTexts.apellidos }'
       )
         label.form__label(
           for='apellidos') Apellidos
@@ -36,7 +36,7 @@
           data-vv-name='apellidos'
         )
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.email }'
+        :class='{ "is-danger": errorTexts.email }'
       )
         label.form__label(
           for='email') Correo
@@ -49,12 +49,12 @@
           type='email',
           data-vv-name='email'
         )
-        span.help(
+        span.helper(
           v-if='infoTexts.emailExist'
         ) {{ infoTexts.emailExist }}
           a(href='#') ¡Recupérala aquí!
       .form__row(
-        v-bind:class='{ "is-danger": errorTexts.emailConfirm }'
+        :class='{ "is-danger": errorTexts.emailConfirm }'
       )
         label.form__label(
           for='emailConfirm') Confirma tu correo
@@ -67,8 +67,8 @@
           type='email',
           data-vv-name='emailConfirm'
         )
-      .form__row(
-        v-bind:class='{ "is-danger": errorTexts.password }'
+      .form__row.form__row_visibility(
+        :class='{ "is-danger": errorTexts.password }'
       )
         label.form__label(
           for='password') Contraseña
@@ -78,18 +78,19 @@
         input.form__control(
           v-model='password',
           id='password',
-          type='password',
+          :type="viewPass ? 'text' : 'password'",
           data-vv-name='password',
           v-on:input='validatePassword'
         )
+        span.form__visibility.i-view(
+        @click='visibilityPass')
         span.password-bar(
-          v-if='errorTexts.passwordDetail.length > 0',
-          v-bind:class='"level-"+(3-errorTexts.passwordDetail.length)'
+          :class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
-        div.help(
+        div.helper(
           v-if='errorTexts.passwordDetail.length > 0'
         )
-          ul
+          ul.helper__list
             li(
               v-for='detail in errorTexts.passwordDetail'
             ) {{ detail }}
@@ -101,7 +102,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import userAPI from '@/api/user'
 
 // import GSignInButton from 'vue-google-signin-button'
 // Vue.use(GSignInButton)
@@ -119,7 +120,8 @@ export default {
       errorTexts: {
         passwordDetail: []
       },
-      infoTexts: {}
+      infoTexts: {},
+      viewPass: false
       // googleSignInParams: {
       //   client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com'
       // }
@@ -129,21 +131,34 @@ export default {
   methods: {
     signUp: function () {
       // console.log(this.$store.get('userAuth'))
-      axios.post('https://prilov.aguayo.co/api/users', {
+      const payload = {
         first_name: this.nombre,
         last_name: this.apellidos,
         email: this.email,
         password: this.password
-      })
+      }
+      userAPI.create(payload)
         .then(response => {
-          console.log(response.data)
-          this.setSuccess()
           localStorage.setItem('token', response.data.api_token)
           localStorage.setItem('userId', response.data.id)
           this.$store.dispatch('user/setUser', response.data)
+          this.$router.push('user/data')
         })
         .catch(e => {
-          if (e.response.data.errors.exists) this.infoTexts.emailExist = 'Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?'
+          if (e.response.data.errors.exists) {
+            this.infoTexts.emailExist = 'Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?'
+            this.validatePassword()
+          } else {
+            const modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Parece que ocurrió un error',
+                body: Object.values(e.response.data.errors)[0]
+              }
+            }
+            this.$store.dispatch('ui/showModal', modal)
+          }
           this.validatePassword()
         })
     },
@@ -179,13 +194,8 @@ export default {
       if (!/[a-zA-Z]/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos una letra')
       if (!/\d+/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos un número')
     },
-    setSuccess: function () {
-      this.flagSignUp = 'Success'
-      this.$emit('setSuccess')
-    },
-    setError: function () {
-      this.flagSignUp = 'Error'
-      this.$emit('setError')
+    visibilityPass: function () {
+      this.viewPass = !this.viewPass
     }
   }
 }

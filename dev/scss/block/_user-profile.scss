@@ -197,6 +197,15 @@
     .single__title {
       @include font-rem(32px);
     }
+    .single__subtitle {
+      padding: 32px 0;
+      margin: 0;
+      text-transform: uppercase;
+      @include font-rem(18px);
+      font-family: $f-fancy;
+      font-weight: $fw-light;
+    }
+
     .user-header {
       @include flex-direction(row);
     }

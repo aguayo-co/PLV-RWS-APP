@@ -1,17 +1,14 @@
 <template lang="pug">
-.layout-page
-  form.form.form_big(
-    id='form-publicar',
-    action='#',
-    submit.prevent='',
-    method='post')
-    FormPublicarVenta
-    //-1.1b Usuaria selecciona su método de envío
-    .step
-      .layout-inner
-        fieldset.form-section
-          legend.subhead.form-section__title Estás a un paso de terminar la publicación de tu producto.
-            p.form-section__subtitle Habilita los métodos de envío disponibles para tus productos
+section.single
+  .single__inner
+    header.single__header
+      h1.single__title Método de envío
+      p.single__subtitle Habilita los métodos de envío disponibles para tus productos
+      form.form(
+        id="form-user-data"
+        v-on:submit='',
+        action='#',
+        method='post')
           .box
             h3.box__title Envío estándar (Chilexpress) <span class="txt-underline">$3000</span>
             .box__grid
@@ -40,33 +37,13 @@
                   label.switch__label(
                     for="saleswoman")
                       span.switch__status
-          p.notify__info.i-alert-info Recuerda que siempre podrás modificar tu método de envio desde la sección  "Método de envío" en tu perfil
-        .form-section.form-section_footer
-          .form__row
-            button.btn.btn_solid Publicar
-  //- 1.1a Usuaria registrada a la que le faltan datos
-  FormPublicarUserData
-  //- 2a Usuaria no logueada
-      2b Usuaria registrada no logueada
-  FormPublicarLogin
-  //- 3a Usuaria no registrada
-  FormPublicarSignUp
+          .form__row.form__row_away.form__btn
+            button.btn.btn_solid Guardar
 
 </template>
 
 <script>
-import FormPublicarVenta from '@/components/FormPublicarVenta'
-import FormPublicarUserData from '@/components/FormPublicarUserData'
-import FormPublicarLogin from '@/components/FormPublicarLogin'
-import FormPublicarSignUp from '@/components/FormPublicarSignUp'
-
 export default {
-  name: 'PublicarVenta',
-  components: {
-    FormPublicarVenta,
-    FormPublicarUserData,
-    FormPublicarLogin,
-    FormPublicarSignUp
-  }
+  name: 'UserMetodoEnvio'
 }
 </script>

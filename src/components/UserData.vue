@@ -22,7 +22,6 @@ section.single
         method='post')
         .user-header
           .user-header__item
-
             .user-data__avatar
               //- clic en foto de perfil de usuario
                 Se despliega un input (file) donde el usuario
@@ -389,7 +388,11 @@ export default {
       ]
     }
   },
-
+  // computed: {
+  //   user () {
+  //     return this.$store.state['user']
+  //   }
+  // },
   methods: {
     IsActive: function (e) {
       this.isActive = e

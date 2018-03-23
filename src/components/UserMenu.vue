@@ -9,8 +9,8 @@
       dt.user-nav__title {{ list.title }}
       dd.user-nav__item(
         v-for='items in list.items')
-        a.user-nav__link(
-          :href='items.url',
+        router-link.user-nav__link(
+          :to='items.url',
           :class='items.ico') {{ items.name }}
 
 </template>
@@ -41,7 +41,7 @@ export default {
             },
             {
               name: 'Datos Personales',
-              url: '#',
+              url: '/user/data',
               ico: 'i-data'
             }
           ]
@@ -81,7 +81,7 @@ export default {
             },
             {
               name: 'Método de envío',
-              url: '#',
+              url: '/user/metodos-envios',
               ico: 'i-shipping'
             },
             {

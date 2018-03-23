@@ -5,9 +5,9 @@ import SignUp from '@/pages/SignUp'
 import Pass from '@/pages/Pass'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
+import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import PublicarVenta from '@/pages/publicar-venta'
 import Producto from '@/pages/Producto'
-import StyleGuide from '@/pages/Style-guide'
 
 Vue.use(Router)
 
@@ -35,7 +35,13 @@ export default new Router({
       children: [
         {
           path: 'data',
+          name: 'user-data',
           component: UserData
+        },
+        {
+          path: 'metodos-envios',
+          name: 'user-metodos-envios',
+          component: UserMetodoEnvio
         }
       ]
     },
@@ -46,13 +52,8 @@ export default new Router({
     },
     {
       path: '/producto/:slug',
-      name: Producto,
+      name: 'product',
       component: Producto
-    },
-    {
-      path: '/style-guide',
-      name: StyleGuide,
-      component: StyleGuide
     }
   ]
 })
