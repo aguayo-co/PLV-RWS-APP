@@ -331,12 +331,9 @@ section.single
             label.subhead.dividers__title(
             for='editEmail') Correo
             .dividers__item(
-                :class="{'dividers__item_active' :editEmail == true}")
+              :class="{'dividers__item_active' :editEmail == true}")
               .dividers__grid
-                span.user-data__holder(
-                  v-if="email == null") Aún no has ingresado tú Correo electrónico
                 input.form__edit(
-                  v-else="",
                   v-model='email',
                   id='editEmail',
                   type='email',
