@@ -20,7 +20,7 @@
             small.badge 1
           //- Is authenticated
           li.tool-user__item.tool-user__item_auth(
-            v-if= 'getAuth')
+            v-if='user.id')
             figure.tool-user__grid(
               @click='toggleBox()')
               small.badge.badge_user 2
@@ -71,6 +71,8 @@ import PageHeaderBrand from '@/components/PageHeader-brand'
 import PageHeaderMenu from '@/components/PageHeader-menu'
 import PageHeaderSearch from '@/components/PageHeader-search'
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'PageHeader',
   components: {
@@ -101,12 +103,7 @@ export default {
     }
   },
   computed: {
-    user () {
-      return this.$store.state['user']
-    },
-    getAuth () {
-      return this.$store.getters['user/auth']
-    }
+    ...mapState(['user'])
   }
 }
 </script>

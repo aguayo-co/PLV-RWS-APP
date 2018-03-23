@@ -1,35 +1,60 @@
 // User store will be used to handle public data regarding users.
-import axios from 'axios'
+import userAPI from '@/api/user'
 
 const state = {
   id: null,
   first_name: null,
   last_name: null,
   picture: null,
-  token: null,
-  auth: false
+  email: null,
+  about: null,
+  phone: null,
+  cover: null,
+  favorite_address_id: null,
+  addresses: [
+    {
+      id: '2',
+      address: 'Alberto Blest Gana 803',
+      region: 'Padre Hurtado',
+      city: 'Santiago',
+      zone: ''
+    },
+    {
+      id: '3',
+      address: 'Pasaje la Lenga  1539',
+      region: 'Cerro Navia',
+      city: 'Santiago',
+      zone: ''
+    },
+    {
+      id: '4',
+      address: 'Los flamencos 1300',
+      region: 'Mapú',
+      city: 'Santiago',
+      zone: ''
+    }
+  ],
+  group_ids: [1],
+  group: [
+    {
+      id: 1,
+      name: 'Prilover Star'
+    }
+  ],
+  followers_count: '349',
+  following_count: '4'
 }
 
 const getters = {
-  id: state => state.id,
-  first_name: state => state.first_name,
-  last_name: state => state.last_name,
-  picture: state => state.picture,
-  token: state => state.token,
-  auth: state => state.auth,
-  full_name: state => state.first_name + ' ' + state.last_name
+  full_name: state => state.first_name + ' ' + state.last_name,
+  token: () => { return window.localStorage.getItem('token') }
 }
 
 const actions = {
-  loadUser ({commit, state}) {
-    const userId = localStorage.getItem('userId')
-    axios.get('https://prilov.aguayo.co/api/users/' + userId)
-      .then(response => {
-        commit('auth', response.data)
-      })
-      .catch(e => {
-        commit('clear')
-      })
+  loadUser ({ state, commit, rootState }) {
+    userAPI.load().then(response => {
+      commit('auth', response.data)
+    })
   },
   logOut ({commit, state}) {
     commit('clear')
@@ -44,19 +69,27 @@ const mutations = {
     state.id = user.id
     state.first_name = user.first_name
     state.last_name = user.last_name
+    state.email = user.email
+    state.about = user.about
+    state.phone = user.phone
     state.picture = user.picture
-    state.token = localStorage.getItem('token')
-    state.auth = true
+    state.cover = user.cover
+    state.followers_count = user.followers_count
+    state.following_count = user.following_count
   },
   clear (state, user) {
     state.id = null
     state.first_name = null
     state.last_name = null
+    state.email = null
+    state.about = null
+    state.phone = null
     state.picture = null
-    state.token = null
-    state.auth = false
-    localStorage.removeItem('token')
-    localStorage.removeItem('userId')
+    state.cover = null
+    state.followers_count = null
+    state.following_count = null
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('userId')
   }
 }
 

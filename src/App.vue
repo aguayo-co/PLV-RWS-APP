@@ -70,7 +70,7 @@ export default {
     }
   },
   created: function () {
-    if (localStorage.getItem('userId') !== null && localStorage.getItem('token') !== null) this.$store.dispatch('user/loadUser')
+    this.$store.dispatch('user/loadUser')
   }
 }
 </script>

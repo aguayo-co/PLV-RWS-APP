@@ -11,7 +11,9 @@ Vue.config.productionTip = false
 
 /* View Media query */
 Vue.use(VueMqMixin)
-Vue.use(axiosPlugin)
+
+// Load global Axios instances.
+Vue.use(axiosPlugin, store)
 
 Vue.filter('currency', function (value) {
   if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')

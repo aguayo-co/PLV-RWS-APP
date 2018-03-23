@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 export default {
-  install (Vue) {
+  install (Vue, store) {
     // Base Axios instance.
     const baseOptions = {
-      baseURL: process.env.API_DOMAIN,
+      baseURL: store.state.apiDomain,
       headers: {
         Accept: 'application/json'
       }
@@ -20,7 +20,7 @@ export default {
     Vue.prototype.$axiosAuth = Vue.axiosAuth
     // We intercept every request and add the current Bearer token.
     Vue.axiosAuth.interceptors.request.use(function (config) {
-      const token = window.localStorage.getItem('token')
+      const token = store.getters['user/token']
 
       config.headers = config.headers || {}
       config.headers.Authorization = 'Bearer ' + token
