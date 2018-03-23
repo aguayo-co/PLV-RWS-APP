@@ -55,9 +55,13 @@
   'block/slider-slot';
 
 //componentes
-@import 'block/steps',
-'block/upfile',
-'block/box-switch';
+@import 
+  'block/steps',
+  'block/upfile',
+  'block/box-switch',
+  'block/list';
+
+
 
 @import
   'vendor/flickity';

@@ -4986,6 +4986,46 @@ body {
     font-size: 20px;
     font-size: 1.25rem; } }
 
+/*------------------------------------*  List carrito compra
+  color: $c-brand;
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  @include justify-content(space-around);
+  @include flex-wrap(wrap);
+  @include flex-grow(1);
+  @include align-self(flex-end);
+\*------------------------------------*/
+.card__product {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  justify-content: space-between; }
+
+.card__img {
+  width: 100%;
+  max-width: 126px;
+  height: auto;
+  vertical-align: bottom; }
+
+.card__lead {
+  color: #000;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500; }
+  .card__lead p {
+    margin: 0; }
+
+.card__title {
+  font-size: 16px;
+  font-size: 1rem; }
+
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
 ---------------------------------------------- */
