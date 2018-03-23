@@ -1,6 +1,15 @@
 import { mapGetters } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 
+const getNestedObject = (nestedObj, pathArr) => {
+  return pathArr.reduce((obj, key) =>
+      (obj && obj[key] !== 'undefined') ? obj[key] : null, nestedObj);
+}
+
+const getFirstError = (e, field) => {
+  return getNestedObject(e, ['response', 'data', 'errors', field, 0])
+}
+
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
 // de cada uno.
@@ -45,7 +54,8 @@ export default {
       editAbout: false,
       editEmail: false,
       editPhone: false,
-      newUserData: editableProps
+      newUserData: {...editableProps},
+      errorLog: {...editableProps}
     }
   },
   computed: {
@@ -90,6 +100,11 @@ export default {
         // Obliga a usar valores de Vuex.
         this.new_first_name = null
         this.new_last_name = null
+        this.errorLog.first_name = null
+        this.errorLog.last_name = null
+      }).catch((e) => {
+        this.errorLog.first_name = getFirstError(e, 'first_name')
+        this.errorLog.last_name = getFirstError(e, 'last_name')
       })
     },
     updateEmail: function () {
@@ -100,6 +115,11 @@ export default {
         this.toggle('editEmail')
         // Obliga a usar valores de Vuex.
         this.new_email = null
+        this.errorLog.email = null
+      }).catch((e) => {
+        const emailError = getFirstError(e, 'email')
+        const existsError = getFirstError(e, 'exists')
+        this.errorLog.email = existsError || emailError
       })
     },
     updateAbout: function () {
@@ -110,6 +130,9 @@ export default {
         this.toggle('editAbout')
         // Obliga a usar valores de Vuex.
         this.new_about = null
+        this.errorLog.about = null
+      }).catch((e) => {
+        this.errorLog.about = getFirstError(e, 'about')
       })
     },
     updatePhone: function () {
@@ -120,6 +143,9 @@ export default {
         this.toggle('editPhone')
         // Obliga a usar valores de Vuex.
         this.new_phone = null
+        this.errorLog.phone = null
+      }).catch((e) => {
+        this.errorLog.phone = getFirstError(e, 'phone')
       })
     }
   }

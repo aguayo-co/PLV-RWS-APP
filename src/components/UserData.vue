@@ -60,6 +60,8 @@ section.single
                 .form__row
                   label.form__label(
                     for='nombre') Editar Nombre
+                  span.help(
+                    v-show="errorLog.first_name") {{ errorLog.first_name }}
                   input.form__edit(
                     v-model='new_first_name',
                     id='username'
@@ -67,6 +69,8 @@ section.single
                 .form__row
                   label.form__label(
                     for='apellidos') Editar Apellidos
+                  span.help(
+                    v-show="errorLog.last_name") {{ errorLog.last_name }}
                   input.form__edit(
                     v-model='new_last_name',
                     id='userLast',
@@ -101,6 +105,8 @@ section.single
                 id="form-user-about"
                 v-on:submit.prevent='updateAbout',
                 v-if="editAbout == true")
+                span.help(
+                  v-show="errorLog.about") {{ errorLog.about }}
                 textarea.form__edit_txt(
                   v-model="new_about",
                   name="about",
@@ -311,6 +317,8 @@ section.single
             for='editEmail') Correo
             .dividers__item(
                 :class="{'dividers__item_active' :editEmail == true}")
+              span.help(
+                v-show="editEmail == true && errorLog.email") {{ errorLog.email }}
               .dividers__grid
                 input.form__edit(
                   v-model='new_email',
@@ -337,6 +345,8 @@ section.single
             for='editPhone') Teléfono
             .dividers__item(
               :class="{'dividers__item_active' :editPhone == true}")
+              span.help(
+                v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
               .dividers__grid
                 input.form__edit(
                   v-model='phone',
@@ -347,7 +357,7 @@ section.single
 
                 span.dividers__actions
                   button.btn-tag(
-                    v-show="editTel == true") Guardar
+                    v-show="editPhone == true") Guardar
                   a.dividers__edit.i-edit-line(
                     @click.prevent="toggle('editPhone')",
                     href="#",
