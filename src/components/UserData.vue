@@ -70,19 +70,19 @@ section.single
                     label.form__label(
                       for='nombre') Editar Nombre
                     input.form__edit(
-                      v-model='first_name',
+                      v-model='new_first_name',
                       id='username'
                     )
                   .form__row
                     label.form__label(
                       for='apellidos') Editar Apellidos
                     input.form__edit(
-                      v-model='last_name',
+                      v-model='new_last_name',
                       id='userLast',
                       type='text'
                     )
                   .form__row.user-edit__save
-                    button.btn-tag Guardar
+                    button.btn-tag(v-on:click="updateName") Guardar
 
             //-Enlaces Modal
             //- ul.user-data-nav
@@ -313,14 +313,14 @@ section.single
                 :class="{'dividers__item_active' :editEmail == true}")
               .dividers__grid
                 input.form__edit(
-                  v-model='email',
+                  v-model='new_email',
                   id='editEmail',
                   type='email',
                   :disabled="editEmail == false"
                   :placeholder="email")
                 span.dividers__actions
                   button.btn-tag(
-                    v-show="editEmail == true") Guardar
+                    v-show="editEmail == true", v-on:click="updateEmail") Guardar
                   a.dividers__edit.i-edit-line(
                     @click.prevent="toggle('editEmail')",
                     href="#",
