@@ -4508,6 +4508,8 @@ body {
   de 620px a 879px
 \*------------------------------------*/
 @media only screen and (max-width: 419px) {
+  .detail__picture {
+    margin: 0 -2%; }
   .detail__tabs {
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
@@ -4527,6 +4529,10 @@ body {
     display: block; }
   .detail__img {
     display: none; } }
+
+@media only screen and (min-width: 420px) {
+  .detail {
+    padding-top: 40px; } }
 
 @media only screen and (min-width: 768px) and (max-width: 850px) {
   .detail__tabs {
@@ -4550,7 +4556,7 @@ body {
 /*------------------------------------*  Detalle producto: img responsive
  // Gallery thums visible
   Rangos:
-  de 420 a 619
+  de 420 a 767
 \*------------------------------------*/
 @media only screen and (min-width: 420px) and (max-width: 767px) {
   .detail__gallery {
