@@ -4700,7 +4700,7 @@ body {
   list-style: none;
   max-width: 800px;
   margin: 0 auto;
-  padding: 44px 0 0 0;
+  padding: 0 0 44px 0;
   color: #fe7676;
   display: -webkit-box;
   display: -webkit-flex;
@@ -4752,6 +4752,9 @@ body {
 .steps__label {
   display: block;
   padding-top: 6px; }
+
+.steps__value {
+  color: #9b9b9b; }
 
 .steps__item_current:before {
   border-color: #fe7676; }

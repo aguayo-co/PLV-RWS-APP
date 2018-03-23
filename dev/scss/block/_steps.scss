@@ -6,7 +6,7 @@
   list-style: none;
   max-width: 800px;
   margin: 0 auto;
-  padding: 44px 0 0 0;
+  padding: 0 0 44px 0;
   color: $c-brand;
   @include flexbox;
   @include justify-content(center);
@@ -56,6 +56,11 @@
   display: block;
   padding-top: 6px;
 }
+
+.steps__value {
+  color: $c-default-4;
+}
+
 
 .steps__item_current {
   &:before {
