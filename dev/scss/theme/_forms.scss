@@ -145,47 +145,7 @@ select {
   padding-right:0\0;
   background: none\0;
 }
-// input asistido para talla
-.form-asisted__box {
-  position: relative;
-  display: block;
-  width: 180px;
-  margin: 0 auto 12px;
-}
 
-.form-asisted__model {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 42px;
-  padding: 0 10px;
-  text-align: right;
-  @include font-rem(28px);
-  background-color: $c-neutro;
-}
-
-.form-asisted__value {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  width: 100%;
-  height: 42px;
-  text-align: right;
-  text-transform: uppercase;
-  pointer-events: none;
-  @include font-rem(28px);
-
-  .form-asisted__item {
-    display: inline-block;
-    vertical-align: bottom;
-    width: 40px;
-    height: 42px;
-    margin: 0 10px;
-    line-height: 42px;
-    text-align: center;
-    border-bottom: 1px solid #000;
-  }
-}
 //Input textarea
 .form__textarea {
   width: 100%;
@@ -194,8 +154,22 @@ select {
   font-family: $f-default;
   border: 1px solid $c-default-2;
 }
+.form__label-link {
+  color: $c-default;
+  font-weight: $fw-bold;
+  border-bottom: 2px solid $c-brand;
+}
 
-//Input radio
+.form__text {
+  margin-top: 0;
+  font-family: $f-fancy;
+  @include font-rem(12px);
+  font-weight: $fw-medium;
+}
+
+/*------------------------------------*\
+	form radio
+\*------------------------------------*/
 .form__input-radio {
   position: absolute;
   z-index: -1;
@@ -236,8 +210,9 @@ select {
     border-radius: 50%;
   }
 }
-
-//checkbox
+/*------------------------------------*\
+	form checkbox
+\*------------------------------------*/
 .form__row_check {
   text-align: center;
   margin-bottom: 12px;
@@ -282,7 +257,6 @@ select {
     }
   }
 }
-
 .form__check {
   .form__label_check {
     color: $c-default-4;
@@ -290,6 +264,163 @@ select {
       border-color: $c-default-3;
     }
   }
+}
+
+/*------------------------------------*\
+	form password visible
+\*------------------------------------*/
+
+.form__password {
+  position: relative;
+}
+
+.form__visible {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/*------------------------------------*\
+	Form password fortaleza
+\*------------------------------------*/
+.password-bar {
+  position: relative;
+  display: block;
+  width: 85%;
+  height: 4px;
+  margin-bottom: 12px;
+  border: 1px solid $c-default-3;
+  border-radius: 25px;
+  transition: all .2s ease-out;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 25px;
+    background-color: $c-brand;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -16%;
+    display: block;
+    width: 15%;
+    margin-top: -9px;
+    text-align: right;
+    color: $c-default-3;
+    @include font-rem(12px);
+  }
+
+  &.level-1 {
+    &:before {
+      width: 25%;
+    }
+    &:after {
+      content: 'Bajo';
+    }
+
+  }
+  &.level-2 {
+    &:before {
+      width: 50%;
+    }
+    &:after {
+      content: 'Medio';
+    }
+
+  }
+  &.level-3 {
+    &:before {
+      width: 100%;
+    }
+    &:after {
+      content: 'Alto';
+    }
+
+  }
+}
+
+/*------------------------------------*\
+	form input asistido para talla
+\*------------------------------------*/
+
+.form-asisted__box {
+  position: relative;
+  display: block;
+  width: 180px;
+  margin: 0 auto 12px;
+}
+
+.form-asisted__model {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  text-align: right;
+  @include font-rem(28px);
+  background-color: $c-neutro;
+}
+
+.form-asisted__value {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 100%;
+  height: 42px;
+  text-align: right;
+  text-transform: uppercase;
+  pointer-events: none;
+  @include font-rem(28px);
+  .form-asisted__item {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 40px;
+    height: 42px;
+    margin: 0 10px;
+    line-height: 42px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+  }
+}
+/*------------------------------------*\
+	form toggle color form
+\*------------------------------------*/
+.toggle-select {
+  margin-top: -12px;
+}
+
+.toggle-select__list {
+  list-style: none;
+  margin: 0 0 12px 0;
+  padding: 4px 8px;
+  border-bottom: 1px solid $c-default-2;
+  border-left: 1px solid $c-default-2;
+  border-right: 1px solid $c-default-2;
+  span {
+    vertical-align: middle;
+  }
+}
+
+.color-circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid $c-default-3;
+}
+
+.toggle-select__item {
+  padding: 4px;
+  @include font-rem(16px);
 }
 
 /*------------------------------------*\
@@ -373,19 +504,6 @@ select {
   }
 }
 
-.form__label-link {
-  color: $c-default;
-  font-weight: $fw-bold;
-  border-bottom: 2px solid $c-brand;
-}
-
-.form__text {
-  margin-top: 0;
-  font-family: $f-fancy;
-  @include font-rem(12px);
-  font-weight: $fw-medium;
-}
-
 // $bp-medium: 768px;
 @include media-query(medium) {
   .form__edit_txt {
@@ -400,36 +518,6 @@ select {
     margin: 0;
     @include font-rem(18px);
   }
-}
-
-//toggle color form
-.toggle-select {
-  margin-top: -12px;
-}
-
-.toggle-select__list {
-  list-style: none;
-  margin: 0 0 12px 0;
-  padding: 4px 8px;
-  border-bottom: 1px solid $c-default-2;
-  border-left: 1px solid $c-default-2;
-  border-right: 1px solid $c-default-2;
-  span {
-    vertical-align: middle;
-  }
-}
-.color-circle {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  cursor: pointer;
-  border-radius:50%; 
-  border: 1px solid $c-default-3;
-}
-.toggle-select__item {
-  padding: 4px;
-  @include font-rem(16px);
 }
 
 // $bp-wide: 1024px;
@@ -506,6 +594,7 @@ select {
 /*------------------------------------*\
 	Mensajes Error
 \*------------------------------------*/
+
 .is-danger {
   .form__control {
     border: 1px solid $c-brand;
@@ -545,46 +634,6 @@ select {
     border-style: solid;
     border-width: 9px 10px 0 10px;
     border-color: $c-brand transparent transparent transparent;
-  }
-}
-//registro fortaleza password
-.password-bar {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 4px;
-  margin-top: -6px;
-  margin-bottom: 6px;
-  text-transform: capitalize;
-  @include font-rem(12px);
-  border: 1px solid $c-default-3;
-  border-radius: 25px;
-  transition: all .2s ease-out;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    display: block;
-    width: 0;
-    height: 4px;
-    margin-top: -2px;
-    border-radius: 25px;
-    background-color: $c-brand;
-  }
-  &.level-1 {
-    &:before {
-      width: 25%;
-    }
-  }
-  &.level-2 {
-    &:before {
-      width: 50%;
-    }
-  }
-  &.level-3 {
-    &:before {
-      width: 100%;
-    }
   }
 }
 

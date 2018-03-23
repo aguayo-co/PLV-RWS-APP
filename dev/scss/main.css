@@ -725,43 +725,49 @@ select {
   padding-right: 0\0;
   background: none\0; }
 
-.form-asisted__box {
+.form__asisted-box {
   position: relative;
-  display: block;
-  width: 180px;
-  margin: 0 auto 12px; }
+  display: inline-block;
+  min-width: 180px; }
 
-.form-asisted__model {
+.form__asisted {
+  width: 100%;
+  height: 28px;
   position: absolute;
   z-index: 1;
-  width: 100%;
-  height: 42px;
-  padding: 0 10px;
-  text-align: right;
-  font-size: 28px;
-  font-size: 1.75rem;
-  background-color: #fff; }
+  background-color: #fff;
+  color: #fff;
+  border: 1px solid gray; }
 
-.form-asisted__value {
+.form__asisted-line {
+  pointer-events: none;
   position: relative;
   z-index: 2;
   display: inline-block;
   width: 100%;
-  height: 42px;
+  height: 28px;
+  line-height: 28px;
+  letter-spacing: 28px;
   text-align: right;
   text-transform: uppercase;
-  pointer-events: none;
   font-size: 28px;
   font-size: 1.75rem; }
-  .form-asisted__value .form-asisted__item {
-    display: inline-block;
-    vertical-align: bottom;
-    width: 40px;
-    height: 42px;
-    margin: 0 10px;
-    line-height: 42px;
-    text-align: center;
-    border-bottom: 1px solid #000; }
+  .form__asisted-line::before {
+    content: '';
+    display: block;
+    width: 33.333%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: 1px solid #000; }
+  .form__asisted-line::after {
+    content: '';
+    display: block;
+    width: 33.333%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #000; }
 
 .form__textarea {
   width: 100%;
@@ -804,35 +810,14 @@ select {
     border: 2px solid #cbcbcb;
     border-radius: 50%; }
 
-.form__row_check {
-  text-align: center;
-  margin-bottom: 12px; }
-
-.form__label_check {
-  position: relative;
-  display: inline-block;
-  padding-left: 28px;
-  padding-bottom: 2px; }
-  .form__label_check:before {
-    display: none; }
-  .form__label_check:after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 0;
-    width: 13px;
-    height: 13px;
-    border: 2px solid #9b9b9b;
-    border-radius: 3px; }
-
 .form__input-check {
   position: absolute;
   z-index: -1;
   opacity: 0; }
   .form__input-check:checked + .form__label_check:before {
     position: absolute;
-    top: 6px;
-    left: 3px;
+    top: 4px;
+    left: 2px;
     z-index: 1;
     display: block;
     font-size: 8px;
@@ -841,10 +826,23 @@ select {
     color: #fe7676;
     border-radius: 50%; }
 
-.form__check .form__label_check {
+.form__label_check {
+  position: relative;
+  display: inline-block;
+  padding-left: 28px;
+  font-weight: 400;
   color: #9b9b9b; }
-  .form__check .form__label_check:after {
-    border-color: #cbcbcb; }
+  .form__label_check:before {
+    display: none; }
+  .form__label_check:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 2px solid #cbcbcb;
+    border-radius: 3px; }
 
 /*------------------------------------*	form switch
 \*------------------------------------*/
@@ -924,15 +922,6 @@ select {
   font-size: 12px;
   font-size: 0.75rem;
   font-weight: 500; }
-
-.form__row_visibility {
-  position: relative; }
-
-.form__visibility {
-  position: absolute;
-  top: 36px;
-  right: 10px;
-  cursor: pointer; }
 
 @media only screen and (min-width: 768px) {
   .form__edit_txt {
@@ -1072,7 +1061,6 @@ select {
   border: 1px solid #fe7676; }
 
 .helper {
-  display: block;
   background-color: #efefef; }
   .helper a {
     border-bottom: 2px solid #fe7676;
@@ -1137,7 +1125,6 @@ select {
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
-  display: block;
   padding: 16px;
   text-align: center;
   background-color: #efefef; }
@@ -1556,6 +1543,9 @@ body {
   background-color: #000; }
   .page-header ul {
     list-style: none; }
+  .page-header.fixedPrueba {
+    position: fixed;
+    transition: all 2s; }
 
 .header__bar {
   width: 100%;
@@ -1779,16 +1769,6 @@ body {
     *Responsive Desing
 */
 @media only screen and (max-width: 1023px) {
-  .page {
-    padding-top: 60px; }
-  .page-header {
-    position: fixed;
-    top: 0;
-    transition: top .3s ease; }
-    .page-header.js-header_down {
-      top: 0; }
-    .page-header.js-header_up {
-      top: -60px; }
   .page-brand {
     display: block;
     width: 170px;
@@ -2038,8 +2018,6 @@ body {
       background-color: #000;
       transition: top .5s ease;
       pointer-events: none; }
-    .menu__link:hover {
-      color: #000; }
   .submenu .submenu__item .submenu__close {
     z-index: 0; }
   .submenu .submenu__item .submenu__label {
@@ -3532,14 +3510,6 @@ body {
   .single__title {
     font-size: 32px;
     font-size: 2rem; }
-  .single__subtitle {
-    padding: 32px 0;
-    margin: 0;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-size: 1.125rem;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 300; }
   .user-header {
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
@@ -3976,10 +3946,6 @@ body {
   .form-section__slot {
     max-width: 280px;
     margin: 0 0 0 auto; }
-    .form-section__slot.sticky {
-      position: sticky;
-      position: -webkit-sticky;
-      top: 30px; }
   .form-section_footer .btn {
     max-width: 320px; } }
 
@@ -4105,8 +4071,7 @@ body {
 
 .upfile__small {
   max-width: 300px;
-  text-align: center;
-  margin: 0 auto; }
+  text-align: center; }
 
 .upfile__grid {
   display: -webkit-box;
@@ -4237,7 +4202,7 @@ body {
 \*------------------------------------*/
 .box {
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   font-size: 14px;
   font-size: 0.875rem;
   background-color: #f6f6f6; }
@@ -4276,7 +4241,6 @@ body {
 @media only screen and (min-width: 768px) {
   .box {
     padding: 24px;
-    margin-bottom: 32px;
     font-size: 18px;
     font-size: 1.125rem; }
   .box__title {

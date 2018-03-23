@@ -19,9 +19,14 @@ section.single
         v-on:submit='',
         action='#',
         method='post')
-        .user-header
-          .user-header__item
-
+    .user-over(
+      :class="{'user-avatar_active' :editAvatar == true}")
+      .user-header
+        .user-header__item
+          .user-avatar-edit
+            span.user-edit__actions
+              span.btn_edit.i-edit-line(
+                @click.prevent="EditAvatar()") <small class="hide"> Editar </small>
             .user-data__avatar
               //- clic en foto de perfil de usuario
                 Se despliega un input (file) donde el usuario
@@ -29,6 +34,23 @@ section.single
               img.user-data__img(
                 :src="picture",
                 :alt="'Perfil' + ' ' + first_name")
+          .user-avatar__upfile(
+            v-show="editAvatar == true")
+            .upfile__small
+              p.form__label Foto de perfil
+              .upfile__item
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqDesk") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  :width="300",
+                  :height="300",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true")
+              .user-edit__save
+                  button.btn-tag Guardar
           .user-header__item
             .user-header-edit(
               :class="{'user-header-edit_active' :editName == true}")
@@ -82,7 +104,8 @@ section.single
             .form__row_top
               p.user-data__txt(
                 v-if="editAbout == false",
-                @click.prevent="toggle('editAbout')") {{ about }}
+                @click.prevent="toggle('editAbout')")
+                p.user-data__txt {{ about }}
               .user-data__txt(
                 v-if="editAbout == true")
                 textarea.form__edit_txt(

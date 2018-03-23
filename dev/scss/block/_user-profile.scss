@@ -69,6 +69,30 @@
     padding: 14px 0 0 16px;
   }
 
+  .user-header__item {
+    text-align: center;
+  }
+
+/*------------------------------------*\
+	User Profile avatar edit
+\*------------------------------------*/
+  .user-over {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+      background-color: $c-neutro;
+      transition: all .2s ease-out;
+    }
+  }
   .user-data__avatar {
     width: 114px;
     height: 114px;
@@ -76,107 +100,143 @@
     overflow: hidden;
     border-radius: 50%;
   }
-
   .user-data__img {
     width: 100%;
     vertical-align: bottom;
   }
 
-  .user-data__group {
-    margin-bottom: 0;
-    text-transform: uppercase;
-    text-align: center;
-    @include font-rem(16px);
-    &.i-star-on {
-      &::before {
-        position: relative;
-        top: -2px;
-        padding-right: 10px;
-        font-size: 90%;
-      }
+  .user-avatar-edit {
+    position: relative;
+    z-index: 3;
+    display: inline-block;
+    .user-edit__actions {
+      position: absolute;
+      right: 0;
+      top: 2px;
+      padding: 0;
     }
-
   }
-
-  .user-data__notify {
-    padding: 8px 0;
-  }
-
-  .user-data__txt {
+  .user-avatar__upfile {
+    position: absolute;
+    z-index: 2;
     width: 100%;
-    margin: 0;
-    padding: 6px;
-    line-height: 1.4;
-    @include font-rem(16px);
-    border: 1px solid $c-neutro;
+    opacity: 0;
+    transition: all .2s .2s ease-out;
   }
-
-  .user-data__caption-i {
+  .user-avatar_active {
+    min-height: 500px;
     text-align: center;
-    text-transform: uppercase;
-    &:before {
-      display: inline-block;
-      padding-bottom: 4px;
-      color: $c-default-2;
-      vertical-align: middle;
-      padding-right: 6px;
+    &:after {
+      opacity: .97;
+      pointer-events: all;
     }
-  }
-  .user-data__list {
-    @include flexbox;
-    @include justify-content(center);
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
-  }
-  .user-data-nav {
-    @include flexbox;
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
+
+    .user-avatar__upfile {
+      opacity: 1;
+    }
+    .user-edit__save {
+      padding-top: 16px;
+    }
+
   }
 
-  .user-data__value {
-    min-width: 70px;
-    color: $c-default-2;
-    @include font-rem(16px);
-    &:before {
-      color: $c-brand;
+
+
+.user-data__group {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center;
+  @include font-rem(16px);
+  &.i-star-on {
+    &::before {
+      position: relative;
+      top: -2px;
       padding-right: 10px;
-    }
-    &:not(:last-child) {
-      padding-right: 30px;
+      font-size: 90%;
     }
   }
 
-  .i_flip {
-    &:before {
-      padding-right: 0;
-      padding-left: 10px;
-    }
-  }
+}
 
-  .user-data__track {
-    min-width: 72px;
-    padding: 2px 0;
-    border-bottom: 3px solid $c-brand;
-    &:not(:last-child) {
-      margin-right: 30px;
-    }
-  }
+.user-data__notify {
+  padding: 8px 0;
+}
 
-  .user-data__actions {
-    padding: 8px 0;
-    text-align: center;
-  }
+.user-data__txt {
+  width: 100%;
+  margin: 0;
+  padding: 6px;
+  line-height: 1.4;
+  @include font-rem(16px);
+  border: 1px solid $c-neutro;
+}
 
-  .user-data_info {
-    padding: 50px 0;
+.user-data__caption-i {
+  text-align: center;
+  text-transform: uppercase;
+  &:before {
+    display: inline-block;
+    padding-bottom: 4px;
+    color: $c-default-2;
+    vertical-align: middle;
+    padding-right: 6px;
   }
+}
+.user-data__list {
+  @include flexbox;
+  @include justify-content(center);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+.user-data-nav {
+  @include flexbox;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
 
-  .user-data__form {
-    padding-bottom: 30px;
+.user-data__value {
+  min-width: 70px;
+  color: $c-default-2;
+  @include font-rem(16px);
+  &:before {
+    color: $c-brand;
+    padding-right: 10px;
   }
+  &:not(:last-child) {
+    padding-right: 30px;
+  }
+}
+
+.i_flip {
+  &:before {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+}
+
+.user-data__track {
+  min-width: 72px;
+  padding: 2px 0;
+  border-bottom: 3px solid $c-brand;
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+.user-data__actions {
+  padding: 8px 0;
+  text-align: center;
+}
+
+.user-data_info {
+  padding: 50px 0;
+}
+
+.user-data__form {
+  padding-bottom: 30px;
+}
 
   // $bp-medium: 768px;
   @include media-query(medium) {
@@ -197,9 +257,22 @@
     .single__title {
       @include font-rem(32px);
     }
+    .single__subtitle {
+      padding: 32px 0;
+      margin: 0;
+      text-transform: uppercase;
+      @include font-rem(18px);
+      font-family: $f-fancy;
+      font-weight: $fw-light;
+    }
+
     .user-header {
       @include flex-direction(row);
     }
+    .user-header__item {
+      text-align: left;
+    }
+
     .user-data__title {
       padding-top: 8px;
       text-align: left;
@@ -217,10 +290,26 @@
     .user-edit__actions {
       padding: 8px 0 0 16px;
     }
+    /*------------------------------------*\
+	    User Profile avatar edit desktop
+    \*------------------------------------*/
+      .user-avatar_active {
+        min-height: 390px;
+      }
 
-    .user-data__avatar {
-      margin-right: 28px;
-    }
+      .user-data__avatar {
+        margin-right: 28px;
+      }
+      .user-avatar-edit {
+        .user-edit__actions {
+          right: 28px;
+        }
+      }
+      .user-avatar__upfile {
+        top: 0;
+      }
+
+
 
     .user-data__group {
       text-align: left;

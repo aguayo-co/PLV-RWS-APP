@@ -9,7 +9,6 @@
 .detail__gallery {
   width: 100%;
 }
-
 .detail__tabs {
   @include flexbox;
   @include flex-direction(column);
@@ -145,6 +144,10 @@
 
 //Thumb btn heart
 @media only screen and (max-width: 419px) {
+  .detail__picture {
+    margin: 0 -2%;
+  }
+
   .detail__tabs {
     @include flex-direction(row);
     @include justify-content(center);
@@ -163,6 +166,13 @@
     display: none;
   }
 }
+//Alinear top
+@media only screen and (min-width: 420px) {
+  .detail {
+    padding-top: 40px;
+  }
+}
+
 //Thumb btn heart
 @media only screen and (min-width: 768px) and (max-width: 850px) {
   .detail__tabs {
@@ -183,7 +193,7 @@
   Detalle producto: img responsive
  // Gallery thums visible
   Rangos:
-  de 420 a 619
+  de 420 a 767
 \*------------------------------------*/
 @media only screen and (min-width: 420px) and (max-width: 767px) {
   .detail__gallery {

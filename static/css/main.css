@@ -725,44 +725,6 @@ select {
   padding-right: 0\0;
   background: none\0; }
 
-.form-asisted__box {
-  position: relative;
-  display: block;
-  width: 180px;
-  margin: 0 auto 12px; }
-
-.form-asisted__model {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 42px;
-  padding: 0 10px;
-  text-align: right;
-  font-size: 28px;
-  font-size: 1.75rem;
-  background-color: #fff; }
-
-.form-asisted__value {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  width: 100%;
-  height: 42px;
-  text-align: right;
-  text-transform: uppercase;
-  pointer-events: none;
-  font-size: 28px;
-  font-size: 1.75rem; }
-  .form-asisted__value .form-asisted__item {
-    display: inline-block;
-    vertical-align: bottom;
-    width: 40px;
-    height: 42px;
-    margin: 0 10px;
-    line-height: 42px;
-    text-align: center;
-    border-bottom: 1px solid #000; }
-
 .form__textarea {
   width: 100%;
   padding: 10px 12px;
@@ -770,6 +732,20 @@ select {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
 
+.form__label-link {
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #fe7676; }
+
+.form__text {
+  margin-top: 0;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-weight: 500; }
+
+/*------------------------------------*	form radio
+\*------------------------------------*/
 .form__input-radio {
   position: absolute;
   z-index: -1;
@@ -804,6 +780,8 @@ select {
     border: 2px solid #cbcbcb;
     border-radius: 50%; }
 
+/*------------------------------------*	form checkbox
+\*------------------------------------*/
 .form__row_check {
   text-align: center;
   margin-bottom: 12px; }
@@ -845,6 +823,132 @@ select {
   color: #9b9b9b; }
   .form__check .form__label_check:after {
     border-color: #cbcbcb; }
+
+/*------------------------------------*	form password visible
+\*------------------------------------*/
+.form__password {
+  position: relative; }
+
+.form__visible {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  cursor: pointer; }
+
+/*------------------------------------*	Form password fortaleza
+\*------------------------------------*/
+.password-bar {
+  position: relative;
+  display: block;
+  width: 85%;
+  height: 4px;
+  margin-bottom: 12px;
+  border: 1px solid #cbcbcb;
+  border-radius: 25px;
+  transition: all .2s ease-out; }
+  .password-bar:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 25px;
+    background-color: #fe7676; }
+  .password-bar:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -16%;
+    display: block;
+    width: 15%;
+    margin-top: -9px;
+    text-align: right;
+    color: #cbcbcb;
+    font-size: 12px;
+    font-size: 0.75rem; }
+  .password-bar.level-1:before {
+    width: 25%; }
+  .password-bar.level-1:after {
+    content: 'Bajo'; }
+  .password-bar.level-2:before {
+    width: 50%; }
+  .password-bar.level-2:after {
+    content: 'Medio'; }
+  .password-bar.level-3:before {
+    width: 100%; }
+  .password-bar.level-3:after {
+    content: 'Alto'; }
+
+/*------------------------------------*	form input asistido para talla
+\*------------------------------------*/
+.form-asisted__box {
+  position: relative;
+  display: block;
+  width: 180px;
+  margin: 0 auto 12px; }
+
+.form-asisted__model {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  text-align: right;
+  font-size: 28px;
+  font-size: 1.75rem;
+  background-color: #fff; }
+
+.form-asisted__value {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 100%;
+  height: 42px;
+  text-align: right;
+  text-transform: uppercase;
+  pointer-events: none;
+  font-size: 28px;
+  font-size: 1.75rem; }
+  .form-asisted__value .form-asisted__item {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 40px;
+    height: 42px;
+    margin: 0 10px;
+    line-height: 42px;
+    text-align: center;
+    border-bottom: 1px solid #000; }
+
+/*------------------------------------*	form toggle color form
+\*------------------------------------*/
+.toggle-select {
+  margin-top: -12px; }
+
+.toggle-select__list {
+  list-style: none;
+  margin: 0 0 12px 0;
+  padding: 4px 8px;
+  border-bottom: 1px solid #4a4a4a;
+  border-left: 1px solid #4a4a4a;
+  border-right: 1px solid #4a4a4a; }
+  .toggle-select__list span {
+    vertical-align: middle; }
+
+.color-circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #cbcbcb; }
+
+.toggle-select__item {
+  padding: 4px;
+  font-size: 16px;
+  font-size: 1rem; }
 
 /*------------------------------------*	form switch
 \*------------------------------------*/
@@ -913,18 +1017,6 @@ select {
   .switch__input:checked + .switch__label .switch__status:before {
     content: 'Habilitado'; }
 
-.form__label-link {
-  color: #000;
-  font-weight: 700;
-  border-bottom: 2px solid #fe7676; }
-
-.form__text {
-  margin-top: 0;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-size: 0.75rem;
-  font-weight: 500; }
-
 @media only screen and (min-width: 768px) {
   .form__edit_txt {
     width: 100%;
@@ -936,33 +1028,6 @@ select {
     margin: 0;
     font-size: 18px;
     font-size: 1.125rem; } }
-
-.toggle-select {
-  margin-top: -12px; }
-
-.toggle-select__list {
-  list-style: none;
-  margin: 0 0 12px 0;
-  padding: 4px 8px;
-  border-bottom: 1px solid #4a4a4a;
-  border-left: 1px solid #4a4a4a;
-  border-right: 1px solid #4a4a4a; }
-  .toggle-select__list span {
-    vertical-align: middle; }
-
-.color-circle {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 1px solid #cbcbcb; }
-
-.toggle-select__item {
-  padding: 4px;
-  font-size: 16px;
-  font-size: 1rem; }
 
 @media only screen and (min-width: 1024px) {
   .form__set {
@@ -1094,36 +1159,6 @@ select {
     border-style: solid;
     border-width: 9px 10px 0 10px;
     border-color: #fe7676 transparent transparent transparent; }
-
-.password-bar {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 4px;
-  margin-top: -6px;
-  margin-bottom: 6px;
-  text-transform: capitalize;
-  font-size: 12px;
-  font-size: 0.75rem;
-  border: 1px solid #cbcbcb;
-  border-radius: 25px;
-  transition: all .2s ease-out; }
-  .password-bar:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    display: block;
-    width: 0;
-    height: 4px;
-    margin-top: -2px;
-    border-radius: 25px;
-    background-color: #fe7676; }
-  .password-bar.level-1:before {
-    width: 25%; }
-  .password-bar.level-2:before {
-    width: 50%; }
-  .password-bar.level-3:before {
-    width: 100%; }
 
 /*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
@@ -1770,6 +1805,16 @@ body {
     *Responsive Desing
 */
 @media only screen and (max-width: 1023px) {
+  .page {
+    padding-top: 60px; }
+  .page-header {
+    position: fixed;
+    top: 0;
+    transition: top .3s ease; }
+    .page-header.js-header_down {
+      top: 0; }
+    .page-header.js-header_up {
+      top: -60px; }
   .page-brand {
     display: block;
     width: 170px;
@@ -1827,9 +1872,17 @@ body {
   cursor: pointer;
   pointer-events: none; }
   .submenu__close:before {
+    display: inline-block;
+    margin: -6px -1px 0 0;
+    vertical-align: middle;
     color: #fff;
     font-size: 8px;
-    font-size: 0.5rem; }
+    font-size: 0.5rem;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg); }
 
 @media only screen and (max-width: 1023px) {
   /* 
@@ -2011,12 +2064,21 @@ body {
       background-color: #000;
       transition: top .5s ease;
       pointer-events: none; }
+    .menu__link:hover {
+      color: #000; }
   .submenu .submenu__item .submenu__close {
     z-index: 0; }
   .submenu .submenu__item .submenu__label {
     z-index: 1; }
   .submenu .submenu__item_current .submenu__close {
     z-index: 1; }
+    .submenu .submenu__item_current .submenu__close:before {
+      margin: 0;
+      transform: rotate(0);
+      -webkit-transform: rotate(0);
+      -moz-transform: rotate(0);
+      -o-transform: rotate(0);
+      -ms-transform: rotate(0); }
   .menu__item_current {
     z-index: 4;
     -webkit-box-ordinal-group: 2;
@@ -2080,7 +2142,6 @@ body {
       margin: 0 16px;
       border-bottom: 1px solid #cbcbcb; }
     .submenu__item:before {
-      content: "\e934";
       position: absolute;
       right: 26px;
       top: 24px;
@@ -3378,6 +3439,27 @@ body {
 .user-edit__actions {
   padding: 14px 0 0 16px; }
 
+.user-header__item {
+  text-align: center; }
+
+/*------------------------------------*	User Profile avatar edit
+\*------------------------------------*/
+.user-over {
+  position: relative; }
+  .user-over:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    background-color: #fff;
+    transition: all .2s ease-out; }
+
 .user-data__avatar {
   width: 114px;
   height: 114px;
@@ -3388,6 +3470,34 @@ body {
 .user-data__img {
   width: 100%;
   vertical-align: bottom; }
+
+.user-avatar-edit {
+  position: relative;
+  z-index: 3;
+  display: inline-block; }
+  .user-avatar-edit .user-edit__actions {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    padding: 0; }
+
+.user-avatar__upfile {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  opacity: 0;
+  transition: all .2s .2s ease-out; }
+
+.user-avatar_active {
+  min-height: 500px;
+  text-align: center; }
+  .user-avatar_active:after {
+    opacity: .97;
+    pointer-events: all; }
+  .user-avatar_active .user-avatar__upfile {
+    opacity: 1; }
+  .user-avatar_active .user-edit__save {
+    padding-top: 16px; }
 
 .user-data__group {
   margin-bottom: 0;
@@ -3497,6 +3607,14 @@ body {
   .single__title {
     font-size: 32px;
     font-size: 2rem; }
+  .single__subtitle {
+    padding: 32px 0;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-size: 1.125rem;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300; }
   .user-header {
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
@@ -3504,6 +3622,8 @@ body {
     -moz-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row; }
+  .user-header__item {
+    text-align: left; }
   .user-data__title {
     padding-top: 8px;
     text-align: left;
@@ -3529,8 +3649,16 @@ body {
     margin: 0; }
   .user-edit__actions {
     padding: 8px 0 0 16px; }
+  /*------------------------------------*	    User Profile avatar edit desktop
+    \*------------------------------------*/
+  .user-avatar_active {
+    min-height: 390px; }
   .user-data__avatar {
     margin-right: 28px; }
+  .user-avatar-edit .user-edit__actions {
+    right: 28px; }
+  .user-avatar__upfile {
+    top: 0; }
   .user-data__group {
     text-align: left;
     font-size: 18px;
@@ -4194,7 +4322,7 @@ body {
 \*------------------------------------*/
 .box {
   padding: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-size: 14px;
   font-size: 0.875rem;
   background-color: #f6f6f6; }
@@ -4233,6 +4361,7 @@ body {
 @media only screen and (min-width: 768px) {
   .box {
     padding: 24px;
+    margin-bottom: 32px;
     font-size: 18px;
     font-size: 1.125rem; }
   .box__title {
@@ -4379,6 +4508,8 @@ body {
   de 620px a 879px
 \*------------------------------------*/
 @media only screen and (max-width: 419px) {
+  .detail__picture {
+    margin: 0 -2%; }
   .detail__tabs {
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
@@ -4398,6 +4529,10 @@ body {
     display: block; }
   .detail__img {
     display: none; } }
+
+@media only screen and (min-width: 420px) {
+  .detail {
+    padding-top: 40px; } }
 
 @media only screen and (min-width: 768px) and (max-width: 850px) {
   .detail__tabs {
@@ -4421,7 +4556,7 @@ body {
 /*------------------------------------*  Detalle producto: img responsive
  // Gallery thums visible
   Rangos:
-  de 420 a 619
+  de 420 a 767
 \*------------------------------------*/
 @media only screen and (min-width: 420px) and (max-width: 767px) {
   .detail__gallery {
