@@ -24,9 +24,7 @@ section.single
                   :alt="'Perfil' + ' ' + first_name")
             form.form_user.user-avatar__upfile(
               id="form-user-avatar"
-              v-on:submit='',
-              action='#',
-              method='post',
+              v-on:submit.prevent='',
               v-show="editAvatar == true")
               .upfile__small
                 p.form__label Foto de perfil
@@ -57,22 +55,24 @@ section.single
 
               form.form_user.user-header-edit__grid(
                 id="form-user-name"
-                v-on:submit='',
-                action='#',
-                method='post',
+                v-on:submit.prevent='updateName',
                 v-show="editName == true")
                 .form__row
                   label.form__label(
                     for='nombre') Editar Nombre
+                  span.help(
+                    v-show="errorLog.first_name") {{ errorLog.first_name }}
                   input.form__edit(
-                    v-model='first_name',
+                    v-model='new_first_name',
                     id='username'
                   )
                 .form__row
                   label.form__label(
                     for='apellidos') Editar Apellidos
+                  span.help(
+                    v-show="errorLog.last_name") {{ errorLog.last_name }}
                   input.form__edit(
-                    v-model='last_name',
+                    v-model='new_last_name',
                     id='userLast',
                     type='text'
                   )
@@ -108,11 +108,12 @@ section.single
               v-if="editAbout == true")
               form.form_user.user-data__txt(
                 id="form-user-about"
-                v-on:submit='',
-                action='#',
-                method='post')
+                v-on:submit.prevent='updateAbout',
+                v-if="editAbout == true")
+                span.help(
+                  v-show="errorLog.about") {{ errorLog.about }}
                 textarea.form__edit_txt(
-                  v-model="about",
+                  v-model="new_about",
                   name="about",
                   maxlength="340",
                   placeholder="Aún no has ingresado una descripción para tu perfil",
@@ -160,9 +161,7 @@ section.single
             //-TO-DO: efect transition
             form.form_user.user-data__form(
               id="form-user-address-edit"
-              v-on:submit='',
-              action='#',
-              method='post',
+              v-on:submit.prevent='',
               v-if="isActive == addressList")
               fieldset.form__set
                 legend.form__legend Editar Dirección
@@ -255,9 +254,7 @@ section.single
           //-TO-DO: efect transition
           form.form_user.user-data__form(
             id="form-user-address-new"
-            v-on:submit='',
-            action='#',
-            method='post',
+            v-on:submit.prevent='',
             v-if="newAddress == true",
             v-effect="slide")
             fieldset.form__set
@@ -325,16 +322,16 @@ section.single
         .dividers
           form.form_user(
             id="form-user-email"
-            v-on:submit='',
-            action='#',
-            method='post')
+            v-on:submit.prevent='updateEmail')
             label.subhead.dividers__title(
             for='editEmail') Correo
             .dividers__item(
               :class="{'dividers__item_active' :editEmail == true}")
+              span.help(
+                v-show="editEmail == true && errorLog.email") {{ errorLog.email }}
               .dividers__grid
                 input.form__edit(
-                  v-model='email',
+                  v-model='new_email',
                   id='editEmail',
                   type='email',
                   :disabled="editEmail == false"
@@ -353,13 +350,13 @@ section.single
         .dividers
           form.form_user(
             id="form-user-phone"
-            v-on:submit='',
-            action='#',
-            method='post')
+            v-on:submit.prevent='updatePhone')
             label.subhead.dividers__title(
             for='editPhone') Teléfono
             .dividers__item(
-              :class="{'dividers__item_active' :editTel == true}")
+              :class="{'dividers__item_active' :editPhone == true}")
+              span.help(
+                v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
               .dividers__grid
                 span.user-data__holder(
                   v-if="phone == null") Aún no has ingresado tú número de teléfono
@@ -368,14 +365,14 @@ section.single
                   v-model='phone',
                   id='editPhone',
                   :placeholder="phone",
-                  :disabled="editTel == false"
+                  :disabled="editPhone == false"
                   type='tel')
 
                 span.dividers__actions
                   button.btn-tag(
-                    v-show="editTel == true") Guardar
+                    v-show="editPhone == true") Guardar
                   a.dividers__edit.i-edit-line(
-                    @click.prevent="toggle('editTel')",
+                    @click.prevent="toggle('editPhone')",
                     href="#",
                     title="Editar Teléfono") <small class="hide"> Editar </small>
 

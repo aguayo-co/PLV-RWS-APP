@@ -4,9 +4,16 @@
 import Vue from 'vue'
 
 export default {
-  update: function (user) {
-    const payload = {...user}
-    return Vue.axiosAuth.patch('/api/users/' + user.id, payload)
+  update: function (data) {
+    const userId = window.localStorage.getItem('userId')
+    if (userId === null || window.localStorage.getItem('token') === null) {
+      return Promise.reject(new Error('No credentials founds.'))
+    }
+    if (data.id === null) {
+      return Promise.reject(new Error('Need a user ID.'))
+    }
+    const payload = {...data}
+    return Vue.axiosAuth.patch('/api/users/' + data.id, payload)
   },
 
   create: function (user) {
@@ -29,16 +36,10 @@ export default {
   },
 
   load: function () {
-    return new Promise((resolve, reject) => {
-      const userId = window.localStorage.getItem('userId')
-      const token = window.localStorage.getItem('token')
-      if (window.localStorage.getItem('userId') === null || window.localStorage.getItem('token') === null) {
-        reject(new Error('No credentials founds.'))
-        return
-      }
-      resolve(userId, token)
-    }).then((userId, token) => {
-      return Vue.axiosAuth.get('/api/users/' + userId)
-    })
+    const userId = window.localStorage.getItem('userId')
+    if (userId === null || window.localStorage.getItem('token') === null) {
+      return Promise.reject(new Error('No credentials founds.'))
+    }
+    return Vue.axiosAuth.get('/api/users/' + userId)
   }
 }
