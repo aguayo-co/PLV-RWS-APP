@@ -20,6 +20,7 @@
 .card__product {
   @include flexbox;
   @include justify-content(space-between);
+  padding-bottom: 24px;
 }
   .card__img {
     width: 100%;
@@ -27,19 +28,79 @@
     height: auto;
     vertical-align: bottom;
   }
-  .card__lead {
+  .card__info {
+    padding-left: 12px;
     color: $c-default;
-    font-family: $f-fancy;
-    font-weight: $fw-medium;
-    p{
+    p {
       margin: 0;
     }
+  }
+  .card__header {
+    padding: 6px 0;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
   }
   .card__title {
     @include font-rem(16px);
   }
+  .card__price {
+    padding-bottom: 10px;
+    font-family: $f-normal;
+    font-weight: $fw-thin;
+    @include font-rem(28px);
+  }
+
+  .card__tag {
+    
+  }
+.card__user {
+  @include flexbox;
+  padding-bottom: 24px;
+  color: $c-default-5;
+}
+  .card__user-img {
+
+  }
+  .card__avatar {
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid $c-brand;
+  }
+  .card__picture {
+    width: 100%;
+  }
+  .card__user-info {
+    padding-left: 6px;
+    @include font-rem(16px);
+  }
+  .card__prilover {
+    font-weight: $fw-bold;
+  }
 
 
+
+
+
+
+// $bp-small: 375px;
+@include media-query(small) {
+  .card__header {
+    p {
+      padding-bottom: 10px;
+    }
+  }
+
+  .card__title {
+    padding-bottom: 10px;
+  }
+
+  .card__price {
+    padding-bottom: 16px;
+  }
+
+}
 
 
 // $bp-small-medium: 640px;

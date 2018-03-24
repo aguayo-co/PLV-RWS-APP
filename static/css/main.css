@@ -5007,7 +5007,8 @@ body {
   -ms-flex-pack: justify;
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding-bottom: 24px; }
 
 .card__img {
   width: 100%;
@@ -5015,16 +5016,62 @@ body {
   height: auto;
   vertical-align: bottom; }
 
-.card__lead {
-  color: #000;
+.card__info {
+  padding-left: 12px;
+  color: #000; }
+  .card__info p {
+    margin: 0; }
+
+.card__header {
+  padding: 6px 0;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500; }
-  .card__lead p {
-    margin: 0; }
 
 .card__title {
   font-size: 16px;
   font-size: 1rem; }
+
+.card__price {
+  padding-bottom: 10px;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 28px;
+  font-size: 1.75rem; }
+
+.card__user {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 24px;
+  color: #707070; }
+
+.card__avatar {
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fe7676; }
+
+.card__picture {
+  width: 100%; }
+
+.card__user-info {
+  padding-left: 6px;
+  font-size: 16px;
+  font-size: 1rem; }
+
+.card__prilover {
+  font-weight: 700; }
+
+@media only screen and (min-width: 375px) {
+  .card__header p {
+    padding-bottom: 10px; }
+  .card__title {
+    padding-bottom: 10px; }
+  .card__price {
+    padding-bottom: 16px; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
