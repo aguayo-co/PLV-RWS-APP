@@ -51,21 +51,27 @@ const getters = {
 }
 
 const actions = {
-  loadUser ({ state, commit, rootState }) {
-    userAPI.load().then(response => {
-      commit('auth', response.data)
+  loadUser ({commit}) {
+    return userAPI.load().then(response => {
+      commit('set', response.data)
     })
   },
-  logOut ({commit, state}) {
+  update ({commit, state}, data) {
+    data.id = state.id
+    return userAPI.update(data).then(response => {
+      commit('set', response.data)
+    })
+  },
+  logOut ({commit}) {
     commit('clear')
   },
-  setUser ({commit, state}, user) {
-    commit('auth', user)
+  setUser ({commit}, user) {
+    commit('set', user)
   }
 }
 
 const mutations = {
-  auth (state, user) {
+  set (state, user) {
     state.id = user.id
     state.first_name = user.first_name
     state.last_name = user.last_name
