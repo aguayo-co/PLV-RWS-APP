@@ -10,24 +10,45 @@
   @include flex-grow(1);
   @include align-self(flex-end);
 \*------------------------------------*/
-.list__grid {
+.list {
+  padding-top: 24px;
+}
 
+.list__grid {
+  padding: 16px 0;
 }
+
+.list__content {
+  padding-bottom: 16px;
+}
+
+.list_step {
+  padding-bottom: 20px;
+}
+
+
 .list__card {
-  // @include flexbox;
-  // @include justify-content(space-around);
+  padding-top: 32px;
+  &:not(:last-child) {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $c-neutro-3;
+  }
 }
+
 .card__product {
   @include flexbox;
-  @include justify-content(space-between);
-  padding-bottom: 24px;
+  padding-bottom: 22px;
 }
-  .card__img {
-    width: 100%;
-    max-width: 126px;
-    height: auto;
-    vertical-align: bottom;
+  .card__figure {
+    width: 30%;
+    min-width: 126px;
+    max-width: 160px;
+
   }
+    .card__img {
+      width: 100%;
+      vertical-align: bottom;
+    }
   .card__info {
     padding-left: 12px;
     color: $c-default;
@@ -36,7 +57,6 @@
     }
   }
   .card__header {
-    padding: 6px 0;
     font-family: $f-fancy;
     font-weight: $fw-medium;
   }
@@ -50,37 +70,138 @@
     @include font-rem(28px);
   }
 
-  .card__tag {
-    
-  }
-.card__user {
+.card__column {
   @include flexbox;
-  padding-bottom: 24px;
-  color: $c-default-5;
+  @include flex-wrap(wrap);
+  @include align-items(center);
 }
-  .card__user-img {
+  .card__user {
+    @include flexbox;
+    min-width: 50%;
+    padding-bottom: 16px;
+    padding-right: 30px;
+    color: $c-default-5;
+  }
+    .card__avatar {
+      width: 44px;
+      height: 44px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 2px solid $c-brand;
+    }
 
+    .card__picture {
+      width: 100%;
+    }
+
+    .card__user-info {
+      padding-left: 6px;
+      @include font-rem(16px);
+    }
+
+    .card__prilover {
+      font-weight: $fw-bold;
+    }
+
+  .card__actions {
+    @include flex-grow(1);
+    padding-bottom: 16px;
+    text-align: center;
   }
-  .card__avatar {
-    width: 44px;
-    height: 44px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 2px solid $c-brand;
+    .card__btn {
+      width: 100%;
+      min-width: 200px;
+    }
+  /*------------------------------------*\
+    List carrito dividers
+  \*------------------------------------*/
+
+  .compra-data_info {
+    padding-bottom: 20px;
   }
-  .card__picture {
-    width: 100%;
+
+/*------------------------------------*\
+  List carrito factura
+\*------------------------------------*/
+.list__frame {
+  padding: 24px 18px;
+  border: 1px solid $c-neutro-3;
+}
+
+.data-table {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(flex-end);
+}
+
+  .data-table__item {
+    @include flex-grow(2);
+    @include flex-basis(65%);
+    max-width: 70%;
+    padding: 8px 0;
+    @include font-rem(18px);
   }
-  .card__user-info {
-    padding-left: 6px;
+  .data-table__value {
+    @include flex-grow(1);
+    @include flex-basis(30%);
+    max-width: 35%;
+    padding: 8px 0;
+    text-align: right;
+    font-family: $f-normal;
+    font-weight: $fw-thin;
     @include font-rem(16px);
   }
-  .card__prilover {
+  .data-total {
+    margin: 16px 0;
+    padding: 8px 0;
+    border-top: 1px solid $c-neutro-3;
+    border-bottom: 1px solid $c-neutro-3;
+  }
+  .data-total__label {
     font-weight: $fw-bold;
+    @include font-rem(18px);
+  }
+  .data-total__value {
+    font-family: $f-normal;
+    font-weight: $fw-thin;
+    @include font-rem(26px);
   }
 
+.data-form__item {
+  padding: 8px 0 16px;
+}
 
+// .data-form{
+//   padding-bottom: 16px;
+//   .form__check {
+//     padding-bottom: 16px;
+//   }
 
+// }
+//   .data-form__label {
+//     display: inline-block;
+//     padding-right: 8px;
+//     @include font-rem(18px);
+//     &:before {
+//       top: 50%;
+//       left: 2px;
+//       margin-top: -6px;
+//       @include font-rem(10px);
+//     }
+//     &:after {
+//       top: 50%;
+//       width: 14px;
+//       height: 14px;
+//       margin-top: -10px;
+//     }
+//   }
+
+  // .data-form__value {
+  //   display: inline-block;
+  //   font-family: $f-normal;
+  //   font-weight: $fw-thin;
+  //   @include font-rem(18px);
+  // }
 
 
 
@@ -92,29 +213,177 @@
     }
   }
 
-  .card__title {
-    padding-bottom: 10px;
-  }
+    .card__title {
+      padding-bottom: 10px;
+    }
 
-  .card__price {
-    padding-bottom: 16px;
-  }
+    .card__price {
+      padding-bottom: 16px;
+    }
 
 }
-
 
 // $bp-small-medium: 640px;
 @include media-query(small-medium) {
+   .list__grid {
+     padding: 32px 0;
+   }
 
+   .list__content {
+     padding-bottom: 32px;
+   }
+   .card__btn {
+     max-width: 300px;
+   }
 
 }
+@media only screen and (max-width: 767px) {
+  .list__side {
+    .title {
+      @include font-rem(20px);
+    }
+  }
+}
+
 //$bp-medium: 768px;
 @include media-query(medium) {
-  
+  .list {
+    padding-top: 56px;
+  }
+
+  /*------------------------------------*\
+    Tablet List carrito Productos
+  \*------------------------------------*/
+
+  .list__content {
+    padding-bottom: 40px;
+  }
+
+    .list__card {
+      padding-top: 40px;
+      &:not(:last-child) {
+        padding-bottom: 40px;
+      }
+    }
+
+    .card__header {
+      @include font-rem(16px);
+    }
+      .card__title {
+        @include font-rem(18px);
+      }
+      .card__price {
+        padding-bottom: 18px;
+        padding-top: 8px;
+        @include font-rem(32px);
+      }
+  /*------------------------------------*\
+    Tablet List carrito dividers
+  \*------------------------------------*/
+
+    .compra-data_info {
+      padding-bottom: 40px;
+      .dividers {
+        padding-bottom: 0;
+      }
+    }
+
+  /*------------------------------------*\
+    Tablet List carrito factura
+  \*------------------------------------*/
+  .data-table__item {
+    @include font-rem(20px);
+  }
+
+    .data-table__value {
+      @include font-rem(18px);
+    }
+
+    .data-total__label {
+      @include font-rem(20px);
+    }
+
+    .data-total__value {
+      @include font-rem(30px);
+    }
+
+    // .data-form__label {
+    //   @include font-rem(20px);
+    //   &:before {
+    //     margin-top: -4px;
+    //   }
+
+    //   &:after {
+    //     margin-top: -8px;
+    //   }
+    // }
+
+    // .data-form__value {
+    //   @include font-rem(20px);
+    // }
+
+}
+@media only screen and (max-width: 989px) {
+  .list {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .list__data {
+    max-width: 440px;
+    margin: 0 auto;
+  }
 }
 
 //$bp-wide: 1024px;
-@include media-query(wide) {
-  
-}
+@media only screen and (min-width: 990px) {
+  .list__grid {
+    @include flexbox;
+    padding: 40px 0;
+  }
+  .list__content {
+    width: 75%;
+  }
+  .list_step {
+    padding-bottom: 50px;
+  }
 
+  .list__card {
+    @include flexbox;
+  }
+
+  .card__product {
+    min-width: 66%;
+    padding-bottom: 0;
+    padding-right: 32px;
+  }
+
+  .card__figure {
+    width: 134px;
+  }
+
+  .card__column {
+    @include flexbox;
+    @include align-items(flex-start);
+    @include flex-direction(column);
+    @include justify-content(space-between);
+  }
+
+  .card__user {
+    min-width: auto;
+    padding-right: 0;
+  }
+
+  .card__actions {
+    @include flex-grow(initial);
+    padding-bottom: 0;
+  }
+
+  /*------------------------------------*\
+    Tablet List carrito factura
+  \*------------------------------------*/
+   .list__side {
+     width: 25%;
+     min-width: 354px;
+     margin-left: 40px;
+   }
+}
