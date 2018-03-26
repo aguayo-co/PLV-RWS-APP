@@ -546,6 +546,23 @@ select {
     }
   }
 }
+/*------------------------------------*\
+	form combo: input alineado con btn
+\*------------------------------------*/
+
+.form__combo {
+  @include flexbox;
+  margin-bottom: 12px;
+}
+.combo__control {
+  width: 60%;
+  margin-bottom: 0;
+}
+.combo__btn {
+  width: 40%;
+  min-width: auto;
+}
+
 
 // $bp-medium: 768px;
 @include media-query(medium) {
