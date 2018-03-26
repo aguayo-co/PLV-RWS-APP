@@ -188,4 +188,3 @@
   //-End Información direcciones
 </template>
 
-<script src="@/components/js/UserData.js"></script>

@@ -43,23 +43,41 @@
                   dd.data-table__value $34.000
                   dt.data-table__item Total de la orden
                   dd.data-table__value $88.300.000
+                  //estado sin creditos
                   dt.data-table__item Código de descuento
-                  dd.data-table__value $88.300.000
+                  dd.data-table__value $0
+                  //estado con créditos OK
+                    add class .txt_brand to .data-table__value
+                  dt.data-table__item Código de descuento
+                  dd.data-table__value.txt_brand -$5.000
                 dl.data-total
                   dt.data-total__label Total de tu orden:
                   dd.data-total__value $60.000
                 //- end List Detalle de tu orden
 
                 //-código de descuento
+                   Estado inicial
                 form.form.data-form
                   .form__row.form__row_away
-                    label.form__label.form__label_high(
+                    label.form__label(
                       for='codigo') ¿Tienes algún código de descuento?
                     .form__combo
                       input.form__control.combo__control(
                         id='codigo'
                         type='text')
-                      button.btn.btn_solid.combo__btn Validar
+                      button.btn.combo__btn Validar
+                //- end código de descuento
+                //código de descuento
+                    Estado OK:
+                    add class .form__combo_ok.i-ok to .form__combo
+                form.form.data-form
+                  .form__row.form__row_away
+                    label.form__label(
+                      for='codigo') ¿Tienes algún código de descuento?
+                    .form__combo.form__combo_ok.i-ok
+                      input.form__control.combo__control(
+                        id='codigo'
+                        type='text')
                 //- end código de descuento
 
                 //- btn continuar
@@ -130,8 +148,6 @@
               //p Envío: Acuerdo con vendedora
               p Envío: ChileExpress
               p Fecha estimada: Abr 21 de 2018
-
-              
         //-End Item 1
 
     //End Paso 3: Comprobante

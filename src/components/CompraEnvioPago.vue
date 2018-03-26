@@ -1,8 +1,8 @@
 <template lang="pug">
 section.list_step
   h3.subhead Elige una opción de despacho
-  //-checkbox tipo envíos
-  .boxcheck-wrap
+  //- metodos de envío Caso: 1 vendedora 1 prenda
+  form.boxcheck-wrap
     .boxcheck
       .boxcheck__grid.boxcheck__grid_tip
         //-item 1
@@ -48,19 +48,37 @@ section.list_step
             span.boxcheck__label
               span Acuerdo envío con vendedora <small class="boxcheck__disclaimer">($3000)</small>
         //-end item 3
-  //-end checkbox tipo envíos
+  //-end metodos de envío Caso: 1 vendedora 1 prenda
 
-  //- 2 a Despacho por prenda
-  .boxcheck-wrap
+  //- metodos de envío Caso: 1 vendedora varias prendas 
+  form.boxcheck-wrap
+    //- metodos de envío vendedora lista de productos
     .boxcheck.boxcheck_card
-      .boxcheck__card
-        .card__figure
-          img.card__img(
-            src="/static/img/demo/product-001.jpg",
-            alt="")
+      .boxcheck__list
+        .boxcheck__card
+          .card__figure
+            img.card__img(
+              src="/static/img/demo/product-001.jpg",
+              alt="")
 
-        //-info producto
-        p.card__title Blusa Blanca Forever 21
+          //-info producto
+          p.card__title Blusa Blanca Forever 21
+        .boxcheck__card
+          .card__figure
+            img.card__img(
+              src="/static/img/demo/product-001.jpg",
+              alt="")
+
+          //-info producto
+          p.card__title Blusa Blanca Forever 21
+        .boxcheck__card
+          .card__figure
+            img.card__img(
+              src="/static/img/demo/product-001.jpg",
+              alt="")
+
+          //-info producto
+          p.card__title Blusa Blanca Forever 21
       .boxcheck__grid.boxcheck__grid_tip
         //-item 1
         .boxcheck__item
@@ -104,7 +122,8 @@ section.list_step
             for="saleswoman1")
             span.boxcheck__label
               span Acuerdo envío con vendedora <small class="boxcheck__disclaimer">($3000)</small>
-    //- 2 a Despacho por prenda
+        //-end item 3
+    //- 2a Despacho varias prendas
     .boxcheck.boxcheck_card
       .boxcheck__card
         .card__figure
@@ -115,7 +134,7 @@ section.list_step
         //-info producto
         p.card__title Blusa Blanca Forever 21
       .boxcheck__grid.boxcheck__grid_tip
-        //-item 3
+        //-item 1
         .boxcheck__item
           input.form__input-radio(
             id="saleswoman2",
@@ -130,15 +149,12 @@ section.list_step
           //-nota
           .boxcheck__tip
             p La vendedora prefiere acordar el envío. Podrán acordar si juntarse o enviar por pagar.
+        //-end item 1
 
   //- end 2 a Despacho por prenda
 
   //- direcciones| Correo | tel
-      Este componente se toma de User/data
-      se integran las funcionalidades desarrolladas
-      por Federico.
-      archivo /components/CompraFormUserData.vue
-  UserData
+    ToDo: componente direcciones y teléfono
   //-End direcciones| Correo | tel
 
   //-créditos
@@ -149,11 +165,11 @@ section.list_step
       p.pay-off__value 2.100 <small class="pay-off__small">Créditos</small>
     .pay-off__item
       label.pay-off__label(
-        for='creditos-on') Usar en esta compra
+        for="creditos-on") Usar en esta compra
       .pay-off__group
         input.form__control.pay-off__control(
-          id='creditos-on'
-          type='text')
+          id="creditos-on",
+          type="text")
         small.pay-off__small Créditos
   //-tipo de medio de pago
   h3.subhead ¿Con que medio te gustaría pagar?
@@ -203,11 +219,7 @@ section.list_step
 </template>
 
 <script>
-import UserData from '@/components/CompraFormUserData'
 export default {
-  name: 'CompraEnvioPago',
-  components: {
-    UserData
-  }
+  name: 'CompraEnvioPago'
 }
 </script>
