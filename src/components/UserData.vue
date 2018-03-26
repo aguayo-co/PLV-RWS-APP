@@ -296,7 +296,7 @@ section.single
                 v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
               .dividers__grid
                 span.user-data__holder(
-                  v-if="phone == null") Aún no has ingresado tú número de teléfono
+                  v-if="phone == null && editPhone == false") Aún no has ingresado tú número de teléfono
                 input.form__edit(
                   v-else=""
                   v-model='phone',

@@ -66,6 +66,11 @@ select {
     @include font-rem(14px);
     font-weight: $fw-bold;
   }
+  .form__label_high {
+    color: $c-brand;
+    font-weight: $fw-regular;
+  }
+
   .form__headline {
     @include font-rem(16px);
   }
@@ -181,16 +186,6 @@ select {
   &:checked + .form__label_radio {
     &:before {
       content: '';
-      position: absolute;
-      top: 8px;
-      left: 4px;
-      z-index: 1;
-      width: 9px;
-      height: 9px;
-      @include font-rem(12px);
-      color: $c-default;
-      border-radius: 50%;
-      background-color: $c-brand;
     }
   }
 }
@@ -198,22 +193,65 @@ select {
 //label de input radio
 .form__label_radio {
   position: relative;
+  padding-bottom: 0; 
   padding-left: 28px;
   font-weight: $fw-regular;
+
   strong {
     display: block;
   }
+  
+  &:before {
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    @include font-rem(12px);
+    color: $c-default;
+    border-radius: 50%;
+    background-color: $c-brand;
+  }
+ 
   &:after {
     content: '';
     position: absolute;
     top: 4px;
     left: 0;
-    width: 13px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
     border: 2px solid $c-default-3;
     border-radius: 50%;
   }
 }
+/*------------------------------------*\
+	form radio boxcheck
+\*------------------------------------*/
+
+.form__input-radio {
+  &:checked+.form__label_radio {
+    .boxcheck__label {
+      border-color: $c-brand;
+    }
+  }
+}
+.boxcheck__item {
+  padding-bottom: 16px;
+  .form__label_radio  {
+    &:before {
+      top: 50%;
+      margin-top: -3px;
+    }
+    &:after {
+      top: 50%;
+      margin-top: -7px;
+    }
+  }
+}
+
 /*------------------------------------*\
 	form checkbox
 \*------------------------------------*/
@@ -229,7 +267,15 @@ select {
   padding-left: 28px;
   padding-bottom: 2px;
   &:before {
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    z-index: 1;
     display: none;
+    cursor: pointer;
+    color: $c-brand;
+    font-weight: $fw-bold;
+    @include font-rem(8px);
   }
   &:after {
     content: '';
@@ -238,6 +284,7 @@ select {
     left: 0;
     width: 13px;
     height: 13px;
+    cursor: pointer;
     border: 2px solid $c-default-4;
     border-radius: 3px;
   }
@@ -249,15 +296,7 @@ select {
   opacity: 0;
   &:checked+.form__label_check {
     &:before {
-      position: absolute;
-      top: 6px;
-      left: 3px;
-      z-index: 1;
       display: block;
-      @include font-rem(8px);
-      font-weight: $fw-bold;
-      color: $c-brand;
-      border-radius: 50%;
     }
   }
 }

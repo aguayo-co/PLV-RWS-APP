@@ -215,37 +215,6 @@
                 checked)
               label.form__label.form__label_check.i-ok(
                 for='sizeU') ¿ó tu producto es talla única?
-            //- label.form__label Selecciona un esquema de tallas
-            //- .size(
-            //-   v-for='size in sizes')
-            //-   input.form__input-radio(
-            //-     type='radio',
-            //-     :id='"sizeScheme-"+size.id',
-            //-     v-model='product.sizeScheme',
-            //-     :value='size.id'
-            //-     @change='chooseSize(size.id)'
-            //-     :checked='sizeScheme == size.id-1')
-            //-   label.form__label.form__label_radio(
-            //-     :for='"sizeScheme-"+size.id')
-            //-     strong.form__headline {{ size.name }}
-            //-     p.form__disclaimer {{ size.description }}
-            //- .form__row(
-            //-   v-show='toggleSize && sizeScheme != 2'
-            //-   :class='{ "is-danger": errorLog.size }')
-            //-   label.form__label(
-            //-     for="product-talla") Selecciona la talla de tu producto
-            //-   span.help(
-            //-     v-if="errorLog.size"
-            //-   ) {{ errorLog.size }}
-            //-   select.form__select(
-            //-     ref='size'
-            //-     id='product-talla'
-            //-     v-model='product.size_id')
-            //-     optgroup(label='Talla')
-            //-       option(
-            //-         v-for='sizeValue in sizes[sizeScheme].values'
-            //-         :value='sizeValue'
-            //-       ) {{ sizeValue }}
             .form__row(
               :class='{ "is-danger": errorLog.brand }')
               label.form__label(
