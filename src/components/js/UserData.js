@@ -1,5 +1,6 @@
 import { mapGetters } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
+import UserDataAddress from '@/components/UserDataAddress'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -35,6 +36,9 @@ function createComputedProps (props) {
 
 export default {
   name: 'UserData',
+  components: {
+    'address-form': UserDataAddress
+  },
   data () {
     return {
       isActive: '',
@@ -69,13 +73,13 @@ export default {
     ...createComputedProps(editableProps)
   },
   created: function () {
-    window.vue = this
+    this.$store.dispatch('user/loadAddresses')
   },
   methods: {
     IsActive: function (e) {
       this.isActive = e
     },
-    NotActive: function (e) {
+    NotActive: function () {
       this.isActive = ''
     },
     toggle: function (prop) {

@@ -1,0 +1,65 @@
+/*------------------------------------*\
+	pay-off créditos prilov
+\*------------------------------------*/
+.pay-off {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  max-width: 720px;
+  padding: 16px 0 22px;
+}
+.pay-off__item {
+  padding: 16px 20px;
+}
+.pay-off__label {
+  display: inline-block;
+  margin: 0;
+  padding-bottom: 12px;
+  text-transform: uppercase;
+  font-weight: $fw-bold;
+  @include font-rem(16px);
+}
+.pay-off__value {
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+  font-weight: $fw-bold;
+  @include font-rem(38px);
+}
+.pay-off__control {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 200px;
+  margin: 0;
+  text-align: right;
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+  @include font-rem(22px);
+}
+.pay-off__small {
+  padding-left: 10px;
+  font-family: $f-default;
+  font-weight: $fw-regular;
+  @include font-rem(14px);
+}
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .pay-off {
+    padding: 22px 0 40px;
+  }
+
+  .pay-off__label {
+    padding-bottom: 16px;
+    @include font-rem(18px);
+  }
+
+  .pay-off__value {
+    @include font-rem(48px);
+  }
+  .pay-off__control {
+    @include font-rem(24px);
+  }
+  .pay-off__small {
+    @include font-rem(16px);
+  }
+}

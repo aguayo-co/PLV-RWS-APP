@@ -1,5 +1,7 @@
 // User store will be used to handle public data regarding users.
 import userAPI from '@/api/user'
+import Vue from 'vue'
+import userAddressesAPI from '@/api/userAddresses'
 
 const state = {
   id: null,
@@ -11,29 +13,7 @@ const state = {
   phone: null,
   cover: null,
   favorite_address_id: null,
-  addresses: [
-    {
-      id: '2',
-      address: 'Alberto Blest Gana 803',
-      region: 'Padre Hurtado',
-      city: 'Santiago',
-      zone: ''
-    },
-    {
-      id: '3',
-      address: 'Pasaje la Lenga  1539',
-      region: 'Cerro Navia',
-      city: 'Santiago',
-      zone: ''
-    },
-    {
-      id: '4',
-      address: 'Los flamencos 1300',
-      region: 'Mapú',
-      city: 'Santiago',
-      zone: ''
-    }
-  ],
+  addresses: {},
   group_ids: [1],
   group: [
     {
@@ -56,10 +36,27 @@ const actions = {
       commit('set', response.data)
     })
   },
+  loadAddresses ({commit}) {
+    return userAddressesAPI.load().then(response => {
+      commit('setAddresses', response.data.data)
+    })
+  },
   update ({commit, state}, data) {
     data.id = state.id
     return userAPI.update(data).then(response => {
       commit('set', response.data)
+    })
+  },
+  updateAddress ({commit, state}, data) {
+    data.user_id = state.id
+    return userAddressesAPI.update(data).then(response => {
+      commit('setAddress', response.data)
+    })
+  },
+  deleteAddress ({commit, state}, data) {
+    data.user_id = state.id
+    return userAddressesAPI.delete(data).then(response => {
+      commit('removeAddress', data)
     })
   },
   logOut ({commit}) {
@@ -83,6 +80,18 @@ const mutations = {
     state.followers_count = user.followers_count
     state.following_count = user.following_count
   },
+  setAddresses: function (state, addresses) {
+    Object.keys(addresses).forEach(function (key) {
+      let address = addresses[key]
+      Vue.set(state.addresses, address.id, address)
+    })
+  },
+  setAddress: function (state, address) {
+    Vue.set(state.addresses, address.id, address)
+  },
+  removeAddress: function (state, address) {
+    Vue.delete(state.addresses, address.id)
+  },
   clear (state, user) {
     state.id = null
     state.first_name = null
@@ -94,6 +103,8 @@ const mutations = {
     state.cover = null
     state.followers_count = null
     state.following_count = null
+    state.addresses = {}
+
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
   }
