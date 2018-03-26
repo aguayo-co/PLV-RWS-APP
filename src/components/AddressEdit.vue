@@ -2,13 +2,15 @@
   //-TO-DO: efect transition
   form.form_user.user-data__form(
     id="form-user-address-edit"
-    v-on:submit.prevent='')
+    v-on:submit.prevent='updateAddress')
     fieldset.form__set
       legend.form__legend Editar Dirección
       .form__grid
         .form__row
           label.form__label(
             :for="address.id + 'address'") Dirección
+          span.help(
+            v-show="errorLog.address") {{ errorLog.address }}
           input.form__control(
             :id="address.id + 'address'"
             v-model="new_address"
@@ -16,6 +18,8 @@
         .form__row
           label.form__label(
             :for="address.id + 'region'") Región
+          span.help(
+            v-show="errorLog.region") {{ errorLog.region }}
           select.form__select(
             :id="address.id + 'region'"
             v-model="new_region")
@@ -40,6 +44,8 @@
         .form__row
           label.form__label(
             :for="address.id + 'zone'") Comuna
+          span.help(
+            v-show="errorLog.zone") {{ errorLog.zone }}
           select.form__select(
             :id="address.id + 'zone'"
             v-model="new_zone")
@@ -57,15 +63,14 @@
             title="Eliminar") Eliminar dirección
         .form__grid_group
           .form__row
-            a.btn.form__grid-item(
+            button.btn.form__grid-item(
+              type="reset"
               @click.prevent="close",
-              href="#",
               title="Cancelar Edición") Cancelar
           .form__row
-            a.btn.btn_solid.form__grid-item(
-              @click.prevent="updateAddress",
-              href="#",
+            button.btn.btn_solid.form__grid-item(
+              type="submit"
               title="Guardar Cambios") Editar dirección
 </template>
 
-<script src="./js/UserDataAddress.js"></script>
+<script src="./js/AddressEdit.js"></script>
