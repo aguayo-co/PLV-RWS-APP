@@ -1,8 +1,12 @@
 /*------------------------------------*\
 	box | switch
 \*------------------------------------*/
+.boxcheck-wrap {
+  padding-bottom: 32px;
+}
+
 .boxcheck {
-  padding-top: 30px;
+  padding-top: 32px;
   .form__label {
     height: 100%;
     img {
@@ -12,6 +16,27 @@
     }
   }
 }
+.boxcheck_card {
+  &:not(:last-child) {
+    padding-bottom: 32px;
+    border-bottom: 1px solid $c-neutro-3;
+  }
+}
+.boxcheck__card {
+  @include flexbox;
+  @include justify-content(center);
+  padding: 0 0 20px 30px;
+  .card__figure {
+    padding-right: 10px;
+    margin-right: 10px;
+  }
+  .card__title {
+    font-family: $f-fancy;
+    font-weight: $fw-bold;
+    @include font-rem(16px);
+  }
+}
+
 .boxcheck_top {
   padding-top: 0;
 }
@@ -21,7 +46,7 @@
     @include align-items(center);
     width: 100%;
     height: 100%;
-    padding: 18px;
+    padding: 16px;
     cursor: pointer;
     text-align: center;
     color: $c-default-5;
@@ -31,13 +56,12 @@
     border-radius: 8px;
   }
   .boxcheck__disclaimer {
-    display: block;
     font-weight: $fw-regular;
   }
   .boxcheck__tip {
     position: relative;
     display: block;
-    margin: 10px 0 0 60px;
+    margin: 10px 0 0 30px;
     padding: 16px;
     background-color: $c-neutro-3;
     &:before {
@@ -64,14 +88,41 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .boxcheck {
-    max-width: 720px;
+
+.boxcheck-wrap {
+  padding-bottom: 40px;
+}
+ 
+  .boxcheck_card {
+    @include flexbox;
+    @include align-items(self-start);
+    .card__figure {
+      padding-right: 16px;
+      padding-bottom: 12px;
+      margin-right: 16px;
+    }
+    .card__title {
+      padding: 0;
+      margin: 0;
+      @include font-rem(18px);
+    }
+    .boxcheck__grid {
+      width: 100%;
+    }
   }
+
+  .boxcheck__card {
+    display: block;
+    padding: 0;
+  }
+
   .boxcheck__grid {
     position: relative;
+    max-width: 720px;
     @include flexbox; 
     @include justify-content(space-between);
   }
+
   .boxcheck__item {
     &:not(:last-child) {
       margin-right: 20px;
@@ -80,23 +131,22 @@
   .boxcheck__label {
     max-width: 160px;
   }
+  .boxcheck__disclaimer {
+    display: block;
+  }
+
   .boxcheck__grid_tip {
-    margin-bottom: 100px;
+    padding-bottom: 72px;
   }
   .boxcheck__tip {
     position: absolute;
-    top:100%;
+    bottom: 0;
     width: 100%;
-    margin: 0;
+    min-height: 70px;
+    margin-left: 0;
+    padding: 10px;
     &:before {
       left: 40px;
     }
   }
-
-}
-
-
-// $bp-medium: 768px;
-@include media-query(medium) {
- 
 }

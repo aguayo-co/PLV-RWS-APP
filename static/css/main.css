@@ -5033,14 +5033,42 @@ body {
 
 /*------------------------------------*	box | switch
 \*------------------------------------*/
+.boxcheck-wrap {
+  padding-bottom: 32px; }
+
 .boxcheck {
-  padding-top: 30px; }
+  padding-top: 32px; }
   .boxcheck .form__label {
     height: 100%; }
     .boxcheck .form__label img {
       width: 100%;
       max-width: 124px;
       vertical-align: baseline; }
+
+.boxcheck_card:not(:last-child) {
+  padding-bottom: 32px;
+  border-bottom: 1px solid #efefef; }
+
+.boxcheck__card {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  padding: 0 0 20px 30px; }
+  .boxcheck__card .card__figure {
+    padding-right: 10px;
+    margin-right: 10px; }
+  .boxcheck__card .card__title {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem; }
 
 .boxcheck_top {
   padding-top: 0; }
@@ -5058,7 +5086,7 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 18px;
+  padding: 16px;
   cursor: pointer;
   text-align: center;
   color: #707070;
@@ -5069,13 +5097,12 @@ body {
   border-radius: 8px; }
 
 .boxcheck__disclaimer {
-  display: block;
   font-weight: 400; }
 
 .boxcheck__tip {
   position: relative;
   display: block;
-  margin: 10px 0 0 60px;
+  margin: 10px 0 0 30px;
   padding: 16px;
   background-color: #efefef; }
   .boxcheck__tip:before {
@@ -5097,10 +5124,36 @@ body {
     margin: 0 auto; } }
 
 @media only screen and (min-width: 600px) {
-  .boxcheck {
-    max-width: 720px; }
+  .boxcheck-wrap {
+    padding-bottom: 40px; }
+  .boxcheck_card {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: self-start;
+    -ms-flex-align: self-start;
+    -webkit-align-items: self-start;
+    -moz-align-items: self-start;
+    align-items: self-start; }
+    .boxcheck_card .card__figure {
+      padding-right: 16px;
+      padding-bottom: 12px;
+      margin-right: 16px; }
+    .boxcheck_card .card__title {
+      padding: 0;
+      margin: 0;
+      font-size: 18px;
+      font-size: 1.125rem; }
+    .boxcheck_card .boxcheck__grid {
+      width: 100%; }
+  .boxcheck__card {
+    display: block;
+    padding: 0; }
   .boxcheck__grid {
     position: relative;
+    max-width: 720px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -5115,13 +5168,17 @@ body {
     margin-right: 20px; }
   .boxcheck__label {
     max-width: 160px; }
+  .boxcheck__disclaimer {
+    display: block; }
   .boxcheck__grid_tip {
-    margin-bottom: 100px; }
+    padding-bottom: 72px; }
   .boxcheck__tip {
     position: absolute;
-    top: 100%;
+    bottom: 0;
     width: 100%;
-    margin: 0; }
+    min-height: 70px;
+    margin-left: 0;
+    padding: 10px; }
     .boxcheck__tip:before {
       left: 40px; } }
 
@@ -5170,6 +5227,7 @@ body {
   vertical-align: bottom;
   width: 200px;
   margin: 0;
+  text-align: right;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 22px;
