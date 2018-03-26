@@ -5031,6 +5031,113 @@ body {
     font-size: 20px;
     font-size: 1.25rem; } }
 
+/*------------------------------------*	box | flat
+\*------------------------------------*/
+.box-flat {
+  display: block;
+  padding: 16px;
+  border: 1px solid #efefef; }
+
+.box-flat__grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  max-width: 330px;
+  margin: 0 auto; }
+
+.box-flat__lead {
+  position: relative;
+  width: 100%;
+  padding: 0 0 0 60px;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500; }
+  .box-flat__lead:before {
+    position: absolute;
+    left: 0;
+    font-size: 38px;
+    font-size: 2.375rem;
+    color: #fe7676; }
+
+.box-flat__title {
+  font-size: 14px;
+  font-size: 0.875rem;
+  padding-bottom: 6px; }
+
+.box-flat__txt {
+  margin: 0;
+  letter-spacing: 6px;
+  color: #fe7676; }
+
+.box-flat__button {
+  width: 100%;
+  padding-top: 10px; }
+
+@media only screen and (min-width: 768px) {
+  .box-flat {
+    padding: 24px;
+    margin: 0 auto; }
+  .box_alert .box-flat__lead {
+    padding-right: 20px; }
+    .box_alert .box-flat__lead:before {
+      font-size: 66px;
+      font-size: 4.125rem; }
+  .box_alert .box-flat__button {
+    padding-right: 0; }
+  .box-flat__grid {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-flex-wrap: inherit;
+    -moz-flex-wrap: inherit;
+    -ms-flex-wrap: inherit;
+    flex-wrap: inherit;
+    max-width: inherit;
+    text-align: left; }
+  .box-flat__lead {
+    width: inherit;
+    padding-left: 92px;
+    font-size: 20px;
+    font-size: 1.25rem; }
+    .box-flat__lead:before {
+      position: absolute;
+      left: 0;
+      font-size: 60px;
+      font-size: 3.75rem;
+      color: #fe7676; }
+  .box-flat__button {
+    width: inherit;
+    text-align: center;
+    padding: 0 30px 0 0; }
+  .box-flat__title {
+    font-size: 20px;
+    font-size: 1.25rem;
+    padding-bottom: 6px; }
+  .box-flat__txt {
+    padding-left: 30px; } }
+
 /*------------------------------------*	box | switch
 \*------------------------------------*/
 .boxcheck-wrap {

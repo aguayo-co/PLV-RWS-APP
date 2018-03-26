@@ -6,6 +6,7 @@ import Pass from '@/pages/Pass'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
 import UserMetodoEnvio from '@/components/UserMetodoEnvio'
+import DatosBancarios from '@/components/DatosBancarios'
 import PublicarVenta from '@/pages/publicar-venta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
@@ -43,6 +44,11 @@ export default new Router({
           path: 'metodos-envios',
           name: 'user-metodos-envios',
           component: UserMetodoEnvio
+        },
+        {
+          path: 'datos-bancarios',
+          name: 'user-datos-bancarios',
+          component: DatosBancarios
         }
       ]
     },
