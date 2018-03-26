@@ -21,7 +21,7 @@ export default {
     data.append('commission', product.commission)
     data.append('user_id', userId)
     data.append('brand_id', product.brand_id)
-    data.append('category_id', product.category_id)
+    data.append('category_id', product.subcategory_id)
     data.append('size_id', 2)
     data.append('color_ids', product.color_ids)
     data.append('condition_id', product.condition_id)
@@ -67,8 +67,11 @@ export default {
 
   },
 
-  getShopCategories: function () {
-    return axios.get(apiURL + 'categories/shop')
+  getCategoriesBySlug: function (categorySlug) {
+    return axios.get(apiURL + 'categories/' + categorySlug)
+  },
+  getCategoriesById: function (categoryId) {
+    return axios.get(apiURL + 'categories?filter[id]=' + categoryId)
   },
 
   getAllConditions: function () {
