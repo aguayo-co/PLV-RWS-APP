@@ -47,6 +47,12 @@ const actions = {
       commit('set', response.data)
     })
   },
+  createAddress ({commit, state}, data) {
+    data.user_id = state.id
+    return userAddressesAPI.create(data).then(response => {
+      commit('setAddress', response.data)
+    })
+  },
   updateAddress ({commit, state}, data) {
     data.user_id = state.id
     return userAddressesAPI.update(data).then(response => {

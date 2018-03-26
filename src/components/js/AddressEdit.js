@@ -41,14 +41,14 @@ export default {
   },
   methods: {
     close () {
+      this.errorLog = {...editableProps}
+      this.newAddressData = {...editableProps}
       this.$emit('close')
     },
     deleteAddress () {
       let data = {
         id: this.address.id
       }
-
-      // Crea el objeto a enviar.
       this.$store.dispatch('user/deleteAddress', data)
     },
     updateAddress () {
@@ -57,17 +57,15 @@ export default {
       }
       // Para poder usarlo dentro de los forEach().
       const vm = this
-
-      // Crea el objeto a enviar.
+      // Agrega la información a enviar.
       Object.keys(editableProps).forEach(function (key) {
         data[key] = vm['new_' + key]
       })
       // Guarda la dirección
       this.$store.dispatch('user/updateAddress', data).then(() => {
         // Elimina datos locales, para que se usen los de Vuex
-        Object.keys(editableProps).forEach(function (key) {
-          vm[key] = null
-        })
+        vm.newAddressData = {...editableProps}
+        vm.errorLog = {...editableProps}
         this.close()
       }).catch((e) => {
         // Si hay errores, mostrarlos.
