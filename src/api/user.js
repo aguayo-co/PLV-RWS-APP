@@ -5,8 +5,7 @@ import Vue from 'vue'
 
 export default {
   update: function (data) {
-    const userId = window.localStorage.getItem('userId')
-    if (userId === null || window.localStorage.getItem('token') === null) {
+    if (window.localStorage.getItem('userId') === null || window.localStorage.getItem('token') === null) {
       return Promise.reject(new Error('No credentials founds.'))
     }
     if (data.id === null) {
