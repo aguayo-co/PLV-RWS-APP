@@ -45,7 +45,7 @@ export default {
       const token = store.getters['user/token']
 
       config.headers = config.headers || {}
-      config.headers.Authorization = 'Bearers ' + token
+      config.headers.Authorization = 'Bearer ' + token
       return config
     })
   }
