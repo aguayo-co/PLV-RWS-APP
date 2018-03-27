@@ -194,6 +194,18 @@
   //   @include font-rem(18px);
   // }
 
+.card__data {
+  text-align: left;
+}
+
+.card__txt {
+  padding-bottom: 5px;
+  margin: 0;
+  line-height: 1.2;
+  font-family: $f-fancy;
+  @include font-rem(14px);
+}
+
 
 
 // $bp-small: 375px;
@@ -382,4 +394,9 @@
      min-width: 354px;
      margin-left: 32px;
    }
+}
+@include media-query(medium) {
+  .card__txt {
+    @include font-rem(16px);
+  }
 }

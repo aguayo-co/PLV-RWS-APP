@@ -20,8 +20,6 @@
     position: relative;
     width: 100%;
     padding: 0 0 0 60px;
-    font-family: $f-fancy;
-    font-weight: $fw-medium;
     &:before {
       position: absolute;
       left: 0;
@@ -32,11 +30,16 @@
   .box-flat__title {
     @include font-rem(14px);
     padding-bottom: 6px;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+    
   }
   .box-flat__txt {
     margin: 0;
     letter-spacing: 6px;
     color: $c-brand;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
   }
   .box-flat__button {
     width: 100%;
