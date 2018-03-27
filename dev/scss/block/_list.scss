@@ -1,14 +1,5 @@
 /*------------------------------------*\
   List carrito compra
-  color: $c-brand;
-  @include flexbox;
-  @include flex-direction(column);
-  @include justify-content(center);
-  @include align-items(center);
-  @include justify-content(space-around);
-  @include flex-wrap(wrap);
-  @include flex-grow(1);
-  @include align-self(flex-end);
 \*------------------------------------*/
 .list {
   padding-top: 24px;
@@ -323,7 +314,7 @@
     // }
 
 }
-@media only screen and (max-width: 989px) {
+@media only screen and (max-width: 1023px) {
   .list {
     max-width: 680px;
     margin: 0 auto;
@@ -335,11 +326,16 @@
 }
 
 //$bp-wide: 1024px;
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 1024px) {
   .list__grid {
     @include flexbox;
     padding: 40px 0;
   }
+  .list__frame {
+    position: sticky;
+    top: 30px;
+  }
+
   .list__content {
     width: 75%;
   }
@@ -384,6 +380,6 @@
    .list__side {
      width: 25%;
      min-width: 354px;
-     margin-left: 40px;
+     margin-left: 32px;
    }
 }

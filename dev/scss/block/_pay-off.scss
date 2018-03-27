@@ -34,7 +34,7 @@
   text-align: right;
   font-family: $f-normal;
   font-weight: $fw-thin;
-  @include font-rem(22px);
+  @include font-rem(28px);
 }
 .pay-off__small {
   padding-left: 10px;
@@ -56,9 +56,9 @@
   .pay-off__value {
     @include font-rem(48px);
   }
-  .pay-off__control {
-    @include font-rem(24px);
-  }
+  // .pay-off__control {
+  //   @include font-rem(24px);
+  // }
   .pay-off__small {
     @include font-rem(16px);
   }

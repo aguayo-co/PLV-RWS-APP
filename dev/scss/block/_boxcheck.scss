@@ -4,7 +4,6 @@
 .boxcheck-wrap {
   padding-bottom: 32px;
 }
-
 .boxcheck {
   padding-top: 32px;
   .form__label {
@@ -14,26 +13,6 @@
       max-width: 124px;
       vertical-align: baseline;
     }
-  }
-}
-.boxcheck_card {
-  &:not(:last-child) {
-    padding-bottom: 32px;
-    border-bottom: 1px solid $c-neutro-3;
-  }
-}
-.boxcheck__card {
-  @include flexbox;
-  @include justify-content(center);
-  padding: 0 0 20px 30px;
-  .card__figure {
-    padding-right: 10px;
-    margin-right: 10px;
-  }
-  .card__title {
-    font-family: $f-fancy;
-    font-weight: $fw-bold;
-    @include font-rem(16px);
   }
 }
 
@@ -63,6 +42,7 @@
     display: block;
     margin: 10px 0 0 30px;
     padding: 16px;
+    @include font-rem(12px);
     background-color: $c-neutro-3;
     &:before {
       content: '';
@@ -80,73 +60,189 @@
     }
   }
 
-@media only screen and (max-width: 599px) {
+//producto listado
+.boxcheck_card {
+  &:not(:last-child) {
+    padding-bottom: 32px;
+    border-bottom: 1px solid $c-neutro-3;
+  }
+}
+  .boxcheck__card {
+    max-width: 140px;
+    padding-bottom: 16px;
+  }
+
+  .boxcheck__lead {
+    display: table;
+    width: 100%;
+    padding: 6px 0;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+  }
+  .boxcheck__title {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 6px;
+  }
+  .boxcheck__size {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+  }
+  .boxcheck__size-txt {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $c-neutro;
+    font-family: $f-normal;
+    font-weight: $fw-regular;
+    background-color: $c-default;
+    border-radius: 25px;
+  }
+  .boxcheck__price  {
+    margin: 0;
+    font-family: $f-normal;
+    font-weight:$fw-thin;
+    @include font-rem(24px);
+  }
+.boxcheck__header {
+  padding-bottom: 16px;
+}
+
+.boxcheck__headline {
+  text-transform: uppercase;
+  font-weight: $fw-semi-bold;
+  @include font-rem(16px);
+}
+
+@media only screen and (max-width: 679px) {
   .boxcheck {
-    max-width: 460px;
+    max-width: 480px;
     margin: 0 auto;
+  }
+  .boxcheck_card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+}
+
+@media only screen and (min-width: 680px) {
+  .boxcheck-wrap {
+    padding-bottom: 40px;
+  }
+
+    .boxcheck__grid {
+      position: relative;
+      max-width: 720px;
+      @include flexbox; 
+      @include justify-content(space-between);
+    }
+    .boxcheck__item {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+    .boxcheck__label {
+      max-width: 160px;
+    }
+    .boxcheck__disclaimer {
+      display: block;
+    }
+
+    .boxcheck__grid_tip {
+      padding-bottom: 72px;
+    }
+    .boxcheck__tip {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      min-height: 70px;
+      margin-left: 0;
+      padding: 10px;
+      &:before {
+        left: 40px;
+      }
+    }
+}
+
+@media only screen  and (max-width: 399px) {
+  .boxcheck__list {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    margin: 0 -8px;
+  }
+  .boxcheck__card {
+    @include flex-grow(1);
+    @include flex-basis(140px);
+    padding: 0 8px 16px;
+    max-width: 50%;
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 400px) {
+  //Tablet listado producto
+  .boxcheck__list {
+    margin-right: 16px;
+  }
 
-.boxcheck-wrap {
-  padding-bottom: 40px;
-}
- 
   .boxcheck_card {
     @include flexbox;
-    @include align-items(self-start);
-    .card__figure {
-      padding-right: 16px;
-      padding-bottom: 12px;
-      margin-right: 16px;
-    }
-    .card__title {
-      padding: 0;
-      margin: 0;
-      @include font-rem(18px);
-    }
+    max-width: 100%;
     .boxcheck__grid {
       width: 100%;
+      max-width: 100%;
     }
+    .boxcheck__figure {
+      min-width: 140px;
+    }
+  }
+  .boxcheck__sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+  }
+
+}
+
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .boxcheck__actions {
+    width: 100%;
+  }
+  .boxcheck__header {
+    @include flexbox;
+    @include align-items(flex-end);
+    @include justify-content(space-between);
+    .card__user {
+      padding-bottom: 0;
+    }
+  }
+
+  .boxcheck__tip {
+    @include font-rem(14px);
   }
 
   .boxcheck__card {
     display: block;
-    padding: 0;
+    padding: 0 0 16px 0;
   }
-
-  .boxcheck__grid {
-    position: relative;
-    max-width: 720px;
-    @include flexbox; 
-    @include justify-content(space-between);
-  }
-
-  .boxcheck__item {
-    &:not(:last-child) {
-      margin-right: 20px;
+}
+// 1024px;
+@include media-query(large) {
+ 
+  .boxcheck__card {
+    max-width: 180px;
+    .boxcheck__figure {
+      min-width: 160px;
     }
   }
-  .boxcheck__label {
-    max-width: 160px;
-  }
-  .boxcheck__disclaimer {
-    display: block;
+  .boxcheck__list {
+    margin-right: 20px;
   }
 
-  .boxcheck__grid_tip {
-    padding-bottom: 72px;
-  }
-  .boxcheck__tip {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    min-height: 70px;
-    margin-left: 0;
-    padding: 10px;
-    &:before {
-      left: 40px;
-    }
-  }
 }

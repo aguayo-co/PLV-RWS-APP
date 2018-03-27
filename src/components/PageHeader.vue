@@ -41,7 +41,7 @@
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
-                      to="user/data",
+                      to="/user/data",
                       title="Ir a tu cuenta") Tu cuenta
                   li.user-auth__item
                     a.user-auth__link(
