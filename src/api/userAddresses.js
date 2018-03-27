@@ -4,6 +4,10 @@
 import Vue from 'vue'
 
 export default {
+  getRegions: function () {
+    return Vue.axios.get('/api/regions/')
+  },
+
   update: function (data) {
     if (window.localStorage.getItem('userId') === null || window.localStorage.getItem('token') === null) {
       return Promise.reject(new Error('No credentials founds.'))

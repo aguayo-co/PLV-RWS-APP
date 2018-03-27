@@ -4,6 +4,7 @@
 const editableProps = {
   address: null,
   region: null,
+  city: null,
   zone: null
 }
 
@@ -29,7 +30,7 @@ function createComputedProps (props) {
 }
 
 export default {
-  props: ['address'],
+  props: ['address', 'regionsList'],
   data () {
     return {
       newAddressData: {...editableProps},
@@ -37,7 +38,25 @@ export default {
     }
   },
   computed: {
-    ...createComputedProps(editableProps)
+    ...createComputedProps(editableProps),
+    regions: function () {
+      return Object.keys(this.regionsList)
+    },
+    cities: function () {
+      const region = this.new_region
+      const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
+      if (cities) {
+        return Object.keys(cities)
+      }
+    },
+    zones: function () {
+      const region = this.new_region
+      const city = this.new_city
+      const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
+      if (zones) {
+        return Object.keys(zones)
+      }
+    }
   },
   methods: {
     close () {

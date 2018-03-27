@@ -20,7 +20,7 @@
             @click.prevent="IsActive(address)",
             href="#",
             title="Editar Dirección") <small class="hide"> Editar </small>
-      <address-edit v-if="isActive == address" :address=address v-on:close="NotActive"></address-edit>
+      <address-edit v-if="isActive == address" :regionsList=regionsList :address=address v-on:close="NotActive"></address-edit>
     //- clic "nueva dirección"
       Se despliega un cuadro con los inputs de:
       Dirección, Número, Dpto/villa/block,
@@ -75,22 +75,19 @@
             select.form__select(
               v-model="newAddressData['new_region']")
               option
-              option item2
-              option item3
-              option item4
-              option item5
-              option item6
+              option(
+                v-for="region in regions") {{ region }}
+
         .form__grid
           .form__row
             label.form__label(
               for='new-address-city') Ciudad
-            select.form__select
+            select.form__select(
+              v-model="newAddressData['new_city']")
               option
-              option item2
-              option item3
-              option item4
-              option item5
-              option item6
+              option(
+                v-for="citi in cities") {{ citi }}
+
           .form__row
             label.form__label(
               for='new-address-zone') Comuna
@@ -99,11 +96,8 @@
             select.form__select(
               v-model="newAddressData['new_zone']")
               option
-              option item2
-              option item3
-              option item4
-              option item5
-              option item6
+              option(
+                v-for="zone in zones") {{ zone }}
 
         .form__grid.form__grid_center.form__row_away
           .form__row
