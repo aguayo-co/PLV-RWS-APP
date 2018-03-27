@@ -97,9 +97,9 @@
 
     //Paso 3: Comprobante
     section.list-slot
-      header
-        h2 ¡Genial! tu compra ha sido realizada
-        p.small_high Ya envíamos un comprobante de compra a tu correo.
+      header.header-heart.i-heart-on
+        h2.header-heart__title ¡Genial! tu compra ha sido realizada
+        p.small_high.header-heart__txt Ya envíamos un comprobante de compra a tu correo.
       //1c Cliente Registrado, logueado, comprando a la misma vendedora varias prendas
       .list-slot__content
       //1d Cliente Registrado, logueado, comprando a  diferentes vendedoras
@@ -143,11 +143,12 @@
 
             //-datos contacto usuaria
             .card__actions
-              p Teléfono: 9 87654890
-              p Correo: mail@gmail.com
-              //p Envío: Acuerdo con vendedora
-              p Envío: ChileExpress
-              p Fecha estimada: Abr 21 de 2018
+              .card__data
+                p.card__txt Teléfono: 9 87654890
+                p.card__txt Correo: mail@gmail.com
+                //p Envío: Acuerdo con vendedora
+                p.card__txt Envío: ChileExpress
+                p.card__txt Fecha estimada: Abr 21 de 2018
         //-End Item 1
 
     //End Paso 3: Comprobante
