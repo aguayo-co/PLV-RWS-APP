@@ -3,7 +3,7 @@ import userAPI from '@/api/user'
 import Vue from 'vue'
 import userAddressesAPI from '@/api/userAddresses'
 
-const state = {
+const baseState = {
   id: null,
   email: null,
   first_name: null,
@@ -75,17 +75,9 @@ const actions = {
 
 const mutations = {
   set (state, user) {
-    state.id = user.id
-    state.email = user.email
-    state.first_name = user.first_name
-    state.last_name = user.last_name
-    state.about = user.about
-    state.cover = user.cover
-    state.picture = user.picture
-    state.phone = user.phone
-    state.favorite_address_id = user.favorite_address_id
-    state.followers_count = user.followers_count
-    state.following_count = user.following_count
+    Object.keys(baseState).forEach((key) => {
+      state[key] = user[key]
+    })
   },
   setAddresses: function (state, addresses) {
     Object.keys(addresses).forEach(function (key) {
@@ -100,19 +92,9 @@ const mutations = {
     Vue.delete(state.addresses, address.id)
   },
   clear (state, user) {
-    state.id = null
-    state.first_name = null
-    state.last_name = null
-    state.email = null
-    state.about = null
-    state.phone = null
-    state.picture = null
-    state.cover = null
-    state.favorite_address_id = null
-    state.followers_count = null
-    state.following_count = null
-    state.addresses = {}
-
+    Object.keys(baseState).forEach((key) => {
+      state[key] = baseState[key]
+    })
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
   }
@@ -120,7 +102,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state,
+  state: baseState,
   getters,
   actions,
   mutations
