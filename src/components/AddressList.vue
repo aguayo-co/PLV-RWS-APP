@@ -9,11 +9,12 @@
       v-else="",
       v-for="address in addresses")
       .dividers__grid.dividers__list(
-        :class="{'dividers__list_active' :isActive == address}"
+        :class="{'dividers__list_active': isActive == address}"
       ) {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
         span.dividers__actions
           a.dividers__select.i-star-on(
-            @click.preven="UserNewAddress = true",
+            @click.prevent="setFavorite(address)",
+            :class="{favorita: favorite_address_id == address.id}",
             href="#",
             title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
           a.dividers__edit.i-edit-line(
@@ -45,7 +46,7 @@
       6. Para eliminar la dirección debe seleccionar
       el ícono de edición y la opción eliminar."
     li.dividers__bottom(
-      :class="{'dividers__bottom_active' :newAddress == true}")
+      :class="{'dividers__bottom_active': newAddress == true}")
       a.dividers__add.i-plus(
         @click.prevent="toggleNewAddress()",
         href="#",

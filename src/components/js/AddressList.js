@@ -27,6 +27,7 @@ export default {
   },
   computed: {
     ...mapState('user', [
+      'favorite_address_id',
       'addresses'
     ]),
     regions: function () {
@@ -59,6 +60,13 @@ export default {
       this.errorLog = {...addressFields}
       this.newAddressData = {...addressFields}
       this.newAddress = !this.newAddress
+    },
+    setFavorite: function (address) {
+      const data = {
+        favorite_address_id: address.id
+      }
+      // Para poder usarlo dentro de los forEach().
+      this.$store.dispatch('user/update', data)
     },
     createAddress: function () {
       let data = {}
