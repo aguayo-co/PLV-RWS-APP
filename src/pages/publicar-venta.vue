@@ -11,7 +11,7 @@
       .layout-inner
         fieldset.form-section
           legend.subhead.form-section__title Estás a un paso de terminar la publicación de tu producto.
-            p.form-section__subtitle Habilita los métodos de envío disponibles para tus productos
+            p.form-section__subtitle Habilita los métodos de envío disponibles para todos tus productos
           .box
             h3.box__title Envío estándar (Chilexpress) <span class="txt-underline">$3000</span>
             .box__grid

@@ -213,9 +213,13 @@
                     )
                     span {{ color.name }}
 
-            .form__row
+            .form__row(
+              :class='{ "is-danger": errorLog.calculatedSize }')
               label.form__label(
-                for="productSize") Ingresa la talla de tu producto (ej: 32, XS ó 3XL)
+                for="productSize") Ingresa la talla de tu producto (ej: 38, S, 3XL)
+              span.help(
+                v-if="errorLog.calculatedSize"
+              ) {{ errorLog.calculatedSize }}
               .form-asisted__box
                 input.form-asisted__model(
                   v-model="size",
@@ -422,6 +426,7 @@ export default {
       displayedSize: '---',
       calculatedSize: '',
       size: null,
+      sizes: [],
       uniqueSize: false,
       images: [],
       imageURL: null,
@@ -497,7 +502,12 @@ export default {
       if (!this.product.subcategory_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
-      if (!this.product.size_id) this.errorLog.size = 'Debes seleccionar una talla para tu producto'
+      if (!this.calculatedSize) {
+        this.errorLog.calculatedSize = 'Debes seleccionar una talla para tu producto'
+      } else {
+        if (!this.validateSize()) this.errorLog.calculatedSize = 'No podemos reconocer la talla que ingresaste. Si tu producto no tiene talla selecciona la opción "Talla única"'
+      }
+
       if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
       if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar las medidas de tu producto'
       if (!this.product.price) {
@@ -527,10 +537,10 @@ export default {
       e.preventDefault()
       if (e.keyCode === 8) {
         if (this.calculatedSize) {
-          this.calculatedSize = this.calculatedSize.slice(0, -1)
+          this.calculatedSize = this.calculatedSize.slice(0, -1).toUpperCase()
         }
       } else {
-        if (e.key && e.key.length === 1) this.calculatedSize = this.calculatedSize + e.key
+        if (e.key && e.key.length === 1) this.calculatedSize = this.calculatedSize + e.key.toUpperCase()
       }
       this.displayedSize = ''
       for (var i = 0; i < 3 - this.calculatedSize.length; i++) {
@@ -546,6 +556,11 @@ export default {
         this.calculatedSize = ''
         this.displayedSize = '---'
       }
+    },
+    validateSize: function () {
+      console.log(this.sizes.filter(x => x.name === this.calculatedSize)[0])
+      if (this.sizes.filter(x => x.name === this.calculatedSize)[0]) return true
+      return false
     },
     handleMainImage: function () {
       if (this.images[0].hasImage()) {
@@ -603,6 +618,10 @@ export default {
       })
       .catch(e => {
         console.log(e)
+      })
+    productAPI.getAllSizes()
+      .then(response => {
+        response.data.data.forEach((item) => this.sizes.push(...item.children))
       })
   }
 }
