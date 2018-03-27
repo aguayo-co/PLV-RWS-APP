@@ -108,6 +108,7 @@ const mutations = {
     state.phone = null
     state.picture = null
     state.cover = null
+    state.favorite_address_id = null
     state.followers_count = null
     state.following_count = null
     state.addresses = {}
