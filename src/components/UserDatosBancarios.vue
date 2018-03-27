@@ -25,7 +25,7 @@ section.single
       v-on:submit='',
       action='#',
       method='post')
-        p.single__subtitle Agrega tu información bancaria para depositar tus ganancias.
+        p.single__subtitle.subtitle_line Agrega tu información bancaria para depositar tus ganancias.
         .form-section__inner
           .form__row
             label.form__label(
@@ -82,7 +82,7 @@ section.single
       v-on:submit='',
       action='#',
       method='post')
-      p.single__subtitle Modificar información bancaria para depositar tus ganancias.
+      p.single__subtitle.subtitle_line Modificar información bancaria para depositar tus ganancias.
         .form-section__inner
           .form__row
             label.form__label(

@@ -96,6 +96,12 @@ h6 {
   border-bottom: 1px solid $c-neutro-3;
 }
 
+.subtitle_line {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid $c-neutro-3;
+}
+
 .headline {
   padding: 10px 0 50px;
   text-transform: uppercase;
@@ -121,9 +127,6 @@ h6 {
   .section__subhead {
     padding: 88px 0;
   }
-
-
-
   .title_head {
     padding-bottom: 10px;
     @include font-rem(80px);
@@ -147,6 +150,12 @@ h6 {
     text-align: left;
     @include font-rem(30px);
   }
+  .subtitle_line {
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid $c-neutro-3;
+  }
+
 }
 
 // $bp-medium: 1024px;

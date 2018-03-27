@@ -95,6 +95,63 @@
       //-End grid
     //End List paso 1:compra y 2:envío y pago
 
+    //Paso 3: Comprobante
+    section.list-slot
+      header
+        h2 ¡Genial! tu compra ha sido realizada
+        p.small_high Ya envíamos un comprobante de compra a tu correo.
+      //1c Cliente Registrado, logueado, comprando a la misma vendedora varias prendas
+      .list-slot__content
+      //1d Cliente Registrado, logueado, comprando a  diferentes vendedoras
+      .list-slot__content
+        //-Item 1
+        article.list__card
+          //-link a producto
+          router-link.card__product(
+            to="#",
+            title="")
+
+            //-img producto
+            .card__figure
+              img.card__img(
+                src="/static/img/demo/product-001.jpg",
+                alt="")
+
+            //-info producto
+            .card__info
+              .card__header
+                h3.card__title Blusa Blanca Forever 21
+                p.card__brand Marca: Forever 21
+                p.card__size Talla: S
+              p.card__price $ 21.000
+              p.card__tag.tag Prenda usada
+
+          //-info User
+          .card__column
+            //-link a usuario
+            router-link.card__user(
+              to="#",
+              title="")
+              .card__user-img
+                .card__avatar
+                  img.card__picture(
+                    src="/static/img/demo/user-avatar-009.jpg",
+                    alt="")
+              .card__user-info
+                .card__status Vendedora
+                .card__prilover  Daniela Villanueva
+
+            //-datos contacto usuaria
+            .card__actions
+              p Teléfono: 9 87654890
+              p Correo: mail@gmail.com
+              //p Envío: Acuerdo con vendedora
+              p Envío: ChileExpress
+              p Fecha estimada: Abr 21 de 2018
+        //-End Item 1
+
+    //End Paso 3: Comprobante
+
 </template>
 
 <script>
