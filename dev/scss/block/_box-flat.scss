@@ -47,13 +47,13 @@
 @include media-query(medium) {
   .box-flat {
     padding: 24px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
   }
   .box_alert {
     .box-flat__lead {
       padding-right: 20px;
       &:before {
-        @include font-rem(66px);
+        @include font-rem(56px);
       }
     }
     .box-flat__button {
@@ -70,11 +70,11 @@
     .box-flat__lead {
       width: inherit;
       padding-left: 92px;
-      @include font-rem(20px);
+      @include font-rem(16px);
        &:before {
         position: absolute;
         left: 0;
-        @include font-rem(60px);
+        @include font-rem(50px);
         color: $c-brand;
       }
     }
@@ -84,10 +84,28 @@
       padding: 0 30px 0 0;
     }
     .box-flat__title {
-      @include font-rem(20px);
+      @include font-rem(18px);
       padding-bottom: 6px;
     }
     .box-flat__txt {
       padding-left: 30px;
     }
+}
+
+@include media-query(wide) {
+  .box_alert {
+    .box-flat__lead {
+      &:before {
+        @include font-rem(66px);
+      }
+    }
+  }
+  .box-flat__lead {
+    &:before {
+      @include font-rem(60px);
+    }
+  }
+  .box-flat__title {
+    @include font-rem(20px);
+  }
 }
