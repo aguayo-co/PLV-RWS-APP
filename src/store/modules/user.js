@@ -102,7 +102,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state: baseState,
+  state: {...baseState},
   getters,
   actions,
   mutations
