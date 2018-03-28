@@ -9,18 +9,19 @@
       v-else="",
       v-for="address in addresses")
       .dividers__grid.dividers__list(
-        :class="{'dividers__list_active' :isActive == address}"
+        :class="{'dividers__list_active': isActive == address}"
       ) {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
         span.dividers__actions
           a.dividers__select.i-star-on(
-            @click.preven="UserNewAddress = true",
+            @click.prevent="setFavorite(address)",
+            :class="{favorita: favorite_address_id == address.id}",
             href="#",
             title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
           a.dividers__edit.i-edit-line(
             @click.prevent="IsActive(address)",
             href="#",
             title="Editar Dirección") <small class="hide"> Editar </small>
-      <address-edit v-if="isActive == address" :address=address v-on:close="NotActive"></address-edit>
+      <address-edit v-if="isActive == address" :regionsList=regionsList :address=address v-on:close="NotActive"></address-edit>
     //- clic "nueva dirección"
       Se despliega un cuadro con los inputs de:
       Dirección, Número, Dpto/villa/block,
@@ -45,7 +46,7 @@
       6. Para eliminar la dirección debe seleccionar
       el ícono de edición y la opción eliminar."
     li.dividers__bottom(
-      :class="{'dividers__bottom_active' :newAddress == true}")
+      :class="{'dividers__bottom_active': newAddress == true}")
       a.dividers__add.i-plus(
         @click.prevent="toggleNewAddress()",
         href="#",
@@ -75,22 +76,19 @@
             select.form__select(
               v-model="newAddressData['new_region']")
               option
-              option item2
-              option item3
-              option item4
-              option item5
-              option item6
+              option(
+                v-for="region in regions") {{ region }}
+
         .form__grid
           .form__row
             label.form__label(
               for='new-address-city') Ciudad
-            select.form__select
+            select.form__select(
+              v-model="newAddressData['new_city']")
               option
-              option item2
-              option item3
-              option item4
-              option item5
-              option item6
+              option(
+                v-for="citi in cities") {{ citi }}
+
           .form__row
             label.form__label(
               for='new-address-zone') Comuna
@@ -99,11 +97,8 @@
             select.form__select(
               v-model="newAddressData['new_zone']")
               option
-              option item2
-              option item3
-              option item4
-              option item5
-              option item6
+              option(
+                v-for="zone in zones") {{ zone }}
 
         .form__grid.form__grid_center.form__row_away
           .form__row

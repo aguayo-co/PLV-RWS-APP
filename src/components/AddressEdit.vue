@@ -24,23 +24,18 @@
             :id="address.id + 'region'"
             v-model="new_region")
             option
-            option item2
-            option item3
-            option item4
-            option item5
-            option item6
+            option(
+              v-for="region in regions") {{ region }}
       .form__grid
         .form__row
           label.form__label(
             :for="address.id  + 'city'") Ciudad
           select.form__select(
+            v-model="new_city"
             :id="address.id + 'city'")
             option
-            option item2
-            option item3
-            option item4
-            option item5
-            option item6
+            option(
+              v-for="citi in cities") {{ citi }}
         .form__row
           label.form__label(
             :for="address.id + 'zone'") Comuna
@@ -50,11 +45,8 @@
             :id="address.id + 'zone'"
             v-model="new_zone")
             option
-            option item2
-            option item3
-            option item4
-            option item5
-            option item6
+            option(
+              v-for="zone in zones") {{ zone }}
       .form__grid_reverse.form__row_away
         .form__row
           a.link_underline(

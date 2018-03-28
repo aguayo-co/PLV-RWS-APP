@@ -1,5 +1,6 @@
 import { mapState } from 'vuex'
 import AddressEdit from '@/components/AddressEdit'
+import userAddressesAPI from '@/api/userAddresses'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -7,6 +8,7 @@ import AddressEdit from '@/components/AddressEdit'
 const addressFields = {
   new_address: null,
   new_region: null,
+  new_city: null,
   new_zone: null
 }
 
@@ -17,6 +19,7 @@ export default {
   data () {
     return {
       isActive: '',
+      regionsList: {},
       newAddress: false,
       newAddressData: {...addressFields},
       errorLog: {...addressFields}
@@ -24,11 +27,27 @@ export default {
   },
   computed: {
     ...mapState('user', [
+      'favorite_address_id',
       'addresses'
-    ])
-  },
-  created: function () {
-    this.$store.dispatch('user/loadAddresses')
+    ]),
+    regions: function () {
+      return Object.keys(this.regionsList)
+    },
+    cities: function () {
+      const region = this.newAddressData.new_region
+      const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
+      if (cities) {
+        return Object.keys(cities)
+      }
+    },
+    zones: function () {
+      const region = this.newAddressData.new_region
+      const city = this.newAddressData.new_city
+      const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
+      if (zones) {
+        return Object.keys(zones)
+      }
+    }
   },
   methods: {
     IsActive: function (e) {
@@ -41,6 +60,13 @@ export default {
       this.errorLog = {...addressFields}
       this.newAddressData = {...addressFields}
       this.newAddress = !this.newAddress
+    },
+    setFavorite: function (address) {
+      const data = {
+        favorite_address_id: address.id
+      }
+      // Para poder usarlo dentro de los forEach().
+      this.$store.dispatch('user/update', data)
     },
     createAddress: function () {
       let data = {}
@@ -59,5 +85,12 @@ export default {
         })
       })
     }
+  },
+  created: function () {
+    this.$store.dispatch('user/loadAddresses')
+    const vm = this
+    userAddressesAPI.getRegions().then((response) => {
+      vm.regionsList = response.data
+    })
   }
 }

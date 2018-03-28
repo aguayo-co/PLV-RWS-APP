@@ -56,9 +56,8 @@
                       href="",
                       title="Ir a Centro de mensajes") Centro de mensajes
                   li.user-auth__item
-                    router-link.user-auth__link(
-                      @click='logout()'
-                      to="/home",
+                    a.user-auth__link(
+                      @click.prevent='logout()'
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
           li.tool-user__item.i-user(v-else
@@ -100,6 +99,7 @@ export default {
     },
     logout: function () {
       this.$store.dispatch('user/logOut')
+      this.$router.push({name: 'home'})
     }
   },
   computed: {
