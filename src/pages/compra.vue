@@ -276,7 +276,6 @@
         dt.subhead Fecha estimada de entrega
         dd.dividers__item 5/11/2017
     //End Paso 3: Comprobante
-
 </template>
 
 <script>
