@@ -278,9 +278,9 @@
       //End Paso 3: Comprobante
       .form__grid.form__grid_center.form__row_away
         .form__row
-          a.btn(href="#", title="Ir a Vitinear") Vitinear
+          a.btn.btn_solid(href="#", title="Ir a Vitinear") Vitinear
         .form__row
-          a.btn.btn_solid(href="#", title="Ir a mis compras") Ir a mis compras
+          a.btn(href="#", title="Ir a mis compras") Ir a mis compras
       a.form-brand(href='/', title='Ir a la página de inicio')
         span.brand
           img.brand__logo(src='/static/img/brand-prilov.png', alt='Prilov Compra. Usa. Vende')
