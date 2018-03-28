@@ -583,6 +583,18 @@ select {
   }
 }
 
+.form-brand {
+  display: block;
+  padding-top: 30px;
+  color: $c-default;
+  .brand {
+    @include justify-content(center);
+  }
+  .brand__typo {
+    text-align: left;
+  }
+}
+
 // $bp-medium: 768px;
 @include media-query(medium) {
   .form__edit_txt {
@@ -596,6 +608,9 @@ select {
   .form__disclaimer {
     margin: 0;
     @include font-rem(18px);
+  }
+  .form-brand {
+    padding-top: 50px;
   }
 }
 

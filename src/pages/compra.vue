@@ -275,7 +275,36 @@
         dd.dividers__item Alberto Blest Gana 803, Padre Hurtado, Santiago
         dt.subhead Fecha estimada de entrega
         dd.dividers__item 5/11/2017
+
+      .form__grid.form__grid_center.form__row_away
+        .form__row
+          a.btn.btn_solid(href="#", title="Ir a Vitinear") Vitinear
+        .form__row
+          a.btn(href="#", title="Ir a mis compras") Ir a mis compras
+      a.form-brand(href='/', title='Ir a la página de inicio')
+        span.brand
+          img.brand__logo(src='/static/img/brand-prilov.png', alt='Prilov Compra. Usa. Vende')
+          span.brand__typo
+            strong.brand__name Prilov.com
+            span.brand__tagline  Compra. Usa. Vende.
     //End Paso 3: Comprobante
+    .modal__slot.content-slot
+      .content-slot__inner
+        .notify
+          h2.title.notify__title  Estás a un paso de obtener tu compra.
+          p.subtitle_heart Aun no has terminado tu compra, sube tu comprobante de pago.
+          .notify__body
+            form.form
+              input.form__file(
+                type="file",
+                name="file-comprobante",
+                id="file-comprobante",
+                multiple="")
+              label.form__label_file(for="file-comprobante")
+                span.form__file-txt Selecciona archivo
+            p Recuerda que tienes un máximo de 10 minutos para realizar tu transferencia, de lo contrario tu compra se cancelará automáticamente
+          .notify__footer
+              button.btn.btn_solid Enviar comprobante
 </template>
 
 <script>
