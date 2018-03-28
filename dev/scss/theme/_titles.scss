@@ -109,42 +109,36 @@ h6 {
   font-weight: $fw-medium;
   @include font-rem(22px);
 }
-.header-heart {
-  position: relative;
-  padding-top: 34px;
+
+//corazón titulo
+.header_heart {
+  padding-bottom: 16px;
   text-align: center;
+  border-bottom: 1px solid $c-neutro-3;
   &:before {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    padding: 6px 5px 5px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 16px;
+    line-height: 32px;
     color: $c-brand;
-    @include font-rem(13px);
+    @include font-rem(20px);
     border-radius: 50%;
     border: 2px solid #fe7675;
-    -ms-transform    : translateX(-50%);
-    -moz-transform   : translateX(-50%);
-    -o-transform     : translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    transform        : translateX(-50%);
   }
 }
 
-.header-heart {
-  .header-heart__txt {
-    margin: 0;
-    font-family: $f-fancy;
-  }
-}
-
-.header-heart__title {
+.title_heart {
+  padding-bottom: 8px;
   text-transform: uppercase;
   font-family: $f-fancy;
-  font-weight: $fw-medium;
+  font-weight: $fw-light;
   @include font-rem(20px);
-  padding-bottom: 8px;
 }
-
+.subtitle_heart {
+  margin: 0;
+  color: $c-brand;
+}
 
 // $bp-medium: 768px;
 @include media-query(medium) {
@@ -192,36 +186,30 @@ h6 {
     margin-bottom: 32px;
     border-bottom: 1px solid $c-neutro-3;
   }
-
-  .header-heart {
-    padding-top: 50px;
+  //corazón titulo
+  .header_heart {
+    padding-bottom: 32px;
     &:before {
-      padding: 8px 6px 5px;
-      @include font-rem(20px);
+      width: 40px;
+      height: 40px;
+      margin-bottom: 24px;
+      line-height: 42px;
+      @include font-rem(24px);
     }
   }
 
-  .header-heart__title {
+  .title_heart {
+    padding-bottom: 16px;
     @include font-rem(30px);
   }
-
+  .subtitle_heart {
+    @include font-rem(16px);
+  }
 }
 
 // $bp-medium: 1024px;
 @include media-query(wide) {
   .title_head-small {
     @include font-rem(36px);
-  }
-
-  .header-heart {
-    padding-top: 60px;
-    &:before {
-      padding: 10px 8px 8px;  
-      @include font-rem(23px);
-    }
-  }
-
-  .header-heart__title {
-    @include font-rem(35px);
   }
 }
