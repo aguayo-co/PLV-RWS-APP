@@ -129,7 +129,7 @@ section.single
         .user-data__actions
           //- router-link.btn.btn_small.i-start-line(
           //-   to="#",
-          //-   title="Ser Priloverstar") Ser Prilovestar
+          //-   title="Ser Priloverstar") Ser Priloverstar
           router-link.btn.btn_small.i-sale(
             to="/publicar-venta",
             title="Publicar Producto") Publicar una venta
@@ -160,7 +160,7 @@ section.single
                   v-model='new_email',
                   id='editEmail',
                   type='email',
-                  :disabled="editEmail == false"
+                  :disabled="editEmail == false",
                   :placeholder="email")
                 span.dividers__actions
                   button.btn-tag(
