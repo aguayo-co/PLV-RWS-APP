@@ -4,6 +4,7 @@
 const editableProps = {
   address: null,
   region: null,
+  city: null,
   zone: null
 }
 
@@ -29,7 +30,7 @@ function createComputedProps (props) {
 }
 
 export default {
-  props: ['address'],
+  props: ['address', 'regionsList'],
   data () {
     return {
       newAddressData: {...editableProps},
@@ -37,18 +38,36 @@ export default {
     }
   },
   computed: {
-    ...createComputedProps(editableProps)
+    ...createComputedProps(editableProps),
+    regions: function () {
+      return Object.keys(this.regionsList)
+    },
+    cities: function () {
+      const region = this.new_region
+      const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
+      if (cities) {
+        return Object.keys(cities)
+      }
+    },
+    zones: function () {
+      const region = this.new_region
+      const city = this.new_city
+      const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
+      if (zones) {
+        return Object.keys(zones)
+      }
+    }
   },
   methods: {
     close () {
+      this.errorLog = {...editableProps}
+      this.newAddressData = {...editableProps}
       this.$emit('close')
     },
     deleteAddress () {
       let data = {
         id: this.address.id
       }
-
-      // Crea el objeto a enviar.
       this.$store.dispatch('user/deleteAddress', data)
     },
     updateAddress () {
@@ -57,17 +76,15 @@ export default {
       }
       // Para poder usarlo dentro de los forEach().
       const vm = this
-
-      // Crea el objeto a enviar.
+      // Agrega la información a enviar.
       Object.keys(editableProps).forEach(function (key) {
         data[key] = vm['new_' + key]
       })
       // Guarda la dirección
       this.$store.dispatch('user/updateAddress', data).then(() => {
         // Elimina datos locales, para que se usen los de Vuex
-        Object.keys(editableProps).forEach(function (key) {
-          vm[key] = null
-        })
+        vm.newAddressData = {...editableProps}
+        vm.errorLog = {...editableProps}
         this.close()
       }).catch((e) => {
         // Si hay errores, mostrarlos.

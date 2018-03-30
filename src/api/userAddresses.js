@@ -4,6 +4,10 @@
 import Vue from 'vue'
 
 export default {
+  getRegions: function () {
+    return Vue.axios.get('/api/regions/')
+  },
+
   update: function (data) {
     if (window.localStorage.getItem('userId') === null || window.localStorage.getItem('token') === null) {
       return Promise.reject(new Error('No credentials founds.'))
@@ -18,15 +22,18 @@ export default {
     return Vue.axiosAuth.patch('/api/users/' + data.user_id + '/addresses/' + data.id, payload)
   },
 
-  create: function (user) {
+  create: function (data) {
+    const userId = window.localStorage.getItem('userId')
+    if (userId === null || window.localStorage.getItem('token') === null) {
+      return Promise.reject(new Error('No credentials founds.'))
+    }
     const payload = {
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      password: user.password
+      address: data.address,
+      region: data.region,
+      zone: data.zone
     }
 
-    return Vue.axios.post('/api/users', payload)
+    return Vue.axiosAuth.post('/api/users/' + userId + '/addresses', payload)
   },
 
   load: function () {

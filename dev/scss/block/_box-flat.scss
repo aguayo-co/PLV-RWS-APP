@@ -1,0 +1,114 @@
+/*------------------------------------*\
+	box | flat
+\*------------------------------------*/
+.box-flat {
+  display: block;
+  padding: 16px;
+  border: 1px solid $c-neutro-3;
+  margin-bottom: 40px;
+}
+
+.box-flat__grid {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  max-width: 330px;
+  margin: 0 auto;
+}
+  .box-flat__lead {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 60px;
+    &:before {
+      position: absolute;
+      left: 0;
+      @include font-rem(38px);
+      color: $c-brand;
+    }
+  }
+  .box-flat__title {
+    @include font-rem(14px);
+    padding-bottom: 6px;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+    
+  }
+  .box-flat__txt {
+    margin: 0;
+    letter-spacing: 6px;
+    color: $c-brand;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+  }
+  .box-flat__button {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .box-flat {
+    padding: 24px;
+    margin: 0 auto 40px;
+  }
+  .box_alert {
+    .box-flat__lead {
+      padding-right: 20px;
+      &:before {
+        @include font-rem(56px);
+      }
+    }
+    .box-flat__button {
+      padding-right: 0;
+    }
+  }
+  .box-flat__grid {
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include flex-wrap(inherit);
+    max-width: inherit;
+    text-align: left;
+  }
+    .box-flat__lead {
+      width: inherit;
+      padding-left: 92px;
+      @include font-rem(16px);
+       &:before {
+        position: absolute;
+        left: 0;
+        @include font-rem(50px);
+        color: $c-brand;
+      }
+    }
+    .box-flat__button {
+      width: inherit;
+      text-align: center;
+      padding: 0 30px 0 0;
+    }
+    .box-flat__title {
+      @include font-rem(18px);
+      padding-bottom: 6px;
+    }
+    .box-flat__txt {
+      padding-left: 30px;
+    }
+}
+
+@include media-query(wide) {
+  .box_alert {
+    .box-flat__lead {
+      &:before {
+        @include font-rem(66px);
+      }
+    }
+  }
+  .box-flat__lead {
+    &:before {
+      @include font-rem(60px);
+    }
+  }
+  .box-flat__title {
+    @include font-rem(20px);
+  }
+}

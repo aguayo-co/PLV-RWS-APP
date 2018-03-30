@@ -546,6 +546,54 @@ select {
     }
   }
 }
+/*------------------------------------*\
+	form combo: input alineado con btn
+\*------------------------------------*/
+
+.form__combo {
+  @include flexbox;
+  @include align-items(center);
+  margin-bottom: 12px;
+}
+.combo__control {
+  width: 60%;
+  margin-bottom: 0;
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+  @include font-rem(28px);
+}
+.combo__btn {
+  width: 40%;
+  min-width: auto;
+  margin-left: 10px;
+  padding: 10px 16px;
+  border-width: 1px;
+}
+.form__combo_ok {
+  .combo__control {
+    border-color: $c-ok;
+    color: $c-ok;
+  }
+  &:before {
+    margin-left: 12px;
+    @include order(2);
+    color: $c-ok;
+    font-weight: bold;
+    @include font-rem(18px);
+  }
+}
+
+.form-brand {
+  display: block;
+  padding-top: 30px;
+  color: $c-default;
+  .brand {
+    @include justify-content(center);
+  }
+  .brand__typo {
+    text-align: left;
+  }
+}
 
 // $bp-medium: 768px;
 @include media-query(medium) {
@@ -560,6 +608,9 @@ select {
   .form__disclaimer {
     margin: 0;
     @include font-rem(18px);
+  }
+  .form-brand {
+    padding-top: 50px;
   }
 }
 
