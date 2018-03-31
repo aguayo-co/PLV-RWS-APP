@@ -90,10 +90,10 @@ export default {
       errorLog: {},
       picture: null,
       pictureURL: null,
+      toggleImageDelete: false,
       about: null,
       phone: null,
-      addresses: null,
-      toggleImageDelete: false
+      addresses: null
     }
   },
   computed: {
