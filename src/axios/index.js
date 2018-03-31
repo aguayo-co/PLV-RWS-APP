@@ -49,7 +49,7 @@ export default {
       return config
     })
 
-    const authWithFileOptions = {
+    const withFileOptions = {
       baseURL: store.state.apiDomain,
       headers: {
         'Accept': 'application/json',
@@ -57,7 +57,7 @@ export default {
       }
     }
 
-    Vue.axiosAuthWithFile = axios.create(authWithFileOptions)
+    Vue.axiosAuthWithFile = axios.create(withFileOptions)
     Vue.axiosAuthWithFile.interceptors.response.use(null, baseErrorPopups)
     Vue.prototype.$axiosAuthWithFile = Vue.axiosAuthWithFile
     // We intercept every request and add the current Bearer token.
@@ -68,5 +68,9 @@ export default {
       config.headers.Authorization = 'Bearer ' + token
       return config
     })
+
+    Vue.axiosWithFile = axios.create(withFileOptions)
+    Vue.axiosWithFile.interceptors.response.use(null, baseErrorPopups)
+    Vue.prototype.$axiosWithFile = Vue.axiosWithFile
   }
 }

@@ -52,15 +52,34 @@ export default {
     return Vue.axiosAuthWithFile.post('/api/users/' + data.id, formData)
   },
 
-  create: function (user) {
-    const payload = {
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      password: user.password
-    }
+  create: function (data) {
+    var formData = new FormData()
+    Object.keys(data).forEach((key, index) => {
+      if (key !== 'picture') {
+        formData.append(key, data[key])
+      } else {
+        let image = data.picture
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+        var byteString = atob(image.split(',')[1])
 
-    return Vue.axios.post('/api/users', payload)
+        // separate out the mime component
+        var mimeString = image.split(',')[0].split(':')[1].split(';')[0]
+
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length)
+        var ia = new Uint8Array(ab)
+        for (var i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i)
+        }
+
+        // write the ArrayBuffer to a blob, and you're done
+        var bb = new Blob([ab], {type: mimeString})
+        var file = new File([bb], 'image' + index + '.png')
+        formData.append('picture', file)
+      }
+    })
+    return Vue.axiosWithFile.post('/api/users', formData)
   },
 
   login: function (user) {
