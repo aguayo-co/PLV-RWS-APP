@@ -1,6 +1,7 @@
 /**
  * API Calls related to products and their properties
  */
+import Vue from 'vue'
 import axios from 'axios'
 const apiURL = 'https://prilov.aguayo.co/api/'
 
@@ -55,8 +56,18 @@ export default {
     return axios.post(apiURL + 'products', data, headers)
   },
 
-  getAllProducts: function () {
+  getProducts: function (page, items, filter) {
+    let queryFilter = ''
+    page = page || 1
+    items = items || 8
 
+    if (filter) {
+      Object.keys(filter).forEach((key) => {
+        queryFilter += '&filter[' + key + ']=' + filter[key]
+      })
+    }
+    console.log('/api/products?items=' + items + '&page=' + page + queryFilter)
+    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter)
   },
 
   getProductById: function (productId) {
