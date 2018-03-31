@@ -21,6 +21,7 @@
             header.modal__header
               .prilov-preload(
                 v-if='attributes.type === "preload"')
+                h2.title.notify__title {{ attributes.title }}
                 .preload
                   span.preload__spin.preload__spin_1
                   span.preload__spin.preload__spin_2
