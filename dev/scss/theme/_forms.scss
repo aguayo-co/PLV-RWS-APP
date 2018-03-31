@@ -595,6 +595,50 @@ select {
   }
 }
 
+//Input File
+.form_file {
+  position: relative;
+}
+
+.form__file-txt {
+  display: block;
+}
+
+.form__file {
+  position: absolute;
+  opacity: 0;
+}
+
+.form__label_file {
+  display: block;
+  cursor: pointer;
+  padding-bottom: 18px;
+}
+
+.form__file-txt {
+  padding-bottom: 8px;
+}
+
+.form__file-input {
+  @include flexbox;
+  @include align-items(center);
+  width: 100%;
+  border: 1px solid $c-default;
+}
+
+.form-file__btn {
+  width: 30%;
+  color: $c-neutro;
+  background-color: $c-default;
+  padding: 11px 20px 13px;
+  text-align: center;
+}
+
+.form-file__txt {
+  width: 70%;
+  padding: 11px 20px 13px;
+}
+
 // $bp-medium: 768px;
 @include media-query(medium) {
   .form__edit_txt {
