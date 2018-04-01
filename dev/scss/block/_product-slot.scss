@@ -286,6 +286,13 @@
       vertical-align: text-bottom;
       @include font-rem(26px);
     }
+    &.i-star-on {
+      &:before {
+        top: -1px;
+        vertical-align: baseline;
+        @include font-rem(18px);
+      }
+    }
   }
   .section_product__footer {
     padding-bottom: 168px;

@@ -4745,6 +4745,11 @@ body {
       vertical-align: text-bottom;
       font-size: 26px;
       font-size: 1.625rem; }
+    .slot__group.i-star-on:before {
+      top: -1px;
+      vertical-align: baseline;
+      font-size: 18px;
+      font-size: 1.125rem; }
   .section_product__footer {
     padding-bottom: 168px;
     text-align: center; } }
