@@ -16,12 +16,7 @@
       h2.title_head <span class="txt_brand">Im</span>perdibles
       h3.title_subhead Lo que más nos gusta de Prilov
 
-    ProductoGrid
-
-    p.section_product__footer(
-        v-if="mqTablet")
-      span.btn__wrapper
-        a.btn.i-send(href="") Ver más prendas
+    GridProducto(:infinite='true')
 </template>
 
 <script>
@@ -29,7 +24,7 @@ import BannerTop from '@/components/BannerTop'
 import BannerSlider from '@/components/BannerSlider'
 import BannerGrid from '@/components/BannerGrid'
 import PriloversSlider from '@/components/PriloversSlider'
-import ProductoGrid from '@/components/ProductoGrid'
+import GridProducto from '@/components/GridProducto'
 
 export default {
   name: 'Home',
@@ -38,7 +33,7 @@ export default {
     BannerSlider,
     BannerGrid,
     PriloversSlider,
-    ProductoGrid
+    GridProducto
   }
 }
 </script>

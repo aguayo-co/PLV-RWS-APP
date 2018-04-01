@@ -48,5 +48,29 @@ export default {
       config.headers.Authorization = 'Bearer ' + token
       return config
     })
+
+    const withFileOptions = {
+      baseURL: store.state.apiDomain,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+    Vue.axiosAuthWithFile = axios.create(withFileOptions)
+    Vue.axiosAuthWithFile.interceptors.response.use(null, baseErrorPopups)
+    Vue.prototype.$axiosAuthWithFile = Vue.axiosAuthWithFile
+    // We intercept every request and add the current Bearer token.
+    Vue.axiosAuthWithFile.interceptors.request.use(function (config) {
+      const token = store.getters['user/token']
+
+      config.headers = config.headers || {}
+      config.headers.Authorization = 'Bearer ' + token
+      return config
+    })
+
+    Vue.axiosWithFile = axios.create(withFileOptions)
+    Vue.axiosWithFile.interceptors.response.use(null, baseErrorPopups)
+    Vue.prototype.$axiosWithFile = Vue.axiosWithFile
   }
 }

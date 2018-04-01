@@ -121,17 +121,35 @@
             .form__row(
               :class='{ "is-danger": errorLog.category }')
               label.form__label(
-                for='product-categoria') Categoría
+                for='product-categoria') Categoría principal
               span.help(
                 v-if="errorLog.category"
               ) {{ errorLog.category }}
               select.form__select(
                 ref='category'
                 id='product-categoria'
-                v-model='product.category_id')
-                optgroup(label='Categoría')
+                v-model='product.category_id'
+                @change='loadSubCategories')
+                optgroup(label='Categoría principal')
                   option(
                     v-for='category in categories'
+                    :value='category.id'
+                  ) {{ category.name }}
+            .form__row(
+              v-if='product.category_id'
+              :class='{ "is-danger": errorLog.category }')
+              label.form__label(
+                for='product-subcategoria') Categoría específica
+              span.help(
+                v-if="errorLog.subcategory"
+              ) {{ errorLog.subcategory }}
+              select.form__select(
+                ref='subcategory'
+                id='product-subcategoria'
+                v-model='product.subcategory_id')
+                optgroup(label='Categoría específica')
+                  option(
+                    v-for='category in subcategories'
                     :value='category.id'
                   ) {{ category.name }}
             .form__row(
@@ -195,23 +213,32 @@
                     )
                     span {{ color.name }}
 
-            .form__row
+            .form__row(
+              :class='{ "is-danger": errorLog.calculatedSize }')
               label.form__label(
-                for="productSize") Ingresa la talla de tu producto (ej: 32, XS ó 3XL)
+                for="productSize") Ingresa la talla de tu producto (ej: 38, S, 3XL)
+              span.help(
+                v-if="errorLog.calculatedSize"
+              ) {{ errorLog.calculatedSize }}
               .form-asisted__box
                 input.form-asisted__model(
-                  v-model="sizeCharAt",
+                  v-model="size",
                   id="productSize",
                   type="text",
-                  maxlength="3")
-                .form-asisted__value
-                  span.form-asisted__item - {{ sizeCharAt.charAt(0) }}
-                  span.form-asisted__item - {{ sizeCharAt.charAt(1) }}
-                  span.form-asisted__item - {{ sizeCharAt.charAt(2) }}
+                  maxlength="3"
+                  @keydown='assistedSize',
+                  :disabled='uniqueSize')
+                .form-asisted__value(
+                  :class='{ "active": !uniqueSize }')
+                  span.form-asisted__item {{ displayedSize.charAt(0) }}
+                  span.form-asisted__item {{ displayedSize.charAt(1) }}
+                  span.form-asisted__item {{ displayedSize.charAt(2) }}
             .form__row.form__row_check
               input.form__input-check(
+                v-model='uniqueSize'
                 type="checkbox"
                 id='sizeU',
+                @change='uniqueSizeSelect'
                 checked)
               label.form__label.form__label_check.i-ok(
                 for='sizeU') ¿ó tu producto es talla única?
@@ -285,7 +312,7 @@
                   .slot__lead
                     .slot__title {{ product.title }}
                     .slot__size
-                      .slot__size-txt {{ product.size_id }}
+                      .slot__size-txt {{ calculatedSize }}
 
                   //- brand/price
                   .slot__info
@@ -396,7 +423,11 @@ export default {
   name: 'FormPublicarVenta',
   data () {
     return {
-      sizeCharAt: '',
+      displayedSize: '---',
+      calculatedSize: '',
+      size: null,
+      sizes: [],
+      uniqueSize: false,
       images: [],
       imageURL: null,
       toggleImage: false,
@@ -411,6 +442,7 @@ export default {
         commission: 20,
         brand_id: null,
         category_id: null,
+        subcategory_id: null,
         color_ids: [],
         condition_id: null,
         brand: null,
@@ -419,36 +451,14 @@ export default {
       },
       conditions: {},
       categories: {},
+      subcategories: {},
       colors: {},
       brands: {},
       errorLog: {},
       toggleColors: {
         first: false,
         second: false
-      },
-      toggleSize: false,
-      sizeScheme: 0,
-      sizes: [
-        {
-          id: 1,
-          name: 'Letras',
-          description: 'Talla en letras desde XS hasta XXXL',
-          values: ['XS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
-        },
-        {
-          id: 2,
-          name: 'Números',
-          description: 'Talla en números desde 1 hasta 60',
-          values: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
-            34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
-        },
-        {
-          id: 3,
-          name: 'Única',
-          description: 'La talla es única o estándar',
-          values: ['U']
-        }
-      ]
+      }
     }
   },
   methods: {
@@ -488,10 +498,16 @@ export default {
       this.errorLog = {}
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
-      if (!this.product.category_id) this.errorLog.category = 'Debes seleccionar una categoría'
+      if (!this.product.category_id) this.errorLog.category = 'Debes seleccionar una categoría principal'
+      if (!this.product.subcategory_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
-      if (!this.product.size_id) this.errorLog.size = 'Debes seleccionar una talla para tu producto'
+      if (!this.calculatedSize) {
+        this.errorLog.calculatedSize = 'Debes seleccionar una talla para tu producto'
+      } else {
+        if (!this.validateSize()) this.errorLog.calculatedSize = 'No podemos reconocer la talla que ingresaste. Si tu producto no tiene talla selecciona la opción "Talla única"'
+      }
+
       if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
       if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar las medidas de tu producto'
       if (!this.product.price) {
@@ -517,6 +533,35 @@ export default {
       this.sizeScheme = sizeId - 1
       this.toggleSize = true
     },
+    assistedSize: function (e) {
+      e.preventDefault()
+      if (e.keyCode === 8) {
+        if (this.calculatedSize) {
+          this.calculatedSize = this.calculatedSize.slice(0, -1).toUpperCase()
+        }
+      } else {
+        if (e.key && e.key.length === 1) this.calculatedSize = this.calculatedSize + e.key.toUpperCase()
+      }
+      this.displayedSize = ''
+      for (var i = 0; i < 3 - this.calculatedSize.length; i++) {
+        this.displayedSize += '-'
+      }
+      this.displayedSize += this.calculatedSize
+    },
+    uniqueSizeSelect: function (e) {
+      if (this.uniqueSize) {
+        this.calculatedSize = 'U'
+        this.displayedSize = '--U'
+      } else {
+        this.calculatedSize = ''
+        this.displayedSize = '---'
+      }
+    },
+    validateSize: function () {
+      console.log(this.sizes.filter(x => x.name === this.calculatedSize)[0])
+      if (this.sizes.filter(x => x.name === this.calculatedSize)[0]) return true
+      return false
+    },
     handleMainImage: function () {
       if (this.images[0].hasImage()) {
         this.toggleImage = true
@@ -533,10 +578,20 @@ export default {
       this.toggleImageDelete[index] = false
       this.images[index].remove()
       if (index === 0) this.toggleImage = false
+    },
+    loadSubCategories: async function () {
+      await productAPI.getCategoriesById(this.product.category_id)
+        .then(response => {
+          console.log(response)
+          this.subcategories = response.data.data[0].children
+        })
+        .catch(e => {
+          console.log(e)
+        })
     }
   },
   created: function () {
-    productAPI.getShopCategories()
+    productAPI.getCategoriesBySlug('shop')
       .then(response => {
         this.categories = response.data.children
       })
@@ -563,6 +618,10 @@ export default {
       })
       .catch(e => {
         console.log(e)
+      })
+    productAPI.getAllSizes()
+      .then(response => {
+        response.data.data.forEach((item) => this.sizes.push(...item.children))
       })
   }
 }

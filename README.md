@@ -52,46 +52,11 @@ npm install vuex --save-dev
 npm install vue vue-server-renderer --save
 ```
 ---
-### Incluye Vee-Validate
-URL: https://github.com/baianat/vee-validate
-#### Installation
-``` bash
-npm install vee-validate --save -dev
-```
----
-
-### Incluye Vue-password
-URL: https://github.com/skegel13/vue-password
-#### Installation
-``` bash
-npm install vue-password --save -dev
-```
----
-#### Rutas de archivos en node_custom_modules
-    vue-password : node_modules\vue-password\dist archivo index.js
-    vee-validate : node_modules\vee-validate\dist\locale archivo es.js
-
----
 ### Incluye PUG
 URL: https://gist.github.com/levibostian/96cc285d4235d73f09cdc22f2590ccba
 #### Installation
 ``` bash
 npm install pug --save-dev
-```
----
-### Sticky
-#### Uso:
-* Menu Usuario
-* Menu Main Mobile
-#### URL:
-https://www.npmjs.com/package/vue-sticky-js
-#### Installation
-``` bash
-npm i -S vue-sticky-js
-```
-#### Directive
-``` bash
-v-sticky => Define a new sticky element
 ```
 ---
 ### vue-awesome-swiper
@@ -127,4 +92,15 @@ https://github.com/drewjbartlett/vue-flickity
 #### Installation
 ``` bash
 npm install vue-flickity
+```
+---
+### vue-croppa
+#### Uso:
+Subir imgen de perfil y producto
+
+#### URL:
+https://github.com/zhanziyang/vue-croppa
+#### Installation
+``` bash
+npm install --save vue-croppa
 ```
