@@ -186,7 +186,7 @@
     height: 40px;
     overflow: hidden;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 50%;
     .slot__picture {
       position: relative;
       top: 50%;
@@ -194,6 +194,10 @@
       display: block;
       width: 100%;
       transform: translate(-50%, -50%);
+    }
+    .tool-user__letter {
+      color: $c-neutro;
+      line-height: 40px;
     }
   }
 
@@ -267,6 +271,9 @@
   .slot__avatar {
     width: 54px;
     height: 54px;
+    .tool-user__letter {
+      line-height: 54px;
+    }
   }
 
   .slot__prilover {

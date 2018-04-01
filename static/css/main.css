@@ -1614,6 +1614,7 @@ body {
   animation: preloader 2s 1s infinite ease-in-out; }
 
 .preload__spin_1 {
+  left: 0;
   -webkit-animation-delay: .4s;
   animation-delay: .4s; }
 
@@ -4665,7 +4666,7 @@ body {
   height: 40px;
   overflow: hidden;
   text-align: center;
-  border-radius: 25px; }
+  border-radius: 50%; }
   .slot__avatar .slot__picture {
     position: relative;
     top: 50%;
@@ -4674,6 +4675,9 @@ body {
     width: 100%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
+  .slot__avatar .tool-user__letter {
+    color: #fff;
+    line-height: 40px; }
 
 .slot__user-info {
   display: inline-block;
@@ -4728,6 +4732,8 @@ body {
   .slot__avatar {
     width: 54px;
     height: 54px; }
+    .slot__avatar .tool-user__letter {
+      line-height: 54px; }
   .slot__prilover {
     font-size: 16px;
     font-size: 1rem; }
