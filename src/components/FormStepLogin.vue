@@ -1,6 +1,5 @@
 <template lang="pug">
-//- 2a Usuaria no logueada
-    2b Usuaria registrada no logueada
+//- This form allows the check of an email and redirecting to 
 .step
   .layout-inner
     form.form(
@@ -47,7 +46,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'FormPublicarLogin',
+  name: 'FormStepLogin',
   data () {
     return {
       email: '',

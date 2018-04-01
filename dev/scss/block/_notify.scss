@@ -17,7 +17,7 @@
 }
 
 .notify__title {
-  margin-bottom: 0;
+  margin-bottom: 8px;
 }
 
 .notify__body {
@@ -36,6 +36,7 @@
 .notify__footer {
   width: 80%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .notify__row {
@@ -58,4 +59,3 @@
     @include font-rem(32px);
   }
 }
-

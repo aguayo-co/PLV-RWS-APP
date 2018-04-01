@@ -99,7 +99,7 @@ export default {
         .catch(e => {
           var modal
 
-          if (this.$store.getters['ui/loginAttempts'] > 3) {
+          if (this.$store.getters['ui/loginAttempts'] < 3) {
             modal = {
               name: 'ModalMessage',
               parameters: {

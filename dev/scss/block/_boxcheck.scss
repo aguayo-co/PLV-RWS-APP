@@ -208,7 +208,6 @@
 
 }
 
-
 // $bp-medium: 768px;
 @include media-query(medium) {
   .boxcheck__actions {
@@ -232,7 +231,7 @@
     padding: 0 0 16px 0;
   }
 }
-// 1024px;
+// 1170px;
 @include media-query(large) {
  
   .boxcheck__card {

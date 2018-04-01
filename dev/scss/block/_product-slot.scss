@@ -147,7 +147,7 @@
     font-family: $f-normal;
     font-weight: $fw-regular;
     background-color: $c-default;
-    border-radius: 25px;
+    border-radius: 50%;
   }
   //- brand/price
   .slot__info {
@@ -186,7 +186,7 @@
     height: 40px;
     overflow: hidden;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 50%;
     .slot__picture {
       position: relative;
       top: 50%;
@@ -194,6 +194,10 @@
       display: block;
       width: 100%;
       transform: translate(-50%, -50%);
+    }
+    .tool-user__letter {
+      color: $c-neutro;
+      line-height: 40px;
     }
   }
 
@@ -267,6 +271,9 @@
   .slot__avatar {
     width: 54px;
     height: 54px;
+    .tool-user__letter {
+      line-height: 54px;
+    }
   }
 
   .slot__prilover {
@@ -278,6 +285,13 @@
       top: 0;
       vertical-align: text-bottom;
       @include font-rem(26px);
+    }
+    &.i-star-on {
+      &:before {
+        top: -1px;
+        vertical-align: baseline;
+        @include font-rem(18px);
+      }
     }
   }
   .section_product__footer {

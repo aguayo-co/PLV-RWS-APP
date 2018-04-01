@@ -2,7 +2,7 @@
   ul.dividers
     li.dividers__item(
       v-if="addresses == null")
-      span.user-data__holder Aún no has ingresado una dirección para tus compras
+      span.user-data__holder Aún no has ingresado ninguna dirección para tu cuenta
     //- To-Do: Funcionalidad seleccionar
         addresss pricipal class:.dividers__item_select
     li.dividers__item(
@@ -109,7 +109,7 @@
           .form__row
             button.btn.btn_solid(
               type="submit"
-              title="Guardar Cambios") Editar dirección
+              title="Guardar Cambios") Guardar dirección
 </template>
 
 <script src="./js/AddressList.js"></script>

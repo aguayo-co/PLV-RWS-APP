@@ -3,7 +3,7 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Método de envío
-      p.single__subtitle Habilita los métodos de envío disponibles para tus productos
+      p.single__subtitle Habilita los métodos de envío disponibles para todos tus productos
       form.form(
         id="form-user-data"
         v-on:submit='',

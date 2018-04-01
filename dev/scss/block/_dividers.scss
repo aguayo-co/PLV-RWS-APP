@@ -78,6 +78,13 @@
   }
 
 }
+.dividers_list {
+  .dividers__item {
+    border: none;
+    margin-bottom: 16px;
+  }
+}
+
 
  @media only screen and (max-width: 600px) {
 
@@ -205,6 +212,13 @@
   .dividers__term {
     @include font-rem(36px);
   }
-
 }
 
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .dividers_list {
+    .dividers__item {
+      margin-bottom: 16px;
+    }
+  }
+}
