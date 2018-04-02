@@ -445,6 +445,27 @@ template {
 .i-upload:before {
   content: "\e93b"; }
 
+.i-tula:before {
+  content: "\e93c"; }
+
+.i-clock:before {
+  content: "\e93d"; }
+
+.i-sad:before {
+  content: "\e93e"; }
+
+.i-trash:before {
+  content: "\e93f"; }
+
+.i-rocket:before {
+  content: "\e940"; }
+
+.i-config:before {
+  content: "\e941"; }
+
+.i-check:before {
+  content: "\e942"; }
+
 /*------------------------------------*	texts links
 \*------------------------------------*/
 a {

@@ -425,6 +425,49 @@
     content: unicode($i-upload);
   }
 }
+//V7
+.i-tula {
+  &:before {
+    content: unicode($i-tula);
+  }
+}
+
+.i-clock {
+  &:before {
+    content: unicode($i-clock);
+  }
+}
+
+.i-sad {
+  &:before {
+    content: unicode($i-sad);
+  }
+}
+
+.i-trash {
+  &:before {
+    content: unicode($i-trash);
+  }
+}
+
+.i-rocket {
+  &:before {
+    content: unicode($i-rocket);
+  }
+}
+
+.i-config {
+  &:before {
+    content: unicode($i-config);
+  }
+}
+
+.i-check {
+  &:before {
+    content: unicode($i-check);
+  }
+}
+
 
 
 

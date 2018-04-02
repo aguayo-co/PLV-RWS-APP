@@ -5,7 +5,7 @@ section.single
       h1.single__title Método de envío
       p.single__subtitle Habilita los métodos de envío disponibles para todos tus productos
       form.form(
-        id="form-user-data"
+        id="form-envios"
         v-on:submit='',
         action='#',
         method='post')

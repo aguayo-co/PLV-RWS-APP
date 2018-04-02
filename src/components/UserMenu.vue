@@ -31,7 +31,7 @@ export default {
             },
             {
               name: 'Datos Bancarios',
-              url: '#',
+              url: '/user/datos-bancarios',
               ico: 'i-bank-data'
             },
             {
@@ -51,7 +51,7 @@ export default {
           items: [
             {
               name: 'Tus Compras',
-              url: '#',
+              url: '/user/tus-ventas',
               ico: 'i-bag'
             },
             {
@@ -71,7 +71,7 @@ export default {
             },
             {
               name: 'Tus Ventas',
-              url: '#',
+              url: '/user/tus-ventas',
               ico: 'i-sale'
             },
             {
