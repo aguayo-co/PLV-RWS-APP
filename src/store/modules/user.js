@@ -16,25 +16,25 @@ const baseState = {
   followers_count: null,
   following_count: null,
   addresses: {},
-  group_ids: [],
-  group: [
-    {
-      id: 1,
-      name: 'Prilover Star'
-    }
-  ]
+  roles: [],
+  groups: []
 }
 
 const getters = {
   full_name: state => state.first_name + ' ' + state.last_name,
+  roles: state => state.roles,
   token: () => { return window.localStorage.getItem('token') }
 }
 
 const actions = {
   loadUser ({commit}) {
-    return userAPI.load().then(response => {
-      commit('set', response.data)
-    })
+    return userAPI.load()
+      .then(response => {
+        commit('set', response.data)
+      })
+      .catch(e => {
+        console.log('No autenticado')
+      })
   },
   loadAddresses ({commit}) {
     return userAddressesAPI.load().then(response => {
@@ -44,6 +44,12 @@ const actions = {
   update ({commit, state}, data) {
     data.id = state.id
     return userAPI.update(data).then(response => {
+      commit('set', response.data)
+    })
+  },
+  updateWithFile ({commit, state}, data) {
+    data.id = state.id
+    return userAPI.updateWithFile(data).then(response => {
       commit('set', response.data)
     })
   },

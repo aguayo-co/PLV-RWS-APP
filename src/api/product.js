@@ -1,6 +1,7 @@
 /**
  * API Calls related to products and their properties
  */
+import Vue from 'vue'
 import axios from 'axios'
 const apiURL = 'https://prilov.aguayo.co/api/'
 
@@ -21,7 +22,7 @@ export default {
     data.append('commission', product.commission)
     data.append('user_id', userId)
     data.append('brand_id', product.brand_id)
-    data.append('category_id', product.category_id)
+    data.append('category_id', product.subcategory_id)
     data.append('size_id', 2)
     data.append('color_ids', product.color_ids)
     data.append('condition_id', product.condition_id)
@@ -55,8 +56,18 @@ export default {
     return axios.post(apiURL + 'products', data, headers)
   },
 
-  getAllProducts: function () {
+  getProducts: function (page, items, filter) {
+    let queryFilter = ''
+    page = page || 1
+    items = items || 8
 
+    if (filter) {
+      Object.keys(filter).forEach((key) => {
+        queryFilter += '&filter[' + key + ']=' + filter[key]
+      })
+    }
+    console.log('/api/products?items=' + items + '&page=' + page + queryFilter)
+    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter)
   },
 
   getProductById: function (productId) {
@@ -67,8 +78,11 @@ export default {
 
   },
 
-  getShopCategories: function () {
-    return axios.get(apiURL + 'categories/shop')
+  getCategoriesBySlug: function (categorySlug) {
+    return axios.get(apiURL + 'categories/' + categorySlug)
+  },
+  getCategoriesById: function (categoryId) {
+    return axios.get(apiURL + 'categories?filter[id]=' + categoryId)
   },
 
   getAllConditions: function () {
@@ -81,6 +95,10 @@ export default {
 
   getAllBrands: function () {
     return axios.get(apiURL + 'brands')
+  },
+
+  getAllSizes: function () {
+    return axios.get(apiURL + 'sizes')
   },
 
   dataURItoBlob: function (dataURI) {

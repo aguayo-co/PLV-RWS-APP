@@ -1099,6 +1099,46 @@ select {
   .form-brand .brand__typo {
     text-align: left; }
 
+.form_file {
+  position: relative; }
+
+.form__file-txt {
+  display: block; }
+
+.form__file {
+  position: absolute;
+  opacity: 0; }
+
+.form__label_file {
+  display: block;
+  cursor: pointer;
+  padding-bottom: 18px; }
+
+.form__file-txt {
+  padding-bottom: 8px; }
+
+.form__file-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #000; }
+
+.form-file__btn {
+  width: 30%;
+  color: #fff;
+  background-color: #000;
+  padding: 11px 20px 13px;
+  text-align: center; }
+
+.form-file__txt {
+  width: 70%;
+  padding: 11px 20px 13px; }
+
 @media only screen and (min-width: 768px) {
   .form__edit_txt {
     width: 100%;
@@ -1574,6 +1614,7 @@ body {
   animation: preloader 2s 1s infinite ease-in-out; }
 
 .preload__spin_1 {
+  left: 0;
   -webkit-animation-delay: .4s;
   animation-delay: .4s; }
 
@@ -2829,7 +2870,7 @@ body {
   font-size: 2.75rem; }
 
 .notify__title {
-  margin-bottom: 0; }
+  margin-bottom: 8px; }
 
 .notify__body {
   padding: 20px 0; }
@@ -2844,7 +2885,8 @@ body {
 
 .notify__footer {
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  text-align: center; }
 
 .notify__row {
   padding-bottom: 16px; }
@@ -4574,7 +4616,7 @@ body {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   background-color: #000;
-  border-radius: 25px; }
+  border-radius: 50%; }
 
 .slot__info {
   display: -webkit-box;
@@ -4624,7 +4666,7 @@ body {
   height: 40px;
   overflow: hidden;
   text-align: center;
-  border-radius: 25px; }
+  border-radius: 50%; }
   .slot__avatar .slot__picture {
     position: relative;
     top: 50%;
@@ -4633,6 +4675,9 @@ body {
     width: 100%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
+  .slot__avatar .tool-user__letter {
+    color: #fff;
+    line-height: 40px; }
 
 .slot__user-info {
   display: inline-block;
@@ -4687,6 +4732,8 @@ body {
   .slot__avatar {
     width: 54px;
     height: 54px; }
+    .slot__avatar .tool-user__letter {
+      line-height: 54px; }
   .slot__prilover {
     font-size: 16px;
     font-size: 1rem; }
@@ -4698,6 +4745,11 @@ body {
       vertical-align: text-bottom;
       font-size: 26px;
       font-size: 1.625rem; }
+    .slot__group.i-star-on:before {
+      top: -1px;
+      vertical-align: baseline;
+      font-size: 18px;
+      font-size: 1.125rem; }
   .section_product__footer {
     padding-bottom: 168px;
     text-align: center; } }
