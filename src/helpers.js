@@ -8,6 +8,7 @@ export default {
     const getNestedObject = (nestedObj, pathArr) => {
       return pathArr.reduce((obj, key) => (obj && obj[key] !== 'undefined') ? obj[key] : null, nestedObj)
     }
+    Vue.getNestedObject = getNestedObject
     Vue.prototype.$getNestedObject = getNestedObject
 
     // Trae el primer error de un campo de la respuesta enviada por el api.
@@ -16,6 +17,7 @@ export default {
     const getFirstError = (e, field) => {
       return Vue.prototype.$getNestedObject(e, ['response', 'data', 'errors', field, 0])
     }
+    Vue.getFirstError = getFirstError
     Vue.prototype.$getFirstError = getFirstError
   }
 }

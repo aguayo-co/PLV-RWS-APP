@@ -87,7 +87,7 @@ const mutations = {
   },
   setAddresses: function (state, addresses) {
     Object.keys(addresses).forEach(function (key) {
-      let address = addresses[key]
+      const address = addresses[key]
       Vue.set(state.addresses, address.id, address)
     })
   },
