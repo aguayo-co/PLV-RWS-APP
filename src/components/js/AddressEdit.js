@@ -22,6 +22,8 @@ function createComputedProps (props) {
         return this.newAddressData[key] !== null ? this.newAddressData[key] : this.address[key]
       },
       set: function (value) {
+        // Dispara cambio en el campo. Con esto los hijos son cambiados a valor vacío.
+        this.changed(key)
         this.newAddressData[key] = value
       }
     }
@@ -59,6 +61,15 @@ export default {
     }
   },
   methods: {
+    // Asegura que el campo se considere vacío cuando le padre cambia.
+    changed (field) {
+      if (field === 'region') {
+        this.new_city = false
+      }
+      if (field === 'city') {
+        this.new_zone = false
+      }
+    },
     close () {
       this.errorLog = {...editableProps}
       this.newAddressData = {...editableProps}

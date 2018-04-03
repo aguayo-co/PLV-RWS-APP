@@ -1,6 +1,6 @@
 // User store will be used to handle public data regarding users.
-import userAPI from '@/api/user'
 import Vue from 'vue'
+import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
 
 const baseUser = {
@@ -22,12 +22,13 @@ const baseUser = {
 const getters = {
   full_name: state => state.first_name + ' ' + state.last_name,
   roles: state => state.roles,
-  token: () => { return window.localStorage.getItem('token') }
+  token: () => { return window.localStorage.getItem('token') },
+  userId: () => { return window.localStorage.getItem('userId') }
 }
 
 const actions = {
-  loadUser ({commit}) {
-    return userAPI.load()
+  loadUser ({commit, getters}) {
+    return userAPI.load(getters['userId'])
       .then(response => {
         commit('set', response.data)
       })
@@ -35,37 +36,37 @@ const actions = {
         console.log('No autenticado')
       })
   },
-  loadAddresses ({commit}) {
-    return userAddressesAPI.load().then(response => {
+  loadAddresses ({commit, getters}) {
+    return userAddressesAPI.load(getters['userId']).then(response => {
       commit('setAddresses', response.data.data)
     })
   },
-  update ({commit, state}, data) {
-    data.id = state.id
+  update ({commit, getters}, data) {
+    data.id = getters['userId']
     return userAPI.update(data).then(response => {
       commit('set', response.data)
     })
   },
-  updateWithFile ({commit, state}, data) {
-    data.id = state.id
+  updateWithFile ({commit, getters}, data) {
+    data.id = getters['userId']
     return userAPI.updateWithFile(data).then(response => {
       commit('set', response.data)
     })
   },
-  createAddress ({commit, state}, data) {
-    data.user_id = state.id
+  createAddress ({commit, getters}, data) {
+    data.user_id = getters['userId']
     return userAddressesAPI.create(data).then(response => {
       commit('setAddress', response.data)
     })
   },
-  updateAddress ({commit, state}, data) {
-    data.user_id = state.id
+  updateAddress ({commit, getters}, data) {
+    data.user_id = getters['userId']
     return userAddressesAPI.update(data).then(response => {
       commit('setAddress', response.data)
     })
   },
-  deleteAddress ({commit, state}, data) {
-    data.user_id = state.id
+  deleteAddress ({commit, getters}, data) {
+    data.user_id = getters['userId']
     return userAddressesAPI.delete(data).then(response => {
       commit('removeAddress', data)
     })
@@ -86,7 +87,7 @@ const mutations = {
   },
   setAddresses: function (state, addresses) {
     Object.keys(addresses).forEach(function (key) {
-      let address = addresses[key]
+      const address = addresses[key]
       Vue.set(state.addresses, address.id, address)
     })
   },

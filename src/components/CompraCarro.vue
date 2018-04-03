@@ -92,8 +92,4 @@ section.list_step
 //End Compra Listado productos
 </template>
 
-<script>
-export default {
-  name: 'CompraCarro'
-}
-</script>
+<script src="./js/CompraCarro.js"></script>
