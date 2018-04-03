@@ -11,6 +11,14 @@ export default {
       }
     }
 
+    // Modal base.
+    const baseModal = {
+      name: 'ModalMessage',
+      parameters: {
+        type: 'alert'
+      }
+    }
+
     /**
      * Funciones de ayuda.
      */
@@ -21,15 +29,10 @@ export default {
      * la petición.
      */
     const baseErrorPopups = (error) => {
-      let modal = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'alert'
-        }
-      }
+      const modal = {...baseModal}
       if (error.response && error.response.status === 401) {
         modal.parameters.title = 'No estás autenticado.'
-        store.dispatch('user/logOut', modal)
+        store.dispatch('user/logOut')
         store.dispatch('ui/showModal', modal)
       }
       if (error.response && error.response.status === 403) {
@@ -59,6 +62,13 @@ export default {
      */
     const ensureToken = (config) => {
       const token = store.getters['user/token']
+      const userId = store.getters['user/userId']
+      if (token === null || userId === null) {
+        const modal = {...baseModal}
+        modal.parameters.title = 'No estás autenticado.'
+        store.dispatch('ui/showModal', modal)
+        throw new Error('No credentials founds.')
+      }
       config.headers = config.headers || {}
       config.headers.Authorization = 'Bearer ' + token
     }
@@ -71,11 +81,11 @@ export default {
      * Axios sin autenticación.
      */
     Vue.axios = axios.create(baseOptions)
-    Vue.axios.interceptors.response.use(null, baseErrorPopups)
     Vue.axios.interceptors.request.use((config) => {
       isFormData(config)
       return config
     })
+    Vue.axios.interceptors.response.use(null, baseErrorPopups)
     Vue.prototype.$axios = Vue.axios
 
     /**
@@ -85,12 +95,12 @@ export default {
       ...baseOptions
     }
     Vue.axiosAuth = axios.create(authOptions)
-    Vue.axiosAuth.interceptors.response.use(null, baseErrorPopups)
     Vue.axiosAuth.interceptors.request.use((config) => {
       isFormData(config)
       ensureToken(config)
       return config
     })
+    Vue.axiosAuth.interceptors.response.use(null, baseErrorPopups)
     Vue.prototype.$axiosAuth = Vue.axiosAuth
   }
 }

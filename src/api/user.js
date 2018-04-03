@@ -5,9 +5,6 @@ import Vue from 'vue'
 
 export default {
   update: function (data) {
-    if (window.localStorage.getItem('userId') === null || window.localStorage.getItem('token') === null) {
-      return Promise.reject(new Error('No credentials founds.'))
-    }
     if (data.id === null) {
       return Promise.reject(new Error('Need a user ID.'))
     }
@@ -16,9 +13,6 @@ export default {
   },
 
   updateWithFile: function (data) {
-    if (window.localStorage.getItem('userId') === null || window.localStorage.getItem('token') === null) {
-      return Promise.reject(new Error('No credentials founds.'))
-    }
     if (data.id === null) {
       return Promise.reject(new Error('Need a user ID.'))
     }
