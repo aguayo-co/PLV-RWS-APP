@@ -5,17 +5,10 @@ import Vue from 'vue'
 
 export default {
   update: function (data) {
-    if (data.id === null) {
-      return Promise.reject(new Error('Need a user ID.'))
-    }
-    const payload = {...data}
-    return Vue.axiosAuth.patch('/api/users/' + data.id, payload)
+    return Vue.axiosAuth.patch('/api/users/' + data.id, data)
   },
 
   updateWithFile: function (data) {
-    if (data.id === null) {
-      return Promise.reject(new Error('Need a user ID.'))
-    }
     var formData = new FormData()
     Object.keys(data).forEach((key, index) => {
       if (key !== 'picture') {
@@ -88,11 +81,7 @@ export default {
     setTimeout(function () { return true }, 1000)
   },
 
-  load: function () {
-    const userId = window.localStorage.getItem('userId')
-    if (userId === null || window.localStorage.getItem('token') === null) {
-      return Promise.reject(new Error('No credentials found'))
-    }
+  load: function (userId) {
     return Vue.axiosAuth.get('/api/users/' + userId)
   }
 }
