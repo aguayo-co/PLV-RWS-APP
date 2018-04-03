@@ -1,8 +1,9 @@
+/* global FormData */
 import axios from 'axios'
 
 export default {
   install (Vue, store) {
-    // Base Axios instance.
+    // Instancia base de Axios.
     const baseOptions = {
       baseURL: store.state.apiDomain,
       headers: {
@@ -10,16 +11,28 @@ export default {
       }
     }
 
-    const baseErrorPopups = function (error) {
-      let modal = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'alert'
-        }
+    // Modal base.
+    const baseModal = {
+      name: 'ModalMessage',
+      parameters: {
+        type: 'alert'
       }
+    }
+
+    /**
+     * Funciones de ayuda.
+     */
+
+    /**
+     * Errores de acceso son manejados acá (403 o 401).
+     * Los demás los dejamos pasar y deben ser manejados por quien hizo
+     * la petición.
+     */
+    const baseErrorPopups = (error) => {
+      const modal = {...baseModal}
       if (error.response && error.response.status === 401) {
         modal.parameters.title = 'No estás autenticado.'
-        store.dispatch('user/logOut', modal)
+        store.dispatch('user/logOut')
         store.dispatch('ui/showModal', modal)
       }
       if (error.response && error.response.status === 403) {
@@ -29,48 +42,65 @@ export default {
       throw error
     }
 
+    /**
+     * Si tenemos un FormData, enviar como multipart/form-data.
+     * Y usar Post en vez de patch.
+     */
+    const isFormData = (config) => {
+      if (config.data instanceof FormData) {
+        config.headers['Content-Type'] = 'multipart/form-data'
+
+        if (config.method.toLowerCase() === 'patch') {
+          config.method = 'post'
+          config.data.append('_method', 'PATCH')
+        }
+      }
+    }
+
+    /**
+     * Asegura que tengamos un token.
+     */
+    const ensureToken = (config) => {
+      const token = store.getters['user/token']
+      const userId = store.getters['user/userId']
+      if (token === null || userId === null) {
+        const modal = {...baseModal}
+        modal.parameters.title = 'No estás autenticado.'
+        store.dispatch('ui/showModal', modal)
+        throw new Error('No credentials founds.')
+      }
+      config.headers = config.headers || {}
+      config.headers.Authorization = 'Bearer ' + token
+    }
+
+    /**
+     * Declaración de instancias de Axios globales.
+     */
+
+    /**
+     * Axios sin autenticación.
+     */
     Vue.axios = axios.create(baseOptions)
+    Vue.axios.interceptors.request.use((config) => {
+      isFormData(config)
+      return config
+    })
     Vue.axios.interceptors.response.use(null, baseErrorPopups)
     Vue.prototype.$axios = Vue.axios
 
-    // Authenticated Axios instance.
+    /**
+     * Axios autenticada.
+     */
     const authOptions = {
       ...baseOptions
     }
     Vue.axiosAuth = axios.create(authOptions)
+    Vue.axiosAuth.interceptors.request.use((config) => {
+      isFormData(config)
+      ensureToken(config)
+      return config
+    })
     Vue.axiosAuth.interceptors.response.use(null, baseErrorPopups)
     Vue.prototype.$axiosAuth = Vue.axiosAuth
-    // We intercept every request and add the current Bearer token.
-    Vue.axiosAuth.interceptors.request.use(function (config) {
-      const token = store.getters['user/token']
-
-      config.headers = config.headers || {}
-      config.headers.Authorization = 'Bearer ' + token
-      return config
-    })
-
-    const withFileOptions = {
-      baseURL: store.state.apiDomain,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-      }
-    }
-
-    Vue.axiosAuthWithFile = axios.create(withFileOptions)
-    Vue.axiosAuthWithFile.interceptors.response.use(null, baseErrorPopups)
-    Vue.prototype.$axiosAuthWithFile = Vue.axiosAuthWithFile
-    // We intercept every request and add the current Bearer token.
-    Vue.axiosAuthWithFile.interceptors.request.use(function (config) {
-      const token = store.getters['user/token']
-
-      config.headers = config.headers || {}
-      config.headers.Authorization = 'Bearer ' + token
-      return config
-    })
-
-    Vue.axiosWithFile = axios.create(withFileOptions)
-    Vue.axiosWithFile.interceptors.response.use(null, baseErrorPopups)
-    Vue.prototype.$axiosWithFile = Vue.axiosWithFile
   }
 }

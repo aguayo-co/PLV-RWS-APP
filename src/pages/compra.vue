@@ -25,9 +25,7 @@
       .list__grid
         //-list content
         .list__content
-          //-Compra Listado de productos: 1a Cliente Registrado, logueado
-          CompraCarro
-          //-Compra 1b Cliente Registrado, logueado
+          //-Compra: Envío y pago: 1a Cliente Registrado, logueado
           CompraEnvioPago
         //-end list content
 
@@ -42,17 +40,17 @@
                   dt.data-table__item Chaqueta
                   dd.data-table__value $34.000
                   dt.data-table__item Total de la orden
-                  dd.data-table__value $88.300.000
+                  dd.data-table__value ${{ total }}
                   //estado sin creditos
                   dt.data-table__item Código de descuento
-                  dd.data-table__value $0
+                  dd.data-table__value ${{ coupon_discount }}
                   //estado con créditos OK
                     add class .txt_brand to .data-table__value
                   dt.data-table__item Código de descuento
-                  dd.data-table__value.txt_brand -$5.000
+                  dd.data-table__value.txt_brand -${{ coupon_discount }}
                 dl.data-total
                   dt.data-total__label Total de tu orden:
-                  dd.data-total__value $60.000
+                  dd.data-total__value ${{ due }}
                 //- end List Detalle de tu orden
 
                 //-código de descuento
@@ -310,14 +308,4 @@
               button.btn.btn_solid Enviar comprobante
 </template>
 
-<script>
-import CompraCarro from '@/components/CompraCarro'
-import CompraEnvioPago from '@/components/CompraEnvioPago'
-export default {
-  name: 'Compra',
-  components: {
-    CompraCarro,
-    CompraEnvioPago
-  }
-}
-</script>
+<script src="./js/compra.js"></script>

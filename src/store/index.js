@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import ui from './modules/ui'
 import user from './modules/user'
+import cart from './modules/cart'
 
 import { getField, updateField } from 'vuex-map-fields'
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
   },
   modules: {
     ui,
-    user
+    user,
+    cart
   },
   mutations: {
     updateField

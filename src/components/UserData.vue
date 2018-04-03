@@ -188,7 +188,7 @@ section.single
                   v-if="phone == null && editPhone == false") Aún no has ingresado tú número de teléfono
                 input.form__edit(
                   v-else=""
-                  v-model='phone',
+                  v-model='new_phone',
                   id='editPhone',
                   :placeholder="phone",
                   :disabled="editPhone == false"
