@@ -5,23 +5,26 @@
 //* Color palette *//
 $coral-pink: #fe7676;
 $pink-dark : #D46060;
-$green: #7ed321;
+$green     : #7ed321;
+$orenge    : #FFA65B;
 $white     : #fff;
 $white-two : #f6f6f6;
 $black     : #000;
 // Grey
 $grey       : #4a4a4a;
-$grey-text: #707070;
-
+$grey-text  : #707070;
 $grey-medium: #cbcbcb;
-$grey-warm: #9b9b9b;
+$grey-warm  : #9b9b9b;
 $grey-white : #efefef;
 
 //* Color variables */
-$c-brand     : $coral-pink;
-$c-brand-dark: $pink-dark;
+$c-brand      : $coral-pink;
+$c-brand-dark : $pink-dark;
 $c-brand-light: #fcadac;
-$c-ok: $green;
+$c-ok         : $green;
+$c-warning    : $orenge;
+
+
 
 
 $c-neutro  : $white;
@@ -29,12 +32,12 @@ $c-neutro-2: rgba($c-neutro, .3);
 $c-neutro-3: $grey-white;
 $c-neutro-4: $white-two;
 
-$c-default          : $black;
-$c-default-over     : rgba($black, .5);
-$c-default-2        : $grey;
-$c-default-3        : $grey-medium;
-$c-default-4        : $grey-warm;
-$c-default-5 :$grey-text;
+$c-default     : $black;
+$c-default-over: rgba($black, .5);
+$c-default-2   : $grey;
+$c-default-3   : $grey-medium;
+$c-default-4   : $grey-warm;
+$c-default-5   : $grey-text;
 
 
 

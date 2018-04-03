@@ -6048,6 +6048,126 @@ body {
     min-width: 354px;
     margin-left: 32px; } }
 
+/*------------------------------------*	dashboard // tus compras, tus ventas
+\*------------------------------------*/
+.dashboard .list__card {
+  padding-top: 0; }
+
+.dashboard .card__price {
+  padding-top: 0;
+  padding-bottom: 8px; }
+
+.dashboard .card__user-data p {
+  padding-bottom: 8px; }
+
+.dashboard__data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  font-size: 16px;
+  font-size: 1rem; }
+  .dashboard__data p {
+    margin: 0; }
+
+.dashboard__high {
+  color: #fe7676; }
+
+.dashboard__item {
+  padding: 16px 0; }
+  .dashboard__item:not(:last-child) {
+    border-bottom: 1px solid #cbcbcb; }
+
+.dashboard__actions {
+  text-align: center; }
+
+/*------------------------------------*	Status mensaje // tus compras, tus ventas
+\*------------------------------------*/
+.dashboard__status {
+  text-align: center; }
+
+.status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  padding: 16px;
+  margin: 0 0 16px 0;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid; }
+  .status:before {
+    margin-right: 12px; }
+  .status.i-check:before {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 2px solid #7ed321;
+    border-radius: 50%;
+    font-size: 12px;
+    font-size: 0.75rem; }
+  .status.i-alert-circle:before, .status.i-rocket:before {
+    font-size: 24px;
+    font-size: 1.5rem; }
+  .status.i-reload:before {
+    font-size: 20px;
+    font-size: 1.25rem; }
+
+.status_check {
+  border-color: #7ed321; }
+  .status_check:before {
+    color: #7ed321; }
+
+.status_alert {
+  border-color: #fe7676; }
+  .status_alert:before {
+    color: #fe7676; }
+
+.status_warning {
+  border-color: #FFA65B; }
+  .status_warning:before {
+    color: #FFA65B; }
+
+@media only screen and (min-width: 768px) {
+  /*------------------------------------*    dashboard // tus compras, tus ventas
+  \*------------------------------------*/
+  .dashboard__data {
+    max-width: 50%;
+    padding-right: 32px; }
+  .dashboard__item {
+    padding: 24px 0; }
+  .dashboard__grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .dashboard__subitem {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    -webkit-box-flex: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 50%;
+    padding: 24px 0; }
+    .dashboard__subitem:not(:last-child) {
+      padding-right: 32px;
+      border-right: 1px solid #cbcbcb; }
+    .dashboard__subitem:last-child {
+      padding-left: 32px; } }
+
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
 ---------------------------------------------- */
