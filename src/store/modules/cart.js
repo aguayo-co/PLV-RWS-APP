@@ -13,9 +13,8 @@ const baseCart = {
 // Propiedades que son hijos directos de cada venta.
 const baseSale = {
   id: null,
-  total: null,
-  due: null,
-  coupon_discount: null
+  shipping_method_id: null,
+  total: null
 }
 
 // Propiedades que son hijos directos de cada producto.
@@ -26,6 +25,15 @@ const baseProduct = {
   pictures: null
 }
 
+// Propiedades que son hijos directos de cada usuario.
+const baseSeller = {
+  id: null,
+  first_name: null,
+  last_name: null,
+  picture: null,
+  shipping_method_ids: {}
+}
+
 // EL estado mínimo inicial de el state.
 const baseState = {
   ...baseCart,
@@ -33,7 +41,9 @@ const baseState = {
   sales: {}
 }
 
-const getters = {}
+const getters = {
+  full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
+}
 
 const actions = {
   load ({commit}) {
@@ -80,8 +90,14 @@ const mutations = {
     })
     Vue.set(state.sales, newSale.id, newSale)
 
+    store.commit('cart/setSaleSeller', {sale: state.sales[newSale.id], user: Vue.getNestedObject(sale.products, [0, 'user'])})
     Object.keys(sale.products).forEach(function (key) {
-      store.commit('cart/setProduct', {sale: state.sales[newSale.id], product: sale.products[key]})
+      store.commit('cart/setSaleProduct', {sale: state.sales[newSale.id], product: sale.products[key]})
+    })
+  },
+  setSaleSeller (state, {sale, user}) {
+    Object.keys(baseSeller).forEach((key) => {
+      Vue.set(state.sales[sale.id], 'user_' + key, user[key])
     })
   },
   /**
@@ -90,7 +106,7 @@ const mutations = {
    * @param {*} state
    * @param {sale, product} param1
    */
-  setProduct (state, {sale, product}) {
+  setSaleProduct (state, {sale, product}) {
     const newProduct = {
       size: Vue.getNestedObject(product, ['size', 'name']),
       brand: Vue.getNestedObject(product, ['brand', 'name'])
