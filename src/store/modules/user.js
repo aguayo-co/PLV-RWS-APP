@@ -22,7 +22,8 @@ const baseUser = {
 const getters = {
   full_name: state => state.first_name + ' ' + state.last_name,
   roles: state => state.roles,
-  token: () => { return window.localStorage.getItem('token') }
+  token: () => { return window.localStorage.getItem('token') },
+  userId: () => { return window.localStorage.getItem('userId') }
 }
 
 const actions = {
