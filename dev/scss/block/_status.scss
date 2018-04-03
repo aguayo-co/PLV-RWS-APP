@@ -1,0 +1,139 @@
+/*------------------------------------*\
+	dashboard // tus compras, tus ventas
+\*------------------------------------*/
+.dashboard {
+  .list__card {
+    padding-top: 0;
+  }
+  .card__price {
+    padding-top: 0;
+    padding-bottom: 8px;
+  }
+  .card__user-data {
+    p {
+      padding-bottom: 8px;
+    }
+  }
+}
+.dashboard__data {
+  @include flexbox;
+  @include justify-content(space-between);
+  padding-bottom: 24px;
+  @include font-rem(16px);
+  p {
+    margin: 0;
+  }
+}
+.dashboard__high {
+  color: $c-brand;
+}
+
+.dashboard__item {
+  padding: 16px 0;
+  &:not(:last-child) {
+    border-bottom: 1px solid $c-default-3;
+  }
+}
+
+.dashboard__actions {
+  text-align: center;
+}
+
+/*------------------------------------*\
+	Status mensaje // tus compras, tus ventas
+\*------------------------------------*/
+.dashboard__status {
+  text-align: center;
+}
+
+.status {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  padding: 16px;
+  margin: 0 0 16px 0;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  &:before {
+    margin-right: 12px;
+  }
+  &.i-check {
+    &:before {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border: 2px solid $c-ok;
+      border-radius: 50%;
+      @include font-rem(12px);
+    }
+  }
+
+  &.i-alert-circle,
+  &.i-rocket {
+    &:before {
+      @include font-rem(24px);
+    }
+  }
+  &.i-reload {
+    &:before {
+      @include font-rem(20px);
+    }
+  }
+}
+.status_check {
+  border-color: $c-ok;
+  &:before {
+    color: $c-ok;
+  }
+}
+.status_alert {
+  border-color: $c-brand;
+  &:before {
+    color: $c-brand;
+  }
+}
+.status_warning {
+  border-color: $c-warning;
+  &:before {
+    color: $c-warning;
+  }
+}
+@include media-query(medium) {
+  /*------------------------------------*\
+    dashboard // tus compras, tus ventas
+  \*------------------------------------*/
+  .dashboard__data {
+   max-width: 50%;
+   padding-right: 32px;
+  }
+  .dashboard__item {
+    padding: 24px 0;
+  }
+
+  .dashboard__grid {
+    @include flexbox;
+  }
+    .dashboard__subitem {
+      @include flex-basis(50%);
+      @include flex-grow(1);
+      max-width: 50%;
+      padding: 24px 0;
+      &:not(:last-child) {
+        padding-right: 32px;
+        border-right: 1px solid $c-default-3;
+      }
+      &:last-child {
+        padding-left: 32px;
+      }
+    }
+
+}
+
+
+@include media-query(wide) {
+   
+
+}
