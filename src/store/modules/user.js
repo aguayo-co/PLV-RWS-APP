@@ -1,6 +1,6 @@
 // User store will be used to handle public data regarding users.
-import userAPI from '@/api/user'
 import Vue from 'vue'
+import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
 
 const baseUser = {

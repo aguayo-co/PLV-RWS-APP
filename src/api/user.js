@@ -48,8 +48,7 @@ export default {
         formData.append('picture', file)
       }
     })
-    formData.append('_method', 'PATCH')
-    return Vue.axiosAuthWithFile.post('/api/users/' + data.id, formData)
+    return Vue.axiosAuth.patch('/api/users/' + data.id, formData)
   },
 
   create: function (data) {
@@ -79,7 +78,7 @@ export default {
         formData.append('picture', file)
       }
     })
-    return Vue.axiosWithFile.post('/api/users', formData)
+    return Vue.axios.post('/api/users', formData)
   },
 
   login: function (user) {
