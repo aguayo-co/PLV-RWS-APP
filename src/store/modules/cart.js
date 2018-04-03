@@ -22,7 +22,7 @@ const baseProduct = {
   id: null,
   price: null,
   title: null,
-  pictures: null
+  images: null
 }
 
 // Propiedades que son hijos directos de cada usuario.
@@ -42,7 +42,7 @@ const baseState = {
 }
 
 const getters = {
-  full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
+  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
 }
 
 const actions = {
