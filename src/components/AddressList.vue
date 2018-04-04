@@ -12,6 +12,10 @@
         :class="{'dividers__list_active': isActive == address}"
       ) {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
         span.dividers__actions
+          button.btn(
+            v-if="inShoppingCart"
+            @click.prevent="setForOrder(address)"
+            title="Usar en la orden") Usar en la orden
           a.dividers__select.i-star-on(
             @click.prevent="setFavorite(address)",
             :class="{favorita: favorite_address_id == address.id}",
@@ -21,7 +25,11 @@
             @click.prevent="IsActive(address)",
             href="#",
             title="Editar Dirección") <small class="hide"> Editar </small>
-      <address-edit v-if="isActive == address" :regionsList=regionsList :address=address v-on:close="NotActive"></address-edit>
+      address-edit(
+        v-if="isActive == address"
+        :regionsList="regionsList"
+        :address="address"
+        v-on:close="NotActive")
     //- clic "nueva dirección"
       Se despliega un cuadro con los inputs de:
       Dirección, Número, Dpto/villa/block,

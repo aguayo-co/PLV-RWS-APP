@@ -1,3 +1,4 @@
+/* global FormData */
 import { mapGetters, mapState } from 'vuex'
 import AddressList from '@/components/AddressList'
 
@@ -12,12 +13,14 @@ const editableProps = {
   phone: null
 }
 
-// Los valores de los formularios los almacenamos en local
-// hasta que se guarden en el servidor, en ese momento
-// pasan a Vuex.
-// Con esto generamos una propiedad computada
-// Que trae el valor original si el formulario no
-// ha recibido ningún valor.
+/**
+ * Los valores de los formularios los almacenamos en local hasta
+ * que se guarden en el servidor, en ese momento pasan a Vuex.
+ * Con esto generamos una propiedad computada que trae el valor
+ * original si el formulario no ha recibido ningún valor.
+ *
+ * @param {string[]} props El listado de propiedades a computar.
+ */
 function createComputedProps (props) {
   let computed = {}
   Object.keys(props).forEach(function (key) {
@@ -40,13 +43,14 @@ export default {
   data () {
     return {
       isActive: '',
-      editAvatar: false,
+      editPicture: false,
       editName: false,
       editAbout: false,
       editEmail: false,
       editPhone: false,
+      new_picture: null,
       newUserData: {...editableProps},
-      errorLog: {...editableProps}
+      errorLog: {...editableProps, picture: null}
     }
   },
   computed: {
@@ -133,6 +137,35 @@ export default {
         this.errorLog.phone = null
       }).catch((e) => {
         this.errorLog.phone = this.$getFirstError(e, 'phone')
+      })
+    },
+    updatePicture: function () {
+      if (!this.new_picture.hasImage()) {
+        this.errorLog.picture = 'No has cargado una imagen.'
+        return
+      }
+
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: 'Estamos subiendo tu imagen'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
+
+      this.new_picture.generateBlob((blob) => {
+        let formData = new FormData()
+        formData.append('picture', blob)
+        this.$store.dispatch('user/update', formData).then(() => {
+          this.toggle('editPicture')
+          this.errorLog.picture = null
+          this.new_picture.refresh()
+        }).catch((e) => {
+          this.errorLog.picture = this.$getFirstError(e, 'picture')
+        }).finally(() => {
+          this.$store.dispatch('ui/closeModal', modal)
+        })
       })
     }
   }

@@ -43,17 +43,12 @@ export default {
     }
 
     /**
-     * Si tenemos un FormData, enviar como multipart/form-data.
-     * Y usar Post en vez de patch.
+     * Si tenemos un FormData usar Post en vez de patch.
      */
     const isFormData = (config) => {
-      if (config.data instanceof FormData) {
-        config.headers['Content-Type'] = 'multipart/form-data'
-
-        if (config.method.toLowerCase() === 'patch') {
-          config.method = 'post'
-          config.data.append('_method', 'PATCH')
-        }
+      if (config.data instanceof FormData && config.method.toLowerCase() === 'patch') {
+        config.method = 'post'
+        config.data.append('_method', 'PATCH')
       }
     }
 

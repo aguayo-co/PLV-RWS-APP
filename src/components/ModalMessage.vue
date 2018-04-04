@@ -1,17 +1,19 @@
-/*
-  * To use this component keep in mind the following attributes:
-  *   attributes: {
-  *     type: preload | positive | alert // Type of Modal to show
-  *     title: string
-  *     body: string
-  *     primaryButtonTitle: string
-  *     primaryButtonURL: string
-  *     primaryButtonClass: string
-  *     secondaryButtonTitle: string
-  *     secondaryButtonURL: string
-  *     secondaryButtonClass: string
-  *   }
-*/
+<script>
+/**
+ * To use this component keep in mind the following attributes:
+ *   attributes: {
+ *     type: preload | positive | alert // Type of Modal to show
+ *     title: string
+ *     body: string
+ *     primaryButtonTitle: string
+ *     primaryButtonURL: string
+ *     primaryButtonClass: string
+ *     secondaryButtonTitle: string
+ *     secondaryButtonURL: string
+ *     secondaryButtonClass: string
+ *   }
+ */
+</script>
 <template lang="pug">
   transition(name='modal-fade')
     section.modal.modal_scroll
