@@ -116,7 +116,7 @@ const mutations = {
    * Almacena cada sale en el state.
    *
    * @param {*} state
-   * @param {sale, user} data
+   * @param {*} data
    */
   setSaleSeller (state, {sale, user}) {
     Object.keys(baseSeller).forEach((key) => {
@@ -127,7 +127,7 @@ const mutations = {
    * Almacena cada producto en el state.
    *
    * @param {*} state
-   * @param {sale, product} data
+   * @param {*} data
    */
   setSaleProduct (state, {sale, product}) {
     const newProduct = {
