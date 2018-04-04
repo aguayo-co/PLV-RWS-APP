@@ -62,6 +62,14 @@ section.single
                 href="#") Si, ya lo entregué.
               a.link_underline(
                 href="#") Escribir a la compradora
+            //-2
+            p ¿Cómo entregaste este pedido?
+            a.link_underline(
+                href="#") Nos juntamos
+            a.link_underline(
+                href="#") Usé una empresa de mensajería
+            //-2b
+            Ingresa el nombre de la empresa de mensajerí
       .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746

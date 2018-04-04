@@ -238,19 +238,7 @@ select {
     }
   }
 }
-.boxcheck__item {
-  padding-bottom: 16px;
-  .form__label_radio  {
-    &:before {
-      top: 50%;
-      margin-top: -3px;
-    }
-    &:after {
-      top: 50%;
-      margin-top: -7px;
-    }
-  }
-}
+
 
 /*------------------------------------*\
 	form checkbox

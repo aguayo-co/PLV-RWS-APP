@@ -7,12 +7,12 @@
       ul.steps__list
         li.steps__item.steps__item_current
           span.steps__bullet.i-ok 1
-          span.steps__label Carro
+          span.steps__label Carro y Envío
           //-TO DO: Valor compra
           span.steps__value $65.000
         li.steps__item
           span.steps__bullet.i-ok  2
-          span.steps__label Envío y pago
+          span.steps__label Pago
         li.steps__item
           span.steps__bullet.i-ok  3
           span.steps__label Comprobante
@@ -20,7 +20,6 @@
   .layout-inner
     // List paso 1:compra y 2:envío y pago
     .list
-      h2.subhead Carro
       //-grid
       .list__grid
         //-list content

@@ -1,9 +1,8 @@
 <template lang="pug">
 section.list_step
-  h3.subhead Elige una opción de despacho
-  //- metodos de envío Caso: 1 vendedora varias prendas
-  .boxcheck-wrap
-    <compra-sale v-for="sale in sales" :key="sale.id" :sale=sale></compra-sale>
+  h2.subhead Selecciona tu método de envío
+  //- metodos de envío
+  <compra-sale v-for="sale in sales" :key="sale.id" :sale=sale></compra-sale>
 
   //- direcciones editable
   .compra-data_info
@@ -61,7 +60,7 @@ section.list_step
     .boxcheck
       form.boxcheck__grid
         //-item 1
-        .boxcheck__item
+        .boxcheck__card
           input.form__input-radio(
             id="mercado",
             type="radio",
@@ -70,11 +69,11 @@ section.list_step
             checked="checked")
           label.form__label.form__label_radio(
             for="mercado")
-            span.boxcheck__label
+            span.boxcheck__box
               img(src="/static/img/logo-mercado-pago.png", alt="Pagar por medio de Mercado Pago")
         //-end item 1
         //-item 2
-        .boxcheck__item
+        .boxcheck__card
           input.form__input-radio(
             id="PayU",
             type="radio",
@@ -83,11 +82,11 @@ section.list_step
             checked="checked")
           label.form__label.form__label_radio(
             for="PayU")
-            span.boxcheck__label
+            span.boxcheck__box
               img(src="/static/img/logo-payu.png", alt="Pagar por medio de PayU")
         //-end item 2
         //-item 3
-        .boxcheck__item
+        .boxcheck__card
           input.form__input-radio(
             id="transferencia",
             type="radio",
@@ -96,7 +95,7 @@ section.list_step
             checked="checked")
           label.form__label.form__label_radio(
             for="transferencia")
-            span.boxcheck__label
+            span.boxcheck__box
               span Transferencia Bancaria
         //-end item 3
 </template>
