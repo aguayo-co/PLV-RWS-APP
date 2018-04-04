@@ -93,8 +93,10 @@ const mutations = {
     Object.keys(baseUser).forEach((key) => {
       state[key] = user[key]
     })
-    window.localStorage.setItem('token', user.api_token)
-    window.localStorage.setItem('userId', user.id)
+    if (user.api_token) {
+      window.localStorage.setItem('token', user.api_token)
+      window.localStorage.setItem('userId', user.id)
+    }
   },
   setAddresses: function (state, addresses) {
     Object.keys(addresses).forEach(function (key) {
