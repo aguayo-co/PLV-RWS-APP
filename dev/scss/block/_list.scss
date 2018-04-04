@@ -5,9 +5,9 @@
   padding-top: 24px;
 }
 
-.list__grid {
-  padding: 16px 0;
-}
+// .list__grid {
+//   padding: 16px 0;
+// }
 
 .list__content {
   padding-bottom: 16px;
@@ -34,18 +34,18 @@
   }
 
 }
-
+.list__item {
+  padding-top: 16px;
+}
 .list__card {
-  padding-top: 32px;
   &:not(:last-child) {
     padding-bottom: 16px;
-    border-bottom: 1px solid $c-neutro-3;
   }
 }
 
 .card__product {
   @include flexbox;
-  padding-bottom: 22px;
+  width: 100%;
 }
   .card__figure {
     width: 30%;
@@ -64,6 +64,19 @@
       margin: 0;
     }
   }
+  .card__actions {
+    padding-top: 16px;
+  }
+  .card__link {
+    color: $c-default;
+    @include font-rem(16px);
+    &:before {
+      padding-right: 10px;
+      color: $c-brand;
+      @include font-rem(18px);
+    }
+  }
+
   .card__header {
     font-family: $f-fancy;
     font-weight: $fw-medium;
@@ -72,17 +85,12 @@
     @include font-rem(16px);
   }
   .card__price {
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     font-family: $f-normal;
     font-weight: $fw-thin;
     @include font-rem(28px);
   }
 
-.card__column {
-  @include flexbox;
-  @include flex-wrap(wrap);
-  @include align-items(center);
-}
   .card__user {
     @include flexbox;
     min-width: 50%;
@@ -111,15 +119,6 @@
       font-weight: $fw-bold;
     }
 
-  .card__actions {
-    @include flex-grow(1);
-    padding-bottom: 16px;
-    text-align: center;
-  }
-    .card__btn {
-      width: 100%;
-      min-width: 200px;
-    }
   /*------------------------------------*\
     List carrito dividers
   \*------------------------------------*/
@@ -197,30 +196,27 @@
   font-weight: $fw-bold;
 }
 
-
-
-
 // $bp-small: 375px;
 @include media-query(small) {
   .card__header {
     p {
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
   }
     .card__title {
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
 
-    .card__price {
-      padding-bottom: 16px;
-    }
+    // .card__price {
+    //   padding-bottom: 16px;
+    // }
 }
 
 // $bp-small-medium: 640px;
 @include media-query(small-medium) {
-   .list__grid {
-     padding: 32px 0;
-   }
+  //  .list__grid {
+  //    padding: 32px 0;
+  //  }
 
    .list__content {
      padding-bottom: 32px;
@@ -228,9 +224,9 @@
    .list-slot__content {
     padding-bottom: 32px;
    }
-   .card__btn {
-     max-width: 300px;
-   }
+  //  .card__btn {
+  //    max-width: 300px;
+  //  }
 
 }
 @media only screen and (max-width: 767px) {
@@ -246,6 +242,9 @@
   .list {
     padding-top: 56px;
   }
+  .list__item {
+    padding-top: 32px;
+  }
   .card__txt {
     @include font-rem(16px);
   }
@@ -260,10 +259,9 @@
   }
 
     .list__card {
-      padding-top: 40px;
-      &:not(:last-child) {
-        padding-bottom: 40px;
-      }
+      // &:not(:last-child) {
+      //   padding-bottom: 40px;
+      // }
     }
 
     .card__header {
@@ -273,8 +271,8 @@
         @include font-rem(18px);
       }
       .card__price {
-        padding-bottom: 18px;
-        padding-top: 8px;
+        // padding-bottom: 8px;
+        // padding-top: 8px;
         @include font-rem(32px);
       }
   /*------------------------------------*\
@@ -325,8 +323,12 @@
 
   .list__grid {
     @include flexbox;
-    padding: 40px 0;
+    // padding: 40px 0;
   }
+  .list__group {
+    min-width: 60%;
+  }
+
   .list__frame {
     position: sticky;
     top: 30px;
@@ -341,41 +343,43 @@
 
   .list__card {
     @include flexbox;
+    padding-right: 32px;
+    &:not(:last-child) {
+      padding-bottom: 32px;
+    }
   }
 
   .card__product {
-    min-width: 66%;
-    padding-bottom: 0;
-    padding-right: 32px;
+    width: 100%;
   }
 
-  .card__figure {
-    width: 134px;
-  }
+  // .card__figure {
+  //   width: 134px;
+  // }
 
-  .card__column {
-    @include flexbox;
-    @include align-items(flex-start);
-    @include flex-direction(column);
-    @include justify-content(space-between);
-  }
+  // .card__column {
+  //   @include flexbox;
+  //   @include align-items(flex-start);
+  //   @include flex-direction(column);
+  //   @include justify-content(space-between);
+  // }
 
   .card__user {
     min-width: auto;
     padding-right: 0;
   }
 
-  .card__actions {
-    @include flex-grow(initial);
-    padding-bottom: 0;
-  }
+  // .card__actions {
+  //   @include flex-grow(initial);
+  //   padding-bottom: 0;
+  // }
   .list-slot__content {
     .list__card {
       @include justify-content(space-between);
-      &:not(:last-child) {
-        padding-bottom: 32px;
-        margin-bottom: 32px;
-      }
+      // &:not(:last-child) {
+      //   padding-bottom: 32px;
+      //   margin-bottom: 32px;
+      // }
     }
     
 

@@ -109,7 +109,8 @@ const mutations = {
   setSaleProduct (state, {sale, product}) {
     const newProduct = {
       size: Vue.getNestedObject(product, ['size', 'name']),
-      brand: Vue.getNestedObject(product, ['brand', 'name'])
+      brand: Vue.getNestedObject(product, ['brand', 'name']),
+      condition: Vue.getNestedObject(product, ['condition', 'name'])
     }
     Object.keys(baseProduct).forEach((key) => {
       newProduct[key] = product[key]
