@@ -19,16 +19,19 @@ const baseUser = {
   groups: []
 }
 
+const baseState = {
+  ...baseUser,
+  addresses: {}
+}
+
 const getters = {
   full_name: state => state.first_name + ' ' + state.last_name,
-  roles: state => state.roles,
-  token: () => { return window.localStorage.getItem('token') },
-  userId: () => { return window.localStorage.getItem('userId') }
+  roles: state => state.roles
 }
 
 const actions = {
-  loadUser ({commit, getters}) {
-    return userAPI.load(getters['userId'])
+  loadUser ({commit, state}) {
+    return userAPI.load(state.id)
       .then(response => {
         commit('set', response.data)
       })
@@ -36,37 +39,37 @@ const actions = {
         console.log('No autenticado')
       })
   },
-  loadAddresses ({commit, getters}) {
-    return userAddressesAPI.load(getters['userId']).then(response => {
+  loadAddresses ({commit, state}) {
+    return userAddressesAPI.load(state.id).then(response => {
       commit('setAddresses', response.data.data)
     })
   },
-  update ({commit, getters}, data) {
-    data.id = getters['userId']
+  update ({commit, state}, data) {
+    data.id = state.id
     return userAPI.update(data).then(response => {
       commit('set', response.data)
     })
   },
-  updateWithFile ({commit, getters}, data) {
-    data.id = getters['userId']
+  updateWithFile ({commit, state}, data) {
+    data.id = state.id
     return userAPI.updateWithFile(data).then(response => {
       commit('set', response.data)
     })
   },
-  createAddress ({commit, getters}, data) {
-    data.user_id = getters['userId']
+  createAddress ({commit, state}, data) {
+    data.user_id = state.id
     return userAddressesAPI.create(data).then(response => {
       commit('setAddress', response.data)
     })
   },
-  updateAddress ({commit, getters}, data) {
-    data.user_id = getters['userId']
+  updateAddress ({commit, state}, data) {
+    data.user_id = state.id
     return userAddressesAPI.update(data).then(response => {
       commit('setAddress', response.data)
     })
   },
-  deleteAddress ({commit, getters}, data) {
-    data.user_id = getters['userId']
+  deleteAddress ({commit, state}, data) {
+    data.user_id = state.id
     return userAddressesAPI.delete(data).then(response => {
       commit('removeAddress', data)
     })
@@ -97,20 +100,19 @@ const mutations = {
   removeAddress: function (state, address) {
     Vue.delete(state.addresses, address.id)
   },
-  clear (state, user) {
-    Object.keys(baseUser).forEach((key) => {
-      state[key] = baseUser[key]
+  clear (state) {
+    Object.keys(baseState).forEach((key) => {
+      state[key] = baseState[key]
     })
+    state.addresses = {}
     window.localStorage.removeItem('token')
-    window.localStorage.removeItem('userId')
   }
 }
 
 export default {
   namespaced: true,
   state: {
-    addresses: {},
-    ...baseUser
+    ...baseState
   },
   getters,
   actions,

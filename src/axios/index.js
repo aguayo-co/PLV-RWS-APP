@@ -73,7 +73,7 @@ export default {
      */
 
     /**
-     * Axios sin autenticación.
+     * Axios no autenticado.
      */
     Vue.axios = axios.create(baseOptions)
     Vue.axios.interceptors.request.use((config) => {
