@@ -13,12 +13,14 @@ const editableProps = {
   phone: null
 }
 
-// Los valores de los formularios los almacenamos en local
-// hasta que se guarden en el servidor, en ese momento
-// pasan a Vuex.
-// Con esto generamos una propiedad computada
-// Que trae el valor original si el formulario no
-// ha recibido ningún valor.
+/**
+ * Los valores de los formularios los almacenamos en local hasta
+ * que se guarden en el servidor, en ese momento pasan a Vuex.
+ * Con esto generamos una propiedad computada que trae el valor
+ * original si el formulario no ha recibido ningún valor.
+ *
+ * @param {string[]} props El listado de propiedades a computar.
+ */
 function createComputedProps (props) {
   let computed = {}
   Object.keys(props).forEach(function (key) {

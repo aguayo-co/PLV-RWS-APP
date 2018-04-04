@@ -14,7 +14,7 @@ const editableProps = {
  * que se guarden en el servidor, en ese momento pasan a Vuex.
  * Con esto generamos una propiedad computada que trae el valor
  * original si el formulario no ha recibido ningún valor.
-
+ *
  * @param {string[]} props El listado de propiedades a computar.
  */
 function createComputedProps (props) {
@@ -50,6 +50,7 @@ export default {
       'sales'
     ]),
     ...mapGetters('cart', [
+      'address',
       'phone'
     ]),
     ...createComputedProps(editableProps)

@@ -55,6 +55,34 @@ const getters = {
   phone (state, getters, rootState) {
     const phoneOrder = Vue.getNestedObject(state.shipping_information, ['phone'])
     return phoneOrder || rootState.user.phone
+  },
+  /**
+   * Obtiene la dirección a usar en la orden.
+   * Si no hay una especificado, se usa la favorita del usuario.
+   *
+   * @param {*} state
+   * @param {*} getters
+   * @param {*} rootState
+   */
+  address (state, getters, rootState) {
+    const addressOrder = Vue.getNestedObject(state.shipping_information, ['address'])
+    if (addressOrder) {
+      return addressOrder
+    }
+
+    const favoriteAddressId = rootState.user.favorite_address_id
+    const favoriteAddress = rootState.user.addresses[favoriteAddressId]
+    if (favoriteAddress) {
+      return favoriteAddress
+    }
+
+    const firstAddressId = Object.keys(rootState.user.addresses)[0]
+    const firstAddress = rootState.user.addresses[firstAddressId]
+    if (firstAddress) {
+      return firstAddress
+    }
+
+    return null
   }
 }
 
