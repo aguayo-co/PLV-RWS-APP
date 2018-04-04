@@ -98,7 +98,6 @@ export default {
     }
   },
   created: function () {
-    this.$store.dispatch('user/loadAddresses').catch(() => { })
     const vm = this
     userAddressesAPI.getRegions().then((response) => {
       vm.regionsList = response.data

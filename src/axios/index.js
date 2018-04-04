@@ -56,8 +56,8 @@ export default {
      * Asegura que tengamos un token.
      */
     const ensureToken = (config) => {
-      const token = store.getters['user/token']
-      const userId = store.getters['user/userId']
+      const token = window.localStorage.getItem('token')
+      const userId = window.localStorage.getItem('userId')
       if (token === null || userId === null) {
         const modal = {...baseModal}
         modal.parameters.title = 'No estás autenticado.'

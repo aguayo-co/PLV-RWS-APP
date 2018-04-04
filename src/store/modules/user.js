@@ -30,10 +30,15 @@ const getters = {
 }
 
 const actions = {
-  loadUser ({commit, state}) {
-    return userAPI.load(state.id)
+  loadUser ({commit, dispatch}) {
+    const userId = window.localStorage.getItem('userId')
+    if (!userId) {
+      return
+    }
+    return userAPI.load(userId)
       .then(response => {
         commit('set', response.data)
+        dispatch('loadAddresses')
       })
       .catch(e => {
         console.log('No autenticado')
@@ -77,8 +82,9 @@ const actions = {
   logOut ({commit}) {
     commit('clear')
   },
-  setUser ({commit}, user) {
+  setUser ({commit, dispatch}, user) {
     commit('set', user)
+    dispatch('loadAddresses')
   }
 }
 
@@ -87,6 +93,8 @@ const mutations = {
     Object.keys(baseUser).forEach((key) => {
       state[key] = user[key]
     })
+    window.localStorage.setItem('token', user.api_token)
+    window.localStorage.setItem('userId', user.api_token)
   },
   setAddresses: function (state, addresses) {
     Object.keys(addresses).forEach(function (key) {
@@ -106,6 +114,7 @@ const mutations = {
     })
     state.addresses = {}
     window.localStorage.removeItem('token')
+    window.localStorage.removeItem('userId')
   }
 }
 

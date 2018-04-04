@@ -1,5 +1,5 @@
 <template lang="pug">
-//- This form allows the check of an email and redirecting to 
+//- This form allows the check of an email and redirecting to
 .step
   .layout-inner
     form.form(
@@ -76,18 +76,12 @@ export default {
       axios.post('https://prilov.aguayo.co/api/users/login', {
         email: this.email,
         password: this.password
+      }).then(response => {
+        this.$store.dispatch('user/setUser', response.data)
+        this.close()
+      }).catch(e => {
+        console.log('ERROR : ' + e)
       })
-        .then(response => {
-          console.log(response.data)
-          localStorage.setItem('token', response.data.api_token)
-          localStorage.setItem('userId', response.data.id)
-
-          this.$store.dispatch('user/setUser', response.data)
-          this.close()
-        })
-        .catch(e => {
-          console.log('ERROR : ' + e)
-        })
     }
   }
 }
