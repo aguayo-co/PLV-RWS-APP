@@ -7,6 +7,7 @@ const baseCart = {
   id: null,
   total: null,
   due: null,
+  shipping_information: null,
   coupon_discount: null
 }
 
@@ -42,15 +43,31 @@ const baseState = {
 }
 
 const getters = {
-  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
+  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name,
+  /**
+   * Obtiene el teléfono a usar en la orden.
+   * Si no hay uno especificado, se usa el global del usuario.
+   *
+   * @param {*} state
+   * @param {*} getters
+   * @param {*} rootState
+   */
+  phone (state, getters, rootState) {
+    const phoneOrder = Vue.getNestedObject(state.shipping_information, ['phone'])
+    return phoneOrder || rootState.user.phone
+  }
 }
 
 const actions = {
   load ({commit}) {
-    return shoppingCartAPI.load()
-      .then(response => {
-        commit('set', response.data)
-      })
+    return shoppingCartAPI.load().then(response => {
+      commit('set', response.data)
+    })
+  },
+  update ({commit}, data) {
+    return shoppingCartAPI.update(data).then(response => {
+      commit('set', response.data)
+    })
   }
 }
 
@@ -95,6 +112,12 @@ const mutations = {
       store.commit('cart/setSaleProduct', {sale: state.sales[newSale.id], product: sale.products[key]})
     })
   },
+  /**
+   * Almacena cada sale en el state.
+   *
+   * @param {*} state
+   * @param {sale, user} data
+   */
   setSaleSeller (state, {sale, user}) {
     Object.keys(baseSeller).forEach((key) => {
       Vue.set(state.sales[sale.id], 'user_' + key, user[key])
@@ -104,7 +127,7 @@ const mutations = {
    * Almacena cada producto en el state.
    *
    * @param {*} state
-   * @param {sale, product} param1
+   * @param {sale, product} data
    */
   setSaleProduct (state, {sale, product}) {
     const newProduct = {
@@ -116,9 +139,21 @@ const mutations = {
     })
     Vue.set(state.sales[sale.id].products, newProduct.id, newProduct)
   },
-  removeSale: function (state, sale) {
+  /**
+   * Removes the given sale from state.
+   *
+   * @param {*} state
+   * @param {*} sale
+   */
+  removeSale (state, sale) {
     Vue.delete(state.sales, sale.id)
   },
+  /**
+   * Set the cart state to initial values.
+   *
+   * @param {*} state
+   * @param {*} user
+   */
   clear (state, user) {
     Object.keys(baseState).forEach((key) => {
       state[key] = baseState[key]

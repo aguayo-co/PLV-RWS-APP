@@ -11,9 +11,32 @@ section.list_step
       small.small_high Esta sería la dirección a la que la vendedora enviará tu producto. También servirá de referencia en caso de que decidan juntarse.
     address-list
     .subhead Teléfono
-      small.small_high Danos tu número celular  para que el vendedor pueda comunicarse contigo
-    //- tel editable
-      ToDo: componente tel
+      small.small_high Danos tu número celular para que el vendedor pueda comunicarse contigo
+    form.form_user(
+      id="form-user-phone"
+      v-on:submit.prevent='updatePhone')
+      .dividers__item(
+        :class="{'dividers__item_active' :editPhone == true}")
+        span.help(
+          v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
+        .dividers__grid
+          span.user-data__holder(
+            v-if="phone == null && editPhone == false") Aún no has ingresado tú número de teléfono
+          input.form__edit(
+            v-else=""
+            v-model='order_phone',
+            id='editPhone',
+            :placeholder="phone",
+            :disabled="editPhone == false"
+            type='tel')
+
+          span.dividers__actions
+            button.btn-tag(
+              v-show="editPhone == true") Guardar
+            a.dividers__edit.i-edit-line(
+              @click.prevent="toggle('editPhone')",
+              href="#",
+              title="Editar Teléfono") <small class="hide"> Editar </small>
 
   //-créditos
   h3.subhead ¿Quieres usar tus créditos en esta compra?
