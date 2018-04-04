@@ -16,6 +16,12 @@ export default {
   components: {
     'address-edit': AddressEdit
   },
+  props: {
+    inShoppingCart: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       isActive: '',
@@ -50,25 +56,30 @@ export default {
     }
   },
   methods: {
-    IsActive: function (e) {
+    IsActive (e) {
       this.isActive = e
     },
-    NotActive: function () {
+    NotActive () {
       this.isActive = ''
     },
-    toggleNewAddress: function (prop) {
+    toggleNewAddress (prop) {
       this.errorLog = {...addressFields}
       this.newAddressData = {...addressFields}
       this.newAddress = !this.newAddress
     },
-    setFavorite: function (address) {
+    setFavorite (address) {
       const data = {
         favorite_address_id: address.id
       }
-      // Para poder usarlo dentro de los forEach().
       this.$store.dispatch('user/update', data)
     },
-    createAddress: function () {
+    setForOrder (address) {
+      const data = {
+        address_id: address.id
+      }
+      this.$store.dispatch('cart/update', data)
+    },
+    createAddress () {
       let data = {}
       // Para poder usarlo dentro de los forEach().
       const vm = this

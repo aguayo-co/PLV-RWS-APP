@@ -42,11 +42,9 @@
                   dd.data-table__value ${{ total }}
                   //estado sin creditos
                   dt.data-table__item Código de descuento
-                  dd.data-table__value ${{ coupon_discount }}
-                  //estado con créditos OK
-                    add class .txt_brand to .data-table__value
-                  dt.data-table__item Código de descuento
-                  dd.data-table__value.txt_brand -${{ coupon_discount }}
+                  dd.data-table__value(
+                    :class="{txt_brand: coupon_discount}"
+                  ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount }}
                 dl.data-total
                   dt.data-total__label Total de tu orden:
                   dd.data-total__value ${{ due }}

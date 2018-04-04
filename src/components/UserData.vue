@@ -8,13 +8,13 @@ section.single
     //- data User
     .user-data
       .user-over(
-        :class="{'user-avatar_active' :editAvatar == true}")
+        :class="{'user-avatar_active' :editPicture == true}")
         .user-header
           .user-header__item
             .user-avatar-edit
               span.user-edit__actions
                 span.btn_edit.i-edit-line(
-                  @click.prevent="toggle('editAvatar')") <small class="hide"> Editar </small>
+                  @click.prevent="toggle('editPicture')") <small class="hide"> Editar </small>
               .user-data__avatar
                 //- clic en foto de perfil de usuario
                   Se despliega un input (file) donde el usuario
@@ -25,7 +25,7 @@ section.single
             form.form_user.user-avatar__upfile(
               id="form-user-avatar"
               v-on:submit.prevent='',
-              v-show="editAvatar == true")
+              v-show="editPicture == true")
               .upfile__small
                 p.form__label Foto de perfil
                 .upfile__item
@@ -33,13 +33,18 @@ section.single
                     .upfile__text.i-upload(
                       v-if="mqDesk") Arrastra una foto o
                     .upfile__btn Sube una imagen
+                  span.help(
+                    v-show="errorLog.picture") {{ errorLog.picture }}
                   croppa(
                     :width="300",
                     :height="300",
                     :quality="2",
                     placeholder="",
-                    :prevent-white-space="true")
-                .user-edit__save
+                    :prevent-white-space="true"
+                    v-model="new_picture")
+                .user-edit__save(
+                  @click="updatePicture"
+                )
                     button.btn-tag Guardar
           .user-header__item
             .user-header-edit(
@@ -137,7 +142,7 @@ section.single
       //-Información direcciones
       .user-data_info
         .subhead Direcciones
-        <address-list></address-list>
+        address-list
         //- Bloque Editar Correo Perfil de usuaria
           1. Se debe seleccionar el ícono de editar
           y el correo se convierte en un campo de
