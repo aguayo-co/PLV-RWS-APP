@@ -53,6 +53,9 @@ export default {
       'address',
       'phone'
     ]),
+    ...mapState('user', [
+      'credits'
+    ]),
     ...createComputedProps(editableProps)
   },
   methods: {
