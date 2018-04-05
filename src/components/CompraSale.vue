@@ -7,7 +7,7 @@
     .card__user-img
       .card__avatar
         img.card__picture(
-          src="/static/img/demo/user-avatar-009.jpg",
+          :src="sale.user_picture",
           alt="")
     .card__user-info
       .card__status Vendedora
