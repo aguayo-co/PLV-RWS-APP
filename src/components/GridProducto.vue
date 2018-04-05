@@ -6,10 +6,40 @@
     :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
     @click="openFilter(index), selected == index")
       span.filter__arrow {{ filterItem.name }}
-      .filter__select-inner
-        ul.filter__list
-          li.filter__item(
-            v-for="category in categories") {{ category.name }}
+
+      transition(name='toggle-scale')
+        .filter__select-inner.toggle-box(v-show='selected == index')
+          ul.filter__list.toggle-box__list
+            li.filter__item(
+              v-for="(filterSubItem, subIndex) in filterItem.filterSubItems")
+              input.form__input-check(
+              :id="'filterItem' + subIndex",
+              type="checkbox")
+              label.form__label_check(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
+    //- li.filter__select
+    //-   span.filter__arrow Talla
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="size in sizes") {{ size.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Marca
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="brand in brands") {{ brand.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Color
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="color in colors") {{ color.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Condición
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="condition in conditions") {{ condition.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Región
+    //-   ul.filter__list
+    //-     li.filter__item Región Metropolitana
     li.filter__slide
       .filter__label Precio <span>(CLP)</span>
       .filter__set

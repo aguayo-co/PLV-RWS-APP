@@ -163,6 +163,10 @@ select {
   font-family: $f-default;
   border: 1px solid $c-default-2;
 }
+.form__textarea_height {
+  min-height: 83px;
+}
+
 .form__label-link {
   color: $c-default;
   font-weight: $fw-bold;
