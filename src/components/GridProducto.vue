@@ -1,32 +1,41 @@
 <template lang="pug">
 .section_filter
   ul.filter
-    li.filter__select Prenda
-      ul.filter__list
-        li.filter__item(
-          v-for="category in categories") {{ category.name }}
-    li.filter__select Talla
-      ul.filter__list
-        li.filter__item(
-          v-for="size in sizes") {{ size.name }}
-    li.filter__select Marca
-      ul.filter__list
-        li.filter__item(
-          v-for="brand in brands") {{ brand.name }}
-    li.filter__select Color
-      ul.filter__list
-        li.filter__item(
-          v-for="color in colors") {{ color.name }}
-    li.filter__select Condición
-      ul.filter__list
-        li.filter__item(
-          v-for="condition in conditions") {{ condition.name }}
-    li.filter__select Región
-      ul.filter__list
-        li.filter__item Región Metropolitana
-    li.filter__slide Precio (CLP)
+    li.filter__select(
+    v-for='(filterItem , index) in filterItems',
+    :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
+    @click="openFilter(index), selected == index")
+      span.filter__arrow {{ filterItem.name }}
+      .filter__select-inner
+        ul.filter__list
+          li.filter__item(
+            v-for="category in categories") {{ category.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Talla
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="size in sizes") {{ size.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Marca
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="brand in brands") {{ brand.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Color
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="color in colors") {{ color.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Condición
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="condition in conditions") {{ condition.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Región
+    //-   ul.filter__list
+    //-     li.filter__item Región Metropolitana
+    //- li.filter__slide Precio (CLP)
 
-  Prenda
   .section_product__scroll
     .product-grid
       article.slot.slot_grid(
@@ -96,6 +105,29 @@ export default {
   data () {
     return {
       isActive: undefined,
+      filterItems: [
+        {
+          name: 'Prenda'
+        },
+        {
+          name: 'Talla'
+        },
+        {
+          name: 'Marca'
+        },
+        {
+          name: 'Color'
+        },
+        {
+          name: 'Condición'
+        },
+        {
+          name: 'Región'
+        },
+        {
+          name: 'Precio (CLP)'
+        }
+      ],
       products: [],
       conditions: {},
       categories: {},
@@ -104,7 +136,9 @@ export default {
       sizes: {},
       items: 8,
       page: 1,
-      loading: false
+      loading: false,
+      selected: undefined,
+      active: false
     }
   },
   methods: {
@@ -127,6 +161,9 @@ export default {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         this.loadMoreProducts()
       }
+    },
+    openFilter: function (index) {
+      this.selected = index
     }
   },
   created: function () {
