@@ -6029,6 +6029,77 @@ body {
     .dashboard__subitem:last-child {
       padding-left: 32px; } }
 
+@media only screen and (min-width: 768px) {
+  .filter {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #000; }
+  .filter__select {
+    position: relative;
+    display: inline-block;
+    padding: 17px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    @inlcude font-rem(14px);
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease; }
+    .filter__select:hover .filter__arrow {
+      color: #fe7676; }
+    .filter__select.filter__select_open {
+      color: #fff;
+      background-color: #fe7676; }
+      .filter__select.filter__select_open .filter__list {
+        color: #000; }
+      .filter__select.filter__select_open:hover .filter__arrow {
+        color: #fff; }
+      .filter__select.filter__select_open .filter__arrow:after {
+        border-color: #fff transparent transparent transparent; }
+  .filter__select-inner {
+    display: block;
+    width: 100%;
+    left: 0;
+    z-index: 3; }
+  .filter__arrow {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+    .filter__arrow:after {
+      content: '';
+      width: 0;
+      height: 0;
+      margin-left: 10px;
+      border-style: solid;
+      border-width: 6px 5.5px 0 5.5px;
+      border-color: #000 transparent transparent transparent; }
+  .filter__list {
+    position: relative;
+    margin-top: 17px;
+    z-index: 2;
+    text-align: left;
+    list-style-type: none;
+    background-color: #fff; } }
+
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
 ---------------------------------------------- */
