@@ -1,5 +1,6 @@
-// Filtros
-
+/*------------------------------------*\
+	Filter
+\*------------------------------------*/
 @include media-query(medium) {
   .filter {
   	@include flexbox;
@@ -13,7 +14,6 @@
     padding: 17px 20px;
     text-transform: uppercase;
     font-weight: $fw-bold;
-    @inlcude font-rem(14px);
     height: 54px;
     overflow: hidden;
     text-align: center;

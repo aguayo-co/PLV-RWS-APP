@@ -1,0 +1,46 @@
+/*------------------------------------*\
+	Filter slider: rango de precio
+\*------------------------------------*/
+.filter__slide {
+  min-width: 306px;
+  list-style: none;
+  @include flexbox;
+  @include justify-content(space-between);
+}
+  .filter__label {
+    text-transform: uppercase;
+    font-weight: $fw-bold;
+    span {
+      font-weight: $fw-medium;
+    }
+  }
+  .filter__set {
+    min-width: 200px;
+  }
+  .filter__tooltip {
+    @include flexbox;
+    @include justify-content(space-between);
+    padding-top: 8px;
+  }
+    .filter__value {
+      position: relative;
+      @include font-rem(16px);
+      &:first-child {
+        -ms-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+      &:last-child {
+        -ms-transform: translateX(50%);
+        -moz-transform: translateX(50%);
+        -o-transform: translateX(50%);
+        -webkit-transform: translateX(50%);
+        transform: translateX(50%);
+      }
+
+    }
+
+
+
