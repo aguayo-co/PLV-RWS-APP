@@ -24,7 +24,7 @@ export default {
      */
 
     /**
-     * Errores de acceso son manejados acá (403 o 401).
+     * Errores de red, servidor y acceso son manejados acá (5xx, 403 o 401).
      * Los demás los dejamos pasar y deben ser manejados por quien hizo
      * la petición.
      */
@@ -37,6 +37,14 @@ export default {
       }
       if (error.response && error.response.status === 403) {
         modal.parameters.title = 'No tiene permiso para esto.'
+        store.dispatch('ui/showModal', modal)
+      }
+      if (error.response && error.response.status >= 500) {
+        modal.parameters.title = 'Algo ha fallado, por favor revisa tu conexión e intenta nuevamente.'
+        store.dispatch('ui/showModal', modal)
+      }
+      if (!error.response) {
+        modal.parameters.title = 'Algo ha fallado, por favor revisa tu conexión e intenta nuevamente.'
         store.dispatch('ui/showModal', modal)
       }
       throw error
