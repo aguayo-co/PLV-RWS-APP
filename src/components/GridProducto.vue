@@ -1,45 +1,92 @@
 <template lang="pug">
 .section_filter
   ul.filter
+    //Cero item
     li.filter__select(
-    v-for='(filterItem , index) in filterItems',
-    :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
-    @click="openFilter(index), selected == index")
-      span.filter__arrow {{ filterItem.name }}
+    :class="{ 'filter__select_open' :selected == true}",
+    @click="openFilter")
+      span.filter__arrow Prenda
+      //- transition(name='toggle-scale')
+      //-   .filter__select-inner.toggle-box(v-show='selected == true')
+      //-     ul.filter__list.toggle-box__list
+      //-       li.filter__item(
+      //-         v-for="(condition, index) in conditions")
+      //-         input.form__input-check(
+      //-         :id="'filterItem' + index",
+      //-         type="checkbox")
+      //-         label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
+    //Primer item
+    li.filter__select(
+    :class="{ 'filter__select_open' :selected == true}",
+    @click="openFilter")
+      span.filter__arrow Talla
       transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == index')
+        .filter__select-inner.toggle-box(v-show='selected == true')
           ul.filter__list.toggle-box__list
             li.filter__item(
-              v-for="(filterSubItem, subIndex) in filterItem.filterSubItems")
+              v-for="(size, subIndex) in sizes")
               input.form__input-check(
               :id="'filterItem' + subIndex",
               type="checkbox")
-              label.form__label_check(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
-    //- li.filter__select
-    //-   span.filter__arrow Talla
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="size in sizes") {{ size.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Marca
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="brand in brands") {{ brand.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Color
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="color in colors") {{ color.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Condición
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="condition in conditions") {{ condition.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Región
-    //-   ul.filter__list
-    //-     li.filter__item Región Metropolitana
-    //- li.filter__slide Precio (CLP)
+              label.form__label_check.i-ok(:for="'filterItem' + subIndex") {{ size.name }}
+    //Segundo item
+    li.filter__select(
+    :class="{ 'filter__select_open' :selected == true}",
+    @click="openFilter")
+      span.filter__arrow Marca
+      transition(name='toggle-scale')
+        .filter__select-inner.toggle-box(v-show='selected == true')
+          ul.filter__list.toggle-box__list
+            li.filter__item(
+              v-for="(brand, index) in brands")
+              input.form__input-check(
+              :id="'filterItem' + index",
+              type="checkbox")
+              label.form__label_check.i-ok(:for="'filterItem' + index") {{ brand.name }}
+    //Tercer item
+    li.filter__select(
+    :class="{ 'filter__select_open' :selected == true}",
+    @click="openFilter")
+      span.filter__arrow Color
+      transition(name='toggle-scale')
+        .filter__select-inner.toggle-box(v-show='selected == true')
+          ul.filter__list.toggle-box__list
+            li.filter__item(
+              v-for="(color, index) in colors")
+              input.form__input-check(
+              :id="'filterItem' + index",
+              type="checkbox")
+              label.form__label_check.i-ok(:for="'filterItem' + index") {{ color.name }}
+    //Cuarto item
+    li.filter__select(
+    :class="{ 'filter__select_open' :selected == true}",
+    @click="openFilter")
+      span.filter__arrow Condición
+      transition(name='toggle-scale')
+        .filter__select-inner.toggle-box(v-show='selected == true')
+          ul.filter__list.toggle-box__list
+            li.filter__item(
+              v-for="(condition, index) in conditions")
+              input.form__input-check(
+              :id="'filterItem' + index",
+              type="checkbox")
+              label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
+    //Quinto item
+    li.filter__select(
+    :class="{ 'filter__select_open' :selected == true}",
+    @click="openFilter")
+      span.filter__arrow Región
+      //- transition(name='toggle-scale')
+      //-   .filter__select-inner.toggle-box(v-show='selected == true')
+      //-     ul.filter__list.toggle-box__list
+      //-       li.filter__item(
+      //-         v-for="(condition, index) in conditions")
+      //-         input.form__input-check(
+      //-         :id="'filterItem' + index",
+      //-         type="checkbox")
+      //-         label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
+    //Sexto item
+    li.filter__slide Precio (CLP)
 
   .section_product__scroll
     .product-grid
@@ -110,77 +157,16 @@ export default {
   data () {
     return {
       isActive: undefined,
-      filterItems: [
-        {
-          name: 'Prenda',
-          filterSubItems: [
-            'Patalones',
-            'Camisas',
-            'Medias',
-            'Chaquetas',
-            'Poleras',
-            'Blusas y camisas',
-            'Monos',
-            'Chalecos',
-            'Abrigos',
-            'Parkas',
-            'Kimonos',
-            'Capris',
-            'Leggings',
-            'Jardineras',
-            'Faldas',
-            'Ropa Interior',
-            'Pantalones cortos'
-          ]
-        },
-        {
-          name: 'Talla',
-          filterSubItems: [
-            {
-              sizes: {}
-            }
-          ]
-        },
-        {
-          name: 'Marca',
-          filterSubItems: [
-            {
-              brands: {}
-            }
-          ]
-        },
-        {
-          name: 'Color',
-          filterSubItems: [
-            {
-              colors: {}
-            }
-          ]
-        },
-        {
-          name: 'Condición',
-          filterSubItems: [
-            {
-              conditions: {}
-            }
-          ]
-        },
-        {
-          name: 'Región',
-          filterSubItems: [
-            {
-              region1: 'region1'
-            }
-          ]
-        }
-      ],
       products: [],
       categories: {},
       sizes: {},
+      brands: {},
+      colors: {},
+      conditions: {},
       items: 8,
       page: 1,
       loading: false,
-      selected: undefined,
+      selected: false,
       active: false
     }
   },
@@ -205,8 +191,8 @@ export default {
         this.loadMoreProducts()
       }
     },
-    openFilter: function (index) {
-      this.selected = index
+    openFilter: function () {
+      this.selected = !this.selected
     }
   },
   created: function () {
@@ -238,7 +224,7 @@ export default {
       })
     productAPI.getAllBrands()
       .then(response => {
-        this.filterItems.filterSubItems.brands = response.data.data
+        this.brands = response.data.data
       })
       .catch(e => {
         console.log(e)

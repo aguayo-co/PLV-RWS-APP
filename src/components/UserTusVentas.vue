@@ -266,6 +266,7 @@ section.single
             //-4
             .dashboard__status
               p.status.status_alert.i-alert-circle Pendiente de pago
+              p Estamos confirmando el pago de este pedido por parte de la compradora.
       .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
@@ -298,6 +299,33 @@ section.single
             //-5
             .dashboard__status
               p.status.status_warning.i-reload Pedido en proceso de devolución
+              p La compradora decidió devolver este producto y está en proceso de enviártelo de vuelta.
+            //-5b
+            .dashboard__actions
+              p ¿Ya recibiste la devolución?
+              a.btn.btn_solid.btn_block(
+              href='#') Si, la recibí
+            //-5_2b
+            //- Flujo desde btn => Si, la recibí.
+            .dashboard__actions
+              p ¿Cómo recibiste el producto?
+              a.btn.btn_block(
+              href='#') Lo recibí bien
+              a.btn.btn_block(
+              href='#') Lo recibí en peores condiciones
+            //-5_2c
+            //- Flujo desde btn => Lo recibí bien
+            .dashboard__actions
+              p.status.status_warning.i-reload Pedido devuelto
+            //-5_2d
+            //- Flujo desde btn => Lo recibí en peores condiciones
+            .dashboard__actions
+              p ¿Por qué lo recibiste en peores condiciones?
+            //-5_2e
+            //- Flujo desde btn => Informar a Prilov
+            .dashboard__actions
+              p.status.status_warning.i-reload Pedido devuelto en revisión por Prilov
+              p Nos informaste de una inconformidad en el pedido que te devolvieron y lo estamos evaluando.
       .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
