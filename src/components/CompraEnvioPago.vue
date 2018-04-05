@@ -2,7 +2,10 @@
 section.list_step
   h2.subhead Selecciona tu método de envío
   //- metodos de envío
-  <compra-sale v-for="sale in sales" :key="sale.id" :sale=sale></compra-sale>
+  compra-sale(
+    v-for="sale in sales"
+    :key="sale.id"
+    :sale="sale")
 
   //- direcciones editable
   .compra-data_info

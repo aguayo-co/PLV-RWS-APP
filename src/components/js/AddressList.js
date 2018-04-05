@@ -36,17 +36,17 @@ export default {
       'favorite_address_id',
       'addresses'
     ]),
-    regions: function () {
+    regions () {
       return Object.keys(this.regionsList)
     },
-    cities: function () {
+    cities () {
       const region = this.newAddressData.new_region
       const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
       if (cities) {
         return Object.keys(cities)
       }
     },
-    zones: function () {
+    zones () {
       const region = this.newAddressData.new_region
       const city = this.newAddressData.new_city
       const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
@@ -97,7 +97,7 @@ export default {
       })
     }
   },
-  created: function () {
+  created () {
     const vm = this
     userAddressesAPI.getRegions().then((response) => {
       vm.regionsList = response.data

@@ -32,7 +32,7 @@ const baseSeller = {
   first_name: null,
   last_name: null,
   picture: null,
-  shipping_method_ids: {}
+  shipping_methods: {}
 }
 
 // EL estado mínimo inicial de el state.
@@ -96,6 +96,16 @@ const actions = {
     return shoppingCartAPI.update(data).then(response => {
       commit('set', response.data)
     })
+  },
+  addProduct ({commit}, product) {
+    return shoppingCartAPI.addProducts([product.id]).then(response => {
+      commit('set', response.data)
+    })
+  },
+  removeProduct ({commit}, product) {
+    return shoppingCartAPI.removeProducts([product.id]).then(response => {
+      commit('set', response.data)
+    })
   }
 }
 
@@ -114,8 +124,17 @@ const mutations = {
     })
     state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'coupon_code'])
 
-    Object.keys(cart.sales).forEach(function (key) {
+    const activeSales = []
+    Object.keys(cart.sales).forEach((key) => {
       store.commit('cart/setSale', cart.sales[key])
+      const saleID = cart.sales[key].id
+      activeSales[saleID] = saleID
+    })
+
+    Object.keys(state.sales).forEach((key) => {
+      if (!(key in activeSales)) {
+        store.commit('cart/removeSale', state.sales[key])
+      }
     })
   },
   /**
@@ -169,7 +188,7 @@ const mutations = {
     Vue.set(state.sales[sale.id].products, newProduct.id, newProduct)
   },
   /**
-   * Removes the given sale from state.
+   * Quita una venta del state.
    *
    * @param {*} state
    * @param {*} sale
@@ -178,7 +197,7 @@ const mutations = {
     Vue.delete(state.sales, sale.id)
   },
   /**
-   * Set the cart state to initial values.
+   * Devuelve el state a su estado inicial.
    *
    * @param {*} state
    * @param {*} user

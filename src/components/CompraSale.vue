@@ -35,56 +35,30 @@
             p.card__tag.tag {{ product.condition }}
             .card__actions
               a.i-trash.card__link(
-                href="#") Eliminar Producto
+                href="#"
+                @click.prevent="removeProduct(product)") Eliminar Producto
 
     .boxcheck
       .boxcheck__sticky
         h4.boxcheck__headline Métodos de envío disponibles:
         p.boxcheck__subheadline Estos son los métodos de envío habilitados por la vendedora de estos productos.
         form.boxcheck__form
-          //-item 1
-          .boxcheck__item
+          //-item
+          .boxcheck__item(
+            v-for="shippingMethod in sale.user_shipping_methods" :key="shippingMethod.name")
             input.form__input-radio(
-              id="estandar1",
+              :id="shippingMethod.slug",
               type="radio",
-              name="envio",
-              value="estandar1",
-              checked="checked")
+              :value="shippingMethod.id",
+              v-model="shipping_method_id")
             label.form__label.form__label_radio(
-              for="estandar1")
+              :for="shippingMethod.slug")
               span.boxcheck__label
-                span Envío estándar (Chilexpress) <small class="boxcheck__disclaimer">($3000)</small>
+                span {{ shippingMethod.name }} <small class="boxcheck__disclaimer">($3000)</small>
             //-nota
             .boxcheck__tip
-              p Al seleccionar esta opción de despacho, las entregas son según su disponibilidad y efectuadas de Lunes a Sábado.
-              p Tiempo de entrega entre 1 y 5 días hábiles
-          //-end item 1
-          //-item 2
-          .boxcheck__item
-            input.form__input-radio(
-              id="ultra1",
-              type="radio",
-              name="envio",
-              value="ultra1",
-              checked="checked")
-            label.form__label.form__label_radio(
-              for="ultra1")
-              span.boxcheck__label
-                span Envío ultra rápido (Chilexpress) <small class="boxcheck__disclaimer">($5000)</small>
-          //-end item 2
-          //-item 3
-          .boxcheck__item
-            input.form__input-radio(
-              id="saleswoman1",
-              type="radio",
-              name="envio",
-              value="saleswoman1",
-              checked="checked")
-            label.form__label.form__label_radio(
-              for="saleswoman1")
-              span.boxcheck__label
-                span Acuerdo envío con vendedora <small class="boxcheck__disclaimer">($3000)</small>
-          //-end item 3
+              p {{ shippingMethod.description_buyer }}
+          //-end item
       //-End Métodos de envío por vendedora
 </template>
 

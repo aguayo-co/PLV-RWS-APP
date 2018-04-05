@@ -1,11 +1,9 @@
 import { mapState } from 'vuex'
-import CompraCarro from '@/components/CompraCarro'
 import CompraEnvioPago from '@/components/CompraEnvioPago'
 
 export default {
   name: 'Compra',
   components: {
-    CompraCarro,
     CompraEnvioPago
   },
   created: function () {
