@@ -1,93 +1,11 @@
 <template lang="pug">
 .section_filter
-  ul.filter
-    //Cero item
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Prenda
-      //- transition(name='toggle-scale')
-      //-   .filter__select-inner.toggle-box(v-show='selected == true')
-      //-     ul.filter__list.toggle-box__list
-      //-       li.filter__item(
-      //-         v-for="(condition, index) in conditions")
-      //-         input.form__input-check(
-      //-         :id="'filterItem' + index",
-      //-         type="checkbox")
-      //-         label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
-    //Primer item
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Talla
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(size, subIndex) in sizes")
-              input.form__input-check(
-              :id="'filterItem' + subIndex",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + subIndex") {{ size.name }}
-    //Segundo item
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Marca
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(brand, index) in brands")
-              input.form__input-check(
-              :id="'filterItem' + index",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + index") {{ brand.name }}
-    //Tercer item
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Color
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(color, index) in colors")
-              input.form__input-check(
-              :id="'filterItem' + index",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + index") {{ color.name }}
-    //Cuarto item
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Condición
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(condition, index) in conditions")
-              input.form__input-check(
-              :id="'filterItem' + index",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
-    //Quinto item
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Región
-      //- transition(name='toggle-scale')
-      //-   .filter__select-inner.toggle-box(v-show='selected == true')
-      //-     ul.filter__list.toggle-box__list
-      //-       li.filter__item(
-      //-         v-for="(condition, index) in conditions")
-      //-         input.form__input-check(
-      //-         :id="'filterItem' + index",
-      //-         type="checkbox")
-      //-         label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
-    //Sexto item
-    li.filter__slide Precio (CLP)
-
+  //- filter Mobile
+  FilterMobile(
+    v-if="mqMobile")
+  //- filter desktop
+  FilterDesk(
+    v-if="mqDesk")
   .section_product__scroll
     .product-grid
       article.slot.slot_grid(
@@ -150,23 +68,23 @@
 
 <script>
 import productAPI from '@/api/product'
+import FilterDesk from '@/components/FilterDesk'
+import FilterMobile from '@/components/FilterMobile'
 
 export default {
   name: 'GridProducto',
   props: ['infinite'],
+  components: {
+    FilterDesk,
+    FilterMobile
+  },
   data () {
     return {
       isActive: undefined,
       products: [],
-      categories: {},
-      sizes: {},
-      brands: {},
-      colors: {},
-      conditions: {},
       items: 8,
       page: 1,
       loading: false,
-      selected: false,
       active: false
     }
   },
@@ -190,9 +108,6 @@ export default {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         this.loadMoreProducts()
       }
-    },
-    openFilter: function () {
-      this.selected = !this.selected
     }
   },
   created: function () {
@@ -200,38 +115,6 @@ export default {
     productAPI.getProducts(this.page, this.items)
       .then((response) => {
         this.products = response.data.data
-      })
-    productAPI.getCategoriesBySlug('shop')
-      .then(response => {
-        this.categories = response.data.children
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllConditions()
-      .then(response => {
-        this.conditions = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllColors()
-      .then(response => {
-        this.colors = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllBrands()
-      .then(response => {
-        this.brands = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllSizes()
-      .then(response => {
-        response.data.data.forEach((item) => this.sizes.push(...item.children))
       })
   }
 }
