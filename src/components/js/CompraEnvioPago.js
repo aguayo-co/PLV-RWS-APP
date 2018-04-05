@@ -112,17 +112,23 @@ export default {
     new_used_credits: function (newUsedCredits, oldUsedCredits) {
       window.clearTimeout(this.userDataTimeout)
       this.errorLog.used_credits = null
+      // Si usa lo que ya había asignado, no hacer nada.
       if (parseInt(this.new_used_credits) === parseInt(this.used_credits)) {
         this.new_used_credits = null
         return
       }
+      // No permite más de lo disponible.
       if (parseInt(this.new_used_credits) > parseInt(this.credits)) {
         this.errorLog.used_credits = 'Estás usando más créditos de los disponibles.'
+        // Actualiza due en el state.
+        this.$store.commit('cart/setUsedCredits', 0)
         return
       }
       this.userDataTimeout = window.setTimeout(() => {
         this.updateUsedCredits()
       }, 5000)
+      // Actualiza due en el state.
+      this.$store.commit('cart/setUsedCredits', newUsedCredits)
     }
   }
 }

@@ -6,7 +6,6 @@ import CompraEnvioPago from '@/components/CompraEnvioPago'
 // de cada uno.
 const editableProps = {
   phone: null,
-  used_credits: null,
   coupon_code: null
 }
 

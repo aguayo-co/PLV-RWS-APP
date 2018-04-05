@@ -207,6 +207,19 @@ const mutations = {
     Object.keys(baseState).forEach((key) => {
       state[key] = baseState[key]
     })
+  },
+  /**
+   * Cambia el valor de used_credits y due en state.
+   *
+   * @param {*} state
+   * @param {*} user
+   */
+  setUsedCredits (state, value) {
+    let due = parseInt(state.due) || 0
+    due += parseInt(state.used_credits) || 0
+    due -= parseInt(value) || 0
+    state.due = due
+    state.used_credits = parseInt(value) || 0
   }
 }
 
