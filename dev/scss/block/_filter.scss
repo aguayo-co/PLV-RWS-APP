@@ -3,38 +3,35 @@
 @include media-query(medium) {
   .filter {
   	@include flexbox;
-    @include flex-direction(row);
-    height: 54px;
-    padding-left: 17px;
+    @include justify-content(space-between);
+    margin-bottom: 10px;
+    border-bottom: 1px solid $c-default;
   }
 
   .filter__select {
+    position: relative;
     display: inline-block;
     padding: 17px 20px;
     text-transform: uppercase;
     font-weight: $fw-bold;
     @inlcude font-rem(14px);
-    height: 54px;
-    overflow: hidden;
     text-align: center;
     cursor: pointer;
     -webkit-transition: height 1s ease;
-        -moz-transition: height 1s ease;
-          -o-transition: height 1s ease;
-         -ms-transition: height 1s ease;
-             transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease;
     &:hover {
       .filter__arrow {
         color: $c-brand;
       }
     }
     &.filter__select_open {
-       height: max-content;
        color: $c-neutro;
        background-color: $c-brand;
        .filter__list {
         color: $c-default;
-        list-style-type: none;
        }
        &:hover {
         .filter__arrow {
@@ -50,10 +47,11 @@
   }
 
    .filter__select-inner {
-      margin: 0 -20px -20px;
+      display: block;
+      width: 100%;
+      left: 0;
+      z-index: 3;
    }
-
-  
 
   .filter__arrow {
     @include flexbox;
@@ -73,6 +71,8 @@
     position: relative;
     margin-top: 17px;
     z-index: 2;
+    text-align: left;
+    list-style-type: none;
     background-color: $c-neutro;
   }
   

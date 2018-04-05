@@ -6,10 +6,15 @@
     :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
     @click="openFilter(index), selected == index")
       span.filter__arrow {{ filterItem.name }}
-      .filter__select-inner
-        ul.filter__list
-          li.filter__item(
-            v-for="category in categories") {{ category.name }}
+      transition(name='toggle-scale')
+        .filter__select-inner.toggle-box(v-show='selected == index')
+          ul.filter__list.toggle-box__list
+            li.filter__item(
+              v-for="(filterSubItem, subIndex) in filterItem.filterSubItems")
+              input(
+              :id="'filterItem' + subIndex",
+              type="checkbox")
+              label(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
     //- li.filter__select
     //-   span.filter__arrow Talla
     //-   ul.filter__list
@@ -107,32 +112,70 @@ export default {
       isActive: undefined,
       filterItems: [
         {
-          name: 'Prenda'
+          name: 'Prenda',
+          filterSubItems: [
+            'Patalones',
+            'Camisas',
+            'Medias',
+            'Chaquetas',
+            'Poleras',
+            'Blusas y camisas',
+            'Monos',
+            'Chalecos',
+            'Abrigos',
+            'Parkas',
+            'Kimonos',
+            'Capris',
+            'Leggings',
+            'Jardineras',
+            'Faldas',
+            'Ropa Interior',
+            'Pantalones cortos'
+          ]
         },
         {
-          name: 'Talla'
+          name: 'Talla',
+          filterSubItems: [
+            {
+              sizes: {}
+            }
+          ]
         },
         {
-          name: 'Marca'
+          name: 'Marca',
+          filterSubItems: [
+            {
+              brands: {}
+            }
+          ]
         },
         {
-          name: 'Color'
+          name: 'Color',
+          filterSubItems: [
+            {
+              colors: {}
+            }
+          ]
         },
         {
-          name: 'Condición'
+          name: 'Condición',
+          filterSubItems: [
+            {
+              conditions: {}
+            }
+          ]
         },
         {
-          name: 'Región'
-        },
-        {
-          name: 'Precio (CLP)'
+          name: 'Región',
+          filterSubItems: [
+            {
+              region1: 'region1'
+            }
+          ]
         }
       ],
       products: [],
-      conditions: {},
       categories: {},
-      colors: {},
-      brands: {},
       sizes: {},
       items: 8,
       page: 1,
@@ -195,17 +238,14 @@ export default {
       })
     productAPI.getAllBrands()
       .then(response => {
-        this.brands = response.data.data
+        this.filterItems.filterSubItems.brands = response.data.data
       })
       .catch(e => {
         console.log(e)
       })
     productAPI.getAllSizes()
       .then(response => {
-        this.sizes = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
+        response.data.data.forEach((item) => this.sizes.push(...item.children))
       })
   }
 }
