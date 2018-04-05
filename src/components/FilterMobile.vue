@@ -1,5 +1,5 @@
 <template lang="pug">
-.section_filter
+
   ul.filter
     //Item Prenda
     li.filter__select(
