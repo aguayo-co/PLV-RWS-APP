@@ -1,56 +1,11 @@
 <template lang="pug">
 .section_filter
-  ul.filter
-    li.filter__select(
-    v-for='(filterItem , index) in filterItems',
-    :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
-    @click="openFilter(index), selected == index")
-      span.filter__arrow {{ filterItem.name }}
-
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == index')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(filterSubItem, subIndex) in filterItem.filterSubItems")
-              input.form__input-check(
-              :id="'filterItem' + subIndex",
-              type="checkbox")
-              label.form__label_check(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
-    //- li.filter__select
-    //-   span.filter__arrow Talla
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="size in sizes") {{ size.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Marca
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="brand in brands") {{ brand.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Color
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="color in colors") {{ color.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Condición
-    //-   ul.filter__list
-    //-     li.filter__item(
-    //-       v-for="condition in conditions") {{ condition.name }}
-    //- li.filter__select
-    //-   span.filter__arrow Región
-    //-   ul.filter__list
-    //-     li.filter__item Región Metropolitana
-    li.filter__slide
-      .filter__label Precio <span>(CLP)</span>
-      .filter__set
-        vue-slider(
-          ref="slider"
-          v-bind="sliderPrice"
-          v-model="sliderPrice.value")
-        .filter__tooltip
-          small.filter__value ${{ sliderPrice.value[0] }}
-          small.filter__value ${{ sliderPrice.value[1] }} +
-
+  //- filter Mobile
+  FilterMobile(
+    v-if="mqMobile")
+  //- filter desktop
+  FilterDesk(
+    v-if="mqDesk")
   .section_product__scroll
     .product-grid
       article.slot.slot_grid(
@@ -113,75 +68,24 @@
 
 <script>
 import productAPI from '@/api/product'
-import vueSlider from 'vue-slider-component'
+import FilterDesk from '@/components/FilterDesk'
+import FilterMobile from '@/components/FilterMobile'
 
 export default {
   name: 'GridProducto',
   props: ['infinite'],
   components: {
-    vueSlider
+    FilterDesk,
+    FilterMobile
   },
   data () {
     return {
       isActive: undefined,
-      filterItems: [
-        {
-          name: 'Prenda'
-        },
-        {
-          name: 'Talla'
-        },
-        {
-          name: 'Marca'
-        },
-        {
-          name: 'Color'
-        },
-        {
-          name: 'Condición'
-        },
-        {
-          name: 'Región'
-        }
-      ],
       products: [],
-      conditions: {},
-      categories: {},
-      colors: {},
-      brands: {},
-      sizes: {},
       items: 8,
       page: 1,
       loading: false,
-      selected: undefined,
-      active: false,
-      sliderPrice: {
-        value: [
-          '5000',
-          '150000'
-        ],
-        width: '100%',
-        height: 1,
-        min: 5000,
-        max: 150000,
-        interval: 5000,
-        piecewise: true,
-        formatter: '$ {value}',
-        tooltip: 'false',
-        piecewiseStyle: {
-          'visibility': 'hidden'
-        },
-        bgStyle: {
-          'backgroundColor': '#000'
-        },
-        processStyle: {
-          'backgroundColor': '#fe7676'
-        },
-        sliderStyle: {
-          'boxShadow': 'none',
-          'border': '1px solid #000'
-        }
-      }
+      active: false
     }
   },
   methods: {
@@ -204,9 +108,6 @@ export default {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         this.loadMoreProducts()
       }
-    },
-    openFilter: function (index) {
-      this.selected = index
     }
   },
   created: function () {
@@ -214,41 +115,6 @@ export default {
     productAPI.getProducts(this.page, this.items)
       .then((response) => {
         this.products = response.data.data
-      })
-    productAPI.getCategoriesBySlug('shop')
-      .then(response => {
-        this.categories = response.data.children
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllConditions()
-      .then(response => {
-        this.conditions = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllColors()
-      .then(response => {
-        this.colors = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllBrands()
-      .then(response => {
-        this.brands = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllSizes()
-      .then(response => {
-        this.sizes = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
       })
   }
 }
