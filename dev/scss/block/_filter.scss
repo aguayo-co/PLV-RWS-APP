@@ -1,0 +1,81 @@
+// Filtros
+
+@include media-query(medium) {
+  .filter {
+  	@include flexbox;
+    @include justify-content(space-between);
+    margin-bottom: 10px;
+    border-bottom: 1px solid $c-default;
+  }
+
+  .filter__select {
+    position: relative;
+    display: inline-block;
+    padding: 17px 20px;
+    text-transform: uppercase;
+    font-weight: $fw-bold;
+    @inlcude font-rem(14px);
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease;
+    &:hover {
+      .filter__arrow {
+        color: $c-brand;
+      }
+    }
+    &.filter__select_open {
+       color: $c-neutro;
+       background-color: $c-brand;
+       .filter__list {
+        color: $c-default;
+       }
+       &:hover {
+        .filter__arrow {
+          color: $c-neutro;
+        }
+       }
+       .filter__arrow {
+          &:after {
+            border-color: $c-neutro transparent transparent transparent;
+          }
+       }
+    }
+  }
+
+   .filter__select-inner {
+      display: block;
+      width: 100%;
+      left: 0;
+      z-index: 3;
+   }
+
+  .filter__arrow {
+    @include flexbox;
+    @include align-items(center);
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      margin-left: 10px;
+      border-style: solid;
+      border-width: 6px 5.5px 0 5.5px;
+      border-color: $c-default transparent transparent transparent;
+    }
+  }
+
+  .filter__list {
+    position: relative;
+    margin-top: 17px;
+    z-index: 2;
+    text-align: left;
+    list-style-type: none;
+    background-color: $c-neutro;
+  }
+  
+  .filter__item {
+  }
+}

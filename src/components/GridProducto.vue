@@ -1,32 +1,46 @@
 <template lang="pug">
 .section_filter
   ul.filter
-    li.filter__select Prenda
-      ul.filter__list
-        li.filter__item(
-          v-for="category in categories") {{ category.name }}
-    li.filter__select Talla
-      ul.filter__list
-        li.filter__item(
-          v-for="size in sizes") {{ size.name }}
-    li.filter__select Marca
-      ul.filter__list
-        li.filter__item(
-          v-for="brand in brands") {{ brand.name }}
-    li.filter__select Color
-      ul.filter__list
-        li.filter__item(
-          v-for="color in colors") {{ color.name }}
-    li.filter__select Condición
-      ul.filter__list
-        li.filter__item(
-          v-for="condition in conditions") {{ condition.name }}
-    li.filter__select Región
-      ul.filter__list
-        li.filter__item Región Metropolitana
-    li.filter__slide Precio (CLP)
+    li.filter__select(
+    v-for='(filterItem , index) in filterItems',
+    :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
+    @click="openFilter(index), selected == index")
+      span.filter__arrow {{ filterItem.name }}
+      transition(name='toggle-scale')
+        .filter__select-inner.toggle-box(v-show='selected == index')
+          ul.filter__list.toggle-box__list
+            li.filter__item(
+              v-for="(filterSubItem, subIndex) in filterItem.filterSubItems")
+              input.form__input-check(
+              :id="'filterItem' + subIndex",
+              type="checkbox")
+              label.form__label_check(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
+    //- li.filter__select
+    //-   span.filter__arrow Talla
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="size in sizes") {{ size.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Marca
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="brand in brands") {{ brand.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Color
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="color in colors") {{ color.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Condición
+    //-   ul.filter__list
+    //-     li.filter__item(
+    //-       v-for="condition in conditions") {{ condition.name }}
+    //- li.filter__select
+    //-   span.filter__arrow Región
+    //-   ul.filter__list
+    //-     li.filter__item Región Metropolitana
+    //- li.filter__slide Precio (CLP)
 
-  Prenda
   .section_product__scroll
     .product-grid
       article.slot.slot_grid(
@@ -96,15 +110,78 @@ export default {
   data () {
     return {
       isActive: undefined,
+      filterItems: [
+        {
+          name: 'Prenda',
+          filterSubItems: [
+            'Patalones',
+            'Camisas',
+            'Medias',
+            'Chaquetas',
+            'Poleras',
+            'Blusas y camisas',
+            'Monos',
+            'Chalecos',
+            'Abrigos',
+            'Parkas',
+            'Kimonos',
+            'Capris',
+            'Leggings',
+            'Jardineras',
+            'Faldas',
+            'Ropa Interior',
+            'Pantalones cortos'
+          ]
+        },
+        {
+          name: 'Talla',
+          filterSubItems: [
+            {
+              sizes: {}
+            }
+          ]
+        },
+        {
+          name: 'Marca',
+          filterSubItems: [
+            {
+              brands: {}
+            }
+          ]
+        },
+        {
+          name: 'Color',
+          filterSubItems: [
+            {
+              colors: {}
+            }
+          ]
+        },
+        {
+          name: 'Condición',
+          filterSubItems: [
+            {
+              conditions: {}
+            }
+          ]
+        },
+        {
+          name: 'Región',
+          filterSubItems: [
+            {
+              region1: 'region1'
+            }
+          ]
+        }
+      ],
       products: [],
-      conditions: {},
       categories: {},
-      colors: {},
-      brands: {},
       sizes: {},
       items: 8,
       page: 1,
-      loading: false
+      loading: false,
+      selected: undefined,
+      active: false
     }
   },
   methods: {
@@ -127,6 +204,9 @@ export default {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         this.loadMoreProducts()
       }
+    },
+    openFilter: function (index) {
+      this.selected = index
     }
   },
   created: function () {
@@ -158,17 +238,14 @@ export default {
       })
     productAPI.getAllBrands()
       .then(response => {
-        this.brands = response.data.data
+        this.filterItems.filterSubItems.brands = response.data.data
       })
       .catch(e => {
         console.log(e)
       })
     productAPI.getAllSizes()
       .then(response => {
-        this.sizes = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
+        response.data.data.forEach((item) => this.sizes.push(...item.children))
       })
   }
 }
