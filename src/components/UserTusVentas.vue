@@ -63,13 +63,69 @@ section.single
               a.link_underline(
                 href="#") Escribir a la compradora
             //-2
-            p ¿Cómo entregaste este pedido?
-            a.link_underline(
+            //- Flujo desde btn => Sí ya lo entregué
+            .dashboard__actions
+              p ¿Cómo entregaste este pedido?
+              span.dashboard__actions_link
+                a.link_underline(
                 href="#") Nos juntamos
-            a.link_underline(
-                href="#") Usé una empresa de mensajería
+              a.link_underline(
+              href="#") Usé una empresa de mensajería
+            //-2a
+            //- Flujo desde btn => Nos juntamos
+            .dashboard__actions
+              p.status.status_alert.i-rocket Esperando confirmación de recibido de la Compradora.
+              p Escogiste juntarte con la vendedora.
+              p Estamos esperando que ella nos confirme que ya le entregaste el pedido.
+              a.link_underline(
+              href="#") Lo entregué de otra forma
             //-2b
-            Ingresa el nombre de la empresa de mensajerí
+            //- Flujo desde btn => Usé una empresa de mensajería
+            .dashboard__actions
+              form.form.dashboard__form(
+                v-on:submit='',
+                action='#',
+                method='post'
+              )
+                .form__row
+                  label.form__label(
+                    for='getName') Ingresa el nombre de la empresa de mensajería
+                  input.form__control(
+                    id='getName',
+                    type='text'
+                  )
+                .form__row
+                  label.form__label(
+                    for='getNumber') Ingresa el número de seguimiento.
+                  input.form__control(
+                    id='getNumber',
+                    type='text'
+                  )
+                .form__row
+                  button.btn.btn_solid Enviar número de seguimiento
+            //-2c
+            //- Flujo desde btn de form => Enviar número de seguimiento
+            .dashboard__actions
+              p.status.status_alert.i-rocket Esperando confirmación de recibido de la Compradora.
+              p Ya nos informaste que enviaste el pedido,
+              p Empresa:
+                span  Correos de Chile
+              p Número de Seguimiento:
+                span  AS123102931203
+              p Estamos esperando que la compradora nos confirme que recibió el pedido.
+              a.link_underline(
+              href="#") Ingresé mal el número de seguimiento o entregué de otra forma
+            //-2d
+            //- Flujo desde => Esperando confirmación
+            .dashboard__actions
+              p Califica esta compra
+              //-Notificaciones
+              .user-data__notify
+                ul.user-data__list
+                  li.user-data__value.i-like 20
+                  li.user-data__value.i-like.i_flip 0
+                  li.user-data__value.i-less-circle 0
+              .form
       .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746

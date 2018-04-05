@@ -5910,7 +5910,26 @@ body {
     border-bottom: 1px solid #cbcbcb; }
 
 .dashboard__actions {
-  text-align: center; }
+  text-align: center;
+  border: 1px dashed grey; }
+  .dashboard__actions .btn_block {
+    margin-bottom: 20px; }
+  .dashboard__actions .user-data__notify {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center; }
+
+.dashboard__actions_link {
+  display: block;
+  padding-bottom: 16px; }
+
+.dashboard__form .btn {
+  width: 100%; }
+
+.dashboard__form .form__label {
+  text-align: left; }
 
 /*------------------------------------*	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
