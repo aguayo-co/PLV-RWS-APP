@@ -7,7 +7,8 @@ import CompraSale from '@/components/CompraSale'
 // de cada uno.
 const editableProps = {
   phone: null,
-  used_credits: null
+  used_credits: null,
+  coupon_code: null
 }
 
 /**
@@ -45,7 +46,7 @@ export default {
       editPhone: false,
       newOrderData: {...editableProps},
       errorLog: {...editableProps},
-      disable: {...editableProps}
+      disabled: {...editableProps}
     }
   },
   computed: {
@@ -89,7 +90,7 @@ export default {
      * Guarda el teléfono de la orden.
      */
     updateUsedCredits () {
-      this.disable.used_credits = true
+      this.disabled.used_credits = true
       const data = {
         used_credits: this.new_used_credits || 0
       }
@@ -99,7 +100,7 @@ export default {
       }).catch((e) => {
         this.errorLog.used_credits = this.$getFirstError(e, 'used_credits')
       }).finally(() => {
-        this.disable.used_credits = false
+        this.disabled.used_credits = false
       })
     }
   },

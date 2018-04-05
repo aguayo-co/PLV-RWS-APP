@@ -57,7 +57,7 @@ section.list_step
         input.form__control.pay-off__control(
           id="creditos-on",
           type="text",
-          :disabled='disable.used_credits',
+          :disabled='disabled.used_credits',
           v-model='new_used_credits')
         small.pay-off__small Créditos
   //-tipo de medio de pago

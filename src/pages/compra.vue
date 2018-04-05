@@ -52,27 +52,28 @@
 
                 //-código de descuento
                    Estado inicial
-                form.form.data-form
+                form.form.data-form(
+                  @submit.prevent="updateCouponCode")
                   .form__row.form__row_away
                     label.form__label(
                       for='codigo') ¿Tienes algún código de descuento?
-                    .form__combo
+                    span.help(
+                      v-show="errorLog.coupon_code") {{ errorLog.coupon_code }}
+                    .form__combo(
+                      :class="{'form__combo_ok i-ok': couponValid}"
+                    )
                       input.form__control.combo__control(
                         id='codigo'
-                        type='text')
-                      button.btn.combo__btn Validar
-                //- end código de descuento
-                //código de descuento
-                    Estado OK:
-                    add class .form__combo_ok.i-ok to .form__combo
-                form.form.data-form
-                  .form__row.form__row_away
-                    label.form__label(
-                      for='codigo') ¿Tienes algún código de descuento?
-                    .form__combo.form__combo_ok.i-ok
-                      input.form__control.combo__control(
-                        id='codigo'
-                        type='text')
+                        type='text'
+                        :disabled="disabled.coupon_code"
+                        :placeholder="coupon_code"
+                        v-model="new_coupon_code")
+                      button.btn.combo__btn(
+                        :disabled="disabled.coupon_code"
+                        v-show="!couponValid && new_coupon_code") Validar
+                      button.btn.combo__btn(
+                        :disabled="disabled.coupon_code"
+                        v-show="coupon_code && !new_coupon_code") Eliminar
                 //- end código de descuento
 
                 //- btn continuar

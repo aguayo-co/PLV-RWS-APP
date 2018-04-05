@@ -123,7 +123,7 @@ const mutations = {
     Object.keys(baseCart).forEach((key) => {
       state[key] = cart[key]
     })
-    state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'coupon_code'])
+    state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'code'])
 
     const activeSales = []
     Object.keys(cart.sales).forEach((key) => {
