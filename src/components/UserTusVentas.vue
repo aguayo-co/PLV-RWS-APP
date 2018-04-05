@@ -62,7 +62,7 @@ section.single
                 href="#") Si, ya lo entregué.
               a.link_underline(
                 href="#") Escribir a la compradora
-            //-2
+            //-1_2
             //- Flujo desde btn => Sí ya lo entregué
             .dashboard__actions
               p ¿Cómo entregaste este pedido?
@@ -71,7 +71,7 @@ section.single
                 href="#") Nos juntamos
               a.link_underline(
               href="#") Usé una empresa de mensajería
-            //-2a
+            //-1_2a
             //- Flujo desde btn => Nos juntamos
             .dashboard__actions
               p.status.status_alert.i-rocket Esperando confirmación de recibido de la Compradora.
@@ -79,7 +79,7 @@ section.single
               p Estamos esperando que ella nos confirme que ya le entregaste el pedido.
               a.link_underline(
               href="#") Lo entregué de otra forma
-            //-2b
+            //-1_2b
             //- Flujo desde btn => Usé una empresa de mensajería
             .dashboard__actions
               form.form.dashboard__form(
@@ -103,7 +103,7 @@ section.single
                   )
                 .form__row
                   button.btn.btn_solid Enviar número de seguimiento
-            //-2c
+            //-1_2c
             //- Flujo desde btn de form => Enviar número de seguimiento
             .dashboard__actions
               p.status.status_alert.i-rocket Esperando confirmación de recibido de la Compradora.
@@ -114,8 +114,8 @@ section.single
                 span  AS123102931203
               p Estamos esperando que la compradora nos confirme que recibió el pedido.
               a.link_underline(
-              href="#") Ingresé mal el número de seguimiento o entregué de otra forma
-            //-2d
+              href="#") « Ingresé mal el número de seguimiento o entregué de otra forma
+            //-1_2d
             //- Flujo desde => Esperando confirmación
             .dashboard__actions
               p Califica esta compra
@@ -125,7 +125,14 @@ section.single
                   li.user-data__value.i-like 20
                   li.user-data__value.i-like.i_flip 0
                   li.user-data__value.i-less-circle 0
-              .form
+              .form.dashboard__form
+                .form__row
+                  label.form__label(
+                  for='CommentSale') Deja un comentario sobre la vendedora
+                  input.form__textarea.form__textarea_height(
+                  id='CommentSale'
+                  maxlength='340')
+                button.btn.i-send Comentar
       .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
@@ -159,6 +166,42 @@ section.single
             .dashboard__status
               p.status.status_check.i-check Pedido Pagado
               p.status.status_alert.i-alert-circle Pendiente de envío con ChileExpress
+            //- 2b
+            .dashboard__actions
+              p ¿Ya imprimiste la etiqueta y enviaste el producto?
+              a.btn.btn_solid.btn_block(
+                href="#") Si, ya lo envié.
+              a.link_underline(
+                href="#") Reimprimir etiqueta de ChileExpress
+            //-2_2b
+            //- Flujo desde btn => Si, ya lo envié.
+            .dashboard__actions
+              form.form.dashboard__form(
+                v-on:submit='',
+                action='#',
+                method='post'
+              )
+                .form__row
+                  label.form__label(
+                    for='numTracing') Ingresa el Nº de seguimiento de ChileExpress
+                  input.form__control(
+                    id='numTracing',
+                    type='text'
+                  )
+                .form__row
+                  button.btn.btn_solid Enviar número de seguimiento
+            //-2_2c
+            //- Flujo desde btn de form => Enviar número de seguimiento
+            .dashboard__actions
+              p.status.status_check.i-rocket Pedido Enviado por ChileExpress # de seguimiento: 991238891238FR
+              p Ya nos informaste el número de seguimiento y se lo enviamos a la vendedora.
+              a.link_underline(
+              href="#") « Ingresé mal el número de seguimiento o entregué de otra forma
+            //-2_2d
+            //- Flujo desde => Pedido Enviado por ChileExpress
+            .dashboard__actions
+              p.status.status_check.i-check Pedido recibido por la vendedora.
+
       .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746

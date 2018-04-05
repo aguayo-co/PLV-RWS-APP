@@ -113,6 +113,9 @@
     color: $c-brand;
   }
 }
+.status_subtxt {
+  display: block;
+}
 .status_warning {
   border-color: $c-warning;
   &:before {
