@@ -28,7 +28,7 @@ section.list_step
             v-if="phone == null && editPhone == false") Aún no has ingresado tú número de teléfono
           input.form__edit(
             v-else=""
-            v-model='order_phone',
+            v-model='new_phone',
             id='editPhone',
             :placeholder="phone",
             :disabled="editPhone == false"
@@ -52,9 +52,13 @@ section.list_step
       label.pay-off__label(
         for="creditos-on") Usar en esta compra
       .pay-off__group
+        span.help(
+          v-show="errorLog.used_credits") {{ errorLog.used_credits }}
         input.form__control.pay-off__control(
           id="creditos-on",
-          type="text")
+          type="text",
+          :disabled='disable.used_credits',
+          v-model='new_used_credits')
         small.pay-off__small Créditos
   //-tipo de medio de pago
   h3.subhead ¿Con que medio te gustaría pagar?

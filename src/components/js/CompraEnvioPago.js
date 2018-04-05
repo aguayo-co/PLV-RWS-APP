@@ -6,7 +6,8 @@ import CompraSale from '@/components/CompraSale'
 // Con esto se crean las propiedades computables
 // de cada uno.
 const editableProps = {
-  phone: null
+  phone: null,
+  used_credits: null
 }
 
 /**
@@ -20,7 +21,7 @@ const editableProps = {
 function createComputedProps (props) {
   let computed = {}
   Object.keys(props).forEach(function (key) {
-    computed['order_' + key] = {
+    computed['new_' + key] = {
       get: function () {
         return this.newOrderData[key] !== null ? this.newOrderData[key] : this[key]
       },
@@ -40,14 +41,17 @@ export default {
   },
   data () {
     return {
+      userDataTimeout: null,
       editPhone: false,
       newOrderData: {...editableProps},
-      errorLog: {...editableProps}
+      errorLog: {...editableProps},
+      disable: {...editableProps}
     }
   },
   computed: {
     ...mapState('cart', [
-      'sales'
+      'sales',
+      'used_credits'
     ]),
     ...mapGetters('cart', [
       'address',
@@ -70,16 +74,54 @@ export default {
      */
     updatePhone: function () {
       const data = {
-        phone: this.order_phone
+        phone: this.new_phone
       }
       this.$store.dispatch('cart/update', data).then(() => {
         this.toggle('editPhone')
         // Obliga a usar valores de Vuex.
-        this.order_phone = null
+        this.new_phone = null
         this.errorLog.phone = null
       }).catch((e) => {
         this.errorLog.phone = this.$getFirstError(e, 'phone')
       })
+    },
+    /**
+     * Guarda el teléfono de la orden.
+     */
+    updateUsedCredits () {
+      this.disable.used_credits = true
+      const data = {
+        used_credits: this.new_used_credits || 0
+      }
+      this.$store.dispatch('cart/update', data).then(() => {
+        this.new_used_credits = null
+        this.errorLog.used_credits = null
+      }).catch((e) => {
+        this.errorLog.used_credits = this.$getFirstError(e, 'used_credits')
+      }).finally(() => {
+        this.disable.used_credits = false
+      })
+    }
+  },
+  watch: {
+    /**
+     * Calcula un timeout sin modificación para guardar
+     * used_credits en el back.
+     */
+    new_used_credits: function (newUsedCredits, oldUsedCredits) {
+      window.clearTimeout(this.userDataTimeout)
+      this.errorLog.used_credits = null
+      if (parseInt(this.new_used_credits) === parseInt(this.used_credits)) {
+        this.new_used_credits = null
+        return
+      }
+      if (parseInt(this.new_used_credits) > parseInt(this.credits)) {
+        this.errorLog.used_credits = 'Estás usando más créditos de los disponibles.'
+        return
+      }
+      this.userDataTimeout = window.setTimeout(() => {
+        this.updateUsedCredits()
+      }, 5000)
     }
   }
 }
