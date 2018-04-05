@@ -91,21 +91,25 @@ const actions = {
   load ({commit}) {
     return shoppingCartAPI.load().then(response => {
       commit('set', response.data)
+      return response
     })
   },
   update ({commit}, data) {
     return shoppingCartAPI.update(data).then(response => {
       commit('set', response.data)
+      return response
     })
   },
   addProduct ({commit}, product) {
     return shoppingCartAPI.addProducts([product.id]).then(response => {
       commit('set', response.data)
+      return response
     })
   },
   removeProduct ({commit}, product) {
     return shoppingCartAPI.removeProducts([product.id]).then(response => {
       commit('set', response.data)
+      return response
     })
   }
 }

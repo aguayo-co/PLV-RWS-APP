@@ -43,6 +43,7 @@ const actions = {
       .then(response => {
         commit('set', response.data)
         dispatch('loadAddresses')
+        return response
       })
       .catch(e => {
         console.log('No autenticado')
@@ -51,36 +52,42 @@ const actions = {
   loadAddresses ({commit, state}) {
     return userAddressesAPI.load(state.id).then(response => {
       commit('setAddresses', response.data.data)
+      return response
     })
   },
   update ({commit, state}, data) {
     data.id = state.id
     return userAPI.update(data).then(response => {
       commit('set', response.data)
+      return response
     })
   },
   updateWithFile ({commit, state}, data) {
     data.id = state.id
     return userAPI.updateWithFile(data).then(response => {
       commit('set', response.data)
+      return response
     })
   },
   createAddress ({commit, state}, data) {
     data.user_id = state.id
     return userAddressesAPI.create(data).then(response => {
       commit('setAddress', response.data)
+      return response
     })
   },
   updateAddress ({commit, state}, data) {
     data.user_id = state.id
     return userAddressesAPI.update(data).then(response => {
       commit('setAddress', response.data)
+      return response
     })
   },
   deleteAddress ({commit, state}, data) {
     data.user_id = state.id
     return userAddressesAPI.delete(data).then(response => {
       commit('removeAddress', data)
+      return response
     })
   },
   logOut ({commit}) {

@@ -87,7 +87,11 @@ export default {
       Object.keys(addressFields).forEach(function (key) {
         data[key.replace('new_', '')] = vm.newAddressData[key]
       })
-      this.$store.dispatch('user/createAddress', data).then(() => {
+      this.$store.dispatch('user/createAddress', data).then((response) => {
+        if (this.inShoppingCart) {
+          // Usa la dirección recién creada en la orden.
+          vm.setForOrder(response.data)
+        }
         vm.toggleNewAddress()
       }).catch((e) => {
         // Si hay errores, mostrarlos.
