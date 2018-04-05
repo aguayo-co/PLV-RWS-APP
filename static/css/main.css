@@ -769,6 +769,9 @@ select {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
 
+.form__textarea_height {
+  min-height: 83px; }
+
 .form__label-link {
   color: #000;
   font-weight: 700;
@@ -5985,6 +5988,9 @@ body {
   border-color: #fe7676; }
   .status_alert:before {
     color: #fe7676; }
+
+.status_subtxt {
+  display: block; }
 
 .status_warning {
   border-color: #FFA65B; }
