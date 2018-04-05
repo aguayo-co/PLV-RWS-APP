@@ -37,8 +37,26 @@
 
 .dashboard__actions {
   text-align: center;
+  border: 1px dashed grey;
+  .btn_block {
+    margin-bottom: 20px;
+  }
+  .user-data__notify {
+    @include justify-content(center);
+  }
 }
-
+.dashboard__actions_link {
+  display: block;
+  padding-bottom: 16px;
+}
+.dashboard__form {
+  .btn {
+    width: 100%;
+  }
+  .form__label {
+    text-align: left;
+  }
+}
 /*------------------------------------*\
 	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/

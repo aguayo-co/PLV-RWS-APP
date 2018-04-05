@@ -1,0 +1,81 @@
+// Filtros
+
+@include media-query(medium) {
+  .filter {
+  	@include flexbox;
+    @include flex-direction(row);
+    height: 54px;
+    padding-left: 17px;
+  }
+
+  .filter__select {
+    display: inline-block;
+    padding: 17px 20px;
+    text-transform: uppercase;
+    font-weight: $fw-bold;
+    @inlcude font-rem(14px);
+    height: 54px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: height 1s ease;
+        -moz-transition: height 1s ease;
+          -o-transition: height 1s ease;
+         -ms-transition: height 1s ease;
+             transition: height 1s ease;
+    &:hover {
+      .filter__arrow {
+        color: $c-brand;
+      }
+    }
+    &.filter__select_open {
+       height: max-content;
+       color: $c-neutro;
+       background-color: $c-brand;
+       .filter__list {
+        color: $c-default;
+        list-style-type: none;
+       }
+       &:hover {
+        .filter__arrow {
+          color: $c-neutro;
+        }
+       }
+       .filter__arrow {
+          &:after {
+            border-color: $c-neutro transparent transparent transparent;
+          }
+       }
+    }
+  }
+
+   .filter__select-inner {
+      margin: 0 -20px -20px;
+   }
+
+  
+
+  .filter__arrow {
+    @include flexbox;
+    @include align-items(center);
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      margin-left: 10px;
+      border-style: solid;
+      border-width: 6px 5.5px 0 5.5px;
+      border-color: $c-default transparent transparent transparent;
+    }
+  }
+
+  .filter__list {
+    position: relative;
+    margin-top: 17px;
+    z-index: 2;
+    background-color: $c-neutro;
+  }
+  
+  .filter__item {
+  }
+}
