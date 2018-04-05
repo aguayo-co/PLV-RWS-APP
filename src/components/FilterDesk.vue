@@ -159,9 +159,6 @@ export default {
       .then(response => {
         this.sizes = response.data.data
       })
-      .catch(e => {
-        console.log(e)
-      })
   }
 }
 </script>
