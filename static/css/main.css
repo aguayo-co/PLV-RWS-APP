@@ -5827,41 +5827,36 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    height: 54px;
-    padding-left: 17px; }
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #000; }
   .filter__select {
+    position: relative;
     display: inline-block;
     padding: 17px 20px;
     text-transform: uppercase;
     font-weight: 700;
-    height: 54px;
-    overflow: hidden;
     text-align: center;
-    cursor: pointer;
-    -webkit-transition: height 1s ease;
-    transition: height 1s ease; }
+    cursor: pointer; }
     .filter__select:hover .filter__arrow {
       color: #fe7676; }
     .filter__select.filter__select_open {
-      height: -webkit-max-content;
-      height: -moz-max-content;
-      height: max-content;
       color: #fff;
       background-color: #fe7676; }
       .filter__select.filter__select_open .filter__list {
-        color: #000;
-        list-style-type: none; }
+        color: #000; }
       .filter__select.filter__select_open:hover .filter__arrow {
         color: #fff; }
       .filter__select.filter__select_open .filter__arrow:after {
         border-color: #fff transparent transparent transparent; }
   .filter__select-inner {
-    margin: 0 -20px -20px; }
+    display: block;
+    width: 100%;
+    left: 0;
+    z-index: 3; }
   .filter__arrow {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5882,6 +5877,8 @@ body {
     position: relative;
     margin-top: 17px;
     z-index: 2;
+    text-align: left;
+    list-style-type: none;
     background-color: #fff; } }
 
 /*------------------------------------*	Filter slider: rango de precio

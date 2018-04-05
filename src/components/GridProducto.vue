@@ -1,37 +1,25 @@
 <template lang="pug">
 .section_filter
   ul.filter
-    li.filter__select Prenda
-      ul.filter__list
-        li.filter__item(
-          v-for="category in categories") {{ category.name }}
-    li.filter__select Talla
-      ul.filter__list
-        li.filter__item(
-          v-for="size in sizes") {{ size.name }}
-    li.filter__select Marca
-      ul.filter__list
-        li.filter__item(
-          v-for="brand in brands") {{ brand.name }}
-    li.filter__select Color
-      ul.filter__list
-        li.filter__item(
-          v-for="color in colors") {{ color.name }}
-    li.filter__select Condición
-      ul.filter__list
-        li.filter__item(
-          v-for="condition in conditions") {{ condition.name }}
-    li.filter__select Región
-      ul.filter__list
-        li.filter__item Región Metropolitana
-    li.filter__slide Precio (CLP)
-      vue-slider(
-        ref="slider"
-        v-bind="sliderPrice"
-        v-model="sliderPrice.value")
+    li.filter__select(
+    v-for='(filterItem , index) in filterItems',
+    :class="{ 'filter__select_open' :selected == index, 'filter__select_close' : active }",
+    @click="openFilter(index), selected == index")
+      span.filter__arrow {{ filterItem.name }}
+      .filter__select-inner
+        ul.filter__list
+          li.filter__item(
+            v-for="category in categories") {{ category.name }}
+    li.filter__slide
+      .filter__label Precio <span>(CLP)</span>
       .filter__set
-        small.filter__value {{ sliderPrice.value[0] }}
-        small.filter__value {{ sliderPrice.value[1] }}
+        vue-slider(
+          ref="slider"
+          v-bind="sliderPrice"
+          v-model="sliderPrice.value")
+        .filter__tooltip
+          small.filter__value ${{ sliderPrice.value[0] }}
+          small.filter__value ${{ sliderPrice.value[1] }} +
 
   .section_product__scroll
     .product-grid
@@ -106,6 +94,26 @@ export default {
   data () {
     return {
       isActive: undefined,
+      filterItems: [
+        {
+          name: 'Prenda'
+        },
+        {
+          name: 'Talla'
+        },
+        {
+          name: 'Marca'
+        },
+        {
+          name: 'Color'
+        },
+        {
+          name: 'Condición'
+        },
+        {
+          name: 'Región'
+        }
+      ],
       products: [],
       conditions: {},
       categories: {},
@@ -115,12 +123,15 @@ export default {
       items: 8,
       page: 1,
       loading: false,
+      selected: undefined,
+      active: false,
       sliderPrice: {
         value: [
           '5000',
           '150000'
         ],
-        width: '98%',
+        width: '100%',
+        height: 1,
         min: 5000,
         max: 150000,
         interval: 5000,
@@ -132,7 +143,13 @@ export default {
         },
         bgStyle: {
           'backgroundColor': '#000'
-          // 'backgroundColor': '#fe7676'
+        },
+        processStyle: {
+          'backgroundColor': '#fe7676'
+        },
+        sliderStyle: {
+          'boxShadow': 'none',
+          'border': '1px solid #000'
         }
       }
     }
@@ -157,6 +174,9 @@ export default {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         this.loadMoreProducts()
       }
+    },
+    openFilter: function (index) {
+      this.selected = index
     }
   },
   created: function () {
