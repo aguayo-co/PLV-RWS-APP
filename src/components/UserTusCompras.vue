@@ -363,6 +363,6 @@ section.single
 
 <script>
 export default {
-  name: 'UserTusVentas'
+  name: 'UserTusCompras'
 }
 </script>
