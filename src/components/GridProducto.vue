@@ -11,10 +11,10 @@
           ul.filter__list.toggle-box__list
             li.filter__item(
               v-for="(filterSubItem, subIndex) in filterItem.filterSubItems")
-              input(
+              input.form__input-check(
               :id="'filterItem' + subIndex",
               type="checkbox")
-              label(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
+              label.form__label_check(:for="'filterItem' + subIndex") {{ filterItem.filterSubItems[subIndex] }}
     //- li.filter__select
     //-   span.filter__arrow Talla
     //-   ul.filter__list
