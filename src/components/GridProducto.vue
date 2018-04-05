@@ -25,8 +25,14 @@
       ul.filter__list
         li.filter__item Región Metropolitana
     li.filter__slide Precio (CLP)
+      vue-slider(
+        ref="slider"
+        v-bind="sliderPrice"
+        v-model="sliderPrice.value")
+      .filter__set
+        small.filter__value {{ sliderPrice.value[0] }}
+        small.filter__value {{ sliderPrice.value[1] }}
 
-  Prenda
   .section_product__scroll
     .product-grid
       article.slot.slot_grid(
@@ -89,10 +95,14 @@
 
 <script>
 import productAPI from '@/api/product'
+import vueSlider from 'vue-slider-component'
 
 export default {
   name: 'GridProducto',
   props: ['infinite'],
+  components: {
+    vueSlider
+  },
   data () {
     return {
       isActive: undefined,
@@ -104,7 +114,27 @@ export default {
       sizes: {},
       items: 8,
       page: 1,
-      loading: false
+      loading: false,
+      sliderPrice: {
+        value: [
+          '5000',
+          '150000'
+        ],
+        width: '98%',
+        min: 5000,
+        max: 150000,
+        interval: 5000,
+        piecewise: true,
+        formatter: '$ {value}',
+        tooltip: 'false',
+        piecewiseStyle: {
+          'visibility': 'hidden'
+        },
+        bgStyle: {
+          'backgroundColor': '#000'
+          // 'backgroundColor': '#fe7676'
+        }
+      }
     }
   },
   methods: {
