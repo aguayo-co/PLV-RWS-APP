@@ -2,7 +2,7 @@
 	Filter slider: rango de precio
 \*------------------------------------*/
 .filter__slide {
-  min-width: 320px;
+  min-width: 280px;
   padding-right: 40px;
   list-style: none;
   @include flexbox;
@@ -17,7 +17,7 @@
     }
   }
   .filter__set {
-    min-width: 200px;
+    min-width: 160px;
   }
   .filter__tooltip {
     @include flexbox;
@@ -43,6 +43,12 @@
       }
 
     }
+@include media-query(huge) {
+  .filter__slide {
+    min-width: 320px;
+  }
 
-
-
+  .filter__set {
+    min-width: 200px;
+  }
+}

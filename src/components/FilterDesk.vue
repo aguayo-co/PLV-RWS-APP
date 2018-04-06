@@ -12,56 +12,60 @@ ul.filter
   @click="openFilter")
     span.filter__arrow Talla
     transition(name='toggle-scale')
-      .filter__select-inner.toggle-box(v-show='selected == true')
-        ul.filter__list.toggle-box__list
+        ul.filter__list.toggle-box(
+          v-show='selected == true')
           li.filter__item(
             v-for="(size, subIndex) in sizes")
             input.form__input-check(
             :id="'filterItem' + subIndex",
             type="checkbox")
-            label.form__label_check.i-ok(:for="'filterItem' + subIndex") {{ size.name }}
+            label.filter__check.i-check(
+              :for="'filterItem' + subIndex") {{ size.name }}
   //Item Marca
   li.filter__select(
   :class="{ 'filter__select_open' :selected == true}",
   @click="openFilter")
     span.filter__arrow Marca
     transition(name='toggle-scale')
-      .filter__select-inner.toggle-box(v-show='selected == true')
-        ul.filter__list.toggle-box__list
+        ul.filter__list.toggle-box(
+          v-show='selected == true')
           li.filter__item(
             v-for="(brand, index) in brands")
             input.form__input-check(
             :id="'filterItem' + index",
             type="checkbox")
-            label.form__label_check.i-ok(:for="'filterItem' + index") {{ brand.name }}
+            label.filter__check.i-check(
+              :for="'filterItem' + index") {{ brand.name }}
   //Item Color
   li.filter__select(
   :class="{ 'filter__select_open' :selected == true}",
   @click="openFilter")
     span.filter__arrow Color
     transition(name='toggle-scale')
-      .filter__select-inner.toggle-box(v-show='selected == true')
-        ul.filter__list.toggle-box__list
+        ul.filter__list.toggle-box(
+          v-show='selected == true')
           li.filter__item(
             v-for="(color, index) in colors")
             input.form__input-check(
             :id="'filterItem' + index",
             type="checkbox")
-            label.form__label_check.i-ok(:for="'filterItem' + index") {{ color.name }}
+            label.filter__check.i-check(
+              :for="'filterItem' + index") {{ color.name }}
   //Item Concition
   li.filter__select(
   :class="{ 'filter__select_open' :selected == true}",
   @click="openFilter")
     span.filter__arrow Condición
     transition(name='toggle-scale')
-      .filter__select-inner.toggle-box(v-show='selected == true')
-        ul.filter__list.toggle-box__list
+        ul.filter__list.toggle-box(
+          v-show='selected == true')
           li.filter__item(
             v-for="(condition, index) in conditions")
             input.form__input-check(
             :id="'filterItem' + index",
             type="checkbox")
-            label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
+            label.filter__check.i-check(
+              :for="'filterItem' + index") {{ condition.name }}
   //Item Región
   li.filter__select(
   :class="{ 'filter__select_open' :selected == true}",

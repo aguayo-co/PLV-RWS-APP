@@ -1,7 +1,7 @@
 /*------------------------------------*\
 	Filter
 \*------------------------------------*/
-@include media-query(medium) {
+@include media-query(wide) {
   .filter {
   	@include flexbox;
     @include justify-content(space-between);
@@ -13,6 +13,7 @@
     position: relative;
     display: inline-block;
     padding: 17px 20px;
+    min-width: 106px;
     text-transform: uppercase;
     font-weight: $fw-bold;
     text-align: center;
@@ -41,16 +42,11 @@
     }
   }
 
-   .filter__select-inner {
-      display: block;
-      width: 100%;
-      left: 0;
-      z-index: 3;
-   }
-
   .filter__arrow {
     @include flexbox;
     @include align-items(center);
+    @include justify-content(space-between);
+
     &:after {
       content: '';
       width: 0;
@@ -63,11 +59,56 @@
   }
 
   .filter__list {
-    position: relative;
-    margin-top: 17px;
+    left: 0;
     z-index: 2;
+    min-width: 106px;
+    max-height: 290px;
+    padding: 8px 16px 8px 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    font-weight: $fw-medium;
     text-align: left;
+    text-transform: none;
     list-style-type: none;
+    border: 1px solid $c-default;
     background-color: $c-neutro;
   }
+  .filter__item {
+    padding: 8px;
+  }
 }
+/*------------------------------------*\
+	Filter check
+\*------------------------------------*/
+.filter__check {
+  position: relative;
+  padding-left: 20px;
+  &:before,
+  &:after {
+    position: absolute;
+  }
+  &:before {
+    top: 2px;
+    left: 2px;
+    z-index: 2;
+    color: $c-brand;
+    @include font-rem(12px);
+  }
+  &:after {
+    content: '';
+    top: 4px;
+    left: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $c-default-4;
+    border-radius: 2px;
+  }
+}
+
+@include media-query(huge) {
+
+}
+
+
