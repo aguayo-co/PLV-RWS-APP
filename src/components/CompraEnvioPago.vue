@@ -68,27 +68,14 @@
     .boxcheck-wrap
       .boxcheck
         form.boxcheck__grid
-          //-item 1
-          .boxcheck__card
-            input.form__input-radio(
-              id="mercado",
-              type="radio",
-              name="envio",
-              value="mercado",
-              checked="checked")
-            label.form__label.form__label_radio(
-              for="mercado")
-              span.boxcheck__box
-                img(src="/static/img/logo-mercado-pago.png", alt="Pagar por medio de Mercado Pago")
-          //-end item 1
           //-item 2
           .boxcheck__card
             input.form__input-radio(
               id="PayU",
               type="radio",
               name="envio",
-              value="PayU",
-              checked="checked")
+              value="pay_u",
+              v-model="payment_method")
             label.form__label.form__label_radio(
               for="PayU")
               span.boxcheck__box
@@ -100,8 +87,8 @@
               id="transferencia",
               type="radio",
               name="envio",
-              value="transferencia",
-              checked="checked")
+              value="transfer",
+              v-model="payment_method")
             label.form__label.form__label_radio(
               for="transferencia")
               span.boxcheck__box

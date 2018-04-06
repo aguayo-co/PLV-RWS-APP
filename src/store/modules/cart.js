@@ -39,10 +39,15 @@ const baseSeller = {
 // EL estado mínimo inicial de el state.
 const baseState = {
   ...baseCart,
+
+  // Propiedades calculadas con información del back.
   address: null,
   phone: null,
   coupon_code: null,
-  sales: {}
+  sales: {},
+
+  // Información del estado actual del carro.
+  payment_method: null
 }
 
 const getters = {

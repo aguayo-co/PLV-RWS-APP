@@ -1,14 +1,14 @@
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import AddressList from '@/components/AddressList'
 import CompraSale from '@/components/CompraSale'
+import { mapFields } from 'vuex-map-fields'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
 // de cada uno.
 const editableProps = {
   phone: null,
-  used_credits: null,
-  coupon_code: null
+  used_credits: null
 }
 
 /**
@@ -51,11 +51,12 @@ export default {
   },
   computed: {
     ...mapState('cart', [
+      ...editableProps,
       'sales',
-      'used_credits',
       'address',
-      'phone'
+      'payment_method'
     ]),
+    ...mapFields(['cart.payment_method']),
     ...mapState('user', [
       'credits'
     ]),
@@ -106,6 +107,8 @@ export default {
     /**
      * Calcula un timeout sin modificación para guardar
      * used_credits en el back.
+     *
+     * Esto se eliminaría si se usa un botón para enviar el formulario.
      */
     new_used_credits: function (newUsedCredits, oldUsedCredits) {
       window.clearTimeout(this.userDataTimeout)
