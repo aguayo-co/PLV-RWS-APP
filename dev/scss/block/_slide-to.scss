@@ -1,0 +1,102 @@
+/*------------------------------------*\
+  Transition menu
+\*------------------------------------*/
+
+// MENU MOBILE level 1 Transition vue
+.slide-left-enter-active {
+  -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.slide-left-leave-active {
+  -webkit-transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.slide-left-enter,
+.slide-left-leave-to {
+  -webkit-transform: translateX(-107%);
+  transform: translateX(-107%);
+  -webkit-transform: translateX(calc(-100% - 20px));
+  transform: translateX(calc(-100% - 20px));
+}
+
+.slide-left-leave,
+.slide-left-enter-to {
+  -webkit-transform: none;
+  transform: none;
+}
+
+// Filtro slide right
+.slide-right-enter-active {
+  -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: transform 0.295s cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.slide-right-leave-active {
+  -webkit-transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.325s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.325s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.slide-right-enter,
+.slide-right-leave-to {
+  -webkit-transform: translateX(107%);
+  transform: translateX(107%);
+  -webkit-transform: translateX(calc(100% - 20px));
+  transform: translateX(calc(100% - 20px));
+}
+
+.slide-right-leave,
+.slide-right-enter-to {
+  -webkit-transform: none;
+  transform: none;
+}
+
+//MENU MOBILE submenu level 3
+
+.slide-down-enter-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.6, 1);
+}
+.slide-down-leave-active {
+  transition: all 0.325s cubic-bezier(0, 0, 0.2, 1);
+}
+.slide-down-enter,
+.slide-down-leave-to {
+  max-height: 0;
+}
+.slide-down-leave,
+.slide-down-enter-to {
+  max-height: 100vh;
+}
+
+
+  // Desktop Transition vue para el nivel 2
+  .slide-fade-enter-active {
+    transition: all .2s ease;
+    .menu-level2__inner {
+      transition: all .4s ease;
+    }
+  }
+
+  .slide-fade-leave-active {
+    transition: all .3s ease;
+    .menu-level2__inner {
+      transition: all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+  }
+
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    opacity: 0;
+    .menu-level2__inner {
+      transform: translateY(10px);
+    }
+  }
