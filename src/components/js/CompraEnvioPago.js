@@ -53,7 +53,6 @@ export default {
     ...mapState('cart', [
       'sales',
       'address',
-      'payment_method',
       ...Object.keys(editableProps)
     ]),
     ...mapFields([

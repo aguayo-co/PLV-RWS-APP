@@ -1,6 +1,7 @@
 // Our shopping cart!
 import Vue from 'vue'
 import shoppingCartAPI from '@/api/shoppingCart'
+import orderAPI from '@/api/order'
 
 // Propiedades que son hijos directos de la orden.
 const baseCart = {
@@ -28,26 +29,36 @@ const baseProduct = {
 }
 
 // Propiedades que son hijos directos de cada usuario.
-const baseSeller = {
-  id: null,
-  first_name: null,
-  last_name: null,
-  picture: null,
-  shipping_methods: {}
+// Cómo una de las propiedades es un objeto, es importante
+// usar una función generadora para poder sobre escribirlo
+// cuando tenga que reiniciarse la el state.
+const baseSellerGenerator = () => {
+  return {
+    id: null,
+    first_name: null,
+    last_name: null,
+    picture: null,
+    shipping_methods: {}
+  }
 }
 
-// EL estado mínimo inicial de el state.
-const baseState = {
-  ...baseCart,
+// El estado mínimo inicial de el state.
+// Cómo una de las propiedades es un objeto, es importante
+// usar una función generadora para poder sobre escribirlo
+// cuando tenga que reiniciarse la el state.
+const baseStateGenerator = () => {
+  return {
+    ...baseCart,
 
-  // Propiedades calculadas con información del back.
-  address: null,
-  phone: null,
-  coupon_code: null,
-  sales: {},
+    // Propiedades calculadas con información del back.
+    address: null,
+    phone: null,
+    coupon_code: null,
+    sales: {},
 
-  // Información del estado actual del carro.
-  payment_method: null
+    // Información del estado actual del carro.
+    payment_method: null
+  }
 }
 
 const getters = {
@@ -55,8 +66,9 @@ const getters = {
 }
 
 const actions = {
-  load ({commit}) {
-    return shoppingCartAPI.load().then(response => {
+  load ({commit}, id) {
+    const api = id ? orderAPI : shoppingCartAPI
+    return api.load(id).then(response => {
       commit('set', response.data)
       return response
     })
@@ -99,12 +111,15 @@ const mutations = {
     state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
 
     const activeSales = []
+
+    // Agrega o sobre-escribe los Sale.
     Object.keys(cart.sales).forEach((key) => {
       store.commit('cart/setSale', cart.sales[key])
       const saleID = cart.sales[key].id
       activeSales[saleID] = saleID
     })
 
+    // Elimina los Sale que ya no existan.
     Object.keys(state.sales).forEach((key) => {
       if (!(key in activeSales)) {
         store.commit('cart/removeSale', state.sales[key])
@@ -140,6 +155,7 @@ const mutations = {
    * @param {*} data
    */
   setSaleSeller (state, {sale, user}) {
+    const baseSeller = baseSellerGenerator()
     Object.keys(baseSeller).forEach((key) => {
       Vue.set(state.sales[sale.id], 'user_' + key, user[key])
     })
@@ -177,6 +193,7 @@ const mutations = {
    * @param {*} user
    */
   clear (state, user) {
+    const baseState = baseStateGenerator()
     Object.keys(baseState).forEach((key) => {
       state[key] = baseState[key]
     })
@@ -199,7 +216,7 @@ const mutations = {
 export default {
   namespaced: true,
   state: {
-    ...baseState
+    ...baseStateGenerator()
   },
   getters,
   actions,

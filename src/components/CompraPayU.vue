@@ -1,0 +1,54 @@
+<template lang="pug">
+form(
+  :action="paymentData.gatewayUrl" method="post")
+  input(
+    name="test"
+    type="hidden"
+    :value="paymentData.test")
+  input(
+    name="accountId"
+    type="hidden"
+    :value="paymentData.accountId")
+  input(
+    name="merchantId"
+    type="hidden"
+    :value="paymentData.merchantId")
+  input(
+    name="referenceCode"
+    type="hidden"
+    :value="paymentData.referenceCode")
+  input(
+    name="amount"
+    type="hidden"
+    :value="paymentData.amount")
+  input(
+    name="currency"
+    type="hidden"
+    :value="paymentData.currency")
+  input(
+    name="signature"
+    type="hidden"
+    :value="paymentData.signature")
+  input(
+    name="description"
+    type="hidden"
+    :value="paymentData.description")
+  input(
+    name="buyerFullName"
+    type="hidden"
+    :value="paymentData.buyerFullName")
+  input(
+    name="buyerEmail"
+    type="hidden"
+    :value="paymentData.buyerEmail")
+  input(
+    name="confirmationUrl"
+    type="hidden"
+    :value="paymentData.confirmationUrl")
+  input(
+    name="responseUrl"
+    type="hidden"
+    :value="paymentData.confirmationUrl")
+</template>
+
+<script src="./js/CompraPayU.js"></script>

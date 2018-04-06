@@ -48,7 +48,10 @@
 
         //- btn continuar
         .form__row
-          button.btn.btn_solid.btn_block Continuar
+          div {{ urlTest }}
+          button.btn.btn_solid.btn_block(
+            @click.prevent="nextStep") Continuar
+          compraPayU(v-if="payUPayment", :payment-data="payUPayment")
         //- end btn continuar
 
         //- Agregar productos

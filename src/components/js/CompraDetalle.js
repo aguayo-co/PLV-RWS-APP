@@ -1,4 +1,6 @@
 import { mapState } from 'vuex'
+import shoppingCartAPI from '@/api/shoppingCart'
+import CompraPayU from '@/components/CompraPayU'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -33,8 +35,12 @@ function createComputedProps (props) {
 
 export default {
   name: 'CompraDetalle',
+  components: {
+    CompraPayU
+  },
   data () {
     return {
+      payUPayment: null,
       newOrderData: {...editableProps},
       errorLog: {...editableProps},
       disabled: {...editableProps}
@@ -49,9 +55,15 @@ export default {
       'due',
       'total',
       'coupon_discount',
-      'coupon_code'
+      'coupon_code',
+      'payment_method'
     ]),
-    ...createComputedProps(editableProps)
+    ...createComputedProps(editableProps),
+    urlTest () {
+      const a = document.createElement('a')
+      a.href = this.$router.resolve({name: 'user-metodos-envios'}).href
+      return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
+    }
   },
   methods: {
     /**
@@ -69,6 +81,27 @@ export default {
         this.errorLog.coupon_code = this.$getFirstError(e, 'coupon_code')
       }).finally(() => {
         this.disabled.coupon_code = false
+      })
+    },
+    /**
+     * Continúa al siguiente paso de la compra.
+     */
+    nextStep () {
+      const paymentMethod = this.payment_method
+      if (paymentMethod === 'pay_u') {
+        this.getPayUPayment()
+        return
+      }
+      if (paymentMethod === 'transferencia') {
+        // Mostrar proceso de transferencia.
+      }
+    },
+    /**
+     * Envía al usuario a PayU.
+     */
+    getPayUPayment () {
+      shoppingCartAPI.getPayment('pay_u').then((response) => {
+        this.payUPayment = response.data.request_data
       })
     }
   }

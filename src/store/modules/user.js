@@ -3,29 +3,33 @@ import Vue from 'vue'
 import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
 
-const baseUser = {
-  id: null,
-  email: null,
-  first_name: null,
-  last_name: null,
-  about: null,
-  cover: null,
-  credits: null,
-  picture: null,
-  phone: null,
-  favorite_address_id: null,
-  purchased_products_count: null,
-  published_products_count: null,
-  sold_products_count: null,
-  followers_count: null,
-  following_count: null,
-  roles: [],
-  groups: []
+const baseUserGenerator = () => {
+  return {
+    id: null,
+    email: null,
+    first_name: null,
+    last_name: null,
+    about: null,
+    cover: null,
+    credits: null,
+    picture: null,
+    phone: null,
+    favorite_address_id: null,
+    purchased_products_count: null,
+    published_products_count: null,
+    sold_products_count: null,
+    followers_count: null,
+    following_count: null,
+    roles: [],
+    groups: []
+  }
 }
 
-const baseState = {
-  ...baseUser,
-  addresses: {}
+const baseStateGenerator = () => {
+  return {
+    ...baseUserGenerator(),
+    addresses: {}
+  }
 }
 
 const getters = {
@@ -101,6 +105,7 @@ const actions = {
 
 const mutations = {
   set (state, user) {
+    const baseUser = baseUserGenerator()
     Object.keys(baseUser).forEach((key) => {
       state[key] = user[key]
     })
@@ -122,10 +127,10 @@ const mutations = {
     Vue.delete(state.addresses, address.id)
   },
   clear (state) {
+    const baseState = baseStateGenerator()
     Object.keys(baseState).forEach((key) => {
       state[key] = baseState[key]
     })
-    state.addresses = {}
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
   }
@@ -134,7 +139,7 @@ const mutations = {
 export default {
   namespaced: true,
   state: {
-    ...baseState
+    ...baseStateGenerator()
   },
   getters,
   actions,

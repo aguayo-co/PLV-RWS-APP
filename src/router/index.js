@@ -75,9 +75,10 @@ export default new Router({
       component: Producto
     },
     {
-      path: '/compra',
+      path: '/compra/:id?',
       name: 'compra',
-      component: Compra
+      component: Compra,
+      props: true
     }
   ]
 })

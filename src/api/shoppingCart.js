@@ -21,5 +21,12 @@ export default {
   },
   update (data) {
     return Vue.axiosAuth.patch('/api/shopping_cart', data)
+  },
+  getPayment (paymentMethod, data = {}) {
+    const params = {
+      gateway: paymentMethod,
+      ...data
+    }
+    return Vue.axiosAuth.get('/api/shopping_cart/payment', {params})
   }
 }
