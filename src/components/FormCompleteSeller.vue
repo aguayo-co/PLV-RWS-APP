@@ -66,7 +66,7 @@
             span.help(
               v-if="errorLog.addresses"
             ) {{ errorLog.addresses }}
-            address-list
+            AddressList
           .form-section.form-section_footer
             .form__row.form__row_away
               button.btn.btn_solid(
@@ -83,7 +83,7 @@ Vue.component('croppa', Croppa.component)
 export default {
   name: 'FormCompleteSeller',
   components: {
-    'address-list': AddressList
+    AddressList
   },
   data () {
     return {

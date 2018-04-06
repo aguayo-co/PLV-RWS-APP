@@ -142,7 +142,7 @@ section.single
       //-Información direcciones
       .user-data_info
         .subhead Direcciones
-        address-list
+        AddressList
         //- Bloque Editar Correo Perfil de usuaria
           1. Se debe seleccionar el ícono de editar
           y el correo se convierte en un campo de

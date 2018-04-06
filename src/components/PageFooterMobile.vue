@@ -151,7 +151,7 @@ export default {
     logout: function () {
       this.$store.dispatch('UserModule/actionSetToken', null)
       this.$store.dispatch('UserModule/actionSetAuth')
-      localStorage.setItem('token', null)
+      localStorage.removeItem('token')
       this.$store.dispatch('UserModule/actionSetUserName', '')
     }
   },
