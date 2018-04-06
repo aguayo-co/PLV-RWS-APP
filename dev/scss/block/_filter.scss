@@ -139,10 +139,7 @@
 
 @include media-query(wide) {
   .filter {
-  	@include flexbox;
-    @include justify-content(space-between);
     margin-bottom: 60px;
-    border-bottom: 1px solid $c-default;
   }
   .filter__group {
     @include flexbox;

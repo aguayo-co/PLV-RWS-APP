@@ -1,6 +1,6 @@
 <template lang="pug">
 nav.filter
-  ul.filter__level
+  ul.filter__group
     //Item Prenda
     li.filter__select(
       :class="{ 'filter__select_open' :isOpenFilter == true}")
