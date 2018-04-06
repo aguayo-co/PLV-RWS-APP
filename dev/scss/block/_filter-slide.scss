@@ -11,7 +11,6 @@
   .filter__label {
     padding-right: 16px;
     text-transform: uppercase;
-    font-weight: $fw-bold;
     span {
       font-weight: $fw-medium;
     }
@@ -50,5 +49,9 @@
 
   .filter__set {
     min-width: 200px;
+  }
+
+  .filter__label {
+    font-weight: $fw-bold;
   }
 }

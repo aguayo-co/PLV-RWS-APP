@@ -6,7 +6,7 @@
     Only mobile
   \*------------------------------------*/
   //Grupo de botones
-  .filter__nav {
+  .filter {
     @include flexbox;
     @include justify-content(space-between);
     @include align-items(center);
@@ -56,19 +56,35 @@
   .filter__list {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     min-width: 316px;
     z-index: 1001;
     height: 100vh;
     color: $c-default;
     list-style: none;
     background-color: $c-neutro;
+    &.filter__list_level {
+      left: inherit;
+      right: 0;
+    }
   }
     .filter__select {
+      @include flexbox;
+      @include flex-direction(row-reverse);
+      @include justify-content(space-between);
+      @include align-items(center);
       @include font-rem(18px);
       margin: 0 15px;
-      padding: 20px 30px 12px;
+      padding: 20px 20px 12px 30px;
       border-bottom: 1px solid $c-default-3;
+      &:before {
+        @include font-rem(14px);
+        color: $c-default-3;
+      }
+      .filter__label {
+        padding-right: 0;
+        text-transform: none;
+      }
     }
 
     .filter__select_header {
@@ -88,6 +104,37 @@
         border: 2px solid $c-neutro;
       }
     }
+    .filter__slide {
+      @include flex-direction(column);
+      border: none;
+      &.filter__select {
+        @include align-items(flex-start);
+        .filter__set {
+          min-width: 200px;
+        }
+      }
+    }
+    .filter__label {
+      padding-bottom: 10px;
+    }
+  
+  .filter__item-check {
+    position: relative;
+  }
+
+  .filter__label-check {
+    color: $c-default-3;
+  }
+  .filter__input-check {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    &:checked + .filter__label-check {
+      &:before {
+        color: $c-brand;
+      }
+    }
+  }
 }
 
 @include media-query(wide) {
