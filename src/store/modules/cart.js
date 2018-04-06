@@ -39,52 +39,14 @@ const baseSeller = {
 // EL estado mínimo inicial de el state.
 const baseState = {
   ...baseCart,
+  address: null,
+  phone: null,
   coupon_code: null,
   sales: {}
 }
 
 const getters = {
-  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name,
-  /**
-   * Obtiene el teléfono a usar en la orden.
-   * Si no hay uno especificado, se usa el global del usuario.
-   *
-   * @param {*} state
-   * @param {*} getters
-   * @param {*} rootState
-   */
-  phone (state, getters, rootState) {
-    const phoneOrder = Vue.getNestedObject(state.shipping_information, ['phone'])
-    return phoneOrder || rootState.user.phone
-  },
-  /**
-   * Obtiene la dirección a usar en la orden.
-   * Si no hay una especificado, se usa la favorita del usuario.
-   *
-   * @param {*} state
-   * @param {*} getters
-   * @param {*} rootState
-   */
-  address (state, getters, rootState) {
-    const addressOrder = Vue.getNestedObject(state.shipping_information, ['address'])
-    if (addressOrder) {
-      return addressOrder
-    }
-
-    const favoriteAddressId = rootState.user.favorite_address_id
-    const favoriteAddress = rootState.user.addresses[favoriteAddressId]
-    if (favoriteAddress) {
-      return favoriteAddress
-    }
-
-    const firstAddressId = Object.keys(rootState.user.addresses)[0]
-    const firstAddress = rootState.user.addresses[firstAddressId]
-    if (firstAddress) {
-      return firstAddress
-    }
-
-    return null
-  }
+  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
 }
 
 const actions = {
@@ -128,6 +90,8 @@ const mutations = {
       state[key] = cart[key]
     })
     state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'code'])
+    state['address'] = Vue.getNestedObject(cart.shipping_information, ['address'])
+    state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
 
     const activeSales = []
     Object.keys(cart.sales).forEach((key) => {

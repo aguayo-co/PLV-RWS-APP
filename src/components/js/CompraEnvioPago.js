@@ -52,9 +52,7 @@ export default {
   computed: {
     ...mapState('cart', [
       'sales',
-      'used_credits'
-    ]),
-    ...mapGetters('cart', [
+      'used_credits',
       'address',
       'phone'
     ]),
@@ -126,7 +124,7 @@ export default {
       }
       this.userDataTimeout = window.setTimeout(() => {
         this.updateUsedCredits()
-      }, 5000)
+      }, 2000)
       // Actualiza due en el state.
       this.$store.commit('cart/setUsedCredits', newUsedCredits)
     }
