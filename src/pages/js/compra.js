@@ -2,6 +2,7 @@ import { mapState } from 'vuex'
 import CompraEnvioPago from '@/components/CompraEnvioPago'
 import CompraDetalle from '@/components/CompraDetalle'
 import CompraPagada from '@/components/CompraPagada'
+import CompraPagando from '@/components/CompraPagando'
 
 export default {
   name: 'Compra',
@@ -9,7 +10,8 @@ export default {
   components: {
     CompraEnvioPago,
     CompraDetalle,
-    CompraPagada
+    CompraPagada,
+    CompraPagando
   },
   computed: {
     ...mapState('cart', [

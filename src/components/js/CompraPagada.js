@@ -10,7 +10,8 @@ export default {
       'user_full_name'
     ]),
     ...mapState('cart', [
-      'sales'
+      'sales',
+      'address'
     ]),
     products () {
       const vm = this
