@@ -38,7 +38,7 @@ function createComputedProps (props) {
 
 export default {
   components: {
-    'address-list': AddressList
+    AddressList
   },
   data () {
     return {

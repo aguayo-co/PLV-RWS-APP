@@ -14,7 +14,7 @@ const addressFields = {
 
 export default {
   components: {
-    'address-edit': AddressEdit
+    AddressEdit
   },
   props: {
     inShoppingCart: {

@@ -4,7 +4,7 @@
   section.list_step
     h2.subhead Selecciona tu método de envío
     //- metodos de envío
-    compra-sale(
+    CompraSale(
       v-for="sale in sales"
       :key="sale.id"
       :sale="sale")
@@ -15,7 +15,8 @@
         small.small_high Esta sería la dirección a la que la vendedora enviará tu producto. También servirá de referencia en caso de que decidan juntarse.
       div(v-if="address") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
       .subhead Cambiar dirección?
-      address-list(in-shopping-cart=true)
+      AddressList(in-shopping-cart=true)
+
       .subhead Teléfono
         small.small_high Danos tu número celular para que el vendedor pueda comunicarse contigo
       form.form_user(

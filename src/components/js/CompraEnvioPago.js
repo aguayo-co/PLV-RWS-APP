@@ -37,8 +37,8 @@ function createComputedProps (props) {
 export default {
   name: 'CompraEnvioPago',
   components: {
-    'address-list': AddressList,
-    'compra-sale': CompraSale
+    AddressList,
+    CompraSale
   },
   data () {
     return {
