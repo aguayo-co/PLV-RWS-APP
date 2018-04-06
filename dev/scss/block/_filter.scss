@@ -6,7 +6,7 @@
     Only mobile
   \*------------------------------------*/
   //Grupo de botones
-  .filter__nav {
+  .filter {
     @include flexbox;
     @include justify-content(space-between);
     @include align-items(center);
@@ -63,7 +63,7 @@
     color: $c-default;
     list-style: none;
     background-color: $c-neutro;
-    &.filter__list_multilevel {
+    &.filter__list_level {
       left: inherit;
       right: 0;
     }

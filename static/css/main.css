@@ -6068,7 +6068,7 @@ body {
 @media only screen and (max-width: 1023px) {
   /*------------------------------------*    Only mobile
   \*------------------------------------*/
-  .filter__nav {
+  .filter {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -6084,7 +6084,7 @@ body {
     -webkit-align-items: center;
     -moz-align-items: center;
     align-items: center; }
-    .filter__nav:after {
+    .filter:after {
       content: '';
       position: fixed;
       top: 0;
@@ -6097,7 +6097,7 @@ body {
       height: 100vh;
       pointer-events: none;
       transition: all .2s ease; }
-    .filter__nav.filter__nav_open:after {
+    .filter.filter__nav_open:after {
       opacity: 1;
       background-color: rgba(0, 0, 0, 0.5);
       pointer-events: all; }
@@ -6128,7 +6128,7 @@ body {
     color: #000;
     list-style: none;
     background-color: #fff; }
-    .filter__list.filter__list_multilevel {
+    .filter__list.filter__list_level {
       left: inherit;
       right: 0; }
   .filter__select {
