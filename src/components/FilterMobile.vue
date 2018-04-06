@@ -1,85 +1,91 @@
 <template lang="pug">
-
-  ul.filter
-    //Item Prenda
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Categoría
-        //-To-do: Consumir servicios
-    //Item Talla
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Talla
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(size, subIndex) in sizes")
-              input.form__input-check(
-              :id="'filterItem' + subIndex",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + subIndex") {{ size.name }}
-    //Item Marca
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Marca
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(brand, index) in brands")
-              input.form__input-check(
-              :id="'filterItem' + index",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + index") {{ brand.name }}
-    //Item Color
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Color
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(color, index) in colors")
-              input.form__input-check(
-              :id="'filterItem' + index",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + index") {{ color.name }}
-    //Item Concition
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Condición
-      transition(name='toggle-scale')
-        .filter__select-inner.toggle-box(v-show='selected == true')
-          ul.filter__list.toggle-box__list
-            li.filter__item(
-              v-for="(condition, index) in conditions")
-              input.form__input-check(
-              :id="'filterItem' + index",
-              type="checkbox")
-              label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
-    //Item Región
-    li.filter__select(
-    :class="{ 'filter__select_open' :selected == true}",
-    @click="openFilter")
-      span.filter__arrow Región
-        //-To-do: Consumir servicios
-    //Item Precio
-    li.filter__slide
-      .filter__label Precio <span>(CLP)</span>
-      .filter__set
-        vue-slider(
-          ref="slider"
-          v-bind="sliderPrice"
-          v-model="sliderPrice.value")
-        .filter__tooltip
-          small.filter__value ${{ sliderPrice.value[0] }}
-          small.filter__value ${{ sliderPrice.value[1] }} +
+  .filter
+    nav.filter__nav(:class="{ 'filter__nav_open':filterActive }")
+      a.filter__btn(href="#") Ordenado por Destacados
+      a.filter__btn(href="#", @click.prevent='openFilterMb') Filtrar
+      transition(name='slide-right')
+        ul.filter__list.filter__list_multilevel(
+        v-show="filterActive")
+          li.filter__select_header.i-close(@click='openFilterMb') Filtro
+          //Item Prenda
+          li.filter__select(
+          :class="{ 'filter__select_open' :selected == true}",
+          @click="openFilter")
+            span.filter__arrow Categoría
+              //-To-do: Consumir servicios
+          //Item Talla
+          li.filter__select(
+          :class="{ 'filter__select_open' :selected == true}",
+          @click="openFilter")
+            span.filter__arrow Talla
+            transition(name='toggle-scale')
+              .filter__select-inner.toggle-box(v-show='selected == true')
+                ul.filter__list.toggle-box__list
+                  li.filter__item(
+                    v-for="(size, subIndex) in sizes")
+                    input.form__input-check(
+                    :id="'filterItem' + subIndex",
+                    type="checkbox")
+                    label.form__label_check.i-ok(:for="'filterItem' + subIndex") {{ size.name }}
+          //Item Marca
+          li.filter__select(
+          :class="{ 'filter__select_open' :selected == true}",
+          @click="openFilter")
+            span.filter__arrow Marca
+            transition(name='toggle-scale')
+              .filter__select-inner.toggle-box(v-show='selected == true')
+                ul.filter__list.toggle-box__list
+                  li.filter__item(
+                    v-for="(brand, index) in brands")
+                    input.form__input-check(
+                    :id="'filterItem' + index",
+                    type="checkbox")
+                    label.form__label_check.i-ok(:for="'filterItem' + index") {{ brand.name }}
+          //Item Color
+          li.filter__select(
+          :class="{ 'filter__select_open' :selected == true}",
+          @click="openFilter")
+            span.filter__arrow Color
+            transition(name='toggle-scale')
+              .filter__select-inner.toggle-box(v-show='selected == true')
+                ul.filter__list.toggle-box__list
+                  li.filter__item(
+                    v-for="(color, index) in colors")
+                    input.form__input-check(
+                    :id="'filterItem' + index",
+                    type="checkbox")
+                    label.form__label_check.i-ok(:for="'filterItem' + index") {{ color.name }}
+          //Item Concition
+          li.filter__select(
+          :class="{ 'filter__select_open' :selected == true}",
+          @click="openFilter")
+            span.filter__arrow Condición
+            transition(name='toggle-scale')
+              .filter__select-inner.toggle-box(v-show='selected == true')
+                ul.filter__list.toggle-box__list
+                  li.filter__item(
+                    v-for="(condition, index) in conditions")
+                    input.form__input-check(
+                    :id="'filterItem' + index",
+                    type="checkbox")
+                    label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
+          //Item Región
+          li.filter__select(
+          :class="{ 'filter__select_open' :selected == true}",
+          @click="openFilter")
+            span.filter__arrow Región
+              //-To-do: Consumir servicios
+          //Item Precio
+          li.filter__slide
+            .filter__label Precio <span>(CLP)</span>
+            .filter__set
+              vue-slider(
+                ref="slider"
+                v-bind="sliderPrice"
+                v-model="sliderPrice.value")
+              .filter__tooltip
+                small.filter__value ${{ sliderPrice.value[0] }}
+                small.filter__value ${{ sliderPrice.value[1] }} +
 
 </template>
 
@@ -99,6 +105,7 @@ export default {
       brands: {},
       sizes: {},
       selected: false,
+      filterActive: false,
       sliderPrice: {
         value: [
           '5000',
@@ -131,6 +138,9 @@ export default {
   methods: {
     openFilter: function () {
       this.selected = !this.selected
+    },
+    openFilterMb: function () {
+      this.filterActive = !this.filterActive
     }
   },
   created: function () {
