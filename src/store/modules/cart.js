@@ -18,6 +18,7 @@ const baseCart = {
 const baseSale = {
   id: null,
   shipping_method_id: null,
+  shipping_method: null,
   total: null
 }
 
@@ -39,6 +40,7 @@ const baseSellerGenerator = () => {
     first_name: null,
     last_name: null,
     picture: null,
+    phone: null,
     shipping_methods: {}
   }
 }

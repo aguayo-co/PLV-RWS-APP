@@ -59,9 +59,9 @@ export default {
       'payment_method'
     ]),
     ...createComputedProps(editableProps),
-    urlTest () {
+    responseUrl () {
       const a = document.createElement('a')
-      a.href = this.$router.resolve({name: 'user-metodos-envios'}).href
+      a.href = this.$router.resolve({name: 'compra', params: { id: this.id }}).href
       return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
     }
   },
@@ -101,7 +101,10 @@ export default {
      */
     getPayUPayment () {
       shoppingCartAPI.getPayment('pay_u').then((response) => {
-        this.payUPayment = response.data.request_data
+        this.payUPayment = {
+          ...response.data.request_data,
+          responseUrl: this.responseUrl
+        }
       })
     }
   }

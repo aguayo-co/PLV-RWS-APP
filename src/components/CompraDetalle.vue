@@ -48,7 +48,6 @@
 
         //- btn continuar
         .form__row
-          div {{ urlTest }}
           button.btn.btn_solid.btn_block(
             @click.prevent="nextStep") Continuar
           compraPayU(v-if="payUPayment", :payment-data="payUPayment")

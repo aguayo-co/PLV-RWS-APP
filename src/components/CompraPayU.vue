@@ -48,7 +48,7 @@ form(
   input(
     name="responseUrl"
     type="hidden"
-    :value="paymentData.confirmationUrl")
+    :value="paymentData.responseUrl")
 </template>
 
 <script src="./js/CompraPayU.js"></script>
