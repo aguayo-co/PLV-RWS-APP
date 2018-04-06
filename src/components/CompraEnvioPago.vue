@@ -73,7 +73,6 @@
             input.form__input-radio(
               id="PayU",
               type="radio",
-              name="envio",
               value="pay_u",
               v-model="payment_method")
             label.form__label.form__label_radio(
@@ -84,9 +83,8 @@
           //-item 3
           .boxcheck__card
             input.form__input-radio(
-              id="Transfer",
+              id="transferencia",
               type="radio",
-              name="payment_method",
               value="transfer",
               v-model="payment_method")
             label.form__label.form__label_radio(
