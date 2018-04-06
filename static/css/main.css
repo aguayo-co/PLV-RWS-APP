@@ -5955,7 +5955,7 @@ body {
     -ms-flex-pack: justify;
     -moz-justify-content: space-between;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
     border-bottom: 1px solid #000; }
   .filter__select {
     position: relative;
@@ -6013,7 +6013,17 @@ body {
     border: 1px solid #000;
     background-color: #fff; }
   .filter__item {
-    padding: 8px 0; } }
+    padding: 8px 0; }
+  .filter__list_column {
+    width: 500%;
+    max-width: 470px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    .filter__list_column .filter__item {
+      width: 33.333%; } }
 
 /*------------------------------------*	Filter check
 \*------------------------------------*/
@@ -6024,7 +6034,8 @@ body {
   position: relative;
   padding-left: 20px; }
   .filter__check:before, .filter__check:after {
-    position: absolute; }
+    position: absolute;
+    cursor: pointer; }
   .filter__check:before {
     top: 2px;
     left: 2px;
