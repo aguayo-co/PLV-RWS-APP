@@ -139,9 +139,11 @@
 
 @include media-query(wide) {
   .filter {
-  	@include flexbox;
+    margin-bottom: 60px;
+  }
+  .filter__group {
+    @include flexbox;
     @include justify-content(space-between);
-    margin-bottom: 10px;
     border-bottom: 1px solid $c-default;
   }
 
@@ -213,6 +215,15 @@
   .filter__item {
     padding: 8px 0;
   }
+  .filter__list_column {
+    width: 500%;
+    max-width: 470px;
+    @include flexbox;
+    @include flex-wrap(wrap);
+    .filter__item {
+      width: 33.333%;
+    }
+  }
 }
 /*------------------------------------*\
 	Filter check
@@ -231,6 +242,7 @@
   &:before,
   &:after {
     position: absolute;
+    cursor: pointer;
   }
   &:before {
     top: 2px;
