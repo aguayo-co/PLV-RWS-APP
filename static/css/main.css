@@ -6017,6 +6017,9 @@ body {
 
 /*------------------------------------*	Filter check
 \*------------------------------------*/
+.form__input-check:checked + .filter__check:before {
+  opacity: 1; }
+
 .filter__check {
   position: relative;
   padding-left: 20px; }
@@ -6026,6 +6029,7 @@ body {
     top: 2px;
     left: 2px;
     z-index: 2;
+    opacity: 0;
     color: #fe7676;
     font-size: 12px;
     font-size: 0.75rem; }

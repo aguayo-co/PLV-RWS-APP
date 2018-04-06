@@ -170,6 +170,14 @@
 /*------------------------------------*\
 	Filter check
 \*------------------------------------*/
+.form__input-check {
+  &:checked+.filter__check {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
 .filter__check {
   position: relative;
   padding-left: 20px;
@@ -181,6 +189,7 @@
     top: 2px;
     left: 2px;
     z-index: 2;
+    opacity: 0;
     color: $c-brand;
     @include font-rem(12px);
   }
