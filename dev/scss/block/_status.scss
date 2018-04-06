@@ -28,6 +28,13 @@
   color: $c-brand;
 }
 
+.dashboard__txt-big {
+  display: block;
+  font-weight: $fw-bold;
+  @include font-rem(36px);
+  text-transform: uppercase;
+}
+
 .dashboard__item {
   padding: 16px 0;
   &:not(:last-child) {
@@ -37,7 +44,6 @@
 
 .dashboard__actions {
   text-align: center;
-  border: 1px dashed grey;
   .btn_block {
     margin-bottom: 20px;
   }

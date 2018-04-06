@@ -1,11 +1,149 @@
 /*------------------------------------*\
 	Filter
 \*------------------------------------*/
-@include media-query(medium) {
+@media only screen and (max-width: 1023px) {
+  /*------------------------------------*\
+    Only mobile
+  \*------------------------------------*/
+  //Grupo de botones
   .filter {
-  	@include flexbox;
+    @include flexbox;
     @include justify-content(space-between);
-    margin-bottom: 10px;
+    @include align-items(center);
+    &:after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1000;
+      opacity: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      transition: all .2s ease;
+    }
+    &.filter__nav_open {
+      &:after {
+        opacity: 1;
+        background-color: $c-default-over;
+        pointer-events: all;
+      }
+    }
+  }
+    .filter__btn {
+      padding: 10px 38px 10px 12px;
+      margin-bottom: 12px;
+      font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: $c-default;
+      border: 1px solid $c-default;
+      background-color: #fff;
+      background-image: url(../../static/img/arrow-select.svg);
+      background-size: 11px 9px;
+      background-position: 90% center;
+      background-repeat: no-repeat;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding-right: 0\0;
+      background: none\0;
+      &:viseted,
+      &:focus {
+        color: $c-default;
+      }
+    }
+  //lista de primer nivel
+  .filter__list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 316px;
+    z-index: 1001;
+    height: 100vh;
+    color: $c-default;
+    list-style: none;
+    background-color: $c-neutro;
+    &.filter__list_level {
+      left: inherit;
+      right: 0;
+    }
+  }
+    .filter__select {
+      @include flexbox;
+      @include flex-direction(row-reverse);
+      @include justify-content(space-between);
+      @include align-items(center);
+      @include font-rem(18px);
+      margin: 0 15px;
+      padding: 20px 20px 12px 30px;
+      border-bottom: 1px solid $c-default-3;
+      &:before {
+        @include font-rem(14px);
+        color: $c-default-3;
+      }
+      .filter__label {
+        padding-right: 0;
+        text-transform: none;
+      }
+    }
+
+    .filter__select_header {
+      padding: 13px 0 15px 10px;
+      text-transform: uppercase;
+      @include font-rem(18px);
+      color: $c-neutro;
+      background-color: $c-brand;
+      &:before {
+        position: relative;
+        top: -4px;
+        display: inline-block;
+        padding: 6px;
+        margin-right: 20px;
+        @include font-rem(7px);
+        border-radius: 50%;
+        border: 2px solid $c-neutro;
+      }
+    }
+    .filter__slide {
+      @include flex-direction(column);
+      border: none;
+      &.filter__select {
+        @include align-items(flex-start);
+        .filter__set {
+          min-width: 200px;
+        }
+      }
+    }
+    .filter__label {
+      padding-bottom: 10px;
+    }
+  
+  .filter__item-check {
+    position: relative;
+  }
+
+  .filter__label-check {
+    color: $c-default-3;
+  }
+  .filter__input-check {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    &:checked + .filter__label-check {
+      &:before {
+        color: $c-brand;
+      }
+    }
+  }
+}
+
+@include media-query(wide) {
+  .filter {
+    margin-bottom: 60px;
+  }
+  .filter__group {
+    @include flexbox;
+    @include justify-content(space-between);
     border-bottom: 1px solid $c-default;
   }
 
@@ -13,6 +151,7 @@
     position: relative;
     display: inline-block;
     padding: 17px 20px;
+    min-width: 106px;
     text-transform: uppercase;
     font-weight: $fw-bold;
     text-align: center;
@@ -41,16 +180,11 @@
     }
   }
 
-   .filter__select-inner {
-      display: block;
-      width: 100%;
-      left: 0;
-      z-index: 3;
-   }
-
   .filter__arrow {
     @include flexbox;
     @include align-items(center);
+    @include justify-content(space-between);
+
     &:after {
       content: '';
       width: 0;
@@ -63,11 +197,74 @@
   }
 
   .filter__list {
-    position: relative;
-    margin-top: 17px;
+    left: 0;
     z-index: 2;
+    min-width: 106px;
+    max-height: 290px;
+    padding: 8px 16px 8px 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    font-weight: $fw-medium;
     text-align: left;
+    text-transform: none;
     list-style-type: none;
+    border: 1px solid $c-default;
     background-color: $c-neutro;
   }
+  .filter__item {
+    padding: 8px 0;
+  }
+  .filter__list_column {
+    width: 500%;
+    max-width: 470px;
+    @include flexbox;
+    @include flex-wrap(wrap);
+    .filter__item {
+      width: 33.333%;
+    }
+  }
+}
+/*------------------------------------*\
+	Filter check
+\*------------------------------------*/
+.form__input-check {
+  &:checked+.filter__check {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.filter__check {
+  position: relative;
+  padding-left: 20px;
+  &:before,
+  &:after {
+    position: absolute;
+    cursor: pointer;
+  }
+  &:before {
+    top: 2px;
+    left: 2px;
+    z-index: 2;
+    opacity: 0;
+    color: $c-brand;
+    @include font-rem(12px);
+  }
+  &:after {
+    content: '';
+    top: 4px;
+    left: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $c-default-4;
+    border-radius: 2px;
+  }
+  .color-circle {
+    position: relative;
+    top: 3px;
+  }
+
 }

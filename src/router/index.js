@@ -12,6 +12,7 @@ import UserTusCompras from '@/components/UserTusCompras'
 import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
+import Categoria from '@/pages/categoria'
 
 Vue.use(Router)
 
@@ -79,6 +80,11 @@ export default new Router({
       name: 'compra',
       component: Compra,
       props: true
+    },
+    {
+      path: '/categoria',
+      name: 'Categoria',
+      component: Categoria
     }
   ]
 })

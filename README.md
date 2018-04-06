@@ -104,3 +104,14 @@ https://github.com/zhanziyang/vue-croppa
 ``` bash
 npm install --save vue-croppa
 ```
+---
+### vue-slider-component
+#### Uso:
+Filtro precios
+
+#### URL:
+https://nightcatsama.github.io/vue-slider-component/example/#QuickStart
+#### Installation
+``` bash
+npm install vue-slider-component
+```
