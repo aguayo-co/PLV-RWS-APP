@@ -1,20 +1,58 @@
 <template lang="pug">
   .filter
-    nav.filter__nav(:class="{ 'filter__nav_open':filterActive }")
-      a.filter__btn(href="#") Ordenado por Destacados
+    nav.filter__nav(:class="{ 'filter__nav_open':filterActive || filterMultiActive }")
+      a.filter__btn(href="#", @click.prevent='openFMultinivel') Ordenado por Destacados
       a.filter__btn(href="#", @click.prevent='openFilterMb') Filtrar
+      //-Item Ordenar Articulos
+      transition(name='slide-left')
+        ul.filter__list(
+        v-show="filterMultiActive")
+          li.filter__select_header.i-close(@click='openFMultinivel') ORDENAR ARTÍCULOS
+          //Item Prenda
+          li.filter__select(
+          :class="{ 'filter__select_check' :selectedFItem == true}")
+            .filter__item-check
+              input#filterSimple_1.filter__input-check(type="checkbox")
+              label.filter__label-check.i-ok(for="filterSimple_1")
+            span.filter__arrow Lo último
+          li.filter__select(
+          :class="{ 'filter__select_check' :selectedFItem == true}")
+            .filter__item-check
+              input#filterSimple_2.filter__input-check(type="checkbox")
+              label.filter__label-check.i-ok(for="filterSimple_2")
+            span.filter__arrow Menor precio
+          li.filter__select(
+          :class="{ 'filter__select_check' :selectedFItem == true}")
+            .filter__item-check
+              input#filterSimple_3.filter__input-check(type="checkbox")
+              label.filter__label-check.i-ok(for="filterSimple_3")
+            span.filter__arrow Mayor precio
+          li.filter__select(
+          :class="{ 'filter__select_check' :selectedFItem == true}")
+            .filter__item-check
+              input#filterSimple_4.filter__input-check(type="checkbox")
+              label.filter__label-check.i-ok(for="filterSimple_4")
+            span.filter__arrow Destacados
+          li.filter__select(
+          :class="{ 'filter__select_check' :selectedFItem == true}")
+            .filter__item-check
+              input#filterSimple_5.filter__input-check(type="checkbox")
+              label.filter__label-check.i-ok(for="filterSimple_5")
+            span.filter__arrow Nuestros favoritos
+              //-To-do: Consumir servicios
+      //-Item filtrar
       transition(name='slide-right')
         ul.filter__list.filter__list_multilevel(
         v-show="filterActive")
           li.filter__select_header.i-close(@click='openFilterMb') Filtro
           //Item Prenda
-          li.filter__select(
+          li.filter__select.i-next(
           :class="{ 'filter__select_open' :selected == true}",
           @click="openFilter")
             span.filter__arrow Categoría
               //-To-do: Consumir servicios
           //Item Talla
-          li.filter__select(
+          li.filter__select.i-next(
           :class="{ 'filter__select_open' :selected == true}",
           @click="openFilter")
             span.filter__arrow Talla
@@ -28,7 +66,7 @@
                     type="checkbox")
                     label.form__label_check.i-ok(:for="'filterItem' + subIndex") {{ size.name }}
           //Item Marca
-          li.filter__select(
+          li.filter__select.i-next(
           :class="{ 'filter__select_open' :selected == true}",
           @click="openFilter")
             span.filter__arrow Marca
@@ -42,7 +80,7 @@
                     type="checkbox")
                     label.form__label_check.i-ok(:for="'filterItem' + index") {{ brand.name }}
           //Item Color
-          li.filter__select(
+          li.filter__select.i-next(
           :class="{ 'filter__select_open' :selected == true}",
           @click="openFilter")
             span.filter__arrow Color
@@ -56,7 +94,7 @@
                     type="checkbox")
                     label.form__label_check.i-ok(:for="'filterItem' + index") {{ color.name }}
           //Item Concition
-          li.filter__select(
+          li.filter__select.i-next(
           :class="{ 'filter__select_open' :selected == true}",
           @click="openFilter")
             span.filter__arrow Condición
@@ -70,13 +108,13 @@
                     type="checkbox")
                     label.form__label_check.i-ok(:for="'filterItem' + index") {{ condition.name }}
           //Item Región
-          li.filter__select(
+          li.filter__select.i-next(
           :class="{ 'filter__select_open' :selected == true}",
           @click="openFilter")
             span.filter__arrow Región
               //-To-do: Consumir servicios
           //Item Precio
-          li.filter__slide
+          li.filter__slide.filter__select
             .filter__label Precio <span>(CLP)</span>
             .filter__set
               vue-slider(
@@ -106,6 +144,8 @@ export default {
       sizes: {},
       selected: false,
       filterActive: false,
+      filterMultiActive: false,
+      selectedFItem: false,
       sliderPrice: {
         value: [
           '5000',
@@ -141,6 +181,12 @@ export default {
     },
     openFilterMb: function () {
       this.filterActive = !this.filterActive
+    },
+    openFMultinivel: function () {
+      this.filterMultiActive = !this.filterMultiActive
+    },
+    selectedFilter: function () {
+      this.selectedFItem = !this.selectedFItem
     }
   },
   created: function () {
