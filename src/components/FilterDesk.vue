@@ -218,27 +218,63 @@ nav.filter
         @click="OpenFilter") Región
         //-To-do: Consumir servicios
     //Item Precio
-    li.filter__slide
-      .filter__label Precio <span>(CLP)</span>
-      .filter__set
-        vue-slider(
-          ref="slider"
-          v-bind="sliderPrice"
-          v-model="sliderPrice.value")
-        .filter__tooltip
-          small.filter__value ${{ sliderPrice.value[0] }}
-          small.filter__value ${{ sliderPrice.value[1] }} +
+    FilterPrecio
+  //Filtro Orden
+  ul.filter__list
+      li.filter__select_header.i-close(
+        @click='openFMultinivel')
+      //Item Prenda
+      li.filter__select(
+        :class="{ 'filter__select_check' :selectedFItem == true}")
+        .filter__item-check
+          input#filterSimple_1.filter__input-check(
+            type="checkbox")
+          label.filter__label-check.i-ok(
+            for="filterSimple_1")
+        span.filter__arrow Lo último
+      li.filter__select(
+        :class="{ 'filter__select_check' :selectedFItem == true}")
+        .filter__item-check
+          input#filterSimple_2.filter__input-check(
+            type="checkbox")
+          label.filter__label-check.i-ok(
+            for="filterSimple_2")
+        span.filter__arrow Menor precio
+      li.filter__select(
+        :class="{ 'filter__select_check' :selectedFItem == true}")
+        .filter__item-check
+          input#filterSimple_3.filter__input-check(
+            type="checkbox")
+          label.filter__label-check.i-ok(
+            for="filterSimple_3")
+        span.filter__arrow Mayor precio
+      li.filter__select(
+        :class="{ 'filter__select_check' :selectedFItem == true}")
+        .filter__item-check
+          input#filterSimple_4.filter__input-check(
+            type="checkbox")
+          label.filter__label-check.i-ok(
+            for="filterSimple_4")
+        span.filter__arrow Destacados
+      li.filter__select(
+        :class="{ 'filter__select_check' :selectedFItem == true}")
+        .filter__item-check
+          input#filterSimple_5.filter__input-check(
+            type="checkbox")
+          label.filter__label-check.i-ok(
+            for="filterSimple_5")
+        span.filter__arrow Nuestros favoritos
 
 </template>
 
 <script>
 import productAPI from '@/api/product'
-import vueSlider from 'vue-slider-component'
+import FilterPrecio from '@/components/FilterPrecio'
 
 export default {
   name: 'FilterDesk',
   components: {
-    vueSlider
+    FilterPrecio
   },
   data () {
     return {
@@ -247,34 +283,7 @@ export default {
       colors: {},
       brands: {},
       sizes: {},
-      isOpenFilter: '',
-      sliderPrice: {
-        value: [
-          '5000',
-          '150000'
-        ],
-        width: '100%',
-        height: 1,
-        min: 5000,
-        max: 150000,
-        interval: 5000,
-        piecewise: true,
-        formatter: '$ {value}',
-        tooltip: 'false',
-        piecewiseStyle: {
-          'visibility': 'hidden'
-        },
-        bgStyle: {
-          'backgroundColor': '#000'
-        },
-        processStyle: {
-          'backgroundColor': '#fe7676'
-        },
-        sliderStyle: {
-          'boxShadow': 'none',
-          'border': '1px solid #000'
-        }
-      }
+      isOpenFilter: ''
     }
   },
   methods: {
