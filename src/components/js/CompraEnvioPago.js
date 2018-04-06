@@ -51,12 +51,14 @@ export default {
   },
   computed: {
     ...mapState('cart', [
-      ...editableProps,
       'sales',
       'address',
-      'payment_method'
+      'payment_method',
+      ...Object.keys(editableProps)
     ]),
-    ...mapFields(['cart.payment_method']),
+    ...mapFields([
+      'cart.payment_method'
+    ]),
     ...mapState('user', [
       'credits'
     ]),

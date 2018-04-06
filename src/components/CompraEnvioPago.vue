@@ -27,13 +27,13 @@
             v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
           .dividers__grid
             span.user-data__holder(
-              v-if="phone == null && editPhone == false") Aún no has ingresado tú número de teléfono
+              v-if="!phone && !editPhone") Aún no has ingresado tú número de teléfono
             input.form__edit(
               v-else=""
               v-model='new_phone',
               id='editPhone',
               :placeholder="phone",
-              :disabled="editPhone == false"
+              :disabled="!editPhone"
               type='tel')
 
             span.dividers__actions
@@ -84,9 +84,9 @@
           //-item 3
           .boxcheck__card
             input.form__input-radio(
-              id="transferencia",
+              id="Transfer",
               type="radio",
-              name="envio",
+              name="payment_method",
               value="transfer",
               v-model="payment_method")
             label.form__label.form__label_radio(
