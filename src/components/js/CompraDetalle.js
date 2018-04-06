@@ -89,22 +89,30 @@ export default {
     nextStep () {
       const paymentMethod = this.payment_method
       if (paymentMethod === 'pay_u') {
-        this.getPayUPayment()
-        return
+        this.setPayUPayment()
       }
-      if (paymentMethod === 'transferencia') {
-        // Mostrar proceso de transferencia.
+      if (paymentMethod === 'transfer') {
+        this.setTransferPayment()
       }
     },
     /**
      * Envía al usuario a PayU.
      */
-    getPayUPayment () {
+    setPayUPayment () {
       shoppingCartAPI.getPayment('pay_u').then((response) => {
         this.payUPayment = {
           ...response.data.request_data,
           responseUrl: this.responseUrl
         }
+      })
+    },
+    /**
+     * Genera pago de transferencia.
+     */
+    setTransferPayment () {
+      const vm = this
+      shoppingCartAPI.getPayment('transfer').then((response) => {
+        vm.$router.push({name: 'compra', params: { id: vm.id }})
       })
     }
   }
