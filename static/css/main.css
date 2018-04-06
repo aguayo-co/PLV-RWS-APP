@@ -6013,7 +6013,7 @@ body {
     border: 1px solid #000;
     background-color: #fff; }
   .filter__item {
-    padding: 8px; } }
+    padding: 8px 0; } }
 
 /*------------------------------------*	Filter check
 \*------------------------------------*/
@@ -6038,6 +6038,9 @@ body {
     height: 10px;
     border: 1px solid #9b9b9b;
     border-radius: 2px; }
+  .filter__check .color-circle {
+    position: relative;
+    top: 3px; }
 
 /*------------------------------------*	Filter slider: rango de precio
 \*------------------------------------*/

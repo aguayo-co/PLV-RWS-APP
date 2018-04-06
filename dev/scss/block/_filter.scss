@@ -164,7 +164,7 @@
     background-color: $c-neutro;
   }
   .filter__item {
-    padding: 8px;
+    padding: 8px 0;
   }
 }
 /*------------------------------------*\
@@ -194,4 +194,9 @@
     border: 1px solid $c-default-4;
     border-radius: 2px;
   }
+  .color-circle {
+    position: relative;
+    top: 3px;
+  }
+
 }

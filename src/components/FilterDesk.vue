@@ -50,7 +50,10 @@ ul.filter
             :id="'filterItem' + index",
             type="checkbox")
             label.filter__check.i-check(
-              :for="'filterItem' + index") {{ color.name }}
+              :for="'filterItem' + index")
+              span.color-circle(
+                :style='{ backgroundColor: color.hex_code }')
+              span {{ color.name }}
   //Item Concition
   li.filter__select(
   :class="{ 'filter__select_open' :selected == true}",
