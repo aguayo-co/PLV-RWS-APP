@@ -23,11 +23,11 @@
       //-grid
       .list__grid
         //-list content
-        CompraEnvioPago
+        CompraEnvioPago(v-if="isShoppingCart")
         //-end list content
 
         //-Tabla Total
-        CompraDetalle
+        CompraDetalle(v-if="isShoppingCart")
         //-End Tabla Total
       //-End grid
     //End List paso 1:compra y 2:envío y pago
