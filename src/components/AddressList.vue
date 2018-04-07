@@ -25,7 +25,7 @@
             @click.prevent="IsActive(address)",
             href="#",
             title="Editar Dirección") <small class="hide"> Editar </small>
-      address-edit(
+      AddressEdit(
         v-if="isActive == address"
         :regionsList="regionsList"
         :address="address"

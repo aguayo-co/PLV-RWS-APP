@@ -27,6 +27,7 @@ export default {
     const payload = {
       address: data.address,
       region: data.region,
+      city: data.city,
       zone: data.zone
     }
 

@@ -1,72 +1,83 @@
 /*------------------------------------*\
 	Filter
 \*------------------------------------*/
-@media only screen and (max-width: 1023px) {
   /*------------------------------------*\
     Only mobile
   \*------------------------------------*/
-  //Grupo de botones
-  .filter {
-    @include flexbox;
-    @include justify-content(space-between);
-    @include align-items(center);
-    &:after {
-      content: '';
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      z-index: 1000;
-      opacity: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      transition: all .2s ease;
-    }
-    &.filter__nav_open {
+
+  @media only screen and (max-width: 1023px) {
+    .filter {
+      @include flexbox;
+      @include justify-content(space-between);
+      @include align-items(center);
       &:after {
-        opacity: 1;
-        background-color: $c-default-over;
-        pointer-events: all;
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+        opacity: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        transition: all .2s ease;
+      }
+      &.filter__nav_open {
+        &:after {
+          opacity: 1;
+          background-color: $c-default-over;
+          pointer-events: all;
+        }
       }
     }
-  }
     .filter__btn {
-      padding: 10px 38px 10px 12px;
+      padding: 10px 0 10px 12px;
       margin-bottom: 12px;
       color: $c-default;
       border: 1px solid $c-default;
-      background-color: $c-neutro;
-      background-image: url(../../static/img/arrow-select.svg);
-      background-size: 11px 9px;
-      background-position: 90% center;
-      background-repeat: no-repeat;
-      -webkit-appearance: none;
-      -moz-appearance: none;
+      background-color: #fff;
       padding-right: 0\0;
       background: none\0;
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin: 0 10px;
+        border-style: solid;
+        border-width: 6.9px 5.5px 0 5.5px;
+        border-color: $c-default transparent transparent transparent;
+      }
       &:viseted,
       &:focus {
         color: $c-default;
       }
     }
-  //lista de primer nivel
-  .filter__list {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 316px;
-    z-index: 1001;
-    height: 100vh;
-    color: $c-default;
-    list-style: none;
-    background-color: $c-neutro;
-    &.filter__list_level {
-      left: inherit;
+    //lista de primer nivel
+    .filter__list,
+    .filter__sublist {
+      position: fixed;
+      top: 0;
+      min-width: 316px;
+      z-index: 1001;
+      height: 100vh;
+      color: $c-default;
+      list-style: none;
+      background-color: $c-neutro;
+    }
+    .filter__list {
+      left: 0;
+      &.filter__list_level {
+        left: inherit;
+        right: 0;
+      }
+    }
+    .filter__sublist {
       right: 0;
     }
-  }
+    
     .filter__select {
       @include flexbox;
       @include flex-direction(row-reverse);
@@ -74,7 +85,7 @@
       @include align-items(center);
       @include font-rem(18px);
       margin: 0 15px;
-      padding: 20px 20px 12px 30px;
+      padding: 20px 20px 12px;
       border-bottom: 1px solid $c-default-3;
       &:before {
         @include font-rem(14px);
@@ -116,26 +127,40 @@
     .filter__label {
       padding-bottom: 10px;
     }
-  
-  .filter__item-check {
-    position: relative;
-  }
 
-  .filter__label-check {
-    color: $c-default-3;
-  }
-  .filter__input-check {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    &:checked + .filter__label-check {
-      &:before {
-        color: $c-brand;
+    .filter__item-check {
+      position: relative;
+    }
+
+    .filter__label-check {
+      color: $c-default-3;
+    }
+    .filter__input-check {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      &:checked + .filter__label-check {
+        &:before {
+          color: $c-brand;
+        }
+      }
+    }
+    .filter__check-group {
+      .filter__arrow {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .color-circle {
+        display: inline-block;
+        vertical-align: middle;
+        width: 28px;
+        height: 28px;
       }
     }
   }
-}
-
+/*------------------------------------*\
+    Filter desktop
+\*------------------------------------*/
 @include media-query(wide) {
   .filter {
     margin-bottom: 60px;
@@ -235,7 +260,7 @@
   }
 }
 /*------------------------------------*\
-	Filter check
+  Filter check
 \*------------------------------------*/
 .form__input-check {
   &:checked+.filter__check {

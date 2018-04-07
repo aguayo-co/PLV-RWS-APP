@@ -212,8 +212,7 @@ export default {
       this.$store.dispatch('ui/showModal', modal)
       userAPI.create(payload)
         .then(response => {
-          localStorage.setItem('token', response.data.api_token)
-          localStorage.setItem('userId', response.data.id)
+          this.$store.dispatch('user/setUser', response.data)
 
           this.$store.dispatch('user/createAddress', this.newAddressData).then(() => {
             this.$store.dispatch('ui/closeModal')

@@ -140,8 +140,6 @@ export default {
       }
       userAPI.create(payload)
         .then(response => {
-          localStorage.setItem('token', response.data.api_token)
-          localStorage.setItem('userId', response.data.id)
           this.$store.dispatch('user/setUser', response.data)
           this.$router.push('user/data')
         })

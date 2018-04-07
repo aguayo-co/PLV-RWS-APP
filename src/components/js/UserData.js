@@ -38,7 +38,7 @@ function createComputedProps (props) {
 
 export default {
   components: {
-    'address-list': AddressList
+    AddressList
   },
   data () {
     return {
@@ -56,15 +56,11 @@ export default {
   computed: {
     ...mapState('user', [
       'id',
-      'first_name',
-      'last_name',
-      'email',
-      'about',
-      'phone',
       'picture',
       'cover',
       'followers_count',
-      'following_count'
+      'following_count',
+      ...Object.keys(editableProps)
     ]),
     ...mapGetters('user', [
       'full_name'
