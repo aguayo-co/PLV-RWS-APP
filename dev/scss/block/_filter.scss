@@ -258,7 +258,20 @@
       border-width: 1px 1px 0 1px;
     }
   }
-
+  .filter-end {
+    @include flexbox;
+    @include justify-content(flex-end);
+  }
+  .filter__box {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .filter__box-label {
+    color: $c-default-4;
+    strong {
+      color: $c-default;
+    }
+  }
 }
 
 /*------------------------------------*\

@@ -1,5 +1,7 @@
 <template lang="pug">
 nav.filter
+  //-To-do: individualizar funcionalidad toogle
+    para cada item deplegable
   ul.filter__group
     //Item Prenda
     li.filter__select(
@@ -220,16 +222,17 @@ nav.filter
     //Item Precio
     FilterPrecio
   //Filtro Orden
-  ul.filter__box
-    li.filter__box-select
-      span.filter__arrow
-        .filter__box-label Ordenado por <strong>Nuestros favoritos</strong>
-      ul.filter__list
-        li.filter__item Lo último
-        li.filter__item Menor precio
-        li.filter__item Mayor precio
-        li.filter__item Destacados
-        li.filter__item Nuestros favoritos
+  .filter-end
+    ul.filter__box
+      li.filter__box-select
+        span.filter__arrow
+          .filter__box-label Ordenado por <strong>Nuestros favoritos</strong>
+        ul.filter__list
+          li.filter__item Lo último
+          li.filter__item Menor precio
+          li.filter__item Mayor precio
+          li.filter__item Destacados
+          li.filter__item Nuestros favoritos
 
 </template>
 
