@@ -1449,6 +1449,25 @@ h6 {
   font-size: 22px;
   font-size: 1.375rem; }
 
+.head_ico {
+  text-align: center; }
+  .head_ico .title {
+    margin-bottom: 8px; }
+
+.ico__title {
+  display: block;
+  color: #fe7676;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+  font-size: 1.125rem; }
+  .ico__title:before {
+    display: block;
+    padding-bottom: 8px;
+    color: #fe7676;
+    font-size: 60px;
+    font-size: 3.75rem; }
+
 .header_heart {
   padding-bottom: 16px;
   text-align: center;
