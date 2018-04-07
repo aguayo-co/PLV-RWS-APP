@@ -53,6 +53,7 @@ export default {
     ...mapState('cart', [
       'id',
       'due',
+      'used_credits',
       'total',
       'coupon_discount',
       'coupon_code',
