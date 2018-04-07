@@ -249,16 +249,18 @@
       width: 33.333%;
     }
   }
-}
-.filter__box {
-  width: 150px;
-  .filter__arrow {
-    padding: 8px 16px 8px 8px;
-    border-color: $c-default;
-    border-style: solid;
-    border-width: 1px 1px 0 1px;
+  .filter__box {
+    width: 150px;
+    .filter__arrow {
+      padding: 8px 16px 8px 8px;
+      border-color: $c-default;
+      border-style: solid;
+      border-width: 1px 1px 0 1px;
+    }
   }
+
 }
+
 /*------------------------------------*\
   Filter check
 \*------------------------------------*/

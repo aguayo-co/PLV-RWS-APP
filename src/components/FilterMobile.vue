@@ -60,7 +60,7 @@
             ul.filter__sublist.toggle-box__list(v-show='selected == true')
               li.filter__select_header.i-close(@click.stop='openFilter') Talla
               li.filter__item.filter__select(
-                v-for="(size, subIndex) in sizes") 
+                v-for="(size, subIndex) in sizes")
                 .filter__item-check
                   input#filterSimple_1.filter__input-check(type="checkbox")
                   label.filter__label-check.i-ok(for="filterSimple_1")
@@ -120,27 +120,18 @@
           span.filter__arrow Región
             //-To-do: Consumir servicios
         //Item Precio
-        li.filter__slide.filter__select
-          .filter__label Precio <span>(CLP)</span>
-          .filter__set
-            vue-slider(
-              ref="slider"
-              v-bind="sliderPrice"
-              v-model="sliderPrice.value")
-            .filter__tooltip
-              small.filter__value ${{ sliderPrice.value[0] }}
-              small.filter__value ${{ sliderPrice.value[1] }} +
+        FilterPrecio
 
 </template>
 
 <script>
 import productAPI from '@/api/product'
-import vueSlider from 'vue-slider-component'
+import FilterPrecio from '@/components/FilterPrecio'
 
 export default {
   name: 'FilterMobile',
   components: {
-    vueSlider
+    FilterPrecio
   },
   data () {
     return {
@@ -151,34 +142,7 @@ export default {
       selected: false,
       filterActive: false,
       filterMultiActive: false,
-      selectedFItem: false,
-      sliderPrice: {
-        value: [
-          '5000',
-          '150000'
-        ],
-        width: '100%',
-        height: 1,
-        min: 5000,
-        max: 150000,
-        interval: 5000,
-        piecewise: true,
-        formatter: '$ {value}',
-        tooltip: 'false',
-        piecewiseStyle: {
-          'visibility': 'hidden'
-        },
-        bgStyle: {
-          'backgroundColor': '#000'
-        },
-        processStyle: {
-          'backgroundColor': '#fe7676'
-        },
-        sliderStyle: {
-          'boxShadow': 'none',
-          'border': '1px solid #000'
-        }
-      }
+      selectedFItem: false
     }
   },
   methods: {
