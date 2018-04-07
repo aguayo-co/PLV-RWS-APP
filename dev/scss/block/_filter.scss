@@ -35,10 +35,9 @@
     .filter__btn {
       padding: 10px 38px 10px 12px;
       margin-bottom: 12px;
-      font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: $c-default;
       border: 1px solid $c-default;
-      background-color: #fff;
+      background-color: $c-neutro;
       background-image: url(../../static/img/arrow-select.svg);
       background-size: 11px 9px;
       background-position: 90% center;
@@ -149,12 +148,13 @@
 
   .filter__select {
     position: relative;
-    display: inline-block;
+    margin: 0;
     padding: 17px 20px;
     min-width: 106px;
+    list-style: none;
     text-transform: uppercase;
-    font-weight: $fw-bold;
     text-align: center;
+    font-weight: $fw-bold;
     cursor: pointer;
     &:hover {
       .filter__arrow {
@@ -223,6 +223,15 @@
     .filter__item {
       width: 33.333%;
     }
+  }
+}
+.filter__box {
+  width: 150px;
+  .filter__arrow {
+    padding: 8px 16px 8px 8px;
+    border-color: $c-default;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
   }
 }
 /*------------------------------------*\

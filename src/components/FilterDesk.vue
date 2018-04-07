@@ -220,50 +220,16 @@ nav.filter
     //Item Precio
     FilterPrecio
   //Filtro Orden
-  ul.filter__list
-      li.filter__select_header.i-close(
-        @click='openFMultinivel')
-      //Item Prenda
-      li.filter__select(
-        :class="{ 'filter__select_check' :selectedFItem == true}")
-        .filter__item-check
-          input#filterSimple_1.filter__input-check(
-            type="checkbox")
-          label.filter__label-check.i-ok(
-            for="filterSimple_1")
-        span.filter__arrow Lo último
-      li.filter__select(
-        :class="{ 'filter__select_check' :selectedFItem == true}")
-        .filter__item-check
-          input#filterSimple_2.filter__input-check(
-            type="checkbox")
-          label.filter__label-check.i-ok(
-            for="filterSimple_2")
-        span.filter__arrow Menor precio
-      li.filter__select(
-        :class="{ 'filter__select_check' :selectedFItem == true}")
-        .filter__item-check
-          input#filterSimple_3.filter__input-check(
-            type="checkbox")
-          label.filter__label-check.i-ok(
-            for="filterSimple_3")
-        span.filter__arrow Mayor precio
-      li.filter__select(
-        :class="{ 'filter__select_check' :selectedFItem == true}")
-        .filter__item-check
-          input#filterSimple_4.filter__input-check(
-            type="checkbox")
-          label.filter__label-check.i-ok(
-            for="filterSimple_4")
-        span.filter__arrow Destacados
-      li.filter__select(
-        :class="{ 'filter__select_check' :selectedFItem == true}")
-        .filter__item-check
-          input#filterSimple_5.filter__input-check(
-            type="checkbox")
-          label.filter__label-check.i-ok(
-            for="filterSimple_5")
-        span.filter__arrow Nuestros favoritos
+  ul.filter__box
+    li.filter__box-select
+      span.filter__arrow
+        .filter__box-label Ordenado por <strong>Nuestros favoritos</strong>
+      ul.filter__list
+        li.filter__item Lo último
+        li.filter__item Menor precio
+        li.filter__item Mayor precio
+        li.filter__item Destacados
+        li.filter__item Nuestros favoritos
 
 </template>
 
