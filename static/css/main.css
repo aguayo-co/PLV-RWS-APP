@@ -3397,6 +3397,65 @@ body {
     .banner:first-child {
       width: 34.4%; } }
 
+.banner-hero {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden; }
+
+.banner-hero__crop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.banner-hero__img {
+  width: 100%;
+  height: auto; }
+
+.banner-hero__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  max-width: 570px;
+  height: 100%;
+  padding: 0 5% 0 5%; }
+  .banner-hero__slot.left {
+    text-align: left; }
+  .banner-hero__slot.right {
+    right: 0;
+    text-align: right; }
+    .banner-hero__slot.right .banner-hero__btn {
+      margin: 15px 0 15px auto; }
+    .banner-hero__slot.right .banner-hero__copy {
+      display: inline; }
+  .banner-hero__slot.center {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 50%; }
+    .banner-hero__slot.center .banner-hero__position {
+      margin: 0 auto; }
+    .banner-hero__slot.center .banner-hero__btn {
+      margin: 15px auto; }
+    .banner-hero__slot.center .banner-hero__copy {
+      margin-left: 0; }
+
+.banner-hero__title {
+  display: inline;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 35px;
+  font-size: 2.1875rem;
+  line-height: 1.5;
+  padding: 2px 5px; }
+
 /*------------------------------------*	Slider prilover Home
 \*------------------------------------*/
 .slider-fullwide {
@@ -5947,8 +6006,7 @@ body {
     border-bottom: 1px solid #cbcbcb; }
 
 .dashboard__actions {
-  text-align: center;
-  border: 1px dashed grey; }
+  text-align: center; }
   .dashboard__actions .btn_block {
     margin-bottom: 20px; }
   .dashboard__actions .user-data__notify {
@@ -6227,6 +6285,8 @@ body {
 
 @media only screen and (min-width: 1024px) {
   .filter {
+    margin-bottom: 60px; }
+  .filter__group {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -6237,22 +6297,24 @@ body {
     -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
     justify-content: space-between;
-    margin-bottom: 10px;
     border-bottom: 1px solid #000; }
   .filter__select {
     position: relative;
-    display: inline-block;
+    margin: 0;
     padding: 17px 20px;
     min-width: 106px;
+    list-style: none;
     text-transform: uppercase;
-    font-weight: 700;
     text-align: center;
+    font-weight: 700;
     cursor: pointer; }
     .filter__select:hover .filter__arrow {
       color: #fe7676; }
     .filter__select.filter__select_open {
       color: #fff;
       background-color: #fe7676; }
+      .filter__select.filter__select_open .filter__list {
+        color: #000; }
       .filter__select.filter__select_open:hover .filter__arrow {
         color: #fff; }
       .filter__select.filter__select_open .filter__arrow:after {
@@ -6297,10 +6359,32 @@ body {
     border: 1px solid #000;
     background-color: #fff; }
   .filter__item {
-    padding: 8px 0; } }
+    padding: 8px 0; }
+  .filter__list_column {
+    width: 500%;
+    max-width: 470px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    .filter__list_column .filter__item {
+      width: 33.333%; } }
 
-/*------------------------------------*	Filter check
-  \*------------------------------------*/
+.filter__box {
+  width: 150px; }
+  .filter__box .filter__arrow {
+    padding: 8px 16px 8px 8px;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 1px; }
+
+/*------------------------------------*  Filter check
+\*------------------------------------*/
 .form__input-check:checked + .filter__check:before {
   opacity: 1; }
 
@@ -6308,7 +6392,8 @@ body {
   position: relative;
   padding-left: 20px; }
   .filter__check:before, .filter__check:after {
-    position: absolute; }
+    position: absolute;
+    cursor: pointer; }
   .filter__check:before {
     top: 2px;
     left: 2px;

@@ -1,12 +1,15 @@
 // Our shopping cart!
 import Vue from 'vue'
 import shoppingCartAPI from '@/api/shoppingCart'
+import orderAPI from '@/api/order'
 
 // Propiedades que son hijos directos de la orden.
 const baseCart = {
   id: null,
   total: null,
   due: null,
+  status: null,
+  used_credits: null,
   shipping_information: null,
   coupon_discount: null
 }
@@ -15,6 +18,7 @@ const baseCart = {
 const baseSale = {
   id: null,
   shipping_method_id: null,
+  shipping_method: null,
   total: null
 }
 
@@ -27,74 +31,67 @@ const baseProduct = {
 }
 
 // Propiedades que son hijos directos de cada usuario.
-const baseSeller = {
-  id: null,
-  first_name: null,
-  last_name: null,
-  picture: null,
-  shipping_method_ids: {}
-}
-
-// EL estado mínimo inicial de el state.
-const baseState = {
-  ...baseCart,
-  coupon_code: null,
-  sales: {}
-}
-
-const getters = {
-  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name,
-  /**
-   * Obtiene el teléfono a usar en la orden.
-   * Si no hay uno especificado, se usa el global del usuario.
-   *
-   * @param {*} state
-   * @param {*} getters
-   * @param {*} rootState
-   */
-  phone (state, getters, rootState) {
-    const phoneOrder = Vue.getNestedObject(state.shipping_information, ['phone'])
-    return phoneOrder || rootState.user.phone
-  },
-  /**
-   * Obtiene la dirección a usar en la orden.
-   * Si no hay una especificado, se usa la favorita del usuario.
-   *
-   * @param {*} state
-   * @param {*} getters
-   * @param {*} rootState
-   */
-  address (state, getters, rootState) {
-    const addressOrder = Vue.getNestedObject(state.shipping_information, ['address'])
-    if (addressOrder) {
-      return addressOrder
-    }
-
-    const favoriteAddressId = rootState.user.favorite_address_id
-    const favoriteAddress = rootState.user.addresses[favoriteAddressId]
-    if (favoriteAddress) {
-      return favoriteAddress
-    }
-
-    const firstAddressId = Object.keys(rootState.user.addresses)[0]
-    const firstAddress = rootState.user.addresses[firstAddressId]
-    if (firstAddress) {
-      return firstAddress
-    }
-
-    return null
+// Cómo una de las propiedades es un objeto, es importante
+// usar una función generadora para poder sobre escribirlo
+// cuando tenga que reiniciarse la el state.
+const baseSellerGenerator = () => {
+  return {
+    id: null,
+    first_name: null,
+    last_name: null,
+    picture: null,
+    phone: null,
+    shipping_methods: {}
   }
 }
 
+// El estado mínimo inicial de el state.
+// Cómo una de las propiedades es un objeto, es importante
+// usar una función generadora para poder sobre escribirlo
+// cuando tenga que reiniciarse la el state.
+const baseStateGenerator = () => {
+  return {
+    ...baseCart,
+
+    // Propiedades calculadas con información del back.
+    address: null,
+    phone: null,
+    coupon_code: null,
+    sales: {},
+
+    // Información del estado actual del carro.
+    payment_method: null
+  }
+}
+
+const getters = {
+  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
+}
+
 const actions = {
-  load ({commit}) {
-    return shoppingCartAPI.load().then(response => {
+  load ({commit}, id) {
+    const api = id ? orderAPI : shoppingCartAPI
+    return api.load(id).then(response => {
       commit('set', response.data)
+      return response
     })
   },
   update ({commit}, data) {
     return shoppingCartAPI.update(data).then(response => {
       commit('set', response.data)
+      return response
+    })
+  },
+  addProduct ({commit}, product) {
+    return shoppingCartAPI.addProducts([product.id]).then(response => {
+      commit('set', response.data)
+      return response
+    })
+  },
+  removeProduct ({commit}, product) {
+    return shoppingCartAPI.removeProducts([product.id]).then(response => {
+      commit('set', response.data)
+      return response
     })
   }
 }
@@ -112,10 +109,24 @@ const mutations = {
     Object.keys(baseCart).forEach((key) => {
       state[key] = cart[key]
     })
-    state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'coupon_code'])
+    state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'code'])
+    state['address'] = Vue.getNestedObject(cart.shipping_information, ['address'])
+    state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
 
-    Object.keys(cart.sales).forEach(function (key) {
+    const activeSales = []
+
+    // Agrega o sobre-escribe los Sale.
+    Object.keys(cart.sales).forEach((key) => {
       store.commit('cart/setSale', cart.sales[key])
+      const saleID = cart.sales[key].id
+      activeSales[saleID] = saleID
+    })
+
+    // Elimina los Sale que ya no existan.
+    Object.keys(state.sales).forEach((key) => {
+      if (!(key in activeSales)) {
+        store.commit('cart/removeSale', state.sales[key])
+      }
     })
   },
   /**
@@ -147,6 +158,7 @@ const mutations = {
    * @param {*} data
    */
   setSaleSeller (state, {sale, user}) {
+    const baseSeller = baseSellerGenerator()
     Object.keys(baseSeller).forEach((key) => {
       Vue.set(state.sales[sale.id], 'user_' + key, user[key])
     })
@@ -169,7 +181,7 @@ const mutations = {
     Vue.set(state.sales[sale.id].products, newProduct.id, newProduct)
   },
   /**
-   * Removes the given sale from state.
+   * Quita una venta del state.
    *
    * @param {*} state
    * @param {*} sale
@@ -178,22 +190,36 @@ const mutations = {
     Vue.delete(state.sales, sale.id)
   },
   /**
-   * Set the cart state to initial values.
+   * Devuelve el state a su estado inicial.
    *
    * @param {*} state
    * @param {*} user
    */
   clear (state, user) {
+    const baseState = baseStateGenerator()
     Object.keys(baseState).forEach((key) => {
       state[key] = baseState[key]
     })
+  },
+  /**
+   * Cambia el valor de used_credits y due en state.
+   *
+   * @param {*} state
+   * @param {*} user
+   */
+  setUsedCredits (state, value) {
+    let due = parseInt(state.due) || 0
+    due += parseInt(state.used_credits) || 0
+    due -= parseInt(value) || 0
+    state.due = due
+    state.used_credits = parseInt(value) || 0
   }
 }
 
 export default {
   namespaced: true,
   state: {
-    ...baseState
+    ...baseStateGenerator()
   },
   getters,
   actions,

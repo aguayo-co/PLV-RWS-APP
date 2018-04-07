@@ -159,22 +159,25 @@
     }
   }
 
-  @include media-query(wide) {
-    .filter {
-     @include flexbox;
-     @include justify-content(space-between);
-     margin-bottom: 10px;
-     border-bottom: 1px solid $c-default;
-   }
+@include media-query(wide) {
+  .filter {
+    margin-bottom: 60px;
+  }
+  .filter__group {
+    @include flexbox;
+    @include justify-content(space-between);
+    border-bottom: 1px solid $c-default;
+  }
 
-   .filter__select {
+  .filter__select {
     position: relative;
-    display: inline-block;
+    margin: 0;
     padding: 17px 20px;
     min-width: 106px;
+    list-style: none;
     text-transform: uppercase;
-    font-weight: $fw-bold;
     text-align: center;
+    font-weight: $fw-bold;
     cursor: pointer;
     &:hover {
       .filter__arrow {
@@ -182,18 +185,21 @@
       }
     }
     &.filter__select_open {
-      color: $c-neutro;
-      background-color: $c-brand;
-      &:hover {
+       color: $c-neutro;
+       background-color: $c-brand;
+       .filter__list {
+        color: $c-default;
+       }
+       &:hover {
         .filter__arrow {
           color: $c-neutro;
         }
-      }
-      .filter__arrow {
-        &:after {
-          border-color: $c-neutro transparent transparent transparent;
-        }
-      }
+       }
+       .filter__arrow {
+          &:after {
+            border-color: $c-neutro transparent transparent transparent;
+          }
+       }
     }
   }
 
@@ -232,46 +238,65 @@
   .filter__item {
     padding: 8px 0;
   }
+  .filter__list_column {
+    width: 500%;
+    max-width: 470px;
+    @include flexbox;
+    @include flex-wrap(wrap);
+    .filter__item {
+      width: 33.333%;
+    }
+  }
+}
+.filter__box {
+  width: 150px;
+  .filter__arrow {
+    padding: 8px 16px 8px 8px;
+    border-color: $c-default;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+  }
 }
 /*------------------------------------*\
-	Filter check
-  \*------------------------------------*/
-  .form__input-check {
-    &:checked+.filter__check {
-      &:before {
-        opacity: 1;
-      }
-    }
-  }
-
-  .filter__check {
-    position: relative;
-    padding-left: 20px;
-    &:before,
-    &:after {
-      position: absolute;
-    }
+  Filter check
+\*------------------------------------*/
+.form__input-check {
+  &:checked+.filter__check {
     &:before {
-      top: 2px;
-      left: 2px;
-      z-index: 2;
-      opacity: 0;
-      color: $c-brand;
-      @include font-rem(12px);
+      opacity: 1;
     }
-    &:after {
-      content: '';
-      top: 4px;
-      left: 0;
-      display: block;
-      width: 10px;
-      height: 10px;
-      border: 1px solid $c-default-4;
-      border-radius: 2px;
-    }
-    .color-circle {
-      position: relative;
-      top: 3px;
-    }
-
   }
+}
+
+.filter__check {
+  position: relative;
+  padding-left: 20px;
+  &:before,
+  &:after {
+    position: absolute;
+    cursor: pointer;
+  }
+  &:before {
+    top: 2px;
+    left: 2px;
+    z-index: 2;
+    opacity: 0;
+    color: $c-brand;
+    @include font-rem(12px);
+  }
+  &:after {
+    content: '';
+    top: 4px;
+    left: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $c-default-4;
+    border-radius: 2px;
+  }
+  .color-circle {
+    position: relative;
+    top: 3px;
+  }
+
+}
