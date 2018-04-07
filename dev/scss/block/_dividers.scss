@@ -24,6 +24,9 @@
   .form__edit {
     padding-left: 0;
     transition: all .3s ease-in-out;
+    &:disabled {
+      background-color: $c-neutro;
+    }
   }
 }
 
@@ -131,11 +134,9 @@
   }
 }
 
-.dividers__item_select {
-  .dividers__select {
-    &:before {
-      color: $c-brand;
-    }
+.dividers__select_on {
+  &:before {
+    color: $c-brand;
   }
 }
 
