@@ -1,7 +1,8 @@
 <template lang="pug">
 .single__inner
   header.single__header
-    h1.single__title Notificaciones
+    h1.single__title Daniela Damasco
+
 
 </template>
 
