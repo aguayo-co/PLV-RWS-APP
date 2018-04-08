@@ -9,6 +9,7 @@ import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import UserDatosBancarios from '@/components/UserDatosBancarios'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
+import UserNotificaciones from '@/components/UserNotificaciones'
 import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
@@ -62,6 +63,11 @@ export default new Router({
           path: 'tus-compras',
           name: 'user-tus-compras',
           component: UserTusCompras
+        },
+        {
+          path: 'notificaciones',
+          name: 'user-notificaciones',
+          component: UserNotificaciones
         }
       ]
     },
