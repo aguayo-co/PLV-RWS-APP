@@ -1,12 +1,14 @@
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import AddressList from '@/components/AddressList'
 import CompraSale from '@/components/CompraSale'
+import { mapFields } from 'vuex-map-fields'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
 // de cada uno.
 const editableProps = {
-  phone: null
+  phone: null,
+  used_credits: null
 }
 
 /**
@@ -20,7 +22,7 @@ const editableProps = {
 function createComputedProps (props) {
   let computed = {}
   Object.keys(props).forEach(function (key) {
-    computed['order_' + key] = {
+    computed['new_' + key] = {
       get: function () {
         return this.newOrderData[key] !== null ? this.newOrderData[key] : this[key]
       },
@@ -35,23 +37,29 @@ function createComputedProps (props) {
 export default {
   name: 'CompraEnvioPago',
   components: {
-    'address-list': AddressList,
-    'compra-sale': CompraSale
+    AddressList,
+    CompraSale
   },
   data () {
     return {
+      userDataTimeout: null,
       editPhone: false,
       newOrderData: {...editableProps},
-      errorLog: {...editableProps}
+      errorLog: {...editableProps},
+      disabled: {...editableProps}
     }
   },
   computed: {
     ...mapState('cart', [
-      'sales'
-    ]),
-    ...mapGetters('cart', [
+      'sales',
       'address',
-      'phone'
+      ...Object.keys(editableProps)
+    ]),
+    ...mapFields([
+      'cart.payment_method'
+    ]),
+    ...mapState('user', [
+      'credits'
     ]),
     ...createComputedProps(editableProps)
   },
@@ -67,16 +75,62 @@ export default {
      */
     updatePhone: function () {
       const data = {
-        phone: this.order_phone
+        phone: this.new_phone
       }
       this.$store.dispatch('cart/update', data).then(() => {
         this.toggle('editPhone')
         // Obliga a usar valores de Vuex.
-        this.order_phone = null
+        this.new_phone = null
         this.errorLog.phone = null
       }).catch((e) => {
         this.errorLog.phone = this.$getFirstError(e, 'phone')
       })
+    },
+    /**
+     * Guarda el teléfono de la orden.
+     */
+    updateUsedCredits () {
+      this.disabled.used_credits = true
+      const data = {
+        used_credits: this.new_used_credits || 0
+      }
+      this.$store.dispatch('cart/update', data).then(() => {
+        this.new_used_credits = null
+        this.errorLog.used_credits = null
+      }).catch((e) => {
+        this.errorLog.used_credits = this.$getFirstError(e, 'used_credits')
+      }).finally(() => {
+        this.disabled.used_credits = false
+      })
+    }
+  },
+  watch: {
+    /**
+     * Calcula un timeout sin modificación para guardar
+     * used_credits en el back.
+     *
+     * Esto se eliminaría si se usa un botón para enviar el formulario.
+     */
+    new_used_credits: function (newUsedCredits, oldUsedCredits) {
+      window.clearTimeout(this.userDataTimeout)
+      this.errorLog.used_credits = null
+      // Si usa lo que ya había asignado, no hacer nada.
+      if (parseInt(this.new_used_credits) === parseInt(this.used_credits)) {
+        this.new_used_credits = null
+        return
+      }
+      // No permite más de lo disponible.
+      if (parseInt(this.new_used_credits) > parseInt(this.credits)) {
+        this.errorLog.used_credits = 'Estás usando más créditos de los disponibles.'
+        // Actualiza due en el state.
+        this.$store.commit('cart/setUsedCredits', 0)
+        return
+      }
+      this.userDataTimeout = window.setTimeout(() => {
+        this.updateUsedCredits()
+      }, 2000)
+      // Actualiza due en el state.
+      this.$store.commit('cart/setUsedCredits', newUsedCredits)
     }
   }
 }

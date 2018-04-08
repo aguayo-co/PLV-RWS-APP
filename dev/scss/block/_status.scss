@@ -28,6 +28,13 @@
   color: $c-brand;
 }
 
+.dashboard__txt-big {
+  display: block;
+  font-weight: $fw-bold;
+  @include font-rem(36px);
+  text-transform: uppercase;
+}
+
 .dashboard__item {
   padding: 16px 0;
   &:not(:last-child) {
@@ -37,8 +44,25 @@
 
 .dashboard__actions {
   text-align: center;
+  .btn_block {
+    margin-bottom: 20px;
+  }
+  .user-data__notify {
+    @include justify-content(center);
+  }
 }
-
+.dashboard__actions_link {
+  display: block;
+  padding-bottom: 16px;
+}
+.dashboard__form {
+  .btn {
+    width: 100%;
+  }
+  .form__label {
+    text-align: left;
+  }
+}
 /*------------------------------------*\
 	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
@@ -94,6 +118,9 @@
   &:before {
     color: $c-brand;
   }
+}
+.status_subtxt {
+  display: block;
 }
 .status_warning {
   border-color: $c-warning;

@@ -33,11 +33,13 @@
   'block/menu',
   'block/page-footer',
   'block/toggle-box',
+  'block/slide-to',
   'block/modal',
   'block/notify',
   'block/banner-slider',
   'block/banner-top',
   'block/banner-grid',
+  'block/banner-hero',
   'block/slider-fullwide';
 
   //User
@@ -63,7 +65,12 @@
   'block/boxcheck',
   'block/pay-off',
   'block/list',
-  'block/status';
+  'block/status',
+  'block/filter',
+  'block/filter-slide';
+
+
+
 
 @import
   'vendor/flickity';

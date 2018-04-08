@@ -4,18 +4,29 @@
 import Vue from 'vue'
 
 export default {
-  load: function () {
+  load () {
     return Vue.axiosAuth.get('/api/shopping_cart')
   },
-  update: function (data) {
-    const payLoad = {}
-    const allowedKeys = ['address_id', 'phone']
-    allowedKeys.forEach((key) => {
-      if (key in data) {
-        payLoad[key] = data[key]
-      }
-    })
-
+  addProducts (productsIds) {
+    const payLoad = {
+      add_product_ids: productsIds
+    }
     return Vue.axiosAuth.patch('/api/shopping_cart', payLoad)
+  },
+  removeProducts (productsIds) {
+    const payLoad = {
+      remove_product_ids: productsIds
+    }
+    return Vue.axiosAuth.patch('/api/shopping_cart', payLoad)
+  },
+  update (data) {
+    return Vue.axiosAuth.patch('/api/shopping_cart', data)
+  },
+  getPayment (paymentMethod, data = {}) {
+    const params = {
+      gateway: paymentMethod,
+      ...data
+    }
+    return Vue.axiosAuth.get('/api/shopping_cart/payment', {params})
   }
 }

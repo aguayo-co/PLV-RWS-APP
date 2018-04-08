@@ -1,0 +1,57 @@
+/*------------------------------------*\
+	Filter slider: rango de precio
+\*------------------------------------*/
+.filter__slide {
+  min-width: 280px;
+  padding-right: 40px;
+  list-style: none;
+  @include flexbox;
+  @include justify-content(space-between);
+}
+  .filter__label {
+    padding-right: 16px;
+    text-transform: uppercase;
+    span {
+      font-weight: $fw-medium;
+    }
+  }
+  .filter__set {
+    min-width: 160px;
+  }
+  .filter__tooltip {
+    @include flexbox;
+    @include justify-content(space-between);
+    padding-top: 8px;
+  }
+    .filter__value {
+      position: relative;
+      @include font-rem(16px);
+      &:first-child {
+        -ms-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+      &:last-child {
+        -ms-transform: translateX(50%);
+        -moz-transform: translateX(50%);
+        -o-transform: translateX(50%);
+        -webkit-transform: translateX(50%);
+        transform: translateX(50%);
+      }
+
+    }
+@include media-query(huge) {
+  .filter__slide {
+    min-width: 320px;
+  }
+
+  .filter__set {
+    min-width: 200px;
+  }
+
+  .filter__label {
+    font-weight: $fw-bold;
+  }
+}

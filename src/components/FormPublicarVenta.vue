@@ -470,7 +470,7 @@ export default {
           imageBlobs.push(image.generateDataUrl())
         }
       })
-      productAPI.create(this.product, imageBlobs, this.$store.getters['user/id'], this.$store.getters['user/token'])
+      productAPI.create(this.product, imageBlobs)
         .then(response => {
           const productURL = response.data.slug
           const payload = {
