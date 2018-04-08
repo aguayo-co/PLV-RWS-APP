@@ -9,7 +9,7 @@
       fieldset.form-section
         legend.subhead.form-section__title ¡Te hace falta completar tu perfil para poder vender!
           p.form-section__subtitle Para continuar con la publicación de tu venta por favor completa tus datos.
-        .upfile
+        .upfile(v-if='!user.picture')
           .upfile__small
             h3.upfile__title Foto de perfil
             .upfile__item
