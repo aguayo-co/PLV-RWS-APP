@@ -4835,7 +4835,13 @@ body {
     padding-bottom: 16px;
     text-align: left; }
   .detail__actions {
-    text-align: left; } }
+    text-align: left; }
+  .detail__value_box {
+    -webkit-box-pack: baseline;
+    -ms-flex-pack: baseline;
+    -webkit-justify-content: baseline;
+    -moz-justify-content: baseline;
+    justify-content: baseline; } }
 
 @media only screen and (min-width: 850px) {
   .detail__gallery {

@@ -267,6 +267,9 @@
   .detail__actions {
     text-align: left;
   }
+  .detail__value_box {
+    @include justify-content(baseline);
+  }
 }
 
 // Gallery 2 columnas thums visible
