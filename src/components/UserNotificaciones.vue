@@ -57,16 +57,19 @@ section.single
       a.btn(
         href="#") Ver todos
   UserNotificacionesMensaje
+  UserNotificacionesProducto
 
 </template>
 
 <script>
 import UserNotificacionesMensaje from '@/components/UserNotificacionesMensaje'
+import UserNotificacionesProducto from '@/components/UserNotificacionesProducto'
 
 export default {
   name: 'UserNotificaciones',
   components: {
-    UserNotificacionesMensaje
+    UserNotificacionesMensaje,
+    UserNotificacionesProducto
   }
 }
 </script>
