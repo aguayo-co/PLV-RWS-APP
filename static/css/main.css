@@ -1832,6 +1832,29 @@ body {
     display: -ms-flexbox;
     display: flex; } }
 
+.alert {
+  border: 1px solid #fe7676;
+  padding: 20px;
+  margin-bottom: 40px;
+  text-align: center; }
+
+.alert__txt {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 26px;
+  font-size: 1.625rem; }
+  .alert__txt:before {
+    display: block;
+    color: #fe7676;
+    font-size: 40px;
+    font-size: 2.5rem;
+    margin-bottom: 20px; }
+
+@media only screen and (min-width: 768px) {
+  .alert {
+    margin-bottom: 60px; } }
+
 /*------------------------------------*	Page header
 \*------------------------------------*/
 .page-header {

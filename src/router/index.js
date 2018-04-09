@@ -16,6 +16,7 @@ import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/categoria'
+import Search from '@/pages/search'
 
 Vue.use(Router)
 
@@ -103,6 +104,11 @@ export default new Router({
       path: '/categoria',
       name: 'Categoria',
       component: Categoria
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
     }
   ]
 })

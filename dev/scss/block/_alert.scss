@@ -1,0 +1,25 @@
+.alert {
+  border: 1px solid $c-brand;
+  padding: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.alert__txt {
+  font-family: $f-fancy;
+  font-weight: $fw-semi-bold;
+  text-transform: uppercase;
+  @include font-rem(26px);
+  &:before {
+    display: block;
+    color: $c-brand;
+    @include font-rem(40px);
+    margin-bottom: 20px;
+  }
+}
+
+@include media-query(medium) {
+  .alert {
+    margin-bottom: 60px;
+  }
+}
