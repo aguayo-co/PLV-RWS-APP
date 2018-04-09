@@ -25,8 +25,7 @@ export default {
       regionsList: {},
       newAddress: false,
       newAddressData: {...addressFields},
-      errorLog: {...addressFields},
-      shippingAddress: null
+      errorLog: {...addressFields}
     }
   },
   computed: {
@@ -34,6 +33,17 @@ export default {
       'favorite_address_id',
       'addresses'
     ]),
+    ...mapState('cart', [
+      'address'
+    ]),
+    cartAddressId: {
+      get () {
+        return this.address.id
+      },
+      set (newId) {
+        this.setForOrder(this.addresses[newId])
+      }
+    },
     regions () {
       return Object.keys(this.regionsList)
     },

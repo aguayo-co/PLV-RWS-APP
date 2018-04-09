@@ -11,10 +11,9 @@
       input(
         name="shippingAddress"
         :value="address.id"
-        v-model="shippingAddress"
+        v-model="cartAddressId"
         type="radio"
-        v-if="inShoppingCart"
-        @change="setForOrder(address)")
+        v-if="inShoppingCart")
       .dividers__grid.dividers__list(
         :class="{'dividers__list_active': isActive == address}"
       ) {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
