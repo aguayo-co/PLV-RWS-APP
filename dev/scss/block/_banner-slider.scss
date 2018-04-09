@@ -35,9 +35,9 @@
   height: auto;
 }
 .banner-slider__slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
   position: absolute;
   max-width: 570px;
   height: 100%;

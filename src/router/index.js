@@ -9,12 +9,14 @@ import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import UserDatosBancarios from '@/components/UserDatosBancarios'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
+import UserTuCloset from '@/components/UserTuCloset'
 import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
 import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/categoria'
+import Search from '@/pages/search'
 
 Vue.use(Router)
 
@@ -71,6 +73,11 @@ export default new Router({
           component: UserNotificaciones
         },
         {
+          path: 'tu-closet',
+          name: 'user-tu-closet',
+          component: UserTuCloset
+        },
+        {
           path: 'valoraciones',
           name: 'user-valoraciones',
           component: UserValoraciones
@@ -97,6 +104,11 @@ export default new Router({
       path: '/categoria',
       name: 'Categoria',
       component: Categoria
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
     }
   ]
 })
