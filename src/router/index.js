@@ -9,6 +9,7 @@ import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import UserDatosBancarios from '@/components/UserDatosBancarios'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
+import UserTuCloset from '@/components/UserTuCloset'
 import UserNotificaciones from '@/components/UserNotificaciones'
 import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
@@ -68,6 +69,11 @@ export default new Router({
           path: 'notificaciones',
           name: 'user-notificaciones',
           component: UserNotificaciones
+        },
+        {
+          path: 'tu-closet',
+          name: 'user-tu-closet',
+          component: UserTuCloset
         }
       ]
     },
