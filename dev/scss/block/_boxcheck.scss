@@ -99,6 +99,10 @@
   font-weight: $fw-semi-bold;
   @include font-rem(16px);
 }
+.boxcheck__sticky {
+  padding-top: 24px;
+}
+
 
 @media only screen and (max-width: 679px) {
   .boxcheck {
@@ -139,17 +143,21 @@
     }
 }
 
-@media only screen and (min-width: 400px) {
-  .boxcheck__sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 10px;
-  }
-}
-
 // $bp-medium: 768px;
 @include media-query(medium) {
   .boxcheck__tip {
     @include font-rem(14px);
   }
 }
+// 1024px;
+@include media-query(wide) {
+  .boxcheck__sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    padding-top: 0;
+
+  }
+}
+
+

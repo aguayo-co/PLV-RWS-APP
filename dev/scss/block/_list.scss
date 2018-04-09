@@ -124,6 +124,7 @@
   \*------------------------------------*/
 
   .compra-data_info {
+    padding-top: 16px;
     padding-bottom: 20px;
   }
 
@@ -206,10 +207,6 @@
     .card__title {
       padding-bottom: 8px;
     }
-
-    // .card__price {
-    //   padding-bottom: 16px;
-    // }
 }
 
 // $bp-small-medium: 640px;
@@ -243,6 +240,9 @@
     padding-top: 56px;
   }
   .list__item {
+    padding-top: 32px;
+  }
+  .compra-data_info {
     padding-top: 32px;
   }
   .card__txt {

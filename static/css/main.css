@@ -5479,6 +5479,9 @@ body {
   font-size: 16px;
   font-size: 1rem; }
 
+.boxcheck__sticky {
+  padding-top: 24px; }
+
 @media only screen and (max-width: 679px) {
   .boxcheck {
     max-width: 480px;
@@ -5506,16 +5509,17 @@ body {
   .boxcheck__tip:before {
     left: 40px; } }
 
-@media only screen and (min-width: 400px) {
-  .boxcheck__sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 10px; } }
-
 @media only screen and (min-width: 768px) {
   .boxcheck__tip {
     font-size: 14px;
     font-size: 0.875rem; } }
+
+@media only screen and (min-width: 1024px) {
+  .boxcheck__sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    padding-top: 0; } }
 
 /*------------------------------------*	pay-off créditos prilov
 \*------------------------------------*/
@@ -5693,6 +5697,7 @@ body {
 /*------------------------------------*    List carrito dividers
   \*------------------------------------*/
 .compra-data_info {
+  padding-top: 16px;
   padding-bottom: 20px; }
 
 /*------------------------------------*  List carrito factura
@@ -5795,6 +5800,8 @@ body {
   .list {
     padding-top: 56px; }
   .list__item {
+    padding-top: 32px; }
+  .compra-data_info {
     padding-top: 32px; }
   .card__txt {
     font-size: 16px;

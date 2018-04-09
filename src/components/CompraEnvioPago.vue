@@ -13,8 +13,9 @@
     .compra-data_info
       .subhead Direcciones
         small.small_high Esta sería la dirección a la que la vendedora enviará tu producto. También servirá de referencia en caso de que decidan juntarse.
-      div(v-if="address") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
-      .subhead Cambiar dirección?
+      .dividers
+        .dividers__item(v-if="address") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+      .subhead ¿Cambiar dirección?
       AddressList(in-shopping-cart=true)
 
       .subhead Teléfono
