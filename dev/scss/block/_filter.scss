@@ -1,6 +1,15 @@
 /*------------------------------------*\
 	Filter
 \*------------------------------------*/
+.filter-head {
+  padding-bottom: 20px;
+}
+.filter-head__title {
+  font-family: $f-normal;
+  font-weight: $fw-bold;
+  @include font-rem(18px);
+  text-transform: uppercase;
+}
   /*------------------------------------*\
     Only mobile
   \*------------------------------------*/

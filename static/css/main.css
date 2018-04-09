@@ -1843,7 +1843,9 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 26px;
-  font-size: 1.625rem; }
+  font-size: 1.625rem;
+  margin: 0 auto;
+  max-width: 900px; }
   .alert__txt:before {
     display: block;
     color: #fe7676;
@@ -5039,6 +5041,9 @@ body {
   margin: 0 auto;
   overflow: hidden; }
 
+.section-head {
+  padding-bottom: 40px; }
+
 .product-grid {
   display: -webkit-box;
   display: -webkit-flex;
@@ -6427,6 +6432,16 @@ body {
 
 /*------------------------------------*	Filter
 \*------------------------------------*/
+.filter-head {
+  padding-bottom: 20px; }
+
+.filter-head__title {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  font-size: 1.125rem;
+  text-transform: uppercase; }
+
 /*------------------------------------*    Only mobile
   \*------------------------------------*/
 @media only screen and (max-width: 1023px) {
