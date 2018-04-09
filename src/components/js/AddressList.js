@@ -28,7 +28,8 @@ export default {
       regionsList: {},
       newAddress: false,
       newAddressData: {...addressFields},
-      errorLog: {...addressFields}
+      errorLog: {...addressFields},
+      shippingAddress: null
     }
   },
   computed: {

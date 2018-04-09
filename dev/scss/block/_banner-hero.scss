@@ -38,10 +38,13 @@
   display: inline;
   text-transform: uppercase;
   font-family: $f-fancy;
-  font-weight: $fw-medium;
-  @include font-rem(35px);
+  font-weight: $fw-bold;
+  @include font-rem(50px);
   line-height: 1.5;
   padding: 2px 5px;
+}
+.banner-hero__subtitle {
+  @include font-rem(24px);
 }
 .banner-hero__btn {
   width: auto;
@@ -63,4 +66,12 @@
   .banner-hero__btn {
     min-width: 220px;
   }
+  .banner-hero__title {
+  @include font-rem(64px);
   }
+}
+@include media-query(wide) {
+  .banner-hero {
+  margin: 0 auto 60px auto;
+  }
+}
