@@ -100,10 +100,7 @@ export default {
         vm.errorLog = {...editableProps}
         this.close()
       }).catch((e) => {
-        // Si hay errores, mostrarlos.
-        Object.keys(editableProps).forEach(function (key) {
-          vm.errorLog[key] = vm.$getFirstError(e, key)
-        })
+        vm.$handleApiErrors(e, Object.keys(editableProps), vm.errorLog)
       })
     }
   }

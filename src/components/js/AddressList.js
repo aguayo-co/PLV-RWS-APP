@@ -2,14 +2,11 @@ import { mapState } from 'vuex'
 import AddressEdit from '@/components/AddressEdit'
 import userAddressesAPI from '@/api/userAddresses'
 
-// Cada campo editable debe estar acá.
-// Con esto se crean las propiedades computables
-// de cada uno.
 const addressFields = {
-  new_address: null,
-  new_region: null,
-  new_city: null,
-  new_zone: null
+  address: null,
+  region: null,
+  city: null,
+  zone: null
 }
 
 export default {
@@ -80,14 +77,9 @@ export default {
       this.$store.dispatch('cart/update', data)
     },
     createAddress () {
-      let data = {}
       // Para poder usarlo dentro de los forEach().
       const vm = this
-      // Agrega la información a enviar.
-      Object.keys(addressFields).forEach(function (key) {
-        data[key.replace('new_', '')] = vm.newAddressData[key]
-      })
-      this.$store.dispatch('user/createAddress', data).then((response) => {
+      this.$store.dispatch('user/createAddress', vm.newAddressData).then((response) => {
         if (this.inShoppingCart) {
           // Usa la dirección recién creada en la orden.
           vm.setForOrder(response.data)
@@ -95,9 +87,7 @@ export default {
         vm.toggleNewAddress()
       }).catch((e) => {
         // Si hay errores, mostrarlos.
-        Object.keys(addressFields).forEach(function (key) {
-          vm.errorLog[key] = vm.$getFirstError(e, key.replace('new_', ''))
-        })
+        vm.$handleApiErrors(e, Object.keys(addressFields), vm.errorLog)
       })
     }
   },

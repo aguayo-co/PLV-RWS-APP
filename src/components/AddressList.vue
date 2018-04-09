@@ -71,18 +71,18 @@
             label.form__label(
               for='new-address') Dirección
             span.help(
-              v-show="errorLog.new_address") {{ errorLog.new_address }}
+              v-show="errorLog.address") {{ errorLog.address }}
             input.form__control(
               id='new-address'
-              v-model="newAddressData['new_address']"
+              v-model="newAddressData['address']"
               type='text')
           .form__row
             label.form__label(
               for='new-address-region') Región
             span.help(
-              v-show="errorLog.new_region") {{ errorLog.new_region }}
+              v-show="errorLog.region") {{ errorLog.region }}
             select.form__select(
-              v-model="newAddressData['new_region']")
+              v-model="newAddressData['region']")
               option
               option(
                 v-for="region in regions") {{ region }}
@@ -92,7 +92,7 @@
             label.form__label(
               for='new-address-city') Ciudad
             select.form__select(
-              v-model="newAddressData['new_city']")
+              v-model="newAddressData['city']")
               option
               option(
                 v-for="citi in cities") {{ citi }}
@@ -101,9 +101,9 @@
             label.form__label(
               for='new-address-zone') Comuna
             span.help(
-              v-show="errorLog.new_zone") {{ errorLog.new_zone }}
+              v-show="errorLog.zone") {{ errorLog.zone }}
             select.form__select(
-              v-model="newAddressData['new_zone']")
+              v-model="newAddressData['zone']")
               option
               option(
                 v-for="zone in zones") {{ zone }}

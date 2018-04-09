@@ -75,11 +75,11 @@ export default {
       const data = {
         coupon_code: this.new_coupon_code
       }
+      this.errorLog.coupon_code = null
       this.$store.dispatch('cart/update', data).then(() => {
         this.new_coupon_code = null
-        this.errorLog.coupon_code = null
       }).catch((e) => {
-        this.errorLog.coupon_code = this.$getFirstError(e, 'coupon_code')
+        this.$handleApiErrors(e, ['coupon_code'], this.errorLog)
       }).finally(() => {
         this.disabled.coupon_code = false
       })
@@ -89,18 +89,22 @@ export default {
      */
     nextStep () {
       const paymentMethod = this.payment_method
+      let request
       if (paymentMethod === 'pay_u') {
-        this.setPayUPayment()
+        request = this.setPayUPayment()
       }
       if (paymentMethod === 'transfer') {
-        this.setTransferPayment()
+        request = this.setTransferPayment()
       }
+      request.catch((e) => {
+        this.$handleApiErrors(e, [], this.errorLog)
+      })
     },
     /**
      * Envía al usuario a PayU.
      */
     setPayUPayment () {
-      shoppingCartAPI.getPayment('pay_u').then((response) => {
+      return shoppingCartAPI.getPayment('pay_u').then((response) => {
         this.payUPayment = {
           ...response.data.request_data,
           responseUrl: this.responseUrl
@@ -112,7 +116,7 @@ export default {
      */
     setTransferPayment () {
       const vm = this
-      shoppingCartAPI.getPayment('transfer').then((response) => {
+      return shoppingCartAPI.getPayment('transfer').then((response) => {
         vm.$router.push({name: 'compra', params: { id: vm.id }})
       })
     }
