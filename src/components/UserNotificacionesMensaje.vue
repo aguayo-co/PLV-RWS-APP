@@ -1,8 +1,27 @@
 <template lang="pug">
 .single__inner
+  a.btn-back.i-back(href="#") Volver
   header.single__header
     h1.single__title Daniela Damasco
-
+  .chat
+    .chat-line
+      .chat__bubble-main
+        img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+        p.chat-bubble__txt Hola, si está aun disponible, ¿Quieres comprarlo?
+      .chat__bubble
+        img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
+        p.chat-bubble__txt Hola, si, me interesa comprar.
+    .chat-inner
+      form.chat__form
+        label.chat__label Escribe un mensaje aquí
+        .chat__form-group
+          textarea.form__textarea.chat__textarea
+          .chat__btn-group
+            button.chat__btn-solid.i-shipping(type="submit")
+            .chat__btn-file
+              input#chatFile.chat__btn-flat(type='file')
+              label(for="chatFile").i-blog.chat__label-flat.chat__btn
+            a.i-sad.chat__btn(href="#")
 
 </template>
 

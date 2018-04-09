@@ -1,0 +1,145 @@
+/*------------------------------------*\
+	Chat
+\*------------------------------------*/
+
+.chat {
+
+}
+
+/*------------------------------------*\
+  Burbuja principal de chat
+\*------------------------------------*/
+.chat__bubble-main {
+  @include flexbox;
+  .chat-bubble__img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.chat__bubble {
+  @include flexbox;
+  .chat-bubble__img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.chat-bubble__img {
+  border-radius: 50%;
+  border: 2px solid $c-brand;
+}
+
+.chat-bubble__txt {
+  @include font-rem(16px);
+  color: $c-default-5;
+  border: 1px solid;
+}
+
+.chat-inner {
+  background-color: $c-neutro-4;
+}
+
+.chat__form {
+  width: 96%;
+  padding: 14px 0 20px;
+  margin: 0 auto;
+}
+
+.chat__label {
+  display: block;
+  padding-bottom: 8px;
+}
+
+.chat__btn-solid {
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
+  color: $c-neutro;
+  border: none;
+  border-radius: 50%;
+  background-color: $c-brand;
+}
+
+.chat__btn-flat {
+  display: none;
+  &:before {
+    display: block;
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.chat__btn-group {
+  @include flexbox;
+  @include justify-content(flex-end);
+}
+
+.chat__btn {
+  &:before {
+    color: $c-default-2;
+    @include font-rem(24px);
+  }
+}
+
+.chat__label-flat {
+  margin-right: 10px;
+}
+
+.chat__textarea {
+  margin-bottom: 5px;
+}
+
+.btn-back {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 16px;
+  font-weight: $fw-bold;
+  color: $c-brand;
+  @include font-rem(16px);
+  &:before {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 6px 4px 5px;
+    margin-top: -3px;
+    margin-right: 6px;
+    border-radius: 50%;
+    border: 2px solid $c-brand;
+    @include font-rem(10px);
+
+  }
+}
+ 
+@media only screen and (min-width: 560px) {
+  .chat__form {
+    padding: 28px 20px 48px 30px;
+  }
+
+  .chat__form-group {
+    @include flexbox;
+    @include align-items(center);
+  }
+
+  .chat__textarea {
+    margin-right: 10px;
+    border: 1px solid $c-default-4;
+  }
+
+  .chat__btn-file {
+    position: relative;
+  }
+
+  .chat__label-flat {
+    display: block;
+    width: 26px;
+    height: 26px;
+  }
+
+  .chat__textarea {
+    margin-bottom: 0;
+  }
+
+  .btn-back {
+    margin-bottom: 28px;
+  }
+}
