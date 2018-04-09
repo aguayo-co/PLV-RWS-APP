@@ -37,12 +37,13 @@
   }
 }
 
-/*------------------------------------*\
-  Burbuja principal de chat
-\*------------------------------------*/
 .chat-line {
   margin-bottom: 24px;
 }
+
+/*------------------------------------*\
+  Burbuja principal de chat
+\*------------------------------------*/
 
 .chat__bubble-main {
   @include flexbox;
@@ -57,6 +58,10 @@
     border-color: $c-brand;
   }
 }
+
+/*------------------------------------*\
+  Burbuja secundaria de chat
+\*------------------------------------*/
 
 .chat__bubble {
   @include flexbox;
