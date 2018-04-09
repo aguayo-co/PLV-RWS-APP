@@ -45,8 +45,5 @@ section.single
 
 export default {
   name: 'UserValoraciones'
-  // components: {
-    
-  // }
 }
 </script>
