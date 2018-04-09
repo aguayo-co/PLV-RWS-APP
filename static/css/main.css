@@ -6915,7 +6915,7 @@ body {
     align-items: flex-end; }
     .chat__grid .slot_grid {
       width: 100%;
-      max-width: 260px;
+      max-width: 320px;
       padding: 0 26px 0 0; }
   .chat__message {
     width: 100%; } }
