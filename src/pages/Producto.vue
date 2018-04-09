@@ -1,6 +1,7 @@
-<template lang="pug">
+ <template lang="pug">
 .layout-page
   ProductoDetalle(:product='product')
+  ProductoPack(:product='product')
   ProductoUser(:user='user')
   ProductoSlider
 </template>
@@ -8,6 +9,7 @@
 <script>
 import axios from 'axios'
 import ProductoDetalle from '@/components/ProductoDetalle'
+import ProductoPack from '@/components/ProductoPack'
 import ProductoUser from '@/components/ProductoUser'
 import ProductoSlider from '@/components/ProductoSlider'
 
@@ -15,6 +17,7 @@ export default {
   name: 'Producto',
   components: {
     ProductoDetalle,
+    ProductoPack,
     ProductoUser,
     ProductoSlider
   },
