@@ -8,15 +8,19 @@
     li.dividers__item(
       v-else="",
       v-for="address in addresses")
+      input(
+        name="shippingAddress"
+        :value="address.id"
+        v-model="shippingAddress"
+        type="radio"
+        v-if="inShoppingCart"
+        @change="setForOrder(address)")
       .dividers__grid.dividers__list(
         :class="{'dividers__list_active': isActive == address}"
       ) {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
         span.dividers__actions
-          button.btn(
-            v-if="inShoppingCart"
-            @click.prevent="setForOrder(address)"
-            title="Usar en la orden") Usar en la orden
           a.dividers__select.i-star-on(
+            v-if="!inShoppingCart"
             @click.prevent="setFavorite(address)",
             :class="{dividers__select_on: favorite_address_id == address.id}",
             href="#",
