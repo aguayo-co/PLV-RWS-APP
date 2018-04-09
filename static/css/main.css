@@ -4368,10 +4368,13 @@ body {
 
 .collections__item {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
+  -webkit-align-items: center;
   -moz-align-items: center;
   align-items: center;
   padding: 16px 0;
@@ -4380,6 +4383,8 @@ body {
   .collections__item:not(:last-child) {
     border-bottom: 1px solid #efefef; }
   .collections__item:before {
+    -webkit-flex-basis: 60px;
+    -moz-flex-basis: 60px;
     -ms-flex-preferred-size: 60px;
     flex-basis: 60px;
     display: block;
@@ -4397,16 +4402,18 @@ body {
 
 .collection__head {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
+  -webkit-align-items: center;
   -moz-align-items: center;
   align-items: center;
   margin: 0;
   font-size: 16px;
   font-size: 1rem;
-  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out; }
 
 .collection__title {
@@ -6605,6 +6612,180 @@ body {
     min-width: 200px; }
   .filter__label {
     font-weight: 700; } }
+
+/*------------------------------------*	Chat
+\*------------------------------------*/
+/*----------------------------------------*  Estilos generales para busbujas de chat
+\*----------------------------------------*/
+.chat-bubble__img {
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 2px solid #fe7676; }
+
+.chat-bubble__txt {
+  margin: 0 8px 0 0;
+  line-height: 1.2;
+  font-size: 16px;
+  font-size: 1rem;
+  color: #707070;
+  border: 1px solid;
+  border-radius: 17px; }
+
+.chat-bubble__noti {
+  position: relative;
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #fe7676; }
+  .chat-bubble__noti:before {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 7px;
+    font-size: 0.4375rem;
+    color: #fff; }
+
+/*------------------------------------*  Burbuja principal de chat
+\*------------------------------------*/
+.chat-line {
+  margin-bottom: 24px; }
+
+.chat__bubble-main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  align-items: flex-start; }
+  .chat__bubble-main .chat-bubble__img {
+    width: 35px;
+    height: 35px; }
+  .chat__bubble-main .chat-bubble__txt {
+    margin-bottom: 16px;
+    padding: 8px 18px;
+    border-color: #fe7676; }
+
+.chat__bubble {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  padding-left: 30px; }
+  .chat__bubble .chat-bubble__img {
+    width: 22px;
+    height: 22px; }
+  .chat__bubble .chat-bubble__txt {
+    padding: 4px 24px;
+    border-color: #9b9b9b; }
+
+.chat-inner {
+  background-color: #f6f6f6; }
+
+.chat__form {
+  width: 96%;
+  padding: 14px 0 20px;
+  margin: 0 auto; }
+
+.chat__label {
+  display: block;
+  padding-bottom: 8px; }
+
+.chat__btn-solid {
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  background-color: #fe7676; }
+
+.chat__btn-flat {
+  display: none; }
+  .chat__btn-flat:before {
+    display: block;
+    width: 26px;
+    height: 26px; }
+
+.chat__btn-group {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end; }
+
+.chat__btn:before {
+  color: #4a4a4a;
+  font-size: 24px;
+  font-size: 1.5rem; }
+
+.chat__label-flat {
+  margin-right: 10px; }
+
+.chat__textarea {
+  margin-bottom: 5px; }
+
+.btn-back {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #fe7676;
+  font-size: 16px;
+  font-size: 1rem; }
+  .btn-back:before {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 6px 4px 5px;
+    margin-top: -3px;
+    margin-right: 6px;
+    border-radius: 50%;
+    border: 2px solid #fe7676;
+    font-size: 10px;
+    font-size: 0.625rem; }
+
+@media only screen and (min-width: 560px) {
+  .chat__form {
+    padding: 28px 20px 48px 30px; }
+  .chat__form-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+  .chat__textarea {
+    margin-right: 10px;
+    border: 1px solid #9b9b9b; }
+  .chat__btn-file {
+    position: relative; }
+  .chat__label-flat {
+    display: block;
+    width: 26px;
+    height: 26px; }
+  .chat__textarea {
+    margin-bottom: 0; }
+  .btn-back {
+    margin-bottom: 28px; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co

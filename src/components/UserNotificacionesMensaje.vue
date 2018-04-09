@@ -11,6 +11,15 @@
       .chat__bubble
         img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
         p.chat-bubble__txt Hola, si, me interesa comprar.
+        span.chat-bubble__noti.i-check
+    .chat-line
+      .chat__bubble-main
+        img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+        p.chat-bubble__txt Listo, ¿tienes alguna duda sobre el zapato?
+      .chat__bubble
+        img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
+        p.chat-bubble__txt Si, me interesa saber cuánto tiempo  tiene de uso.
+        span.chat-bubble__noti.i-check
     .chat-inner
       form.chat__form
         label.chat__label Escribe un mensaje aquí

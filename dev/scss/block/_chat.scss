@@ -2,38 +2,74 @@
 	Chat
 \*------------------------------------*/
 
-.chat {
-
-}
-
-/*------------------------------------*\
-  Burbuja principal de chat
-\*------------------------------------*/
-.chat__bubble-main {
-  @include flexbox;
-  .chat-bubble__img {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-.chat__bubble {
-  @include flexbox;
-  .chat-bubble__img {
-    width: 20px;
-    height: 20px;
-  }
-}
+/*----------------------------------------*\
+  Estilos generales para busbujas de chat
+\*----------------------------------------*/
 
 .chat-bubble__img {
+  margin-right: 8px;
   border-radius: 50%;
   border: 2px solid $c-brand;
 }
 
 .chat-bubble__txt {
+  margin: 0 8px 0 0;
+  line-height: 1.2;
   @include font-rem(16px);
   color: $c-default-5;
   border: 1px solid;
+  border-radius: 17px;
+}
+
+.chat-bubble__noti {
+  position: relative;
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: $c-brand;
+  &:before {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    @include font-rem(7px);
+    color: $c-neutro;
+  }
+}
+
+/*------------------------------------*\
+  Burbuja principal de chat
+\*------------------------------------*/
+.chat-line {
+  margin-bottom: 24px;
+}
+
+.chat__bubble-main {
+  @include flexbox;
+  @include align-items(flex-start);
+  .chat-bubble__img {
+    width: 35px;
+    height: 35px;
+  }
+  .chat-bubble__txt {
+    margin-bottom: 16px;
+    padding: 8px 18px;
+    border-color: $c-brand;
+  }
+}
+
+.chat__bubble {
+  @include flexbox;
+  @include align-items(center);
+  padding-left: 30px;
+  .chat-bubble__img {
+    width: 22px;
+    height: 22px;
+  }
+  .chat-bubble__txt {
+    padding: 4px 24px;
+    border-color: $c-default-4;
+  }
 }
 
 .chat-inner {
