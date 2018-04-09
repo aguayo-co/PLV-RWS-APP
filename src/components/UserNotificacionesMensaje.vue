@@ -21,7 +21,7 @@
             .chat__btn-file
               input#chatFile.chat__btn-flat(type='file')
               label(for="chatFile").i-blog.chat__label-flat.chat__btn
-            a.i-sad.chat__btn(href="#")
+            a.i-smile.chat__btn(href="#")
 
 </template>
 

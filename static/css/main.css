@@ -286,9 +286,6 @@ template {
 .i-filter:before {
   content: "\e90b"; }
 
-.i-filter-admin:before {
-  content: "\e944"; }
-
 .i-reload:before {
   content: "\e90c"; }
 
@@ -430,9 +427,6 @@ template {
 .i-edit:before {
   content: "\e907"; }
 
-.i-blog-admin:before {
-  content: "\e943"; }
-
 .i-start:before {
   content: "\e922"; }
 
@@ -468,6 +462,21 @@ template {
 
 .i-report:before {
   content: "\e945"; }
+
+.i-blog-admin:before {
+  content: "\e943"; }
+
+.i-filter-admin:before {
+  content: "\e944"; }
+
+.i-chat:before {
+  content: "\e946"; }
+
+.i-smile:before {
+  content: "\e947"; }
+
+.i-search-plus:before {
+  content: "\e948"; }
 
 /*------------------------------------*	texts links
 \*------------------------------------*/
@@ -3420,7 +3429,7 @@ body {
   position: relative;
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
   overflow: hidden; }
 
 .banner-hero__crop {
@@ -3434,36 +3443,24 @@ body {
   height: auto; }
 
 .banner-hero__slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  max-width: 570px;
-  height: 100%;
-  padding: 0 5% 0 5%; }
-  .banner-hero__slot.left {
-    text-align: left; }
-  .banner-hero__slot.right {
-    right: 0;
-    text-align: right; }
-    .banner-hero__slot.right .banner-hero__btn {
-      margin: 15px 0 15px auto; }
-    .banner-hero__slot.right .banner-hero__copy {
-      display: inline; }
-  .banner-hero__slot.center {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    transform: translateX(-50%);
-    left: 50%; }
-    .banner-hero__slot.center .banner-hero__position {
-      margin: 0 auto; }
-    .banner-hero__slot.center .banner-hero__btn {
-      margin: 15px auto; }
-    .banner-hero__slot.center .banner-hero__copy {
-      margin-left: 0; }
+  display: block;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  height: auto; }
+
+.banner-hero__head {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px; }
+
+.banner-hero__main {
+  display: block;
+  width: 100%;
+  text-align: center; }
 
 .banner-hero__title {
   display: inline;
@@ -3474,6 +3471,23 @@ body {
   font-size: 2.1875rem;
   line-height: 1.5;
   padding: 2px 5px; }
+
+.banner-hero__btn {
+  width: auto;
+  min-width: 250px; }
+  .banner-hero__btn:first-child {
+    margin-bottom: 6px; }
+
+@media only screen and (min-width: 480px) {
+  .banner-hero__btn {
+    min-width: 200px; }
+    .banner-hero__btn:first-child {
+      margin-bottom: 0;
+      margin-right: 6px; } }
+
+@media only screen and (min-width: 640px) {
+  .banner-hero__btn {
+    min-width: 220px; } }
 
 /*------------------------------------*	Slider prilover Home
 \*------------------------------------*/
@@ -4343,6 +4357,72 @@ body {
 @media only screen and (min-width: 768px) {
   .dividers_list .dividers__item {
     margin-bottom: 16px; } }
+
+/*------------------------------------*	collections
+\*------------------------------------*/
+.collections__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 30px 0;
+  border-top: 1px solid #efefef; }
+
+.collections__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 16px;
+  font-size: 1rem; }
+  .collections__item:not(:last-child) {
+    border-bottom: 1px solid #efefef; }
+  .collections__item:before {
+    -ms-flex-preferred-size: 60px;
+    flex-basis: 60px;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-size: 1.125rem;
+    background-color: #fe7676; }
+
+.collection__lead {
+  margin-left: 8px; }
+
+.collection__head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  margin: 0;
+  font-size: 16px;
+  font-size: 1rem;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+
+.collection__title {
+  padding-right: 16px;
+  font-weight: 700; }
+
+.collection__label {
+  text-transform: uppercase;
+  color: #707070; }
+
+.collection__tag {
+  font-size: inherit;
+  text-transform: none; }
+
+.collections__list_off .collections__item:before {
+  background-color: #cbcbcb; }
 
 /*------------------------------------*	Elementos Formularios
 \*------------------------------------*/
@@ -6525,138 +6605,6 @@ body {
     min-width: 200px; }
   .filter__label {
     font-weight: 700; } }
-
-/*------------------------------------*	Chat
-\*------------------------------------*/
-/*------------------------------------*  Burbuja principal de chat
-\*------------------------------------*/
-.chat__bubble-main {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex; }
-  .chat__bubble-main .chat-bubble__img {
-    width: 35px;
-    height: 35px; }
-
-.chat__bubble {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex; }
-  .chat__bubble .chat-bubble__img {
-    width: 20px;
-    height: 20px; }
-
-.chat-bubble__img {
-  border-radius: 50%;
-  border: 2px solid #fe7676; }
-
-.chat-bubble__txt {
-  font-size: 16px;
-  font-size: 1rem;
-  color: #707070;
-  border: 1px solid; }
-
-.chat-inner {
-  background-color: #f6f6f6; }
-
-.chat__form {
-  width: 96%;
-  padding: 14px 0 20px;
-  margin: 0 auto; }
-
-.chat__label {
-  display: block;
-  padding-bottom: 8px; }
-
-.chat__btn-solid {
-  width: 26px;
-  height: 26px;
-  margin-right: 10px;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  background-color: #fe7676; }
-
-.chat__btn-flat {
-  display: none; }
-  .chat__btn-flat:before {
-    display: block;
-    width: 26px;
-    height: 26px; }
-
-.chat__btn-group {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  -webkit-justify-content: flex-end;
-  -moz-justify-content: flex-end;
-  justify-content: flex-end; }
-
-.chat__btn:before {
-  color: #4a4a4a;
-  font-size: 24px;
-  font-size: 1.5rem; }
-
-.chat__label-flat {
-  margin-right: 10px; }
-
-.chat__textarea {
-  margin-bottom: 5px; }
-
-.btn-back {
-  display: inline-block;
-  vertical-align: middle;
-  margin-bottom: 16px;
-  font-weight: 700;
-  color: #fe7676;
-  font-size: 16px;
-  font-size: 1rem; }
-  .btn-back:before {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 4px 6px 4px 5px;
-    margin-top: -3px;
-    margin-right: 6px;
-    border-radius: 50%;
-    border: 2px solid #fe7676;
-    font-size: 10px;
-    font-size: 0.625rem; }
-
-@media only screen and (min-width: 560px) {
-  .chat__form {
-    padding: 28px 20px 48px 30px; }
-  .chat__form-group {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    align-items: center; }
-  .chat__textarea {
-    margin-right: 10px;
-    border: 1px solid #9b9b9b; }
-  .chat__btn-file {
-    position: relative; }
-  .chat__label-flat {
-    display: block;
-    width: 26px;
-    height: 26px; }
-  .chat__textarea {
-    margin-bottom: 0; }
-  .btn-back {
-    margin-bottom: 28px; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co

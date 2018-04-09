@@ -65,354 +65,441 @@
   @return unquote("\"")+$str+unquote("\"");
 }
 
-
 .i-prilov {
   &:before {
-    content: unicode($i-prilov); 
+    content: unicode($i-prilov);
   }
 }
+
 .i-starts {
   &:before {
-    content: unicode($i-starts); 
+    content: unicode($i-starts);
   }
 }
+
 .i-it-girl {
   &:before {
-    content: unicode($i-it-girl); 
+    content: unicode($i-it-girl);
   }
 }
+
 .i-dress {
   &:before {
-    content: unicode($i-dress); 
+    content: unicode($i-dress);
   }
 }
+
 .i-like {
   &:before {
-    content: unicode($i-like); 
+    content: unicode($i-like);
   }
 }
+
 .i-search {
   &:before {
-    content: unicode($i-search); 
+    content: unicode($i-search);
   }
 }
+
 .i-view {
   &:before {
-    content: unicode($i-view); 
+    content: unicode($i-view);
   }
 }
+
 .i-ok {
   &:before {
-    content: unicode($i-ok); 
+    content: unicode($i-ok);
   }
 }
+
 .i-filter {
   &:before {
-    content: unicode($i-filter); 
+    content: unicode($i-filter);
   }
 }
-.i-filter-admin {
-  &:before {
-    content: unicode($i-filter-admin); 
-  }
-}
+
 .i-reload {
   &:before {
-    content: unicode($i-reload); 
+    content: unicode($i-reload);
   }
 }
+
 .i-bag {
   &:before {
-    content: unicode($i-bag); 
+    content: unicode($i-bag);
   }
 }
+
 .i-car {
   &:before {
-    content: unicode($i-car); 
+    content: unicode($i-car);
   }
 }
+
 .i-tag {
   &:before {
-    content: unicode($i-tag); 
+    content: unicode($i-tag);
   }
 }
+
 .i-shop {
   &:before {
-    content: unicode($i-shop); 
+    content: unicode($i-shop);
   }
 }
+
 .i-send {
   &:before {
-    content: unicode($i-send); 
+    content: unicode($i-send);
   }
 }
+
 .i-feedback {
   &:before {
-    content: unicode($i-feedback); 
+    content: unicode($i-feedback);
   }
 }
+
 .i-alert {
   &:before {
-    content: unicode($i-alert); 
+    content: unicode($i-alert);
   }
 }
+
 .i-help {
   &:before {
-    content: unicode($i-help); 
+    content: unicode($i-help);
   }
 }
+
 .i-sell {
   &:before {
-    content: unicode($i-sell); 
+    content: unicode($i-sell);
   }
 }
+
 .i-card {
   &:before {
-    content: unicode($i-card); 
+    content: unicode($i-card);
   }
 }
+
 .i-money {
   &:before {
-    content: unicode($i-money); 
+    content: unicode($i-money);
   }
 }
+
 .i-trip {
   &:before {
-    content: unicode($i-trip); 
+    content: unicode($i-trip);
   }
 }
+
 .i-singup {
   &:before {
-    content: unicode($i-singup); 
+    content: unicode($i-singup);
   }
 }
+
 .i-insta {
   &:before {
-    content: unicode($i-insta); 
+    content: unicode($i-insta);
   }
 }
+
 .i-fb {
   &:before {
-    content: unicode($i-fb); 
+    content: unicode($i-fb);
   }
 }
+
 .i-twitter {
   &:before {
-    content: unicode($i-twitter); 
+    content: unicode($i-twitter);
   }
 }
+
 .i-heart {
   &:before {
-    content: unicode($i-heart); 
+    content: unicode($i-heart);
   }
 }
+
 .i-heart-on {
   &:before {
-    content: unicode($i-heart-on); 
+    content: unicode($i-heart-on);
   }
 }
+
 .i-alert-info {
   &:before {
-    content: unicode($i-alert-info); 
+    content: unicode($i-alert-info);
   }
 }
+
 .i-alert-circle {
   &:before {
-    content: unicode($i-alert-circle); 
+    content: unicode($i-alert-circle);
   }
 }
+
 .i-alert-tri {
   &:before {
-    content: unicode($i-alert-tri); 
+    content: unicode($i-alert-tri);
   }
 }
+
 .i-user {
   &:before {
-    content: unicode($i-user); 
+    content: unicode($i-user);
   }
 }
+
 .i-user-x {
   &:before {
-    content: unicode($i-user-x); 
+    content: unicode($i-user-x);
   }
 }
+
 .i-insta-red {
   &:before {
-    content: unicode($i-insta-red); 
+    content: unicode($i-insta-red);
   }
 }
+
 .i-twitter-red {
   &:before {
-    content: unicode($i-twitter-red); 
+    content: unicode($i-twitter-red);
   }
 }
+
 .i-fb-red {
   &:before {
-    content: unicode($i-fb-red); 
+    content: unicode($i-fb-red);
   }
 }
+
 .i-bell {
   &:before {
-    content: unicode($i-bell); 
+    content: unicode($i-bell);
   }
 }
+
 .i-shipping {
   &:before {
-    content: unicode($i-shipping); 
+    content: unicode($i-shipping);
   }
 }
+
 .i-favorite {
   &:before {
-    content: unicode($i-favorite); 
+    content: unicode($i-favorite);
   }
 }
+
 .i-credits {
   &:before {
-    content: unicode($i-credits); 
+    content: unicode($i-credits);
   }
 }
+
 .i-closet {
   &:before {
-    content: unicode($i-closet); 
+    content: unicode($i-closet);
   }
 }
+
 .i-bank-data {
   &:before {
-    content: unicode($i-bank-data); 
+    content: unicode($i-bank-data);
   }
 }
+
 .i-sale {
   &:before {
-    content: unicode($i-sale); 
+    content: unicode($i-sale);
   }
 }
+
 .i-data {
   &:before {
-    content: unicode($i-data); 
+    content: unicode($i-data);
   }
 }
+
 .i-blog {
   &:before {
-    content: unicode($i-blog); 
+    content: unicode($i-blog);
   }
 }
+
 .i-x {
   &:before {
-    content: unicode($i-x); 
+    content: unicode($i-x);
   }
 }
+
 .i-close {
   &:before {
-    content: unicode($i-close); 
+    content: unicode($i-close);
   }
 }
+
 .i-plus {
   &:before {
-    content: unicode($i-plus); 
+    content: unicode($i-plus);
   }
 }
+
 .i-back {
   &:before {
-    content: unicode($i-back); 
+    content: unicode($i-back);
   }
 }
+
 .i-next {
   &:before {
-    content: unicode($i-next); 
+    content: unicode($i-next);
   }
 }
+
 .i-back-s {
   &:before {
-    content: unicode($i-back-s); 
+    content: unicode($i-back-s);
   }
 }
+
 .i-next-s {
   &:before {
-    content: unicode($i-next-s); 
+    content: unicode($i-next-s);
   }
 }
+
 .i-less {
   &:before {
-    content: unicode($i-less); 
+    content: unicode($i-less);
   }
 }
+
 .i-less-circle {
   &:before {
-    content: unicode($i-less-circle); 
+    content: unicode($i-less-circle);
   }
 }
+
 .i-edit-line {
   &:before {
-    content: unicode($i-edit-line); 
+    content: unicode($i-edit-line);
   }
 }
+
 .i-edit {
   &:before {
-    content: unicode($i-edit); 
+    content: unicode($i-edit);
   }
 }
-.i-blog-admin {
-  &:before {
-    content: unicode($i-blog-admin); 
-  }
-}
+
 .i-start {
   &:before {
-    content: unicode($i-start); 
+    content: unicode($i-start);
   }
 }
+
 .i-star-on {
   &:before {
-    content: unicode($i-star-on); 
+    content: unicode($i-star-on);
   }
 }
+
 .i-email {
   &:before {
-    content: unicode($i-email); 
+    content: unicode($i-email);
   }
 }
+
 .i-upload {
   &:before {
-    content: unicode($i-upload); 
+    content: unicode($i-upload);
   }
 }
+
 .i-tula {
   &:before {
-    content: unicode($i-tula); 
+    content: unicode($i-tula);
   }
 }
+
 .i-clock {
   &:before {
-    content: unicode($i-clock); 
+    content: unicode($i-clock);
   }
 }
+
 .i-sad {
   &:before {
-    content: unicode($i-sad); 
+    content: unicode($i-sad);
   }
 }
+
 .i-trash {
   &:before {
-    content: unicode($i-trash); 
+    content: unicode($i-trash);
   }
 }
+
 .i-rocket {
   &:before {
-    content: unicode($i-rocket); 
+    content: unicode($i-rocket);
   }
 }
+
 .i-config {
   &:before {
-    content: unicode($i-config); 
+    content: unicode($i-config);
   }
 }
+
 .i-check {
   &:before {
-    content: unicode($i-check); 
+    content: unicode($i-check);
   }
 }
+
 .i-report {
   &:before {
-    content: unicode($i-report); 
+    content: unicode($i-report);
   }
 }
+
+.i-blog-admin {
+  &:before {
+    content: unicode($i-blog-admin);
+  }
+}
+
+.i-filter-admin {
+  &:before {
+    content: unicode($i-filter-admin);
+  }
+}
+
+.i-chat {
+  &:before {
+    content: unicode($i-chat);
+  }
+}
+
+.i-smile {
+  &:before {
+    content: unicode($i-smile);
+  }
+}
+
+.i-search-plus {
+  &:before {
+    content: unicode($i-search-plus);
+  }
+}
+
