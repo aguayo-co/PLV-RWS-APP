@@ -1,0 +1,68 @@
+/*------------------------------------*\
+	collections
+\*------------------------------------*/
+
+.collections {
+}
+.collections__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 30px 0;
+  border-top: 1px solid $c-neutro-3;
+
+}
+.collections__item {
+  @include flexbox;
+  @include align-items(center);
+  padding: 16px 0;
+  @include font-rem(16px);
+  &:not(:last-child) {
+    border-bottom: 1px solid $c-neutro-3;
+  }
+  &:before {
+    @include flex-basis(60px);
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: $c-neutro;
+    @include font-rem(18px);
+    background-color: $c-brand;
+  }
+}
+.collection__lead {
+  margin-left: 8px;
+}
+.collection__head {
+  @include flexbox;
+  @include align-items(center);
+  margin: 0;
+  @include font-rem(16px);
+  transition: all .2s ease-in-out;
+}
+.collection__title {
+  padding-right: 16px;
+  font-weight: $fw-bold;
+}
+
+.collection__label {
+  text-transform: uppercase;
+  color: $c-default-5;
+}
+
+  .collection__tag {
+    font-size: inherit;
+    text-transform: none;
+  }
+.collections__list_off {
+  .collections__item {
+    &:before {
+      background-color: $c-default-3;
+    }
+  }
+}
+// $bp-medium: 768px;
+@include media-query(medium) {
+
+}

@@ -292,9 +292,6 @@ template {
 .i-filter:before {
   content: "\e90b"; }
 
-.i-filter-admin:before {
-  content: "\e944"; }
-
 .i-reload:before {
   content: "\e90c"; }
 
@@ -436,9 +433,6 @@ template {
 .i-edit:before {
   content: "\e907"; }
 
-.i-blog-admin:before {
-  content: "\e943"; }
-
 .i-start:before {
   content: "\e922"; }
 
@@ -474,6 +468,21 @@ template {
 
 .i-report:before {
   content: "\e945"; }
+
+.i-blog-admin:before {
+  content: "\e943"; }
+
+.i-filter-admin:before {
+  content: "\e944"; }
+
+.i-chat:before {
+  content: "\e946"; }
+
+.i-smile:before {
+  content: "\e947"; }
+
+.i-search-plus:before {
+  content: "\e948"; }
 
 /*------------------------------------*	texts links
 \*------------------------------------*/
@@ -4234,6 +4243,72 @@ body {
 @media only screen and (min-width: 768px) {
   .dividers_list .dividers__item {
     margin-bottom: 16px; } }
+
+/*------------------------------------*	collections
+\*------------------------------------*/
+.collections__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 30px 0;
+  border-top: 1px solid #efefef; }
+
+.collections__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 16px;
+  font-size: 1rem; }
+  .collections__item:not(:last-child) {
+    border-bottom: 1px solid #efefef; }
+  .collections__item:before {
+    -ms-flex-preferred-size: 60px;
+    flex-basis: 60px;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-size: 1.125rem;
+    background-color: #fe7676; }
+
+.collection__lead {
+  margin-left: 8px; }
+
+.collection__head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  margin: 0;
+  font-size: 16px;
+  font-size: 1rem;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+
+.collection__title {
+  padding-right: 16px;
+  font-weight: 700; }
+
+.collection__label {
+  text-transform: uppercase;
+  color: #707070; }
+
+.collection__tag {
+  font-size: inherit;
+  text-transform: none; }
+
+.collections__list_off .collections__item:before {
+  background-color: #cbcbcb; }
 
 /*------------------------------------*	Elementos Formularios
 \*------------------------------------*/
