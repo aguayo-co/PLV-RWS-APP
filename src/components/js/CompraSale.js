@@ -1,5 +1,4 @@
 import { mapGetters } from 'vuex'
-import shoppingCartAPI from '@/api/shoppingCart'
 
 export default {
   name: 'CompraSale',

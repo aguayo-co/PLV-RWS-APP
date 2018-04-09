@@ -1,6 +1,6 @@
 export default {
   install (Vue) {
-    // Busca recursivamente en un objeto sin necesidad de verificar
+    // Busca de forma recursiva en un objeto sin necesidad de verificar
     // que todas las propiedades estén definidas.
     //
     // @param  nestedObj El objeto.
