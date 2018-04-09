@@ -18,7 +18,6 @@ export default {
         return this.new_shipping_method_id || this.sale.shipping_method_id
       },
       set (shippingMethodId) {
-        const vm = this
         this.new_shipping_method_id = shippingMethodId
         const saleId = this.sale.id
         const data = {sales: {}}
@@ -35,7 +34,7 @@ export default {
           }
           this.$store.dispatch('ui/showModal', modal)
         }).finally(() => {
-          vm.new_shipping_method_id = null
+          this.new_shipping_method_id = null
         })
       }
     }

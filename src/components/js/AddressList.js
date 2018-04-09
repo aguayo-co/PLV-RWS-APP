@@ -89,23 +89,21 @@ export default {
     },
     createAddress () {
       // Para poder usarlo dentro de los forEach().
-      const vm = this
-      this.$store.dispatch('user/createAddress', vm.newAddressData).then((response) => {
+      this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
         if (this.inShoppingCart) {
           // Usa la dirección recién creada en la orden.
-          vm.setForOrder(response.data)
+          this.setForOrder(response.data)
         }
-        vm.toggleNewAddress()
+        this.toggleNewAddress()
       }).catch((e) => {
         // Si hay errores, mostrarlos.
-        vm.$handleApiErrors(e, Object.keys(addressFields), vm.errorLog)
+        this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
       })
     }
   },
   created () {
-    const vm = this
     userAddressesAPI.getRegions().then((response) => {
-      vm.regionsList = response.data
+      this.regionsList = response.data
     })
   }
 }

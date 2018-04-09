@@ -115,9 +115,8 @@ export default {
      * Genera pago de transferencia.
      */
     setTransferPayment () {
-      const vm = this
       return shoppingCartAPI.getPayment('transfer').then((response) => {
-        vm.$router.push({name: 'compra', params: { id: vm.id }})
+        this.$router.push({name: 'compra', params: { id: this.id }})
       })
     }
   }
