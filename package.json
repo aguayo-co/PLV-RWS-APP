@@ -33,7 +33,7 @@
     "vue-server-renderer": "^2.5.16",
     "vue-slider-component": "^2.6.1",
     "vue-sticky": "^3.3.3",
-    "vuex-map-fields": "^1.1.4"
+    "vuex-map-fields": "^1.1.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

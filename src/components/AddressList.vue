@@ -18,7 +18,7 @@
             title="Usar en la orden") Usar en la orden
           a.dividers__select.i-star-on(
             @click.prevent="setFavorite(address)",
-            :class="{favorita: favorite_address_id == address.id}",
+            :class="{dividers__select_on: favorite_address_id == address.id}",
             href="#",
             title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
           a.dividers__edit.i-edit-line(
