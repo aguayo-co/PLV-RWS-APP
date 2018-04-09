@@ -10,6 +10,8 @@
   font-weight: $fw-semi-bold;
   text-transform: uppercase;
   @include font-rem(26px);
+  margin: 0 auto;
+  max-width: 900px;
   &:before {
     display: block;
     color: $c-brand;

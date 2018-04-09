@@ -3,6 +3,8 @@
   section.section_product
     .alert
       p.alert__txt.i-sad Lo sentimos, pero no tenemos Resultados para 'wajfnwefawefqw'
+    .filter-head
+      h3.filter-head__title 27 Resultados para Chalecos
     GridProducto(:infinite='true')
 </template>
 
