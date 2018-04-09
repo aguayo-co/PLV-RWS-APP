@@ -11,6 +11,7 @@ import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
 import UserTuCloset from '@/components/UserTuCloset'
 import UserNotificaciones from '@/components/UserNotificaciones'
+import UserValoraciones from '@/components/UserValoraciones'
 import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
@@ -74,6 +75,11 @@ export default new Router({
           path: 'tu-closet',
           name: 'user-tu-closet',
           component: UserTuCloset
+        },
+        {
+          path: 'valoraciones',
+          name: 'user-valoraciones',
+          component: UserValoraciones
         }
       ]
     },
