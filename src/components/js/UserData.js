@@ -50,10 +50,13 @@ export default {
       editPhone: false,
       new_picture: null,
       newUserData: {...editableProps},
-      errorLog: {...editableProps, picture: null}
+      errorLog: {...editableProps, picture: null, exists: null}
     }
   },
   computed: {
+    emailError () {
+      return this.errorLog.email || this.errorLog.exists
+    },
     ...mapState('user', [
       'id',
       'picture',
@@ -82,57 +85,55 @@ export default {
         first_name: this.new_first_name,
         last_name: this.new_last_name
       }
+      this.errorLog.first_name = null
+      this.errorLog.last_name = null
       this.$store.dispatch('user/update', data).then(() => {
         this.toggle('editName')
         // Obliga a usar valores de Vuex.
         this.new_first_name = null
         this.new_last_name = null
-        this.errorLog.first_name = null
-        this.errorLog.last_name = null
       }).catch((e) => {
-        this.errorLog.first_name = this.$getFirstError(e, 'first_name')
-        this.errorLog.last_name = this.$getFirstError(e, 'last_name')
+        this.$handleApiErrors(e, ['first_name', 'last_name'], this.errorLog)
       })
     },
     updateEmail: function () {
       const data = {
         email: this.new_email
       }
+      this.errorLog.email = null
+      this.errorLog.exists = null
       this.$store.dispatch('user/update', data).then(() => {
         this.toggle('editEmail')
         // Obliga a usar valores de Vuex.
         this.new_email = null
-        this.errorLog.email = null
       }).catch((e) => {
-        const emailError = this.$getFirstError(e, 'email')
-        const existsError = this.$getFirstError(e, 'exists')
-        this.errorLog.email = existsError || emailError
+        this.$handleApiErrors(e, ['email', 'exists'], this.errorLog)
       })
     },
     updateAbout: function () {
       const data = {
         about: this.new_about
       }
+      this.errorLog.about = null
       this.$store.dispatch('user/update', data).then(() => {
         this.toggle('editAbout')
         // Obliga a usar valores de Vuex.
         this.new_about = null
-        this.errorLog.about = null
       }).catch((e) => {
-        this.errorLog.about = this.$getFirstError(e, 'about')
+        this.$handleApiErrors(e, ['about'], this.errorLog)
       })
     },
     updatePhone: function () {
       const data = {
         phone: this.new_phone
       }
+      this.errorLog.phone = null
       this.$store.dispatch('user/update', data).then(() => {
         this.toggle('editPhone')
         // Obliga a usar valores de Vuex.
         this.new_phone = null
-        this.errorLog.phone = null
       }).catch((e) => {
-        this.errorLog.phone = this.$getFirstError(e, 'phone')
+        this.$handleApiErrors(e, ['phone'], this.errorLog)
       })
     },
     updatePicture: function () {
@@ -150,15 +151,15 @@ export default {
       }
       this.$store.dispatch('ui/showModal', modal)
 
+      this.errorLog.picture = null
       this.new_picture.generateBlob((blob) => {
         let formData = new FormData()
         formData.append('picture', blob)
         this.$store.dispatch('user/update', formData).then(() => {
           this.toggle('editPicture')
-          this.errorLog.picture = null
           this.new_picture.refresh()
         }).catch((e) => {
-          this.errorLog.picture = this.$getFirstError(e, 'picture')
+          this.$handleApiErrors(e, ['picture'], this.errorLog)
         }).finally(() => {
           this.$store.dispatch('ui/closeModal', modal)
         })

@@ -14,17 +14,16 @@ export default {
       'address'
     ]),
     products () {
-      const vm = this
       const products = {}
-      Object.keys(vm.sales).forEach((key) => {
-        const sale = vm.sales[key]
+      Object.keys(this.sales).forEach((key) => {
+        const sale = this.sales[key]
         Object.keys(sale.products).forEach((key) => {
           const product = sale.products[key]
           products[product.id] = {
             ...product,
             shipping_method_name: sale.shipping_method.name,
             user_phone: sale.user_phone,
-            user_full_name: vm.user_full_name(sale.id)
+            user_full_name: this.user_full_name(sale.id)
           }
         })
       })

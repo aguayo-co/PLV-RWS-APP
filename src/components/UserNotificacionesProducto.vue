@@ -13,7 +13,7 @@
           //-title/dimensions
           .slot__lead
             .slot__title CHAQUETA DENIM LEVIS
-            .slot__size 
+            .slot__size
               .slot__size-txt XS
               //- .slot__size-txt {{ product.size.name }}
 
