@@ -164,6 +164,10 @@ export default {
           this.$store.dispatch('ui/closeModal', modal)
         })
       })
+    },
+    changePassword: function () {
+      //-console.log(this.$store.state['user'])
+      this.$store.dispatch('ui/showModal', { name: 'ModalPasswordChange'})
     }
   }
 }

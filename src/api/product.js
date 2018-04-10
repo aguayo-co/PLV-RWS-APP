@@ -56,18 +56,20 @@ export default {
     return axios.post(apiURL + 'products', data, headers)
   },
 
-  getProducts: function (page, items, filter) {
+  getProducts: function (page, items, filter, order) {
     let queryFilter = ''
+    let queryOrder = ''
     page = page || 1
     items = items || 8
 
     if (filter) {
       Object.keys(filter).forEach((key) => {
-        queryFilter += '&filter[' + key + ']=' + filter[key]
+        if (filter[key]) queryFilter += '&filter[' + key + ']=' + filter[key]
       })
     }
-    console.log('/api/products?items=' + items + '&page=' + page + queryFilter)
-    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter)
+    if (order) queryOrder = '&orderby=' + order
+    console.log('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder)
+    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder)
   },
 
   getProductById: function (productId) {
