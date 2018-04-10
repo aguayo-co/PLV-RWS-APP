@@ -10,7 +10,7 @@
           span.steps__bullet.i-ok 1
           span.steps__label Carro y Envío
           //-TO DO: Valor compra
-          span.steps__value $65.000
+          span.steps__value(v-if="total") ${{ total.toLocaleString() }}
         li.steps__item(
           :class="{steps__item_current: isPayment}")
           span.steps__bullet.i-ok  2

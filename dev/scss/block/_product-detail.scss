@@ -53,15 +53,25 @@
     padding: 24px 0;
     text-align: center;
   }
-    .detail__title {
-      display: block;
-      padding-bottom: 8px;
-      text-transform: uppercase;
-      @include font-rem(22px);
-      font-weight: $fw-bold;
-      font-family: $f-fancy;
-      border-bottom: 1px solid $c-default;
-    }
+  .detail__title {
+    display: block;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    @include font-rem(22px);
+    font-weight: $fw-bold;
+    font-family: $f-fancy;
+    border-bottom: 1px solid $c-default;
+  }
+  .detail__title-sm {
+    @include font-rem(18px);
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+  }
+  .detail__txt-sm {
+    @include font-rem(18px);
+    font-weight: $fw-bold;
+  }
   .detail__tag {
     margin: 0;
     @include font-rem(16px);
@@ -76,14 +86,29 @@
     padding-bottom: 16px;
     text-align: center;
   }
-    .detail__through {
-      margin: 0;
-      color: $c-brand;
+  .detail__value_box {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+  .detail__value_col {
+    width: 50%;
+    padding-left: 10px;
+  }
+  .detail__row {
+    padding-bottom: 10px;
+    .detail__size {
+      margin-top: 0;
     }
-    .detail__price {
-      margin: 0;
-      @include font-rem(36px);
-    }
+  }
+  .detail__through {
+    margin: 0;
+    color: $c-brand;
+  }
+  .detail__price {
+    margin: 0;
+    @include font-rem(36px);
+  }
   .detail__actions {
     text-align: center;
     padding-bottom: 10px;
@@ -241,6 +266,9 @@
 
   .detail__actions {
     text-align: left;
+  }
+  .detail__value_box {
+    @include justify-content(baseline);
   }
 }
 

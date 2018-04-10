@@ -7,6 +7,9 @@
   margin: 0 auto;
   overflow: hidden;
 }
+.section-head {
+  padding-bottom: 40px; 
+}
 .product-grid {
   @include flexbox;
   @include flex-wrap(wrap);

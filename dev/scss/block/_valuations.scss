@@ -1,0 +1,86 @@
+/*------------------------------------*\
+	Valoraciones
+\*------------------------------------*/
+.valuations {
+  .user-data__list {
+    padding-bottom: 18px;
+  }
+  .user-data__value {
+    min-width: inherit; 
+    @include font-rem(22px);
+    &:before {
+      @include font-rem(24px);
+    }
+  }
+}
+
+.valuations__date {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: 10px 0 0 0;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $c-default-3;
+  }
+}
+
+.valuations__date-txt {
+  position: relative;
+  z-index: 2;
+  padding: 0 10px;
+  @include font-rem(12px);
+  color: $c-default-4;
+  background-color: $c-neutro;
+}
+
+.valuations__label {
+  @include flexbox;
+  @include align-items(center);
+  color: $c-brand;
+  &:before {
+    padding-right: 20px;
+    @include font-rem(16px);
+  }
+}
+
+.valuations__avatar {
+  @include flexbox;
+  @include align-items(center);
+}
+
+.valuations__img {
+  width: 36px;
+  height: 36px;
+  margin-right: 12px;
+  border-radius: 50%;
+  border: 2px solid $c-brand;
+}
+
+.valuations__name {
+  color: $c-default-5;
+  font-weight: $fw-bold;
+  @include font-rem(16px);
+}
+
+.valuations__bubble {
+  display: inline-block;
+  padding: 4px 14px;
+  margin: 0 0 20px 38px;
+  color: $c-default-5;
+  border-radius: 17px;
+  border: 1px solid $c-brand;
+}
+
+@include media-query(medium) {
+  .valuations {
+    .user-data__list {
+      padding-bottom: 24px;
+    }
+  }
+}

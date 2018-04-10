@@ -4,8 +4,10 @@
     .filter__label Precio <span>(CLP)</span>
     .filter__set
       vue-slider(
-        ref="slider"
-        v-bind="sliderPrecio"
+        @drag-end="$emit('price-change')",
+        @drag-start="$emit('slide')",
+        ref="slider",
+        v-bind="sliderPrecio",
         v-model="sliderPrecio.value")
       .filter__tooltip
         small.filter__value ${{ sliderPrecio.value[0] }}
@@ -17,39 +19,13 @@
 import vueSlider from 'vue-slider-component'
 
 export default {
+  props: ['sliderPrecio'],
   name: 'FilterPrecio',
   components: {
     vueSlider
   },
   data () {
     return {
-      sliderPrecio: {
-        value: [
-          '5000',
-          '150000'
-        ],
-        width: '100%',
-        height: 1,
-        min: 5000,
-        max: 150000,
-        interval: 5000,
-        piecewise: true,
-        formatter: '$ {value}',
-        tooltip: 'false',
-        piecewiseStyle: {
-          'visibility': 'hidden'
-        },
-        bgStyle: {
-          'backgroundColor': '#000'
-        },
-        processStyle: {
-          'backgroundColor': '#fe7676'
-        },
-        sliderStyle: {
-          'boxShadow': 'none',
-          'border': '1px solid #000'
-        }
-      }
     }
   }
 }
