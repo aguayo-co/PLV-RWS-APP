@@ -43,7 +43,6 @@ footer.page-foot.i-heart-on
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'PageFooter',
   data () {

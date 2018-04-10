@@ -54,7 +54,6 @@ nav.page-menu
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'PageHeaderMenu',
   data () {
