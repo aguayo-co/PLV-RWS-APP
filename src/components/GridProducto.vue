@@ -5,6 +5,8 @@
     v-if="mqMobile")
   //- filter desktop
   FilterDesk(
+    @filterChange="computeFilters",
+    :filter="filterValues",
     v-if="mqDesk")
   .section_product__scroll
     .product-grid
@@ -84,6 +86,18 @@ export default {
       products: [],
       items: 8,
       page: 1,
+      filterValues: {
+        category: [],
+        size: [],
+        brand: [],
+        color: [],
+        condition: [],
+        region: [],
+        price: null,
+        order: null
+      },
+      orderBy: 'created_at',
+      filterQueryObject: { },
       loading: false,
       active: false
     }
@@ -98,7 +112,7 @@ export default {
     loadMoreProducts: async function (e) {
       this.page += 1
       this.loading = true
-      await productAPI.getProducts(this.page, this.items)
+      await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
         .then((response) => {
           this.products.push(...response.data.data)
           this.loading = false
@@ -108,11 +122,31 @@ export default {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         this.loadMoreProducts()
       }
+    },
+    computeFilters: async function () {
+      this.loading = true
+      this.products = []
+      this.filterQueryObject = {
+        category_id: this.filterValues.category.join(','),
+        size_id: this.filterValues.size.join(','),
+        brand_id: this.filterValues.brand.join(','),
+        color_id: this.filterValues.color.join(','),
+        condition_id: this.filterValues.condition.join(','),
+        region_id: this.filterValues.region.join(','),
+        price: this.filterValues.price
+      }
+      this.orderBy = this.filterValues.order || this.orderBy
+      await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+        .then((response) => {
+          this.loading = false
+          this.products = response.data.data
+          this.page = 1
+        })
     }
   },
   created: function () {
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
-    productAPI.getProducts(this.page, this.items)
+    productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
       .then((response) => {
         this.products = response.data.data
       })
