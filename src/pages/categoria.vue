@@ -1,7 +1,7 @@
 <template lang="pug">
 .layout-page
+  BannerHero
   section.section_product
-    BannerHero
     GridProducto(:infinite='true')
 </template>
 

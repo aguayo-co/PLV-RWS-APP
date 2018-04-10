@@ -10,7 +10,7 @@
 .product-grid {
   @include flexbox;
   @include flex-wrap(wrap);
-  @include justify-content(space-between);
+  // @include justify-content(space-between);
   margin: 0 -10px;
 }
 

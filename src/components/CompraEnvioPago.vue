@@ -51,7 +51,7 @@
     .pay-off
       .pay-off__item
         p.pay-off__label Créditos Prilov disponibles
-        p.pay-off__value {{ credits }} <small class="pay-off__small">Créditos</small>
+        p.pay-off__value {{ credits|currency }} <small class="pay-off__small">Créditos</small>
       form.pay-off__item
         label.pay-off__label(
           for="creditos-on") Usar en esta compra

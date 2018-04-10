@@ -5,10 +5,6 @@
   padding-top: 24px;
 }
 
-// .list__grid {
-//   padding: 16px 0;
-// }
-
 .list__content {
   padding-bottom: 16px;
 }
@@ -28,11 +24,10 @@
       margin-bottom: 24px;
       border-bottom: 1px solid $c-neutro-3;
     }
-    &:not(:first-child) {
-      padding-top: 0;
+    &:first-child {
+      padding-top: 24px;
     }
   }
-
 }
 .list__item {
   padding-top: 16px;
@@ -259,9 +254,9 @@
   }
 
     .list__card {
-      // &:not(:last-child) {
-      //   padding-bottom: 40px;
-      // }
+      &:first-child {
+        padding-bottom: 16px;
+      }
     }
 
     .card__header {
@@ -271,10 +266,18 @@
         @include font-rem(18px);
       }
       .card__price {
-        // padding-bottom: 8px;
-        // padding-top: 8px;
         @include font-rem(32px);
       }
+
+    .card__column {
+      @include flexbox;
+      @include align-items(center);
+      .card__user {
+        min-width: 30%;
+      }
+
+    }
+
   /*------------------------------------*\
     Tablet List carrito dividers
   \*------------------------------------*/
@@ -316,6 +319,10 @@
     max-width: 440px;
     margin: 0 auto;
   }
+  .card__column {
+    padding: 16px 0;
+  }
+
 }
 
 //$bp-wide: 1024px;
@@ -323,7 +330,6 @@
 
   .list__grid {
     @include flexbox;
-    // padding: 40px 0;
   }
   .list__group {
     min-width: 60%;
@@ -352,38 +358,22 @@
   .card__product {
     width: 100%;
   }
-
-  // .card__figure {
-  //   width: 134px;
-  // }
-
-  // .card__column {
-  //   @include flexbox;
-  //   @include align-items(flex-start);
-  //   @include flex-direction(column);
-  //   @include justify-content(space-between);
-  // }
-
   .card__user {
     min-width: auto;
     padding-right: 0;
   }
 
-  // .card__actions {
-  //   @include flex-grow(initial);
-  //   padding-bottom: 0;
-  // }
   .list-slot__content {
     .list__card {
       @include justify-content(space-between);
-      // &:not(:last-child) {
-      //   padding-bottom: 32px;
-      //   margin-bottom: 32px;
-      // }
     }
-    
 
   }
+  .card__column {
+    display: block;
+    width: 50%;
+  }
+
 
 
   /*------------------------------------*\
