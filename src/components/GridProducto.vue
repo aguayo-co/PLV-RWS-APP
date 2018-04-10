@@ -27,8 +27,9 @@
           //-title/dimensions
           .slot__lead
             .slot__title {{ product.title }}
-            .slot__size
-              //- .slot__size-txt {{ product.size.name }}
+            .slot__size(
+              v-if="product.size")
+              .slot__size-txt {{ product.size.name }}
 
           //- brand/price
           .slot__info
