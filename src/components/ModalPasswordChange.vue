@@ -4,7 +4,7 @@ transition(name='modal-fade')
     .modal__slot.content-slot
       .content-slot__inner
         header.modal__header
-          h2.title Inicio de Sesión
+          h2.title Cambiar contraseña
           .btn_close.modal__btn_close.i-x(
             @click='close')
             span Cerrar
@@ -15,42 +15,35 @@ transition(name='modal-fade')
           submit.prevent='validateBeforeSubmit',
           method='post'
         )
-          .form__row(
-            v-bind:class='{ "is-danger": errorTexts.email }'
-          )
+          .form__row
+            //- (v-bind:class='{ "is-danger": errorTexts.email }')
             label.form__label(
-              for='email') Correo
-            span.help(
-              v-if="errorTexts.email"
-            ) {{ errorTexts.email }}
+              for='passwordCurrent') Contraseña Actual
+            //- span.help(
+            //-   v-if="errorTexts.email"
+            //- ) {{ errorTexts.email }}
             input.form__control(
-              v-model='email',
-              id='email',
-              type='email')
-          .form__row(
-            v-bind:class='{ "is-danger": errorTexts.password }'
-          )
-            label.form__label(
-              for='password'
-            ) Contraseña
-            span.help(
-              v-if="errorTexts.password"
-            ) {{ errorTexts.password }}
-            input.form__control(
-              v-model='password',
-              id='password',
+              id='passwordCurrent',
               type='password')
-            p.form__note.form__note_right
-              |¿Olvidaste tu contraseña?
-              | <a class='link_underline' @click='close' href='#/password' title='Ir a recuperar contraseña'>Recuperar contraseña.</a>
+          .form__row
+            //- (v-bind:class='{ "is-danger": errorTexts.password }')
+            label.form__label(
+              for='passwordNew'
+            ) Nueva Contraseña
+            //- span.help(
+            //-   v-if="errorTexts.password"
+            //- ) {{ errorTexts.password }}
+            input.form__control(
+              id='passwordNew',
+              type='password')
+            
           .form__row.form__row_away
             button.btn.btn_solid.btn_block(
-              @click.prevent='validateBeforeSubmit') Iniciar sesión
-        .break
-          span.break__txt O
-        router-link.btn.btn_block(
-          to='signup',
-          title='Ir a Registro') Regístrate
+              @click.prevent='validateBeforeSubmit') Cambiar Contraseña
+          .form__row
+            p.form__note.form__note_center
+              a.link_underline No quiero cambiar mi contraseña
+              a.link_underline Regresar
 </template>
 
 <script>
