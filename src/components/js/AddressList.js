@@ -2,14 +2,11 @@ import { mapState } from 'vuex'
 import AddressEdit from '@/components/AddressEdit'
 import userAddressesAPI from '@/api/userAddresses'
 
-// Cada campo editable debe estar acá.
-// Con esto se crean las propiedades computables
-// de cada uno.
 const addressFields = {
-  new_address: null,
-  new_region: null,
-  new_city: null,
-  new_zone: null
+  address: null,
+  region: null,
+  city: null,
+  zone: null
 }
 
 export default {
@@ -28,8 +25,7 @@ export default {
       regionsList: {},
       newAddress: false,
       newAddressData: {...addressFields},
-      errorLog: {...addressFields},
-      shippingAddress: null
+      errorLog: {...addressFields}
     }
   },
   computed: {
@@ -37,6 +33,17 @@ export default {
       'favorite_address_id',
       'addresses'
     ]),
+    ...mapState('cart', [
+      'address'
+    ]),
+    cartAddressId: {
+      get () {
+        return this.address.id
+      },
+      set (newId) {
+        this.setForOrder(this.addresses[newId])
+      }
+    },
     regions () {
       return Object.keys(this.regionsList)
     },
@@ -81,31 +88,22 @@ export default {
       this.$store.dispatch('cart/update', data)
     },
     createAddress () {
-      let data = {}
       // Para poder usarlo dentro de los forEach().
-      const vm = this
-      // Agrega la información a enviar.
-      Object.keys(addressFields).forEach(function (key) {
-        data[key.replace('new_', '')] = vm.newAddressData[key]
-      })
-      this.$store.dispatch('user/createAddress', data).then((response) => {
+      this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
         if (this.inShoppingCart) {
           // Usa la dirección recién creada en la orden.
-          vm.setForOrder(response.data)
+          this.setForOrder(response.data)
         }
-        vm.toggleNewAddress()
+        this.toggleNewAddress()
       }).catch((e) => {
         // Si hay errores, mostrarlos.
-        Object.keys(addressFields).forEach(function (key) {
-          vm.errorLog[key] = vm.$getFirstError(e, key.replace('new_', ''))
-        })
+        this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
       })
     }
   },
   created () {
-    const vm = this
     userAddressesAPI.getRegions().then((response) => {
-      vm.regionsList = response.data
+      this.regionsList = response.data
     })
   }
 }
