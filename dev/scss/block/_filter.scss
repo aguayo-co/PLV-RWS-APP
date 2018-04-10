@@ -42,7 +42,9 @@
       }
     }
     .filter__btn {
-      padding: 10px 0 10px 12px;
+      position: relative;
+      min-width: 120px;
+      padding: 10px 20px 10px 12px;
       margin-bottom: 12px;
       color: $c-default;
       border: 1px solid $c-default;
@@ -51,6 +53,9 @@
       background: none\0;
       &:after {
         content: '';
+        position: absolute;
+        top: 10px;
+        right: 10px;
         display: inline-block;
         width: 0;
         height: 0;
@@ -94,7 +99,7 @@
       @include align-items(center);
       @include font-rem(18px);
       margin: 0 15px;
-      padding: 20px 20px 12px;
+      padding: 20px 0 12px;
       border-bottom: 1px solid $c-default-3;
       &:before {
         @include font-rem(14px);
@@ -191,7 +196,7 @@
   .filter__select {
     position: relative;
     margin: 0;
-    padding: 17px 20px;
+    padding: 17px 30px 17px 20px;
     min-width: 106px;
     list-style: none;
     text-transform: uppercase;
@@ -287,6 +292,18 @@
     color: $c-default-4;
     strong {
       color: $c-default;
+    }
+  }
+
+  .filter__box-select {
+    position: relative;
+    .filter__arrow {
+      border-bottom: 1px solid $c-default;
+    }
+    .filter__list {
+      position: absolute;
+      right: 0;
+      border-top: none;
     }
   }
 }

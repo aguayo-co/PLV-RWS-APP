@@ -6493,7 +6493,9 @@ body {
       background-color: rgba(0, 0, 0, 0.5);
       pointer-events: all; }
   .filter__btn {
-    padding: 10px 0 10px 12px;
+    position: relative;
+    min-width: 120px;
+    padding: 10px 20px 10px 12px;
     margin-bottom: 12px;
     color: #000;
     border: 1px solid #000;
@@ -6502,6 +6504,9 @@ body {
     background: none\0; }
     .filter__btn:after {
       content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
       display: inline-block;
       width: 0;
       height: 0;
@@ -6553,7 +6558,7 @@ body {
     font-size: 18px;
     font-size: 1.125rem;
     margin: 0 15px;
-    padding: 20px 20px 12px;
+    padding: 20px 0 12px;
     border-bottom: 1px solid #cbcbcb; }
     .filter__select:before {
       font-size: 14px;
@@ -6643,7 +6648,7 @@ body {
   .filter__select {
     position: relative;
     margin: 0;
-    padding: 17px 20px;
+    padding: 17px 30px 17px 20px;
     min-width: 106px;
     list-style: none;
     text-transform: uppercase;
@@ -6740,7 +6745,15 @@ body {
   .filter__box-label {
     color: #9b9b9b; }
     .filter__box-label strong {
-      color: #000; } }
+      color: #000; }
+  .filter__box-select {
+    position: relative; }
+    .filter__box-select .filter__arrow {
+      border-bottom: 1px solid #000; }
+    .filter__box-select .filter__list {
+      position: absolute;
+      right: 0;
+      border-top: none; } }
 
 /*------------------------------------*  Filter check
 \*------------------------------------*/
@@ -7429,9 +7442,8 @@ body {
 /*------------------------------------*  Paginador
 \*------------------------------------*/
 .pagination {
-  display: inline-block;
-  width: 38%;
-  text-align: right; }
+  display: block;
+  text-align: center; }
 
 .pagination__select {
   display: inline-block; }
@@ -7449,10 +7461,6 @@ body {
 
 .pagination__arrow:active, .pagination__arrow:focus, .pagination__arrow:visited {
   color: #000; }
-
-@media only screen and (min-width: 1280px) {
-  .slot_grid {
-    width: 33.33%; } }
 
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co

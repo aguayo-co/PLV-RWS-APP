@@ -3,9 +3,8 @@
 \*------------------------------------*/
 
 .pagination {
-  display: inline-block;
-  width: 38%;
-  text-align: right;
+  display: block;
+  text-align: center;
 }
 
 .pagination__select {
@@ -30,11 +29,5 @@
   &:focus,
   &:visited {
     color: $c-default;
-  }
-}
-
-@include media-query(big) {
-  .slot_grid {
-    width: 33.33%;
   }
 }
