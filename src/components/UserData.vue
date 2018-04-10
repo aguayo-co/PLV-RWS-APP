@@ -87,7 +87,7 @@ section.single
             //-Enlaces Modal
             ul.user-data-nav
               li.user-data-nav__item
-                a.btn-tag(@click.prevent="changePassword") Cambiar contraseña 
+                a.btn-tag(@click.prevent="changePassword") Cambiar contraseña
               li.user-data-nav__item
                 a.btn-tag Eliminar cuenta
             //-Notificaciones
