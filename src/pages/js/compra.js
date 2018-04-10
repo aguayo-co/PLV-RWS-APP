@@ -15,6 +15,7 @@ export default {
   },
   computed: {
     ...mapState('cart', [
+      'total',
       'status'
     ]),
     isShoppingCart () {

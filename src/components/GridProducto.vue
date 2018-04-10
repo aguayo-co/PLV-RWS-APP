@@ -161,7 +161,6 @@ export default {
           this.page = 1
         })
     },
-    //Paginador
     updateProductList: function () {
       productAPI.getProducts(this.page, this.items, this.filter)
         .then(response => {

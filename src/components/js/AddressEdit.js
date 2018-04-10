@@ -96,14 +96,11 @@ export default {
       // Guarda la dirección
       this.$store.dispatch('user/updateAddress', data).then(() => {
         // Elimina datos locales, para que se usen los de Vuex
-        vm.newAddressData = {...editableProps}
-        vm.errorLog = {...editableProps}
+        this.newAddressData = {...editableProps}
+        this.errorLog = {...editableProps}
         this.close()
       }).catch((e) => {
-        // Si hay errores, mostrarlos.
-        Object.keys(editableProps).forEach(function (key) {
-          vm.errorLog[key] = vm.$getFirstError(e, key)
-        })
+        this.$handleApiErrors(e, Object.keys(editableProps), this.errorLog)
       })
     }
   }

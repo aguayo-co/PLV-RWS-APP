@@ -77,13 +77,13 @@ export default {
       const data = {
         phone: this.new_phone
       }
+      this.errorLog.phone = null
       this.$store.dispatch('cart/update', data).then(() => {
         this.toggle('editPhone')
         // Obliga a usar valores de Vuex.
         this.new_phone = null
-        this.errorLog.phone = null
       }).catch((e) => {
-        this.errorLog.phone = this.$getFirstError(e, 'phone')
+        this.$handleApiErrors(e, ['phone'], this.errorLog)
       })
     },
     /**
@@ -94,11 +94,11 @@ export default {
       const data = {
         used_credits: this.new_used_credits || 0
       }
+      this.errorLog.used_credits = null
       this.$store.dispatch('cart/update', data).then(() => {
         this.new_used_credits = null
-        this.errorLog.used_credits = null
       }).catch((e) => {
-        this.errorLog.used_credits = this.$getFirstError(e, 'used_credits')
+        this.$handleApiErrors(e, ['used_credits'], this.errorLog)
       }).finally(() => {
         this.disabled.used_credits = false
       })
