@@ -28,7 +28,7 @@ section.list-slot
             h3.card__title {{ product.title }}
             p.card__brand Marca: {{ product.brand }}
             p.card__size Talla: {{ product.size }}
-          p.card__price $ {{ product.price.toLocaleString() }}
+          p.card__price $ {{ product.price | currency }}
           p.card__tag.tag {{ product.condition }}
 
       //-info User
