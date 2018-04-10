@@ -33,6 +33,8 @@ div.page(
   ModalMessage(
     v-if='modalWindow.enabled && modalWindow.name == "ModalMessage"',
     :attributes='modalWindow.parameters')
+  ModalPasswordChange(
+    v-if='modalWindow.enabled && modalWindow.name == "ModalPasswordChange"')
 </template>
 
 <script>
@@ -42,11 +44,13 @@ import PageHeaderMobile from '@/components/PageHeaderMobile'
 import FormLogin from '@/components/FormLogin'
 import ModalExitoPublicarVenta from '@/components/ModalExitoPublicarVenta'
 import ModalMessage from '@/components/ModalMessage'
+import ModalPasswordChange from '@/components/ModalPasswordChange'
 import PageFooter from '@/components/PageFooter'
 
 export default {
   name: 'app',
   components: {
+    ModalPasswordChange,
     PageHeader,
     PageHeaderMobile,
     FormLogin,

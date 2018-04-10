@@ -85,9 +85,11 @@ section.single
                   button.btn-tag Guardar
 
             //-Enlaces Modal
-            //- ul.user-data-nav
-            //-   li.user-data-nav__item Cambiar contraseña   |
-            //-   li.user-data-nav__item Eliminar cuenta
+            ul.user-data-nav
+              li.user-data-nav__item
+                a.btn-tag(@click.prevent="changePassword") Cambiar contraseña 
+              li.user-data-nav__item
+                a.btn-tag Eliminar cuenta
             //-Notificaciones
             .user-data__notify
               ul.user-data__list
@@ -97,7 +99,6 @@ section.single
               ul.user-data__list
                 li.user-data__track {{ followers_count }} Seguidores
                 li.user-data__track {{ following_count }} Siguiendo
-
         //-editar About perfil
         .user-header-edit
           .user-header-edit__item.edit__item_top

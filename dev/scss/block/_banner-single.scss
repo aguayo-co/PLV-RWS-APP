@@ -1,0 +1,60 @@
+.single__banner {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto 0 auto;
+  overflow: hidden;
+  background-color: $c-neutro-4;
+}
+
+.single__banner__crop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.single__banner__img {
+  width: 100%;
+  height: auto;
+}
+.single__banner__slot {
+  position: absolute;
+  display: block;
+  top: 60%;
+  @include prefixer(transform, translateY(-50%), ("webkit", "moz"));
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  &.left {
+    text-align: left;
+  }
+  &.right {
+    right: 0;
+    text-align: right;
+  }
+  &.center {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    @include prefixer(transform, translate(-50%), ("webkit", "moz"));
+    left: 50%;
+    top: 25%;
+  }
+}
+.single__banner__title {
+ display: inline;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-medium;
+  @include font-rem(30px);
+  line-height: 1.5;
+  padding: 2px 5px;
+}
+@include media-query(small-medium) {
+  .single__banner__title {
+    @include font-rem(35px);
+  }
+  .single__banner__slot {
+    top: 50%;
+  }
+}

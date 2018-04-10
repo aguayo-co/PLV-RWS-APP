@@ -29,6 +29,7 @@
   'theme/layout';
 
 @import
+  'block/alert',
   'block/page-header',
   'block/menu',
   'block/page-footer',
@@ -45,9 +46,12 @@
   //User
 @import 
 'block/layout-single',
+'block/banner-single',
+'block/box-single',
 'block/user-menu',
 'block/user-profile',
 'block/dividers',
+'block/collections',
 'block/form-section';
 
 //Product
@@ -67,7 +71,9 @@
   'block/list',
   'block/status',
   'block/filter',
-  'block/filter-slide';
+  'block/filter-slide',
+  'block/chat',
+  'block/valuations';
 
 
 
