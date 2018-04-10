@@ -12,6 +12,7 @@ import UserTusCompras from '@/components/UserTusCompras'
 import UserTuCloset from '@/components/UserTuCloset'
 import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
+import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
@@ -81,6 +82,11 @@ export default new Router({
           path: 'valoraciones',
           name: 'user-valoraciones',
           component: UserValoraciones
+        },
+        {
+          path: 'tus-favoritos',
+          name: 'user-tus-favoritos',
+          component: UserFavoritos
         }
       ]
     },
