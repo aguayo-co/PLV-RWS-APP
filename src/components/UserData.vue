@@ -97,6 +97,7 @@ section.single
               ul.user-data__list
                 li.user-data__track {{ followers_count }} Seguidores
                 li.user-data__track {{ following_count }} Siguiendo
+            button(@click.prevent="changePassword") Cambiar contraseña
 
         //-editar About perfil
         .user-header-edit
