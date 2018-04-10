@@ -6,18 +6,20 @@
       .list__data-table
         //- List Detalle de tu orden
         dl.data-table
-          dt.data-table__item Chaqueta
-          dd.data-table__value $34.000
           dt.data-table__item Total de la orden
-          dd.data-table__value ${{ total }}
+          dd.data-table__value ${{ total.toLocaleString() }}
           //estado sin creditos
+          dt.data-table__item Créditos
+          dd.data-table__value(
+            :class="{txt_brand: used_credits}"
+          ) {{ used_credits ? '-' : '' }}${{ used_credits.toLocaleString() }}
           dt.data-table__item Código de descuento
           dd.data-table__value(
             :class="{txt_brand: coupon_discount}"
-          ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount }}
+          ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount.toLocaleString() }}
         dl.data-total
           dt.data-total__label Total de tu orden:
-          dd.data-total__value ${{ due }}
+          dd.data-total__value ${{ due.toLocaleString() }}
         //- end List Detalle de tu orden
 
         //-código de descuento

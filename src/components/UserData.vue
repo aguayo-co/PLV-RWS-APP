@@ -159,7 +159,7 @@ section.single
             .dividers__item(
               :class="{'dividers__item_active' :editEmail == true}")
               span.help(
-                v-show="editEmail == true && errorLog.email") {{ errorLog.email }}
+                v-show="editEmail == true && emailError") {{ emailError }}
               .dividers__grid
                 input.form__edit(
                   v-model='new_email',
