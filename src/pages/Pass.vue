@@ -46,10 +46,9 @@ export default {
       return this.$store.getters['PasswordModule/getPassToken']
     }
   },
-  async created () {
-    console.log(this.$route.query.token)
+  created () {
     this.$store.dispatch('PasswordModule/actionSetChangePassToken', this.$route.query.token)
-    await axios.post('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
+    axios.post('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
       token: this.$route.query.token
     })
       .then(response => {

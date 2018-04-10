@@ -51,15 +51,10 @@ export default {
       footer: {}
     }
   },
-  async created () {
-    await axios.get('https://prilov.aguayo.co/api/menus', {
+  created () {
+    this.$axios.get('/api/menus/footer').then(response => {
+      this.footer = response.data.items
     })
-      .then(response => {
-        this.footer = response.data.data[1].items
-      })
-      .catch(e => {
-        console.log('ERROR : ' + e)
-      })
   }
 }
 </script>
