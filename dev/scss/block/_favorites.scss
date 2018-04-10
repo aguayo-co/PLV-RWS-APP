@@ -1,0 +1,9 @@
+/*------------------------------------*\
+  Componente favoritos
+\*------------------------------------*/
+
+@include media-query(big) {
+  .slot_grid {
+    width: 33.33%;
+  }
+}

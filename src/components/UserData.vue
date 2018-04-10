@@ -83,7 +83,6 @@ section.single
                   )
                 .form__row.user-edit__save
                   button.btn-tag Guardar
-
             //-Enlaces Modal
             ul.user-data-nav
               li.user-data-nav__item

@@ -3,7 +3,8 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Tus Favoritos
-    GridProducto(:infinite='true')
+    .favorites
+      GridProducto(:infinite='true')
 
 </template>
 
