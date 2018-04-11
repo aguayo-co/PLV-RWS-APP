@@ -44,10 +44,10 @@
   'block/slider-fullwide';
 
   //User
-@import 
+@import
 'block/layout-single',
 'block/banner-single',
-'block/box-single',
+'block/single',
 'block/user-menu',
 'block/user-profile',
 'block/dividers',
@@ -61,7 +61,7 @@
   'block/slider-slot';
 
 //componentes
-@import 
+@import
   'block/steps',
   'block/upfile',
   'block/box-switch',
@@ -69,6 +69,7 @@
   'block/boxcheck',
   'block/pay-off',
   'block/list',
+  'block/data',
   'block/status',
   'block/filter',
   'block/filter-slide',

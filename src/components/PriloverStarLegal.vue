@@ -12,9 +12,9 @@
           li.single__item Tu productos serán promocionados en nuestros e-mail masivos y en redes sociales.
           li.single__item Si tus fotos y productos no cumplen con el requisito mínimo de aprobación (Revisar Manual de cómo sacar buenas fotos) no podremos permitirte ser una Prilover STAR.
     .single__row
-      a(href='#').btn.btn_solid Canjear créditos y ser una Prilover Star
+      a(href='#').btn.btn_solid Canjear créditos y ser una PriloverStar
     .single__row
-      a(href='#').link_underline No quiero ser una Prilover Star
+      a(href='#').link_underline No quiero ser una PriloverStar
 </template>
 
 <script>
