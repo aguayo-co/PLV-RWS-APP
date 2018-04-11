@@ -77,11 +77,11 @@
         option(value="30") 30
         option(value="50") 50
     li.pagination__item
-      a(href="#").pagination__arrow.pagination__arrow_prev.i-back(@click.prevent='prevPage')
+      a.pagination__arrow.pagination__arrow_prev.i-back(@click.prevent='prevPage', href='#')
     li.pagination__item {{ page }}
     li.pagination__item.pagination__item_txt de 3
     li.pagination__item
-      a(href="#").pagination__arrow.pagination__arrow_next.i-next(@click.prevent='nextPage')
+      a.pagination__arrow.pagination__arrow_next.i-next(@click.prevent='nextPage', href='#')
 
 </template>
 
