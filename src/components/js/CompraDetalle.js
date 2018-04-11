@@ -90,6 +90,18 @@ export default {
     nextStep () {
       const paymentMethod = this.payment_method
       let request
+      if (!paymentMethod) {
+        const modal = {
+          name: 'ModalMessage',
+          parameters: {
+            type: 'alert',
+            title: 'Ha habido un problema.',
+            body: 'No has seleccionado el método de pago.'
+          }
+        }
+        this.$store.dispatch('ui/showModal', modal)
+        return
+      }
       if (paymentMethod === 'pay_u') {
         request = this.setPayUPayment()
       }
