@@ -13,8 +13,9 @@
     .compra-data_info
       .subhead Direcciones
         small.small_high Esta sería la dirección a la que la vendedora enviará tu producto. También servirá de referencia en caso de que decidan juntarse.
-      div(v-if="address") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
-      .subhead Cambiar dirección?
+      .dividers
+        .dividers__item(v-if="address") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+      .subhead.subhead_top ¿Cambiar dirección?
       AddressList(in-shopping-cart=true)
 
       .subhead Teléfono
@@ -50,7 +51,7 @@
     .pay-off
       .pay-off__item
         p.pay-off__label Créditos Prilov disponibles
-        p.pay-off__value {{ credits }} <small class="pay-off__small">Créditos</small>
+        p.pay-off__value {{ credits|currency }} <small class="pay-off__small">Créditos</small>
       form.pay-off__item
         label.pay-off__label(
           for="creditos-on") Usar en esta compra

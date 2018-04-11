@@ -79,8 +79,8 @@ export default {
     },
     menuHandler: function (children, index) {
       this.selected = children
-      // var clicked = this.menu.items[0].children.splice(index, 1)
-      // this.menu.items[0].children.splice(0, 0, clicked[0])
+      var clicked = this.menu.items[0].children.splice(index, 1)
+      this.menu.items[0].children.splice(0, 0, clicked[0])
     }
   },
   created () {

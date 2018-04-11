@@ -8,15 +8,20 @@
     li.dividers__item(
       v-else="",
       v-for="address in addresses")
-      input(
+      .dividers__grid.dividers__list(
+        :class="{'dividers__list_active': isActive == address}")
+        input.form__input-radio(
         name="shippingAddress"
         :value="address.id"
+        :id="address.id"
         v-model="cartAddressId"
         type="radio"
         v-if="inShoppingCart")
-      .dividers__grid.dividers__list(
-        :class="{'dividers__list_active': isActive == address}"
-      ) {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+        label.form__label_radio(
+          v-if="inShoppingCart"
+          :for="address.id") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+        span(
+          v-else="") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
         span.dividers__actions
           a.dividers__select.i-star-on(
             v-if="!inShoppingCart"

@@ -94,7 +94,6 @@ h6 {
   font-weight: $fw-light;
   border-bottom: 1px solid $c-neutro-3;
 }
-
 .subtitle_line {
   padding-bottom: 16px;
   margin-bottom: 16px;
@@ -227,8 +226,14 @@ h6 {
     @include font-rem(16px);
   }
 }
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .subhead_top {
+    padding-top: 24px;
+  }
+}
 
-// $bp-medium: 1024px;
+// $bp-wide: 1024px;
 @include media-query(wide) {
   .title_head-small {
     @include font-rem(36px);

@@ -27,8 +27,9 @@
           //-title/dimensions
           .slot__lead
             .slot__title {{ product.title }}
-            .slot__size
-              //- .slot__size-txt {{ product.size.name }}
+            .slot__size(
+              v-if="product.size")
+              .slot__size-txt {{ product.size.name }}
 
           //- brand/price
           .slot__info
@@ -68,19 +69,23 @@
   ul.pagination
     li.pagination__select
       select.form__select.form__select_small(
-      name="numeroItems",
-      v-model='items',
-      @change='updateProductList')
-        option(value="10") 10
-        option(value="20") 20
-        option(value="30") 30
-        option(value="50") 50
+        name="numeroItems",
+        v-model='items',
+        @change='updateProductList')
+          option(value="10") 10
+          option(value="20") 20
+          option(value="30") 30
+          option(value="50") 50
     li.pagination__item
-      a(href="#").pagination__arrow.pagination__arrow_prev.i-back(@click.prevent='prevPage')
+      a.pagination__arrow.pagination__arrow_prev.i-back(
+        @click.prevent='prevPage'
+        href="#")
     li.pagination__item {{ page }}
     li.pagination__item.pagination__item_txt de 3
     li.pagination__item
-      a(href="#").pagination__arrow.pagination__arrow_next.i-next(@click.prevent='nextPage')
+      a.pagination__arrow.pagination__arrow_next.i-next(
+        @click.prevent='nextPage'
+        href="#")
 
 </template>
 

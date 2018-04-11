@@ -99,25 +99,28 @@
   font-weight: $fw-semi-bold;
   @include font-rem(16px);
 }
+.boxcheck__sticky {
+  padding-top: 24px;
+}
+
 
 @media only screen and (max-width: 679px) {
   .boxcheck {
     max-width: 480px;
     margin: 0 auto;
   }
-
 }
 
 @media only screen and (min-width: 680px) {
   .boxcheck-wrap {
-    padding: 40px 0;
+    padding: 40px 0 20px;
   }
 
     .boxcheck__grid {
       position: relative;
       max-width: 720px;
       @include flexbox; 
-      @include justify-content(space-between);
+      // @include justify-content(space-between);
     }
     //medios de pago
     .boxcheck__card {
@@ -139,17 +142,20 @@
     }
 }
 
-@media only screen and (min-width: 400px) {
-  .boxcheck__sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 10px;
-  }
-}
-
 // $bp-medium: 768px;
 @include media-query(medium) {
   .boxcheck__tip {
     @include font-rem(14px);
   }
 }
+// 1024px;
+@include media-query(wide) {
+  .boxcheck__sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    padding-top: 0;
+  }
+}
+
+
