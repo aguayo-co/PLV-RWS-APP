@@ -82,11 +82,11 @@ section.single
                 .form__row.user-edit__save
                   button.btn-tag Guardar
             //-Enlaces Modal
-            ul.user-data-nav
-              li.user-data-nav__item
-                a.btn-tag(@click.prevent="changePassword") Cambiar contraseña
-              li.user-data-nav__item
-                a.btn-tag Eliminar cuenta
+            //- ul.user-data-nav
+            //-   li.user-data-nav__item
+            //-     a.btn-tag(@click.prevent="changePassword") Cambiar contraseña
+            //-   li.user-data-nav__item
+            //-     a.btn-tag Eliminar cuenta
             //-Notificaciones
             .user-data__notify
               ul.user-data__list
@@ -128,19 +128,32 @@ section.single
               href="#"
               title="Editar perfil")
               span.btn_edit.i-edit-line <small class="hide"> Editar </small>
-    //-3a Información sobre Prilover Star
-    PriloverStarLegal
+    .user-data__actions
+      //- router-link.btn.btn_small.i-start-line(
+      //-   to="#",
+      //-   title="Ser Priloverstar") Ser Priloverstar
+      router-link.btn.btn_small(
+        to="/publicar-venta",
+        title="Publicar Producto") Publicar una venta
+    .box
+      .box-flat__grid
+        .box-flat__lead.i-trip
+          .box-flat__lead-group
+            h3.box-flat__title ¿Te vas de vacaciones?
+            p.box__txt Recuerda que si te vas de vacaciones o vas a estar sin conexión por un tiempo habilita el "Modo Vacaciones" y tus productos no estarán disponibles para la venta.
+        .box__switch
+          .form__switch
+            input.switch__input(
+              type="checkbox",
+              id="standard",
+              checked)
+            label.switch__label(
+              for="standard")
+                span.switch__status
+
 </template>
 
 <script>
-// import PriloverStarLegal from '@/components/PriloverStarLegal'
-
-// export default {
-//   name: 'UserTuCloset',
-//   components: {
-//     PriloverStarLegal
-//   }
-// }
 import PriloverStarLegal from '@/components/PriloverStarLegal'
 import BaseExport from './UserData'
 
