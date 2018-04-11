@@ -22,7 +22,10 @@ Vue.use(axiosPlugin, store)
 Vue.use(prilovHelpers)
 
 Vue.filter('currency', function (value) {
-  if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
+  return value ? parseInt(value).toLocaleString() : 0
+})
+Vue.filter('date', function (value) {
+  return value ? new Date(value).toLocaleDateString() : ''
 })
 
 /* eslint-disable no-new */
