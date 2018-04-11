@@ -1,0 +1,33 @@
+/*------------------------------------*\
+  Paginador
+\*------------------------------------*/
+
+.pagination {
+  display: block;
+  text-align: center;
+}
+
+.pagination__select {
+  display: inline-block; 
+}
+
+.pagination__item {
+  display: inline-block;
+  padding: 10px 16px 11px;
+  margin: 0 4px;
+  border: 1px solid $c-default;
+}
+
+.pagination__item_txt {
+  padding: 10px 10px 11px;
+  margin: 0;
+  border: none;
+}
+
+.pagination__arrow {
+  &:active,
+  &:focus,
+  &:visited {
+    color: $c-default;
+  }
+}
