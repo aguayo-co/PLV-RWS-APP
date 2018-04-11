@@ -778,6 +778,7 @@ select {
   min-width: 50px;
   padding: 0 18px 0 12px;
   margin-right: 10px;
+  margin-bottom: 0;
   background-position: 80% center; }
 
 .form__textarea {
@@ -7460,10 +7461,12 @@ body {
 \*------------------------------------*/
 .pagination {
   display: block;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 168px; }
 
 .pagination__select {
-  display: inline-block; }
+  display: inline-block;
+  vertical-align: middle; }
 
 .pagination__item {
   display: inline-block;
