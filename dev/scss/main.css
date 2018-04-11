@@ -1875,8 +1875,7 @@ body {
   border: 1px solid #fe7676;
   padding: 20px;
   margin-bottom: 40px;
-  text-align: center;
-  background-color: #fff; }
+  text-align: center; }
 
 .alert__txt {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -3780,8 +3779,7 @@ body {
     top: 50%; } }
 
 .single__step {
-  background-color: #f6f6f6;
-  padding: 40px 20px; }
+  background-color: #f6f6f6; }
 
 .single__box {
   padding: 40px 20px 40px 30px; }
@@ -5114,8 +5112,6 @@ body {
   max-width: 1070px;
   margin: 0 auto;
   overflow: hidden; }
-  .section_product .alert {
-    margin-top: 40px; }
 
 .section-head {
   padding-bottom: 40px; }
@@ -5167,8 +5163,6 @@ body {
     width: 33.333%; } }
 
 @media only screen and (min-width: 768px) {
-  .section_product .alert {
-    margin-top: 60px; }
   .product-grid {
     margin: 0 -14px; }
   .slot_grid {

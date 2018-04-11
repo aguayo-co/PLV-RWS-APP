@@ -2,31 +2,34 @@
 section.single
   .single__inner
     header.single__header
-      h1.single__title Prilover Star
-    BannerSingle
-    .single__box
-      ol.single__list-rank
-        li.single__item-rank Si tienes créditos, se te descontarán $15.000 automáticamente. Si no tienes créditos, puedes comprarlos.
-        li.single__item-rank Al ser Prilover Star:
-          ul.single__list
-            li.single__item Tu perfil en Prilov aparecerá de los primeros en la sección "Prilovers".
-            li.single__item Tu perfil tendrá un sello "Prilover STAR" y tus productos también.
-            li.single__item Siempre estaremos pendiente de ti y contestaremos tus mensajes en tiempo record.
-            li.single__item Tu productos serán promocionados en nuestros e-mail masivos y en redes sociales.
-            li.single__item Si tus fotos y productos no cumplen con el requisito mínimo de aprobación (Revisar Manual de cómo sacar buenas fotos) no podremos permitirte ser una Prilover STAR.
-      .single__row
-        a(href='#').btn.btn_solid Canjear créditos y ser una Prilover Star
-      .single__row
-        a(href='#').link_underline No quiero ser una Prilover Star
+      h1.single__title PriloverStar
+    //- Flujo 2 desde btn => Ser Prilover Star
+    .single__step
+      .alert
+        p.alert__txt.i-sad No tienes suficientes créditos para ser PriloverStar.
+      //- .single__box
+      //-   ol.single__list-rank
+      //-     li.single__item-rank Si tienes créditos, se te descontarán $15.000 automáticamente. Si no tienes créditos, puedes comprarlos.
+      //-     li.single__item-rank Al ser Prilover Star:
+      //-       ul.single__list
+      //-         li.single__item Tu perfil en Prilov aparecerá de los primeros en la sección "Prilovers".
+      //-         li.single__item Tu perfil tendrá un sello "Prilover STAR" y tus productos también.
+      //-         li.single__item Siempre estaremos pendiente de ti y contestaremos tus mensajes en tiempo record.
+      //-         li.single__item Tu productos serán promocionados en nuestros e-mail masivos y en redes sociales.
+      //-         li.single__item Si tus fotos y productos no cumplen con el requisito mínimo de aprobación (Revisar Manual de cómo sacar buenas fotos) no podremos permitirte ser una Prilover STAR.
+      //-   .single__row
+      //-     a(href='#').btn.btn_solid Canjear créditos y ser una Prilover Star
+      //-   .single__row
+      //-     a(href='#').link_underline No quiero ser una Prilover Star
 </template>
 
 <script>
-import BannerSingle from '@/components/BannerSingle'
+// import BannerSingle from '@/components/BannerSingle'
 
 export default {
   name: 'UserPriloverStar',
   components: {
-    BannerSingle
+  // BannerSingle
   }
 }
 </script>
