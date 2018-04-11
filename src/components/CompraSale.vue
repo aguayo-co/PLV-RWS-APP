@@ -47,12 +47,12 @@
           .boxcheck__item(
             v-for="shippingMethod in sale.user_shipping_methods" :key="shippingMethod.name")
             input.form__input-radio(
-              :id="shippingMethod.slug",
+              :id="sale.id + shippingMethod.slug",
               type="radio",
               :value="shippingMethod.id",
               v-model="shipping_method_id")
             label.form__label.form__label_radio(
-              :for="shippingMethod.slug")
+              :for="sale.id + shippingMethod.slug")
               span.boxcheck__label
                 span {{ shippingMethod.name }} <small class="boxcheck__disclaimer">($3000)</small>
             //-nota
