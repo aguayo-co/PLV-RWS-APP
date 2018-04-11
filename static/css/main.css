@@ -6377,6 +6377,12 @@ body {
     min-width: 354px;
     margin-left: 32px; } }
 
+.data {
+  border: 1px solid red; }
+
+.data-table {
+  border: 1px dashed grey; }
+
 /*------------------------------------*\
 	dashboard // tus compras, tus ventas
 \*------------------------------------*/

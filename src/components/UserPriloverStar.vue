@@ -2,11 +2,28 @@
 section.single
   .single__inner
     header.single__header
-      h1.single__title PriloverStar
+      h1.single__title Prilover Star
     //- Flujo 2 desde btn => Ser Prilover Star
     .single__step
       .alert
-        p.alert__txt.i-sad No tienes suficientes créditos para ser PriloverStar.
+        p.alert__txt.i-sad No tienes suficientes créditos para ser Prilover Star.
+      .data
+        dl.data-table
+          dt.data-table__item Tus créditos
+          dd.data-total__value 2100
+        dl.data-table
+          dt.data-table__item Ser Prilover Star
+          dd.data-total__value 15000
+            span.data-table__txt-sm anuales
+        dl.data-table
+          dt.data-table__item Te faltan
+          dd.data-total__value -12900
+            span.data-table__txt-sm créditos para ser Prilover Star
+        .data-table
+          a.btn(href='#') ¿Que es ser PriloverStar?
+          a.btn.btn_solid(href='#') Comprar Créditos
+        .data-table
+          a.link_underline(href='#') No quiero ser una Prilover Star
       //- .single__box
       //-   ol.single__list-rank
       //-     li.single__item-rank Si tienes créditos, se te descontarán $15.000 automáticamente. Si no tienes créditos, puedes comprarlos.
