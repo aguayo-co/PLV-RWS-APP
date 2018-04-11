@@ -65,6 +65,22 @@
         span.preload__spin.preload__spin_2
         span.preload__spin.preload__spin_3
         span.preload__spin.preload__spin_4
+  ul.pagination
+    li.pagination__select
+      select.form__select.form__select_small(
+      name="numeroItems",
+      v-model='items',
+      @change='updateProductList')
+        option(value="10") 10
+        option(value="20") 20
+        option(value="30") 30
+        option(value="50") 50
+    li.pagination__item
+      a(href="#").pagination__arrow.pagination__arrow_prev.i-back(@click.prevent='prevPage')
+    li.pagination__item {{ page }}
+    li.pagination__item.pagination__item_txt de 3
+    li.pagination__item
+      a(href="#").pagination__arrow.pagination__arrow_next.i-next(@click.prevent='nextPage')
 
 </template>
 
@@ -84,8 +100,10 @@ export default {
     return {
       isActive: undefined,
       products: [],
-      items: 8,
+      items: 10,
       page: 1,
+      filter: {},
+      totalPages: null,
       filterValues: {
         category: [],
         size: [],
@@ -142,6 +160,20 @@ export default {
           this.products = response.data.data
           this.page = 1
         })
+    },
+    updateProductList: function () {
+      productAPI.getProducts(this.page, this.items, this.filter)
+        .then(response => {
+          this.products = response.data.data
+        })
+    },
+    nextPage: function () {
+      this.page += 1
+      this.updateProductList()
+    },
+    prevPage: function () {
+      if (this.page > 1) this.page -= 1
+      this.updateProductList()
     }
   },
   created: function () {
