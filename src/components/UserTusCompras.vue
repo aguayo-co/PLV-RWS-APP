@@ -25,7 +25,7 @@ section.single
         h3.dashboard__title Estado del producto
       UserCompra(
         v-for="sale in sortedSales" :sale="sale" :key="sale.id")
-      .dashboard__item(style="color: red")
+      .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
             p 21/9/2017
