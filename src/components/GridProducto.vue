@@ -69,19 +69,23 @@
   ul.pagination
     li.pagination__select
       select.form__select.form__select_small(
-      name="numeroItems",
-      v-model='items',
-      @change='updateProductList')
-        option(value="10") 10
-        option(value="20") 20
-        option(value="30") 30
-        option(value="50") 50
+        name="numeroItems",
+        v-model='items',
+        @change='updateProductList')
+          option(value="10") 10
+          option(value="20") 20
+          option(value="30") 30
+          option(value="50") 50
     li.pagination__item
-      a.pagination__arrow.pagination__arrow_prev.i-back(@click.prevent='prevPage', href='#')
+      a.pagination__arrow.pagination__arrow_prev.i-back(
+        @click.prevent='prevPage'
+        href="#")
     li.pagination__item {{ page }}
     li.pagination__item.pagination__item_txt de 3
     li.pagination__item
-      a.pagination__arrow.pagination__arrow_next.i-next(@click.prevent='nextPage', href='#')
+      a.pagination__arrow.pagination__arrow_next.i-next(
+        @click.prevent='nextPage'
+        href="#")
 
 </template>
 
