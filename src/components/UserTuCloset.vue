@@ -154,14 +154,14 @@ section.single
 </template>
 
 <script>
-import PriloverStarLegal from '@/components/PriloverStarLegal'
-import BaseExport from './UserData'
+// import PriloverStarLegal from '@/components/PriloverStarLegal'
+// import BaseExport from './UserData'
 
-BaseExport.name = 'UserTuCloset'
-BaseExport.components = {
-  ...BaseExport.components,
-  PriloverStarLegal
-}
+// BaseExport.name = 'UserTuCloset'
+// BaseExport.components = {
+//   ...BaseExport.components,
+//   PriloverStarLegal
+// }
 
-export default BaseExport
+// export default BaseExport
 </script>
