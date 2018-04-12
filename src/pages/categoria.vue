@@ -2,7 +2,8 @@
 .layout-page
   BannerHero
   section.section_product
-    GridProducto(:infinite='true')
+    GridProducto(
+      :infinite='true')
 </template>
 
 <script>

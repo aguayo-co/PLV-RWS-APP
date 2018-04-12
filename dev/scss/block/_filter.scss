@@ -246,9 +246,10 @@
   .filter__list {
     left: 0;
     z-index: 2;
-    min-width: 106px;
+    min-width: 140px;
     max-height: 290px;
     padding: 8px 16px 8px 8px;
+    overflow-x: visible;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -263,14 +264,29 @@
     padding: 8px 0;
   }
   .filter__list_column {
-    width: 500%;
-    max-width: 470px;
     @include flexbox;
-    @include flex-wrap(wrap);
-    .filter__item {
-      width: 33.333%;
-    }
+    width: 370%;
+    max-width: 490px;
+    padding: 8px;
+
+    // @include flex-wrap(wrap);
   }
+  .filter__column {
+    min-width: 33.333%;
+    padding: 0 12px;
+    // &:not(:last-child) {
+    //   padding-right: 24px;
+    // }
+  }
+
+  .filter__headline {
+    padding: 8px 0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    border-bottom: 1px solid $c-default;
+    font-weight: $fw-bold;
+  }
+
   .filter__box {
     width: 150px;
     .filter__arrow {

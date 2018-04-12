@@ -1,12 +1,14 @@
 <template lang="pug">
-  nav.filter(:class="{ 'filter__nav_open':filterActive || filterMultiActive }")
+  nav.filter(
+    :class="{ 'filter__nav_open':filterActive || filterMultiActive }")
     a.filter__btn(href="#", @click.prevent='openFMultinivel') Ordenado por Destacados
     a.filter__btn(href="#", @click.prevent='openFilterMb') Filtrar
     //-Item Ordenar Articulos
     transition(name='slide-left')
       ul.filter__list(
       v-show="filterMultiActive")
-        li.filter__select_header.i-close(@click='openFMultinivel') ORDENAR ARTÍCULOS
+        li.filter__select_header.i-close(
+          @click='openFMultinivel') ORDENAR ARTÍCULOS
         //Item Prenda
         li.filter__select(
         :class="{ 'filter__select_check' :selectedFItem == true}")

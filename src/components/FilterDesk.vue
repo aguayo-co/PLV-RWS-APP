@@ -12,9 +12,11 @@ nav.filter(@click="closeFilters")
       transition(name='toggle-scale')
         ul.filter__list.filter__list_column.toggle-box(
           v-show="dropdownState.category")
-          dl(v-for="category in categories")
-            dt {{ category.name }}
-            dd.filter__item(v-for="children in category.children")
+          dl.filter__column(
+            v-for="category in categories")
+            dt.filter__headline {{ category.name }}
+            dd.filter__item(
+              v-for="children in category.children")
               input.form__input-check(
                 @change="filterChange"
                 v-model="filter.category",
@@ -27,7 +29,7 @@ nav.filter(@click="closeFilters")
     //Item Talla
     li.filter__select(
       @click.stop="OpenFilter('size')",
-      :class="{ 'filter__select_open' : dropdownState.size }"
+      :class="{ 'filter__select_open' : dropdownState.size }",
       v-if="!compact")
       span.filter__arrow Talla
       transition(name='toggle-scale')
@@ -86,7 +88,8 @@ nav.filter(@click="closeFilters")
     //Item Concition
     li.filter__select(
       @click.stop="OpenFilter('condition')",
-      :class="{ 'filter__select_open' : dropdownState.condition }")
+      :class="{ 'filter__select_open' : dropdownState.condition }",
+      v-if="!compact")
       span.filter__arrow Condición
       transition(name='toggle-scale')
         ul.filter__list.toggle-box(
@@ -104,7 +107,8 @@ nav.filter(@click="closeFilters")
     //Item Región
     li.filter__select(
       @click.stop="OpenFilter('region')",
-      :class="{ 'filter__select_open' : dropdownState.region }")
+      :class="{ 'filter__select_open' : dropdownState.region }",
+      v-if="!compact")
       span.filter__arrow Región
       transition(name='toggle-scale')
         ul.filter__list.toggle-box(
