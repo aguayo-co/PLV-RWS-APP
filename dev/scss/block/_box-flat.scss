@@ -13,26 +13,28 @@
   @include flex-wrap(wrap);
   @include justify-content(center);
   @include align-items(center);
-  max-width: 330px;
   margin: 0 auto;
 }
   .box-flat__lead {
-    position: relative;
+    @include flexbox;
+    @include flex-direction(column);
     width: 100%;
-    padding: 0 0 0 60px;
     &:before {
-      position: absolute;
-      left: 0;
       @include font-rem(38px);
       color: $c-brand;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+    &.i-trip {
+      &:before {
+        @include font-rem(30px);
+      }
     }
   }
   .box-flat__title {
-    @include font-rem(14px);
+    @include font-rem(20px);
     padding-bottom: 6px;
-    font-family: $f-fancy;
-    font-weight: $fw-medium;
-    
+    text-align: center;
   }
   .box-flat__txt {
     margin: 0;
@@ -40,6 +42,7 @@
     color: $c-brand;
     font-family: $f-fancy;
     font-weight: $fw-medium;
+    text-align: center;
   }
   .box-flat__button {
     width: 100%;
@@ -54,7 +57,9 @@
   }
   .box_alert {
     .box-flat__lead {
-      padding-right: 20px;
+      .box-flat__title {
+        text-align: left;
+      }
       &:before {
         @include font-rem(56px);
       }
@@ -71,15 +76,28 @@
     text-align: left;
   }
     .box-flat__lead {
-      width: inherit;
-      padding-left: 92px;
+      @include flex-direction(row);
+      @include align-items (center);
       @include font-rem(16px);
+      padding-right: 20px;
        &:before {
-        position: absolute;
-        left: 0;
         @include font-rem(50px);
         color: $c-brand;
+        padding-right: 20px;
+        padding-bottom: 0;
       }
+      &.i-trip {
+        &:before {
+          @include font-rem(40px);
+        }
+      }
+      .box-flat__title {
+        text-align: left;
+      }
+      .box__txt {
+        margin-bottom: 0;
+      }
+
     }
     .box-flat__button {
       width: inherit;
@@ -88,7 +106,7 @@
     }
     .box-flat__title {
       @include font-rem(18px);
-      padding-bottom: 6px;
+      padding-bottom: 0;
     }
     .box-flat__txt {
       padding-left: 30px;

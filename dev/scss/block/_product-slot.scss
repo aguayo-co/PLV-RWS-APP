@@ -6,9 +6,12 @@
   max-width: 1070px;
   margin: 0 auto;
   overflow: hidden;
+  .alert {
+    margin-top: 40px;
+  }
 }
 .section-head {
-  padding-bottom: 40px; 
+  padding-bottom: 40px;
 }
 .product-grid {
   @include flexbox;
@@ -65,6 +68,11 @@
 
 // $bp-medium: 768px;
 @include media-query(medium) {
+  .section_product {
+    .alert {
+      margin-top: 60px;
+    }
+  }
   .product-grid {
     margin: 0 -14px;
   }

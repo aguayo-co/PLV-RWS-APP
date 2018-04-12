@@ -10,6 +10,7 @@ import UserDatosBancarios from '@/components/UserDatosBancarios'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
 import UserTuCloset from '@/components/UserTuCloset'
+import UserPriloverStar from '@/components/UserPriloverStar'
 import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
@@ -77,6 +78,11 @@ export default new Router({
           path: 'tu-closet',
           name: 'user-tu-closet',
           component: UserTuCloset
+        },
+        {
+          path: 'prilover-star',
+          name: 'user-prilover-star',
+          component: UserPriloverStar
         },
         {
           path: 'valoraciones',
