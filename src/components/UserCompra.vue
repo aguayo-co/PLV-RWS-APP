@@ -24,8 +24,8 @@
               p.card__size Talla: {{ product.size.name }}
             p.card__price $ {{ product.price | currency }}
             .card__user-data
-              p Compradora: Daniela Villanueva
-              p Teléfono: 97736545
+              p Vendedora: {{ sale.user.first_name }} {{ sale.user.last_name }}
+              p Teléfono: {{ sale.user.phone }}
               p Dirección: Av. Pajaritos 1309, maipu
 
     Pendiente(:sale="sale" v-if="sale.status === 20")
