@@ -1,9 +1,12 @@
 <template lang="pug">
 //Paso 3: Comprobante
 section.list-slot
-  header.header_heart.i-heart-on
+  header.header_heart.i-heart-on(v-if="payment_status !== 1")
     h2.title_heart ¡Genial! tu compra ha sido realizada
     p.subtitle_heart Ya envíamos un comprobante de compra a tu correo.
+  header.header_heart.i-heart-on(v-else)
+    h2.title_heart ¡Genial! estamos confirmando tu pago
+    p.subtitle_heart Apenas lo confirmemos, enviaremos un comprobante de compra a tu correo.
 
   //- To do: crear componente
   //1d Cliente Registrado, logueado, comprando a  diferentes vendedoras

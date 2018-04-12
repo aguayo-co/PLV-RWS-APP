@@ -60,7 +60,8 @@ const baseStateGenerator = () => {
     sales: {},
 
     // Información del estado actual del carro.
-    payment_method: null
+    gateway: null,
+    payment_status: null
   }
 }
 
@@ -84,6 +85,12 @@ const actions = {
   },
   addProduct ({commit}, product) {
     return shoppingCartAPI.addProducts([product.id]).then(response => {
+      commit('set', response.data)
+      return response
+    })
+  },
+  uploadReceipt ({commit, state}, receipt) {
+    return orderAPI.uploadTransferReceipt(state.id, receipt).then(response => {
       commit('set', response.data)
       return response
     })
@@ -112,6 +119,8 @@ const mutations = {
     state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'code'])
     state['address'] = Vue.getNestedObject(cart.shipping_information, ['address'])
     state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
+    state['gateway'] = Vue.getNestedObject(cart, ['payments', 0, 'gateway']) || state.gateway
+    state['payment_status'] = Vue.getNestedObject(cart, ['payments', 0, 'status'])
 
     const activeSales = []
 

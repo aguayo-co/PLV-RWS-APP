@@ -28,12 +28,12 @@
               p Teléfono: {{ sale.user.phone }}
               p Dirección: Av. Pajaritos 1309, maipu
 
-    Pendiente(:sale="sale" v-if="sale.status === 20")
-    Pagada(:sale="sale" v-else-if="sale.status === 30")
-    Enviada(:sale="sale" v-else-if="sale.status === 40")
-    Entregada(:sale="sale" v-else-if="sale.status === 41")
-    Recibida(:sale="sale" v-else-if="sale.status === 49")
-    Completada(:sale="sale" v-else-if="sale.status === 90")
+    Pendiente(:order="order" :sale="sale" v-if="sale.status === 20")
+    Pagada(:order="order" :sale="sale" v-else-if="sale.status === 30")
+    Enviada(:order="order" :sale="sale" v-else-if="sale.status === 40")
+    Entregada(:order="order" :sale="sale" v-else-if="sale.status === 41")
+    Recibida(:order="order" :sale="sale" v-else-if="sale.status === 49")
+    Completada(:order="order" :sale="sale" v-else-if="sale.status === 90")
 </template>
 
 <script src="./js/UserCompra.js"></script>

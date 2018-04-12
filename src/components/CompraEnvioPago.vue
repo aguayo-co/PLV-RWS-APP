@@ -76,7 +76,7 @@
               id="PayU",
               type="radio",
               value="pay_u",
-              v-model="payment_method")
+              v-model="gateway")
             label.form__label.form__label_radio(
               for="PayU")
               span.boxcheck__box
@@ -88,7 +88,7 @@
               id="transferencia",
               type="radio",
               value="transfer",
-              v-model="payment_method")
+              v-model="gateway")
             label.form__label.form__label_radio(
               for="transferencia")
               span.boxcheck__box

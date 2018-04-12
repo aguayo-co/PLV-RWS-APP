@@ -21,7 +21,7 @@ const baseStatusMessages = {
 }
 
 const base = {
-  props: ['sale'],
+  props: ['sale', 'order'],
   data: () => {
     return {
       statusMessages: {...baseStatusMessages}
