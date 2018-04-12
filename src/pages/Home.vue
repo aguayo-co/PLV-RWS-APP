@@ -16,7 +16,8 @@
       h2.title_head <span class="txt_brand">Im</span>perdibles
       h3.title_subhead Lo que más nos gusta de Prilov
 
-    GridProducto(:infinite='true')
+    GridProducto(
+      :infinite='true')
 </template>
 
 <script>
