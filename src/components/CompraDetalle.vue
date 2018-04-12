@@ -7,19 +7,19 @@
         //- List Detalle de tu orden
         dl.data-table
           dt.data-table__item Total de la orden
-          dd.data-table__value ${{ total.toLocaleString() }}
+          dd.data-table__value ${{ total | currency }}
           //estado sin creditos
           dt.data-table__item Créditos
           dd.data-table__value(
             :class="{txt_brand: used_credits}"
-          ) {{ used_credits ? '-' : '' }}${{ used_credits.toLocaleString() }}
+          ) {{ used_credits ? '-' : '' }}${{ used_credits | currency }}
           dt.data-table__item Código de descuento
           dd.data-table__value(
             :class="{txt_brand: coupon_discount}"
-          ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount.toLocaleString() }}
+          ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount | currency }}
         dl.data-total
           dt.data-total__label Total de tu orden:
-          dd.data-total__value ${{ due.toLocaleString() }}
+          dd.data-total__value ${{ due | currency }}
         //- end List Detalle de tu orden
 
         //-código de descuento

@@ -22,7 +22,13 @@ Vue.use(axiosPlugin, store)
 Vue.use(prilovHelpers)
 
 Vue.filter('currency', function (value) {
-  if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
+  return value ? parseInt(value).toLocaleString() : 0
+})
+Vue.filter('date', function (value) {
+  return value ? new Date(value).toLocaleDateString() : ''
+})
+Vue.filter('address', function (address) {
+  return address.address + ', ' + address.region + ', ' + address.city + ', ' + address.zone
 })
 
 /* eslint-disable no-new */
