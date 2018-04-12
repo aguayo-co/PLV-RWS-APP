@@ -57,9 +57,17 @@ section.single
             //-1
             .dashboard__status
               p.status.status_alert.i-alert-circle Pendiente de pago
-              p Aún no has terminado tu compra, sube tu comprobante de pago.
             .dashboard__actions
-              // Input file
+              p Aún no has terminado tu compra, sube tu comprobante de pago.
+              form.form.form_file
+                input#file-comprobante.form__file(
+                  type='file',
+                  name='file-comprobante',
+                  multiple='multiple')
+                label.form__label_file(for='file-comprobante')
+                  .form__file-input
+                    span.form-file__txt Selecciona archivo
+                    span.form-file__btn Subir
               p Tienes:
                 span.dashboard__txt-big 10 Minutos
                 | antes de que tu compra se anule
