@@ -26,7 +26,7 @@ export default {
           items: [
             {
               name: 'Notificaciones',
-              url: '#',
+              url: '/user/notificaciones',
               ico: 'i-bell'
             },
             {
@@ -51,12 +51,12 @@ export default {
           items: [
             {
               name: 'Tus Compras',
-              url: '/user/tus-ventas',
+              url: '/user/tus-compras',
               ico: 'i-bag'
             },
             {
               name: 'Tus favoritos',
-              url: '#',
+              url: '/user/tus-favoritos',
               ico: 'i-favorite'
             }
           ]
@@ -66,7 +66,7 @@ export default {
           items: [
             {
               name: 'Tu closet',
-              url: '#',
+              url: '/user/tu-closet',
               ico: 'i-closet'
             },
             {
@@ -76,7 +76,7 @@ export default {
             },
             {
               name: 'Valoraciones',
-              url: '#',
+              url: '/user/valoraciones',
               ico: 'i-start-line'
             },
             {
