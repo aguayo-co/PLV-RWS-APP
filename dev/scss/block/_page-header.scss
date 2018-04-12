@@ -42,7 +42,7 @@
     height: 39px;
   }
   .brand__typo {
-    padding-left: 16px;
+    padding-left: 8px;
     line-height: 1;
     text-align: center;
     text-transform: uppercase;
@@ -52,8 +52,8 @@
     .brand__name {
       display: block;
       @include font-rem(23px);
-      font-weight: $fw-bold;
-      font-family: $f-default;
+      font-weight: $fw-light;
+      font-family: $f-fancy;
     }
     // Compra. Usa. Vende.
     .brand__tagline {

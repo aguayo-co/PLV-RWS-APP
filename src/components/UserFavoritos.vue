@@ -4,7 +4,9 @@ section.single
     header.single__header
       h1.single__title Tus Favoritos
     .favorites
-      GridProducto(:infinite='true')
+      GridProducto(
+      :infinite='true',
+      :compact='true')
 
 </template>
 
