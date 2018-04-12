@@ -7,7 +7,8 @@
   FilterDesk(
     @filterChange="computeFilters",
     :filter="filterValues",
-    v-if="mqDesk")
+    v-if="mqDesk",
+    :compact="compact")
   .section_product__scroll
     .product-grid
       article.slot.slot_grid(
@@ -96,7 +97,11 @@ import FilterMobile from '@/components/FilterMobile'
 
 export default {
   name: 'GridProducto',
-  props: ['infinite'],
+  props: [
+    'infinite',
+    'pager',
+    'compact'
+  ],
   components: {
     FilterDesk,
     FilterMobile

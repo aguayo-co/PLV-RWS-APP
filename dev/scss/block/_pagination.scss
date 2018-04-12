@@ -5,10 +5,12 @@
 .pagination {
   display: block;
   text-align: center;
+  padding-bottom: 168px;
 }
 
 .pagination__select {
-  display: inline-block; 
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .pagination__item {
