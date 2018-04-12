@@ -27,7 +27,8 @@ nav.filter(@click="closeFilters")
     //Item Talla
     li.filter__select(
       @click.stop="OpenFilter('size')",
-      :class="{ 'filter__select_open' : dropdownState.size }")
+      :class="{ 'filter__select_open' : dropdownState.size }"
+      v-if="!compact")
       span.filter__arrow Talla
       transition(name='toggle-scale')
         ul.filter__list.toggle-box(
@@ -154,7 +155,10 @@ const filterFields = {
 }
 export default {
   name: 'FilterDesk',
-  props: ['filter'],
+  props: [
+    'filter',
+    'compact'
+  ],
   components: {
     FilterPrecio
   },
