@@ -24,7 +24,7 @@ section.single
         h2.dashboard__title Productos
         h3.dashboard__title Estado del producto
       UserCompra(
-        v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id")
+        v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id" v-on:refresh-order="setOrder")
       .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746

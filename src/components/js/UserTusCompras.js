@@ -34,14 +34,16 @@ export default {
       }
       this.$axiosAuth.get('/api/orders', {params}).then(response => {
         Object.keys(response.data.data).forEach(key => {
-          const order = response.data.data[key]
-          this.$set(this.orders, order.id, order)
-          Object.keys(order.sales).forEach(key => {
-            const sale = order.sales[key]
-            sale.user = order.sales[key].products[0].user
-            this.$set(this.sales, sale.id, sale)
-          })
+          this.setOrder(response.data.data[key])
         })
+      })
+    },
+    setOrder (order) {
+      this.$set(this.orders, order.id, order)
+      Object.keys(order.sales).forEach(key => {
+        const sale = order.sales[key]
+        sale.user = order.sales[key].products[0].user
+        this.$set(this.sales, sale.id, sale)
       })
     }
   }

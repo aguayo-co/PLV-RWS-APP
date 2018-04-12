@@ -28,12 +28,11 @@
               p Teléfono: {{ sale.user.phone }}
               p Dirección: Av. Pajaritos 1309, maipu
 
-    Pendiente(:order="order" :sale="sale" v-if="sale.status === 20")
-    Pagada(:order="order" :sale="sale" v-else-if="sale.status === 30")
-    Enviada(:order="order" :sale="sale" v-else-if="sale.status === 40")
-    Entregada(:order="order" :sale="sale" v-else-if="sale.status === 41")
-    Recibida(:order="order" :sale="sale" v-else-if="sale.status === 49")
-    Completada(:order="order" :sale="sale" v-else-if="sale.status === 90")
+    Pendiente(:order="order" :sale="sale" v-if="sale.status === 20" v-on:refresh-order="$emit('refresh-order', $event)")
+    Pagada(:order="order" :sale="sale" v-else-if="sale.status === 30" v-on:refresh-order="$emit('refresh-order', $event)")
+    Enviada(:order="order" :sale="sale" v-else-if="sale.status === 40 || sale.status === 41" v-on:refresh-order="$emit('refresh-order', $event)")
+    Recibida(:order="order" :sale="sale" v-else-if="sale.status === 49" v-on:refresh-order="$emit('refresh-order', $event)")
+    Completada(:order="order" :sale="sale" v-else-if="sale.status === 90" v-on:refresh-order="$emit('refresh-order', $event)")
 </template>
 
 <script src="./js/UserCompra.js"></script>
