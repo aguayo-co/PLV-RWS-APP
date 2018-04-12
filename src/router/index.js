@@ -9,6 +9,10 @@ import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import UserDatosBancarios from '@/components/UserDatosBancarios'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
+<<<<<<< HEAD
+=======
+// import UserTuCloset from '@/components/UserTuCloset'
+>>>>>>> 0a60f1828ae5a62467fa833b3a75ba1016740715
 import UserPriloverStar from '@/components/UserPriloverStar'
 import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
@@ -73,6 +77,14 @@ export default new Router({
           name: 'user-notificaciones',
           component: UserNotificaciones
         },
+<<<<<<< HEAD
+=======
+        // {
+        //   path: 'tu-closet',
+        //   name: 'user-tu-closet',
+        //   component: UserTuCloset
+        // },
+>>>>>>> 0a60f1828ae5a62467fa833b3a75ba1016740715
         {
           path: 'prilover-star',
           name: 'user-prilover-star',
