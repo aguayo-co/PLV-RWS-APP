@@ -27,6 +27,9 @@ Vue.filter('currency', function (value) {
 Vue.filter('date', function (value) {
   return value ? new Date(value).toLocaleDateString() : ''
 })
+Vue.filter('address', function (address) {
+  return address.address + ', ' + address.region + ', ' + address.city + ', ' + address.zone
+})
 
 /* eslint-disable no-new */
 new Vue({

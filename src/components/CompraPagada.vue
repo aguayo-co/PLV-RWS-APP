@@ -58,7 +58,7 @@ section.list-slot
   //-End list content
   dl.dividers.dividers_list
     dt.subhead Dirección de envío
-    dd.dividers__item {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+    dd.dividers__item {{ address | address }}
     dt.subhead Fecha estimada de entrega
     dd.dividers__item 5/11/2017
 

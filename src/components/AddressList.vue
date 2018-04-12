@@ -19,9 +19,9 @@
         v-if="inShoppingCart")
         label.form__label_radio(
           v-if="inShoppingCart"
-          :for="address.id") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+          :for="address.id") {{ address | address }}
         span(
-          v-else="") {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+          v-else="") {{ address | address }}
         span.dividers__actions
           a.dividers__select.i-star-on(
             v-if="!inShoppingCart"
