@@ -7,15 +7,19 @@ export default {
     const baseOptions = {
       baseURL: store.state.apiDomain,
       headers: {
-        Accept: 'application/json'
+        common: {
+          Accept: 'application/json'
+        }
       }
     }
 
     // Modal base.
-    const baseModal = {
-      name: 'ModalMessage',
-      parameters: {
-        type: 'alert'
+    const baseModal = () => {
+      return {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'alert'
+        }
       }
     }
 
@@ -29,7 +33,7 @@ export default {
      * la petición.
      */
     const baseErrorPopups = (error) => {
-      const modal = {...baseModal}
+      const modal = {...baseModal()}
       if (error.response && error.response.status === 401) {
         modal.parameters.title = 'No estás autenticado.'
         store.dispatch('user/logOut')
@@ -67,7 +71,7 @@ export default {
       const token = window.localStorage.getItem('token')
       const userId = window.localStorage.getItem('userId')
       if (token === null || userId === null) {
-        const modal = {...baseModal}
+        const modal = {...baseModal()}
         modal.parameters.title = 'No estás autenticado.'
         store.dispatch('ui/showModal', modal)
         throw new Error('No credentials founds.')
