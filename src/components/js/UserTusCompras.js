@@ -12,7 +12,7 @@ export default {
     }
   },
   created () {
-    this.loadSales()
+    this.loadOrders()
   },
   computed: {
     sortedSales () {
@@ -27,7 +27,7 @@ export default {
     }
   },
   methods: {
-    loadSales (page = 1) {
+    loadOrders (page = 1) {
       const params = {
         page,
         orderby: '-id'
