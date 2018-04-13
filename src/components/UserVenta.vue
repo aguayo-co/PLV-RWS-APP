@@ -28,11 +28,11 @@
               p Teléfono: {{ sale.order.user.phone }}
               p Dirección: Av. Pajaritos 1309, maipu
 
-    Pendiente(:order="order" :sale="sale" v-if="sale.status === 20" v-on:refresh-order="$emit('refresh-order', $event)")
-    Pagada(:order="order" :sale="sale" v-else-if="sale.status === 30" v-on:refresh-order="$emit('refresh-order', $event)")
-    Enviada(:order="order" :sale="sale" v-else-if="sale.status === 40 || sale.status === 41" v-on:refresh-order="$emit('refresh-order', $event)")
-    Recibida(:order="order" :sale="sale" v-else-if="sale.status === 49" v-on:refresh-order="$emit('refresh-order', $event)")
-    Completada(:order="order" :sale="sale" v-else-if="sale.status === 90" v-on:refresh-order="$emit('refresh-order', $event)")
+    Pendiente(:sale="sale" v-if="sale.status === 20" v-on:refresh-sale="$emit('refresh-sale', $event)")
+    Pagada(:sale="sale" v-else-if="sale.status === 30" v-on:refresh-sale="$emit('refresh-sale', $event)")
+    Enviada(:sale="sale" v-else-if="sale.status === 40 || sale.status === 41" v-on:refresh-sale="$emit('refresh-sale', $event)")
+    Recibida(:sale="sale" v-else-if="sale.status === 49" v-on:refresh-sale="$emit('refresh-sale', $event)")
+    Completada(:sale="sale" v-else-if="sale.status === 90" v-on:refresh-sale="$emit('refresh-sale', $event)")
 </template>
 
 <script src="./js/UserVenta.js"></script>

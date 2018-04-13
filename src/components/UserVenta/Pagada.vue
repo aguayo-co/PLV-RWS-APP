@@ -15,7 +15,7 @@
     p ¿Cómo entregaste este pedido?
     span.dashboard__actions_link
       a.link_underline(
-      @click.prevent="goToStep('personally')"
+      @click.prevent="saleDelivered"
       href="#") Nos juntamos
     a.link_underline(
       @click.prevent="goToStep('shipped')"
@@ -23,21 +23,24 @@
 
   .dashboard__actions(v-if="step === 'shipped'")
     form.form.dashboard__form(
-      v-on:submit='',
-      action='#',
-      method='post'
-    )
+      @submit.prevent="saleShipped")
       .form__row
         label.form__label(
           for='getName') Ingresa el nombre de la empresa de mensajería
+        span.help(
+          v-show="errorLog.shipping_company") {{ errorLog.shipping_company }}
         input.form__control(
+          v-model="shipping_company",
           id='getName',
           type='text'
         )
       .form__row
         label.form__label(
           for='getNumber') Ingresa el número de seguimiento.
+        span.help(
+          v-show="errorLog.tracking_code") {{ errorLog.tracking_code }}
         input.form__control(
+          v-model="tracking_code",
           id='getNumber',
           type='text'
         )

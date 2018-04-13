@@ -109,7 +109,7 @@ export default {
         request = this.setTransferPayment()
       }
       request.catch((e) => {
-        this.$handleApiErrors(e, [], this.errorLog)
+        this.$handleApiErrors(e)
       })
     },
     /**
