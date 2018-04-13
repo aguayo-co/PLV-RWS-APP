@@ -337,3 +337,12 @@
   }
 
 }
+
+@include media-query(big) {
+  .product-grid_small {
+    .slot_grid {
+      width: 33.33%;
+    }
+  }
+}
+
