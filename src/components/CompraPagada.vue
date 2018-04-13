@@ -1,9 +1,12 @@
 <template lang="pug">
 //Paso 3: Comprobante
 section.list-slot
-  header.header_heart.i-heart-on
+  header.header_heart.i-heart-on(v-if="payment_status !== 1")
     h2.title_heart ¡Genial! tu compra ha sido realizada
     p.subtitle_heart Ya envíamos un comprobante de compra a tu correo.
+  header.header_heart.i-heart-on(v-else)
+    h2.title_heart ¡Genial! estamos confirmando tu pago
+    p.subtitle_heart Apenas lo confirmemos, enviaremos un comprobante de compra a tu correo.
 
   //- To do: crear componente
   //1d Cliente Registrado, logueado, comprando a  diferentes vendedoras
@@ -28,7 +31,7 @@ section.list-slot
             h3.card__title {{ product.title }}
             p.card__brand Marca: {{ product.brand }}
             p.card__size Talla: {{ product.size }}
-          p.card__price $ {{ product.price.toLocaleString() }}
+          p.card__price $ {{ product.price | currency }}
           p.card__tag.tag {{ product.condition }}
 
       //-info User
@@ -58,7 +61,7 @@ section.list-slot
   //-End list content
   dl.dividers.dividers_list
     dt.subhead Dirección de envío
-    dd.dividers__item {{ address.address }},  {{ address.region }},  {{ address.city }}, {{ address.zone }}
+    dd.dividers__item {{ address | address }}
     dt.subhead Fecha estimada de entrega
     dd.dividers__item 5/11/2017
 

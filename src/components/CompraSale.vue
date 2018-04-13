@@ -31,7 +31,7 @@
               h3.card__title {{ product.title }}
               p.card__brand {{ product.brand }}
               p.card__size Talla: {{ product.size }}
-            p.card__price $ {{ product.price.toLocaleString() }}
+            p.card__price $ {{ product.price | currency }}
             p.card__tag.tag {{ product.condition }}
             .card__actions
               a.i-trash.card__link(
@@ -47,12 +47,12 @@
           .boxcheck__item(
             v-for="shippingMethod in sale.user_shipping_methods" :key="shippingMethod.name")
             input.form__input-radio(
-              :id="shippingMethod.slug",
+              :id="sale.id + shippingMethod.slug",
               type="radio",
               :value="shippingMethod.id",
               v-model="shipping_method_id")
             label.form__label.form__label_radio(
-              :for="shippingMethod.slug")
+              :for="sale.id + shippingMethod.slug")
               span.boxcheck__label
                 span {{ shippingMethod.name }} <small class="boxcheck__disclaimer">($3000)</small>
             //-nota

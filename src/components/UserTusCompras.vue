@@ -23,6 +23,8 @@ section.single
       header.dashboard__head
         h2.dashboard__title Productos
         h3.dashboard__title Estado del producto
+      UserCompra(
+        v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id" v-on:refresh-order="setOrder")
       .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
@@ -81,12 +83,13 @@ section.single
               p Tu pedido está en proceso de empaque y envío por parte de la vendedora.
             //-1_2c
             //- Flujo desde => Compra confirmada y pago recibido
-            .dashboard__actions
+            .dashboard__status
               p.status.status_check.i-check Compra confirmada y pago recibido
               p.status.status_check.i-check Enviado
               p Nº de seguimiento: 00123123123
               p Empresa de mensajería: Chile Express
               a.link_underline(href='#') ¿Dónde está mi paquete?
+            .dashboard__actions
               p ¿Ya recibiste este producto?
               a.btn.btn_solid.btn_block(
               href='#') Si, Recibí y me lo quedo
@@ -201,8 +204,7 @@ section.single
               p.status.status_check.i-check Enviado
               p Nº de seguimiento: 00123123123
               p Empresa de mensajería: Chile Express
-              a.link_underline(
-              href='#') ¿Dónde está mi paquete?
+              a.link_underline(href='#') ¿Dónde está mi paquete?
             .dashboard__actions
               p ¿Ya recibiste este producto?
               a.btn.btn_solid.btn_block(
@@ -314,8 +316,4 @@ section.single
               href='#') « Lo entregué de otra forma
 </template>
 
-<script>
-export default {
-  name: 'UserTusCompras'
-}
-</script>
+<script src="./js/UserTusCompras.js"></script>

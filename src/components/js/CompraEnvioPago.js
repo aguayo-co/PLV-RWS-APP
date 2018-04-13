@@ -56,7 +56,7 @@ export default {
       ...Object.keys(editableProps)
     ]),
     ...mapFields([
-      'cart.payment_method'
+      'cart.gateway'
     ]),
     ...mapState('user', [
       'credits'

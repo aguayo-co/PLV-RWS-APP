@@ -57,7 +57,7 @@ export default {
       'total',
       'coupon_discount',
       'coupon_code',
-      'payment_method'
+      'gateway'
     ]),
     ...createComputedProps(editableProps),
     responseUrl () {
@@ -88,12 +88,24 @@ export default {
      * Continúa al siguiente paso de la compra.
      */
     nextStep () {
-      const paymentMethod = this.payment_method
+      const gateway = this.gateway
       let request
-      if (paymentMethod === 'pay_u') {
+      if (!gateway) {
+        const modal = {
+          name: 'ModalMessage',
+          parameters: {
+            type: 'alert',
+            title: 'Ha habido un problema.',
+            body: 'No has seleccionado el método de pago.'
+          }
+        }
+        this.$store.dispatch('ui/showModal', modal)
+        return
+      }
+      if (gateway === 'pay_u') {
         request = this.setPayUPayment()
       }
-      if (paymentMethod === 'transfer') {
+      if (gateway === 'transfer') {
         request = this.setTransferPayment()
       }
       request.catch((e) => {
