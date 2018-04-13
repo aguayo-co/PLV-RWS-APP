@@ -24,10 +24,16 @@
   .notify {
     max-width: 524px;
     margin: 0 auto;
+    .form__file-input {
+      background-color: $c-neutro;
+    }
     .form__label_file,
     .form-file__txt {
       text-align: left;
     }
+  }
+  .pay-off {
+    margin: 0 auto;
   }
 }
 .single__box {

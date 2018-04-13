@@ -1,9 +1,8 @@
-.step-data {
-}
+
 .step-data__table {
   @include flexbox;
   @include flex-wrap(wrap);
-  @include align-items(baseline);
+  @include align-items(flex-start);
   @include justify-content(space-around);
   padding-bottom: 40px;
 }
@@ -25,12 +24,15 @@
   &:last-child {
     @include flex-basis(100%);
     border-top: 1px solid $c-default;
-    color: $c-brand;
     font-weight: $fw-semi-bold;
     .step-data__val {
       font-family: $f-default;
     }
   }
+}
+
+.c-brand {
+  color: $c-brand;
 }
 .step-data__ico {
   position: absolute;
@@ -43,6 +45,7 @@
 }
 .step-data__item {
   @include font-rem(18px);
+  font-weight: $fw-bold;
   text-transform: uppercase;
 }
 .step-data__val {
@@ -50,12 +53,19 @@
   font-weight: $fw-thin;
   @include font-rem(36px);
 }
-.step-data__txt-sm {
+.step-data__txt {
   display: block;
   font-family: $f-default;
   font-weight: $fw-regular;
   @include font-rem(16px);
+  &:before {
+    display: block;
+    margin-bottom: 16px;
+    @include font-rem(38px);
+    color: $c-brand;
+  }
 }
+
 
 @include media-query(small-medium) {
   .step-data__row {
@@ -69,6 +79,24 @@
     .btn_space {
       margin-right: 20px;
       margin-bottom: 0;
+    }
+  }
+  .step-data__txt {
+    &.i-start {
+      position: relative;
+      display: inline;
+      margin-left: -57px;
+      padding-left: 60px;
+      text-align: left;
+      &:before {
+        position: absolute;
+        display: inline;
+        width: 10%;
+        padding-left: 16px;
+        margin-bottom: 16px;
+        @include font-rem(38px);
+        color: $c-brand;
+      }
     }
   }
 }

@@ -3,6 +3,19 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Prilover Star
+    //- Step 4 => Flujo de llegada del Flujo 3
+    //- Módulos de retorno
+    .single__step
+      UserVacaciones
+      .box
+        .box-data
+          .box-data__row
+            p.box-data__txt.i-credits Tus créditos
+            p.box-data__val 2100
+          .box-data__row
+            a.btn.btn_solid(href='#') Convertir en dinero
+          .box-data__row
+            a.link_underline(href='#') Ver historial
     //- Step 1
     //- Flujo 1 desde btn => Ser Prilover Star
     .single__step
@@ -17,12 +30,12 @@ section.single
           dl.step-data__row
             dt.step-data__item.font-equal Ser Prilover Star
             dd.step-data__val 15000
-              span.step-data__txt-sm anuales
+              span.step-data__txt anuales
             span.step-data__ico =
-          dl.step-data__row
+          dl.step-data__row.c-brand
             dt.step-data__item Te faltan
             dd.step-data__val -12900
-              span.step-data__txt-sm créditos para ser Prilover Star
+              span.step-data__txt créditos para ser Prilover Star
         .step-data__box
           a.btn.btn_space(href='#') ¿Que es ser PriloverStar?
           a.btn.btn_solid(href='#') Comprar Créditos
@@ -116,12 +129,10 @@ section.single
           dl.step-data__row
             dt.step-data__item.font-equal Ser Prilover Star
             dd.step-data__val 15000
-              span.step-data__txt-sm anuales
+              span.step-data__txt anuales
             span.step-data__ico =
-          dl.step-data__row
-            dt.step-data__item Te faltan
-            dd.step-data__val -12900
-              span.step-data__txt-sm créditos para ser Prilover Star
+          p.step-data__row
+            span.step-data__txt.i-start Toda una Prilover Star con 1700 créditos
         .step-data__box
           a.btn.btn_space(href='#') ¿Que es ser PriloverStar?
           a.btn.btn_solid(href='#') Comprar Créditos
@@ -187,11 +198,13 @@ section.single
 
 <script>
 // import BannerSingle from '@/components/BannerSingle'
+import UserVacaciones from '@/components/UserVacaciones'
 
 export default {
   name: 'UserPriloverStar',
   components: {
   // BannerSingle
+    UserVacaciones
   }
 }
 </script>
