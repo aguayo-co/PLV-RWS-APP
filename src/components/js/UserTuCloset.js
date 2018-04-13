@@ -1,6 +1,5 @@
 /* global FormData */
 import { mapGetters, mapState } from 'vuex'
-import AddressList from '@/components/AddressList'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -8,9 +7,7 @@ import AddressList from '@/components/AddressList'
 const editableProps = {
   first_name: null,
   last_name: null,
-  about: null,
-  email: null,
-  phone: null
+  about: null
 }
 
 /**
@@ -37,25 +34,17 @@ function createComputedProps (props) {
 }
 
 export default {
-  components: {
-    AddressList
-  },
   data () {
     return {
       editPicture: false,
       editName: false,
       editAbout: false,
-      editEmail: false,
-      editPhone: false,
       new_picture: null,
       newUserData: {...editableProps},
       errorLog: {...editableProps, picture: null, exists: null}
     }
   },
   computed: {
-    emailError () {
-      return this.errorLog.email || this.errorLog.exists
-    },
     ...mapState('user', [
       'id',
       'picture',
@@ -89,20 +78,6 @@ export default {
         this.$handleApiErrors(e, ['first_name', 'last_name'], this.errorLog)
       })
     },
-    updateEmail: function () {
-      const data = {
-        email: this.new_email
-      }
-      this.errorLog.email = null
-      this.errorLog.exists = null
-      this.$store.dispatch('user/update', data).then(() => {
-        this.toggle('editEmail')
-        // Obliga a usar valores de Vuex.
-        this.new_email = null
-      }).catch((e) => {
-        this.$handleApiErrors(e, ['email', 'exists'], this.errorLog)
-      })
-    },
     updateAbout: function () {
       const data = {
         about: this.new_about
@@ -114,19 +89,6 @@ export default {
         this.new_about = null
       }).catch((e) => {
         this.$handleApiErrors(e, ['about'], this.errorLog)
-      })
-    },
-    updatePhone: function () {
-      const data = {
-        phone: this.new_phone
-      }
-      this.errorLog.phone = null
-      this.$store.dispatch('user/update', data).then(() => {
-        this.toggle('editPhone')
-        // Obliga a usar valores de Vuex.
-        this.new_phone = null
-      }).catch((e) => {
-        this.$handleApiErrors(e, ['phone'], this.errorLog)
       })
     },
     updatePicture: function () {
@@ -157,10 +119,6 @@ export default {
           this.$store.dispatch('ui/closeModal', modal)
         })
       })
-    },
-    changePassword: function () {
-      //-console.log(this.$store.state['user'])
-      this.$store.dispatch('ui/showModal', { name: 'ModalPasswordChange'})
     }
   }
 }
