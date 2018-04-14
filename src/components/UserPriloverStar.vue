@@ -3,50 +3,69 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Prilover Star
-    //- Flujo 2 desde btn => Ser Prilover Star
-    .single__step
-      .alert
-        p.alert__txt.i-sad No tienes suficientes créditos para ser Prilover Star.
-      .data
-        dl.data-table
-          dt.data-table__item Tus créditos
-          dd.data-total__value 2100
-        dl.data-table
-          dt.data-table__item Ser Prilover Star
-          dd.data-total__value 15000
-            span.data-table__txt-sm anuales
-        dl.data-table
-          dt.data-table__item Te faltan
-          dd.data-total__value -12900
-            span.data-table__txt-sm créditos para ser Prilover Star
-        .data-table
-          a.btn(href='#') ¿Que es ser PriloverStar?
-          a.btn.btn_solid(href='#') Comprar Créditos
-        .data-table
-          a.link_underline(href='#') No quiero ser una Prilover Star
-      //- .single__box
-      //-   ol.single__list-rank
-      //-     li.single__item-rank Si tienes créditos, se te descontarán $15.000 automáticamente. Si no tienes créditos, puedes comprarlos.
-      //-     li.single__item-rank Al ser Prilover Star:
-      //-       ul.single__list
-      //-         li.single__item Tu perfil en Prilov aparecerá de los primeros en la sección "Prilovers".
-      //-         li.single__item Tu perfil tendrá un sello "Prilover STAR" y tus productos también.
-      //-         li.single__item Siempre estaremos pendiente de ti y contestaremos tus mensajes en tiempo record.
-      //-         li.single__item Tu productos serán promocionados en nuestros e-mail masivos y en redes sociales.
-      //-         li.single__item Si tus fotos y productos no cumplen con el requisito mínimo de aprobación (Revisar Manual de cómo sacar buenas fotos) no podremos permitirte ser una Prilover STAR.
-      //-   .single__row
-      //-     a(href='#').btn.btn_solid Canjear créditos y ser una Prilover Star
-      //-   .single__row
-      //-     a(href='#').link_underline No quiero ser una Prilover Star
+    //- Step 4 => Flujo de llegada del Flujo 3
+    //- Módulos de retorno
+    UserPriloverOpciones
+    //- Step 1
+    //- Flujo 1 desde btn => Ser Prilover Star
+    UserFaltanCreditos
+    //- Step 1_b
+    //- Flujo 1_b desde btn => Comprar Créditos
+    UserComprarCreditos
+    //- Step 1_c NO => ¿Usuaria paga con pasarela online?
+    //- Flujo 1_c
+    UserFaltaunPaso
+    //- Step 1_d Éxito Transferencia bancaria
+    //- Flujo 1_d => Btn enviar comprobante
+    UserAlertaEnviado
+    //- Step 2  => Prilover Star usuaria con capacidad de créditos
+    //- Flujo 2
+    UserAlertaaunPaso
+    //- Step 2_b SI => Transferencia bancaria exitosa
+    //- Flujo 2_b ** CASO 1 **
+    UserAlertaComprobanteCorreo
+    //- Step 2_b SI => Transferencia bancaria exitosa
+    //- Flujo 2_b ** CASO 2 **
+    UserAlertaComprobanteTransferencia
+    //- Step 2_c NO => Transferencia bancaria ERROR
+    //- Flujo 2_c ** CASO 1 **
+    UserAlertaErrorTransferencia
+    //- Step 2_c NO => Transferencia bancaria ERROR
+    //- Flujo 2_c ** CASO 2 **
+    UserAlertaErrorValidacion
+    //- Step 3 => Información sobre Prilover Star
+    //- Flujo 3
+    UserInformacion
+
 </template>
 
 <script>
-// import BannerSingle from '@/components/BannerSingle'
+import UserPriloverOpciones from '@/components/UserPriloverOpciones'
+import UserFaltanCreditos from '@/components/UserFaltanCreditos'
+import UserComprarCreditos from '@/components/UserComprarCreditos'
+import UserFaltaunPaso from '@/components/UserFaltaunPaso'
+import UserAlertaEnviado from '@/components/UserAlertaEnviado'
+import UserAlertaaunPaso from '@/components/UserAlertaaunPaso'
+import UserAlertaComprobanteCorreo from '@/components/UserAlertaComprobanteCorreo'
+import UserAlertaComprobanteTransferencia from '@/components/UserAlertaComprobanteTransferencia'
+import UserAlertaErrorTransferencia from '@/components/UserAlertaErrorTransferencia'
+import UserAlertaErrorValidacion from '@/components/UserAlertaErrorValidacion'
+import UserInformacion from '@/components/UserInformacion'
 
 export default {
   name: 'UserPriloverStar',
   components: {
-  // BannerSingle
+    UserPriloverOpciones,
+    UserFaltanCreditos,
+    UserComprarCreditos,
+    UserFaltaunPaso,
+    UserAlertaEnviado,
+    UserAlertaaunPaso,
+    UserAlertaComprobanteCorreo,
+    UserAlertaComprobanteTransferencia,
+    UserAlertaErrorTransferencia,
+    UserAlertaErrorValidacion,
+    UserInformacion
   }
 }
 </script>
