@@ -6,8 +6,9 @@ export default Base.merge({
   methods: {
     saleReceived () {
       orderAPI.salesReceived(this.saleReceived.order_id, [this.saleReceived.id]).then(response => {
-        response.data.status = 49
-        this.$emit('order', response.data)
+        this.$emit('refresh-order', response.data)
+      }).catch((e) => {
+        this.$handleApiErrors(e)
       })
     }
   }
