@@ -1,76 +1,6 @@
 /*------------------------------------*\
-	dashboard // tus compras, tus ventas
-\*------------------------------------*/
-.dashboard {
-  .list__card {
-    padding-top: 0;
-  }
-  .card__price {
-    padding-top: 0;
-    padding-bottom: 8px;
-  }
-  .card__user-data {
-    p {
-      padding-bottom: 8px;
-    }
-  }
-}
-.dashboard__data {
-  @include flexbox;
-  @include justify-content(space-between);
-  padding-bottom: 24px;
-  @include font-rem(16px);
-  p {
-    margin: 0;
-  }
-}
-.dashboard__high {
-  color: $c-brand;
-}
-
-.dashboard__txt-big {
-  display: block;
-  font-weight: $fw-bold;
-  @include font-rem(36px);
-  text-transform: uppercase;
-}
-
-.dashboard__item {
-  padding: 16px 0;
-  &:not(:last-child) {
-    border-bottom: 1px solid $c-default-3;
-  }
-}
-
-.dashboard__actions {
-  text-align: center;
-  padding: 16px 0;
-  .btn_block {
-    margin-bottom: 20px;
-  }
-  .user-data__notify {
-    @include justify-content(center);
-  }
-}
-.dashboard__actions_link {
-  display: block;
-  padding-bottom: 16px;
-}
-.dashboard__form {
-  .btn {
-    width: 100%;
-  }
-  .form__label {
-    text-align: left;
-  }
-}
-/*------------------------------------*\
 	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
-.dashboard__status {
-  text-align: center;
-}
-
 .status {
   @include flexbox;
   @include justify-content(center);
@@ -128,40 +58,4 @@
   &:before {
     color: $c-warning;
   }
-}
-@include media-query(medium) {
-  /*------------------------------------*\
-    dashboard // tus compras, tus ventas
-  \*------------------------------------*/
-  .dashboard__data {
-   max-width: 50%;
-   padding-right: 32px;
-  }
-  .dashboard__item {
-    padding: 24px 0;
-  }
-
-  .dashboard__grid {
-    @include flexbox;
-  }
-    .dashboard__subitem {
-      @include flex-basis(50%);
-      @include flex-grow(1);
-      max-width: 50%;
-      padding: 24px 0;
-      &:not(:last-child) {
-        padding-right: 32px;
-        border-right: 1px solid $c-default-3;
-      }
-      &:last-child {
-        padding-left: 32px;
-      }
-    }
-
-}
-
-
-@include media-query(wide) {
-   
-
 }

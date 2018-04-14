@@ -1,9 +1,11 @@
 import UserCompra from '@/components/UserCompra'
+import FilterUser from '@/components/FilterUser'
 
 export default {
   name: 'UserTusCompras',
   components: {
-    UserCompra
+    UserCompra,
+    FilterUser
   },
   data: () => {
     return {
