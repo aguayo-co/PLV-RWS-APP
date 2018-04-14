@@ -37,7 +37,7 @@
 .step-data__ico {
   position: absolute;
   top: 30%;
-  right: -5px;
+  right: 5px;
   @include font-rem(30px);
   font-weight: $fw-bold;
   font-family: $f-default;
@@ -66,8 +66,12 @@
   }
 }
 
-
+//- Breakpoint 640px
 @include media-query(small-medium) {
+  .step-data_left {
+    text-align: left;
+    @include prefixer(transform, translateY(15%), ("webkit", "moz"));
+  }
   .step-data__row {
     @include flex-basis(33.3%);
     &:last-child {
@@ -84,18 +88,18 @@
   .step-data__txt {
     &.i-start {
       position: relative;
-      display: inline;
-      margin-left: -57px;
-      padding-left: 60px;
-      text-align: left;
+      display: inline-block;
+      padding-left: 50px;
       &:before {
-        position: absolute;
         display: inline;
-        width: 10%;
-        padding-left: 16px;
+        position: absolute;
+        top: 50%;
+        left: 0;
         margin-bottom: 16px;
+        padding-left: 6px;
         @include font-rem(38px);
         color: $c-brand;
+        @include prefixer(transform, translateY(-50%), ("webkit", "moz"));
       }
     }
   }
