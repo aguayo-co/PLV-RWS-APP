@@ -38,7 +38,7 @@ export default {
     ]),
     cartAddressId: {
       get () {
-        return this.address.id
+        return this.$getNestedObject(this.address, ['id'])
       },
       set (newId) {
         this.setForOrder(this.addresses[newId])

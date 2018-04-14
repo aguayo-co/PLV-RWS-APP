@@ -16,16 +16,17 @@ export default {
   computed: {
     ...mapState('cart', [
       'total',
-      'status'
+      'status',
+      'payment_status'
     ]),
     isShoppingCart () {
       return this.status === 10
     },
     isPayment () {
-      return this.status === 20
+      return this.status === 20 && this.payment_status !== 1
     },
     isPayed () {
-      return this.status === 30
+      return this.status === 30 || this.payment_status === 1
     }
   },
   created: function () {

@@ -11,7 +11,8 @@ export default {
     ]),
     ...mapState('cart', [
       'sales',
-      'address'
+      'address',
+      'payment_status'
     ]),
     products () {
       const products = {}

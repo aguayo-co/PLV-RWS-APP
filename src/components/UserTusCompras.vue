@@ -3,26 +3,14 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Tus Compras
-    //componente acciones filtro
-    .user__actions
-      router-link.btn(
-        to="/publicar-venta"
-      ) Publicar un Producto
-      router-link.btn(
-        to="/publicar-pack"
-      ) Crear Pack
-      .form__row
-        .form__select
-        .toggle-select
-          ul.toggle-select__list
-            li.toggle-select__item Todas
-            li.toggle-select__item Pendientes de envío
-            li.toggle-select__item Pendientes de pago
+    FilterUser
     //componente tabla
     .dashboard
       header.dashboard__head
         h2.dashboard__title Productos
         h3.dashboard__title Estado del producto
+      UserCompra(
+        v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id" v-on:refresh-order="setOrder")
       .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
@@ -55,9 +43,17 @@ section.single
             //-1
             .dashboard__status
               p.status.status_alert.i-alert-circle Pendiente de pago
-              p Aún no has terminado tu compra, sube tu comprobante de pago.
             .dashboard__actions
-              // Input file
+              p Aún no has terminado tu compra, sube tu comprobante de pago.
+              form.form.form_file
+                input#file-comprobante.form__file(
+                  type='file',
+                  name='file-comprobante',
+                  multiple='multiple')
+                label.form__label_file(for='file-comprobante')
+                  .form__file-input
+                    span.form-file__txt Selecciona archivo
+                    span.form-file__btn Subir
               p Tienes:
                 span.dashboard__txt-big 10 Minutos
                 | antes de que tu compra se anule
@@ -81,12 +77,13 @@ section.single
               p Tu pedido está en proceso de empaque y envío por parte de la vendedora.
             //-1_2c
             //- Flujo desde => Compra confirmada y pago recibido
-            .dashboard__actions
+            .dashboard__status
               p.status.status_check.i-check Compra confirmada y pago recibido
               p.status.status_check.i-check Enviado
               p Nº de seguimiento: 00123123123
               p Empresa de mensajería: Chile Express
               a.link_underline(href='#') ¿Dónde está mi paquete?
+            .dashboard__actions
               p ¿Ya recibiste este producto?
               a.btn.btn_solid.btn_block(
               href='#') Si, Recibí y me lo quedo
@@ -201,14 +198,13 @@ section.single
               p.status.status_check.i-check Enviado
               p Nº de seguimiento: 00123123123
               p Empresa de mensajería: Chile Express
-              a.link_underline(
-              href='#') ¿Dónde está mi paquete?
+              a.link_underline(href='#') ¿Dónde está mi paquete?
             .dashboard__actions
               p ¿Ya recibiste este producto?
               a.btn.btn_solid.btn_block(
-              href='#') Si, Recibí y me lo quedo
+                href='#') Si, Recibí y me lo quedo
               a.link_underline(
-              href='#') ¿Algo no te gustó de tu producto?
+                href='#') ¿Algo no te gustó de tu producto?
             //-3_2a
             //- Flujo desde btn => ¿Algo no te gustó de tu producto?
             .dashboard__actions
@@ -223,10 +219,10 @@ section.single
                 .form.dashboard__form
                   .form__row
                     label.form__label(
-                    for='CommentSale') Deja un comentario sobre la vendedora
+                      for='CommentSale') Deja un comentario sobre la vendedora
                     input.form__textarea.form__textarea_height(
-                    id='CommentSale'
-                    maxlength='340')
+                      id='CommentSale'
+                      maxlength='340')
                   button.btn.i-send Comentar
             //-3_2b
             //- Flujo desde btn => ¿Algo no te gustó de tu producto?
@@ -234,27 +230,82 @@ section.single
               p.status.status_check.i-check Compra confirmada y pago recibido
               p ¿Quieres devolver este producto a la vendedora?
               a.link_underline.link_underline_lower(
-              href='#') Pensándolo bien, me lo quedo.
+                href='#') Pensándolo bien, me lo quedo.
               a.btn.btn_solid.btn_block(
-              href='#') Estoy segura de devolverlo
+                href='#') Estoy segura de devolverlo
               p (Tienes 20h 12m para devolverlo)
             //-3_2c
             //- Flujo desde btn => Estoy segura de devolverlo
             .dashboard__actions
-              p Cuéntanos los motivos de la devolución.
-              ul.filter__list
-                li.filter__item
+              p.dashboard__lead Cuéntanos los motivos de la devolución.
+              ul.dashboard__list
+                li.dashboard__check
                   input.form__input-check(
-                  type="checkbox")
-                  label.form__label_check.i-ok El producto era diferente a la descripción o las fotos.
+                  type="checkbox"
+                  name="returncheck"
+                  id="returncheck1"
+                  value="returncheck1")
+                  label.form__label_check.i-ok(
+                    for="returncheck1") Chaqueta Zara Mostaza
+                li.dashboard__check
+                  input.form__input-check(
+                  type="checkbox"
+                  name="returncheck"
+                  id="returncheck2"
+                  value="returncheck2")
+                  label.form__label_check.i-ok(
+                    for="returncheck2") Pantalón para deporte azul
+                li.dashboard__check
+                  input.form__input-check(
+                  type="checkbox"
+                  name="returncheck"
+                  id="returncheck3"
+                  value="returncheck3")
+                  label.form__label_check.i-ok(
+                    for="returncheck3") Pijama de ovejitas
+              a.link_underline.link_underline_lower(
+                href='#') Pensándolo bien, me lo quedo.
+              a.btn.btn_solid.btn_block(
+                href='#') Estoy segura de devolverlo
+              p (Tienes 20h 12m para devolverlo)
+            .dashboard__actions
+              p.dashboard__lead Cuéntanos los motivos de la devolución.
+              ul.dashboard__list
+                li.dashboard__check
+                  input.form__input-radio(
+                    type="radio"
+                    name="return"
+                    id="return1"
+                    value="return1")
+                  label.form__label_radio(
+                    for="return1") El producto era diferente a la descripción o las fotos.
+                li.dashboard__check
+                  input.form__input-radio(
+                    type="radio"
+                    name="return"
+                    id="return2"
+                    value="return2")
+                  label.form__label_radio(
+                    for="return2") No me siento a gusto con la talla o el color.
+                li.dashboard__check
+                  input.form__input-radio(
+                    type="radio"
+                    name="return"
+                    id="return3"
+                    value="return3")
+                  label.form__label_radio(
+                    for="return3") Las condiciones del producto no son las que esperaba.
+                li.dashboard__check
+                  input.form__input-radio(
+                    type="radio"
+                    name="return"
+                    id="return4"
+                    value="return4")
+                  label.form__label_radio(
+                    for="return4") Otro motivo.
+
               a.btn.btn_solid.btn_block(
               href='#') Continuar
-              a.link_underline.link_underline_lower(
-              href='#') Pensándolo bien, me lo quedo.
-            //-3_2d
-            //- Flujo desde btn => Continuar
-            .dashboard__actions
-              // Componente Sube una imagen
               a.link_underline.link_underline_lower(
               href='#') Pensándolo bien, me lo quedo.
             //-3_2e
@@ -296,7 +347,7 @@ section.single
               p Número de Seguimiento: AS123102931203
               p Estamos esperando que la vendedora nos confirme que recibió la devolución.
               a.link_underline(
-              href='#') « Ingresé mal el número de seguimiento o devolví de otra forma
+                href='#') « Ingresé mal el número de seguimiento o devolví de otra forma
             //-3_2g
             //- Flujo de Esperando confirmación de recibido de la Vendedora.
             .dashboard__actions
@@ -307,15 +358,11 @@ section.single
               p.status.status_warning.i-reload Esperando confirmación de recibido de la Vendedora.
               p Escogiste juntarte con la vendedora. Estamos esperando que ella nos confirme que ya le entregaste el pedido.
               a.link_underline(
-              href='#') Escribir a la vendedora
+                href='#') Escribir a la vendedora
               .break
                 span.break__txt O
               a.link_underline(
-              href='#') « Lo entregué de otra forma
+                href='#') « Lo entregué de otra forma
 </template>
 
-<script>
-export default {
-  name: 'UserTusCompras'
-}
-</script>
+<script src="./js/UserTusCompras.js"></script>

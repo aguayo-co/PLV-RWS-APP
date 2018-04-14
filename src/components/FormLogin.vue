@@ -101,7 +101,7 @@ export default {
               parameters: {
                 type: 'alert',
                 title: '¡Ups! Parece que ocurrió un error',
-                body: Object.values(e.response.data.errors)[0]
+                body: this.$getNestedObject(e, ['response', 'data', 'errors', 0])
               }
             }
           } else {

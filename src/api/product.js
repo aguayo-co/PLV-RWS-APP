@@ -2,8 +2,6 @@
  * API Calls related to products and their properties
  */
 import Vue from 'vue'
-import axios from 'axios'
-const apiURL = 'https://prilov.aguayo.co/api/'
 
 export default {
   create: function (product, imageBlobs, userId, userToken) {
@@ -53,7 +51,7 @@ export default {
       data.append('images[]', file)
     })
 
-    return axios.post(apiURL + 'products', data, headers)
+    return Vue.axios.post('/api/products', data, headers)
   },
 
   getProducts: function (page, items, filter, order) {
@@ -81,26 +79,26 @@ export default {
   },
 
   getCategoriesBySlug: function (categorySlug) {
-    return axios.get(apiURL + 'categories/' + categorySlug)
+    return Vue.axios.get('/api/categories/' + categorySlug)
   },
   getCategoriesById: function (categoryId) {
-    return axios.get(apiURL + 'categories?filter[id]=' + categoryId)
+    return Vue.axios.get('/api/categories?filter[id]=' + categoryId)
   },
 
   getAllConditions: function () {
-    return axios.get(apiURL + 'conditions')
+    return Vue.axios.get('/api/conditions')
   },
 
   getAllColors: function () {
-    return axios.get(apiURL + 'colors')
+    return Vue.axios.get('/api/colors')
   },
 
   getAllBrands: function () {
-    return axios.get(apiURL + 'brands')
+    return Vue.axios.get('/api/brands')
   },
 
   getAllSizes: function () {
-    return axios.get(apiURL + 'sizes')
+    return Vue.axios.get('/api/sizes')
   },
 
   dataURItoBlob: function (dataURI) {

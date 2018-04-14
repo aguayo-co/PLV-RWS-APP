@@ -23,6 +23,8 @@ section.single
       header.dashboard__head
         h2.dashboard__title Productos
         h3.dashboard__title Estado del pedido
+      UserVenta(
+        v-for="sale in sortedSales" :sale="sale" :key="sale.id" v-on:refresh-sale="setSale")
       .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
@@ -361,8 +363,4 @@ section.single
               p.status.status_check.i-check Pedido Enviado
 </template>
 
-<script>
-export default {
-  name: 'UserTusVentas'
-}
-</script>
+<script src="./js/UserTusVentas.js"></script>

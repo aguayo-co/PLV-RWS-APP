@@ -18,7 +18,6 @@
 
 <script>
 import FormPass from '@/components/FormPass'
-import axios from 'axios'
 import FormSuccess from '@/components/FormNotiSuccessPass'
 import FormPassEnd from '@/components/FormPassEnd'
 import FomrNotierrorServer from '@/components/FormNotiErrorServer'
@@ -46,10 +45,9 @@ export default {
       return this.$store.getters['PasswordModule/getPassToken']
     }
   },
-  async created () {
-    console.log(this.$route.query.token)
+  created () {
     this.$store.dispatch('PasswordModule/actionSetChangePassToken', this.$route.query.token)
-    await axios.post('https://prilov.aguayo.co/api/users/password/recovery/' + this.userEmail, {
+    this.$axios.post('/api/users/password/recovery/' + this.userEmail, {
       token: this.$route.query.token
     })
       .then(response => {

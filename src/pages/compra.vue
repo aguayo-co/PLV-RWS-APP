@@ -10,7 +10,7 @@
           span.steps__bullet.i-ok 1
           span.steps__label Carro y Envío
           //-TO DO: Valor compra
-          span.steps__value(v-if="total") ${{ total.toLocaleString() }}
+          span.steps__value(v-if="total") ${{ total | currency }}
         li.steps__item(
           :class="{steps__item_current: isPayment}")
           span.steps__bullet.i-ok  2
@@ -21,7 +21,7 @@
           span.steps__label Comprobante
 
   .layout-inner
-    // List paso 1:compra y 2:envío y pago
+    //- List paso 1:compra
     .list(v-if="isShoppingCart")
       //-grid
       .list__grid
@@ -33,13 +33,15 @@
         CompraDetalle
         //-End Tabla Total
       //-End grid
-    //End List paso 1:compra y 2:envío y pago
+    //- End List paso 1:compra
 
-    //Paso 3: Comprobante
-    CompraPagada(v-if="isPayed")
-    //End Paso 3: Comprobante
+    //- Paso 2: Pago
+    CompraPagando(v-else-if="isPayment")
+    //- End Paso 2: Pago
 
-    CompraPagando(v-if="isPayment")
+    //- Paso 3: Comprobante
+    CompraPagada(v-else-if="isPayed")
+    //- End Paso 3: Comprobante
 </template>
 
 <script src="./js/compra.js"></script>

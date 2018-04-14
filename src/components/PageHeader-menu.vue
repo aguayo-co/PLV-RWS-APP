@@ -54,7 +54,6 @@ nav.page-menu
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'PageHeaderMenu',
   data () {
@@ -84,15 +83,10 @@ export default {
       this.menu.items[0].children.splice(0, 0, clicked[0])
     }
   },
-  async created () {
-    await axios.get('https://prilov.aguayo.co/api/menus/principal', {
+  created () {
+    this.$axios.get('/api/menus/principal').then(response => {
+      this.menu = response.data
     })
-      .then(response => {
-        this.menu = response.data
-      })
-      .catch(e => {
-        console.log('ERROR : ' + e)
-      })
   }
 }
 </script>
