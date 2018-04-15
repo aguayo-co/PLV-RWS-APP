@@ -25,36 +25,34 @@ export default {
   data () {
     return {
       slides: [
-
-          {
-            title: '',
-            priority: 1,
-            name: '',
-            slug: '',
-            image: '/static/img/demo/banner-slider1.jpg',
-            image_mobile: '/static/img/demo/banner-slider-m1.jpg',
-            url: '#',
-            texto_principal: ' ',
-            texto_pequeño: ' ',
-            button_text: ' ',
-            orientation: 'left',
-            font_color: 'bg_white'
-          },
-          {
-            title: '',
-            priority: 2,
-            name: '',
-            slug: '',
-            image: '/static/img/demo/banner-slider2.jpg',
-            image_mobile: '/static/img/demo/banner-slider-m2.jpg',
-            url: '#',
-            texto_principal: ' ',
-            texto_pequeño: ' ',
-            button_text: ' ',
-            orientation: 'right',
-            font_color: 'bg_black'
-          }
-
+        {
+          title: '',
+          priority: 1,
+          name: '',
+          slug: '',
+          image: '/static/img/demo/banner-slider1.jpg',
+          image_mobile: '/static/img/demo/banner-slider-m1.jpg',
+          url: '#',
+          texto_principal: ' ',
+          texto_pequeño: ' ',
+          button_text: ' ',
+          orientation: 'left',
+          font_color: 'bg_white'
+        },
+        {
+          title: '',
+          priority: 2,
+          name: '',
+          slug: '',
+          image: '/static/img/demo/banner-slider2.jpg',
+          image_mobile: '/static/img/demo/banner-slider-m2.jpg',
+          url: '#',
+          texto_principal: ' ',
+          texto_pequeño: ' ',
+          button_text: ' ',
+          orientation: 'right',
+          font_color: 'bg_black'
+        }
       ],
       flickityOptions: {
         contain: true,
@@ -70,7 +68,7 @@ export default {
       }
     }
   },
-  created: async function() {
+  created: async function () {
     slidersAPI.getAllSlides()
       .then(response => {
         this.slides = response.data.data
