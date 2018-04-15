@@ -1,9 +1,11 @@
 import UserCompra from '@/components/UserCompra'
+import FilterUser from '@/components/FilterUser'
 
 export default {
   name: 'UserTusCompras',
   components: {
-    UserCompra
+    UserCompra,
+    FilterUser
   },
   data: () => {
     return {
@@ -12,7 +14,7 @@ export default {
     }
   },
   created () {
-    this.loadSales()
+    this.loadOrders()
   },
   computed: {
     sortedSales () {
@@ -27,7 +29,7 @@ export default {
     }
   },
   methods: {
-    loadSales (page = 1) {
+    loadOrders (page = 1) {
       const params = {
         page,
         orderby: '-id'

@@ -32,7 +32,7 @@ export default {
 
      * @return {*} Diccionario con los errores de los campos dados, si alguno tenía.
      */
-    const handleApiErrors = function (e, fields, errorLog) {
+    const handleApiErrors = function (e, fields = [], errorLog = {}) {
       let hasFieldErrors = false
       fields.forEach((field) => {
         hasFieldErrors = true
