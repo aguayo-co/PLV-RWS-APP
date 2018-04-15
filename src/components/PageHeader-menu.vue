@@ -1,5 +1,4 @@
 <template lang="pug">
-//- TO DO VUE: Webservices menu - list VUE
 nav.page-menu
   ul.menu
     li.menu__item(
@@ -31,14 +30,14 @@ nav.page-menu
                       )
                       a.subitem__link(:href='grandChildren.url') {{grandChildren.name}}
               //- Nivel 2: Promo
-              .menu-promo
-                img.menu-promo__img(src='/static/img/demo/menu-promo-001.jpg' alt='Producto destacado Denim')
+              .menu-promo(v-if="banner")
+                img.menu-promo__img(:src="banner.image" :alt="banner.title + banner.subtitle")
                 .menu-promo__lead
-                  h4.menu-promo__title.title_line Denim
-                  p.menu-promo__txt ¡Siempre tiene ONDA!
-                  a.menu-promo__foot.btn(
-                    href='#',
-                    title='Ir a denim') Ver todos los denim
+                  h4.menu-promo__title.title_line {{ banner.title }}
+                  p.menu-promo__txt {{ banner.subtitle }}
+                  router-link.menu-promo__foot.btn(
+                    :to="banner.url",
+                    :title="'Ir' + banner.title") {{ banner.button_text }}
 
             //- Nivel 2: fside de enlaces
             ul.level2__side
@@ -54,6 +53,8 @@ nav.page-menu
 </template>
 
 <script>
+import bannersAPI from '@/api/banner'
+import menusAPI from '@/api/menu'
 export default {
   name: 'PageHeaderMenu',
   data () {
@@ -62,6 +63,7 @@ export default {
       // show: true,
       selected: undefined,
       menu: {},
+      banner: {},
       fixedPosition: {
         position: 'fixed',
         top: 0
@@ -78,15 +80,25 @@ export default {
       this.selected = item.children[0]
     },
     menuHandler: function (children, index) {
-      this.selected = children
-      var clicked = this.menu.items[0].children.splice(index, 1)
-      this.menu.items[0].children.splice(0, 0, clicked[0])
+      if(children.children.length > 0) {
+        this.selected = children
+        var clicked = this.menu.items[0].children.splice(index, 1)
+        this.menu.items[0].children.splice(0, 0, clicked[0])
+      } else {
+        this.$router.push(children.url)
+        this.toggleNav()
+      }
     }
   },
   created () {
-    this.$axios.get('/api/menus/principal').then(response => {
-      this.menu = response.data
-    })
+    menusAPI.getMenuByName('principal')
+      .then(response => {
+        this.menu = response.data
+      })
+    bannersAPI.getBannerBySlug('menu-campaign')
+      .then(response => {
+        this.banner = response.data.data[0]
+      })
   }
 }
 </script>
