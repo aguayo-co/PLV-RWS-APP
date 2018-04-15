@@ -4,7 +4,7 @@
   //- TO-DO: consumir servicios
   .banner-top
     .banner-top__item(
-      v-for='banner in bannerTop')
+      v-for='banner in banners')
       a.banner-top__lead(
         :href='banner.url',
         :title='banner.title')
@@ -14,40 +14,19 @@
 </template>
 
 <script>
+import bannersAPI from '@/api/banner'
 export default {
   name: 'BannerTop',
   data () {
     return {
-      bannerTop: [
-        {
-          id: '',
-          name: '',
-          title: 'Vestidos a Mitad de precio',
-          subtitle: 'Oferta por tiempo limitado.',
-          button_text: '',
-          image: '',
-          url: '#'
-        },
-        {
-          id: '',
-          name: '',
-          title: 'Cómo Funciona Prilov',
-          subtitle: '',
-          button_text: 'Guía de la Prilover',
-          image: '',
-          url: '#'
-        },
-        {
-          id: '',
-          name: '',
-          title: 'Inscríbete en el Newsletter por 25% OFF',
-          subtitle: 'Recibe promociones',
-          button_text: 'Inscribirse',
-          image: '',
-          url: '#'
-        }
-      ]
+      banners: []
     }
+  },
+  created: async function () {
+    await bannersAPI.getAllBanners()
+      .then(response => {
+        this.banners = response.data.data.filter(x => x.name.split('-')[1] === 'top')
+      })
   }
 }
 </script>

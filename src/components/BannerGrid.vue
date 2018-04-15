@@ -3,7 +3,7 @@
   //- TO-DO: consumir servicios
   .banner-grid
     article.banner(
-      v-for='banner in bannerGrid')
+      v-for='banner in banners')
       a.banner__item(
         :href='banner.url',
         :title='banner.button_text')
@@ -28,41 +28,19 @@
 </template>
 
 <script>
-
+import bannersAPI from '@/api/banner'
 export default {
   name: 'BannerGrid',
   data () {
     return {
-      bannerGrid: [
-        {
-          id: '',
-          name: '',
-          title: 'Blazers',
-          subtitle: '¿Ya tienes el tuyo?',
-          button_text: 'Mira los Blazers',
-          image: '/static/img/demo/banner-001.jpg',
-          url: '#'
-        },
-        {
-          id: '',
-          name: '',
-          title: 'Maaji',
-          subtitle: '¡Nos encantan todos!',
-          button_text: 'Ver el catálogo de Maajis',
-          image: '/static/img/demo/banner-002.jpg',
-          url: '#'
-        },
-        {
-          id: '',
-          name: '',
-          title: 'Denim',
-          subtitle: '¡Siempre tiene ONDA!',
-          button_text: 'Ver todos los denim',
-          image: '/static/img/demo/banner-003.jpg',
-          url: '#'
-        }
-      ]
+      banners: []
     }
+  },
+  created: async function () {
+    await bannersAPI.getAllBanners()
+      .then(response => {
+        this.banners = response.data.data.filter(x => x.name.split('-')[1] !== 'top')
+      })
   }
 }
 </script>
