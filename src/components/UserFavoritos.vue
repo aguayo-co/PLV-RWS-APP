@@ -3,7 +3,7 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Tus Favoritos
-    .favorites
+    .product-grid_small
       GridProducto(
       :infinite='true',
       :compact='true')
