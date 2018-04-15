@@ -77,12 +77,17 @@
 }
 
 @media only screen and (max-width: 399px) {
+  .tabs {
+    .product-grid {
+      margin: 0 -6px;
+    }
+  }
   .tabs__inner {
     position: relative;
   }
   .tabs__nav-btn {
     position: relative;
-    z-index: 1000;
+    z-index: 3;
     @include flexbox;
     @include align-items(center);
     @include justify-content(space-between);

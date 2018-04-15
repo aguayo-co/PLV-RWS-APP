@@ -178,7 +178,7 @@ export default {
       this.activeToggle = false
     },
     openToggle: function () {
-      this.activeToggle = !this.activeToggle  
+      this.activeToggle = !this.activeToggle
     }
   },
   created: function () {
