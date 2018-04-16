@@ -1,98 +1,101 @@
 /*------------------------------------*\
 	Page Footer
 \*------------------------------------*/
-.page-foot{
-  position: relative;
-  padding: 68px 50px 42px 0;
-  color: $c-default;
-  background-color: $c-neutro-4;
-  &:before {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    z-index: 4;
-    display: block;
-    color: $c-brand;
-    @include font-rem(24px);
-    -ms-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-
-  }
-}
-
-.foot__grid {
-  @include flexbox;
-  @include justify-content(space-between);
-}
-  // Footer Menu
-.foot-nav {
-  @include flexbox;
-  @include justify-content(space-around);
-  width: 58%;
-  padding: 16px 0 40px;
-  border-right: 1px solid $c-default;
-}
-.foot-nav__list_center {
-  text-align: center;
-}
-
-  .foot__title {
-    padding-bottom: 24px;
-    font-weight: $fw-bold;
-    text-transform: uppercase;
-  }
-
-  .foot-nav__item {
-    padding-bottom: 24px;
-    .i-,
-    [class^="i-"],
-    [class*=" i-"] {
+@include media-query(wide) {
+  .page-foot{
+    position: relative;
+    padding: 68px 50px 42px 0;
+    color: $c-default;
+    background-color: $c-neutro-4;
+    &:before {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      z-index: 4;
       display: block;
-      text-align: center;
-      span {
-        display: none;
-      }
-    }
+      color: $c-brand;
+      @include font-rem(24px);
+      -ms-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
 
+    }
   }
 
-    .foot-nav__link {
-      color: $c-default;
-      &:before {
-        @include font-rem(38px);
-      }
-      &:hover {
-        color: $c-brand;
-      }
-    }
-//form Newsletter
-.foot-news {
-  width: 42%;
-  max-width: 468px;
-  padding: 16px 40px 0;
-  .foot__title {
+  .foot__grid {
+    @include flexbox;
+    @include justify-content(space-between);
+  }
+    // Footer Menu
+  .foot-nav {
+    @include flexbox;
+    @include justify-content(space-around);
+    width: 58%;
+    padding: 16px 0 40px;
+    border-right: 1px solid $c-default;
+  }
+  .foot-nav__list_center {
     text-align: center;
   }
 
-}
-.foot__form {
-  width: 88%;
-  margin: 0 auto;
-}
+    .foot__title {
+      padding-bottom: 24px;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+    }
 
-.foot__txt {
-  margin: 0;
-  padding-bottom: 24px;
-  line-height: 1.57;
-}
+    .foot-nav__item {
+      padding-bottom: 24px;
+      .i-,
+      [class^="i-"],
+      [class*=" i-"] {
+        display: block;
+        text-align: center;
+        span {
+          display: none;
+        }
+      }
 
-// Footer copy right
-.foot-legal {
-  padding-top: 100px;
-  p {
-    margin: 0;
+    }
+
+      .foot-nav__link {
+        color: $c-default;
+        &:before {
+          @include font-rem(38px);
+        }
+        &:hover {
+          color: $c-brand;
+        }
+      }
+  //form Newsletter
+  .foot-news {
+    width: 42%;
+    max-width: 468px;
+    padding: 16px 40px 0;
+    .foot__title {
+      text-align: center;
+    }
+
   }
+  .foot__form {
+    width: 88%;
+    margin: 0 auto;
+  }
+
+  .foot__txt {
+    margin: 0;
+    padding-bottom: 24px;
+    line-height: 1.57;
+  }
+
+  // Footer copy right
+  .foot-legal {
+    padding-top: 100px;
+    p {
+      margin: 0;
+    }
+  }
+
 }

@@ -1,54 +1,172 @@
 /*------------------------------------*\
 	Footer Menu Mobile
 \*------------------------------------*/
-.page-foot-mb {
-  padding: 20px 30px 15px 30px;
-  background-color: $c-default;
-}
 
-.foot-nav-mb__list {
-  @include flexbox;
-  @include justify-content(space-around);
-  @include align-items(center);
-  list-style-type: none;
-}
+@include media-query(max-wide) {
+  .page-foot {
+    position: fixed;
+    bottom: 0;
+    z-index: 998;
+    width: 100%;
+    padding: 10px;
+    background-color: $c-default;
+    &:after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      pointer-events: none;
+      background-color: $c-default-over;
+      transition: all .2s ease;
+    }
 
-.foot-nav-mb__item {
-  position: relative;
-  text-align: center;
-}
-
-.foot-nav-mb__link {
-  position: relative;
-  display: block;
-  height: auto;
-  color: $c-neutro;
-  padding-bottom: 2px;
-  border-bottom: 3px solid transparent;
-  transition: all 0.5s;
-  &.active {
-    border-bottom-color: $c-brand;
-  }
-}
-
-.foot-nav-mb__name {
-  &:before {
-    display: block;
-    padding-bottom: 4px;
-    @include font-rem(16px);
-  }
-  &.i-brand {
-    display: block;
-    position: relative;
-    top: -6px;
-    width: 60px;
-    height: 60px;
-    background: url(../img/brand-prilov.png) no-repeat center center $c-default;
-    background-size: 50px 53px;
-    @include font-rem(0px);
-    &:before {
-      @include font-rem(0px);
+    &.openSearchMb {
+      &:after {
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
   }
-}
 
+  .foot-nav_mb {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .foot-nav__list {
+    @include flexbox;
+    @include justify-content(space-around);
+    @include align-items(center);
+    list-style-type: none;
+  }
+
+  .foot-nav__item {
+    position: relative;
+    text-align: center;
+  }
+
+  .foot-nav-mb__link {
+    &:before {
+      color: $c-default;
+      @include font-rem(40px);
+    }
+  }
+
+  .foot-nav__link {
+    position: relative;
+    display: block;
+    height: auto;
+    color: $c-neutro;
+    padding-bottom: 2px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.5s;
+    &.active {
+      border-bottom-color: $c-brand;
+    }
+  }
+
+  .foot-nav__name {
+    &:before {
+      display: block;
+      padding-bottom: 4px;
+      @include font-rem(16px);
+    }
+    &.i-brand {
+      display: block;
+      position: relative;
+      width: 38px;
+      height: 38px;
+      background: url(../img/brand-prilov.svg) no-repeat center center $c-default;
+      background-size: 38px 38px;
+      @include font-rem(0px);
+      &:before {
+        @include font-rem(0px);
+      }
+    }
+  }
+
+  .foot-nav__fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 420px;
+    z-index: 10;
+    height: 100vh;
+    padding: 20px 16px;
+    overflow-y: scroll;
+    color: $c-default;
+    text-align: left;
+    list-style: none;
+    background-color: $c-neutro;
+    -webkit-box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
+    0px 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
+    0px 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+  }
+
+  .foot-nav__close {
+    @include font-rem(20px);
+    display: block;
+    text-align: right;
+    &:before {
+      color: $c-default;
+      padding-bottom: 4px;
+      border-bottom: 2px solid $c-brand;
+    }
+    
+  }
+
+  .foot-nav__title {
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    font-weight: $fw-bold;
+    @include font-rem(25px);
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 1px solid $c-default;
+  }
+
+  .foot-nav__search-row {
+    position: relative;
+    &:before {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      @include font-rem(20px);
+      color: $c-default;
+    }
+  }
+  .foot-nav__search-input {
+    padding-left: 40px;
+  }
+
+  .foot-nav__search-btn {
+    margin-bottom: 40px;
+  }
+
+  .foot-nav__sublist {
+    text-align: center;
+    list-style: none;
+    column-count: 3;
+  }
+
+  .foot-nav__sublink {
+    display: inline-block;
+    text-transform: uppercase;
+    @include font-rem(12px);
+    color: $c-default;
+    margin-bottom: 16px;
+    border-bottom: 3px solid $c-brand;
+  }
+
+
+}
