@@ -59,7 +59,8 @@
 @import
   'block/product-detail',
   'block/product-slot',
-  'block/slider-slot';
+  'block/slider-slot',
+  'block/chat-slot';
 
 //componentes
 @import
@@ -71,6 +72,7 @@
   'block/boxcheck',
   'block/pay-off',
   'block/list',
+  'block/collapsible',
   'block/dashboard',
   'block/status',
   'block/filter',
@@ -81,8 +83,6 @@
   'block/pagination',
   'block/tabs',
   'block/page-footer_mb';
-
-
 
 @import
   'vendor/flickity';
