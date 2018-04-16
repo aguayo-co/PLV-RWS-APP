@@ -18,6 +18,19 @@
 
 .dashboard__head {
   @include flexbox;
+  @include justify-content(space-between);
+  border-bottom: 1px solid $c-neutro-3;
+}
+.dashboard__title {
+  width: 50%;
+  padding-bottom: 16px;
+  text-transform: uppercase;
+  @include font-rem(24px);
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+  &:not(:first-child) {
+    padding-left: 16px;
+  }
 }
 
 .dashboard__data {

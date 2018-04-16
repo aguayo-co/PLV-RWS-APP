@@ -87,6 +87,18 @@
     margin-bottom: 16px;
   }
 }
+.dividers__txt {
+  margin: 0;
+  color: $c-default;
+  @include font-rem(18px);
+}
+.dividers__value {
+  margin: 0;
+  color: $c-default;
+  font-family: $f-normal;
+  font-weight: $fw-light;
+  @include font-rem(14px);
+}
 
 
  @media only screen and (max-width: 600px) {
