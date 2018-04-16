@@ -34,7 +34,7 @@ section.single
         .dividers__grid
           p.dividers__txt Créditos transferidos a tu cuenta:
           p.dividers__value $ 357.484
-    .alert 
+    .alert
       p.alert__info.i-alert-info  Recuerda que para transferir créditos debes tener más de $4.000
     h3.subhead Detalle de Transacciones
 
