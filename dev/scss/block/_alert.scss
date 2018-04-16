@@ -28,6 +28,25 @@
   }
 }
 
+.alert__info {
+  margin: 0;
+  @include font-rem(16px);
+  &:before {
+    margin-right: 8px;
+    vertical-align: middle;
+    color: $c-brand;
+    @include font-rem(38px);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .alert__info {
+    &:before {
+      display: block;
+      margin-bottom: 16px;
+    }
+  }
+}
+
 @include media-query(medium) {
   .alert {
     margin-bottom: 60px;

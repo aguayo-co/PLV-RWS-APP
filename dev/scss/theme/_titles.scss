@@ -196,15 +196,16 @@ h6 {
   .title_subhead {
     letter-spacing: 4px;
   }
-
-  .subhead {
-    text-align: left;
-    @include font-rem(30px);
-  }
   .subtitle_line {
     padding-bottom: 16px;
     margin-bottom: 32px;
     border-bottom: 1px solid $c-neutro-3;
+  }
+
+
+  .subhead {
+    text-align: left;
+    @include font-rem(30px);
   }
   //corazón titulo
   .header_heart {
@@ -235,6 +236,14 @@ h6 {
 
 // $bp-wide: 1024px;
 @include media-query(wide) {
+  .subtitle_line {
+    &.single__subtitle {
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid $c-neutro-3;
+    }
+  }
+
   .title_head-small {
     @include font-rem(36px);
   }

@@ -7,6 +7,7 @@ import User from '@/pages/User'
 import UserData from '@/components/UserData'
 import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import UserDatosBancarios from '@/components/UserDatosBancarios'
+import UserCreditos from '@/components/UserCreditos'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
 import UserTuCloset from '@/components/UserTuCloset'
@@ -59,6 +60,11 @@ export default new Router({
           path: 'datos-bancarios',
           name: 'user-datos-bancarios',
           component: UserDatosBancarios
+        },
+        {
+          path: 'creditos',
+          name: 'user-creditos',
+          component: UserCreditos
         },
         {
           path: 'tus-ventas',
