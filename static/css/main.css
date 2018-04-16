@@ -5709,6 +5709,56 @@ body {
     .slider-slot .slot__ico {
       right: 8px; } }
 
+.chat-slot {
+  padding-top: 32px; }
+  .chat-slot .chat {
+    width: 100%; }
+
+.chat-slot__block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.chat-notify {
+  width: 100%;
+  padding: 20px; }
+  .chat-notify .chat__form {
+    padding: 0 0 16px 0; }
+  .chat-notify .form__textarea {
+    height: 162px; }
+  .chat-notify .chat__btn-solid {
+    display: block;
+    margin: 14px 0 0 auto; }
+
+.chat-alert {
+  width: 96%;
+  margin: 0 auto;
+  padding: 20px 20px 40px 20px;
+  border: 1px solid #f65a66;
+  font-size: 16px;
+  font-size: 1rem; }
+  .chat-alert:before {
+    display: block;
+    font-size: 40px;
+    font-size: 2.5rem;
+    color: #f65a66;
+    text-align: center;
+    padding-bottom: 16px; }
+
+@media only screen and (min-width: 768px) {
+  .chat-slot {
+    padding-top: 56px; }
+    .chat-slot .chat {
+      width: 60%; }
+  .chat-notify {
+    width: 40%; } }
+
 /*------------------------------------*\
 	steps list
 \*------------------------------------*/
