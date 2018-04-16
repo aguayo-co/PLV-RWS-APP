@@ -4226,7 +4226,7 @@ body {
   .user-hero .user-data__title {
     display: inline-block;
     text-align: left;
-    padding-left: 20px; }
+    padding: 0 0 0 20px; }
 
 .user-hero__notify {
   display: -webkit-box;
@@ -4244,21 +4244,21 @@ body {
   -moz-justify-content: center;
   justify-content: center;
   text-align: center;
-  padding-top: 20px; }
+  padding: 0 0 0 20px; }
   .user-hero__notify .user-data__list {
     padding: 8px; }
 
-.user-hero__item .user-data__group {
-  display: block;
-  text-align: left;
-  padding-left: 20px; }
+.user-hero__item {
+  border: 1px dashed green; }
+  .user-hero__item:last-child {
+    text-align: center; }
+  .user-hero__item .user-data__group {
+    display: block;
+    text-align: left;
+    padding-left: 20px; }
 
 .user-hero__head {
-  position: relative;
-  display: inline-block;
-  top: 6px;
-  left: 0;
-  width: 53%; }
+  border: 1px solid red; }
 
 .user-data__item {
   text-align: center; }
@@ -4267,19 +4267,28 @@ body {
   .user-data__item:first-child {
     margin-right: 20px; }
 
-@media only screen and (min-width: 480px) {
-  .user-hero__head {
-    top: 0;
-    width: 69%; } }
-
 @media only screen and (min-width: 640px) {
+  .user-hero {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .user-hero__item:last-child {
+    padding-top: 60px;
+    text-align: left; }
+  .user-hero__item:first-child {
+    -webkit-flex-basis: 23%;
+    -moz-flex-basis: 23%;
+    -ms-flex-preferred-size: 23%;
+    flex-basis: 23%; }
   .user-hero__notify {
     text-align: left;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end; } }
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-justify-content: start;
+    -moz-justify-content: start;
+    justify-content: start; } }
 
 /*------------------------------------*\
 	User Profile avatar edit
@@ -6793,6 +6802,7 @@ body {
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
   justify-content: space-between;
   border-bottom: 1px solid #efefef; }
