@@ -3,6 +3,14 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 require('dotenv').config()
+const validNodeEnv = ['production', 'testing', 'development']
+if (!process.env.NODE_ENV) {
+  throw Error('NODE_ENV needs to be set.')
+}
+if (!validNodeEnv.includes(process.env.NODE_ENV)) {
+  throw Error('Invalid NODE_ENV value, must be one of: production, testing, development')
+}
+
 const path = require('path')
 
 module.exports = {
