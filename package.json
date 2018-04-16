@@ -39,6 +39,7 @@
     "cross-env": "^5.1.4",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.11",
+    "dotenv": "^5.0.1",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
@@ -109,12 +110,13 @@
     "webpack-merge": "^4.1.0"
   },
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 9.0.0",
+    "npm": ">= 5.0.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "dependencies": {}
 }
