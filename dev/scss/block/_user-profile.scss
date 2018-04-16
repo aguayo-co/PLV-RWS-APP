@@ -24,7 +24,7 @@
       @include align-items(start);
     }
   }
-  
+
   .user-header-edit__grid {
     @include flexbox;
     @include justify-content(center);
@@ -93,7 +93,74 @@
   .user-edit_right {
     text-align: right
   }
-
+/*------------------------------------*\
+  User Profile avatar page "closet"
+\*------------------------------------*/
+.banner-hero_user {
+  margin: 0 auto;
+}
+.user-hero {
+  position: relative;
+  top: -57px;
+  left: 0;
+  .user-data__avatar {
+    display: inline-block;
+    margin: 0 auto 0 20px;
+  }
+  .user-data__title {
+    display: inline-block;
+    text-align: left;
+    padding: 0 0 0 20px;
+  }
+}
+.user-hero__notify {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  text-align: center;
+  padding: 0 0 0 20px;
+  .user-data__list {
+    padding: 8px;
+  }
+}
+.user-hero__item {
+  &:last-child {
+    text-align: center;
+  }
+  .user-data__group {
+    display: block;
+    text-align: left;
+    padding-left: 20px;
+  }
+}
+.user-data__item {
+  text-align: center;
+  .btn-tag {
+    min-width: 130px;
+  }
+  &:first-child {
+    margin-right: 20px;
+  }
+}
+  // $bp-medium: 640px;
+  @include media-query(small-medium) {
+    .user-hero {
+      @include flexbox;
+    }
+    .user-hero__item {
+      &:last-child {
+        padding-top: 60px;
+        text-align: left;
+      }
+      &:first-child {
+        @include flex-basis(19%);
+      }
+    }
+    .user-hero__notify {
+      text-align: left;
+      @include justify-content(start);
+    }
+  }
 /*------------------------------------*\
 	User Profile avatar edit
 \*------------------------------------*/

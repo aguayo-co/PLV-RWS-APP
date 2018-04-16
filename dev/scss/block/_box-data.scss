@@ -1,0 +1,45 @@
+.box-data {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(space-around);
+  @include flex-wrap(wrap);
+  border-top: 1px solid $c-neutro-3;
+  padding-top: 40px;
+}
+.box-data__row {
+  padding: 0 15px 0 0;
+  &:first-child {
+    text-align: left;
+    margin-bottom: 24px;
+  }
+}
+.box-data__txt {
+  position: relative;
+  @include font-rem(18px);
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  margin: 0;
+  left: 27px;
+  &:before {
+    position: absolute;
+    top: 30px;
+    left: -18px;
+    @include font-rem(48px);
+    color: $c-brand;
+  }
+}
+.box-data__val {
+  @include font-rem(36px);
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+  margin: 0 0 0 68px;
+}
+//- 480px
+@include media-query(small-m) {
+  .box-data__row {
+    &:first-child {
+      width: 45%;
+      margin-bottom: 0;
+    }
+  }
+}

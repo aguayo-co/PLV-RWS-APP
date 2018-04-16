@@ -4,8 +4,14 @@
   margin-bottom: 40px;
   text-align: center;
   background-color: $c-neutro;
+  &.status_check {
+    .alert__txt {
+    &:before {
+      color: $c-ok;
+      }
+    }
+  }
 }
-
 
 .alert__txt {
   font-family: $f-fancy;
@@ -19,6 +25,25 @@
     color: $c-brand;
     @include font-rem(40px);
     margin-bottom: 20px;
+  }
+}
+
+.alert__info {
+  margin: 0;
+  @include font-rem(16px);
+  &:before {
+    margin-right: 8px;
+    vertical-align: middle;
+    color: $c-brand;
+    @include font-rem(38px);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .alert__info {
+    &:before {
+      display: block;
+      margin-bottom: 16px;
+    }
   }
 }
 

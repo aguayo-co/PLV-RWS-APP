@@ -8,6 +8,10 @@
   max-width: 720px;
   padding: 16px 0 22px;
 }
+.pay-off_center {
+  @include justify-content(center);
+  @include align-items(flex-end);
+}
 .pay-off__item {
   padding: 16px 20px;
 }

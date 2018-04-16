@@ -42,7 +42,6 @@ export default {
   },
   data () {
     return {
-      isActive: '',
       editPicture: false,
       editName: false,
       editAbout: false,
@@ -71,12 +70,6 @@ export default {
     ...createComputedProps(editableProps)
   },
   methods: {
-    IsActive: function (e) {
-      this.isActive = e
-    },
-    NotActive: function () {
-      this.isActive = ''
-    },
     toggle: function (prop) {
       this[prop] = !this[prop]
     },

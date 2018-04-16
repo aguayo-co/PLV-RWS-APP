@@ -59,6 +59,12 @@
   @include flexbox;
 }
 
+@media only screen and (max-width: 1023px) {
+  .content-main {
+    margin-bottom: 75px;
+  }
+}
+
 // $bp-medium: 768px;
 @include media-query(medium) {
   .layout-slot {

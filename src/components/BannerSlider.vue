@@ -5,16 +5,16 @@
       .banner-slider__slide
         .banner-slider__slot(:class='slide.orientation')
           .banner-slider__position
-            h3(:class='slide.font_color').banner-slider__title {{ slide.texto_principal }}
-            a.banner-slider__btn.btn(:href='slide.url',) Promo Code:
-              span.banner-slider__code {{ slide.button_text }}
-            span.banner-slider__copy {{ slide.texto_pequeño }}
+            h3(:class='slide.font_color').banner-slider__title {{ slide.main_text }}
+            a.banner-slider__btn.btn(:href='slide.url') {{ slide.button_text }}
+            span.banner-slider__copy {{ slide.small_text }}
         picture.banner-slider__crop
-          source.banner-slider__img(media='(max-width: 640px)', :srcset='slide.image_mobile')
+          source.banner-slider__img(v-if="slide.image_mobile" media='(max-width: 640px)', :srcset='slide.image_mobile')
           img.banner-slider__img(:src='slide.image')
 </template>
 
 <script>
+import slidersAPI from '@/api/slider'
 import Flickity from 'vue-flickity'
 
 export default {
@@ -33,9 +33,9 @@ export default {
           image: '/static/img/demo/banner-slider1.jpg',
           image_mobile: '/static/img/demo/banner-slider-m1.jpg',
           url: '#',
-          texto_principal: 'Te regalamos en tu primera compra',
-          texto_pequeño: '**Oferta válida hasta el 31 de enero de 2018',
-          button_text: 'primeracompra',
+          texto_principal: ' ',
+          texto_pequeño: ' ',
+          button_text: ' ',
           orientation: 'left',
           font_color: 'bg_white'
         },
@@ -47,9 +47,9 @@ export default {
           image: '/static/img/demo/banner-slider2.jpg',
           image_mobile: '/static/img/demo/banner-slider-m2.jpg',
           url: '#',
-          texto_principal: 'Te regalamos en tu primera compra',
-          texto_pequeño: '**Oferta válida hasta el 16 de marzo de 2018',
-          button_text: 'comprasegura',
+          texto_principal: ' ',
+          texto_pequeño: ' ',
+          button_text: ' ',
           orientation: 'right',
           font_color: 'bg_black'
         }
@@ -67,6 +67,12 @@ export default {
         // any options from Flickity can be used
       }
     }
+  },
+  created: async function () {
+    slidersAPI.getAllSlides()
+      .then(response => {
+        this.slides = response.data.data
+      })
   }
 }
 </script>

@@ -1,0 +1,106 @@
+
+.step-data__table {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(flex-start);
+  @include justify-content(space-around);
+  padding-bottom: 40px;
+}
+.step-data__box {
+  text-align: center;
+  padding-bottom: 16px;
+  .btn {
+    max-width: 220px;
+    &:first-child {
+      margin-bottom: 16px;
+    }
+  }
+}
+.step-data__row {
+  position: relative;
+  text-align: center;
+  padding: 16px 0;
+  @include flex-basis(50%);
+  &:last-child {
+    @include flex-basis(100%);
+    border-top: 1px solid $c-default;
+    font-weight: $fw-semi-bold;
+    .step-data__val {
+      font-family: $f-default;
+    }
+  }
+}
+
+.c-brand {
+  color: $c-brand;
+}
+.step-data__ico {
+  position: absolute;
+  top: 30%;
+  right: 5px;
+  @include font-rem(30px);
+  font-weight: $fw-bold;
+  font-family: $f-default;
+  line-height: 2;
+}
+.step-data__item {
+  @include font-rem(18px);
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+}
+.step-data__val {
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+  @include font-rem(36px);
+}
+.step-data__txt {
+  display: block;
+  font-family: $f-default;
+  font-weight: $fw-regular;
+  @include font-rem(16px);
+  &:before {
+    display: block;
+    margin-bottom: 16px;
+    @include font-rem(38px);
+    color: $c-brand;
+  }
+}
+
+//- Breakpoint 640px
+@include media-query(small-medium) {
+  .step-data_left {
+    text-align: left;
+    @include prefixer(transform, translateY(15%), ("webkit", "moz"));
+  }
+  .step-data__row {
+    @include flex-basis(33.3%);
+    &:last-child {
+      @include flex-basis(33.3%);
+      border-top: none;
+    }
+  }
+  .step-data__box {
+    .btn_space {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+  }
+  .step-data__txt {
+    &.i-start {
+      position: relative;
+      display: inline-block;
+      padding-left: 50px;
+      &:before {
+        display: inline;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-bottom: 16px;
+        padding-left: 6px;
+        @include font-rem(38px);
+        color: $c-brand;
+        @include prefixer(transform, translateY(-50%), ("webkit", "moz"));
+      }
+    }
+  }
+}
