@@ -5,7 +5,7 @@ export default {
   install (Vue, store) {
     // Instancia base de Axios.
     const baseOptions = {
-      baseURL: store.state.apiDomain,
+      baseURL: store.state.apiUrl,
       headers: {
         common: {
           Accept: 'application/json'

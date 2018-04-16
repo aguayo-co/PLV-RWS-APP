@@ -2,7 +2,9 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -77,6 +79,12 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CaseSensitivePathsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': require('../config/define.env')
+    })
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
