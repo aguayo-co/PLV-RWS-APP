@@ -1,0 +1,239 @@
+/*------------------------------------*\
+  Componente Tabs
+\*------------------------------------*/
+
+.tabs {
+  margin-top: 40px;
+}
+
+.tabs__nav-list {
+  list-style: none;
+}
+
+.tabs__nav-item {
+  background-color: $c-neutro;
+}
+
+.tabs__nav-link {
+  display: block;
+  padding: 16px 20px 14px;
+  color: $c-default;
+}
+
+.slot__product-inner {
+  position: relative;
+  color: $c-default;
+  font-family: $f-fancy;
+  font-weight: $fw-medium;
+  .slot__product {
+    position: relative;
+  }
+}
+
+.tab {
+  .slot__lead {
+    min-height: 44px;
+  }
+}
+
+.slot__product-actions {
+  @include flexbox;
+  @include justify-content(flex-end);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 6px 14px;
+  background-color: $c-brand;
+}
+
+.slot__actions-link {
+  position: relative;
+  color: $c-neutro;
+  &:before {
+    @include font-rem(22px);
+  }
+}
+
+.slot__product-alert {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 6px 14px;
+  background-color: $c-neutro-4;
+  border: 1px solid $c-brand;
+}
+
+.slot__alert-txt {
+  color: $c-default;
+  font-weight: $fw-bold;
+  @include font-rem(12px);
+  margin: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .tabs__nav-link {
+    @include font-rem(12px);
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .tabs {
+    .product-grid {
+      margin: 0 -6px;
+    }
+  }
+  .tabs__inner {
+    position: relative;
+  }
+  .tabs__nav-btn {
+    position: relative;
+    z-index: 3;
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(space-between);
+    padding: 16px 20px 14px;
+    @include font-rem(16px);
+    background-color: $c-neutro;
+    border: 1px solid $c-default;
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 5.5px 0 5.5px;
+      border-color: $c-default transparent transparent transparent;
+    }
+  }
+
+  .tabs__nav-list {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    border: 1px solid $c-default;
+    border-top: none;
+    opacity: 0;
+    transition: all 0.18s ease-out 0.18s;
+    pointer-events: none;
+    top: 100%;
+    -webkit-transform: translateY(-51px);
+    -ms-transform: translateY(-51px);
+    transform: translateY(-51px);
+    -webkit-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    transform-origin: bottom;
+    &.openlist {
+      opacity: 1;
+      pointer-events: auto;
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+
+  .slot__actions-link {
+    margin-left: 24px;
+  }
+  .tabs__nav-link {
+    @include font-rem(16px);
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .tabs__nav-btn {
+    display: none;
+  }
+
+  .slot__product-actions {
+    padding: 10px 16px;
+  }
+
+  .slot__actions-link {
+    margin-left: 30px;
+    &:hover {
+      .slot__tooltip {
+        opacity: 1;
+        pointer-events: auto;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .tabs__nav-list {
+    @include flexbox;
+    margin-bottom: 60px;
+    border-bottom: 1px solid $c-default;
+  }
+
+  .tabs__nav-item {
+    margin-right: 30px;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+  }
+
+  .tabActive {
+    color: $c-neutro;
+    background-color: $c-default;
+  }
+
+  .slot__tooltip {
+    position: absolute;
+    display: inline-block;
+    min-width: 150px;
+    right: -4px;
+    padding: 5px 14px;
+    text-align: center;
+    color: $c-default;
+    background-color: $c-neutro;
+    border: 1px solid $c-default;
+
+    margin: 0;
+    opacity: 0;
+    @include font-rem(12px);
+    transition: all 0.18s ease-out 0.18s;
+    pointer-events: none;
+    bottom: 150%;
+    -webkit-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    transform: translateY(10px);
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    transform-origin: top;
+
+    &:before {
+      content:'';
+      position: absolute;
+      bottom: -10px;
+      width: 0;
+      right: 7px;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 6px 0 6px;
+      border-color: $c-default transparent transparent transparent;
+    }
+    &:after {
+      content:'';
+      position: absolute;
+      bottom: -8px;
+      right: 8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 5px 0 5px;
+      border-color: $c-neutro transparent transparent transparent;
+
+    }
+  }
+
+  .slot__product-alert {
+    padding: 10px 14px;
+  }
+}
+
+@include media-query(medium) {
+  .tabs__nav-link {
+    padding-right: 42px;
+    padding-left: 42px;
+  }
+}

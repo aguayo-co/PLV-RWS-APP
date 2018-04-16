@@ -14,6 +14,9 @@
   @include justify-content(center);
   @include align-items(center);
   margin: 0 auto;
+  .form__switch {
+    height: 42px;
+  }
 }
   .box-flat__lead {
     @include flexbox;
@@ -22,7 +25,7 @@
     &:before {
       @include font-rem(38px);
       color: $c-brand;
-      padding-bottom: 10px;
+      padding-bottom: 16px;
       text-align: center;
     }
     &.i-trip {
@@ -33,7 +36,7 @@
   }
   .box-flat__title {
     @include font-rem(20px);
-    padding-bottom: 6px;
+    padding-bottom: 8px;
     text-align: center;
   }
   .box-flat__txt {
@@ -75,6 +78,9 @@
       }
       &:before {
         @include font-rem(56px);
+      }
+      .box__txt {
+        margin-bottom: 16px;
       }
     }
     .box-flat__button {

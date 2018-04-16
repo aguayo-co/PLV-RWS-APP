@@ -4,8 +4,14 @@
   margin-bottom: 40px;
   text-align: center;
   background-color: $c-neutro;
+  &.status_check {
+    .alert__txt {
+    &:before {
+      color: $c-ok;
+      }
+    }
+  }
 }
-
 
 .alert__txt {
   font-family: $f-fancy;

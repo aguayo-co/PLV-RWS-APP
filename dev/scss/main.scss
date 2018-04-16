@@ -48,6 +48,7 @@
 'block/layout-single',
 'block/banner-single',
 'block/single',
+'block/step-data',
 'block/user-menu',
 'block/user-profile',
 'block/dividers',
@@ -66,6 +67,7 @@
   'block/upfile',
   'block/box-switch',
   'block/box-flat',
+  'block/box-data',
   'block/boxcheck',
   'block/pay-off',
   'block/list',
@@ -76,8 +78,11 @@
   'block/chat',
   'block/valuations',
   'block/chat',
-  'block/favorites',
-  'block/pagination';
+  'block/pagination',
+  'block/tabs',
+  'block/page-footer_mb';
+
+
 
 @import
   'vendor/flickity';
