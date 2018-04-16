@@ -50,7 +50,20 @@
   .box-flat__button {
     width: 100%;
     padding-top: 10px;
+    min-width: 130px;
+    text-align: center;
+    .link_underline {
+      @include font-rem(16px);
+    }
   }
+  .box-flat__value {
+    margin: 0;
+    padding-bottom: 8px;
+    font-family: $f-normal;
+    font-weight: $fw-thin;
+    @include font-rem(28px);
+  }
+
 
 // $bp-medium: 768px;
 @include media-query(medium) {

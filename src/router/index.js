@@ -7,6 +7,7 @@ import User from '@/pages/User'
 import UserData from '@/components/UserData'
 import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import UserDatosBancarios from '@/components/UserDatosBancarios'
+import UserCreditos from '@/components/UserCreditos'
 import UserTusVentas from '@/components/UserTusVentas'
 import UserTusCompras from '@/components/UserTusCompras'
 import UserTuCloset from '@/components/UserTuCloset'
@@ -15,6 +16,7 @@ import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
+import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/categoria'
@@ -60,6 +62,11 @@ export default new Router({
           component: UserDatosBancarios
         },
         {
+          path: 'creditos',
+          name: 'user-creditos',
+          component: UserCreditos
+        },
+        {
           path: 'tus-ventas',
           name: 'user-tus-ventas',
           component: UserTusVentas
@@ -93,6 +100,11 @@ export default new Router({
           path: 'tus-favoritos',
           name: 'user-tus-favoritos',
           component: UserFavoritos
+        },
+        {
+          path: 'closet',
+          name: 'Closet',
+          component: Closet
         }
       ]
     },
