@@ -17,7 +17,7 @@ div.page(
     router-view
 
   //- footer template Mobile
-  .footerMobile(
+  PageFooterMobile(
     v-if="mqMobile")
   //- footer template desktop
   PageFooter(
@@ -46,6 +46,7 @@ import ModalExitoPublicarVenta from '@/components/ModalExitoPublicarVenta'
 import ModalMessage from '@/components/ModalMessage'
 import ModalPasswordChange from '@/components/ModalPasswordChange'
 import PageFooter from '@/components/PageFooter'
+import PageFooterMobile from '@/components/PageFooterMobile'
 
 export default {
   name: 'app',
@@ -56,7 +57,8 @@ export default {
     FormLogin,
     ModalExitoPublicarVenta,
     ModalMessage,
-    PageFooter
+    PageFooter,
+    PageFooterMobile
   },
   data () {
     return {

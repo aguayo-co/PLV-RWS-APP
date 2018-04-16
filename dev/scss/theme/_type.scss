@@ -47,7 +47,7 @@ body {
   font-weight: $fw-regular;
 }
 
-// borde rosado 
+// borde rosado
 .tag {
   display: inline-block;
   padding: 4px 8px;
@@ -55,7 +55,7 @@ body {
   border: 1px solid $c-brand;
   border-radius: 25px;
 }
-// texto tachado 
+// texto tachado
 .through {
   text-decoration: line-through;
 }
@@ -75,6 +75,10 @@ body {
   font-weight: $fw-thin;
 }
 
+.txt-block {
+  margin: 0;
+  padding-bottom: 40px;
+}
 .plus-item {
   &:before {
     display: inline-block;

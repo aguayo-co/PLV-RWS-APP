@@ -16,6 +16,7 @@ import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
+import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/categoria'
@@ -99,6 +100,11 @@ export default new Router({
           path: 'tus-favoritos',
           name: 'user-tus-favoritos',
           component: UserFavoritos
+        },
+        {
+          path: 'closet',
+          name: 'Closet',
+          component: Closet
         }
       ]
     },
