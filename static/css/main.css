@@ -219,19 +219,22 @@ template {
 [hidden] {
   display: none; }
 
-/*------------------------------------*    #font-family, font-icon
+/*------------------------------------*\
+    #font-family, font-icon
 \*------------------------------------*/
 /* https://developers.google.com/fonts/docs/getting_started
  * Embed Font
  * To embed your selected fonts into a webpage,
  * copy this code into the <head> of your HTML document.
  */
-/*------------------------------------*  ALL fonts Prilov STANDARD @IMPORT
+/*------------------------------------*\
+  ALL fonts Prilov STANDARD @IMPORT
   Load Time: Slow
   https: //fonts.google.com/?query=mons&selection.family=Montserrat:300,500,600,700|Roboto+Condensed:400,700|Roboto:100,400
 
 \*------------------------------------*/
-/*------------------------------------*  Ico font $font-path
+/*------------------------------------*\
+  Ico font $font-path
 \*------------------------------------*/
 @font-face {
   font-family: 'ico-prilov';
@@ -478,7 +481,8 @@ template {
 .i-search-plus:before {
   content: "\e948"; }
 
-/*------------------------------------*	texts links
+/*------------------------------------*\
+	texts links
 \*------------------------------------*/
 a {
   cursor: pointer;
@@ -498,7 +502,8 @@ a {
 .link_underline_lower {
   margin-bottom: 20px; }
 
-/*------------------------------------*	Transversal Elements
+/*------------------------------------*\
+	Transversal Elements
     #Styles links - appearance buttons
 \*------------------------------------*/
 .btn {
@@ -601,7 +606,8 @@ a {
   .btn_block {
     width: 100%; } }
 
-/*------------------------------------*	Transversal Elements
+/*------------------------------------*\
+	Transversal Elements
     #Forms Styles
 \*------------------------------------*/
 input, select, textarea {
@@ -615,7 +621,8 @@ select {
   -webkit-appearance: none;
   -webkit-border-radius: 0; }
 
-/*------------------------------------*	Elementos Formularios
+/*------------------------------------*\
+	Elementos Formularios
 \*------------------------------------*/
 .form {
   color: #000; }
@@ -807,7 +814,8 @@ select {
   font-size: 0.75rem;
   font-weight: 500; }
 
-/*------------------------------------*	form radio
+/*------------------------------------*\
+	form radio
 \*------------------------------------*/
 .form__input-radio {
   position: absolute;
@@ -847,12 +855,14 @@ select {
     border: 2px solid #cbcbcb;
     border-radius: 50%; }
 
-/*------------------------------------*	form radio boxcheck
+/*------------------------------------*\
+	form radio boxcheck
 \*------------------------------------*/
 .form__input-radio:checked + .form__label_radio .boxcheck__label {
   border-color: #f65a66; }
 
-/*------------------------------------*	form checkbox
+/*------------------------------------*\
+	form checkbox
 \*------------------------------------*/
 .form__row_check {
   text-align: center;
@@ -897,7 +907,8 @@ select {
   .form__check .form__label_check:after {
     border-color: #cbcbcb; }
 
-/*------------------------------------*	form password visible
+/*------------------------------------*\
+	form password visible
 \*------------------------------------*/
 .form__password {
   position: relative; }
@@ -908,7 +919,8 @@ select {
   right: 10px;
   cursor: pointer; }
 
-/*------------------------------------*	Form password fortaleza
+/*------------------------------------*\
+	Form password fortaleza
 \*------------------------------------*/
 .password-bar {
   position: relative;
@@ -954,7 +966,8 @@ select {
   .password-bar.level-3:after {
     content: 'Alto'; }
 
-/*------------------------------------*	form input asistido para talla
+/*------------------------------------*\
+	form input asistido para talla
 \*------------------------------------*/
 .form-asisted__box {
   position: relative;
@@ -994,7 +1007,8 @@ select {
     text-align: center;
     border-bottom: 1px solid #000; }
 
-/*------------------------------------*	form toggle color form
+/*------------------------------------*\
+	form toggle color form
 \*------------------------------------*/
 .toggle-select {
   margin-top: -12px; }
@@ -1023,7 +1037,8 @@ select {
   font-size: 16px;
   font-size: 1rem; }
 
-/*------------------------------------*	form switch
+/*------------------------------------*\
+	form switch
 \*------------------------------------*/
 .form__switch {
   position: relative;
@@ -1090,7 +1105,8 @@ select {
   .switch__input:checked + .switch__label .switch__status:before {
     content: 'Habilitado'; }
 
-/*------------------------------------*	form combo: input alineado con btn
+/*------------------------------------*\
+	form combo: input alineado con btn
 \*------------------------------------*/
 .form__combo {
   display: -webkit-box;
@@ -1299,7 +1315,8 @@ select {
       width: 100%;
       min-width: 100px; } }
 
-/*------------------------------------*	Mensajes Error
+/*------------------------------------*\
+	Mensajes Error
 \*------------------------------------*/
 .is-danger .form__control {
   border: 1px solid #f65a66; }
@@ -1337,7 +1354,8 @@ select {
     border-width: 9px 10px 0 10px;
     border-color: #f65a66 transparent transparent transparent; }
 
-/*------------------------------------*	Mensajes formulario
+/*------------------------------------*\
+	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
   display: block;
@@ -1382,7 +1400,8 @@ select {
     font-size: 40px;
     font-size: 2.5rem; }
 
-/*------------------------------------*    #Titles
+/*------------------------------------*\
+    #Titles
 \*------------------------------------*/
 h1,
 h2,
@@ -1595,7 +1614,8 @@ h6 {
     font-size: 36px;
     font-size: 2.25rem; } }
 
-/*------------------------------------*    #Styles for text elements
+/*------------------------------------*\
+    #Styles for text elements
 \*------------------------------------*/
 body {
   line-height: 1.4;
@@ -1676,7 +1696,8 @@ body {
   border: 1px solid #f65a66;
   border-radius: 50%; }
 
-/*------------------------------------*	Transversal Elements
+/*------------------------------------*\
+	Transversal Elements
     #Styles for multimedia content 
     (images, audio and video)
 \*------------------------------------*/
@@ -1794,10 +1815,12 @@ body {
     opacity: 0.3;
     transform: translateY(0); } }
 
-/*------------------------------------*	Transversal Elements
+/*------------------------------------*\
+	Transversal Elements
     #Styles for tables
 \*------------------------------------*/
-/*------------------------------------*  layout theme
+/*------------------------------------*\
+  layout theme
 \*------------------------------------*/
 .theme {
   overflow: hidden; }
@@ -1846,9 +1869,7 @@ body {
 
 @media only screen and (max-width: 1023px) {
   .content-main {
-    margin-bottom: 75px; }
-  .page {
-    padding-top: 130px; } }
+    margin-bottom: 75px; } }
 
 @media only screen and (min-width: 768px) {
   .layout-slot {
@@ -1910,20 +1931,20 @@ body {
   .alert {
     margin-bottom: 60px; } }
 
-/*------------------------------------*	Page header
+/*------------------------------------*\
+	Page header
 \*------------------------------------*/
 .page-header {
   position: relative;
-  z-index: 188;
-  transition: .9s ease;
+  z-index: 998;
   width: 100%;
-  padding: 10px 0 8px;
+  padding: 10px 0 11px;
   color: #fff;
   background-color: #000; }
   .page-header ul {
     list-style: none; }
   .page-header.openPageHeader {
-    z-index: 194; }
+    z-index: 999; }
 
 .header__bar {
   width: 100%;
@@ -1943,7 +1964,8 @@ body {
   -moz-justify-content: space-between;
   justify-content: space-between; }
 
-/*------------------------------------*  Page header: 
+/*------------------------------------*\
+  Page header: 
   componente Pageheader-brand
 \*------------------------------------*/
 .page-brand {
@@ -1986,7 +2008,8 @@ body {
   font-weight: 500;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-/*------------------------------------*  Page header: 
+/*------------------------------------*\
+  Page header: 
   componente Pageheader-search
 \*------------------------------------*/
 .search {
@@ -2026,7 +2049,8 @@ body {
   font-size: 0.875rem;
   background-color: transparent; }
 
-/*------------------------------------*  Page header: 
+/*------------------------------------*\
+  Page header: 
   * componente Pageheader-user: 
   * bloque css asociado menu-toggle: 
   * contiene animación
@@ -2147,6 +2171,8 @@ body {
     *Responsive Desing
 */
 @media only screen and (max-width: 1023px) {
+  .page {
+    padding-top: 60px; }
   .page-header {
     position: fixed;
     top: 0;
@@ -2154,7 +2180,7 @@ body {
     .page-header.js-header_down {
       top: 0; }
     .page-header.js-header_up {
-      top: -64px; }
+      top: -60px; }
   .page-brand {
     display: block;
     width: 170px;
@@ -2174,7 +2200,8 @@ body {
   .user-auth__menu {
     right: 0; } }
 
-/*------------------------------------*	Page header menu
+/*------------------------------------*\
+	Page header menu
 \*------------------------------------*/
 .menu {
   display: -webkit-box;
@@ -2270,6 +2297,7 @@ body {
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 0;
     width: 100vw;
     height: 100vh;
     opacity: 0;
@@ -2642,7 +2670,8 @@ body {
     width: 96%;
     max-width: 1280px;
     margin: 36px auto; }
-  /*------------------------------------*    Submenu mega menu
+  /*------------------------------------*\
+    Submenu mega menu
   \*------------------------------------*/
   .submenu-grid {
     position: relative;
@@ -2767,7 +2796,8 @@ body {
   .menu__link {
     padding: 0 20px; } }
 
-/*------------------------------------*	Page Footer
+/*------------------------------------*\
+	Page Footer
 \*------------------------------------*/
 @media only screen and (min-width: 1024px) {
   .page-foot {
@@ -2855,7 +2885,8 @@ body {
     .foot-legal p {
       margin: 0; } }
 
-/*------------------------------------*	código para todos los menu desplegables
+/*------------------------------------*\
+	código para todos los menu desplegables
 \*------------------------------------*/
 .toggle-box {
   position: absolute;
@@ -2940,7 +2971,8 @@ body {
   -webkit-transform: scale(1);
   transform: scale(1); }
 
-/*------------------------------------*  Transition menu
+/*------------------------------------*\
+  Transition menu
 \*------------------------------------*/
 .slide-left-enter-active {
   -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
@@ -3021,7 +3053,8 @@ body {
   .slide-fade-leave-to .menu-level2__inner {
     transform: translateY(10px); }
 
-/*------------------------------------*	código para todos los menu desplegables
+/*------------------------------------*\
+	código para todos los menu desplegables
 \*------------------------------------*/
 .page.is-modal {
   height: 0;
@@ -3078,7 +3111,8 @@ body {
       min-height: auto;
       margin: 50px auto; } }
 
-/*------------------------------------*  Notificacciones
+/*------------------------------------*\
+  Notificacciones
 \*------------------------------------*/
 .notify {
   padding: 20px 0;
@@ -3303,7 +3337,8 @@ body {
   .banner-slider__cell {
     height: 80vh; } }
 
-/*------------------------------------*	Banner Top
+/*------------------------------------*\
+	Banner Top
 \*------------------------------------*/
 .banner-top {
   display: -webkit-box;
@@ -3383,7 +3418,8 @@ body {
   .banner-top__item {
     padding: 16px 14px; } }
 
-/*------------------------------------*	Banner Grid
+/*------------------------------------*\
+	Banner Grid
 \*------------------------------------*/
 .banner-grid {
   max-width: 480px;
@@ -3581,7 +3617,8 @@ body {
   .banner-hero {
     margin: 0 auto 60px auto; } }
 
-/*------------------------------------*	Slider prilover Home
+/*------------------------------------*\
+	Slider prilover Home
 \*------------------------------------*/
 .slider-fullwide {
   padding-bottom: 20px; }
@@ -3689,7 +3726,8 @@ body {
       font-size: 22px;
       font-size: 1.375rem; } }
 
-/*------------------------------------*	Single Section
+/*------------------------------------*\
+	Single Section
 \*------------------------------------*/
 .single__inner {
   padding-top: 30px; }
@@ -3969,7 +4007,8 @@ body {
       -moz-transform: translateY(-50%);
       transform: translateY(-50%); } }
 
-/*------------------------------------*	User Menu
+/*------------------------------------*\
+	User Menu
 \*------------------------------------*/
 .side {
   padding-right: 70px;
@@ -4013,55 +4052,18 @@ body {
     color: #f65a66; }
 
 @media only screen and (max-width: 1023px) {
-  .user-menu {
-    position: relative;
-    z-index: -1; }
   .side {
-    position: absolute;
-    top: 66px;
-    right: 0;
-    width: 100vh;
-    max-width: 420px;
+    position: fixed;
+    left: 0;
+    z-index: 10;
+    display: none;
+    width: 100%;
+    max-width: 450px;
     height: 100vh;
-    padding: 40px 60px 80px;
+    padding: 0 60px 80px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    -webkit-box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12); }
-  .user-menu__name {
-    text-align: center;
-    margin-bottom: 6px;
-    padding-top: 10px;
-    border-top: 1px solid #4a4a4a; }
-  .user-menu__list {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: justify;
-    -webkit-justify-content: space-around;
-    -moz-justify-content: space-around;
-    justify-content: space-around;
-    max-width: 400px;
-    margin: 0 auto; }
-    .user-menu__list:after {
-      content: '';
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      z-index: -1;
-      width: 100vw;
-      height: 100vh;
-      opacity: 0;
-      pointer-events: none;
-      background-color: rgba(0, 0, 0, 0.5);
-      transition: all .2s ease; }
-    .user-menu__list.openUserMenu:after {
-      opacity: 1; } }
+    -ms-overflow-style: -ms-autohiding-scrollbar; } }
 
 @media only screen and (min-width: 1024px) {
   .side {
@@ -4077,7 +4079,8 @@ body {
       height: 98%;
       background-color: #cbcbcb; } }
 
-/*------------------------------------*	User Profile
+/*------------------------------------*\
+	User Profile
 \*------------------------------------*/
 .user-header {
   display: -webkit-box;
@@ -4200,7 +4203,8 @@ body {
 .user-edit_right {
   text-align: right; }
 
-/*------------------------------------*  User Profile avatar page "closet"
+/*------------------------------------*\
+  User Profile avatar page "closet"
 \*------------------------------------*/
 .banner-hero_user {
   margin: 0 auto; }
@@ -4215,7 +4219,7 @@ body {
   .user-hero .user-data__title {
     display: inline-block;
     text-align: left;
-    padding-left: 20px; }
+    padding: 0 0 0 20px; }
 
 .user-hero__notify {
   display: -webkit-box;
@@ -4233,21 +4237,17 @@ body {
   -moz-justify-content: center;
   justify-content: center;
   text-align: center;
-  padding-top: 20px; }
+  padding: 0 0 0 20px; }
   .user-hero__notify .user-data__list {
     padding: 8px; }
+
+.user-hero__item:last-child {
+  text-align: center; }
 
 .user-hero__item .user-data__group {
   display: block;
   text-align: left;
   padding-left: 20px; }
-
-.user-hero__head {
-  position: relative;
-  display: inline-block;
-  top: 6px;
-  left: 0;
-  width: 53%; }
 
 .user-data__item {
   text-align: center; }
@@ -4256,21 +4256,31 @@ body {
   .user-data__item:first-child {
     margin-right: 20px; }
 
-@media only screen and (min-width: 480px) {
-  .user-hero__head {
-    top: 0;
-    width: 69%; } }
-
 @media only screen and (min-width: 640px) {
+  .user-hero {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .user-hero__item:last-child {
+    padding-top: 60px;
+    text-align: left; }
+  .user-hero__item:first-child {
+    -webkit-flex-basis: 19%;
+    -moz-flex-basis: 19%;
+    -ms-flex-preferred-size: 19%;
+    flex-basis: 19%; }
   .user-hero__notify {
     text-align: left;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end; } }
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-justify-content: start;
+    -moz-justify-content: start;
+    justify-content: start; } }
 
-/*------------------------------------*	User Profile avatar edit
+/*------------------------------------*\
+	User Profile avatar edit
 \*------------------------------------*/
 .user-over {
   position: relative; }
@@ -4387,14 +4397,9 @@ body {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  justify-content: center;
   list-style: none;
   margin: 0;
-  padding: 16px 0 8px; }
+  padding: 8px 0; }
 
 .user-data__value {
   min-width: 70px;
@@ -4484,7 +4489,8 @@ body {
     margin: 0; }
   .user-edit__actions {
     padding: 8px 0 0 16px; }
-  /*------------------------------------*	    User Profile avatar edit desktop
+  /*------------------------------------*\
+	    User Profile avatar edit desktop
     \*------------------------------------*/
   .user-avatar_active {
     min-height: 390px; }
@@ -4515,7 +4521,8 @@ body {
   .user-data__caption-i {
     text-align: left; } }
 
-/*------------------------------------*	Info User in Producto
+/*------------------------------------*\
+	Info User in Producto
 \*------------------------------------*/
 .product-user {
   padding-top: 32px; }
@@ -4616,7 +4623,8 @@ body {
     width: 100%;
     padding-left: 50px; } }
 
-/*------------------------------------*	dividers
+/*------------------------------------*\
+	dividers
 \*------------------------------------*/
 .dividers {
   list-style: none;
@@ -4840,7 +4848,8 @@ body {
   .dividers_list .dividers__item {
     margin-bottom: 16px; } }
 
-/*------------------------------------*	collections
+/*------------------------------------*\
+	collections
 \*------------------------------------*/
 .collections .badge {
   vertical-align: middle;
@@ -4919,7 +4928,8 @@ body {
     font-size: 14px;
     font-size: 0.875rem; } }
 
-/*------------------------------------*	Elementos Formularios
+/*------------------------------------*\
+	Elementos Formularios
 \*------------------------------------*/
 .form-section {
   max-width: 400px;
@@ -5032,7 +5042,8 @@ body {
     margin: 50px auto;
     max-width: 800px; } }
 
-/*------------------------------------*	Detalle producto
+/*------------------------------------*\
+	Detalle producto
 \*------------------------------------*/
 .detail {
   max-width: 480px;
@@ -5202,7 +5213,8 @@ body {
   font-size: 12px;
   font-size: 0.75rem; }
 
-/*------------------------------------*  Detalle producto: img responsive
+/*------------------------------------*\
+  Detalle producto: img responsive
   Slider Una columna: se ocultan los thumbs
   y se remplazan por corazones
   Rangos:
@@ -5255,7 +5267,8 @@ body {
   .detail__img {
     display: none; } }
 
-/*------------------------------------*  Detalle producto: img responsive
+/*------------------------------------*\
+  Detalle producto: img responsive
  // Gallery thums visible
   Rangos:
   de 420 a 767
@@ -5277,7 +5290,8 @@ body {
     max-width: 22%;
     padding-right: 20px; } }
 
-/*------------------------------------*  Detalle producto: img responsive
+/*------------------------------------*\
+  Detalle producto: img responsive
   2 columnas
   Estilos bloque 620 en adelante
 \*------------------------------------*/
@@ -5367,7 +5381,8 @@ body {
     padding-left: 30px;
     width: 90%; } }
 
-/*------------------------------------*	Producto grid Home
+/*------------------------------------*\
+	Producto grid Home
 \*------------------------------------*/
 .section_product {
   width: 96%;
@@ -5455,7 +5470,8 @@ body {
   .slot_grid {
     width: 25%; } }
 
-/*------------------------------------*	Producto slot
+/*------------------------------------*\
+	Producto slot
 \*------------------------------------*/
 .slot__product {
   display: block;
@@ -5663,7 +5679,8 @@ body {
   .product-grid_small .slot_grid {
     width: 33.33%; } }
 
-/*------------------------------------*	Slider producto slot
+/*------------------------------------*\
+	Slider producto slot
 \*------------------------------------*/
 .slider-slot {
   padding-bottom: 100px; }
@@ -5692,7 +5709,58 @@ body {
     .slider-slot .slot__ico {
       right: 8px; } }
 
-/*------------------------------------*	steps list
+.chat-slot {
+  padding-top: 32px; }
+  .chat-slot .chat {
+    width: 100%; }
+
+.chat-slot__block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.chat-notify {
+  width: 100%;
+  padding: 20px; }
+  .chat-notify .chat__form {
+    padding: 0 0 16px 0; }
+  .chat-notify .form__textarea {
+    height: 162px; }
+  .chat-notify .chat__btn-solid {
+    display: block;
+    margin: 14px 0 0 auto; }
+
+.chat-alert {
+  width: 96%;
+  margin: 0 auto;
+  padding: 20px 20px 40px 20px;
+  border: 1px solid #f65a66;
+  font-size: 16px;
+  font-size: 1rem; }
+  .chat-alert:before {
+    display: block;
+    font-size: 40px;
+    font-size: 2.5rem;
+    color: #f65a66;
+    text-align: center;
+    padding-bottom: 16px; }
+
+@media only screen and (min-width: 768px) {
+  .chat-slot {
+    padding-top: 56px; }
+    .chat-slot .chat {
+      width: 60%; }
+  .chat-notify {
+    width: 40%; } }
+
+/*------------------------------------*\
+	steps list
 \*------------------------------------*/
 .steps__list {
   list-style: none;
@@ -5762,7 +5830,8 @@ body {
   border-color: #f65a66;
   background-color: #f65a66; }
 
-/*------------------------------------*	upload file croppa
+/*------------------------------------*\
+	upload file croppa
 \*------------------------------------*/
 .upfile {
   max-width: 400px;
@@ -5914,7 +5983,8 @@ body {
     font-size: 30px;
     font-size: 1.875rem; } }
 
-/*------------------------------------*	box | switch
+/*------------------------------------*\
+	box | switch
 \*------------------------------------*/
 .box {
   padding: 16px;
@@ -5964,7 +6034,8 @@ body {
     font-size: 20px;
     font-size: 1.25rem; } }
 
-/*------------------------------------*	box | flat
+/*------------------------------------*\
+	box | flat
 \*------------------------------------*/
 .box-flat {
   display: block;
@@ -6186,7 +6257,8 @@ body {
     width: 45%;
     margin-bottom: 0; } }
 
-/*------------------------------------*	box | switch
+/*------------------------------------*\
+	box | switch
 \*------------------------------------*/
 .boxcheck-wrap {
   padding: 32px 0; }
@@ -6320,7 +6392,8 @@ body {
     top: 10px;
     padding-top: 0; } }
 
-/*------------------------------------*	pay-off créditos prilov
+/*------------------------------------*\
+	pay-off créditos prilov
 \*------------------------------------*/
 .pay-off {
   display: -webkit-box;
@@ -6404,7 +6477,8 @@ body {
     font-size: 16px;
     font-size: 1rem; } }
 
-/*------------------------------------*  List carrito compra
+/*------------------------------------*\
+  List carrito compra
 \*------------------------------------*/
 .list {
   padding-top: 24px; }
@@ -6514,13 +6588,15 @@ body {
 .card__prilover {
   font-weight: 700; }
 
-/*------------------------------------*    List carrito dividers
+/*------------------------------------*\
+    List carrito dividers
   \*------------------------------------*/
 .compra-data_info {
   padding-top: 16px;
   padding-bottom: 20px; }
 
-/*------------------------------------*  List carrito factura
+/*------------------------------------*\
+  List carrito factura
 \*------------------------------------*/
 .list__frame {
   padding: 24px 18px;
@@ -6595,7 +6671,8 @@ body {
 .data-form__item {
   padding: 8px 0 16px; }
 
-/*------------------------------------*  List Datos compra
+/*------------------------------------*\
+  List Datos compra
 \*------------------------------------*/
 .card__data {
   text-align: left; }
@@ -6635,7 +6712,8 @@ body {
   .card__txt {
     font-size: 16px;
     font-size: 1rem; }
-  /*------------------------------------*    Tablet List carrito Productos
+  /*------------------------------------*\
+    Tablet List carrito Productos
   \*------------------------------------*/
   .list__card:first-child {
     padding-bottom: 16px; }
@@ -6661,13 +6739,15 @@ body {
     align-items: center; }
     .card__column .card__user {
       min-width: 30%; }
-  /*------------------------------------*    Tablet List carrito dividers
+  /*------------------------------------*\
+    Tablet List carrito dividers
   \*------------------------------------*/
   .compra-data_info {
     padding-bottom: 40px; }
     .compra-data_info .dividers {
       padding-bottom: 0; }
-  /*------------------------------------*    Tablet List carrito factura
+  /*------------------------------------*\
+    Tablet List carrito factura
   \*------------------------------------*/
   .data-table__item {
     font-size: 20px;
@@ -6731,7 +6811,8 @@ body {
   .card__column {
     display: block;
     width: 50%; }
-  /*------------------------------------*    Tablet List carrito factura
+  /*------------------------------------*\
+    Tablet List carrito factura
   \*------------------------------------*/
   .list__side {
     width: 25%;
@@ -6739,7 +6820,8 @@ body {
     margin-left: 32px;
     padding-bottom: 60px; } }
 
-/*------------------------------------*	dashboard // tus compras, tus ventas
+/*------------------------------------*\
+	dashboard // tus compras, tus ventas
 \*------------------------------------*/
 .dashboard .list__card {
   padding-top: 0; }
@@ -6845,13 +6927,15 @@ body {
 .dashboard__check {
   padding: 8px 0; }
 
-/*------------------------------------*	Status mensaje // tus compras, tus ventas
+/*------------------------------------*\
+	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
 .dashboard__status {
   text-align: center; }
 
 @media only screen and (min-width: 768px) {
-  /*------------------------------------*    dashboard // tus compras, tus ventas
+  /*------------------------------------*\
+    dashboard // tus compras, tus ventas
   \*------------------------------------*/
   .dashboard__data {
     max-width: 50%;
@@ -6882,7 +6966,8 @@ body {
     .dashboard__subitem:last-child {
       padding-left: 32px; } }
 
-/*------------------------------------*	Status mensaje // tus compras, tus ventas
+/*------------------------------------*\
+	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
 .status {
   display: -webkit-box;
@@ -6942,7 +7027,8 @@ body {
   .status_warning:before {
     color: #FFA65B; }
 
-/*------------------------------------*	Filter
+/*------------------------------------*\
+	Filter
 \*------------------------------------*/
 .filter-head {
   padding-bottom: 20px; }
@@ -6954,7 +7040,8 @@ body {
   font-size: 1.125rem;
   text-transform: uppercase; }
 
-/*------------------------------------*    Only mobile
+/*------------------------------------*\
+    Only mobile
   \*------------------------------------*/
 @media only screen and (max-width: 1023px) {
   .filter {
@@ -6993,7 +7080,7 @@ body {
   .filter__btn {
     position: relative;
     min-width: 120px;
-    padding: 10px 40px 10px 12px;
+    padding: 10px 20px 10px 12px;
     margin-bottom: 12px;
     color: #000;
     border: 1px solid #000;
@@ -7003,8 +7090,8 @@ body {
     .filter__btn:after {
       content: '';
       position: absolute;
-      top: 16px;
-      right: 4px;
+      top: 10px;
+      right: 10px;
       display: inline-block;
       width: 0;
       height: 0;
@@ -7126,7 +7213,8 @@ body {
     width: 28px;
     height: 28px; } }
 
-/*------------------------------------*    Filter desktop
+/*------------------------------------*\
+    Filter desktop
 \*------------------------------------*/
 @media only screen and (min-width: 1024px) {
   .filter {
@@ -7258,7 +7346,8 @@ body {
       right: 0;
       border-top: none; } }
 
-/*------------------------------------*  Filter check
+/*------------------------------------*\
+  Filter check
 \*------------------------------------*/
 .form__input-check:checked + .filter__check:before {
   opacity: 1; }
@@ -7290,7 +7379,8 @@ body {
     position: relative;
     top: 3px; }
 
-/*------------------------------------*	Filter slider: rango de precio
+/*------------------------------------*\
+	Filter slider: rango de precio
 \*------------------------------------*/
 .filter__slide {
   min-width: 280px;
@@ -7354,9 +7444,11 @@ body {
   .filter__label {
     font-weight: 700; } }
 
-/*------------------------------------*	Chat
+/*------------------------------------*\
+	Chat
 \*------------------------------------*/
-/*----------------------------------------*  Estilos generales para busbujas de chat
+/*----------------------------------------*\
+  Estilos generales para busbujas de chat
 \*----------------------------------------*/
 .chat-bubble__img {
   margin-right: 8px;
@@ -7390,7 +7482,8 @@ body {
 .chat-line {
   margin-bottom: 24px; }
 
-/*------------------------------------*  Burbuja principal de chat
+/*------------------------------------*\
+  Burbuja principal de chat
 \*------------------------------------*/
 .chat__bubble-main {
   display: -webkit-box;
@@ -7411,7 +7504,8 @@ body {
     padding: 8px 18px;
     border-color: #f65a66; }
 
-/*------------------------------------*  Burbuja secundaria de chat
+/*------------------------------------*\
+  Burbuja secundaria de chat
 \*------------------------------------*/
 .chat__bubble {
   display: -webkit-box;
@@ -7432,7 +7526,8 @@ body {
     padding: 4px 24px;
     border-color: #9b9b9b; }
 
-/*------------------------------------*  Grilla de producto y chat
+/*------------------------------------*\
+  Grilla de producto y chat
 \*------------------------------------*/
 .chat__grid {
   display: -webkit-box;
@@ -7576,7 +7671,8 @@ body {
     margin-bottom: 28px; } }
 
 @media only screen and (min-width: 768px) {
-  /*------------------------------------*    Grilla de producto y chat
+  /*------------------------------------*\
+    Grilla de producto y chat
   \*------------------------------------*/
   .chat-bubble__txt {
     font-size: 16px;
@@ -7600,7 +7696,8 @@ body {
   .chat__message {
     width: 100%; } }
 
-/*------------------------------------*	Valoraciones
+/*------------------------------------*\
+	Valoraciones
 \*------------------------------------*/
 .valuations .user-data__list {
   padding-bottom: 18px; }
@@ -7690,7 +7787,260 @@ body {
   .valuations .user-data__list {
     padding-bottom: 24px; } }
 
-/*------------------------------------*  Paginador
+/*------------------------------------*\
+	Chat
+\*------------------------------------*/
+/*----------------------------------------*\
+  Estilos generales para busbujas de chat
+\*----------------------------------------*/
+.chat-bubble__img {
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 2px solid #f65a66; }
+
+.chat-bubble__txt {
+  margin: 0 8px 0 0;
+  line-height: 1.2;
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: #707070;
+  border: 1px solid;
+  border-radius: 17px; }
+
+.chat-bubble__noti {
+  position: relative;
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #f65a66; }
+  .chat-bubble__noti:before {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 7px;
+    font-size: 0.4375rem;
+    color: #fff; }
+
+.chat-line {
+  margin-bottom: 24px; }
+
+/*------------------------------------*\
+  Burbuja principal de chat
+\*------------------------------------*/
+.chat__bubble-main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  align-items: flex-start; }
+  .chat__bubble-main .chat-bubble__img {
+    width: 35px;
+    height: 35px; }
+  .chat__bubble-main .chat-bubble__txt {
+    margin-bottom: 16px;
+    padding: 8px 18px;
+    border-color: #f65a66; }
+
+/*------------------------------------*\
+  Burbuja secundaria de chat
+\*------------------------------------*/
+.chat__bubble {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  padding-left: 30px; }
+  .chat__bubble .chat-bubble__img {
+    width: 22px;
+    height: 22px; }
+  .chat__bubble .chat-bubble__txt {
+    padding: 4px 24px;
+    border-color: #9b9b9b; }
+
+/*------------------------------------*\
+  Grilla de producto y chat
+\*------------------------------------*/
+.chat__grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  .chat__grid .slot_grid {
+    width: 100%;
+    max-width: 200px;
+    padding-bottom: 40px;
+    margin: 0 auto; }
+
+.chat-inner {
+  margin-top: 6px;
+  background-color: #f6f6f6; }
+
+.chat__form {
+  width: 96%;
+  padding: 14px 0 20px;
+  margin: 0 auto; }
+
+.chat__label {
+  display: block;
+  padding-bottom: 8px; }
+
+.chat__btn-solid {
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  background-color: #f65a66; }
+
+.chat__btn-flat {
+  display: none; }
+  .chat__btn-flat:before {
+    display: block;
+    width: 26px;
+    height: 26px; }
+
+.chat__btn-group {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end; }
+
+.chat__btn:before {
+  color: #4a4a4a;
+  font-size: 24px;
+  font-size: 1.5rem; }
+
+.chat__label-flat {
+  margin-right: 10px; }
+
+.chat__textarea {
+  margin-bottom: 5px; }
+
+.btn-back {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #f65a66;
+  font-size: 16px;
+  font-size: 1rem; }
+  .btn-back:before {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 6px 4px 5px;
+    margin-top: -3px;
+    margin-right: 6px;
+    border-radius: 50%;
+    border: 2px solid #f65a66;
+    font-size: 10px;
+    font-size: 0.625rem; }
+
+.chat__message_inner {
+  height: 300px;
+  overflow: auto; }
+
+.chat__message-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end;
+  padding: 0 20px; }
+
+@media only screen and (min-width: 560px) {
+  .chat__form {
+    padding: 28px 20px 48px 30px; }
+  .chat__form-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+  .chat__textarea {
+    margin-right: 10px;
+    border: 1px solid #9b9b9b; }
+  .chat__btn-file {
+    position: relative; }
+  .chat__label-flat {
+    display: block;
+    width: 26px;
+    height: 26px; }
+  .chat__textarea {
+    margin-bottom: 0;
+    resize: none; }
+  .btn-back {
+    margin-bottom: 28px; } }
+
+@media only screen and (min-width: 768px) {
+  /*------------------------------------*\
+    Grilla de producto y chat
+  \*------------------------------------*/
+  .chat-bubble__txt {
+    font-size: 16px;
+    font-size: 1rem; }
+  .chat__grid {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    align-items: flex-end; }
+    .chat__grid .slot_grid {
+      width: 100%;
+      max-width: 320px;
+      padding: 0 26px 0 0; }
+  .chat__message {
+    width: 100%; } }
+
+/*------------------------------------*\
+  Paginador
 \*------------------------------------*/
 .pagination {
   display: block;
@@ -7715,7 +8065,8 @@ body {
 .pagination__arrow:active, .pagination__arrow:focus, .pagination__arrow:visited {
   color: #000; }
 
-/*------------------------------------*  Componente Tabs
+/*------------------------------------*\
+  Componente Tabs
 \*------------------------------------*/
 .tabs {
   margin-top: 40px; }
@@ -7928,14 +8279,14 @@ body {
     padding-right: 42px;
     padding-left: 42px; } }
 
-/*------------------------------------*	Footer Menu Mobile
+/*------------------------------------*\
+	Footer Menu Mobile
 \*------------------------------------*/
 @media only screen and (max-width: 1023px) {
   .page-foot {
     position: fixed;
     bottom: 0;
-    z-index: 180;
-    transition: .5s ease;
+    z-index: 998;
     width: 100%;
     padding: 10px;
     background-color: #000; }
@@ -7953,11 +8304,9 @@ body {
       pointer-events: none;
       background-color: rgba(0, 0, 0, 0.5);
       transition: all .2s ease; }
-    .page-foot.openSearchMb {
-      z-index: 200; }
-      .page-foot.openSearchMb:after {
-        opacity: 1;
-        pointer-events: auto; }
+    .page-foot.openSearchMb:after {
+      opacity: 1;
+      pointer-events: auto; }
   .foot-nav_mb {
     max-width: 400px;
     margin: 0 auto; }
@@ -8057,8 +8406,7 @@ body {
   .foot-nav__search-input {
     padding-left: 40px; }
   .foot-nav__search-btn {
-    margin-bottom: 40px;
-    width: 100%; }
+    margin-bottom: 40px; }
   .foot-nav__sublist {
     text-align: center;
     list-style: none;
@@ -8202,7 +8550,8 @@ http://flickity.metafizzy.co
   font-size: 1.125rem;
   opacity: 1; }
 
-/*------------------------------------*    #Print styles
+/*------------------------------------*\
+    #Print styles
 \*------------------------------------*/
 @media print {
   *,
