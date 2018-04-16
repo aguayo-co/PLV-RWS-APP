@@ -44,7 +44,7 @@
     .filter__btn {
       position: relative;
       min-width: 120px;
-      padding: 10px 20px 10px 12px;
+      padding: 10px 40px 10px 12px;
       margin-bottom: 12px;
       color: $c-default;
       border: 1px solid $c-default;
@@ -54,8 +54,8 @@
       &:after {
         content: '';
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 16px;
+        right: 4px;
         display: inline-block;
         width: 0;
         height: 0;

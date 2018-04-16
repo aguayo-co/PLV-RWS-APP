@@ -4,7 +4,7 @@
   .layout-inner
     .content-grid
       UserMenu(
-        v-if="mqTablet"
+        v-if="mqDesk"
       )
       router-view
 </template>

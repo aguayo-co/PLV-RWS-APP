@@ -1846,7 +1846,9 @@ body {
 
 @media only screen and (max-width: 1023px) {
   .content-main {
-    margin-bottom: 75px; } }
+    margin-bottom: 75px; }
+  .page {
+    padding-top: 130px; } }
 
 @media only screen and (min-width: 768px) {
   .layout-slot {
@@ -1912,15 +1914,16 @@ body {
 \*------------------------------------*/
 .page-header {
   position: relative;
-  z-index: 998;
+  z-index: 188;
+  transition: .9s ease;
   width: 100%;
-  padding: 10px 0 11px;
+  padding: 10px 0 8px;
   color: #fff;
   background-color: #000; }
   .page-header ul {
     list-style: none; }
   .page-header.openPageHeader {
-    z-index: 999; }
+    z-index: 194; }
 
 .header__bar {
   width: 100%;
@@ -2144,8 +2147,6 @@ body {
     *Responsive Desing
 */
 @media only screen and (max-width: 1023px) {
-  .page {
-    padding-top: 60px; }
   .page-header {
     position: fixed;
     top: 0;
@@ -2153,7 +2154,7 @@ body {
     .page-header.js-header_down {
       top: 0; }
     .page-header.js-header_up {
-      top: -60px; }
+      top: -64px; }
   .page-brand {
     display: block;
     width: 170px;
@@ -2269,7 +2270,6 @@ body {
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 0;
     width: 100vw;
     height: 100vh;
     opacity: 0;
@@ -4013,18 +4013,55 @@ body {
     color: #f65a66; }
 
 @media only screen and (max-width: 1023px) {
+  .user-menu {
+    position: relative;
+    z-index: -1; }
   .side {
-    position: fixed;
-    left: 0;
-    z-index: 10;
-    display: none;
-    width: 100%;
-    max-width: 450px;
+    position: absolute;
+    top: 66px;
+    right: 0;
+    width: 100vh;
+    max-width: 420px;
     height: 100vh;
-    padding: 0 60px 80px;
+    padding: 40px 60px 80px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar; } }
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12); }
+  .user-menu__name {
+    text-align: center;
+    margin-bottom: 6px;
+    padding-top: 10px;
+    border-top: 1px solid #4a4a4a; }
+  .user-menu__list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    justify-content: space-around;
+    max-width: 400px;
+    margin: 0 auto; }
+    .user-menu__list:after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      pointer-events: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all .2s ease; }
+    .user-menu__list.openUserMenu:after {
+      opacity: 1; } }
 
 @media only screen and (min-width: 1024px) {
   .side {
@@ -4350,9 +4387,14 @@ body {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
   list-style: none;
   margin: 0;
-  padding: 8px 0; }
+  padding: 16px 0 8px; }
 
 .user-data__value {
   min-width: 70px;
@@ -6951,7 +6993,7 @@ body {
   .filter__btn {
     position: relative;
     min-width: 120px;
-    padding: 10px 20px 10px 12px;
+    padding: 10px 40px 10px 12px;
     margin-bottom: 12px;
     color: #000;
     border: 1px solid #000;
@@ -6961,8 +7003,8 @@ body {
     .filter__btn:after {
       content: '';
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 16px;
+      right: 4px;
       display: inline-block;
       width: 0;
       height: 0;
@@ -7648,252 +7690,6 @@ body {
   .valuations .user-data__list {
     padding-bottom: 24px; } }
 
-/*------------------------------------*	Chat
-\*------------------------------------*/
-/*----------------------------------------*  Estilos generales para busbujas de chat
-\*----------------------------------------*/
-.chat-bubble__img {
-  margin-right: 8px;
-  border-radius: 50%;
-  border: 2px solid #f65a66; }
-
-.chat-bubble__txt {
-  margin: 0 8px 0 0;
-  line-height: 1.2;
-  font-size: 14px;
-  font-size: 0.875rem;
-  color: #707070;
-  border: 1px solid;
-  border-radius: 17px; }
-
-.chat-bubble__noti {
-  position: relative;
-  display: block;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background-color: #f65a66; }
-  .chat-bubble__noti:before {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    font-size: 7px;
-    font-size: 0.4375rem;
-    color: #fff; }
-
-.chat-line {
-  margin-bottom: 24px; }
-
-/*------------------------------------*  Burbuja principal de chat
-\*------------------------------------*/
-.chat__bubble-main {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  -webkit-align-items: flex-start;
-  -moz-align-items: flex-start;
-  align-items: flex-start; }
-  .chat__bubble-main .chat-bubble__img {
-    width: 35px;
-    height: 35px; }
-  .chat__bubble-main .chat-bubble__txt {
-    margin-bottom: 16px;
-    padding: 8px 18px;
-    border-color: #f65a66; }
-
-/*------------------------------------*  Burbuja secundaria de chat
-\*------------------------------------*/
-.chat__bubble {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  align-items: center;
-  padding-left: 30px; }
-  .chat__bubble .chat-bubble__img {
-    width: 22px;
-    height: 22px; }
-  .chat__bubble .chat-bubble__txt {
-    padding: 4px 24px;
-    border-color: #9b9b9b; }
-
-/*------------------------------------*  Grilla de producto y chat
-\*------------------------------------*/
-.chat__grid {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column; }
-  .chat__grid .slot_grid {
-    width: 100%;
-    max-width: 200px;
-    padding-bottom: 40px;
-    margin: 0 auto; }
-
-.chat-inner {
-  margin-top: 6px;
-  background-color: #f6f6f6; }
-
-.chat__form {
-  width: 96%;
-  padding: 14px 0 20px;
-  margin: 0 auto; }
-
-.chat__label {
-  display: block;
-  padding-bottom: 8px; }
-
-.chat__btn-solid {
-  width: 26px;
-  height: 26px;
-  margin-right: 10px;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  background-color: #f65a66; }
-
-.chat__btn-flat {
-  display: none; }
-  .chat__btn-flat:before {
-    display: block;
-    width: 26px;
-    height: 26px; }
-
-.chat__btn-group {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  -webkit-justify-content: flex-end;
-  -moz-justify-content: flex-end;
-  justify-content: flex-end; }
-
-.chat__btn:before {
-  color: #4a4a4a;
-  font-size: 24px;
-  font-size: 1.5rem; }
-
-.chat__label-flat {
-  margin-right: 10px; }
-
-.chat__textarea {
-  margin-bottom: 5px; }
-
-.btn-back {
-  display: inline-block;
-  vertical-align: middle;
-  margin-bottom: 16px;
-  font-weight: 700;
-  color: #f65a66;
-  font-size: 16px;
-  font-size: 1rem; }
-  .btn-back:before {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 4px 6px 4px 5px;
-    margin-top: -3px;
-    margin-right: 6px;
-    border-radius: 50%;
-    border: 2px solid #f65a66;
-    font-size: 10px;
-    font-size: 0.625rem; }
-
-.chat__message_inner {
-  height: 300px;
-  overflow: auto; }
-
-.chat__message-flex {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  -webkit-justify-content: flex-end;
-  -moz-justify-content: flex-end;
-  justify-content: flex-end;
-  padding: 0 20px; }
-
-@media only screen and (min-width: 560px) {
-  .chat__form {
-    padding: 28px 20px 48px 30px; }
-  .chat__form-group {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    align-items: center; }
-  .chat__textarea {
-    margin-right: 10px;
-    border: 1px solid #9b9b9b; }
-  .chat__btn-file {
-    position: relative; }
-  .chat__label-flat {
-    display: block;
-    width: 26px;
-    height: 26px; }
-  .chat__textarea {
-    margin-bottom: 0;
-    resize: none; }
-  .btn-back {
-    margin-bottom: 28px; } }
-
-@media only screen and (min-width: 768px) {
-  /*------------------------------------*    Grilla de producto y chat
-  \*------------------------------------*/
-  .chat-bubble__txt {
-    font-size: 16px;
-    font-size: 1rem; }
-  .chat__grid {
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    -webkit-align-items: flex-end;
-    -moz-align-items: flex-end;
-    align-items: flex-end; }
-    .chat__grid .slot_grid {
-      width: 100%;
-      max-width: 320px;
-      padding: 0 26px 0 0; }
-  .chat__message {
-    width: 100%; } }
-
 /*------------------------------------*  Paginador
 \*------------------------------------*/
 .pagination {
@@ -8138,7 +7934,8 @@ body {
   .page-foot {
     position: fixed;
     bottom: 0;
-    z-index: 998;
+    z-index: 180;
+    transition: .5s ease;
     width: 100%;
     padding: 10px;
     background-color: #000; }
@@ -8156,9 +7953,11 @@ body {
       pointer-events: none;
       background-color: rgba(0, 0, 0, 0.5);
       transition: all .2s ease; }
-    .page-foot.openSearchMb:after {
-      opacity: 1;
-      pointer-events: auto; }
+    .page-foot.openSearchMb {
+      z-index: 200; }
+      .page-foot.openSearchMb:after {
+        opacity: 1;
+        pointer-events: auto; }
   .foot-nav_mb {
     max-width: 400px;
     margin: 0 auto; }
@@ -8258,7 +8057,8 @@ body {
   .foot-nav__search-input {
     padding-left: 40px; }
   .foot-nav__search-btn {
-    margin-bottom: 40px; }
+    margin-bottom: 40px;
+    width: 100%; }
   .foot-nav__sublist {
     text-align: center;
     list-style: none;
