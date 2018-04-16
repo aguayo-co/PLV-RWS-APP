@@ -66,7 +66,7 @@
     ul.menu-social__list(v-if='footer.items')
       li.menu-social__item(
         v-for='items in footer.items[3].children')
-        a.foot-nav__link(
+        a.foot-nav-mb__link(
           :href='items.url',
           :class='items.icon',
           :target='items.target')

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 .page-header {
   position: relative;
-  z-index: 999;
+  z-index: 998;
   width: 100%;
   padding: 10px 0 11px;
   color: $c-neutro;
@@ -11,6 +11,10 @@
 
   ul {
     list-style: none;
+  }
+
+  &.openPageHeader {
+    z-index: 999;
   }
 
 }
