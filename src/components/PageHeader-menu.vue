@@ -28,7 +28,9 @@ nav.page-menu
                     li.submenu__subitem(
                       v-for="(grandChildren, indexG) in children.children"
                       )
-                      a.subitem__link(:href='grandChildren.url') {{grandChildren.name}}
+                      router-link.subitem__link(
+                        @click.stop="toggleNav"
+                        :to='grandChildren.url') {{grandChildren.name}}
               //- Nivel 2: Promo
               .menu-promo(v-if="banner")
                 img.menu-promo__img(:src="banner.image" :alt="banner.title + banner.subtitle")
@@ -59,7 +61,6 @@ export default {
   name: 'PageHeaderMenu',
   data () {
     return {
-      active: false,
       // show: true,
       selected: undefined,
       menu: {},
@@ -70,9 +71,14 @@ export default {
       }
     }
   },
+  computed: {
+    active: function () {
+      return this.$store.getters['ui/menuOpen']
+    }
+  },
   methods: {
     toggleNav: function () {
-      this.active = !this.active
+      this.active ? this.$store.dispatch('ui/closeMenu') : this.$store.dispatch('ui/openMenu')
       this.$store.dispatch('ui/switchModal')
     },
     handler: function (item) {

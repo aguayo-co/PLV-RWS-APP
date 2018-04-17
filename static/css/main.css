@@ -1866,6 +1866,9 @@ body {
   display: -ms-flexbox;
   display: flex; }
 
+.layout_nofound {
+  padding: 100px 0 0; }
+
 @media only screen and (max-width: 1023px) {
   .content-main {
     margin-bottom: 75px; }
@@ -1876,7 +1879,9 @@ body {
   .layout-slot {
     padding: 46px 0 84px; }
   .content-slot__inner {
-    width: 76%; } }
+    width: 76%; }
+  .layout_nofound {
+    padding: 100px 0; } }
 
 @media only screen and (min-width: 1024px) {
   .layout {
@@ -3558,7 +3563,8 @@ body {
 .banner-hero__head {
   width: 100%;
   text-align: center;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  color: #fff; }
 
 .banner-hero__main {
   display: block;
