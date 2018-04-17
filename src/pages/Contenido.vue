@@ -3,9 +3,9 @@
   BannerTop
   BannerSlider
   .layout-inner
-    form.nav__search(action='', method='GET')
-      .nav__search-row.i-search
-        input.nav__search-input#searchMain(type='text', name='search')
+    form.nav-search(action='', method='GET')
+      .nav-search__row.i-search
+        input.nav-search__input#searchMain(type='text', name='search')
 </template>
 
 <script>
