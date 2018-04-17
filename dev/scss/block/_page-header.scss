@@ -3,9 +3,10 @@
 \*------------------------------------*/
 .page-header {
   position: relative;
-  z-index: 998;
+  z-index: 188;
+  transition: .9s ease;
   width: 100%;
-  padding: 10px 0 11px;
+  padding: 10px 0 8px;
   color: $c-neutro;
   background-color: $c-default;
 
@@ -14,7 +15,7 @@
   }
 
   &.openPageHeader {
-    z-index: 999;
+    z-index: 194;
   }
 
 }
@@ -248,9 +249,6 @@
 
 // point Only mobile -tablet
 @include media-query(max-wide) {
-  .page {
-    padding-top: 60px;
-  }
   .page-header {
     position: fixed;
     top: 0;
@@ -259,7 +257,7 @@
       top: 0;
     }
     &.js-header_up {
-      top: -60px;
+      top: -64px;
     }
   }
   .page-brand {

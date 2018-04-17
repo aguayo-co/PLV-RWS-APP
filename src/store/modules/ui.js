@@ -8,14 +8,16 @@ const state = {
     name: null,
     parameters: {}
   },
-  loginAttempts: 0
+  loginAttempts: 0,
+  menuOpen: false
 }
 
 // getters
 const getters = {
   modal: state => state.modal,
   modalWindow: state => state.modalWindow,
-  loginAttempts: state => state.loginAttempts
+  loginAttempts: state => state.loginAttempts,
+  menuOpen: state => state.menuOpen
 }
 
 // actions
@@ -34,6 +36,12 @@ const actions = {
   },
   loginAttempt (context) {
     context.commit('loginAttempt')
+  },
+  closeMenu (context) {
+    context.commit('closeMenu')
+  },
+  openMenu (context) {
+    context.commit('openMenu')
   }
 }
 
@@ -58,6 +66,12 @@ const mutations = {
   },
   loginAttempt (state) {
     state.loginAttempts += 1
+  },
+  closeMenu (state) {
+    state.menuOpen = false
+  },
+  openMenu (state) {
+    state.menuOpen = true
   }
 }
 
