@@ -18,8 +18,8 @@
           :class='{active: isActive == product}'
           href='#'
           title='Agrega a Favoritos') Agregar a Favoritos
-        a.slot__product(
-          :href='product.slug + "__" + product.id',
+        router-link.slot__product(
+          :to='"producto/" + product.slug + "__" + product.id',
           :title='product.title')
           img.slot__img(
             :src="product.images[0]",
