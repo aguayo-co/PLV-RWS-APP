@@ -19,8 +19,8 @@ import PublicarVenta from '@/pages/PublicarVenta'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
-import Categoria from '@/pages/categoria'
-import instashop from '@/pages/instashop'
+import Categoria from '@/pages/Categoria'
+import Instashop from '@/pages/Instashop'
 import Search from '@/pages/search'
 import Contenido from '@/pages/Contenido'
 
@@ -143,8 +143,8 @@ export default new Router({
     },
     {
       path: '/instashop',
-      name: 'instashop',
-      component: instashop
+      name: 'Instashop',
+      component: Instashop
     }
   ]
 })

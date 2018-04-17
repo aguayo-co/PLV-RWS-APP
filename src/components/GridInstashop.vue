@@ -1,163 +1,179 @@
 <template lang="pug">
-.tabs
-  //- nav.tabs__nav(v-if="mqMobile")
-  //- nav.tabs__nav
-  //-   p.tabs__nav-btn
-  //-     span.tabs__nav-link.tabs__list-inner(@click.stop="openToggle") {{ orderOptions.options[orderOptions.selected].name }}
-  //-     transition(name='toggle-scale')
-  //-       ul.tabs__nav-list(v-show="activeToggle")
-  //-         li.tabs__nav-item(v-for="option in orderOptions.options")
-  //-           a.tabs__nav-link(href="#",
-  //-             @click.prevent="tabActive1",
-  //-             :class="{tabActive: tabsActive1 == true}") {{ option.name }}
-  //- nav.tabs__nav(v-if="mqDesk")
-  nav.tabs__nav
-    p.tabs__inner
-      span.tabs__nav-btn(@click.stop="openToggle") {{ navOptions.options[navOptions.selected].name }}
-      ul.tabs__nav-list(:class="{openlist: activeToggle == true}")
-        li.tabs__nav-item
-          a.tabs__nav-link(href="#",
-            @click.prevent="tabActive1",
-            :class="{tabActive: tabsActive1 == true}") Prendas Publicadas
-        li.tabs__nav-item
-          a.tabs__nav-link(href="#",
-            @click.prevent="tabActive2",
-            :class="{tabActive: tabsActive2 == true}") Productos vendidos
-  .tabs__content
-    .tab(v-if="tabsActive1")
-      .product-grid.product-grid_small
-        article.slot.slot_grid(
-          v-for='product in products')
-          a.slot__ico.i-heart(
-            @click.prevent='myActive(product)'
-            :class='{active: isActive == product}'
-            href='#'
-            title='Agrega a Favoritos') Agregar a Favoritos
-          .slot__product-inner
-            a.slot__product(
-              :href='product.slug + "__" + product.id',
-              :title='product.title')
-              img.slot__img(
-                :src="product.images[0]",
-                alt="product.title")
-              //- Eliminar producto
-              .slot__product-actions(v-if="mqMobile")
-                a.slot__actions-link.i-edit-line(href="#")
-                a.slot__actions-link.i-trash(href="#")
-              .slot__product-actions(v-if="mqDesk")
-                a.slot__actions-link.i-edit-line(href="#")
-                  transition(name='toggle-scale')
-                    p.slot__tooltip Editar producto
-                a.slot__actions-link.i-trash(href="#")
-                  transition(name='toggle-scale')
-                    p.slot__tooltip Eliminar producto
-              //- Producto en proceso de compra
-              //- .slot__product-alert
-              //-   p.slot__alert-txt  Este producto está siendo comprado.
-              //-title/dimensions
-            .slot__lead
-              .slot__title {{ product.title }}
-              .slot__size(
-                v-if="product.size")
-                .slot__size-txt {{ product.size.name }}
-
-            //- brand/price
-            .slot__info
-              .slot__brand {{ product.brand.name }}
-              .slot__price ${{ product.price | currency }}
-
-          //- user: picture/first_name/last_name
-          a.slot__user(
+section.section_product.product-gridlight
+  header.section__head
+    h1.title_head Instashop
+    h2.title_subhead Encuentra TODO lo que publicamos en nuestro Instagram @prilovchile y cómpralo directamente
+  //- filter Mobile
+  FilterMobile(
+    v-if="mqMobile")
+  //- filter desktop
+  FilterDesk(
+    @filterChange="computeFilters",
+    :filter="filterValues",
+    v-if="mqDesk",
+    :compact="compact")
+  .section_product__scroll
+    .product-grid.product-grid_small
+      //- Producto 1
+      article.slot.slot_grid
+        .slot__product-inner
+          a.slot__product.sold(
             href='#',
-            :title='product.user.first_name')
-            .slot__user-img
-              .slot__avatar
-                img.slot__picture(
-                  v-if='product.user.picture'
-                  :src='product.user.picture',
-                  :alt='product.user.first_name')
-                span.tool-user__letter(
-                  v-else
-                ) {{ product.user.first_name.charAt(0) }}
-            .slot__user-info
-              .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
-              .group(v-if='product.user.groups.length > 0')
-                .slot__group.i-it-girl(
-                  v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
-                .slot__group.i-star-on(
-                  v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-    .tab(v-if="tabsActive2")
-      .product-grid.product-grid_small
-        article.slot.slot_grid(
-          v-for='product in products')
-          a.slot__ico.i-heart(
-            @click.prevent='myActive(product)'
-            :class='{active: isActive == product}'
-            href='#'
-            title='Agrega a Favoritos') Agregar a Favoritos
-
-          a.slot__product(
-            :href='product.slug + "__" + product.id',
-            :title='product.title')
+            title='Producto 1')
             img.slot__img(
-              :src="product.images[0]",
-              alt="product.title")
+              src="/static/img/demo/prod-instagram/vendido.png",
+              alt="Producto 1")
+          .slot__lead
+            .slot__title Black Bike
+            .slot__size
+              .slot__size-txt XL
 
-            //-title/dimensions
-            .slot__lead
-              .slot__title {{ product.title }}
-              .slot__size(
-                v-if="product.size")
-                .slot__size-txt {{ product.size.name }}
-
-            //- brand/price
-            .slot__info
-              .slot__brand {{ product.brand.name }}
-              .slot__price ${{ product.price | currency }}
-
-          //- user: picture/first_name/last_name
-          a.slot__user(
+          //- brand/price
+          .slot__info
+            .slot__brand Straadivaruois
+            .slot__price $40.000
+      //- Producto 2
+      article.slot.slot_grid
+        .slot__product-inner
+          a.slot__product(
             href='#',
-            :title='product.user.first_name')
-            .slot__user-img
-              .slot__avatar
-                img.slot__picture(
-                  v-if='product.user.picture'
-                  :src='product.user.picture',
-                  :alt='product.user.first_name')
-                span.tool-user__letter(
-                  v-else
-                ) {{ product.user.first_name.charAt(0) }}
-            .slot__user-info
-              .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
-              .group(v-if='product.user.groups.length > 0')
-                .slot__group.i-it-girl(
-                  v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
-                .slot__group.i-star-on(
-                  v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
+            title='Producto 1')
+            img.slot__img(
+              src="/static/img/demo/prod-instagram/insta-2.png",
+              alt="Producto 2")
+          .slot__lead
+            .slot__title Bike
+            .slot__size
+              .slot__size-txt L
 
+          //- brand/price
+          .slot__info
+            .slot__brand Straadivaruois
+            .slot__price $30.000
+      //- Producto 3
+      article.slot.slot_grid
+        .slot__product-inner
+          a.slot__product(
+            href='#',
+            title='Producto 1')
+            img.slot__img(
+              src="/static/img/demo/prod-instagram/insta-3.png",
+              alt="Producto 3")
+          .slot__lead
+            .slot__title Black
+            .slot__size
+              .slot__size-txt XS
+
+          //- brand/price
+          .slot__info
+            .slot__brand Straadivaruois
+            .slot__price $20.000
+      //- Producto 4
+      article.slot.slot_grid
+        .slot__product-inner
+          a.slot__product(
+            href='#',
+            title='Producto 1')
+            img.slot__img(
+              src="/static/img/demo/prod-instagram/insta-4.png",
+              alt="Producto 4")
+          .slot__lead
+            .slot__title Black Bike
+            .slot__size
+              .slot__size-txt XXL
+
+          //- brand/price
+          .slot__info
+            .slot__brand Straadivaruois
+            .slot__price $40.000
+      //- Producto 5
+      article.slot.slot_grid
+        .slot__product-inner
+          a.slot__product(
+            href='#',
+            title='Producto 1')
+            img.slot__img(
+              src="/static/img/demo/prod-instagram/insta-5.png",
+              alt="Producto 5")
+          .slot__lead
+            .slot__title Bike
+            .slot__size
+              .slot__size-txt M
+
+          //- brand/price
+          .slot__info
+            .slot__brand Straadivaruois
+            .slot__price $50.000
+      //- Producto 6
+      article.slot.slot_grid
+        .slot__product-inner
+          a.slot__product(
+            href='#',
+            title='Producto 6')
+            img.slot__img(
+              src="/static/img/demo/prod-instagram/insta-6.png",
+              alt="Producto 6")
+          .slot__lead
+            .slot__title Zapatos
+            .slot__size
+              .slot__size-txt XXS
+
+          //- brand/price
+          .slot__info
+            .slot__brand Straadivaruois
+            .slot__price $70.000
+    .section_product__footer
+      p.btn__wrapper(
+        v-if='!loading && !mqMobile')
+        a.btn.i-send(
+          @click='loadMoreProducts') Ver más prendas
+      p.preload(v-if='loading')
+        span.preload__spin.preload__spin_1
+        span.preload__spin.preload__spin_2
+        span.preload__spin.preload__spin_3
+        span.preload__spin.preload__spin_4
 </template>
 
 <script>
 
 import productAPI from '@/api/product'
+import FilterDesk from '@/components/FilterDesk'
+import FilterMobile from '@/components/FilterMobile'
 
 export default {
   name: 'GridInstashop',
+  props: [
+    'infinite',
+    'pager',
+    'compact',
+    'preFilter'
+  ],
+  components: {
+    FilterDesk,
+    FilterMobile
+  },
   data () {
     return {
       isActive: undefined,
-      tabsActive1: true,
-      tabsActive2: false,
       products: [],
-      activeToggle: false,
-      navOptions: {
-        selected: 0,
-        options: [
-          { id: 0, name: 'Prendas Publicadas' },
-          { id: 1, name: 'Productos vendidos' }
-        ]
-      }
+      items: 10,
+      page: 1,
+      filter: {},
+      totalPages: null,
+      filterValues: {
+        category: [],
+        size: [],
+        brand: [],
+        color: [],
+        condition: [],
+        region: [],
+        price: null,
+        order: null
+      },
+      orderBy: 'created_at',
+      filterQueryObject: {},
+      loading: false,
+      active: false
     }
   },
   methods: {
@@ -167,21 +183,59 @@ export default {
     NotActive: function (e) {
       this.isActive = undefined
     },
-    tabActive1: function () {
-      this.tabsActive1 = true
-      this.tabsActive2 = false
-      this.activeToggle = false
+    loadMoreProducts: async function (e) {
+      this.page += 1
+      this.loading = true
+      await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+        .then((response) => {
+          this.products.push(...response.data.data)
+          this.loading = false
+        })
     },
-    tabActive2: function () {
-      this.tabsActive2 = true
-      this.tabsActive1 = false
-      this.activeToggle = false
+    handleScroll: function (e) {
+      if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+        this.loadMoreProducts()
+      }
     },
-    openToggle: function () {
-      this.activeToggle = !this.activeToggle
+    computeFilters: async function () {
+      this.loading = true
+      this.products = []
+      this.filterQueryObject = {
+        category_id: this.filterValues.category.join(','),
+        size_id: this.filterValues.size.join(','),
+        brand_id: this.filterValues.brand.join(','),
+        color_id: this.filterValues.color.join(','),
+        condition_id: this.filterValues.condition.join(','),
+        region_id: this.filterValues.region.join(','),
+        price: this.filterValues.price
+      }
+      this.orderBy = this.filterValues.order || this.orderBy
+      await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+        .then((response) => {
+          this.loading = false
+          this.products = response.data.data
+          this.page = 1
+        })
+    },
+    updateProductList: function () {
+      productAPI.getProducts(this.page, this.items, this.filter)
+        .then(response => {
+          this.products = response.data.data
+        })
+    },
+    nextPage: function () {
+      this.page += 1
+      this.updateProductList()
+    },
+    prevPage: function () {
+      if (this.page > 1) this.page -= 1
+      this.updateProductList()
     }
   },
   created: function () {
+    if (this.preFilter) {
+      this.filterQueryObject = this.preFilter
+    }
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
     productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
       .then((response) => {
