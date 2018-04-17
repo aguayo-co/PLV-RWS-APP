@@ -3563,7 +3563,8 @@ body {
 .banner-hero__head {
   width: 100%;
   text-align: center;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  color: #fff; }
 
 .banner-hero__main {
   display: block;
