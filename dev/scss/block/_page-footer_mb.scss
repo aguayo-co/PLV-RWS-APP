@@ -6,7 +6,8 @@
   .page-foot {
     position: fixed;
     bottom: 0;
-    z-index: 998;
+    z-index: 180;
+    transition: .5s ease;
     width: 100%;
     padding: 10px;
     background-color: $c-default;
@@ -27,6 +28,7 @@
     }
 
     &.openSearchMb {
+      z-index: 200;
       &:after {
         opacity: 1;
         pointer-events: auto;
@@ -151,6 +153,7 @@
 
   .foot-nav__search-btn {
     margin-bottom: 40px;
+    width: 100%;
   }
 
   .foot-nav__sublist {

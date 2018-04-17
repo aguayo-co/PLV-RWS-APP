@@ -24,18 +24,25 @@
         PageHeaderMenuMobile(
           v-show='menuOpen',
           @MenuClose='MenuOpen')
+  UserMenuMobile(
+    v-if="mqMobile && user.id"
+  )
 
 </template>
 
 <script>
 import PageHeaderBrand from '@/components/PageHeader-brand'
 import PageHeaderMenuMobile from '@/components/PageHeader-menuMobile'
+import UserMenuMobile from '@/components/UserMenuMobile'
+
+import { mapState } from 'vuex'
 
 export default {
   name: 'PageHeaderMobile',
   components: {
     PageHeaderBrand,
-    PageHeaderMenuMobile
+    PageHeaderMenuMobile,
+    UserMenuMobile
   },
   data () {
     return {
@@ -61,6 +68,9 @@ export default {
       }
       this.lastScrollTop = this.sTop
     }
+  },
+  computed: {
+    ...mapState(['user'])
   }
 }
 </script>
