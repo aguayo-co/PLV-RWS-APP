@@ -1,6 +1,6 @@
 <template lang="pug">
 div.page(
-  v-bind:class='{ "is-modal": modal }'
+  v-bind:class='{ "is-modal": modal, "page-user" : user.id }'
   )
 
   //- Header template Mobile
@@ -48,6 +48,8 @@ import ModalPasswordChange from '@/components/ModalPasswordChange'
 import PageFooter from '@/components/PageFooter'
 import PageFooterMobile from '@/components/PageFooterMobile'
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'app',
   components: {
@@ -68,6 +70,7 @@ export default {
 
   },
   computed: {
+    ...mapState(['user']),
     modal () {
       return this.$store.getters['ui/modal']
     },

@@ -284,9 +284,10 @@
 }
 .user-data-nav {
   @include flexbox;
+  @include justify-content(center);
   list-style: none;
   margin: 0;
-  padding: 8px 0;
+  padding: 16px 0 8px;
 }
 
 .user-data__value {

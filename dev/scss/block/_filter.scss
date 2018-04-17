@@ -18,7 +18,7 @@
     .filter {
       @include flexbox;
       @include justify-content(space-between);
-      @include align-items(center);
+      @include align-items(stretch);
       &:after {
         content: '';
         position: fixed;
@@ -43,8 +43,12 @@
     }
     .filter__btn {
       position: relative;
-      min-width: 120px;
-      padding: 10px 20px 10px 12px;
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(space-between);
+      width: 50%;
+      max-width: 200px;
+      padding: 10px 12px 10px;
       margin-bottom: 12px;
       color: $c-default;
       border: 1px solid $c-default;
@@ -53,9 +57,6 @@
       background: none\0;
       &:after {
         content: '';
-        position: absolute;
-        top: 10px;
-        right: 10px;
         display: inline-block;
         width: 0;
         height: 0;
