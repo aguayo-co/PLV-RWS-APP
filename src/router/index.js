@@ -21,6 +21,7 @@ import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/categoria'
 import Search from '@/pages/search'
+import Contenido from '@/pages/Contenido'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/contenido',
+      name: 'contenido',
+      component: Contenido
     },
     {
       path: '/signup',
