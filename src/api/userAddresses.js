@@ -5,7 +5,7 @@ import Vue from 'vue'
 
 export default {
   getRegions: function () {
-    return Vue.axios.get('/api/regions/')
+    return Vue.axios.get('/api/regions')
   },
 
   update: function (data) {
