@@ -100,7 +100,8 @@ export default {
   props: [
     'infinite',
     'pager',
-    'compact'
+    'compact',
+    'preFilter'
   ],
   components: {
     FilterDesk,
@@ -125,7 +126,7 @@ export default {
         order: null
       },
       orderBy: 'created_at',
-      filterQueryObject: { },
+      filterQueryObject: {},
       loading: false,
       active: false
     }
@@ -187,6 +188,9 @@ export default {
     }
   },
   created: function () {
+    if (this.preFilter) {
+      this.filterQueryObject = this.preFilter
+    }
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
     productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
       .then((response) => {
