@@ -19,8 +19,9 @@ import PublicarVenta from '@/pages/PublicarVenta'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
-import Categoria from '@/pages/categoria'
+import Categoria from '@/pages/Categoria'
 import Search from '@/pages/search'
+import Contenido from '@/pages/Contenido'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/contenido',
+      name: 'contenido',
+      component: Contenido
     },
     {
       path: '/signup',
@@ -125,7 +131,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/categoria',
+      path: '/:type/:slug',
       name: 'Categoria',
       component: Categoria
     },

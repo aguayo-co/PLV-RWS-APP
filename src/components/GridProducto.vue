@@ -18,8 +18,8 @@
           :class='{active: isActive == product}'
           href='#'
           title='Agrega a Favoritos') Agregar a Favoritos
-        a.slot__product(
-          :href='product.slug + "__" + product.id',
+        router-link.slot__product(
+          :to='"producto/" + product.slug + "__" + product.id',
           :title='product.title')
           img.slot__img(
             :src="product.images[0]",
@@ -100,7 +100,8 @@ export default {
   props: [
     'infinite',
     'pager',
-    'compact'
+    'compact',
+    'preFilter'
   ],
   components: {
     FilterDesk,
@@ -125,7 +126,7 @@ export default {
         order: null
       },
       orderBy: 'created_at',
-      filterQueryObject: { },
+      filterQueryObject: {},
       loading: false,
       active: false
     }
@@ -187,6 +188,9 @@ export default {
     }
   },
   created: function () {
+    if (this.preFilter) {
+      this.filterQueryObject = this.preFilter
+    }
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
     productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
       .then((response) => {
