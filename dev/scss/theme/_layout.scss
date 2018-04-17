@@ -57,6 +57,10 @@
   @include flexbox;
 }
 
+.layout_nofound {
+  padding: 100px 0 0;
+}
+
 @media only screen and (max-width: 1023px) {
   .content-main {
     margin-bottom: 75px;
@@ -73,6 +77,9 @@
   }
   .content-slot__inner {
     width: 76%;
+  }
+  .layout_nofound {
+    padding: 100px 0;
   }
 }
 

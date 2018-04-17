@@ -15,8 +15,11 @@
       GridProducto(
         :preFilter='filter'
         :infinite='true')
-  div(v-if="!matchSlug && !loading")
-    h1 La URL que estás intentando acceder no existe
+  .layout-inner(v-if="!matchSlug && !loading")
+    .layout_nofound
+      .alert
+        p.alert__txt.i-sad La URL que estás intentando acceder no existe
+
 </template>
 
 <script>
