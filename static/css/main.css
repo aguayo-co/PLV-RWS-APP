@@ -1468,6 +1468,15 @@ h6 {
     height: 3px;
     background-color: #f65a66; }
 
+.title_section {
+  padding: 24px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-size: 1.5rem; }
+
 .subhead {
   padding-bottom: 16px;
   text-align: center;
@@ -1563,6 +1572,10 @@ h6 {
     font-weight: 500; }
   .title_subhead {
     letter-spacing: 4px; }
+  .title_section {
+    padding: 100px 0 54px;
+    font-size: 50px;
+    font-size: 3.125rem; }
   .subtitle_line {
     padding-bottom: 16px;
     margin-bottom: 32px;
