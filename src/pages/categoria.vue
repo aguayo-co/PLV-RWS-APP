@@ -9,7 +9,8 @@
     BannerHero(
       v-if="banner",
       :banner="banner")
-    h1(v-else) {{ queryObject.name }}
+    .layout-inner(v-else)
+      h1.title_section {{ queryObject.name }}
     section.section_product
       GridProducto(
         :preFilter='filter'
