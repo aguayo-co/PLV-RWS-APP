@@ -16,6 +16,15 @@ export default {
     })
     return Vue.axiosAuth.patch('/api/orders/' + orderId, data)
   },
+  salesCompleted (orderId, salesIds) {
+    const data = {
+      sales: {}
+    }
+    salesIds.forEach(saleId => {
+      data.sales[saleId] = {status: 90}
+    })
+    return Vue.axiosAuth.patch('/api/orders/' + orderId, data)
+  },
   uploadTransferReceipt (orderId, file) {
     var data = new window.FormData()
     data.append('transfer_receipt', file)

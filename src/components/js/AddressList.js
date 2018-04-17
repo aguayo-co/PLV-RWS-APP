@@ -48,15 +48,15 @@ export default {
       return Object.keys(this.regionsList)
     },
     cities () {
-      const region = this.newAddressData.new_region
+      const region = this.newAddressData.region
       const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
       if (cities) {
         return Object.keys(cities)
       }
     },
     zones () {
-      const region = this.newAddressData.new_region
-      const city = this.newAddressData.new_city
+      const region = this.newAddressData.region
+      const city = this.newAddressData.city
       const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
       if (zones) {
         return Object.keys(zones)

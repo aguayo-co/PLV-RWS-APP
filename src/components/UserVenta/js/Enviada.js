@@ -11,7 +11,9 @@ export default Base.merge({
     },
     trackingInfo () {
       return this.$getNestedObject(this.sale, ['shipment_details', 'tracking_codes', 0])
-    },
+    }
+  },
+  method: {
     askForShippingDetails () {
       this.sale.status = 30
     }
