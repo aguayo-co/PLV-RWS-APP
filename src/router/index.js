@@ -19,7 +19,8 @@ import PublicarVenta from '@/pages/PublicarVenta'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
-import Categoria from '@/pages/Categoria'
+import Categoria from '@/pages/categoria'
+import instashop from '@/pages/instashop'
 import Search from '@/pages/search'
 
 Vue.use(Router)
@@ -126,13 +127,18 @@ export default new Router({
     },
     {
       path: '/:type/:slug',
-      name: 'Categoria',
+      name: 'categoria',
       component: Categoria
     },
     {
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/instashop',
+      name: 'instashop',
+      component: instashop
     }
   ]
 })
