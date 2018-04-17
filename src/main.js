@@ -42,5 +42,6 @@ new Vue({
 
 router.beforeEach((to, from, next) => {
   store.dispatch('ui/closeModal')
+  store.dispatch('ui/closeMenu')
   next()
 })
