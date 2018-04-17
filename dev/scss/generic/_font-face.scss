@@ -64,7 +64,7 @@
 @function unicode($str) {
   @return unquote("\"")+$str+unquote("\"");
 }
-
+//-V6
 .i-prilov {
   &:before {
     content: unicode($i-prilov);
@@ -353,6 +353,18 @@
   }
 }
 
+.i-up {
+  &:before {
+    content: unicode($i-up);
+  }
+}
+
+.i-down {
+  &:before {
+    content: unicode($i-down);
+  }
+}
+
 .i-back {
   &:before {
     content: unicode($i-back);
@@ -502,4 +514,3 @@
     content: unicode($i-search-plus);
   }
 }
-
