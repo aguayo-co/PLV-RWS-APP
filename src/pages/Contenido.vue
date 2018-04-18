@@ -3,6 +3,8 @@
   .blog
     BannerTop
     Blogbanner
+    BlogSide
+    BlogbannerProm
     h4.blog__subhead Marcas disponibles en Prilov
     ul
       li Adidas
@@ -27,17 +29,22 @@
       li Vestidos cortos
       li Pantalones
       li Zapatos
+
 </template>
 
 <script>
 import BannerTop from '@/components/BannerTop'
 import Blogbanner from '@/components/Blogbanner'
+import BlogbannerProm from '@/components/BlogbannerProm'
+import BlogSide from '@/components/BlogSide'
 
 export default {
   name: 'Contenido',
   components: {
     BannerTop,
-    Blogbanner
+    BlogbannerProm,
+    Blogbanner,
+    BlogSide
   }
 }
 
