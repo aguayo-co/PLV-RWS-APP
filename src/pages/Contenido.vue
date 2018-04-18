@@ -3,20 +3,23 @@
   BannerTop
   BannerSlider
   .layout-inner
-    form.nav-search(action='', method='GET')
-      .nav-search__row.i-search
-        input.nav-search__input#searchMain(type='text', name='search')
+    Filtrate(
+      :search="true",
+      :order="true")
+
 </template>
 
 <script>
 import BannerTop from '@/components/BannerTop'
 import BannerSlider from '@/components/BannerSlider'
+import Filtrate from '@/components/Filtrate'
 
 export default {
   name: 'Contenido',
   components: {
     BannerTop,
-    BannerSlider
+    BannerSlider,
+    Filtrate
   }
 }
 </script>
