@@ -1,0 +1,27 @@
+.blog-banner {
+  .banner-hero__slot {
+    width: 70%;
+    left: 0;
+    @include prefixer(transform, translate(0, -50%), ("webkit", "moz"));
+  }
+}
+
+@include media-query(wide) {
+  .blog-banner {
+    .banner-hero__slot {
+      width: 50%;
+      left: 0;
+      @include prefixer(transform, translate(0, -50%), ("webkit", "moz"));
+    }
+  }
+}
+
+// Estilos Blog-banner prom
+.blog-bannerprom {
+  .banner-hero__head {
+    color: $c-default;
+  }
+  .banner-hero__title {
+    display: block;
+  }
+}

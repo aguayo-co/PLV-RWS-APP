@@ -8616,9 +8616,32 @@ body {
   .filtrate__list {
     max-width: 164px; } }
 
-/*------------------------------------*	Estilos de copy blog
+/*------------------------------------*\
+	Estilos de copy blog
 \*------------------------------------*/
-/*------------------------------------*	Estilos de blog list
+.blog-banner .banner-hero__slot {
+  width: 70%;
+  left: 0;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  transform: translate(0, -50%); }
+
+@media only screen and (min-width: 1024px) {
+  .blog-banner .banner-hero__slot {
+    width: 50%;
+    left: 0;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    transform: translate(0, -50%); } }
+
+.blog-bannerprom .banner-hero__head {
+  color: #000; }
+
+.blog-bannerprom .banner-hero__title {
+  display: block; }
+
+/*------------------------------------*\
+	Estilos de blog list
 \*------------------------------------*/
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
