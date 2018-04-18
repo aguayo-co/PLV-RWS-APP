@@ -21,7 +21,7 @@ import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
 import Instashop from '@/pages/Instashop'
-import Search from '@/pages/search'
+import Search from '@/pages/Search'
 import Contenido from '@/pages/Contenido'
 
 Vue.use(Router)
