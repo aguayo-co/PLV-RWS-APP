@@ -21,11 +21,8 @@ import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
 import Search from '@/pages/search'
-<<<<<<< HEAD
 import Prilovers from '@/pages/prilovers'
-=======
 import Contenido from '@/pages/Contenido'
->>>>>>> 67e0c6d6df566b0b0ad77b212ba6bcdcbea5e9bf
 
 Vue.use(Router)
 
