@@ -20,6 +20,7 @@ import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
+import Instashop from '@/pages/Instashop'
 import Search from '@/pages/search'
 import Contenido from '@/pages/Contenido'
 
@@ -132,13 +133,18 @@ export default new Router({
     },
     {
       path: '/:type/:slug',
-      name: 'Categoria',
+      name: 'categoria',
       component: Categoria
     },
     {
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/instashop',
+      name: 'Instashop',
+      component: Instashop
     }
   ]
 })
