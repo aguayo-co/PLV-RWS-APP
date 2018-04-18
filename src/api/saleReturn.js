@@ -7,10 +7,11 @@ export default {
   load (saleReturnsId) {
     return Vue.axiosAuth.get('/api/sale_returns/' + saleReturnsId)
   },
-  return (salesId, productsIds) {
+  return (salesId, productsIds, reason) {
     const data = {
       sale_id: salesId,
-      products_ids: productsIds
+      products_ids: productsIds,
+      reason
     }
     return Vue.axiosAuth.post('/api/sale_returns/', data)
   },

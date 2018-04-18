@@ -26,7 +26,7 @@ export default Base.merge({
       })
     },
     saleReturnDelivered () {
-      saleReturnAPI.delivered(this.sale_return.id, '').then(response => {
+      saleReturnAPI.delivered(this.sale_return.id, 'Entrega coordinada por compradora.').then(response => {
         this.sale_return = response.data
       }).catch((e) => {
         this.$handleApiErrors(e)
