@@ -21,6 +21,7 @@ import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/categoria'
 import Search from '@/pages/search'
+import Prilovers from '@/pages/prilovers'
 
 Vue.use(Router)
 
@@ -133,6 +134,11 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/prilovers',
+      name: 'Prilovers',
+      component: Prilovers
     }
   ]
 })
