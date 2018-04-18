@@ -34,5 +34,23 @@ export default {
       }
     }
     return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
+  },
+  received (saleReturnId) {
+    const data = {
+      status: 49
+    }
+    return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
+  },
+  completed (saleReturnId) {
+    const data = {
+      status: 90
+    }
+    return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
+  },
+  adminManagement (saleReturnId) {
+    const data = {
+      status: 50
+    }
+    return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
   }
 }
