@@ -99,6 +99,8 @@
           .form__row
             label.form__label(
               for='new-address-city') Ciudad
+            span.help(
+              v-show="errorLog.city") {{ errorLog.city }}
             select.form__select(
               v-model="newAddressData['city']")
               option
