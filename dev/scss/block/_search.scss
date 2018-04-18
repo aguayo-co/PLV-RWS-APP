@@ -24,7 +24,7 @@
 
 .filtrate__input {
   width: 100%;
-  padding: 0 30px 0 12px;
+  padding: 0 40px 0 12px;
   line-height: 40px;
   font-family: $f-default;
   border: 1px solid $c-default-2;
@@ -34,13 +34,14 @@
   position: relative;
   width: 100%;
   max-width: 328px;
+  margin-bottom: 16px;
 }
 
 .filtrate__btn {
   @include flexbox;
   @include justify-content(space-between);
   @include align-items(center);
-  max-width: 164px;
+  width: 100%;
   margin-left: auto;
   padding: 10px 10px 11px;
   border: 1px solid $c-default;
@@ -59,10 +60,11 @@
   position: absolute;
   z-index: 2;
   width: 100%;
+  right: 0;
   list-style: none;
   border: 1px solid $c-default;
   border-top: none;
-  border-bottom: none;
+  background-color: $c-neutro;
 }
 
 .filtrate__list-item {
@@ -81,6 +83,11 @@
 
   .filtrate__item {
     width: 50%;
+    margin-bottom: 0;
+  }
+
+  .filtrate__list {
+    max-width: 164px;
   }
 
 }
