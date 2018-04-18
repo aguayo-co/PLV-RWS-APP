@@ -3596,11 +3596,21 @@ body {
   width: 100%;
   height: auto; }
 
+.banner-hero__slot_short {
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 90%;
+  margin: 0 auto; }
+
 .banner-hero__head {
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
   color: #fff; }
+  .banner-hero__head.left {
+    text-align: left; }
 
 .banner-hero__main {
   display: block;
@@ -3620,6 +3630,17 @@ body {
 .banner-hero__subtitle {
   font-size: 24px;
   font-size: 1.5rem; }
+
+.banner-hero__caption {
+  display: inline;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 35px;
+  font-size: 2.1875rem;
+  line-height: 1.5;
+  padding: 2px 5px;
+  color: #000;
+  background-color: #fff; }
 
 .banner-hero__btn {
   width: auto;
@@ -3641,9 +3662,23 @@ body {
     font-size: 64px;
     font-size: 4rem; } }
 
+@media only screen and (min-width: 768px) {
+  .banner-hero__caption {
+    font-size: 45px;
+    font-size: 2.8125rem; } }
+
 @media only screen and (min-width: 1024px) {
   .banner-hero {
-    margin: 0 auto 60px auto; } }
+    margin: 0 auto 60px auto; }
+  .banner-hero__caption {
+    font-size: 60px;
+    font-size: 3.75rem; }
+  .banner-hero__slot_short {
+    width: 50%;
+    left: 0;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    transform: translate(0, -50%); } }
 
 /*------------------------------------*\
 	Slider prilover Home
