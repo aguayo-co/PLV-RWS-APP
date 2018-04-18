@@ -16,6 +16,17 @@
       li Forever 21
       li Foster
     h4.blog__subhead Las prendas más vendidas en Prilov
+    ol
+      li Chaquetas
+      li Vestidos
+      li Vestidos cortos
+      li Pantalones
+      li Zapatos
+      li Chaquetas
+      li Vestidos
+      li Vestidos cortos
+      li Pantalones
+      li Zapatos
 </template>
 
 <script>
