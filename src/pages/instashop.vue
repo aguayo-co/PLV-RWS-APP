@@ -1,7 +1,17 @@
 <template lang="pug">
 .layout-page
   BannerTop
-  GridInstashop
+  section.section_product.prod-gridlight
+    header.section__head
+      h1.title_head Instashop
+      h2.title_subhead Encuentra TODO lo que publicamos en nuestro Instagram @prilovchile y cómpralo directamente
+    .filtrate-box
+      .filtrate__row.i-search
+        input.filtrate__input#searchMain(
+          type='text',
+          name='search',
+          placeholder="Buscar")
+    GridInstashop
 </template>
 
 <script>

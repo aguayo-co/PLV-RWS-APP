@@ -1,8 +1,5 @@
 <template lang="pug">
-section.section_product.product-gridlight
-  header.section__head
-    h1.title_head Instashop
-    h2.title_subhead Encuentra TODO lo que publicamos en nuestro Instagram @prilovchile y cómpralo directamente
+.gridlight
   //- filter Mobile
   FilterMobile(
     v-if="mqMobile")

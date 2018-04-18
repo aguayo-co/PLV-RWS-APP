@@ -1,7 +1,7 @@
 /*------------------------------------*\
 	GAaleria de producto con opacidad
 \*------------------------------------*/
-.product-gridlight {
+.prod-gridlight {
   .section__head {
     padding-bottom: 40px;
   }
@@ -43,6 +43,11 @@
       border-radius: 50%;
       margin: auto;
     }
+  }
+  .filtrate-box {
+    max-width: 320px;
+    margin: 0 auto 0 0;
+    padding-bottom: 40px;
   }
 }
 // $bp-medium: 768px;

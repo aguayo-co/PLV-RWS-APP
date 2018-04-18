@@ -5752,21 +5752,21 @@ body {
 /*------------------------------------*\
 	GAaleria de producto con opacidad
 \*------------------------------------*/
-.product-gridlight .section__head {
+.prod-gridlight .section__head {
   padding-bottom: 40px; }
 
-.product-gridlight .title_head {
+.prod-gridlight .title_head {
   padding-bottom: 20px; }
 
-.product-gridlight .title_subhead {
+.prod-gridlight .title_subhead {
   max-width: 840px;
   margin: 0 auto;
   padding-top: 0; }
 
-.product-gridlight .sold {
+.prod-gridlight .sold {
   position: relative;
   background-color: #cbcbcb; }
-  .product-gridlight .sold:before {
+  .prod-gridlight .sold:before {
     content: 'Vendido';
     position: absolute;
     top: 50%;
@@ -5782,7 +5782,7 @@ body {
     font-weight: 100;
     text-transform: uppercase;
     z-index: 1; }
-  .product-gridlight .sold:after {
+  .prod-gridlight .sold:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -5796,6 +5796,11 @@ body {
     background-color: #000;
     border-radius: 50%;
     margin: auto; }
+
+.prod-gridlight .filtrate-box {
+  max-width: 320px;
+  margin: 0 auto 0 0;
+  padding-bottom: 40px; }
 
 @media only screen and (min-width: 768px) {
   .product-gridlight .title_head {
@@ -8449,7 +8454,8 @@ body {
     margin-bottom: 16px;
     border-bottom: 3px solid #f65a66; } }
 
-/*------------------------------------*	Search generic
+/*------------------------------------*\
+	Search generic
 \*------------------------------------*/
 .filtrate {
   display: -webkit-box;
