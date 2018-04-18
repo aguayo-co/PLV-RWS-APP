@@ -8616,9 +8616,58 @@ body {
   .filtrate__list {
     max-width: 164px; } }
 
-/*------------------------------------*	Estilos de copy blog
+/*------------------------------------*\
+	Estilos de copy blog
 \*------------------------------------*/
-/*------------------------------------*	Estilos de blog list
+.blog-banner .banner-hero__slot {
+  width: 70%;
+  left: 0;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  transform: translate(0, -50%); }
+
+@media only screen and (min-width: 1024px) {
+  .blog-banner .banner-hero__slot {
+    width: 50%;
+    left: 0;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    transform: translate(0, -50%); } }
+
+.blog-bannerprom .banner-hero__head {
+  color: #000; }
+
+.blog-bannerprom .banner-hero__title {
+  display: block; }
+
+.blog-side dl {
+  padding-bottom: 16px; }
+
+.blog-side dt {
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  padding-bottom: 16px; }
+
+.blog-side dd {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 16px;
+  font-size: 1rem;
+  padding-bottom: 16px; }
+
+@media only screen and (min-width: 768px) {
+  .blog-side dl {
+    padding-bottom: 24px; }
+  .blog-side dt {
+    padding-bottom: 24px; }
+  .blog-side dd {
+    padding-bottom: 24px; } }
+
+/*------------------------------------*\
+	Estilos de blog list
 \*------------------------------------*/
 /*! Flickity v2.0.11
 http://flickity.metafizzy.co
