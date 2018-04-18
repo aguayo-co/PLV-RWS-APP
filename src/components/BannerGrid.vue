@@ -39,7 +39,7 @@ export default {
   created: async function () {
     await bannersAPI.getAllBanners()
       .then(response => {
-        this.banners = response.data.data.filter(x => x.name.split('-')[1] !== 'top')
+        this.banners = response.data.data.filter(x => x.name.split('-')[0] === 'banner').slice(0, 3)
       })
   }
 }

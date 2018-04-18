@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/home'
+import Home from '@/pages/Home'
 import SignUp from '@/pages/SignUp'
 import Pass from '@/pages/Pass'
 import User from '@/pages/User'
@@ -19,9 +19,13 @@ import PublicarVenta from '@/pages/PublicarVenta'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
-import Categoria from '@/pages/categoria'
+import Categoria from '@/pages/Categoria'
 import Search from '@/pages/search'
+<<<<<<< HEAD
 import Prilovers from '@/pages/prilovers'
+=======
+import Contenido from '@/pages/Contenido'
+>>>>>>> 67e0c6d6df566b0b0ad77b212ba6bcdcbea5e9bf
 
 Vue.use(Router)
 
@@ -31,6 +35,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/contenido',
+      name: 'contenido',
+      component: Contenido
     },
     {
       path: '/signup',
@@ -126,7 +135,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/categoria',
+      path: '/:type/:slug',
       name: 'Categoria',
       component: Categoria
     },

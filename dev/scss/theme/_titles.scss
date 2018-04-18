@@ -85,6 +85,15 @@ h6 {
   }
 }
 
+.title_section {
+  padding: 24px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: $fw-bold;
+  font-family: $f-normal;
+  @include font-rem(24px);
+}
+
 .subhead {
   padding-bottom: 16px;
   text-align: center;
@@ -196,6 +205,12 @@ h6 {
   .title_subhead {
     letter-spacing: 4px;
   }
+
+  .title_section {
+    padding: 100px 0 54px;
+    @include font-rem(50px);
+  }
+
   .subtitle_line {
     padding-bottom: 16px;
     margin-bottom: 32px;
