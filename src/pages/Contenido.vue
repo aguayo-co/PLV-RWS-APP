@@ -6,8 +6,8 @@
       .banner-hero__head.left
         h3.banner-hero__caption Te regalamos en tu primera compra
     picture.banner-hero__crop
-      source.banner-hero__img(media='(max-width: 640px)', srcset='static/img/demo/banner-slider-m1.jpg')
-      img.banner-slider__img(src='static/img/demo/banner-slider1.jpg')
+      source.banner-hero__img(media='(max-width: 640px)', srcset='static/img/demo/banner-blog-m.jpg')
+      img.banner-slider__img(src='static/img/demo/banner-blog.jpg')
 
 </template>
 
