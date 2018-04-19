@@ -8267,12 +8267,12 @@ body {
     font-weight: 100; }
 
 .blog__title {
+  line-height: 1.2;
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 40px;
-  font-size: 2.5rem;
-  line-height: 1.2; }
+  font-size: 2.5rem; }
 
 .blog__kicker {
   text-transform: uppercase;
@@ -8292,6 +8292,9 @@ body {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-size: 1rem; }
+
+.blog__copy {
+  line-height: 1.46; }
 
 @media only screen and (min-width: 768px) {
   .blog {

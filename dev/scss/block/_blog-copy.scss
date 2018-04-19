@@ -11,11 +11,11 @@
 	}
 }
 .blog__title {
+	line-height: 1.2;
 	text-transform: uppercase;
 	font-family: $f-fancy;
 	font-weight: $fw-semi-bold;
 	@include font-rem(40px);
-	line-height: 1.2;
 }
 .blog__kicker {
   text-transform: uppercase;
@@ -32,6 +32,9 @@
   padding-bottom: 16px;
 	font-family: $f-fancy;
 	@include font-rem(16px);
+}
+.blog__copy {
+	line-height: 1.46;
 }
 
 @include media-query(medium) {
