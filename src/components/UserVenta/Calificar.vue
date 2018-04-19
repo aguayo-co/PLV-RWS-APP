@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard__actions
+.dashboard__actions(v-show="!rating.status")
   p Califica esta compra
   //-Notificaciones
   span.help(
