@@ -26,20 +26,24 @@
 		}
 	}
 	ol {
+		list-style: none;
 		counter-reset: section;
+		margin: 0;
 		li {
 			position: relative;
+			margin: 8px 0;
 			padding-left: 24px;
 			&:before {
 				counter-increment: section;
 				content: counter(section);
 				position: absolute;
-				top: 0;
-				text-align: center;
+				top: 4px;
 				left: 0;
+				text-align: center;
 				display: block;
-				width: 16px;
-				height: 16px;
+				width: 18px;
+				height: 18px;
+				line-height: 16px;
 				color: $c-neutro;
 				@include font-rem(12px);
 				font-family: $f-normal;
@@ -67,8 +71,10 @@
 			li {
 				padding-left: 34px;
 				&:before {
+					top: 6px;
 					width: 24px;
 					height: 24px;
+					line-height: 22px;
 					@include font-rem(18px);
 				}
 			}
