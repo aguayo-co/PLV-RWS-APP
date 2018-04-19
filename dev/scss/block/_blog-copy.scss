@@ -152,7 +152,6 @@
 }
 
 
-
 @include media-query(medium) {
 	.blog {
 		margin-bottom: 100px;
@@ -247,6 +246,7 @@
 		.blog__picture {
 			margin-right: 0;
 			margin-left: 48px;
+			min-width: 510px;
 		}
 	}
 

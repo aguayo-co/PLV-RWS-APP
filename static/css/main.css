@@ -1806,8 +1806,14 @@ body {
 .page {
   min-height: 100vh; }
 
+.content-main {
+  min-height: 70vh; }
+
 .layout {
   background-color: #fff; }
+
+.layout-page .preload:first-child {
+  margin-top: 60px; }
 
 .layout-slot {
   background-color: #efefef; }
@@ -1857,6 +1863,8 @@ body {
     padding: 46px 0 84px; }
   .content-slot__inner {
     width: 76%; }
+  .layout-page .preload:first-child {
+    margin-top: 100px; }
   .layout_nofound {
     padding: 100px 0; } }
 
@@ -8476,7 +8484,8 @@ body {
       margin-left: -140px; }
     .blog__spread_upside .blog__picture {
       margin-right: 0;
-      margin-left: 48px; }
+      margin-left: 48px;
+      min-width: 510px; }
   .blog__copy {
     max-width: 60%; }
   .blog__pullquote {

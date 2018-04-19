@@ -38,7 +38,7 @@
 <script>
 
 export default {
-  name: 'Contenido2'
+  name: 'AyudaComoCobrar'
 }
 
 </script>
