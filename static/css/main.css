@@ -1862,8 +1862,14 @@ body {
 .page {
   min-height: 100vh; }
 
+.content-main {
+  min-height: 70vh; }
+
 .layout {
   background-color: #fff; }
+
+.layout-page .preload:first-child {
+  margin-top: 60px; }
 
 .layout-slot {
   background-color: #efefef; }
@@ -1915,6 +1921,8 @@ body {
     padding: 46px 0 84px; }
   .content-slot__inner {
     width: 76%; }
+  .layout-page .preload:first-child {
+    margin-top: 100px; }
   .layout_nofound {
     padding: 100px 0; } }
 
@@ -4461,6 +4469,10 @@ body {
 
 .user-edit_right {
   text-align: right; }
+
+.user-data.tool-user__letter {
+  font-size: 600%;
+  color: #fff; }
 
 /*------------------------------------*\
   User Profile avatar page "closet"
@@ -8679,7 +8691,10 @@ body {
     margin: 0;
     padding-bottom: 16px; }
   .blog .blog__lead {
-    padding: 16px 0 24px; }
+    padding-bottom: 24px; }
+
+.blog_top {
+  padding-top: 30px; }
 
 .blog__inner {
   width: 96%;
@@ -8741,6 +8756,9 @@ body {
   font-size: 1rem; }
 
 .blog__spread {
+  padding-bottom: 30px; }
+
+.blog__body_slot {
   padding-bottom: 30px; }
 
 .blog__copy {
@@ -8806,7 +8824,9 @@ body {
     .blog p {
       padding-bottom: 24px; }
     .blog .blog__lead {
-      padding: 24px 0 36px; }
+      padding-bottom: 36px; }
+  .blog_top {
+    padding-top: 100px; }
   .blog__header {
     padding-bottom: 56px; }
   .blog__title {
@@ -8848,7 +8868,8 @@ body {
 
 @media only screen and (min-width: 1024px) {
   .blog__out {
-    width: 88%; }
+    width: 88%;
+    max-width: 1180px; }
     .blog__out .blog__copy {
       width: 100%;
       margin: 0; }
@@ -8861,6 +8882,10 @@ body {
     display: -ms-flexbox;
     display: flex;
     padding-bottom: 60px; }
+  .blog__body_slot {
+    padding-bottom: 60px; }
+    .blog__body_slot .blog__copy {
+      max-width: 80%; }
   .blog__spread_upside {
     -webkit-box-direction: reverse;
     -webkit-box-orient: horizontal;
@@ -8883,6 +8908,7 @@ body {
     -ms-flex-item-align: center;
     align-self: center; }
   .blog__picture {
+    min-width: 510px;
     margin-right: 48px;
     padding-bottom: 0; }
     .blog__picture + .blog__copy {
