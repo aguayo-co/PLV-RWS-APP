@@ -1,3 +1,15 @@
 /*------------------------------------*\
 	Estilos de copy blog
 \*------------------------------------*/
+
+.blog {
+	font-family: $f-normal;
+	font-weight: $fw-thin;
+	@include font-rem(16px);
+}
+
+@include media-query(medium) {
+	.blog {
+		@include font-rem(24px);
+	}
+}
