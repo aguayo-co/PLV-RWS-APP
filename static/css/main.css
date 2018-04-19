@@ -3675,9 +3675,9 @@ body {
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: 50px;
-  font-size: 3.125rem;
-  line-height: 1.5;
+  font-size: 42px;
+  font-size: 2.625rem;
+  line-height: 1.2;
   padding: 2px 5px; }
 
 .banner-hero__subtitle {
@@ -8480,7 +8480,7 @@ body {
     transform: translate(0, -50%); } }
 
 .blog-bannerprom .banner-hero__head {
-  color: #000; }
+  color: #fff; }
 
 .blog-bannerprom .banner-hero__title {
   display: block; }

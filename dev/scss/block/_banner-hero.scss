@@ -49,8 +49,8 @@
   text-transform: uppercase;
   font-family: $f-fancy;
   font-weight: $fw-bold;
-  @include font-rem(50px);
-  line-height: 1.5;
+  @include font-rem(42px);
+  line-height: 1.2;
   padding: 2px 5px;
 }
 .banner-hero__subtitle {
