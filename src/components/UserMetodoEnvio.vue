@@ -9,41 +9,85 @@ section.single
         v-on:submit='',
         action='#',
         method='post')
-          .box
-            h3.box__title Envío estándar (Chilexpress) <span class="txt-underline">$3000</span>
+          .box(v-for="method in methods")
+            h3.box__title {{ method.name}}
             .box__grid
               .box__lead
-                p.box__txt Al seleccionar esta opción de despacho, las entregas de tu compra serán la disponibilidad y se efectuarán de Lunes a Sábado entre las 9:00 y 19:00 hrs.
+                p.box__txt {{ method.description_seller}}
               .box__switch
                 .form__switch
                   input.switch__input(
+                    v-model="selectedMethods",
                     type="checkbox",
-                    id="standard",
-                    checked)
+                    :id="'method-' + method.id",
+                    :value="'method-' + method.id")
                   label.switch__label(
-                    for="standard")
-                      span.switch__status
-            p.box__disclaimer Tiempo de entrega entre 1 y 5 días hábiles
-          .box
-            h3.box__title Acuerdo envío con vendedora
-            .box__grid
-              .box__lead
-                p.box__txt Al seleccionar esta opción de despacho, tu eres quien decide si te juntarás con tu comprador o enviaras con otro proveedor de envíos.
-              .box__switch
-                .form__switch
-                  input.switch__input(
-                    type="checkbox",
-                    id="saleswoman")
-                  label.switch__label(
-                    for="saleswoman")
+                    :for="'method-' + method.id")
                       span.switch__status
           .form__row.form__row_away.form__btn
-            button.btn.btn_solid Guardar
+            button.btn.btn_solid(@click.prevent="saveMethods") Guardar
 
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import shippingMethodsAPI from '@/api/shippingMethod'
 export default {
-  name: 'UserMetodoEnvio'
+  name: 'UserMetodoEnvio',
+  data () {
+    return {
+      methods: {},
+      selectedMethods: [],
+      initialMethods: []
+    }
+  },
+  computed: {
+    ...mapState(['user'])
+  },
+  created: function () {
+    shippingMethodsAPI.getAllMethods()
+      .then(response => {
+        this.methods = response.data.data
+        Object.keys(this.methods).forEach((key) => {
+          if (this.user.shipping_methods.filter(x => x.id === this.methods[key].id)[0]) this.selectedMethods.push('method-' + this.methods[key].id)
+        })
+        this.initialMethods = this.selectedMethods
+      })
+  },
+  methods: {
+    saveMethods: function () {
+      if (this.selectedMethods.length === 0) {
+        const modal = {
+          name: 'ModalMessage',
+          parameters: {
+            type: 'alert',
+            title: 'Debes tener al menos un método de envío'
+          }
+        }
+        this.$store.dispatch('ui/showModal', modal)
+        this.selectedMethods = this.initialMethods
+      } else {
+        let methodIds = []
+        this.selectedMethods.forEach(item => {
+          methodIds.push(item.split('-')[1])
+        })
+        const data = {
+          shipping_method_ids: methodIds
+        }
+        this.$store.dispatch('user/update', data).then(() => {
+          const modal = {
+            name: 'ModalMessage',
+            parameters: {
+              type: 'positive',
+              title: 'Has actualizado tus opciones de envío'
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
+        }).catch((e) => {
+          this.$handleApiErrors(e, ['about'], this.errorLog)
+        })
+      }
+    }
+  }
 }
 </script>
