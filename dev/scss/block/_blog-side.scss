@@ -19,6 +19,8 @@
 
 @include media-query(medium) {
   .blog-side {
+    margin-left: 70px;
+    padding-top: 8px;
     dl {
       padding-bottom: 24px;
     }

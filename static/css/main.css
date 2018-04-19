@@ -8259,12 +8259,22 @@ body {
 	Estilos de copy blog
 \*------------------------------------*/
 .blog {
+  max-width: 1440px;
+  margin: 0 auto;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 16px;
   font-size: 1rem; }
   .blog .link_underline {
     font-weight: 100; }
+  .blog p {
+    margin: 0;
+    padding-bottom: 16px; }
+
+.blog__inner {
+  width: 96%;
+  max-width: 920px;
+  margin: 0 auto; }
 
 .blog__title {
   line-height: 1.2;
@@ -8272,16 +8282,28 @@ body {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 40px;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  padding-bottom: 8px; }
 
 .blog__kicker {
+  width: 70%;
+  margin: 0;
+  padding: 8px 0;
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: 14px;
   font-size: 0.875rem; }
+  .blog__kicker:before {
+    content: '';
+    display: block;
+    width: 96%;
+    padding-top: 8px;
+    border-top: 1px solid #000; }
 
 .blog__headline {
+  max-width: 810px;
+  line-height: 1.2;
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -8339,10 +8361,15 @@ body {
     line-height: 1.6;
     background-color: #fff; }
 
+.blog__byline {
+  padding-top: 16px; }
+
 @media only screen and (min-width: 768px) {
   .blog {
     font-size: 24px;
     font-size: 1.5rem; }
+    .blog p {
+      padding-bottom: 24px; }
   .blog__title {
     font-size: 60px;
     font-size: 3.75rem; }
@@ -8367,7 +8394,9 @@ body {
     .blog__pullquote:before {
       top: -38px;
       font-size: 298px;
-      font-size: 18.625rem; } }
+      font-size: 18.625rem; }
+  .blog__byline {
+    padding-top: 16px; } }
 
 @media only screen and (min-width: 1024px) {
   .blog__spread {
@@ -8431,12 +8460,15 @@ body {
   padding-bottom: 16px; }
 
 @media only screen and (min-width: 768px) {
-  .blog-side dl {
-    padding-bottom: 24px; }
-  .blog-side dt {
-    padding-bottom: 24px; }
-  .blog-side dd {
-    padding-bottom: 24px; } }
+  .blog-side {
+    margin-left: 70px;
+    padding-top: 8px; }
+    .blog-side dl {
+      padding-bottom: 24px; }
+    .blog-side dt {
+      padding-bottom: 24px; }
+    .blog-side dd {
+      padding-bottom: 24px; } }
 
 /*------------------------------------*\
 	Estilos de blog list
