@@ -25,10 +25,6 @@
 			margin: 0;
 		}
 	}
-	.blog__subhead {
-		padding-bottom: 16px;
-		font-family: $f-fancy;
-	}
 	ol {
 		counter-reset: section;
 		li {
@@ -66,9 +62,6 @@
 					height: 10px;
 				}
 			}
-		}
-		.blog__subhead {
-			padding-bottom: 22px;
 		}
 		ol {
 			li {

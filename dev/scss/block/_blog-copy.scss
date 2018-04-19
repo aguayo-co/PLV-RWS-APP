@@ -6,10 +6,54 @@
 	font-family: $f-normal;
 	font-weight: $fw-thin;
 	@include font-rem(16px);
+	.link_underline {
+		font-weight: $fw-thin;
+	}
+}
+.blog__title {
+	text-transform: uppercase;
+	font-family: $f-fancy;
+	font-weight: $fw-semi-bold;
+	@include font-rem(40px);
+	line-height: 1.2;
+}
+.blog__kicker {
+  text-transform: uppercase;
+  font-family: $f-fancy;
+	font-weight: $fw-light;
+	@include font-rem(14px);
+}
+.blog__headline {
+	text-transform: uppercase;
+	font-family: $f-fancy;
+	@include font-rem(20px);
+}
+.blog__subhead {
+  padding-bottom: 16px;
+	font-family: $f-fancy;
+	@include font-rem(16px);
 }
 
 @include media-query(medium) {
 	.blog {
 		@include font-rem(24px);
 	}
+	.blog__title {
+		@include font-rem(60px);
+	}
+	.blog__kicker {
+		text-transform: uppercase;
+		letter-spacing: 8px;
+	  font-family: $f-fancy;
+	  font-weight: $fw-light;
+	  @include font-rem(18px);
+	}
+	.blog__headline {
+	  @include font-rem(30px);
+	}
+	.blog__subhead {
+		padding-bottom: 22px;
+		@include font-rem(24px);
+	}
+
 }
