@@ -8276,6 +8276,9 @@ body {
   max-width: 920px;
   margin: 0 auto; }
 
+.blog__header {
+  padding-bottom: 32px; }
+
 .blog__title {
   line-height: 1.2;
   text-transform: uppercase;
@@ -8303,6 +8306,7 @@ body {
 
 .blog__headline {
   max-width: 810px;
+  padding-bottom: 32px;
   line-height: 1.2;
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -8370,6 +8374,8 @@ body {
     font-size: 1.5rem; }
     .blog p {
       padding-bottom: 24px; }
+  .blog__header {
+    padding-bottom: 56px; }
   .blog__title {
     font-size: 60px;
     font-size: 3.75rem; }
@@ -8381,6 +8387,7 @@ body {
     font-size: 18px;
     font-size: 1.125rem; }
   .blog__headline {
+    padding-bottom: 56px;
     font-size: 30px;
     font-size: 1.875rem; }
   .blog__subhead {
@@ -8409,9 +8416,13 @@ body {
     -moz-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse; }
+    .blog__spread_upside .blog__pullquote {
+      margin-right: 70px;
+      margin-left: -140px; }
   .blog__copy {
     max-width: 60%; }
   .blog__pullquote {
+    margin-right: -70px;
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;
