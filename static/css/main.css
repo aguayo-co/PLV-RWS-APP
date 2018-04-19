@@ -8271,7 +8271,10 @@ body {
     margin: 0;
     padding-bottom: 16px; }
   .blog .blog__lead {
-    padding: 16px 0 24px; }
+    padding-bottom: 24px; }
+
+.blog_top {
+  padding-top: 30px; }
 
 .blog__inner {
   width: 96%;
@@ -8333,6 +8336,9 @@ body {
   font-size: 1rem; }
 
 .blog__spread {
+  padding-bottom: 30px; }
+
+.blog__body_slot {
   padding-bottom: 30px; }
 
 .blog__copy {
@@ -8398,7 +8404,9 @@ body {
     .blog p {
       padding-bottom: 24px; }
     .blog .blog__lead {
-      padding: 24px 0 36px; }
+      padding-bottom: 36px; }
+  .blog_top {
+    padding-top: 100px; }
   .blog__header {
     padding-bottom: 56px; }
   .blog__title {
@@ -8450,6 +8458,8 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    padding-bottom: 60px; }
+  .blog__body_slot {
     padding-bottom: 60px; }
   .blog__spread_upside {
     -webkit-box-direction: reverse;
