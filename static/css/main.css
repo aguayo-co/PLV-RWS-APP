@@ -219,22 +219,19 @@ template {
 [hidden] {
   display: none; }
 
-/*------------------------------------*\
-    #font-family, font-icon
+/*------------------------------------*    #font-family, font-icon
 \*------------------------------------*/
 /* https://developers.google.com/fonts/docs/getting_started
  * Embed Font
  * To embed your selected fonts into a webpage,
  * copy this code into the <head> of your HTML document.
  */
-/*------------------------------------*\
-  ALL fonts Prilov STANDARD @IMPORT
+/*------------------------------------*  ALL fonts Prilov STANDARD @IMPORT
   Load Time: Slow
   https: //fonts.google.com/?query=mons&selection.family=Montserrat:300,500,600,700|Roboto+Condensed:400,700|Roboto:100,400
 
 \*------------------------------------*/
-/*------------------------------------*\
-  Ico font $font-path
+/*------------------------------------*  Ico font $font-path
 \*------------------------------------*/
 @font-face {
   font-family: 'ico-prilov';
@@ -487,8 +484,7 @@ template {
 .i-search-plus:before {
   content: "\e948"; }
 
-/*------------------------------------*\
-	texts links
+/*------------------------------------*	texts links
 \*------------------------------------*/
 a {
   cursor: pointer;
@@ -508,8 +504,7 @@ a {
 .link_underline_lower {
   margin-bottom: 20px; }
 
-/*------------------------------------*\
-	Transversal Elements
+/*------------------------------------*	Transversal Elements
     #Styles links - appearance buttons
 \*------------------------------------*/
 .btn {
@@ -530,15 +525,10 @@ a {
     color: #fff;
     border: 2px solid #f65a66;
     background-color: #f65a66; }
-    .btn:hover:before {
-      color: #fff; }
   .btn:active {
     border-top-color: #D46060;
     border-left-color: #D46060; }
-    .btn:active:before {
-      color: #fff; }
   .btn:before {
-    color: #f65a66;
     font-size: 20px;
     font-size: 1.25rem;
     padding-right: 12px; }
@@ -604,14 +594,7 @@ a {
   font-size: 0.875rem;
   border: 1px solid #f65a66;
   border-radius: 25px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: all 0.2s; }
-  .btn-tag:hover, .btn-tag:active {
-    background-color: #f65a66;
-    color: #fff; }
-  .btn-tag:active {
-    border: 1px solid #D46060; }
+  background-color: #fff; }
 
 .btn-tag_solid {
   color: #fff;
@@ -624,8 +607,7 @@ a {
   .btn_block {
     width: 100%; } }
 
-/*------------------------------------*\
-	Transversal Elements
+/*------------------------------------*	Transversal Elements
     #Forms Styles
 \*------------------------------------*/
 input, select, textarea {
@@ -639,8 +621,7 @@ select {
   -webkit-appearance: none;
   -webkit-border-radius: 0; }
 
-/*------------------------------------*\
-	Elementos Formularios
+/*------------------------------------*	Elementos Formularios
 \*------------------------------------*/
 .form {
   color: #000; }
@@ -832,8 +813,7 @@ select {
   font-size: 0.75rem;
   font-weight: 500; }
 
-/*------------------------------------*\
-	form radio
+/*------------------------------------*	form radio
 \*------------------------------------*/
 .form__input-radio {
   position: absolute;
@@ -873,14 +853,12 @@ select {
     border: 2px solid #cbcbcb;
     border-radius: 50%; }
 
-/*------------------------------------*\
-	form radio boxcheck
+/*------------------------------------*	form radio boxcheck
 \*------------------------------------*/
 .form__input-radio:checked + .form__label_radio .boxcheck__label {
   border-color: #f65a66; }
 
-/*------------------------------------*\
-	form checkbox
+/*------------------------------------*	form checkbox
 \*------------------------------------*/
 .form__row_check {
   text-align: center;
@@ -925,8 +903,7 @@ select {
   .form__check .form__label_check:after {
     border-color: #cbcbcb; }
 
-/*------------------------------------*\
-	form password visible
+/*------------------------------------*	form password visible
 \*------------------------------------*/
 .form__password {
   position: relative; }
@@ -937,8 +914,7 @@ select {
   right: 10px;
   cursor: pointer; }
 
-/*------------------------------------*\
-	Form password fortaleza
+/*------------------------------------*	Form password fortaleza
 \*------------------------------------*/
 .password-bar {
   position: relative;
@@ -984,8 +960,7 @@ select {
   .password-bar.level-3:after {
     content: 'Alto'; }
 
-/*------------------------------------*\
-	form input asistido para talla
+/*------------------------------------*	form input asistido para talla
 \*------------------------------------*/
 .form-asisted__box {
   position: relative;
@@ -1025,8 +1000,7 @@ select {
     text-align: center;
     border-bottom: 1px solid #000; }
 
-/*------------------------------------*\
-	form toggle color form
+/*------------------------------------*	form toggle color form
 \*------------------------------------*/
 .toggle-select {
   margin-top: -12px; }
@@ -1055,8 +1029,7 @@ select {
   font-size: 16px;
   font-size: 1rem; }
 
-/*------------------------------------*\
-	form switch
+/*------------------------------------*	form switch
 \*------------------------------------*/
 .form__switch {
   position: relative;
@@ -1123,8 +1096,7 @@ select {
   .switch__input:checked + .switch__label .switch__status:before {
     content: 'Habilitado'; }
 
-/*------------------------------------*\
-	form combo: input alineado con btn
+/*------------------------------------*	form combo: input alineado con btn
 \*------------------------------------*/
 .form__combo {
   display: -webkit-box;
@@ -1333,8 +1305,7 @@ select {
       width: 100%;
       min-width: 100px; } }
 
-/*------------------------------------*\
-	Mensajes Error
+/*------------------------------------*	Mensajes Error
 \*------------------------------------*/
 .is-danger .form__control {
   border: 1px solid #f65a66; }
@@ -1372,8 +1343,7 @@ select {
     border-width: 9px 10px 0 10px;
     border-color: #f65a66 transparent transparent transparent; }
 
-/*------------------------------------*\
-	Mensajes formulario
+/*------------------------------------*	Mensajes formulario
 \*------------------------------------*/
 .form__notify {
   display: block;
@@ -1418,8 +1388,7 @@ select {
     font-size: 40px;
     font-size: 2.5rem; }
 
-/*------------------------------------*\
-    #Titles
+/*------------------------------------*    #Titles
 \*------------------------------------*/
 h1,
 h2,
@@ -1613,8 +1582,8 @@ h6 {
     border-bottom: 1px solid #efefef; }
   .subhead {
     text-align: left;
-    font-size: 24px;
-    font-size: 1.5rem; }
+    font-size: 30px;
+    font-size: 1.875rem; }
   .header_heart {
     padding-bottom: 32px; }
     .header_heart:before {
@@ -1645,8 +1614,7 @@ h6 {
     font-size: 36px;
     font-size: 2.25rem; } }
 
-/*------------------------------------*\
-    #Styles for text elements
+/*------------------------------------*    #Styles for text elements
 \*------------------------------------*/
 body {
   line-height: 1.4;
@@ -1730,8 +1698,7 @@ body {
   border: 1px solid #f65a66;
   border-radius: 50%; }
 
-/*------------------------------------*\
-	Transversal Elements
+/*------------------------------------*	Transversal Elements
     #Styles for multimedia content 
     (images, audio and video)
 \*------------------------------------*/
@@ -1849,12 +1816,10 @@ body {
     opacity: 0.3;
     transform: translateY(0); } }
 
-/*------------------------------------*\
-	Transversal Elements
+/*------------------------------------*	Transversal Elements
     #Styles for tables
 \*------------------------------------*/
-/*------------------------------------*\
-  layout theme
+/*------------------------------------*  layout theme
 \*------------------------------------*/
 .theme {
   overflow: hidden; }
@@ -1980,15 +1945,14 @@ body {
   .alert {
     margin-bottom: 60px; } }
 
-/*------------------------------------*\
-	Page header
+/*------------------------------------*	Page header
 \*------------------------------------*/
 .page-header {
   position: relative;
   z-index: 188;
   transition: .9s ease;
   width: 100%;
-  padding: 10px 0 8px;
+  padding: 10px 0 0;
   color: #fff;
   background-color: #000; }
   .page-header ul {
@@ -2014,8 +1978,7 @@ body {
   -moz-justify-content: space-between;
   justify-content: space-between; }
 
-/*------------------------------------*\
-  Page header: 
+/*------------------------------------*  Page header: 
   componente Pageheader-brand
 \*------------------------------------*/
 .page-brand {
@@ -2056,12 +2019,9 @@ body {
   font-size: 10px;
   font-size: 0.625rem;
   font-weight: 500;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: 1.5px;
-  letter-spacing: 0.09375rem; }
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-/*------------------------------------*\
-  Page header: 
+/*------------------------------------*  Page header: 
   componente Pageheader-search
 \*------------------------------------*/
 .search {
@@ -2101,8 +2061,7 @@ body {
   font-size: 0.875rem;
   background-color: transparent; }
 
-/*------------------------------------*\
-  Page header: 
+/*------------------------------------*  Page header: 
   * componente Pageheader-user: 
   * bloque css asociado menu-toggle: 
   * contiene animación
@@ -2166,7 +2125,7 @@ body {
   min-width: 38px;
   overflow: hidden;
   border-radius: 50%;
-  border: 2px solid #f65a66; }
+  border: 1px solid #f65a66; }
 
 .tool-user__photo {
   width: 100%; }
@@ -2250,8 +2209,7 @@ body {
   .user-auth__menu {
     right: 0; } }
 
-/*------------------------------------*\
-	Page header menu
+/*------------------------------------*	Page header menu
 \*------------------------------------*/
 .menu {
   display: -webkit-box;
@@ -2719,8 +2677,7 @@ body {
     width: 96%;
     max-width: 1280px;
     margin: 36px auto; }
-  /*------------------------------------*\
-    Submenu mega menu
+  /*------------------------------------*    Submenu mega menu
   \*------------------------------------*/
   .submenu-grid {
     position: relative;
@@ -2845,8 +2802,7 @@ body {
   .menu__link {
     padding: 0 20px; } }
 
-/*------------------------------------*\
-	Page Footer
+/*------------------------------------*	Page Footer
 \*------------------------------------*/
 @media only screen and (min-width: 1024px) {
   .page-foot {
@@ -2934,8 +2890,7 @@ body {
     .foot-legal p {
       margin: 0; } }
 
-/*------------------------------------*\
-	Footer Menu Mobile
+/*------------------------------------*	Footer Menu Mobile
 \*------------------------------------*/
 @media only screen and (max-width: 1023px) {
   .page-foot {
@@ -2944,7 +2899,7 @@ body {
     z-index: 180;
     transition: .5s ease;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 0;
     background-color: #000; }
     .page-foot:after {
       content: '';
@@ -2966,8 +2921,35 @@ body {
         opacity: 1;
         pointer-events: auto; }
   .foot-nav_mb {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto; }
+    .foot-nav_mb .tool-user__grid {
+      -webkit-box-direction: normal;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      padding-bottom: 2px;
+      border-bottom: 3px solid transparent; }
+    .foot-nav_mb .tool-user__avatar {
+      width: 26px;
+      height: 26px;
+      min-width: initial;
+      margin-bottom: 5px; }
+    .foot-nav_mb .tool-user__name {
+      display: block;
+      padding: 0;
+      color: #fff; }
+    .foot-nav_mb .badge {
+      width: 14px;
+      height: 14px;
+      font-size: 11px;
+      font-size: 0.6875rem;
+      line-height: 1.5; }
+    .foot-nav_mb .badge_user {
+      top: -3px;
+      left: 18px; }
   .foot-nav__list {
     display: -webkit-box;
     display: -webkit-flex;
@@ -2978,11 +2960,11 @@ body {
     -webkit-justify-content: space-around;
     -moz-justify-content: space-around;
     justify-content: space-around;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    align-items: center;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    align-items: flex-end;
     list-style-type: none; }
   .foot-nav__item {
     position: relative;
@@ -2998,14 +2980,16 @@ body {
     color: #fff;
     padding-bottom: 2px;
     border-bottom: 3px solid transparent;
-    transition: all 0.5s; }
+    transition: all 0.3s; }
+    .foot-nav__link:hover {
+      border-bottom-color: #f65a66; }
     .foot-nav__link.active {
       border-bottom-color: #f65a66; }
   .foot-nav__name:before {
     display: block;
-    padding-bottom: 4px;
-    font-size: 16px;
-    font-size: 1rem; }
+    padding-bottom: 6px;
+    font-size: 20px;
+    font-size: 1.25rem; }
   .foot-nav__name.i-brand {
     display: block;
     position: relative;
@@ -3018,6 +3002,8 @@ body {
     .foot-nav__name.i-brand:before {
       font-size: 0px;
       font-size: 0rem; }
+  .foot-nav__item_brand .foot-nav__link {
+    padding-bottom: 8px; }
   .foot-nav__fixed {
     position: fixed;
     top: 0;
@@ -3079,8 +3065,7 @@ body {
     margin-bottom: 16px;
     border-bottom: 3px solid #f65a66; } }
 
-/*------------------------------------*\
-	código para todos los menu desplegables
+/*------------------------------------*	código para todos los menu desplegables
 \*------------------------------------*/
 .toggle-box {
   position: absolute;
@@ -3165,8 +3150,7 @@ body {
   -webkit-transform: scale(1);
   transform: scale(1); }
 
-/*------------------------------------*\
-  Transition menu
+/*------------------------------------*  Transition menu
 \*------------------------------------*/
 .slide-left-enter-active {
   -webkit-transition: -webkit-transform 0.295s cubic-bezier(0.4, 0, 0.6, 1);
@@ -3247,8 +3231,7 @@ body {
   .slide-fade-leave-to .menu-level2__inner {
     transform: translateY(10px); }
 
-/*------------------------------------*\
-	código para todos los menu desplegables
+/*------------------------------------*	código para todos los menu desplegables
 \*------------------------------------*/
 .page.is-modal {
   height: 0;
@@ -3305,8 +3288,7 @@ body {
       min-height: auto;
       margin: 50px auto; } }
 
-/*------------------------------------*\
-  Notificacciones
+/*------------------------------------*  Notificacciones
 \*------------------------------------*/
 .notify {
   padding: 20px 0;
@@ -3531,8 +3513,7 @@ body {
   .banner-slider__cell {
     height: 80vh; } }
 
-/*------------------------------------*\
-	Banner Top
+/*------------------------------------*	Banner Top
 \*------------------------------------*/
 .banner-top {
   display: -webkit-box;
@@ -3612,8 +3593,7 @@ body {
   .banner-top__item {
     padding: 16px 14px; } }
 
-/*------------------------------------*\
-	Banner Grid
+/*------------------------------------*	Banner Grid
 \*------------------------------------*/
 .banner-grid {
   max-width: 480px;
@@ -3847,8 +3827,7 @@ body {
     -moz-transform: translate(0, -50%);
     transform: translate(0, -50%); } }
 
-/*------------------------------------*\
-	Slider prilover Home
+/*------------------------------------*	Slider prilover Home
 \*------------------------------------*/
 .slider-fullwide {
   padding-bottom: 20px; }
@@ -3956,8 +3935,7 @@ body {
       font-size: 22px;
       font-size: 1.375rem; } }
 
-/*------------------------------------*\
-	Single Section
+/*------------------------------------*	Single Section
 \*------------------------------------*/
 .single__inner {
   padding-top: 30px; }
@@ -4237,8 +4215,7 @@ body {
       -moz-transform: translateY(-50%);
       transform: translateY(-50%); } }
 
-/*------------------------------------*\
-	User Menu
+/*------------------------------------*	User Menu
 \*------------------------------------*/
 .side {
   padding-right: 70px;
@@ -4289,7 +4266,7 @@ body {
     position: absolute;
     top: 66px;
     right: 0;
-    width: 100vh;
+    width: 100%;
     max-width: 420px;
     height: 100vh;
     padding: 40px 60px 80px;
@@ -4313,7 +4290,13 @@ body {
     -webkit-justify-content: space-around;
     -moz-justify-content: space-around;
     justify-content: space-around;
-    max-width: 400px;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    align-items: flex-end;
+    width: 96%;
+    max-width: 1280px;
     margin: 0 auto; }
     .user-menu__list:after {
       content: '';
@@ -4330,7 +4313,29 @@ body {
       background-color: rgba(0, 0, 0, 0.5);
       transition: all .2s ease; }
     .user-menu__list.openUserMenu:after {
-      opacity: 1; } }
+      opacity: 1; }
+  .user-menu__item {
+    width: 25%;
+    padding-top: 28px; }
+  .user-menu__item_burguer {
+    padding-bottom: 15px; }
+  .user-menu__icon {
+    display: block;
+    margin-left: auto;
+    text-align: right;
+    color: #fff; }
+    .user-menu__icon:before {
+      display: inline-block;
+      padding-bottom: 10px;
+      border-bottom: 5px solid transparent; }
+    .user-menu__icon.i-bell:before, .user-menu__icon.i-user:before {
+      font-size: 20px;
+      font-size: 1.25rem; }
+    .user-menu__icon.i-shop:before {
+      font-size: 16px;
+      font-size: 1rem; }
+    .user-menu__icon:active:before {
+      border-bottom: 5px solid #f65a66; } }
 
 @media only screen and (min-width: 1024px) {
   .side {
@@ -4346,8 +4351,7 @@ body {
       height: 98%;
       background-color: #cbcbcb; } }
 
-/*------------------------------------*\
-	User Profile
+/*------------------------------------*	User Profile
 \*------------------------------------*/
 .user-header {
   display: -webkit-box;
@@ -4474,8 +4478,7 @@ body {
   font-size: 600%;
   color: #fff; }
 
-/*------------------------------------*\
-  User Profile avatar page "closet"
+/*------------------------------------*  User Profile avatar page "closet"
 \*------------------------------------*/
 .banner-hero_user {
   margin: 0 auto; }
@@ -4550,8 +4553,7 @@ body {
     -moz-justify-content: start;
     justify-content: start; } }
 
-/*------------------------------------*\
-	User Profile avatar edit
+/*------------------------------------*	User Profile avatar edit
 \*------------------------------------*/
 .user-over {
   position: relative; }
@@ -4743,12 +4745,6 @@ body {
     flex-direction: row; }
   .user-header__item {
     text-align: left; }
-  .user-data-nav {
-    -webkit-box-pack: left;
-    -ms-flex-pack: left;
-    -webkit-justify-content: left;
-    -moz-justify-content: left;
-    justify-content: left; }
   .user-data__title {
     padding-top: 8px;
     text-align: left;
@@ -4771,8 +4767,7 @@ body {
     margin: 0; }
   .user-edit__actions {
     padding: 8px 0 0 16px; }
-  /*------------------------------------*\
-	    User Profile avatar edit desktop
+  /*------------------------------------*	    User Profile avatar edit desktop
     \*------------------------------------*/
   .user-avatar_active {
     min-height: 390px; }
@@ -4803,8 +4798,7 @@ body {
   .user-data__caption-i {
     text-align: left; } }
 
-/*------------------------------------*\
-	Info User in Producto
+/*------------------------------------*	Info User in Producto
 \*------------------------------------*/
 .product-user {
   padding-top: 32px; }
@@ -4905,8 +4899,7 @@ body {
     width: 100%;
     padding-left: 50px; } }
 
-/*------------------------------------*\
-	dividers
+/*------------------------------------*	dividers
 \*------------------------------------*/
 .dividers {
   list-style: none;
@@ -5130,8 +5123,7 @@ body {
   .dividers_list .dividers__item {
     margin-bottom: 16px; } }
 
-/*------------------------------------*\
-	collections
+/*------------------------------------*	collections
 \*------------------------------------*/
 .collections .badge {
   vertical-align: middle;
@@ -5210,8 +5202,7 @@ body {
     font-size: 14px;
     font-size: 0.875rem; } }
 
-/*------------------------------------*\
-	Elementos Formularios
+/*------------------------------------*	Elementos Formularios
 \*------------------------------------*/
 .form-section {
   max-width: 400px;
@@ -5324,8 +5315,7 @@ body {
     margin: 50px auto;
     max-width: 800px; } }
 
-/*------------------------------------*\
-	Detalle producto
+/*------------------------------------*	Detalle producto
 \*------------------------------------*/
 .detail {
   max-width: 480px;
@@ -5495,8 +5485,7 @@ body {
   font-size: 12px;
   font-size: 0.75rem; }
 
-/*------------------------------------*\
-  Detalle producto: img responsive
+/*------------------------------------*  Detalle producto: img responsive
   Slider Una columna: se ocultan los thumbs
   y se remplazan por corazones
   Rangos:
@@ -5549,8 +5538,7 @@ body {
   .detail__img {
     display: none; } }
 
-/*------------------------------------*\
-  Detalle producto: img responsive
+/*------------------------------------*  Detalle producto: img responsive
  // Gallery thums visible
   Rangos:
   de 420 a 767
@@ -5572,8 +5560,7 @@ body {
     max-width: 22%;
     padding-right: 20px; } }
 
-/*------------------------------------*\
-  Detalle producto: img responsive
+/*------------------------------------*  Detalle producto: img responsive
   2 columnas
   Estilos bloque 620 en adelante
 \*------------------------------------*/
@@ -5595,8 +5582,7 @@ body {
     font-size: 18px;
     font-size: 1.125rem; }
   .detail__header {
-    text-align: left;
-    padding-top: 0; }
+    text-align: left; }
   .detail__title {
     display: inline-block; }
   .detail__value {
@@ -5664,8 +5650,7 @@ body {
     padding-left: 30px;
     width: 90%; } }
 
-/*------------------------------------*\
-	Producto grid Home
+/*------------------------------------*	Producto grid Home
 \*------------------------------------*/
 .section_product {
   width: 96%;
@@ -5753,8 +5738,7 @@ body {
   .slot_grid {
     width: 25%; } }
 
-/*------------------------------------*\
-	Producto slot
+/*------------------------------------*	Producto slot
 \*------------------------------------*/
 .slot__product {
   display: block;
@@ -5962,8 +5946,7 @@ body {
   .product-grid_small .slot_grid {
     width: 33.33%; } }
 
-/*------------------------------------*\
-	GAaleria de producto con opacidad
+/*------------------------------------*	GAaleria de producto con opacidad
 \*------------------------------------*/
 .prod-gridlight .section__head {
   padding-bottom: 40px; }
@@ -6021,8 +6004,7 @@ body {
   .product-gridlight .section__head {
     padding-bottom: 60px; } }
 
-/*------------------------------------*\
-	Slider producto slot
+/*------------------------------------*	Slider producto slot
 \*------------------------------------*/
 .slider-slot {
   padding-bottom: 100px; }
@@ -6093,22 +6075,15 @@ body {
     text-align: center;
     padding-bottom: 16px; }
 
-@media only screen and (min-width: 980px) {
+@media only screen and (min-width: 768px) {
   .chat-slot {
     padding-top: 56px; }
     .chat-slot .chat {
-      width: 50%; }
-  .chat-notify {
-    width: 50%; } }
-
-@media only screen and (min-width: 1024px) {
-  .chat-slot .chat {
-    width: 60%; }
+      width: 60%; }
   .chat-notify {
     width: 40%; } }
 
-/*------------------------------------*\
-	steps list
+/*------------------------------------*	steps list
 \*------------------------------------*/
 .steps__list {
   list-style: none;
@@ -6178,8 +6153,7 @@ body {
   border-color: #f65a66;
   background-color: #f65a66; }
 
-/*------------------------------------*\
-	upload file croppa
+/*------------------------------------*	upload file croppa
 \*------------------------------------*/
 .upfile {
   max-width: 400px;
@@ -6331,8 +6305,7 @@ body {
     font-size: 30px;
     font-size: 1.875rem; } }
 
-/*------------------------------------*\
-	box | switch
+/*------------------------------------*	box | switch
 \*------------------------------------*/
 .box {
   padding: 16px;
@@ -6382,8 +6355,7 @@ body {
     font-size: 20px;
     font-size: 1.25rem; } }
 
-/*------------------------------------*\
-	box | flat
+/*------------------------------------*	box | flat
 \*------------------------------------*/
 .box-flat {
   display: block;
@@ -6605,8 +6577,7 @@ body {
     width: 45%;
     margin-bottom: 0; } }
 
-/*------------------------------------*\
-	box | switch
+/*------------------------------------*	box | switch
 \*------------------------------------*/
 .boxcheck-wrap {
   padding: 32px 0; }
@@ -6740,8 +6711,7 @@ body {
     top: 10px;
     padding-top: 0; } }
 
-/*------------------------------------*\
-	pay-off créditos prilov
+/*------------------------------------*	pay-off créditos prilov
 \*------------------------------------*/
 .pay-off {
   display: -webkit-box;
@@ -6825,8 +6795,7 @@ body {
     font-size: 16px;
     font-size: 1rem; } }
 
-/*------------------------------------*\
-  List carrito compra
+/*------------------------------------*  List carrito compra
 \*------------------------------------*/
 .list {
   padding-top: 24px; }
@@ -6936,15 +6905,13 @@ body {
 .card__prilover {
   font-weight: 700; }
 
-/*------------------------------------*\
-    List carrito dividers
+/*------------------------------------*    List carrito dividers
   \*------------------------------------*/
 .compra-data_info {
   padding-top: 16px;
   padding-bottom: 20px; }
 
-/*------------------------------------*\
-  List carrito factura
+/*------------------------------------*  List carrito factura
 \*------------------------------------*/
 .list__frame {
   padding: 24px 18px;
@@ -7019,8 +6986,7 @@ body {
 .data-form__item {
   padding: 8px 0 16px; }
 
-/*------------------------------------*\
-  List Datos compra
+/*------------------------------------*  List Datos compra
 \*------------------------------------*/
 .card__data {
   text-align: left; }
@@ -7060,8 +7026,7 @@ body {
   .card__txt {
     font-size: 16px;
     font-size: 1rem; }
-  /*------------------------------------*\
-    Tablet List carrito Productos
+  /*------------------------------------*    Tablet List carrito Productos
   \*------------------------------------*/
   .list__card:first-child {
     padding-bottom: 16px; }
@@ -7087,15 +7052,13 @@ body {
     align-items: center; }
     .card__column .card__user {
       min-width: 30%; }
-  /*------------------------------------*\
-    Tablet List carrito dividers
+  /*------------------------------------*    Tablet List carrito dividers
   \*------------------------------------*/
   .compra-data_info {
     padding-bottom: 40px; }
     .compra-data_info .dividers {
       padding-bottom: 0; }
-  /*------------------------------------*\
-    Tablet List carrito factura
+  /*------------------------------------*    Tablet List carrito factura
   \*------------------------------------*/
   .data-table__item {
     font-size: 20px;
@@ -7159,8 +7122,7 @@ body {
   .card__column {
     display: block;
     width: 50%; }
-  /*------------------------------------*\
-    Tablet List carrito factura
+  /*------------------------------------*    Tablet List carrito factura
   \*------------------------------------*/
   .list__side {
     width: 25%;
@@ -7168,8 +7130,7 @@ body {
     margin-left: 32px;
     padding-bottom: 60px; } }
 
-/*------------------------------------*\
-	collapsible
+/*------------------------------------*	collapsible
 \*------------------------------------*/
 .collapsible {
   list-style: none;
@@ -7308,8 +7269,7 @@ body {
   .collapsible__body {
     margin: 0 16px; } }
 
-/*------------------------------------*\
-	dashboard // tus compras, tus ventas
+/*------------------------------------*	dashboard // tus compras, tus ventas
 \*------------------------------------*/
 .dashboard .list__card {
   padding-top: 0; }
@@ -7415,15 +7375,13 @@ body {
 .dashboard__check {
   padding: 8px 0; }
 
-/*------------------------------------*\
-	Status mensaje // tus compras, tus ventas
+/*------------------------------------*	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
 .dashboard__status {
   text-align: center; }
 
 @media only screen and (min-width: 768px) {
-  /*------------------------------------*\
-    dashboard // tus compras, tus ventas
+  /*------------------------------------*    dashboard // tus compras, tus ventas
   \*------------------------------------*/
   .dashboard__data {
     max-width: 50%;
@@ -7454,8 +7412,7 @@ body {
     .dashboard__subitem:last-child {
       padding-left: 32px; } }
 
-/*------------------------------------*\
-	Status mensaje // tus compras, tus ventas
+/*------------------------------------*	Status mensaje // tus compras, tus ventas
 \*------------------------------------*/
 .status {
   display: -webkit-box;
@@ -7515,8 +7472,7 @@ body {
   .status_warning:before {
     color: #FFA65B; }
 
-/*------------------------------------*\
-	Filter
+/*------------------------------------*	Filter
 \*------------------------------------*/
 .filter-head {
   padding-bottom: 20px; }
@@ -7528,8 +7484,7 @@ body {
   font-size: 1.125rem;
   text-transform: uppercase; }
 
-/*------------------------------------*\
-    Only mobile
+/*------------------------------------*    Only mobile
   \*------------------------------------*/
 @media only screen and (max-width: 1023px) {
   .filter {
@@ -7714,8 +7669,7 @@ body {
     width: 28px;
     height: 28px; } }
 
-/*------------------------------------*\
-    Filter desktop
+/*------------------------------------*    Filter desktop
 \*------------------------------------*/
 @media only screen and (min-width: 1024px) {
   .filter {
@@ -7847,8 +7801,7 @@ body {
       right: 0;
       border-top: none; } }
 
-/*------------------------------------*\
-  Filter check
+/*------------------------------------*  Filter check
 \*------------------------------------*/
 .form__input-check:checked + .filter__check:before {
   opacity: 1; }
@@ -7880,8 +7833,7 @@ body {
     position: relative;
     top: 3px; }
 
-/*------------------------------------*\
-	Filter slider: rango de precio
+/*------------------------------------*	Filter slider: rango de precio
 \*------------------------------------*/
 .filter__slide {
   min-width: 280px;
@@ -7945,11 +7897,9 @@ body {
   .filter__label {
     font-weight: 700; } }
 
-/*------------------------------------*\
-	Chat
+/*------------------------------------*	Chat
 \*------------------------------------*/
-/*----------------------------------------*\
-  Estilos generales para busbujas de chat
+/*----------------------------------------*  Estilos generales para busbujas de chat
 \*----------------------------------------*/
 .chat-bubble__img {
   margin-right: 8px;
@@ -7983,8 +7933,7 @@ body {
 .chat-line {
   margin-bottom: 24px; }
 
-/*------------------------------------*\
-  Burbuja principal de chat
+/*------------------------------------*  Burbuja principal de chat
 \*------------------------------------*/
 .chat__bubble-main {
   display: -webkit-box;
@@ -8005,8 +7954,7 @@ body {
     padding: 8px 18px;
     border-color: #f65a66; }
 
-/*------------------------------------*\
-  Burbuja secundaria de chat
+/*------------------------------------*  Burbuja secundaria de chat
 \*------------------------------------*/
 .chat__bubble {
   display: -webkit-box;
@@ -8027,8 +7975,7 @@ body {
     padding: 4px 24px;
     border-color: #9b9b9b; }
 
-/*------------------------------------*\
-  Grilla de producto y chat
+/*------------------------------------*  Grilla de producto y chat
 \*------------------------------------*/
 .chat__grid {
   display: -webkit-box;
@@ -8172,8 +8119,7 @@ body {
     margin-bottom: 28px; } }
 
 @media only screen and (min-width: 768px) {
-  /*------------------------------------*\
-    Grilla de producto y chat
+  /*------------------------------------*    Grilla de producto y chat
   \*------------------------------------*/
   .chat-bubble__txt {
     font-size: 16px;
@@ -8197,8 +8143,7 @@ body {
   .chat__message {
     width: 100%; } }
 
-/*------------------------------------*\
-	Valoraciones
+/*------------------------------------*	Valoraciones
 \*------------------------------------*/
 .valuations .user-data__list {
   padding-bottom: 18px; }
@@ -8288,8 +8233,7 @@ body {
   .valuations .user-data__list {
     padding-bottom: 24px; } }
 
-/*------------------------------------*\
-  Card 
+/*------------------------------------*  Card 
   Usado en el listado de Prilovers
 \*------------------------------------*/
 .card {
@@ -8308,8 +8252,7 @@ body {
 .card__photo {
   width: 100%; }
 
-/*------------------------------------*\
-  Paginador
+/*------------------------------------*  Paginador
 \*------------------------------------*/
 .pagination {
   display: block;
@@ -8334,8 +8277,7 @@ body {
 .pagination__arrow:active, .pagination__arrow:focus, .pagination__arrow:visited {
   color: #000; }
 
-/*------------------------------------*\
-  Componente Tabs
+/*------------------------------------*  Componente Tabs
 \*------------------------------------*/
 .tabs {
   margin-top: 40px; }
@@ -8548,8 +8490,7 @@ body {
     padding-right: 42px;
     padding-left: 42px; } }
 
-/*------------------------------------*\
-	Search generic
+/*------------------------------------*	Search generic
 \*------------------------------------*/
 .filtrate {
   display: -webkit-box;
@@ -8675,8 +8616,7 @@ body {
   .filtrate__list {
     max-width: 164px; } }
 
-/*------------------------------------*\
-	Estilos de copy blog
+/*------------------------------------*	Estilos de copy blog
 \*------------------------------------*/
 .blog {
   max-width: 1440px;
@@ -8967,8 +8907,7 @@ body {
     .blog-side dd {
       padding-bottom: 24px; } }
 
-/*------------------------------------*\
-	Estilos de blog list
+/*------------------------------------*	Estilos de blog list
 \*------------------------------------*/
 .blog ul {
   list-style: none;
@@ -9163,8 +9102,7 @@ http://flickity.metafizzy.co
   font-size: 1.125rem;
   opacity: 1; }
 
-/*------------------------------------*\
-    #Print styles
+/*------------------------------------*    #Print styles
 \*------------------------------------*/
 @media print {
   *,
