@@ -15,6 +15,10 @@
 		margin: 0;
 		padding-bottom: 16px;
 	}
+	.blog__lead {
+	  padding: 16px 0 24px;
+	}
+
 }
 .blog__inner {
 	width: 96%;
@@ -27,7 +31,6 @@
 		margin: 0 auto;
 	}
 }
-
 
 .blog__header {
 	padding-bottom: 32px;
@@ -65,6 +68,13 @@
 	font-family: $f-fancy;
 	@include font-rem(20px);
 }
+.blog__lead {
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+  @include font-rem(18px);
+}
+
 .blog__subhead {
   padding-bottom: 16px;
 	font-family: $f-fancy;
@@ -74,10 +84,10 @@
   padding-bottom: 30px;
 }
 
-
 .blog__copy {
   line-height: 1.46;
 }
+
 .blog__pullquote {
 	position: relative;
 	padding-left: 48px;
@@ -143,6 +153,10 @@
 		p {
 			padding-bottom: 24px;
 		}
+		.blog__lead {
+		  padding: 24px 0 36px;
+		}
+
 	}
 	.blog__header {
 	  padding-bottom: 56px;
@@ -162,10 +176,16 @@
 		padding-bottom: 56px;
 		@include font-rem(30px);
 	}
+		.blog__lead {
+			@include font-rem(28px);
+		}
+
 	.blog__subhead {
 		padding-bottom: 22px;
 		@include font-rem(24px);
 	}
+	
+
 	.blog__pullquote {
 	  padding-left:78px;
 		@include font-rem(30px);

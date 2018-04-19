@@ -24,6 +24,7 @@ import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
 import Prilovers from '@/pages/Prilovers'
 import Contenido from '@/pages/Contenido'
+import Contenido2 from '@/pages/Contenido2'
 
 Vue.use(Router)
 
@@ -33,11 +34,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/contenido',
-      name: 'contenido',
-      component: Contenido
     },
     {
       path: '/signup',
@@ -151,6 +147,16 @@ export default new Router({
       path: '/instashop',
       name: 'Instashop',
       component: Instashop
+    },
+    {
+      path: '/contenido',
+      name: 'contenido',
+      component: Contenido
+    },
+    {
+      path: '/contenido2',
+      name: 'contenido2',
+      component: Contenido2
     }
   ]
 })

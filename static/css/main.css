@@ -8270,6 +8270,8 @@ body {
   .blog p {
     margin: 0;
     padding-bottom: 16px; }
+  .blog .blog__lead {
+    padding: 16px 0 24px; }
 
 .blog__inner {
   width: 96%;
@@ -8316,6 +8318,13 @@ body {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-size: 1.25rem; }
+
+.blog__lead {
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  font-size: 1.125rem; }
 
 .blog__subhead {
   padding-bottom: 16px;
@@ -8388,6 +8397,8 @@ body {
     font-size: 1.5rem; }
     .blog p {
       padding-bottom: 24px; }
+    .blog .blog__lead {
+      padding: 24px 0 36px; }
   .blog__header {
     padding-bottom: 56px; }
   .blog__title {
@@ -8404,6 +8415,9 @@ body {
     padding-bottom: 56px;
     font-size: 30px;
     font-size: 1.875rem; }
+  .blog__lead {
+    font-size: 28px;
+    font-size: 1.75rem; }
   .blog__subhead {
     padding-bottom: 22px;
     font-size: 24px;
