@@ -3,6 +3,7 @@
 .step
   .layout-inner
     form.form.form_big(
+      v-if="!user.picture || !user.about || !user.phone || Object.keys(user.addresses).length === 0"
       v-on:submit='',
       action='#',
       method='post')
@@ -59,7 +60,7 @@
               type='tel')
             p.form__note (esta info no será pública. Sólo se entregará a tu compradora.)
           .form__row(
-            v-if='!user.addresses',
+            v-if='Object.keys(user.addresses).length === 0',
             :class='{ "is-danger": errorLog.addresses }')
             label.form__label(
               for='addresses') Direcciones
@@ -70,20 +71,23 @@
           .form-section.form-section_footer
             .form__row.form__row_away
               button.btn.btn_solid(
-                @click.prevent = 'validate') Registrarse
+                @click.prevent = 'validate') Guardar y continuar
+    UserMetodoEnvio(v-else)
 </template>
 
 <script>
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 import AddressList from '@/components/AddressList'
+import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import { mapState } from 'vuex'
 Vue.component('croppa', Croppa.component)
 
 export default {
   name: 'FormCompleteSeller',
   components: {
-    AddressList
+    AddressList,
+    UserMetodoEnvio
   },
   data () {
     return {
