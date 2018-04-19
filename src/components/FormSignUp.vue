@@ -81,11 +81,12 @@
             id='password',
             :type="viewPass ? 'text' : 'password'",
             data-vv-name='password',
-            :input='validatePassword'
+            @input='validatePassword'
           )
           span.form__visible.i-view(
             @click='visiblePass')
         span.password-bar(
+          v-if="password"
           :class='"level-"+(3-errorTexts.passwordDetail.length)'
         )
         div.helper(
@@ -186,6 +187,7 @@ export default {
       }
     },
     validatePassword: function (e) {
+      console.log(this.password)
       this.errorTexts.passwordDetail = []
 
       if (!this.password) this.errorTexts.password = 'Debes ingresar una contraseña'

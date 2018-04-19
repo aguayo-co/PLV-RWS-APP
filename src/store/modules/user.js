@@ -21,7 +21,8 @@ const baseUserGenerator = () => {
     followers_count: null,
     following_count: null,
     roles: [],
-    groups: []
+    groups: [],
+    shipping_methods: []
   }
 }
 

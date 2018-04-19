@@ -1,0 +1,23 @@
+/*------------------------------------*\
+  Card 
+  Usado en el listado de Prilovers
+\*------------------------------------*/
+.card {
+  text-align: center;
+  background-color: $c-neutro-4;
+}
+.card__circle {
+  display: inline-block;
+  width: 116px;
+  height: 116px;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 50%;
+  border: 10px solid $c-brand;
+}
+.card__photo {
+  width: 100%;
+}
+
+
+

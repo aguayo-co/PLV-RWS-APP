@@ -24,11 +24,20 @@
   width: 100%;
   height: auto;
 }
+.banner-hero__slot_short {
+  left: 50%;
+  @include prefixer(transform, translate(-50%,-50%), ("webkit", "moz"));
+  width: 90%;
+  margin: 0 auto;
+}
 .banner-hero__head {
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
   color: $c-neutro;
+  &.left {
+    text-align: left;
+  }
 }
 .banner-hero__main {
   display: block;
@@ -40,12 +49,23 @@
   text-transform: uppercase;
   font-family: $f-fancy;
   font-weight: $fw-bold;
-  @include font-rem(50px);
-  line-height: 1.5;
+  @include font-rem(42px);
+  line-height: 1.2;
   padding: 2px 5px;
 }
 .banner-hero__subtitle {
   @include font-rem(24px);
+}
+// Banner-hero Page: contenido.vue
+.banner-hero__caption {
+  display: inline;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  @include font-rem(35px);
+  line-height: 1.5;
+  padding: 2px 5px;
+  color: $c-default;
+  background-color: $c-neutro;
 }
 .banner-hero__btn {
   width: auto;
@@ -71,8 +91,21 @@
   @include font-rem(64px);
   }
 }
+@include media-query(medium) {
+  .banner-hero__caption {
+    @include font-rem(45px);
+  }
+}
 @include media-query(wide) {
   .banner-hero {
   margin: 0 auto 60px auto;
+  }
+  .banner-hero__caption {
+    @include font-rem(60px);
+  }
+  .banner-hero__slot_short {
+    width: 50%;
+    left: 0;
+    @include prefixer(transform, translate(0,-50%), ("webkit", "moz"));
   }
 }
