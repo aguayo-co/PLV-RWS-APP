@@ -9,7 +9,7 @@
     z-index: 180;
     transition: .5s ease;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 0;
     background-color: $c-default;
     &:after {
       content: '';
@@ -37,14 +37,45 @@
   }
 
   .foot-nav_mb {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
+    .tool-user__grid {
+      @include flex-direction(column);
+      padding-bottom: 2px;
+      border-bottom: 3px solid transparent;
+    }
+
+    .tool-user__avatar {
+      width: 26px;
+      height: 26px;
+      min-width: initial;
+      margin-bottom: 5px;
+    }
+
+    .tool-user__name {
+      display: block;
+      padding: 0;
+      color: $c-neutro;
+    }
+
+    .badge {
+      width: 14px;
+      height: 14px;
+      @include font-rem(11px);
+      line-height: 1.5;
+    }
+
+    .badge_user {
+      top: -3px;
+      left: 18px;
+    }
+
   }
 
   .foot-nav__list {
     @include flexbox;
     @include justify-content(space-around);
-    @include align-items(center);
+    @include align-items(flex-end);
     list-style-type: none;
   }
 
@@ -67,7 +98,10 @@
     color: $c-neutro;
     padding-bottom: 2px;
     border-bottom: 3px solid transparent;
-    transition: all 0.5s;
+    transition: all 0.3s;
+    &:hover {
+      border-bottom-color: $c-brand;      
+    }
     &.active {
       border-bottom-color: $c-brand;
     }
@@ -76,8 +110,8 @@
   .foot-nav__name {
     &:before {
       display: block;
-      padding-bottom: 4px;
-      @include font-rem(16px);
+      padding-bottom: 6px;
+      @include font-rem(20px);
     }
     &.i-brand {
       display: block;
@@ -90,6 +124,12 @@
       &:before {
         @include font-rem(0px);
       }
+    }
+  }
+
+  .foot-nav__item_brand {
+    .foot-nav__link {
+      padding-bottom: 8px;
     }
   }
 

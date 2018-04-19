@@ -57,7 +57,7 @@
     position: absolute;
     top: 66px;
     right: 0;
-    width: 100vh;
+    width: 100%;
     max-width: 420px;
     height: 100vh;
     padding: 40px 60px 80px;
@@ -83,7 +83,9 @@
   .user-menu__list {
     @include flexbox;
     @include justify-content(space-around);
-    max-width: 400px;
+    @include align-items(flex-end);
+    width: 96%;
+    max-width: 1280px;
     margin: 0 auto;
     &:after {
       content: '';
@@ -107,6 +109,43 @@
       }
     }
 
+  }
+
+  .user-menu__item {
+    width: 25%;
+    padding-top: 28px;
+  }
+
+  .user-menu__item_burguer {
+    padding-bottom: 15px;
+  }
+
+  .user-menu__icon {
+    display: block;
+    margin-left: auto;
+    text-align: right;
+    color: $c-neutro;
+    &:before {
+      display: inline-block;
+      padding-bottom: 10px;
+      border-bottom: 5px solid transparent;
+    }
+    &.i-bell,
+    &.i-user {
+      &:before {
+        @include font-rem(20px);
+      }
+    }
+    &.i-shop {
+      &:before {
+        @include font-rem(16px);
+      }
+    }
+    &:active {
+      &:before {
+        border-bottom: 5px solid $c-brand;
+      }
+    }
   }
 }
 
