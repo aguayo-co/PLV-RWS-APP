@@ -4320,6 +4320,10 @@ body {
 .user-edit_right {
   text-align: right; }
 
+.user-data.tool-user__letter {
+  font-size: 600%;
+  color: #fff; }
+
 /*------------------------------------*\
   User Profile avatar page "closet"
 \*------------------------------------*/
