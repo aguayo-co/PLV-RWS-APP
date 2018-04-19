@@ -70,7 +70,7 @@
           .form-section.form-section_footer
             .form__row.form__row_away
               button.btn.btn_solid(
-                @click.prevent = 'validate') Registrarse
+                @click.prevent = 'validate') Guardar y continuar
 </template>
 
 <script>
