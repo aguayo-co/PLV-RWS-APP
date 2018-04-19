@@ -27,6 +27,8 @@ const base = {
       statusMessages: {...baseStatusMessages}
     }
   },
+  components: {
+  },
   computed: {
     paymentDate () {
       const date = this.$getNestedObject(this.sale, ['status_history', 20, 'date', 'date'])
@@ -49,6 +51,7 @@ export default {
    */
   merge (toMerge) {
     toMerge.props = toMerge.props ? toMerge.props.concat(base.props) : base.props
+    toMerge.components = toMerge.components ? {...toMerge.components, ...base.components} : {...base.components}
     toMerge.computed = toMerge.computed ? {...toMerge.computed, ...base.computed} : {...base.computed}
     toMerge.methods = toMerge.methods ? {...toMerge.methods, ...base.methods} : {...base.methods}
     toMerge._data = toMerge.data ? toMerge.data : () => { return {} }

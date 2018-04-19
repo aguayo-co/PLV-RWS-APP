@@ -1,0 +1,73 @@
+import Base from './Base'
+import ratingAPI from '@/api/rating'
+
+export default Base.merge({
+  name: 'Completada',
+  data: () => {
+    return {
+      rating: {},
+      new_seller_rating: null,
+      new_seller_comment: null,
+      errorLog: {
+        seller_rating: null,
+        seller_comment: null
+      }
+    }
+  },
+  computed: {
+    seller_comment: {
+      get () {
+        return this.new_seller_comment !== null ? this.new_seller_comment : this.$getNestedObject(this.rating, ['seller_comment'])
+      },
+      set (newComment) {
+        this.new_seller_comment = newComment
+      }
+    },
+    seller_rating: {
+      get () {
+        return this.new_seller_rating !== null ? this.new_seller_rating : this.$getNestedObject(this.rating, ['seller_rating'])
+      },
+      set (newRating) {
+        this.new_seller_rating = newRating
+        this.errorLog.seller_rating = null
+        ratingAPI.setSellerRating(this.rating.sale_id, newRating).then(result => {
+          this.rating = result.data
+          this.new_seller_rating = null
+        }).catch(e => {
+          this.$handleApiErrors(e, ['seller_rating'], this.errorLog)
+        })
+      }
+    }
+  },
+  methods: {
+    loadRating () {
+      ratingAPI.loadForSale(this.sale.id).then(result => {
+        this.rating = result.data
+      })
+    },
+    setSellerComment () {
+      if (!this.seller_comment) {
+        this.errorLog.seller_comment = 'Debes ingresar un comentario.'
+        return
+      }
+
+      if (!this.seller_rating) {
+        this.errorLog.seller_rating = 'Debes seleccionar una calificación.'
+        return
+      }
+
+      this.errorLog.seller_comment = null
+      this.errorLog.seller_rating = null
+      ratingAPI.setSellerComment(this.rating.sale_id, this.seller_comment, this.seller_rating).then(result => {
+        this.rating = result.data
+        this.new_seller_rating = null
+        this.new_seller_comment = null
+      }).catch(e => {
+        this.$handleApiErrors(e, ['seller_comment', 'seller_rating'], this.errorLog)
+      })
+    }
+  },
+  created () {
+    this.loadRating()
+  }
+})
