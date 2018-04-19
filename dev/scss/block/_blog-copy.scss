@@ -129,6 +129,12 @@
 	.blog__pullquote {
 		@include align-self(center);
 	}
+	.blog__picture {
+		&+.blog__copy {
+			@include align-self(center);
+		}
+	}
+
 
 
 }

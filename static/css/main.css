@@ -8386,6 +8386,11 @@ body {
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;
+        align-self: center; }
+  .blog__picture + .blog__copy {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
         align-self: center; } }
 
 .blog-banner .banner-hero__slot {
