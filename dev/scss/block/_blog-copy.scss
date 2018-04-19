@@ -33,9 +33,56 @@
 	font-family: $f-fancy;
 	@include font-rem(16px);
 }
+
 .blog__copy {
-	line-height: 1.46;
+  line-height: 1.46;
 }
+.blog__pullquote {
+	position: relative;
+	padding-left: 48px;
+	text-transform: uppercase;
+	font-family: $f-fancy;
+	font-weight: $fw-light;
+	@include font-rem(20px);
+	&:before {
+		content: '“';
+		position: absolute;
+		top: -24px;
+		left: 0;
+		opacity: 0.2;
+		color: $c-brand;
+		line-height: 1;
+		@include font-rem(198px);
+		font-weight: bold;
+		font-family:  Georgia, serif;
+	}
+}
+	.blog__quote {
+		margin: 0;
+	}
+.blog__picture {
+	position: relative;
+	max-width: 560px;
+	img {
+		width: 100%;
+		vertical-align: bottom;
+	}
+}
+	.blog__caption {
+		position: absolute;
+		left: 0;
+		bottom: 15%;
+		width: 80%;
+		text-transform: uppercase;
+		font-family: $f-fancy;
+		span {
+			padding: 2px 5px;
+			line-height: 1.6;
+			background-color:$c-neutro;
+		}
+
+	}
+
 
 @include media-query(medium) {
 	.blog {
@@ -58,5 +105,30 @@
 		padding-bottom: 22px;
 		@include font-rem(24px);
 	}
+	.blog__pullquote {
+	  padding-left:78px;
+		@include font-rem(30px);
+		&:before {
+			top: -38px;
+			@include font-rem(298px);
+		}
+
+	}
+}
+@include media-query(wide) {
+	.blog__spread {
+		@include flexbox;
+	}
+	.blog__spread_upside {
+		@include flex-direction(row-reverse);
+	}
+
+	.blog__copy {
+	  max-width: 60%;
+	}
+	.blog__pullquote {
+		@include align-self(center);
+	}
+
 
 }
