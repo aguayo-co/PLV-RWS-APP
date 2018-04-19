@@ -17,7 +17,7 @@
             figcaption.blog__caption
               span Te regalamos en tu primera compra
           .blog__copy
-            p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como "Recibido", tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov. Cuando hagas una compra,  el sistema descontará el monto que tienes en créditos al total de la compra que estás realizando. 
+            p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como "Recibido", tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov. Cuando hagas una compra,  el sistema descontará el monto que tienes en créditos al total de la compra que estás realizando.
     BlogbannerProm
     .blog__inner
       article.blog__body
@@ -29,7 +29,6 @@
         h2.blog__headline Lo que gana Prilov
         .blog__copy
           p Prilov cobrará un 20% de comisión del valor de los productos por cada venta que se genere; generándose el 80% del valor de los productos en créditos, más el costo de despacho pagado por la compradora. Por ejemplo, si el precio del producto es $10.000 y el costo de despacho es $1.000, entonces generaremos créditos por $8.000 + $1.000 = $9.000. Transferir los créditos a tu cuenta bancaria no tiene costo.
-         
 </template>
 
 <script>

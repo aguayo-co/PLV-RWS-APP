@@ -22,7 +22,6 @@ import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
 import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
-import Prilovers from '@/pages/Prilovers'
 import Contenido from '@/pages/Contenido'
 import Contenido2 from '@/pages/Contenido2'
 
@@ -137,11 +136,6 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
-    },
-    {
-      path: '/prilovers',
-      name: 'Prilovers',
-      component: Prilovers
     },
     {
       path: '/instashop',
