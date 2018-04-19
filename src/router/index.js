@@ -20,8 +20,9 @@ import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
-import Search from '@/pages/search'
-import Prilovers from '@/pages/prilovers'
+import Instashop from '@/pages/Instashop'
+import Search from '@/pages/Search'
+import Prilovers from '@/pages/Prilovers'
 import Contenido from '@/pages/Contenido'
 
 Vue.use(Router)
@@ -133,7 +134,7 @@ export default new Router({
     },
     {
       path: '/:type/:slug',
-      name: 'Categoria',
+      name: 'categoria',
       component: Categoria
     },
     {
@@ -145,6 +146,11 @@ export default new Router({
       path: '/prilovers',
       name: 'Prilovers',
       component: Prilovers
+    },
+    {
+      path: '/instashop',
+      name: 'Instashop',
+      component: Instashop
     }
   ]
 })

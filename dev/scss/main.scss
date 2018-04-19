@@ -60,6 +60,7 @@
 @import
   'block/product-detail',
   'block/product-slot',
+  'block/product-gridlight',
   'block/slider-slot',
   'block/chat-slot';
 
@@ -84,6 +85,11 @@
   'block/pagination',
   'block/tabs',
   'block/search';
+
+//contenidos
+@import
+  'block/blog-copy',
+  'block/blog-list';
 
 @import
   'vendor/flickity';
