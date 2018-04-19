@@ -4,7 +4,7 @@
 
 .blog {
 	max-width: 1440px;
-	margin: 0 auto;
+	margin: 0 auto 60px;
 	font-family: $f-normal;
 	font-weight: $fw-thin;
 	@include font-rem(16px);
@@ -119,6 +119,7 @@
 
 @include media-query(medium) {
 	.blog {
+		margin-bottom: 100px;
 		@include font-rem(24px);
 		p {
 			padding-bottom: 24px;

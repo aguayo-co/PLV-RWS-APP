@@ -1,7 +1,7 @@
 <template lang="pug">
 .layout-page
+  BannerTop
   section.blog
-    BannerTop
     Blogbanner
     .blog__inner
       header.blog__header
@@ -55,7 +55,8 @@
             cite='http://prilov.html')
             p.blog__quote El modelo de padres mexicanos es parte vital de la nueva generación de Calvin Klein salida de la mente de Raf Simons.
     article.blog__body
-      h2.blog__headline El modelo de padres mexicanos es parte vital de la nueva generación de Calvin Klein salida de la mente de Raf Simons.
+      .blog__inner
+        h2.blog__headline El modelo de padres mexicanos es parte vital de la nueva generación de Calvin Klein salida de la mente de Raf Simons.
       .blog__spread.blog__spread_upside
         figure.blog__picture
           img.blog__image(src="static/img/demo/blog-001.jpg", alt="Alt imagen")
@@ -70,35 +71,35 @@
             span Te regalamos en tu primera compra
         .blog__copy
           p Ernesto Cervantes tuvo una oportunidad como nadie más en la industria: abrió el primer desfile de Raf Simons en Calvin Klein, formando parte de la nueva generación de la marca estadounidense bajo el mando del genio belga. De padres mexicanos, Ernesto nació en Orange County, pero creció en Perris, California, tiempo en el cual aprendió las virtudes de salirse de la cotidianidad y el confort que su entorno le ofrecía. Desde su lanzamiento como modelo exclusivo de Calvin Klein, también fue uno de los protagonistas en el video de The xx I Dare You, i-D platicó con él desde California para saber qué pensaba sobre representar su herencia mexicana en la nueva era de una marca conocida como uno de los pilares de la moda estadounidense.
-
-    article.blog__body
-      h2.blog__headline El modelo de padres mexicanos es parte vital de la nueva generación de Calvin Klein salida de la mente de Raf Simons.
-      .blog__copy
-        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi incidunt labore doloribus iure veniam, numquam cumque, iste laboriosam, obcaecati voluptates architecto assumenda delectus harum possimus praesentium reprehenderit unde dignissimos eaque!Tempore provident eveniet, dicta repellendus deleniti eligendi facere eum ut minus nihil temporibus earum exercitationem asperiores voluptas sapiente odio assumenda delectus dolorem debitis vero qui nesciunt sunt quae cupiditate. Quos.Ut praesentium repellat ab, fugit veniam illo aliquam. Sapiente aspernatur laborum quod animi expedita suscipit dignissimos minima consequuntur eius odio, impedit quisquam corporis mollitia debitis reprehenderit libero vel iusto nam.Ad deleniti aliquam et eos quam molestiae quibusdam eligendi, incidunt voluptas quasi, porro voluptatum accusamus eius dolorum saepe! Sed voluptatibus delectus nulla voluptatum culpa aliquam qui expedita officiis quis recusandae.Incidunt enim rerum odio, recusandae maiores vero dolore excepturi? Nulla facere et ipsum laudantium dolore exercitationem facilis rem praesentium. Fugiat vel dicta a, aspernatur dolorum sed ducimus quibusdam eveniet enim!
-        h4.blog__subhead Marcas disponibles en Prilov
-        ul
-          li Adidas
-          li Asos
-            ul
-              li 020
-              li Vestidos
-                ul
-                  li Vestidos cortos
-          li Converse
-          li Forever 21
-          li Foster
-        h4.blog__subhead Las prendas más vendidas en Prilov
-        ol
-          li Chaquetas
-          li Vestidos
-          li Vestidos cortos
-          li Pantalones
-          li Zapatos
-          li Chaquetas
-          li Vestidos
-          li Vestidos cortos
-          li Pantalones
-          li Zapatos
+    .blog__inner
+      article.blog__body
+        h2.blog__headline El modelo de padres mexicanos es parte vital de la nueva generación de Calvin Klein salida de la mente de Raf Simons.
+        .blog__copy
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi incidunt labore doloribus iure veniam, numquam cumque, iste laboriosam, obcaecati voluptates architecto assumenda delectus harum possimus praesentium reprehenderit unde dignissimos eaque!Tempore provident eveniet, dicta repellendus deleniti eligendi facere eum ut minus nihil temporibus earum exercitationem asperiores voluptas sapiente odio assumenda delectus dolorem debitis vero qui nesciunt sunt quae cupiditate. Quos.Ut praesentium repellat ab, fugit veniam illo aliquam. Sapiente aspernatur laborum quod animi expedita suscipit dignissimos minima consequuntur eius odio, impedit quisquam corporis mollitia debitis reprehenderit libero vel iusto nam.Ad deleniti aliquam et eos quam molestiae quibusdam eligendi, incidunt voluptas quasi, porro voluptatum accusamus eius dolorum saepe! Sed voluptatibus delectus nulla voluptatum culpa aliquam qui expedita officiis quis recusandae.Incidunt enim rerum odio, recusandae maiores vero dolore excepturi? Nulla facere et ipsum laudantium dolore exercitationem facilis rem praesentium. Fugiat vel dicta a, aspernatur dolorum sed ducimus quibusdam eveniet enim!
+          h4.blog__subhead Marcas disponibles en Prilov
+          ul
+            li Adidas
+            li Asos
+              ul
+                li 020
+                li Vestidos
+                  ul
+                    li Vestidos cortos
+            li Converse
+            li Forever 21
+            li Foster
+          h4.blog__subhead Las prendas más vendidas en Prilov
+          ol
+            li Chaquetas
+            li Vestidos
+            li Vestidos cortos
+            li Pantalones
+            li Zapatos
+            li Chaquetas
+            li Vestidos
+            li Vestidos cortos
+            li Pantalones
+            li Zapatos
 
 </template>
 

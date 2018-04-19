@@ -8260,7 +8260,7 @@ body {
 \*------------------------------------*/
 .blog {
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 0 auto 60px;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 16px;
@@ -8370,6 +8370,7 @@ body {
 
 @media only screen and (min-width: 768px) {
   .blog {
+    margin-bottom: 100px;
     font-size: 24px;
     font-size: 1.5rem; }
     .blog p {
@@ -8504,20 +8505,24 @@ body {
     margin: 0; }
 
 .blog ol {
-  counter-reset: section; }
+  list-style: none;
+  counter-reset: section;
+  margin: 0; }
   .blog ol li {
     position: relative;
+    margin: 8px 0;
     padding-left: 24px; }
     .blog ol li:before {
       counter-increment: section;
       content: counter(section);
       position: absolute;
-      top: 0;
-      text-align: center;
+      top: 4px;
       left: 0;
+      text-align: center;
       display: block;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
+      line-height: 16px;
       color: #fff;
       font-size: 12px;
       font-size: 0.75rem;
@@ -8536,8 +8541,10 @@ body {
   .blog ol li {
     padding-left: 34px; }
     .blog ol li:before {
+      top: 6px;
       width: 24px;
       height: 24px;
+      line-height: 22px;
       font-size: 18px;
       font-size: 1.125rem; } }
 
