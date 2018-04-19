@@ -218,6 +218,8 @@
 @include media-query(wide) {
 	.blog__out {
 		width: 88%;
+		max-width: 1180px;
+
 		.blog__copy {
 		  width: 100%;
 		  margin: 0;
@@ -234,7 +236,10 @@
 		padding-bottom: 60px;
 	}
 	.blog__body_slot {
-	  padding-bottom: 60px;
+		padding-bottom: 60px;
+		.blog__copy {
+		  max-width: 80%;
+		}
 	}
 
 	.blog__spread_upside {
@@ -246,25 +251,25 @@
 		.blog__picture {
 			margin-right: 0;
 			margin-left: 48px;
-			min-width: 510px;
 		}
 	}
 
 	.blog__copy {
 	  max-width: 60%;
 	}
+
 	.blog__pullquote {
 		margin-right: -70px;
 		@include align-self(center);
 	}
 	.blog__picture {
+		min-width: 510px;
 		margin-right: 48px;
 		padding-bottom: 0;
+
 		&+.blog__copy {
 			@include align-self(center);
 		}
 	}
-
-
 
 }
