@@ -12,6 +12,20 @@
 
   .dashboard__actions(v-if="!hasReceipt")
     p Aún no has terminado tu compra, sube tu comprobante de pago.
+    form.form.form_file(
+        @submit.prevent="uploadReceipt")
+      input.form__file(
+        type="file",
+        name="file-comprobante",
+        :id="sale.id + 'sale-file-comprobante'",
+        @change="setReceipt($event)"
+        multiple="")
+      label.form__label_file(:for="sale.id + 'sale-file-comprobante'")
+        span.help(
+          v-show="errorLog.transfer_receipt") {{ errorLog.transfer_receipt }}
+        .form__file-input
+          span.form-file__txt {{ fileName }}
+      button.btn.form-file__btn Subir {{ rand }}
     p Tienes:
       span.dashboard__txt-big 10 Minutos
       | antes de que tu compra se anule

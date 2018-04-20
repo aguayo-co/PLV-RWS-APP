@@ -1,6 +1,9 @@
 <template lang="pug">
 //- La compradora no ha enviado le producto de vuelta.
-.dashboard__subitem(v-if="sale_return.status === 0")
+.dashboard__subitem(v-if="!sale_return")
+  .dashboard__status
+    p.status.status_warning.i-reload Cargando información
+.dashboard__subitem(v-else-if="sale_return.status === 0")
   .dashboard__status
     p.status.status_warning.i-reload A la espera de que devuelvas el producto
   .dashboard__actions
