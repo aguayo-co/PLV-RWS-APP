@@ -4580,7 +4580,7 @@ body {
   text-align: center;
   padding: 0 0 0 20px; }
   .user-hero__notify .user-data__list {
-    padding: 8px; }
+    padding: 16px 8px; }
 
 .user-hero__item:last-child {
   text-align: center; }
@@ -4604,14 +4604,15 @@ body {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex; }
+  .user-hero__item .user-data__group {
+    position: relative;
+    left: -10px; }
   .user-hero__item:last-child {
-    padding-top: 60px;
+    padding-top: 75px;
     text-align: left; }
   .user-hero__item:first-child {
-    -webkit-flex-basis: 19%;
-    -moz-flex-basis: 19%;
-    -ms-flex-preferred-size: 19%;
-    flex-basis: 19%; }
+    width: 40%;
+    max-width: 120px; }
   .user-hero__notify {
     text-align: left;
     -webkit-box-pack: start;
