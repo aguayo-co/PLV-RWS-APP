@@ -2910,7 +2910,6 @@ body {
       left: 0;
       z-index: 1;
       width: 100vw;
-      height: 100vh;
       opacity: 0;
       pointer-events: none;
       background-color: rgba(0, 0, 0, 0.5);
@@ -3011,7 +3010,7 @@ body {
     width: 100%;
     max-width: 420px;
     z-index: 10;
-    height: 100vh;
+    height: 140vh;
     padding: 20px 16px;
     overflow-y: scroll;
     color: #000;
@@ -4307,7 +4306,6 @@ body {
       left: 0;
       z-index: -1;
       width: 100vw;
-      height: 100vh;
       opacity: 0;
       pointer-events: none;
       background-color: rgba(0, 0, 0, 0.5);
@@ -7564,11 +7562,14 @@ body {
     min-width: 316px;
     z-index: 1001;
     height: 100vh;
+    overflow-y: scroll;
     color: #000;
     list-style: none;
     background-color: #fff; }
   .filter__list {
     left: 0; }
+    .filter__list .filter__select:last-child {
+      border-bottom: none; }
     .filter__list.filter__list_level {
       left: inherit;
       right: 0; }
