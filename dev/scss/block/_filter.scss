@@ -78,12 +78,18 @@
       min-width: 316px;
       z-index: 1001;
       height: 100vh;
+      overflow-y: scroll;
       color: $c-default;
       list-style: none;
       background-color: $c-neutro;
     }
     .filter__list {
       left: 0;
+      .filter__select {
+        &:last-child {
+          border-bottom:  none;
+        }
+      }
       &.filter__list_level {
         left: inherit;
         right: 0;

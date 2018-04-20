@@ -30,7 +30,7 @@ nav.page-menu
                       )
                       router-link.subitem__link(
                         @click.stop="toggleNav"
-                        :to='grandChildren.url') {{grandChildren.name}}
+                        :to='grandChildren.url || "#"') {{grandChildren.name}}
               //- Nivel 2: Promo
               .menu-promo(v-if="banner")
                 img.menu-promo__img(:src="banner.image" :alt="banner.title + banner.subtitle")
@@ -38,7 +38,7 @@ nav.page-menu
                   h4.menu-promo__title.title_line {{ banner.title }}
                   p.menu-promo__txt {{ banner.subtitle }}
                   router-link.menu-promo__foot.btn(
-                    :to="banner.url",
+                    :to='banner.url || "#"',
                     :title="'Ir' + banner.title") {{ banner.button_text }}
 
             //- Nivel 2: fside de enlaces

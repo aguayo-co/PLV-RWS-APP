@@ -9,10 +9,23 @@
 .page {
   min-height: 100vh;
 }
+.content-main {
+  min-height: 70vh;
+}
 
 .layout {
   background-color: $c-neutro;
 }
+.layout-page {
+  .preload {
+    &:first-child {
+      margin-top: 60px;
+    }
+  }
+}
+
+
+
 
 .layout-slot {
   background-color: $c-neutro-3;
@@ -78,6 +91,14 @@
   .content-slot__inner {
     width: 76%;
   }
+  .layout-page {
+    .preload {
+      &:first-child {
+        margin-top: 100px;
+      }
+    }
+  }
+
   .layout_nofound {
     padding: 100px 0;
   }

@@ -23,7 +23,7 @@ import Categoria from '@/pages/Categoria'
 import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
 import Contenido from '@/pages/Contenido'
-import Contenido2 from '@/pages/Contenido2'
+import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
 
 Vue.use(Router)
 
@@ -103,11 +103,6 @@ export default new Router({
           path: 'tus-favoritos',
           name: 'user-tus-favoritos',
           component: UserFavoritos
-        },
-        {
-          path: 'closet',
-          name: 'Closet',
-          component: Closet
         }
       ]
     },
@@ -120,6 +115,11 @@ export default new Router({
       path: '/producto/:slug',
       name: 'product',
       component: Producto
+    },
+    {
+      path: '/closet',
+      name: 'Closet',
+      component: Closet
     },
     {
       path: '/compra/:id?',
@@ -148,9 +148,9 @@ export default new Router({
       component: Contenido
     },
     {
-      path: '/contenido2',
-      name: 'contenido2',
-      component: Contenido2
+      path: '/como-cobrar',
+      name: 'como-cobrar',
+      component: AyudaComoCobrar
     }
   ]
 })

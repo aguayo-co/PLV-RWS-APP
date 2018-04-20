@@ -20,12 +20,19 @@
     color: $c-neutro;
     border: 2px solid $c-brand;
     background-color: $c-brand;
+    &:before {
+      color: $c-neutro;
+    }
   }
   &:active {
     border-top-color: $c-brand-dark;
     border-left-color: $c-brand-dark;
+    &:before {
+      color: $c-neutro;
+    }
   }
   &:before {
+    color: $c-brand;
     @include font-rem(20px);
     padding-right: 12px;
   }
@@ -104,6 +111,16 @@
   border: 1px solid $c-brand;
   border-radius: 25px;
   background-color: $c-neutro;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover,
+  &:active {
+    background-color: $c-brand;
+    color: $c-neutro;
+  }
+  &:active {
+    border: 1px solid $c-brand-dark;
+  }
 }
 
 .btn-tag_solid {
