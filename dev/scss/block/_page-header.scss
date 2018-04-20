@@ -68,8 +68,8 @@
       font-weight: $fw-medium;
       font-family: $f-fancy;
       @include letter-spacing(1.5px);
+      text-align: left;
     }
-
 /*------------------------------------*\
   Page header: 
   componente Pageheader-search

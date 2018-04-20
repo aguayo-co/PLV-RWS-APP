@@ -2058,7 +2058,8 @@ body {
   font-weight: 500;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: 1.5px;
-  letter-spacing: 0.09375rem; }
+  letter-spacing: 0.09375rem;
+  text-align: left; }
 
 /*------------------------------------*\
   Page header: 
