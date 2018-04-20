@@ -38,7 +38,7 @@
         source.banner-hero__img(
           media='(max-width: 640px)', srcset='static/img/blog3-002-m.jpg')
         img.banner-slider__img(
-          src='static/img/blog3-002.jpg')
+          src='static/img/blog3-002.png')
     .blog__inner
       article.blog__body.blog__body_slot
         h2.blog__headline Responde a tiempo las preguntas de otras prilovers
