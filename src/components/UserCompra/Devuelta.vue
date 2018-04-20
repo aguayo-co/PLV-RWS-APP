@@ -34,6 +34,7 @@
     a.link_underline(
       @click.prevent="saleReturnDelivered"
       href='#') Acordar juntarme con la vendedora
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 //- La compradora marcó la devolución cómo enviada.
 .dashboard__subitem(v-else-if="sale_return.status === 40")
@@ -47,6 +48,7 @@
     a.link_underline(
       @click.prevent="askForShippingDetails"
       href='#') « Ingresé mal el número de seguimiento o devolví de otra forma
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 //- La compradora marcó la devolución cómo enviada.
 .dashboard__subitem(v-else-if="sale_return.status === 41")
@@ -60,19 +62,22 @@
       span.break__txt O
     a.link_underline(
       href='#') « Lo entregué de otra forma
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 49")
   .dashboard__status
     p.status.status_warning.i-reload Esperando confirmación de recibido de la Vendedora.
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 90")
   .dashboard__status
     p.status.status_alert.i-reload Pedido devuelto.
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 99")
   .dashboard__status
     p.status.status_alert.i-reload Devolución cancelada.
-
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 </template>
 
 <script src="./js/Devuelta.js"></script>

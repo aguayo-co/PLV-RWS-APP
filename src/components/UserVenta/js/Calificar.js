@@ -29,13 +29,6 @@ export default Base.merge({
       },
       set (newRating) {
         this.new_seller_rating = newRating
-        this.errorLog.seller_rating = null
-        ratingAPI.setSellerRating(this.rating.sale_id, newRating).then(result => {
-          this.rating = result.data
-          this.new_seller_rating = null
-        }).catch(e => {
-          this.$handleApiErrors(e, ['seller_rating'], this.errorLog)
-        })
       }
     }
   },
@@ -45,14 +38,23 @@ export default Base.merge({
         this.rating = result.data
       })
     },
-    setSellerComment () {
+    validateRating () {
+      let valid = true
+
       if (!this.seller_comment) {
         this.errorLog.seller_comment = 'Debes ingresar un comentario.'
-        return
+        valid = false
       }
 
       if (!this.seller_rating) {
         this.errorLog.seller_rating = 'Debes seleccionar una calificación.'
+        valid = false
+      }
+
+      return valid
+    },
+    setSellerRating () {
+      if (!this.validateRating) {
         return
       }
 
