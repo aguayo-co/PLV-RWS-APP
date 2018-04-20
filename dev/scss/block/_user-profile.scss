@@ -110,15 +110,22 @@
   position: relative;
   top: -57px;
   left: 0;
+  width: 96%;
+  max-width: 1070px;
+  margin: 0 auto;
   .user-data__avatar {
     display: inline-block;
-    margin: 0 auto 0 20px;
+    //margin: 0 auto 0 20px;
+    margin: 0 auto;
   }
   .user-data__title {
     display: inline-block;
     text-align: left;
     padding: 0 0 0 20px;
   }
+}
+.user-hero__head {
+  text-align: center;
 }
 .user-hero__notify {
   @include flexbox;
@@ -136,8 +143,9 @@
   }
   .user-data__group {
     display: block;
-    text-align: left;
-    padding-left: 20px;
+    padding: 10px 0;
+    //text-align: left;
+    text-align: center;
   }
 }
 .user-data__item {
@@ -166,6 +174,13 @@
     .user-hero__notify {
       text-align: left;
       @include justify-content(start);
+    }
+  }
+
+  // $bp-wide: 1024px;
+  @include media-query(big) {
+    .user-hero {
+      max-width: 1314px;
     }
   }
 /*------------------------------------*\

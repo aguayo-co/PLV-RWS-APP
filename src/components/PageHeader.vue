@@ -15,9 +15,84 @@
       //- user
       nav.tool-user
         ul.tool-user__grid
-          li.tool-user__item.i-bag
-            //-vue variable productos en el carrito
-            small.badge 1
+          li
+            span.tool-user__item.i-bag(
+              @click='togglecar')
+              //-vue variable productos en el carrito
+              small.badge 1
+            transition(name='toggle-scale')
+              .user-auth__boxes.toggle-box(
+                  v-show='activeCar')
+                .box-cards.toggle-box__list
+                  .box-cards__head
+                    p.box-cards__title 5 productos en tu carrito
+                    a.box-cards__btn-x.i-x(
+                      @click='togglecar') Cerrar
+                  .box-cards__subhead
+                    .box-cards__value
+                      p.box-cards__title Total
+                      span.box-cards__number $21.000
+                    .btn.btn_solid Ir a Pagar
+                  .box-cards__item
+                    article.list__card
+                      a.card__product
+                        //-img producto
+                        .card__figure
+                          img.card__img(
+                            src="/static/img/demo/product-002.jpg",
+                            alt="")
+                        //-info producto
+                        .card__info
+                          .card__header
+                            h3.card__title Chaqueta de cuero mostaza
+                            p.card__size Talla: XS
+                          p.card__price $34.000
+                    a.box-cards__btn.i-x(href='#') Cerrar
+                  .box-cards__item
+                    article.list__card
+                      a.card__product
+                        //-img producto
+                        .card__figure
+                          img.card__img(
+                            src="/static/img/demo/product-001.jpg",
+                            alt="")
+                        //-info producto
+                        .card__info
+                          .card__header
+                            h3.card__title Blusa negra style fresh
+                            p.card__size Talla: XS
+                          p.card__price $19.000
+                    a.box-cards__btn.i-x(href='#') Cerrar
+                  .box-cards__item
+                    article.list__card
+                      a.card__product
+                        //-img producto
+                        .card__figure
+                          img.card__img(
+                            src="/static/img/demo/product-004.jpg",
+                            alt="")
+                        //-info producto
+                        .card__info
+                          .card__header
+                            h3.card__title Zapatos de línea casual
+                            p.card__size Talla: 26
+                          p.card__price $23.000
+                    a.box-cards__btn.i-x(href='#') Cerrar
+                  .box-cards__item
+                    article.list__card
+                      a.card__product
+                        //-img producto
+                        .card__figure
+                          img.card__img(
+                            src="/static/img/demo/product-004.jpg",
+                            alt="")
+                        //-info producto
+                        .card__info
+                          .card__header
+                            h3.card__title Zapatos de línea casual
+                            p.card__size Talla: 26
+                          p.card__price $23.000
+                    a.box-cards__btn.i-x(href='#') Cerrar
           //- Is authenticated
           li.tool-user__item.tool-user__item_auth(
             v-if='user.id')
@@ -81,7 +156,8 @@ export default {
   },
   data () {
     return {
-      active: false
+      active: false,
+      activeCar: false
     }
   },
   methods: {
@@ -96,6 +172,9 @@ export default {
     },
     toggleBox: function () {
       this.active = !this.active
+    },
+    togglecar: function () {
+      this.activeCar = !this.activeCar
     },
     logout: function () {
       this.$store.dispatch('user/logOut')
