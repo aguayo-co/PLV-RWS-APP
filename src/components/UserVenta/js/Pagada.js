@@ -21,7 +21,7 @@ export default Base.merge({
   },
   methods: {
     saleDelivered () {
-      saleAPI.delivered(this.sale.id, '').then(response => {
+      saleAPI.delivered(this.sale.id, 'Entrega coordinada por vendedora.').then(response => {
         this.$emit('refresh-sale', response.data)
       }).catch((e) => {
         this.$handleApiErrors(e)

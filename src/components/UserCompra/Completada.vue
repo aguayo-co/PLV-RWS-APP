@@ -5,6 +5,7 @@
   .dashboard__actions
     .dashboard__actions
       p Ya no puedes devolver este producto.
+  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 </template>
 
 <script src="./js/Completada.js"></script>

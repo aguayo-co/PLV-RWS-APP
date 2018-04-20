@@ -7,10 +7,11 @@ export default {
   load (saleReturnsId) {
     return Vue.axiosAuth.get('/api/sale_returns/' + saleReturnsId)
   },
-  return (salesId, productsIds) {
+  return (salesId, productsIds, reason) {
     const data = {
       sale_id: salesId,
-      products_ids: productsIds
+      products_ids: productsIds,
+      reason
     }
     return Vue.axiosAuth.post('/api/sale_returns/', data)
   },
@@ -32,6 +33,24 @@ export default {
       shipment_details: {
         note
       }
+    }
+    return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
+  },
+  received (saleReturnId) {
+    const data = {
+      status: 49
+    }
+    return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
+  },
+  completed (saleReturnId) {
+    const data = {
+      status: 90
+    }
+    return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
+  },
+  adminManagement (saleReturnId) {
+    const data = {
+      status: 50
     }
     return Vue.axiosAuth.patch('/api/sale_returns/' + saleReturnId, data)
   }
