@@ -33,6 +33,7 @@
     Enviada(:sale="sale" v-else-if="sale.status === 40 || sale.status === 41" v-on:refresh-sale="$emit('refresh-sale', $event)")
     Recibida(:sale="sale" v-else-if="sale.status === 49" v-on:refresh-sale="$emit('refresh-sale', $event)")
     Completada(:sale="sale" v-else-if="sale.status === 90" v-on:refresh-sale="$emit('refresh-sale', $event)")
+    Devuelta(:sale="sale" v-else-if="sale.status === 91 || sale.status === 92" v-on:refresh-sale="$emit('refresh-sale', $event)")
 </template>
 
 <script src="./js/UserVenta.js"></script>

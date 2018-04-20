@@ -24,6 +24,8 @@ import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
 import Contenido from '@/pages/Contenido'
 import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
+import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
+import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 
 Vue.use(Router)
 
@@ -151,6 +153,16 @@ export default new Router({
       path: '/como-cobrar',
       name: 'como-cobrar',
       component: AyudaComoCobrar
+    },
+    {
+      path: '/aumentar-ventas',
+      name: 'aumentar-ventas',
+      component: AyudaAumentarVentas
+    },
+    {
+      path: '/ser-prilover',
+      name: 'ser-prilover',
+      component: AyudaPriloverStar
     }
   ]
 })
