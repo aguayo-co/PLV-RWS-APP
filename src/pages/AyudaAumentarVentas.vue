@@ -9,7 +9,9 @@
       .blog__out.blog__out_right
         .blog__spread.blog__spread_upside
           figure.blog__picture
-            img.blog__image(src="static/img/blog3-001.jpg", alt="Cuando vendas un producto, siempre se generarán créditos en tu cuenta Prilov")
+            img.blog__image(
+              src="static/img/blog3-001.jpg"
+              alt="Logra fotos que vendan")
           .blog__copy
             h2.blog__headline Logra fotos que vendan ¡No necesitas ser fotógrafa profesional!
             ol
