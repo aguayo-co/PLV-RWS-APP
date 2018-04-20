@@ -103,11 +103,6 @@ export default new Router({
           path: 'tus-favoritos',
           name: 'user-tus-favoritos',
           component: UserFavoritos
-        },
-        {
-          path: 'closet',
-          name: 'Closet',
-          component: Closet
         }
       ]
     },
@@ -120,6 +115,11 @@ export default new Router({
       path: '/producto/:slug',
       name: 'product',
       component: Producto
+    },
+    {
+      path: '/closet',
+      name: 'Closet',
+      component: Closet
     },
     {
       path: '/compra/:id?',

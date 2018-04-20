@@ -17,3 +17,8 @@
   font-size: $size; //Fallback in px
   font-size: calculateRem($size);
 }
+
+@mixin letter-spacing($size)  {
+  letter-spacing: $size; //Fallback in px
+  letter-spacing: calculateRem($size);
+}
