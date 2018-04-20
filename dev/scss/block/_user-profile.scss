@@ -373,6 +373,9 @@
     .user-header__item {
       text-align: left;
     }
+    .user-data-nav {
+      @include justify-content(left);
+    }         
 
     .user-data__title {
       padding-top: 8px;
