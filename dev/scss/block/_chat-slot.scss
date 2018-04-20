@@ -37,10 +37,22 @@
   }
 }
 
-//$bp-medium: 768px;
-@include media-query(medium) {
+//$bp-medium: 980px;
+@include media-query(small-wide) {
   .chat-slot {
     padding-top: 56px;
+    .chat {
+      width: 50%;
+    }
+  }
+  .chat-notify {
+    width: 50%;
+  }
+}
+//$bp-wide: 1024px;
+@include media-query(wide) {
+  .chat-slot {
+    //padding-top: 56px;
     .chat {
       width: 60%;
     }

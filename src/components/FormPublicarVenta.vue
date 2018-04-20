@@ -284,17 +284,17 @@
                   v-model='product.price'
                   type='number')
             .form__row(
-              :class='{ "is-danger": errorLog.originalPrice }')
+              :class='{ "is-danger": errorLog.original_price }')
               label.form__label(
                 for='product-original-price') Precio al que compraste tu producto
               span.help(
-                v-if="errorLog.originalPrice"
-              ) {{ errorLog.originalPrice }}
+                v-if="errorLog.original_price"
+              ) {{ errorLog.original_price }}
               span.form__price
                 input.form__control(
-                  ref='originalPrice'
+                  ref='original_price'
                   id='product-original-price',
-                  v-model='product.originalPrice',
+                  v-model='product.original_price',
                   type='number')
           .form-section__item
             .form-section__slot.sticky
@@ -414,6 +414,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import productAPI from '../api/product'
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
@@ -429,6 +430,7 @@ export default {
       sizes: [],
       uniqueSize: false,
       images: [],
+      imagesToUpload: [],
       imageURL: null,
       toggleImage: false,
       toggleImageDelete: [ false, false, false, false ],
@@ -437,7 +439,7 @@ export default {
         title: null,
         description: null,
         dimensions: null,
-        originalPrice: null,
+        original_price: null,
         price: null,
         commission: 20,
         brand_id: null,
@@ -447,7 +449,8 @@ export default {
         condition_id: null,
         brand: null,
         file: [],
-        color: [ null, null ]
+        color: [ null, null ],
+        images: []
       },
       conditions: {},
       categories: {},
@@ -461,38 +464,46 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState(['user'])
+  },
   methods: {
     createProduct: function () {
-      const imageBlobs = []
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: '¡Qué bien! Ya estamos cargando tu producto'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
 
-      this.images.forEach(function (image, index, array) {
+      this.images.forEach((image, index, array) => {
+        if (image.hasImage()) this.imagesToUpload.push(image)
+      })
+
+      this.imagesToUpload.forEach((image, index, array) => {
         if (image.hasImage()) {
-          imageBlobs.push(image.generateDataUrl())
+          image.generateBlob((blob) => {
+            this.product.images.push(blob)
+            if (index === this.imagesToUpload.length - 1) {
+              this.product.user_id = this.user.id
+              productAPI.create(this.product)
+                .then(response => {
+                  console.log(response)
+                  this.$store.dispatch('ui/closeModal')
+                  let pending
+                  response.data.status === 0 ? pending = true : pending = false
+                  if (!pending) {
+                    this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
+                  } else {
+                    this.$router.push('/venta-publicada/pendiente')
+                  }
+                })
+            }
+          })
         }
       })
-      productAPI.create(this.product, imageBlobs)
-        .then(response => {
-          const productURL = response.data.slug
-          const payload = {
-            name: 'ModalExitoPublicarVenta',
-            parameters: {
-              productURL: productURL
-            }
-          }
-          if (response.data.status === 0) payload.parameters.productPending = true
-
-          this.$store.dispatch('ui/showModal', payload)
-            .then(() => {
-              if (payload.parameters.productPending) {
-                // this.$router.push('home')
-              } else {
-                // this.$router.push({ name: 'product', params: { productURL } })
-              }
-            })
-        })
-        .catch(e => {
-          console.log(e)
-        })
     },
     validateBeforeSubmit: function (e) {
       this.errorLog = {}
@@ -513,9 +524,9 @@ export default {
       if (!this.product.price) {
         this.errorLog.price = 'Debes ingresar el precio de tu producto'
       } else {
-        if (this.product.price > this.product.originalPrice) this.errorLog.price = 'No puedes vender un producto más caro de lo que cuesta originalmente'
+        if (this.product.price > this.product.original_price) this.errorLog.price = 'No puedes vender un producto más caro de lo que cuesta originalmente'
       }
-      if (!this.product.originalPrice) this.errorLog.originalPrice = 'Debes indicarnos el precio original de tu producto'
+      if (!this.product.original_price) this.errorLog.original_price = 'Debes indicarnos el precio original de tu producto'
       if (!this.product.commission) this.errorLog.commission = 'Debes escoger una opción de comisión'
       if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
 
@@ -558,9 +569,14 @@ export default {
       }
     },
     validateSize: function () {
-      console.log(this.sizes.filter(x => x.name === this.calculatedSize)[0])
-      if (this.sizes.filter(x => x.name === this.calculatedSize)[0]) return true
-      return false
+      let size = this.sizes.filter(x => x.name === this.calculatedSize)[0]
+      if (size.id) {
+        this.product.size_id = size.id
+        return true
+      } else {
+        this.product.size_id = null
+        return false
+      }
     },
     handleMainImage: function () {
       if (this.images[0].hasImage()) {
@@ -582,7 +598,6 @@ export default {
     loadSubCategories: async function () {
       await productAPI.getCategoriesById(this.product.category_id)
         .then(response => {
-          console.log(response)
           this.subcategories = response.data.data[0].children
         })
         .catch(e => {

@@ -40,7 +40,7 @@ footer.page-foot(:class="{openSearchMb : active}")
       li.foot-nav__item
         a.foot-nav__link
           span.foot-nav__name.i-sale Carrito
-      li.foot-nav__item
+      li.foot-nav__item.foot-nav__item_brand
         a.foot-nav__link
           span.foot-nav__name.i-brand Ir al home
       li.foot-nav__item
@@ -65,7 +65,7 @@ footer.page-foot(:class="{openSearchMb : active}")
               src='/static/img/demo/user-avatar.jpg',
               alt='')
           //-vue variable user name
-          figcaption.tool-user__name {{ getName }}
+          figcaption.tool-user__name {{ user.first_name }}
       //- Is NOT authenticated
       li.foot-nav-mb__item(
         v-else)
@@ -81,6 +81,9 @@ footer.page-foot(:class="{openSearchMb : active}")
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
+
 export default {
   name: 'PageFooterMobile',
   data () {
@@ -162,7 +165,8 @@ export default {
       } else {
         return false
       }
-    }
+    },
+    ...mapState(['user'])
   }
 }
 </script>
