@@ -35,6 +35,7 @@ export default Base.merge({
     },
     uploadReceipt () {
       orderAPI.uploadTransferReceipt(this.order.id, this.transfer_receipt).then(response => {
+        this.changeReceipt = false
         this.$emit('refresh-order', response.data)
       }).catch(e => {
         this.$handleApiErrors(e, ['transfer_receipt'], this.errorLog)
