@@ -115,7 +115,6 @@
   margin: 0 auto;
   .user-data__avatar {
     display: inline-block;
-    //margin: 0 auto 0 20px;
     margin: 0 auto;
   }
   .user-data__title {
@@ -134,7 +133,7 @@
   text-align: center;
   padding: 0 0 0 20px;
   .user-data__list {
-    padding: 8px;
+    padding: 16px 8px;
   }
 }
 .user-hero__item {
@@ -163,12 +162,17 @@
       @include flexbox;
     }
     .user-hero__item {
+      .user-data__group {
+        position: relative;
+        left: -10px;
+      }
       &:last-child {
-        padding-top: 60px;
+        padding-top: 75px;
         text-align: left;
       }
       &:first-child {
-        @include flex-basis(19%);
+        width: 40%;
+        max-width: 120px;
       }
     }
     .user-hero__notify {
