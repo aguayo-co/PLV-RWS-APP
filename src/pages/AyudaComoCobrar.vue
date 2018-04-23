@@ -6,8 +6,6 @@
         h1.blog__title ¿Cómo cobro lo que gano con mis ventas?
         p.blog__kicker Todo lo que tienes que saber sobre el dinero que ganas cuando vendes en Prilov.
     article.blog__body
-      .blog__inner
-        h2.blog__headline Cuando vendas un producto, siempre se generarán créditos en tu cuenta Prilov. Puedes usarlos para comprar otra joyita o solicitar el pago a tu cuenta bancaria.
       .blog__out.blog__out_right
         .blog__spread.blog__spread_upside
           figure.blog__picture
@@ -15,6 +13,7 @@
             figcaption.blog__caption
               span Créditos Prilov
           .blog__copy
+            h2.blog__headline Cuando vendas un producto, siempre se generarán créditos en tu cuenta Prilov. Puedes usarlos para comprar otra joyita o solicitar el pago a tu cuenta bancaria.
             p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como "Recibido", tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov. Cuando hagas una compra,  el sistema descontará el monto que tienes en créditos al total de la compra que estás realizando.
     .blog__inner
       article.blog__body.blog__body_slot

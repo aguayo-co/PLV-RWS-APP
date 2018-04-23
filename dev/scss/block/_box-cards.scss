@@ -1,0 +1,98 @@
+.box-cards{
+  padding: 8px 16px 14px;
+  white-space: nowrap;
+}
+.user-auth__boxes {
+  overflow-y: scroll;
+  max-height: 588px;
+  border: 1px solid $c-default;
+}
+.box-cards__head{
+  position: relative;
+  border-bottom: 1px solid $c-default;
+  padding: 16px 0px;
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+.box-cards__subhead {
+  padding: 16px;
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+
+.box-cards__title {
+  color: $c-default;
+  font-weight: $fw-bold;
+  font-family: $f-default;
+  @include font-rem(20px);
+  margin: 0;
+}
+
+.box-cards__number {
+  color: $c-default;
+  @include font-rem(28px);
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+}
+
+.box-cards__item {
+  @include flexbox;
+  @include align-items(center);
+  position: relative;
+  padding: 8px 0;
+  .list__card {
+    padding-right: 0;
+    width: 90%;
+    &:first-child {
+      padding-bottom: 0;
+    }
+  }
+  .card__product {
+    @include align-items(center);
+  }
+  .card__title {
+    font-weight: $fw-semi-bold;
+  }
+  .card__figure {
+    width: 80px;
+    min-width: 80px;
+    max-width: initial;
+  }
+}
+.box-cards__btn {
+  font-size: 0;
+  &:before {
+    @include font-rem(20px);
+    color: $c-default;
+  }
+}
+.box-cards__btn-x {
+  display: inline-block;
+  position: relative;
+  color: $c-default;
+  width: 20px;
+  font-size: 0;
+  &:before {
+    @include font-rem(20px);
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: $c-brand;
+    margin-top: 6px;
+  }
+}
+.box-cards__value {
+  padding-right: 20px;
+}
+
+//$bp-medium: 768px;
+@include media-query(medium) {
+  .box-cards__number {
+    @include font-rem(32px);
+  }
+}
