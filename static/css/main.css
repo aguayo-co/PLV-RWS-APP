@@ -2489,6 +2489,7 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
     overflow: hidden;
+    overflow-y: scroll;
     background-color: #fff;
     -webkit-transition: all .5s ease;
     transition: all .5s ease; }
@@ -6163,7 +6164,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   display: inline-block;
-  min-width: 150px;
+  min-width: 120px;
   padding: 10px;
   text-align: center;
   color: #000;
