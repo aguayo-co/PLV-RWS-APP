@@ -17,23 +17,23 @@
         ul.tool-user__grid
           li
             span.tool-user__item.i-bag(
-              @click='togglecar')
+              @click='toggleCart')
               //-vue variable productos en el carrito
               small.badge(v-if="totalProducts.length > 0") {{ totalProducts.length }}
             transition(name='toggle-scale')
               .user-auth__boxes.toggle-box(
-                  v-show='activeCar')
+                  v-show='activeDropDowns.cart')
                 .box-cards.toggle-box__list
                   .box-cards__head
                     p.box-cards__title(v-if="totalProducts.length > 1") {{ totalProducts.length }} productos en tu carrito
                     p.box-cards__title(v-else) {{ totalProducts.length }} producto en tu carrito
                     a.box-cards__btn-x.i-x(
-                      @click='togglecar') Cerrar
+                      @click='toggleCart') Cerrar
                   .box-cards__subhead
                     .box-cards__value
                       p.box-cards__title Total
                       span.box-cards__number ${{ cart.total | currency }}
-                    .btn.btn_solid Ir a Pagar
+                    router-link.btn.btn_solid(:to="'/compra/'") Ir a Pagar
                   .box-cards__item(v-for="product in totalProducts")
                     article.list__card
                       a.card__product
@@ -69,24 +69,20 @@
               figcaption.tool-user__name {{ user.first_name }}
             transition(name='toggle-scale')
               .user-auth__menu.toggle-box(
-                  v-show='active')
+                  v-show='activeDropDowns.user')
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
                       to="/user/data",
                       title="Ir a tu cuenta") Tu cuenta
                   li.user-auth__item
-                    a.user-auth__link(
-                      href="",
+                    router-link.user-auth__link(
+                      :to="'/user/tus-compras'",
                       title="Ir a tus compras") Tus compras
                   li.user-auth__item
-                    a.user-auth__link(
-                      href="",
+                    router-link.user-auth__link(
+                      :to="'/user/tus-ventas'",
                       title="Ir a tus Ventas") Tus Ventas
-                  li.user-auth__item
-                    a.user-auth__link(
-                      href="",
-                      title="Ir a Centro de mensajes") Centro de mensajes
                   li.user-auth__item
                     a.user-auth__link(
                       @click.prevent='logout()'
@@ -112,10 +108,7 @@ export default {
     PageHeaderSearch
   },
   data () {
-    return {
-      active: false,
-      activeCar: false
-    }
+    return { }
   },
   methods: {
     logIn: function () {
@@ -128,10 +121,10 @@ export default {
       this.$emit('close')
     },
     toggleBox: function () {
-      this.active = !this.active
+      this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/openDropdown', { name: 'user' })
     },
-    togglecar: function () {
-      this.activeCar = !this.activeCar
+    toggleCart: function () {
+      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/openDropdown', { name: 'cart' })
     },
     removeFromCart: function (productId) {
       this.$store.dispatch('cart/removeProduct', { id: productId })
@@ -146,6 +139,9 @@ export default {
     ...mapState(['cart']),
     totalProducts () {
       return this.$store.getters['cart/products']
+    },
+    activeDropDowns () {
+      return this.$store.getters['ui/headerDropdownsVisible']
     }
   }
 }

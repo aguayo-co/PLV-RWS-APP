@@ -13,13 +13,12 @@
             figcaption.blog__caption
               span Créditos Prilov
           .blog__copy
-            h2.blog__headline Cuando vendas un producto, siempre se generarán créditos en tu cuenta Prilov. Puedes usarlos para comprar otra joyita o solicitar el pago a tu cuenta bancaria.
-            p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como "Recibido", tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov. Cuando hagas una compra,  el sistema descontará el monto que tienes en créditos al total de la compra que estás realizando.
-    .blog__inner
-      article.blog__body.blog__body_slot
-        h2.blog__headline Traspasando créditos a cuenta bancaria
-        .blog__copy
-          p ¡Puedes transferir tus créditos a tu cuenta bancaria en cualquier momento!  Sólo recuerda que debes tener más de $4.000 para que sean transferidos. Para transferir tus créditos, debes hacer clic en "Tu cuenta" e ir a la sección "Créditos". Ahora puedes ver la opción "Convertir en dinero", la seleccionas y el dinero tardará entre 1 a 4 días hábiles en aparecer en la cuenta bancaria que ingresaste en tu cuenta Prilov.
+            .blog__subarticle
+              h2.blog__headline Cuando vendas un producto, siempre se generarán créditos en tu cuenta Prilov. Puedes usarlos para comprar otra joyita o solicitar el pago a tu cuenta bancaria.
+              p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como "Recibido", tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov. Cuando hagas una compra,  el sistema descontará el monto que tienes en créditos al total de la compra que estás realizando.
+            .blog__subarticle
+              h2.blog__headline Traspasando créditos a cuenta bancaria
+              p ¡Puedes transferir tus créditos a tu cuenta bancaria en cualquier momento!  Sólo recuerda que debes tener más de $4.000 para que sean transferidos. Para transferir tus créditos, debes hacer clic en "Tu cuenta" e ir a la sección "Créditos". Ahora puedes ver la opción "Convertir en dinero", la seleccionas y el dinero tardará entre 1 a 4 días hábiles en aparecer en la cuenta bancaria que ingresaste en tu cuenta Prilov.
     figure.blog-bannerprom.banner-hero
       picture.banner-hero__crop
         source.banner-hero__img(

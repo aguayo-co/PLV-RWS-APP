@@ -8,10 +8,10 @@ nav.page-menu
         v-if='!item.url'
         href='#',
         @click='handler(item)',
-        :class="{ 'menu__link_active':active }") {{ item.name }}
+        :class="{ 'menu__link_active' : active.menu }") {{ item.name }}
       //- Nivel 2: submenu con Lista de enlaces, Promo, side de enlaces
       transition(name='slide-fade')
-        .menu-level2(v-show='active' v-if='!item.url')
+        .menu-level2(v-show='active.menu' v-if='!item.url')
           .menu-level2__inner
             .submenu-grid
               //- Nivel 2: submenu
@@ -73,12 +73,12 @@ export default {
   },
   computed: {
     active: function () {
-      return this.$store.getters['ui/menuOpen']
+      return this.$store.getters['ui/headerDropdownsVisible']
     }
   },
   methods: {
     toggleNav: function () {
-      this.active ? this.$store.dispatch('ui/closeMenu') : this.$store.dispatch('ui/openMenu')
+      this.active.menu ? this.$store.dispatch('ui/closeDropdown', { name: 'menu' }) : this.$store.dispatch('ui/openDropdown', { name: 'menu' })
       this.$store.dispatch('ui/switchModal')
     },
     handler: function (item) {

@@ -25,7 +25,7 @@ section.single
         h3.dashboard__title Estado del pedido
       UserVenta(
         v-for="sale in sortedSales" :sale="sale" :key="sale.id" v-on:refresh-sale="setSale")
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
             p 21/9/2017
@@ -135,7 +135,7 @@ section.single
                   id='CommentSale'
                   maxlength='340')
                 button.btn.i-send Comentar
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
@@ -204,7 +204,7 @@ section.single
             .dashboard__actions
               p.status.status_check.i-check Pedido recibido por la vendedora.
 
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
@@ -236,7 +236,7 @@ section.single
             //-3
             .dashboard__status
               p.status.status_alert.i-rocket A la espera de envío
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
@@ -269,7 +269,7 @@ section.single
             .dashboard__status
               p.status.status_alert.i-alert-circle Pendiente de pago
               p Estamos confirmando el pago de este pedido por parte de la compradora.
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
@@ -329,7 +329,7 @@ section.single
             .dashboard__actions
               p.status.status_warning.i-reload Pedido devuelto en revisión por Prilov
               p Nos informaste de una inconformidad en el pedido que te devolvieron y lo estamos evaluando.
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
