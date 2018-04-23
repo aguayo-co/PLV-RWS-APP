@@ -76,17 +76,13 @@
                       to="/user/data",
                       title="Ir a tu cuenta") Tu cuenta
                   li.user-auth__item
-                    a.user-auth__link(
-                      href="",
+                    router-link.user-auth__link(
+                      :to="'/user/tus-compras'",
                       title="Ir a tus compras") Tus compras
                   li.user-auth__item
-                    a.user-auth__link(
-                      href="",
+                    router-link.user-auth__link(
+                      :to="'/user/tus-ventas'",
                       title="Ir a tus Ventas") Tus Ventas
-                  li.user-auth__item
-                    a.user-auth__link(
-                      href="",
-                      title="Ir a Centro de mensajes") Centro de mensajes
                   li.user-auth__item
                     a.user-auth__link(
                       @click.prevent='logout()'
