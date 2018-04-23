@@ -8524,8 +8524,8 @@ body {
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 36px;
-  font-size: 2.25rem;
+  font-size: 30px;
+  font-size: 1.875rem;
   padding-bottom: 8px; }
 
 .blog__kicker {
@@ -8547,7 +8547,7 @@ body {
 .blog__headline {
   max-width: 810px;
   padding-bottom: 32px;
-  line-height: 1.2;
+  line-height: 1.4;
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
@@ -8646,8 +8646,8 @@ body {
   .blog__header {
     padding-bottom: 56px; }
   .blog__title {
-    font-size: 54px;
-    font-size: 3.375rem; }
+    font-size: 50px;
+    font-size: 3.125rem; }
   .blog__kicker {
     text-transform: uppercase;
     letter-spacing: 8px;
