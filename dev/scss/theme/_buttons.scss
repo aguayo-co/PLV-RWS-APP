@@ -128,7 +128,21 @@
   background-color: $c-brand;
 }
 
-
+.btn_disabled {
+  display: inline-block;
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  color: $c-neutro;
+  @include font-rem(16px);
+  font-family: $f-default;
+  font-weight: $fw-regular;
+  border: 2px solid $c-neutro-5;
+  background-color: $c-neutro-5;
+  cursor: none;
+  pointer-events: none;
+  transition: all 0.2s;
+}
 
 // $bp-medium: 768px;
 @include media-query(medium) {
