@@ -1859,7 +1859,7 @@ body {
 .theme {
   overflow: hidden; }
 
-.page {
+.page.page-user {
   min-height: 100vh; }
 
 .content-main {
@@ -1914,7 +1914,9 @@ body {
   .content-main {
     margin-bottom: 75px; }
   .page {
-    padding-top: 130px; } }
+    padding-top: 60px; }
+    .page.page-user {
+      padding-top: 120px; } }
 
 @media only screen and (min-width: 768px) {
   .layout-slot {
@@ -2012,7 +2014,8 @@ body {
   -ms-flex-pack: justify;
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding-bottom: 10px; }
 
 /*------------------------------------*\
   Page header: 
@@ -4324,7 +4327,7 @@ body {
     z-index: -1; }
   .side {
     position: absolute;
-    top: 66px;
+    top: 54px;
     right: 0;
     width: 100%;
     max-width: 420px;
@@ -4375,7 +4378,7 @@ body {
       opacity: 1; }
   .user-menu__item {
     width: 25%;
-    padding-top: 28px; }
+    padding-top: 18px; }
   .user-menu__item_burguer {
     padding-bottom: 15px; }
   .user-menu__icon {
