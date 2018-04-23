@@ -1,37 +1,46 @@
 .btn-sticky {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 3;
-  padding: 0 20px 20px 0;
+  display: none;
 }
-.js-btn_fade {
+
+@include media-query(wide) {
+  .btn-sticky {
+    position: fixed\0;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    right: 0;
+    bottom: 20px;
+    z-index: 9999;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
   .btn-sticky__link {
-    opacity: 0;
-  }
-}
-.btn-sticky__link {
-  display: inline-block;
-  padding: 10px 20px;
-  color: $c-neutro;
-  @include font-rem(14px);
-  border: 1px solid $c-brand;
-  border-radius: 25px;
-  background-color: $c-brand;
-  cursor: pointer;
-  transition: all 0.2s;
-  opacity: 1;
-  &:before {
+    display: inline-block;
+    padding: 10px 20px;
     color: $c-neutro;
-    @include font-rem(20px);
-    padding-right: 10px;
-  }
-  &:hover,
-  &:active {
-    background-color: $c-neutro;
-    color: $c-brand;
+    @include font-rem(14px);
+    border: 1px solid $c-brand;
+    border-radius: 25px;
+    background-color: $c-brand;
+    cursor: pointer;
+    transition: all 0.2s;
     &:before {
+      color: $c-neutro;
+      @include font-rem(20px);
+      padding-right: 10px;
+    }
+    &:hover,
+    &:active {
+      background-color: $c-neutro;
       color: $c-brand;
+      &:before {
+        color: $c-brand;
+      }
     }
   }
+
 }
