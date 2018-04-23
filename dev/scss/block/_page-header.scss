@@ -25,6 +25,7 @@
   @include flexbox;
   @include align-items(center);
   @include justify-content(space-between);
+  padding-bottom: 10px;
 }
 
 
