@@ -111,7 +111,7 @@ export default {
     return {
       isActive: undefined,
       products: [],
-      items: 10,
+      items: 12,
       page: 1,
       filter: {},
       totalPages: null,

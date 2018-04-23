@@ -80,6 +80,9 @@ export default {
   },
   created: function () {
     this.$store.dispatch('user/loadUser')
+      .then(response => {
+        if (response.data.id) this.$store.dispatch('cart/load')
+      })
   }
 }
 </script>
