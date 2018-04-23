@@ -152,6 +152,9 @@
 @include media-query(wide) {
   .boxcheck__sticky {
     position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
     position: sticky;
     top: 10px;
     padding-top: 0;

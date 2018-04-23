@@ -86,8 +86,11 @@
     max-width: 280px;
     margin: 0 0 0 auto;
     &.sticky {
-      position: sticky;
       position: -webkit-sticky;
+      position: -moz-sticky;
+      position: -ms-sticky;
+      position: -o-sticky;
+      position: sticky;
       top: 30px;
     }
   }
