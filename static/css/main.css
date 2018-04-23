@@ -6940,6 +6940,35 @@ body {
     top: 10px;
     padding-top: 0; } }
 
+.btn-sticky {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0 20px 20px 0; }
+
+.btn-sticky__link {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 14px;
+  font-size: 0.875rem;
+  border: 1px solid #f65a66;
+  border-radius: 25px;
+  background-color: #f65a66;
+  cursor: pointer;
+  transition: all 0.2s; }
+  .btn-sticky__link:before {
+    color: #fff;
+    font-size: 20px;
+    font-size: 1.25rem;
+    padding-right: 10px; }
+  .btn-sticky__link:hover, .btn-sticky__link:active {
+    background-color: #fff;
+    color: #f65a66; }
+    .btn-sticky__link:hover:before, .btn-sticky__link:active:before {
+      color: #f65a66; }
+
 /*------------------------------------*\
 	pay-off créditos prilov
 \*------------------------------------*/
