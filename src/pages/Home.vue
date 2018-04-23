@@ -18,6 +18,7 @@
 
     GridProducto(
       :infinite='true')
+  ButtonSticky
 </template>
 
 <script>
@@ -26,6 +27,7 @@ import BannerSlider from '@/components/BannerSlider'
 import BannerGrid from '@/components/BannerGrid'
 import PriloversSlider from '@/components/PriloversSlider'
 import GridProducto from '@/components/GridProducto'
+import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
   name: 'Home',
@@ -34,7 +36,8 @@ export default {
     BannerSlider,
     BannerGrid,
     PriloversSlider,
-    GridProducto
+    GridProducto,
+    ButtonSticky
   }
 }
 </script>

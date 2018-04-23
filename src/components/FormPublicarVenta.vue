@@ -9,7 +9,7 @@
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
           .upfile__item
-            a.delete(
+            a.upfile__btn_bg(
               v-show='toggleImageDelete[0]',
               @click='removeImage(0)') Eliminar
             .upfile__label
