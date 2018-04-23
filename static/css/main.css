@@ -6348,7 +6348,7 @@ body {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   display: inline-block;
-  min-width: 150px;
+  min-width: 120px;
   padding: 10px;
   text-align: center;
   color: #000;
@@ -6988,6 +6988,9 @@ body {
   z-index: 3;
   padding: 0 20px 20px 0; }
 
+.js-btn_fade .btn-sticky__link {
+  opacity: 0; }
+
 .btn-sticky__link {
   display: inline-block;
   padding: 10px 20px;
@@ -6998,7 +7001,8 @@ body {
   border-radius: 25px;
   background-color: #f65a66;
   cursor: pointer;
-  transition: all 0.2s; }
+  transition: all 0.2s;
+  opacity: 1; }
   .btn-sticky__link:before {
     color: #fff;
     font-size: 20px;

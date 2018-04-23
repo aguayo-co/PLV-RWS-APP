@@ -5,7 +5,11 @@
   z-index: 3;
   padding: 0 20px 20px 0;
 }
-
+.js-btn_fade {
+  .btn-sticky__link {
+    opacity: 0;
+  }
+}
 .btn-sticky__link {
   display: inline-block;
   padding: 10px 20px;
@@ -16,6 +20,7 @@
   background-color: $c-brand;
   cursor: pointer;
   transition: all 0.2s;
+  opacity: 1;
   &:before {
     color: $c-neutro;
     @include font-rem(20px);
