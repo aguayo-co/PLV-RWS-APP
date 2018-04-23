@@ -41,8 +41,8 @@
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[1]',
-                :width="400",
-                :height="600",
+                :width="300",
+                :height="450",
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
@@ -57,8 +57,8 @@
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[2]',
-                :width="400",
-                :height="600",
+                :width="300",
+                :height="450",
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
@@ -74,8 +74,8 @@
                 .upfile__btn Sube una imagen
               croppa(
                 v-model='images[3]',
-                :width="400",
-                :height="600",
+                :width="300",
+                :height="450",
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",

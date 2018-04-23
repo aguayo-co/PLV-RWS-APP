@@ -1,11 +1,28 @@
-.box-cards{
-  padding: 8px 16px 14px;
-  white-space: nowrap;
+.box-cards {
+  padding: 8px 10px 14px;
+  .btn {
+    min-width: auto;
+    @include font-rem(14px);
+    padding: 10px;
+  }
+  .card__price {
+    @include font-rem(20px);
+  }
+  .card__title {
+    @include font-rem(14px);
+  }
+  .card__size {
+    @include font-rem(14px);
+  }
+  .card__info {
+    padding-left: 20px;
+  }
 }
 .user-auth__boxes {
   overflow-y: scroll;
   max-height: 588px;
   border: 1px solid $c-default;
+  min-width: 260px;
 }
 .box-cards__head{
   position: relative;
@@ -26,13 +43,14 @@
   color: $c-default;
   font-weight: $fw-bold;
   font-family: $f-default;
-  @include font-rem(20px);
+  @include font-rem(16px);
+
   margin: 0;
 }
 
 .box-cards__number {
   color: $c-default;
-  @include font-rem(28px);
+  @include font-rem(22px);
   font-family: $f-normal;
   font-weight: $fw-thin;
 }
@@ -42,6 +60,7 @@
   @include align-items(center);
   position: relative;
   padding: 8px 0;
+  border-top: 1px solid $c-neutro-3;
   .list__card {
     padding-right: 0;
     width: 90%;
@@ -56,15 +75,17 @@
     font-weight: $fw-semi-bold;
   }
   .card__figure {
-    width: 80px;
-    min-width: 80px;
+    width: 70px;
+    min-width: 70px;
     max-width: initial;
   }
 }
 .box-cards__btn {
   font-size: 0;
   &:before {
-    @include font-rem(20px);
+    position: relative;
+    right: -10px;
+    @include font-rem(14px);
     color: $c-default;
   }
 }
@@ -72,10 +93,10 @@
   display: inline-block;
   position: relative;
   color: $c-default;
-  width: 20px;
+  width: 16px;
   font-size: 0;
   &:before {
-    @include font-rem(20px);
+    @include font-rem(16px);
   }
   &:after {
     content: '';
@@ -93,6 +114,6 @@
 //$bp-medium: 768px;
 @include media-query(medium) {
   .box-cards__number {
-    @include font-rem(32px);
+    @include font-rem(22px);
   }
 }
