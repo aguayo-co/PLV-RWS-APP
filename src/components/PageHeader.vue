@@ -15,9 +15,41 @@
       //- user
       nav.tool-user
         ul.tool-user__grid
-          li.tool-user__item.i-bag
-            //-vue variable productos en el carrito
-            small.badge 1
+          li
+            span.tool-user__item.i-bag(
+              @click='togglecar')
+              //-vue variable productos en el carrito
+              small.badge(v-if="totalProducts.length > 0") {{ totalProducts.length }}
+            transition(name='toggle-scale')
+              .user-auth__boxes.toggle-box(
+                  v-show='activeCar')
+                .box-cards.toggle-box__list
+                  .box-cards__head
+                    p.box-cards__title(v-if="totalProducts.length > 1") {{ totalProducts.length }} productos en tu carrito
+                    p.box-cards__title(v-else) {{ totalProducts.length }} producto en tu carrito
+                    a.box-cards__btn-x.i-x(
+                      @click='togglecar') Cerrar
+                  .box-cards__subhead
+                    .box-cards__value
+                      p.box-cards__title Total
+                      span.box-cards__number ${{ cart.total | currency }}
+                    .btn.btn_solid Ir a Pagar
+                  .box-cards__item(v-for="product in totalProducts")
+                    article.list__card
+                      a.card__product
+                        //-img producto
+                        .card__figure
+                          img.card__img(
+                            :src="product.images[0]",
+                            :alt="product.title")
+                        //-info producto
+                        .card__info
+                          .card__header
+                            h3.card__title {{ product.title }}
+                            p.card__size Talla: {{ product.size }}
+                          p.card__price ${{ product.price | currency }}
+                    a.box-cards__btn.i-x(href='#') Eliminar
+
           //- Is authenticated
           li.tool-user__item.tool-user__item_auth(
             v-if='user.id')
@@ -81,7 +113,8 @@ export default {
   },
   data () {
     return {
-      active: false
+      active: false,
+      activeCar: false
     }
   },
   methods: {
@@ -97,13 +130,20 @@ export default {
     toggleBox: function () {
       this.active = !this.active
     },
+    togglecar: function () {
+      this.activeCar = !this.activeCar
+    },
     logout: function () {
       this.$store.dispatch('user/logOut')
       this.$router.push({name: 'home'})
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    ...mapState(['cart']),
+    totalProducts () {
+      return this.$store.getters['cart/products']
+    }
   }
 }
 </script>

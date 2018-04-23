@@ -27,13 +27,15 @@
         h1.detail__title {{ product.title }}
       p.detail__tag.tag Producto {{ product.condition.name }}
       p.detail__brand {{ product.brand.name }}
-      p.detail__size Talla: {{ product.dimensions }} | Colores: {{ product.colors[0].name }}
+      p.detail__size
+        span(v-if="product.size") Talla: {{ product.size.name }} |
+        span(v-if="product.colors[0]") Colores: {{ product.colors[0].name }}
       .detail__value
         p.detail__through.through ${{ product.original_price }}
         p.detail__price.txt-light ${{ product.price }}
       .detail__actions
-        a.detail__btn.btn.btn_solid(
-          href="#") Comprar
+        button.detail__btn.btn.btn_solid(
+          @click="addToCart") Comprar
         a.detail__btn.btn.i-heart(
           href="#") Agregar a Favoritos
       .detail__lead
@@ -46,6 +48,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'ProductoDetalle',
   props: ['product'],
@@ -54,9 +57,18 @@ export default {
       srcActive: ''
     }
   },
+  computed: {
+    ...mapState(['cart']),
+    inCart () {
+      return false
+    }
+  },
   methods: {
     SrcActive: function (e) {
       this.srcActive = e
+    },
+    addToCart: function () {
+      this.$store.dispatch('cart/addProduct', { id: this.product.id })
     }
   }
 }
