@@ -66,7 +66,18 @@ const baseStateGenerator = () => {
 }
 
 const getters = {
-  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name
+  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name,
+  products: state => {
+    let productList = []
+    if (Object.keys(state.sales).length > 0) {
+      Object.keys(state.sales).forEach((key) => {
+        Object.keys(state.sales[key].products).forEach((subkey) => {
+          productList.push(state.sales[key].products[subkey])
+        })
+      })
+    }
+    return productList
+  }
 }
 
 const actions = {

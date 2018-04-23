@@ -164,5 +164,8 @@ export default new Router({
       name: 'ser-prilover',
       component: AyudaPriloverStar
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })

@@ -17,82 +17,39 @@
         ul.tool-user__grid
           li
             span.tool-user__item.i-bag(
-              @click='togglecar')
+              @click='toggleCart')
               //-vue variable productos en el carrito
-              small.badge 1
+              small.badge(v-if="totalProducts.length > 0") {{ totalProducts.length }}
             transition(name='toggle-scale')
               .user-auth__boxes.toggle-box(
-                  v-show='activeCar')
+                  v-show='activeDropDowns.cart')
                 .box-cards.toggle-box__list
                   .box-cards__head
-                    p.box-cards__title 5 productos en tu carrito
+                    p.box-cards__title(v-if="totalProducts.length > 1") {{ totalProducts.length }} productos en tu carrito
+                    p.box-cards__title(v-else) {{ totalProducts.length }} producto en tu carrito
                     a.box-cards__btn-x.i-x(
-                      @click='togglecar') Cerrar
+                      @click='toggleCart') Cerrar
                   .box-cards__subhead
                     .box-cards__value
                       p.box-cards__title Total
-                      span.box-cards__number $21.000
-                    .btn.btn_solid Ir a Pagar
-                  .box-cards__item
+                      span.box-cards__number ${{ cart.total | currency }}
+                    router-link.btn.btn_solid(:to="'/compra/'") Ir a Pagar
+                  .box-cards__item(v-for="product in totalProducts")
                     article.list__card
                       a.card__product
                         //-img producto
                         .card__figure
                           img.card__img(
-                            src="/static/img/demo/product-002.jpg",
-                            alt="")
+                            :src="product.images[0]",
+                            :alt="product.title")
                         //-info producto
                         .card__info
                           .card__header
-                            h3.card__title Chaqueta de cuero mostaza
-                            p.card__size Talla: XS
-                          p.card__price $34.000
-                    a.box-cards__btn.i-x(href='#') Cerrar
-                  .box-cards__item
-                    article.list__card
-                      a.card__product
-                        //-img producto
-                        .card__figure
-                          img.card__img(
-                            src="/static/img/demo/product-001.jpg",
-                            alt="")
-                        //-info producto
-                        .card__info
-                          .card__header
-                            h3.card__title Blusa negra style fresh
-                            p.card__size Talla: XS
-                          p.card__price $19.000
-                    a.box-cards__btn.i-x(href='#') Cerrar
-                  .box-cards__item
-                    article.list__card
-                      a.card__product
-                        //-img producto
-                        .card__figure
-                          img.card__img(
-                            src="/static/img/demo/product-004.jpg",
-                            alt="")
-                        //-info producto
-                        .card__info
-                          .card__header
-                            h3.card__title Zapatos de línea casual
-                            p.card__size Talla: 26
-                          p.card__price $23.000
-                    a.box-cards__btn.i-x(href='#') Cerrar
-                  .box-cards__item
-                    article.list__card
-                      a.card__product
-                        //-img producto
-                        .card__figure
-                          img.card__img(
-                            src="/static/img/demo/product-004.jpg",
-                            alt="")
-                        //-info producto
-                        .card__info
-                          .card__header
-                            h3.card__title Zapatos de línea casual
-                            p.card__size Talla: 26
-                          p.card__price $23.000
-                    a.box-cards__btn.i-x(href='#') Cerrar
+                            h3.card__title {{ product.title }}
+                            p.card__size Talla: {{ product.size }}
+                          p.card__price ${{ product.price | currency }}
+                    button.box-cards__btn.i-x(@click="removeFromCart(product.id)") Eliminar
+
           //- Is authenticated
           li.tool-user__item.tool-user__item_auth(
             v-if='user.id')
@@ -112,7 +69,7 @@
               figcaption.tool-user__name {{ user.first_name }}
             transition(name='toggle-scale')
               .user-auth__menu.toggle-box(
-                  v-show='active')
+                  v-show='activeDropDowns.user')
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
@@ -155,10 +112,7 @@ export default {
     PageHeaderSearch
   },
   data () {
-    return {
-      active: false,
-      activeCar: false
-    }
+    return { }
   },
   methods: {
     logIn: function () {
@@ -171,10 +125,13 @@ export default {
       this.$emit('close')
     },
     toggleBox: function () {
-      this.active = !this.active
+      this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/openDropdown', { name: 'user' })
     },
-    togglecar: function () {
-      this.activeCar = !this.activeCar
+    toggleCart: function () {
+      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/openDropdown', { name: 'cart' })
+    },
+    removeFromCart: function (productId) {
+      this.$store.dispatch('cart/removeProduct', { id: productId })
     },
     logout: function () {
       this.$store.dispatch('user/logOut')
@@ -182,7 +139,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    ...mapState(['cart']),
+    totalProducts () {
+      return this.$store.getters['cart/products']
+    },
+    activeDropDowns () {
+      return this.$store.getters['ui/headerDropdownsVisible']
+    }
   }
 }
 </script>
