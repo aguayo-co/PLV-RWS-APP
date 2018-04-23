@@ -48,7 +48,7 @@
                             h3.card__title {{ product.title }}
                             p.card__size Talla: {{ product.size }}
                           p.card__price ${{ product.price | currency }}
-                    a.box-cards__btn.i-x(href='#') Eliminar
+                    button.box-cards__btn.i-x(@click="removeFromCart(product.id)") Eliminar
 
           //- Is authenticated
           li.tool-user__item.tool-user__item_auth(
@@ -132,6 +132,9 @@ export default {
     },
     togglecar: function () {
       this.activeCar = !this.activeCar
+    },
+    removeFromCart: function (productId) {
+      this.$store.dispatch('cart/removeProduct', { id: productId })
     },
     logout: function () {
       this.$store.dispatch('user/logOut')
