@@ -20,8 +20,12 @@ import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
-import Search from '@/pages/search'
+import Instashop from '@/pages/Instashop'
+import Search from '@/pages/Search'
 import Contenido from '@/pages/Contenido'
+import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
+import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
+import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 
 Vue.use(Router)
 
@@ -31,11 +35,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/contenido',
-      name: 'contenido',
-      component: Contenido
     },
     {
       path: '/signup',
@@ -106,11 +105,6 @@ export default new Router({
           path: 'tus-favoritos',
           name: 'user-tus-favoritos',
           component: UserFavoritos
-        },
-        {
-          path: 'closet',
-          name: 'Closet',
-          component: Closet
         }
       ]
     },
@@ -125,6 +119,11 @@ export default new Router({
       component: Producto
     },
     {
+      path: '/closet',
+      name: 'Closet',
+      component: Closet
+    },
+    {
       path: '/compra/:id?',
       name: 'compra',
       component: Compra,
@@ -132,13 +131,38 @@ export default new Router({
     },
     {
       path: '/:type/:slug',
-      name: 'Categoria',
+      name: 'categoria',
       component: Categoria
     },
     {
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/instashop',
+      name: 'Instashop',
+      component: Instashop
+    },
+    {
+      path: '/contenido',
+      name: 'contenido',
+      component: Contenido
+    },
+    {
+      path: '/como-cobrar',
+      name: 'como-cobrar',
+      component: AyudaComoCobrar
+    },
+    {
+      path: '/aumentar-ventas',
+      name: 'aumentar-ventas',
+      component: AyudaAumentarVentas
+    },
+    {
+      path: '/ser-prilover',
+      name: 'ser-prilover',
+      component: AyudaPriloverStar
     }
   ]
 })

@@ -1,8 +1,12 @@
 import Base from './Base'
 import saleReturnAPI from '@/api/saleReturn'
+import Calificar from '../Calificar'
 
 export default Base.merge({
   name: 'Devuelta',
+  components: {
+    Calificar
+  },
   data () {
     return {
       sale_return: null,
@@ -26,7 +30,7 @@ export default Base.merge({
       })
     },
     saleReturnDelivered () {
-      saleReturnAPI.delivered(this.sale_return.id, '').then(response => {
+      saleReturnAPI.delivered(this.sale_return.id, 'Entrega coordinada por compradora.').then(response => {
         this.sale_return = response.data
       }).catch((e) => {
         this.$handleApiErrors(e)

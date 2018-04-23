@@ -21,7 +21,8 @@ const baseUserGenerator = () => {
     followers_count: null,
     following_count: null,
     roles: [],
-    groups: []
+    groups: [],
+    shipping_methods: []
   }
 }
 
@@ -34,7 +35,8 @@ const baseStateGenerator = () => {
 
 const getters = {
   full_name: state => state.first_name + ' ' + state.last_name,
-  roles: state => state.roles
+  roles: state => state.roles,
+  id: state => state.id
 }
 
 const actions = {

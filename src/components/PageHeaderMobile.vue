@@ -24,6 +24,7 @@
         PageHeaderMenuMobile(
           v-show='menuOpen',
           @MenuClose='MenuOpen')
+
   UserMenuMobile(
     v-if="mqMobile && user.id"
   )

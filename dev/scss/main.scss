@@ -33,6 +33,7 @@
   'block/page-header',
   'block/menu',
   'block/page-footer',
+  'block/page-footer_mb',
   'block/toggle-box',
   'block/slide-to',
   'block/modal',
@@ -59,6 +60,7 @@
 @import
   'block/product-detail',
   'block/product-slot',
+  'block/product-gridlight',
   'block/slider-slot',
   'block/chat-slot';
 
@@ -68,6 +70,7 @@
   'block/upfile',
   'block/box-switch',
   'block/box-flat',
+  'block/box-cards',
   'block/box-data',
   'block/boxcheck',
   'block/pay-off',
@@ -79,11 +82,17 @@
   'block/filter-slide',
   'block/chat',
   'block/valuations',
+  'block/card',
   'block/pagination',
   'block/tabs',
-  'block/page-footer_mb',
   'block/search';
 
+//contenidos
+@import
+  'block/blog-copy',
+  'block/blog-banner',
+  'block/blog-side',
+  'block/blog-list';
 
 @import
   'vendor/flickity';

@@ -1,0 +1,34 @@
+.blog-side {
+  dl {
+    padding-bottom: 16px;
+  }
+  dt {
+    font-family: $f-default;
+    font-weight: $fw-bold;
+    @include font-rem(18px);
+    text-transform: uppercase;
+    padding-bottom: 16px;
+  }
+  dd {
+    font-family: $f-normal;
+    font-weight: $fw-thin;
+    @include font-rem(16px);
+    padding-bottom: 16px;
+  }
+}
+
+@include media-query(medium) {
+  .blog-side {
+    margin-left: 70px;
+    padding-top: 8px;
+    dl {
+      padding-bottom: 24px;
+    }
+    dt {
+      padding-bottom: 24px;
+    }
+    dd {
+      padding-bottom: 24px;
+    }
+  }
+}

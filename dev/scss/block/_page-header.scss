@@ -6,7 +6,7 @@
   z-index: 188;
   transition: .9s ease;
   width: 100%;
-  padding: 10px 0 8px;
+  padding: 10px 0 0;
   color: $c-neutro;
   background-color: $c-default;
 
@@ -53,7 +53,7 @@
     text-transform: uppercase;
   }
 
-    // Prilov
+    //- Prilov
     .brand__name {
       display: block;
       @include font-rem(23px);
@@ -67,8 +67,9 @@
       @include font-rem(10px);
       font-weight: $fw-medium;
       font-family: $f-fancy;
+      @include letter-spacing(1.5px);
+      text-align: left;
     }
-
 /*------------------------------------*\
   Page header: 
   componente Pageheader-search
@@ -178,7 +179,7 @@
     min-width: 38px;
     overflow: hidden;
     border-radius: 50%;
-    border: 1px solid $c-brand;
+    border: 2px solid $c-brand;
   }
     .tool-user__photo {
       width: 100%;
@@ -241,6 +242,14 @@
 
     }
   }
+// menu desplegable Bolsa de compras
+.user-auth__boxes {
+  right: -10px;
+  display: inline-block;
+  min-width: 140px;
+  margin-top: 17px;
+}
+
 
 /*
     *Page header
