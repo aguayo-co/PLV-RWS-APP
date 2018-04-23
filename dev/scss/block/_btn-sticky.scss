@@ -1,33 +1,46 @@
 .btn-sticky {
-  position: sticky;
-  right: 0;
-  bottom: 20px;
-  z-index: 9999;
-  width: 100%;
-  text-align: center;
+  display: none;
 }
 
-.btn-sticky__link {
-  display: inline-block;
-  padding: 10px 20px;
-  color: $c-neutro;
-  @include font-rem(14px);
-  border: 1px solid $c-brand;
-  border-radius: 25px;
-  background-color: $c-brand;
-  cursor: pointer;
-  transition: all 0.2s;
-  &:before {
-    color: $c-neutro;
-    @include font-rem(20px);
-    padding-right: 10px;
+@include media-query(wide) {
+  .btn-sticky {
+    position: fixed\0;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    right: 0;
+    bottom: 20px;
+    z-index: 9999;
+    display: block;
+    width: 100%;
+    text-align: center;
   }
-  &:hover,
-  &:active {
-    background-color: $c-neutro;
-    color: $c-brand;
+  
+  .btn-sticky__link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: $c-neutro;
+    @include font-rem(14px);
+    border: 1px solid $c-brand;
+    border-radius: 25px;
+    background-color: $c-brand;
+    cursor: pointer;
+    transition: all 0.2s;
     &:before {
+      color: $c-neutro;
+      @include font-rem(20px);
+      padding-right: 10px;
+    }
+    &:hover,
+    &:active {
+      background-color: $c-neutro;
       color: $c-brand;
+      &:before {
+        color: $c-brand;
+      }
     }
   }
+
 }

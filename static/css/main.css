@@ -2839,7 +2839,7 @@ body {
       position: absolute;
       top: -12px;
       left: 50%;
-      z-index: 4;
+      z-index: 10000;
       display: block;
       color: #f65a66;
       font-size: 24px;
@@ -6925,34 +6925,43 @@ body {
     padding-top: 0; } }
 
 .btn-sticky {
-  position: sticky;
-  right: 0;
-  bottom: 20px;
-  z-index: 9999;
-  width: 100%;
-  text-align: center; }
+  display: none; }
 
-.btn-sticky__link {
-  display: inline-block;
-  padding: 10px 20px;
-  color: #fff;
-  font-size: 14px;
-  font-size: 0.875rem;
-  border: 1px solid #f65a66;
-  border-radius: 25px;
-  background-color: #f65a66;
-  cursor: pointer;
-  transition: all 0.2s; }
-  .btn-sticky__link:before {
+@media only screen and (min-width: 1024px) {
+  .btn-sticky {
+    position: fixed\0;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    right: 0;
+    bottom: 20px;
+    z-index: 9999;
+    display: block;
+    width: 100%;
+    text-align: center; }
+  .btn-sticky__link {
+    display: inline-block;
+    padding: 10px 20px;
     color: #fff;
-    font-size: 20px;
-    font-size: 1.25rem;
-    padding-right: 10px; }
-  .btn-sticky__link:hover, .btn-sticky__link:active {
-    background-color: #fff;
-    color: #f65a66; }
-    .btn-sticky__link:hover:before, .btn-sticky__link:active:before {
+    font-size: 14px;
+    font-size: 0.875rem;
+    border: 1px solid #f65a66;
+    border-radius: 25px;
+    background-color: #f65a66;
+    cursor: pointer;
+    transition: all 0.2s; }
+    .btn-sticky__link:before {
+      color: #fff;
+      font-size: 20px;
+      font-size: 1.25rem;
+      padding-right: 10px; }
+    .btn-sticky__link:hover, .btn-sticky__link:active {
+      background-color: #fff;
       color: #f65a66; }
+      .btn-sticky__link:hover:before, .btn-sticky__link:active:before {
+        color: #f65a66; } }
 
 /*------------------------------------*	pay-off créditos prilov
 \*------------------------------------*/

@@ -11,7 +11,7 @@
       position: absolute;
       top: -12px;
       left: 50%;
-      z-index: 4;
+      z-index: 10000;
       display: block;
       color: $c-brand;
       @include font-rem(24px);
