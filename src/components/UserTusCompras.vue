@@ -11,7 +11,7 @@ section.single
         h3.dashboard__title Estado del producto
       UserCompra(
         v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id" v-on:refresh-order="setOrder")
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
             p 21/9/2017
@@ -128,7 +128,7 @@ section.single
             //- Flujo desde => Calificación
             .dashboard__actions
               p.status.status_check.i-check Compra finalizada y calificada
-      .dashboard__item
+      // .dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
@@ -163,7 +163,7 @@ section.single
               p.status.status_warning.i-reload A la espera de envío
               p Tu pedido está en proceso de empaque y envío por parte de la vendedora.
 
-      .dashboard__item
+      //.dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
