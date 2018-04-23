@@ -9,7 +9,11 @@ const state = {
     parameters: {}
   },
   loginAttempts: 0,
-  menuOpen: false
+  headerDropdownsVisible: {
+    user: false,
+    cart: false,
+    menu: false
+  }
 }
 
 // getters
@@ -17,7 +21,7 @@ const getters = {
   modal: state => state.modal,
   modalWindow: state => state.modalWindow,
   loginAttempts: state => state.loginAttempts,
-  menuOpen: state => state.menuOpen
+  headerDropdownsVisible: state => state.headerDropdownsVisible
 }
 
 // actions
@@ -37,11 +41,14 @@ const actions = {
   loginAttempt (context) {
     context.commit('loginAttempt')
   },
-  closeMenu (context) {
-    context.commit('closeMenu')
+  closeDropdown (context, { name }) {
+    context.commit('closeDropdown', { name })
   },
-  openMenu (context) {
-    context.commit('openMenu')
+  openDropdown (context, { name }) {
+    context.commit('openDropdown', { name })
+  },
+  closeAllDropdowns (context) {
+    context.commit('closeAllDropdowns')
   }
 }
 
@@ -67,11 +74,18 @@ const mutations = {
   loginAttempt (state) {
     state.loginAttempts += 1
   },
-  closeMenu (state) {
-    state.menuOpen = false
+  closeDropdown (state, { name }) {
+    state.headerDropdownsVisible[name] = false
   },
-  openMenu (state) {
-    state.menuOpen = true
+  openDropdown (state, { name }) {
+    state.headerDropdownsVisible[name] = true
+  },
+  closeAllDropdowns (state) {
+    state.headerDropdownsVisible = {
+      user: false,
+      cart: false,
+      menu: false
+    }
   }
 }
 
