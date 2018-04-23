@@ -25,7 +25,6 @@
   @include flexbox;
   @include align-items(center);
   @include justify-content(space-between);
-  padding-bottom: 10px;
 }
 
 
@@ -275,6 +274,10 @@
     width: 170px;
     margin: 0 auto;
   }
+  .header__bar {
+    padding-bottom: 10px;
+  }
+
 }
 
 // $bp-wide: 1024px;
