@@ -41,6 +41,9 @@
 		margin: 0 auto;
 	}
 }
+.blog__subarticle {
+	padding-bottom: 16px;
+}
 
 .blog__header {
 	padding-bottom: 32px;
@@ -177,6 +180,10 @@
 	.blog_top {
 	  padding-top: 100px;
 	}
+	.blog__subarticle {
+	  padding-bottom: 24px;
+	}
+
 
 	.blog__header {
 	  padding-bottom: 56px;
@@ -193,7 +200,7 @@
 	  @include font-rem(18px);
 	}
 	.blog__headline {
-		padding-bottom: 56px;
+		padding-bottom: 24px;
 		@include font-rem(26px);
 	}
 		.blog__lead {
