@@ -51,7 +51,7 @@
 	text-transform: uppercase;
 	font-family: $f-fancy;
 	font-weight: $fw-semi-bold;
-	@include font-rem(36px);
+	@include font-rem(30px);
 	padding-bottom: 8px;
 }
 .blog__kicker {
@@ -72,8 +72,8 @@
 }
 .blog__headline {
 	max-width: 810px;
-	padding-bottom: 32px;
-	line-height: 1.2;
+	padding-bottom: 24px;
+	line-height: 1.4;
 	text-transform: uppercase;
 	font-family: $f-fancy;
 	@include font-rem(18px);
@@ -183,7 +183,7 @@
 	}
 
 	.blog__title {
-		@include font-rem(54px);
+		@include font-rem(50px);
 	}
 	.blog__kicker {
 		text-transform: uppercase;

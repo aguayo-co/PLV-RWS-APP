@@ -7,7 +7,9 @@
 }
 //- template
 .page {
-  min-height: 100vh;
+  &.page-user {
+    min-height: 100vh;
+  }
 }
 .content-main {
   min-height: 70vh;
@@ -79,7 +81,10 @@
     margin-bottom: 75px;
   }
   .page {
-    padding-top: 130px;
+    padding-top: 60px;
+    &.page-user {
+      padding-top: 120px;
+    }
   }
 }
 
