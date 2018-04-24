@@ -16,6 +16,7 @@ import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
+import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
@@ -112,6 +113,11 @@ export default new Router({
       path: '/publicar-venta',
       name: 'publicar-venta',
       component: PublicarVenta
+    },
+    {
+      path: '/venta-publicada/pendiente',
+      name: 'venta-publicada-pendiente',
+      component: PublicarVentaPendiente
     },
     {
       path: '/producto/:slug',
