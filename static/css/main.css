@@ -6179,6 +6179,7 @@ body {
 .croppa-container {
   position: relative;
   z-index: 2;
+  line-height: 0;
   cursor: pointer; }
 
 .upfile__group .upfile__item:not(:last-child) {
