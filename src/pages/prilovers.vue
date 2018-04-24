@@ -18,7 +18,6 @@
           v-show="true") It <span class="txt_brand">girl</span>
         .slot__group.i-star-on(
           v-show="false") Prilover <span class="txt_brand">Star</span>
-
 </template>
 
 <script>
