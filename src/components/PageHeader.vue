@@ -4,8 +4,8 @@
   .layout-inner
     header.header__bar
       //- brand
-      a.page-brand(
-        href='/',
+      router-link.page-brand(
+        :to="{ name: 'home' }",
         title='Ir a la página de inicio')
         PageHeaderBrand
       //- Menu
@@ -121,10 +121,10 @@ export default {
       this.$emit('close')
     },
     toggleBox: function () {
-      this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/openDropdown', { name: 'user' })
+      this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'user' })
     },
     toggleCart: function () {
-      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/openDropdown', { name: 'cart' })
+      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
     },
     removeFromCart: function (productId) {
       this.$store.dispatch('cart/removeProduct', { id: productId })

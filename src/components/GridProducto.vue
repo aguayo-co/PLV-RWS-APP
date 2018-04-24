@@ -38,8 +38,8 @@
             .slot__price ${{ product.price | currency }}
 
         //- user: picture/first_name/last_name
-        a.slot__user(
-          href='#',
+        router-link.slot__user(
+          :to="'/closet/' + product.user.id",
           :title='product.user.first_name')
           .slot__user-img
             .slot__avatar

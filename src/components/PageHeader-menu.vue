@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     toggleNav: function () {
-      this.active.menu ? this.$store.dispatch('ui/closeDropdown', { name: 'menu' }) : this.$store.dispatch('ui/openDropdown', { name: 'menu' })
+      this.active.menu ? this.$store.dispatch('ui/closeDropdown', { name: 'menu' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'menu' })
       this.$store.dispatch('ui/switchModal')
     },
     handler: function (item) {
