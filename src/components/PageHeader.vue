@@ -4,8 +4,8 @@
   .layout-inner
     header.header__bar
       //- brand
-      a.page-brand(
-        href='/',
+      router-link.page-brand(
+        :to="{ name: 'home' }",
         title='Ir a la página de inicio')
         PageHeaderBrand
       //- Menu
