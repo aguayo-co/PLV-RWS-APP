@@ -7045,8 +7045,8 @@ body {
 .data-total {
   margin: 16px 0;
   padding: 8px 0;
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef; }
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000; }
 
 .data-total__label {
   font-weight: 700;
