@@ -111,6 +111,10 @@
 
 // $bp-big: 1024px;
 @include media-query(wide) {
+  .content-main {
+    padding-top: 74px;
+  }
+
   .layout {
     padding: 46px 0 84px;
   }
