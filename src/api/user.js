@@ -85,6 +85,10 @@ export default {
     return Vue.axiosAuth.get('/api/users/' + userId)
   },
 
+  getAll: function () {
+    return Vue.axios.get('/api/users')
+  },
+
   getUsersByGroup: function (groupId) {
     return Vue.axios.get('/api/users/?filter[group_ids]=' + groupId)
   },
