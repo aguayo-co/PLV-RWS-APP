@@ -31,7 +31,7 @@ export default {
         page,
         orderby: '-id'
       }
-      this.$axiosAuth.get('/api/sales', {params}).then(response => {
+      this.$axiosAuth.get('/api/sales?filter[status]=30,99', {params}).then(response => {
         Object.keys(response.data.data).forEach(key => {
           this.setSale(response.data.data[key])
         })

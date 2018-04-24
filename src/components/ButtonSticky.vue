@@ -1,6 +1,6 @@
 <template lang="pug">
   .btn-sticky
-    a.btn-sticky__link.i-bag(href='#') Comienza a vender
+    router-link.btn-sticky__link.i-bag(:to="{ name: 'publicar-venta' }") Comienza a vender
 </template>
 
 <script>
