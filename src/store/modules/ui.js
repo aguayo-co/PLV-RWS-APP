@@ -49,6 +49,9 @@ const actions = {
   },
   closeAllDropdowns (context) {
     context.commit('closeAllDropdowns')
+  },
+  closeAllDropdownsBut (context, { name }) {
+    context.commit('closeAllDropdownsBut', { name })
   }
 }
 
@@ -86,6 +89,14 @@ const mutations = {
       cart: false,
       menu: false
     }
+  },
+  closeAllDropdownsBut (state, { name }) {
+    state.headerDropdownsVisible = {
+      user: false,
+      cart: false,
+      menu: false
+    }
+    state.headerDropdownsVisible[name] = true
   }
 }
 
