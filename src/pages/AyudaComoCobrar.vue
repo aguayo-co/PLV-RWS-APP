@@ -34,12 +34,6 @@
           blockquote.blog__pullquote(
             cite='http://prilov.html')
             p.blog__quote Transferir los créditos a tu cuenta bancaria no tiene costo.
-        //- .blog__spread.blog__spread_upside
-        //-   .blog__copy
-        //-     p Ernesto Cervantes tuvo una oportunidad como nadie más en la industria: abrió el primer desfile de Raf Simons en Calvin Klein, formando parte de la nueva generación de la marca estadounidense bajo el mando del genio belga. De padres mexicanos, Ernesto nació en Orange County, pero creció en Perris, California, tiempo en el cual aprendió las virtudes de salirse de la cotidianidad y el confort que su entorno le ofrecía. Desde su lanzamiento como modelo exclusivo de Calvin Klein, también fue uno de los protagonistas en el video de The xx I Dare You, i-D platicó con él desde California para saber qué pensaba sobre representar su herencia mexicana en la nueva era de una marca conocida como uno de los pilares de la moda estadounidense.
-        //-   blockquote.blog__pullquote(
-        //-     cite='http://prilov.html')
-        //-     p.blog__quote El modelo de padres mexicanos es parte vital de la nueva generación de Calvin Klein salida de la mente de Raf Simons.
 </template>
 
 <script>
