@@ -473,7 +473,7 @@ export default {
         name: 'ModalMessage',
         parameters: {
           type: 'preload',
-          title: '¡Qué bien! Ya estamos cargando tu producto'
+          title: '¡Yees! Ya estamos cargando tu producto'
         }
       }
       this.$store.dispatch('ui/showModal', modal)

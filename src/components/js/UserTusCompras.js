@@ -17,6 +17,9 @@ export default {
     this.loadOrders()
   },
   computed: {
+    totalProducts () {
+      return this.$store.getters['cart/products']
+    },
     sortedSales () {
       var sortable = []
       Object.keys(this.sales).forEach(key => {
