@@ -18,9 +18,8 @@
                 li Tu perfil tendrá un sello especial <strong>"Prilover Star"</strong>, al igual que tus productos.
                 li Siempre estaremos pendientes de ti y contestaremos tus mensajes en tiempo récord.
                 li Tu productos serán promocionados en nuestros newsletters y si cumplen con nuestra línea editorial, también en redes sociales.
-             
             .blog__subarticle
-               h2.blog__headline Puedes ser una Prilover Star sólo por $15.000 anuales
+              h2.blog__headline Puedes ser una Prilover Star sólo por $15.000 anuales
               ol
                 li Si tienes créditos suficientes, te daremos la opción de canjear 15.000 para convertirte en Prilover Star.<sup>*</sup>
                 li Para hacerlo, debes  ir a <strong>"Tu cuenta"</strong> y darle click al botón <strong>"Ser Prilover Star"</strong>.
