@@ -6,7 +6,7 @@
       :options='swiperOption')
       swiper-slide(
         v-for="(user, index) in users" :key="index")
-        a.slide-group__item(:href='user.url')
+        router-link.slide-group__item(:to="'/closet/' + user.id")
           .slide-group__avatar
             img.slide-group__picture(
               :src='user.picture',
@@ -29,7 +29,7 @@
 <script>
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-// - import usersAPI from '@/api/user'
+import usersAPI from '@/api/user'
 
 export default {
   name: 'PriloversSlider',
@@ -138,10 +138,10 @@ export default {
     }
   },
   created: function () {
-    // - usersAPI.getUsersByGroup('3')
-    // -  .then(response => {
-    // -    this.users = response.data.data
-    // -  })
+    usersAPI.getUsersByGroup('3')
+      .then(response => {
+        this.users = response.data.data
+      })
   }
 }
 </script>
