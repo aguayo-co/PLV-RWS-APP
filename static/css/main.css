@@ -1901,6 +1901,8 @@ body {
     padding: 100px 0; } }
 
 @media only screen and (min-width: 1024px) {
+  .content-main {
+    padding-top: 74px; }
   .layout {
     padding: 46px 0 84px; }
   .content-grid {
@@ -2203,6 +2205,8 @@ body {
 
 @media only screen and (min-width: 1024px) {
   .page-header {
+    position: fixed;
+    top: 0;
     padding: 16px 0 18px; } }
 
 @media only screen and (min-width: 1180px) {
