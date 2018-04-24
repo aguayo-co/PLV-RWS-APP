@@ -125,7 +125,7 @@ export default {
         price: null,
         order: null
       },
-      orderBy: 'created_at',
+      orderBy: '-id',
       filterQueryObject: {},
       loading: false,
       active: false
