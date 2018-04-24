@@ -68,7 +68,7 @@ export default {
     },
     inCart () {
       if (this.totalProducts.length > 0) {
-        if (this.totalProducts.filter(x => x.id === this.product.id)) return true
+        if (this.totalProducts.filter(x => x.id === this.product.id).length > 0) return true
       }
       return false
     },
