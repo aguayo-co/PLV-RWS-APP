@@ -1,21 +1,39 @@
 <template lang="pug">
 .layout-page
-  BannerAvatar
+  BannerAvatar(:user="owner")
   section.section_product
-    p.txt-block Co-Founder at Prilov.com. Llegué a Santiago luego de vivir en Londres por algunos años y volví llena de ropa que no cabe en mi clóset. Acá encuentran todo lo que ya no uso. Entrego en metro Escuela Militar y Los Dominicos. Envíos son por pagar por Correos.
     GridProducto(
-      :infinite='true')
+      v-if="owner.id"
+      :preFilter="{ 'user_id': owner.id }",
+      :infinite="true")
 </template>
 
 <script>
 import BannerAvatar from '@/components/BannerAvatar'
 import GridProducto from '@/components/GridProducto'
+import usersAPI from '@/api/user'
 
 export default {
   name: 'Closet',
   components: {
     BannerAvatar,
     GridProducto
+  },
+  data () {
+    return {
+      owner: {}
+    }
+  },
+  computed: {
+    userId () {
+      return this.$store.getters['user/id']
+    }
+  },
+  created: function () {
+    usersAPI.getUserById(this.$route.params.userId)
+      .then(response => {
+        this.owner = response.data
+      })
   }
 }
 </script>
