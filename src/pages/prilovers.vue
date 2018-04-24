@@ -14,9 +14,11 @@
         li.user-data__value.i-like {{ user.followers_count }}
         li.user-data__value.i-like.i_flip 0
         li.user-data__value.i-less-circle 0
-      .card__group(v-for="group in user.groups")
-        .slot__group(:class="'i-' + group.slug") {{ group.name }}
-
+      .card__group
+        .slot__group.i-it-girl(
+          v-show="true") It <span class="txt_brand">girl</span>
+        .slot__group.i-star-on(
+          v-show="false") Prilover <span class="txt_brand">Star</span>
 </template>
 
 <script>
