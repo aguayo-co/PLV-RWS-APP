@@ -67,7 +67,7 @@
         span.preload__spin.preload__spin_2
         span.preload__spin.preload__spin_3
         span.preload__spin.preload__spin_4
-  ul.pagination
+  ul.pagination(v-if="pager")
     li.pagination__select
       select.form__select.form__select_small(
         name="numeroItems",
