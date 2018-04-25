@@ -7950,8 +7950,9 @@ body {
   font-size: 14px;
   font-size: 0.875rem;
   color: #707070;
-  border: 1px solid;
-  border-radius: 17px; }
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 18px; }
 
 .chat-bubble__noti {
   position: relative;
@@ -8044,6 +8045,7 @@ body {
   width: 26px;
   height: 26px;
   margin-right: 10px;
+  line-height: 26px;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -8113,6 +8115,28 @@ body {
   -moz-justify-content: flex-end;
   justify-content: flex-end;
   padding: 0 20px; }
+
+/*----------------------------------------*\
+  Editor detalle producto
+\*----------------------------------------*/
+.chat__group {
+  padding-bottom: 16px; }
+  .chat__group .chat-line {
+    display: inline-block; }
+
+.editor__textarea {
+  margin-right: 12px;
+  padding: 5px 12px;
+  resize: none;
+  border-color: #9b9b9b;
+  border-radius: 18px; }
+
+.editor__btn {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  text-align: right;
+  color: #f65a66; }
 
 @media only screen and (min-width: 560px) {
   .chat__form {

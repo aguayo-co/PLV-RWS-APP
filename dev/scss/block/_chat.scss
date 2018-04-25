@@ -17,8 +17,9 @@
   line-height: 1.2;
   @include font-rem(14px);
   color: $c-default-5;
-  border: 1px solid;
-  border-radius: 17px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 18px;
 }
 
 .chat-bubble__noti {
@@ -107,11 +108,12 @@
   display: block;
   padding-bottom: 8px;
 }
-
+//btn enviar
 .chat__btn-solid {
   width: 26px;
   height: 26px;
   margin-right: 10px;
+  line-height: 26px;
   color: $c-neutro;
   border: none;
   border-radius: 50%;
@@ -178,6 +180,38 @@
   @include justify-content(flex-end);
   padding: 0 20px;
 }
+
+/*----------------------------------------*\
+  Editor detalle producto
+\*----------------------------------------*/
+.chat__group {
+  padding-bottom: 16px;
+  .chat-line {
+    display: inline-block;
+  }
+
+}
+
+.editor {
+
+}
+  .editor__textarea {
+    margin-right: 12px;
+    padding: 5px 12px;
+    resize: none;
+    border-color: $c-default-4;
+    border-radius: 18px;
+  }
+  .editor__btn {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    text-align: right;
+    color: $c-brand;
+  }
+
+
+
  
 @media only screen and (min-width: 560px) {
   .chat__form {

@@ -2,7 +2,7 @@
 .layout-page
   ProductoDetalle(:product='product')
   ProductoUser(:user='user')
-  ProductoNotificaciones
+  ProductoPreguntas
   ProductoSlider
 </template>
 
@@ -10,7 +10,7 @@
 import ProductoDetalle from '@/components/ProductoDetalle'
 import ProductoPack from '@/components/ProductoPack'
 import ProductoUser from '@/components/ProductoUser'
-import ProductoNotificaciones from '@/components/ProductoNotificaciones'
+import ProductoPreguntas from '@/components/ProductoPreguntas'
 import ProductoSlider from '@/components/ProductoSlider'
 import productsAPI from '@/api/product'
 
@@ -20,7 +20,7 @@ export default {
     ProductoDetalle,
     ProductoPack,
     ProductoUser,
-    ProductoNotificaciones,
+    ProductoPreguntas,
     ProductoSlider
   },
   data () {
