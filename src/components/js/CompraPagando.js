@@ -1,7 +1,12 @@
-import { mapState } from 'vuex'
+import orderAPI from '@/api/order'
 
 export default {
   name: 'CompraPagando',
+  model: {
+    prop: 'order',
+    event: 'refresh'
+  },
+  props: ['order'],
   data () {
     return {
       errorLog: {
@@ -11,10 +16,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('cart', [
-      'gateway'
-    ]),
-    transfer () {
+    gateway () {
+      return this.$getNestedObject(this.order, ['payments', 0, 'gateway'])
+    },
+    isTransfer () {
       return this.gateway === 'Transfer'
     },
     fileName () {
@@ -26,7 +31,9 @@ export default {
       this.transfer_receipt = event.target.files[0]
     },
     uploadReceipt () {
-      this.$store.dispatch('cart/uploadReceipt', this.transfer_receipt).catch(e => {
+      orderAPI.uploadTransferReceipt(this.order.id, this.transfer_receipt).then(response => {
+        this.$emit('refresh', response.data)
+      }).catch(e => {
         this.$handleApiErrors(e, ['transfer_receipt'], this.errorLog)
       })
     }
