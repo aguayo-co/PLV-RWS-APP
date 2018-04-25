@@ -7936,6 +7936,13 @@ body {
 /*------------------------------------*\
 	Chat
 \*------------------------------------*/
+.chat-band {
+  margin-top: 50px;
+  padding: 50px 0; }
+
+.chat-band__header {
+  padding-bottom: 44px; }
+
 /*----------------------------------------*\
   Estilos generales para busbujas de chat
 \*----------------------------------------*/
@@ -7970,7 +7977,7 @@ body {
     color: #fff; }
 
 .chat-line {
-  margin-bottom: 24px; }
+  margin-bottom: 8px; }
 
 /*------------------------------------*\
   Burbuja principal de chat
@@ -7982,12 +7989,12 @@ body {
   -webkit-box-align: start;
   -ms-flex-align: start;
   -moz-align-items: flex-start;
-  align-items: flex-start; }
+  align-items: flex-start;
+  margin-bottom: 16px; }
   .chat__bubble-main .chat-bubble__img {
     width: 35px;
     height: 35px; }
   .chat__bubble-main .chat-bubble__txt {
-    margin-bottom: 16px;
     padding: 8px 18px;
     border-color: #f65a66; }
 
@@ -8002,7 +8009,8 @@ body {
   -ms-flex-align: center;
   -moz-align-items: center;
   align-items: center;
-  padding-left: 30px; }
+  padding-left: 30px;
+  margin-bottom: 16px; }
   .chat__bubble .chat-bubble__img {
     width: 22px;
     height: 22px; }
@@ -8117,12 +8125,40 @@ body {
   padding: 0 20px; }
 
 /*----------------------------------------*\
-  Editor detalle producto
+  Preguntas detalle producto
 \*----------------------------------------*/
 .chat__group {
   padding-bottom: 16px; }
   .chat__group .chat-line {
-    display: inline-block; }
+    display: inline-block;
+    margin-right: 50px; }
+  .chat__group .chat-bubble__txt {
+    margin-right: 0; }
+
+.chat-break {
+  display: block;
+  text-align: center; }
+  .chat-break:after, .chat-break:before {
+    content: ''; }
+
+.chat-break__bullet,
+.chat-break:before,
+.chat-break:after {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #9b9b9b; }
+
+.chat-break__bullet {
+  margin: 0 12px; }
+
+/*----------------------------------------*\
+  Editor
+\*----------------------------------------*/
+.editor {
+  margin-left: 46px;
+  padding-bottom: 16px; }
 
 .editor__textarea {
   margin-right: 12px;
@@ -8187,6 +8223,52 @@ body {
       padding: 0 26px 0 0; }
   .chat__message {
     width: 100%; } }
+
+.chat-band .chat {
+  width: 100%; }
+
+.chat-band__grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.chat-notify {
+  width: 100%;
+  padding: 20px; }
+  .chat-notify .chat__form {
+    padding: 0 0 16px 0; }
+  .chat-notify .form__textarea {
+    height: 162px; }
+  .chat-notify .chat__btn-solid {
+    display: block;
+    margin: 14px 0 0 auto; }
+
+.chat-alert {
+  width: 96%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #f65a66;
+  font-size: 14px;
+  font-size: 0.875rem; }
+  .chat-alert:before {
+    display: block;
+    font-size: 40px;
+    font-size: 2.5rem;
+    color: #f65a66;
+    text-align: center;
+    padding-bottom: 16px; }
+
+@media only screen and (min-width: 768px) {
+  .chat-band .chat {
+    width: 50%; }
+  .chat-notify {
+    width: 50%; } }
+
+@media only screen and (min-width: 1024px) {
+  .chat-notify {
+    width: 40%; } }
 
 /*------------------------------------*\
 	Valoraciones

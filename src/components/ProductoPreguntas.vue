@@ -1,10 +1,10 @@
 <template lang="pug">
 .layout-band
   .layout-inner
-    section.chat-slot
-      header.single__header
+    section.chat-band
+      header.chat-band__header
         h2.subhead Preguntas sobre esta prenda
-      .chat-slot__block
+      .chat-band__grid
         .chat.chat_bg
           .chat__group
             .chat-line
@@ -26,15 +26,15 @@
                   )
                   .chat__btn-group
                     button.chat__btn-solid.i-shipping(
-                      type="submit")
+                      type="submit",
+                      @click.prevent="toggle('editorAnswer')")
+            span.chat-break
+              span.chat-break__bullet
           .chat__group
             .chat-line
               .chat__bubble-main
-                img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-                p.chat-bubble__txt Hola, si está aun disponible, ¿Quieres comprarlo?
-              .chat__bubble
-                img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
-                p.chat-bubble__txt Hola, si, me interesa comprar.
+                img.chat-bubble__img(src="static/img/demo/user-avatar-002.jpg", alt="Avatar")
+                p.chat-bubble__txt Disculpa, viajo a Argentina mañana en la tarde, será posible que lo valla yo a buscar directamente, por favor.. es para llevarlo al mencionado país, muchas gracias...
               span.editor__btn(
                 v-if="editorAnswer == false",
                 @click="toggle('editorAnswer')") Responder
@@ -47,7 +47,10 @@
                   )
                   .chat__btn-group
                     button.chat__btn-solid.i-shipping(
-                      type="submit")
+                      type="submit",
+                      @click.prevent="toggle('editorAnswer')")
+            span.chat-break
+              span.chat-break__bullet
         .chat-notify
           form.chat__form
             label.chat__label ¡Pregúntale a la vendedora!
