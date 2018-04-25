@@ -37,21 +37,28 @@ export default {
   data () {
     return {
       methods: {},
-      selectedMethods: [],
-      initialMethods: []
+      selectedMethods: []
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    initialMethods () {
+      let methods = []
+      Object.keys(this.methods).forEach((key) => {
+        if (this.$store.state['user'].shipping_methods.filter(x => x.id === this.methods[key].id)[0]) methods.push('method-' + this.methods[key].id)
+      })
+      return methods
+    }
+  },
+  watch: {
+    initialMethods: function () {
+      this.selectedMethods = this.initialMethods
+    }
   },
   created: function () {
     shippingMethodsAPI.getAllMethods()
       .then(response => {
         this.methods = response.data.data
-        Object.keys(this.methods).forEach((key) => {
-          if (this.user.shipping_methods.filter(x => x.id === this.methods[key].id)[0]) this.selectedMethods.push('method-' + this.methods[key].id)
-        })
-        this.initialMethods = this.selectedMethods
       })
   },
   methods: {
