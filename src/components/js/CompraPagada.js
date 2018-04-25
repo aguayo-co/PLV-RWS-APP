@@ -1,30 +1,28 @@
-import { mapGetters, mapState } from 'vuex'
-
 export default {
   name: 'CompraPagada',
+  props: ['order'],
   computed: {
     couponValid () {
       return this.coupon_code && this.newOrderData.coupon_code === null
     },
-    ...mapGetters('cart', [
-      'user_full_name'
-    ]),
-    ...mapState('cart', [
-      'sales',
-      'address',
-      'payment_status'
-    ]),
+    address () {
+      return this.$getNestedObject(this.order, ['shipping_information', 'address'])
+    },
+    paymentStatus () {
+      return this.$getNestedObject(this.order, ['payments', 0, 'status'])
+    },
     products () {
       const products = {}
-      Object.keys(this.sales).forEach((key) => {
-        const sale = this.sales[key]
+      // Listado de productos con información básica de la Venta y la vendedora en cada uno.
+      Object.keys(this.order.sales).forEach((key) => {
+        const sale = this.order.sales[key]
         Object.keys(sale.products).forEach((key) => {
           const product = sale.products[key]
           products[product.id] = {
             ...product,
             shipping_method_name: sale.shipping_method.name,
             user_phone: sale.user_phone,
-            user_full_name: this.user_full_name(sale.id)
+            user_full_name: this.$options.filters.full_name(product.user)
           }
         })
       })

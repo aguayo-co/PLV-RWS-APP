@@ -9,9 +9,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('cart', [
-      'user_full_name'
-    ]),
     shipping_method_id: {
       get () {
         return this.new_shipping_method_id || this.sale.shipping_method_id

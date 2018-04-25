@@ -1,7 +1,7 @@
 <template lang="pug">
 .modal__slot.content-slot
   //- Opción 1: Pago externo
-  .notify(v-if="!transfer")
+  .notify(v-if="!isTransfer")
     header.head_ico
       h2.title Estás a un paso de obtener tu compra.
       p.subtitle_heart Estamos esperando confirmación de tu transacción por parte de la plataforma de pagos.
