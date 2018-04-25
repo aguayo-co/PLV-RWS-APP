@@ -2,21 +2,104 @@
   Card 
   Usado en el listado de Prilovers
 \*------------------------------------*/
+.card__grid {
+  padding-bottom: 80px;
+}
+
 .card {
+  width: 100%;
+  margin: 8px 0;
+  padding: 28px 16px 26px;
   text-align: center;
   background-color: $c-neutro-4;
+  .user-data__value:not(:last-child) {
+    padding-right: 0;
+  }
+  .user-data__value {
+    min-width: 56PX;
+    padding: 0 4px;
+  }
 }
+
 .card__circle {
   display: inline-block;
-  width: 116px;
-  height: 116px;
+  width: 114px;
+  height: 114px;
   overflow: hidden;
   text-align: center;
   border-radius: 50%;
-  border: 10px solid $c-brand;
+  border: 5px solid $c-brand;
 }
 .card__photo {
   width: 100%;
+}
+.card__name {
+  padding: 16px 0 12px;  
+  text-transform: uppercase;
+  @include font-rem(16px);
+  font-family: $f-fancy;
+  font-weight: $fw-medium;
+}
+.card__meta {
+  margin: 0;
+  padding-bottom: 16px;
+  &:before {
+    position: relative;
+    top: -1px;
+    padding-right: 10px;
+    @include font-rem(16px);
+  }
+}
+.card__group {
+  padding-top: 16px;
+}
+@include media-query(small) {
+  .card__grid {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    margin: 0 -6px;
+  }
+
+  .card {
+    width: 50%;
+    width: -webkit-calc(50% - 12px);
+    width: -moz-calc(50% - 12px);
+    width: -o-calc(50% - 12px);
+    width: calc(50% - 12px);
+    margin: 6px;
+  }
+}
+
+@include media-query(medium) {
+  .card__grid {
+    margin: 0 -14px;
+  }
+
+  .card {
+    width: 33.333%;
+    width: -webkit-calc(33.333% - 28px);
+    width: -moz-calc(33.333% - 28px);
+    width: -o-calc(33.333% - 28px);
+    width: calc(33.333% - 28px);
+    margin: 14px;
+    padding: 38px 16px 36px;
+  }
+  .card__name {
+    @include font-rem(18px);
+  }
+}
+
+@include media-query(wide) {
+  .card {
+    width: 25%;
+    width: -webkit-calc(25% - 28px);
+    width: -moz-calc(25% - 28px);
+    width: -o-calc(25% - 28px);
+    width: calc(25% - 28px);
+    .user-data__list:not(:last-child) {
+      padding: 0;
+    }
+  }
 }
 
 
