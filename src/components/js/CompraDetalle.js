@@ -62,7 +62,7 @@ export default {
     ...createComputedProps(editableProps),
     responseUrl () {
       const a = document.createElement('a')
-      a.href = this.$router.resolve({name: 'compra', params: { id: this.id }}).href
+      a.href = this.$router.resolve({name: 'compra', params: { order_id: this.id }}).href
       return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
     }
   },
@@ -128,7 +128,7 @@ export default {
      */
     setTransferPayment () {
       return shoppingCartAPI.getPayment('transfer').then((response) => {
-        this.$router.push({name: 'compra', params: { id: this.id }})
+        this.$router.push({name: 'compra', params: { order_id: this.id }})
       })
     }
   }

@@ -1,7 +1,6 @@
 // Our shopping cart!
 import Vue from 'vue'
 import shoppingCartAPI from '@/api/shoppingCart'
-import orderAPI from '@/api/order'
 
 // Propiedades que son hijos directos de la orden.
 const baseCart = {
@@ -60,13 +59,11 @@ const baseStateGenerator = () => {
     sales: {},
 
     // Información del estado actual del carro.
-    gateway: null,
-    payment_status: null
+    gateway: null
   }
 }
 
 const getters = {
-  user_full_name: state => saleId => state.sales[saleId].user_first_name + ' ' + state.sales[saleId].user_last_name,
   products: state => {
     let productList = []
     if (Object.keys(state.sales).length > 0) {
@@ -81,9 +78,8 @@ const getters = {
 }
 
 const actions = {
-  load ({commit}, id) {
-    const api = id ? orderAPI : shoppingCartAPI
-    return api.load(id).then(response => {
+  load ({commit}) {
+    return shoppingCartAPI.load().then(response => {
       commit('set', response.data)
       return response
     })
@@ -96,12 +92,6 @@ const actions = {
   },
   addProduct ({commit}, product) {
     return shoppingCartAPI.addProducts([product.id]).then(response => {
-      commit('set', response.data)
-      return response
-    })
-  },
-  uploadReceipt ({commit, state}, receipt) {
-    return orderAPI.uploadTransferReceipt(state.id, receipt).then(response => {
       commit('set', response.data)
       return response
     })
@@ -131,7 +121,6 @@ const mutations = {
     state['address'] = Vue.getNestedObject(cart.shipping_information, ['address'])
     state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
     state['gateway'] = Vue.getNestedObject(cart, ['payments', 0, 'gateway']) || state.gateway
-    state['payment_status'] = Vue.getNestedObject(cart, ['payments', 0, 'status'])
 
     const activeSales = []
 
@@ -172,7 +161,7 @@ const mutations = {
     })
   },
   /**
-   * Almacena cada sale en el state.
+   * Almacena cada vendedor en el state.
    *
    * @param {*} state
    * @param {*} data
@@ -182,6 +171,7 @@ const mutations = {
     Object.keys(baseSeller).forEach((key) => {
       Vue.set(state.sales[sale.id], 'user_' + key, user[key])
     })
+    Vue.set(state.sales[sale.id], 'user_full_name', Vue.options.filters.full_name(user))
   },
   /**
    * Almacena cada producto en el state.

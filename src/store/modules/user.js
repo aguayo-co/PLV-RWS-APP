@@ -34,7 +34,7 @@ const baseStateGenerator = () => {
 }
 
 const getters = {
-  full_name: state => state.first_name + ' ' + state.last_name,
+  full_name: state => Vue.options.filters.full_name(state),
   roles: state => state.roles,
   id: state => state.id
 }

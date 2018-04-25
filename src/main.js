@@ -30,6 +30,9 @@ Vue.filter('date', function (value) {
 Vue.filter('address', function (address) {
   return address.address + ', ' + address.region + ', ' + address.city + ', ' + address.zone
 })
+Vue.filter('full_name', function (user) {
+  return user.first_name + ' ' + user.last_name
+})
 
 /* eslint-disable no-new */
 new Vue({

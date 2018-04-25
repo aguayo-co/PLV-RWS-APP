@@ -1,7 +1,7 @@
 <template lang="pug">
 //Paso 3: Comprobante
 section.list-slot
-  header.header_heart.i-heart-on(v-if="payment_status !== 1")
+  header.header_heart.i-heart-on(v-if="paymentStatus !== 1")
     h2.title_heart ¡Cool! tu compra ha sido realizada
     p.subtitle_heart Ya envíamos un comprobante de compra a tu correo.
   header.header_heart.i-heart-on(v-else)
@@ -29,10 +29,10 @@ section.list-slot
         .card__info
           .card__header
             h3.card__title {{ product.title }}
-            p.card__brand Marca: {{ product.brand }}
-            p.card__size Talla: {{ product.size }}
+            p.card__brand Marca: {{ product.brand.name }}
+            p.card__size Talla: {{ product.size.name }}
           p.card__price $ {{ product.price | currency }}
-          p.card__tag.tag {{ product.condition }}
+          p.card__tag.tag {{ product.condition.name }}
 
       //-info User
       .card__column

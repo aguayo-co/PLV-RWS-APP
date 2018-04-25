@@ -10,7 +10,7 @@
           span.steps__bullet.i-ok 1
           span.steps__label Carro y Envío
           //-TO DO: Valor compra
-          span.steps__value(v-if="total") ${{ total | currency }}
+          span.steps__value(v-if="orderTotal") ${{ orderTotal | currency }}
         li.steps__item(
           :class="{steps__item_current: isPayment}")
           span.steps__bullet.i-ok  2
@@ -36,11 +36,11 @@
     //- End List paso 1:compra
 
     //- Paso 2: Pago
-    CompraPagando(v-else-if="isPayment")
+    CompraPagando(v-else-if="isPayment" v-model="order")
     //- End Paso 2: Pago
 
     //- Paso 3: Comprobante
-    CompraPagada(v-else-if="isPayed")
+    CompraPagada(v-else-if="isPayed" :order="order")
     //- End Paso 3: Comprobante
 </template>
 

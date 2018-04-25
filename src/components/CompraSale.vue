@@ -11,7 +11,7 @@
           alt="")
     .card__user-info
       .card__status Vendedora
-      .card__prilover  {{ user_full_name(sale.id) }}
+      .card__prilover  {{ sale.user_full_name }}
   //-listado productos
   .list__grid
     .list__group
