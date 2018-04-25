@@ -30,6 +30,12 @@
   text-align: center;
   border-radius: 50%;
   border: 5px solid $c-brand;
+  .tool-user__letter {
+    line-height: 110px;
+    text-transform: uppercase;
+    color: $c-neutro;
+    @include font-rem(50px);
+  }
 }
 .card__photo {
   width: 100%;
