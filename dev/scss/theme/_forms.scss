@@ -694,6 +694,9 @@ select {
       &:not(:last-child) {
         margin-right: 12px;
       }
+      &.color {
+        flex-grow: 1;
+      }
     }
   }
 

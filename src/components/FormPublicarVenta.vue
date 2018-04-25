@@ -168,50 +168,51 @@
                     v-for='condition in conditions'
                     :value='condition.id'
                   ) {{ condition.name }}
-            .form__row.color(
-              :class='{ "is-danger": errorLog.color }'
-              @click='toggleColors.first = !toggleColors.first')
-              label.form__label(
-                for='product-color-first') Color principal
-              span.help(
-                v-if="errorLog.color"
-              ) {{ errorLog.color }}
-              input.form__select(
-                type='text',
-                id='product-color-first',
-                v-model='product.color[0]',
-                disabled)
-              .toggle-select(
-                v-show='toggleColors.first')
-                ul.toggle-select__list
-                  li.toggle-select__item(
-                    v-for='color in colors',
-                    @click='chooseColor(color.id, 1)'
-                  )
-                    span.color-circle(
-                      :style='{ backgroundColor: color.hex_code }'
+            .form__group
+              .form__row.color(
+                :class='{ "is-danger": errorLog.color }'
+                @click='toggleColors.first = !toggleColors.first')
+                label.form__label(
+                  for='product-color-first') Color principal
+                span.help(
+                  v-if="errorLog.color"
+                ) {{ errorLog.color }}
+                input.form__select(
+                  type='text',
+                  id='product-color-first',
+                  v-model='product.color[0]',
+                  disabled)
+                .toggle-select(
+                  v-show='toggleColors.first')
+                  ul.toggle-select__list
+                    li.toggle-select__item(
+                      v-for='color in colors',
+                      @click='chooseColor(color.id, 1)'
                     )
-                    span {{ color.name }}
-            .form__row.color(
-              @click='toggleColors.second = !toggleColors.second')
-              label.form__label(
-                for='product-color-second') Color adicional
-              input.form__select(
-                type='text',
-                id='product-color-second',
-                v-model='product.color[1]',
-                disabled)
-              .toggle-select(
-                v-show='toggleColors.second')
-                ul.toggle-select__list
-                  li.toggle-select__item(
-                    v-for='color in colors',
-                    @click='chooseColor(color.id, 2)'
-                  )
-                    span.color-circle(
-                      :style='{ backgroundColor: color.hex_code }'
+                      span.color-circle(
+                        :style='{ backgroundColor: color.hex_code }'
+                      )
+                      span {{ color.name }}
+              .form__row.color(
+                @click='toggleColors.second = !toggleColors.second')
+                label.form__label(
+                  for='product-color-second') Color adicional
+                input.form__select(
+                  type='text',
+                  id='product-color-second',
+                  v-model='product.color[1]',
+                  disabled)
+                .toggle-select(
+                  v-show='toggleColors.second')
+                  ul.toggle-select__list
+                    li.toggle-select__item(
+                      v-for='color in colors',
+                      @click='chooseColor(color.id, 2)'
                     )
-                    span {{ color.name }}
+                      span.color-circle(
+                        :style='{ backgroundColor: color.hex_code }'
+                      )
+                      span {{ color.name }}
 
             .form__row(
               :class='{ "is-danger": errorLog.calculatedSize }')
@@ -473,7 +474,7 @@ export default {
         name: 'ModalMessage',
         parameters: {
           type: 'preload',
-          title: '¡Qué bien! Ya estamos cargando tu producto'
+          title: '¡Yees! Ya estamos cargando tu producto'
         }
       }
       this.$store.dispatch('ui/showModal', modal)

@@ -92,7 +92,7 @@
   left: 50%;
   @include prefixer(transform, translate(-50%,-50%), ("webkit", "moz"));
   display: inline-block;
-  min-width: 150px;
+  min-width: 120px;
   padding: 10px;
   text-align: center;
   color: $c-default;
@@ -107,6 +107,7 @@
 .croppa-container {
   position: relative;
   z-index: 2;
+  line-height: 0;
   cursor: pointer;
 }
 .upfile__group {

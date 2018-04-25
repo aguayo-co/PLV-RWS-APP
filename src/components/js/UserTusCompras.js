@@ -17,6 +17,9 @@ export default {
     this.loadOrders()
   },
   computed: {
+    totalProducts () {
+      return this.$store.getters['cart/products']
+    },
     sortedSales () {
       var sortable = []
       Object.keys(this.sales).forEach(key => {
@@ -34,7 +37,7 @@ export default {
         page,
         orderby: '-id'
       }
-      this.$axiosAuth.get('/api/orders', {params}).then(response => {
+      this.$axiosAuth.get('/api/orders?filter[status]=30,99', {params}).then(response => {
         Object.keys(response.data.data).forEach(key => {
           this.setOrder(response.data.data[key])
         })

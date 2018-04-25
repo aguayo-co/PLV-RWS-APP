@@ -18,12 +18,18 @@
     padding-left: 20px;
   }
 }
+// menu desplegable Bolsa de compras
 .user-auth__boxes {
-  overflow-y: scroll;
-  max-height: 588px;
-  border: 1px solid $c-default;
+  right: -10px;
+  display: inline-block;
+  // min-width: 140px;
   min-width: 260px;
+  max-height: 588px;
+  margin-top: 17px;
+  overflow-y: scroll;
+  border: 1px solid $c-default;
 }
+
 .box-cards__head{
   position: relative;
   border-bottom: 1px solid $c-default;
@@ -57,7 +63,7 @@
 
 .box-cards__item {
   @include flexbox;
-  @include align-items(center);
+  // @include align-items(center);
   position: relative;
   padding: 8px 0;
   border-top: 1px solid $c-neutro-3;
@@ -82,6 +88,8 @@
 }
 .box-cards__btn {
   font-size: 0;
+  border: none;
+  background-color: transparent;
   &:before {
     position: relative;
     right: -10px;

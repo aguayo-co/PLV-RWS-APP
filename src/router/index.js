@@ -16,6 +16,7 @@ import UserNotificaciones from '@/components/UserNotificaciones'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
+import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
@@ -26,6 +27,7 @@ import Contenido from '@/pages/Contenido'
 import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
 import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
+import prilovers from '@/pages/prilovers'
 
 Vue.use(Router)
 
@@ -114,12 +116,17 @@ export default new Router({
       component: PublicarVenta
     },
     {
+      path: '/venta-publicada/pendiente',
+      name: 'venta-publicada-pendiente',
+      component: PublicarVentaPendiente
+    },
+    {
       path: '/producto/:slug',
       name: 'product',
       component: Producto
     },
     {
-      path: '/closet',
+      path: '/closet/:userId',
       name: 'Closet',
       component: Closet
     },
@@ -163,6 +170,11 @@ export default new Router({
       path: '/ser-prilover',
       name: 'ser-prilover',
       component: AyudaPriloverStar
+    },
+    {
+      path: '/prilovers',
+      name: 'prilovers',
+      component: prilovers
     }
   ],
   scrollBehavior (to, from, savedPosition) {

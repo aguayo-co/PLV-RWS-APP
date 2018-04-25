@@ -332,6 +332,7 @@
     @include flexbox;
     @include flex-direction(column);
     overflow: hidden;
+    overflow-y: scroll;
     background-color: $c-neutro;
     transition: all .5s ease;
   } 

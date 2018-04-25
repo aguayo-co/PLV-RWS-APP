@@ -24,8 +24,7 @@ section.single
                   :src="picture",
                   :alt="'Perfil' + ' ' + first_name")
                 span.tool-user__letter(
-                  v-else
-                ) {{ new_first_name.charAt(0) }}
+                  v-else) {{ new_first_name.charAt(0) }}
             form.form_user.user-avatar__upfile(
               id="form-user-avatar"
               v-on:submit.prevent='',

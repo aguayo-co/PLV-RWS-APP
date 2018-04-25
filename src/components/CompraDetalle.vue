@@ -54,13 +54,6 @@
             @click.prevent="nextStep") Continuar
           compraPayU(v-if="payUPayment", :payment-data="payUPayment")
         //- end btn continuar
-
-        //- Agregar productos
-        .form__row_away
-          span.i-plus.plus-item
-            router-link.link_underline(
-              to="#") Agregar más Productos
-        //- End Agregar productos
 </template>
 
 <script src="./js/CompraDetalle.js"></script>

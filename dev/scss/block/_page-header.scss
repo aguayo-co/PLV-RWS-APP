@@ -242,14 +242,6 @@
 
     }
   }
-// menu desplegable Bolsa de compras
-.user-auth__boxes {
-  right: -10px;
-  display: inline-block;
-  min-width: 140px;
-  margin-top: 26px;
-}
-
 
 /*
     *Page header
@@ -271,7 +263,7 @@
   }
   .page-brand {
     display: block;
-    width: 170px;
+    // width: 170px;
     margin: 0 auto;
   }
   .header__bar {
@@ -283,6 +275,8 @@
 // $bp-wide: 1024px;
 @include media-query(wide) {
   .page-header {
+    position: fixed;
+    top: 0;
     padding: 16px 0 18px;
   }
 

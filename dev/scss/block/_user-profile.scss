@@ -213,6 +213,11 @@
     margin: 0 auto;
     overflow: hidden;
     border-radius: 50%;
+    .tool-user__letter {
+      line-height: 114px;
+      color: $c-neutro;
+      @include font-rem(80px);
+    }
   }
   .user-data__img {
     width: 100%;
