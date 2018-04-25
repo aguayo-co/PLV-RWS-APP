@@ -2,11 +2,16 @@
 	Chat
 \*------------------------------------*/
 //avatar del mensaje
-.chat-bubble__img {
+.chat-bubble__avatar {
   margin-right: 8px;
+  overflow: hidden;
   border-radius: 50%;
   border: 2px solid $c-brand;
 }
+.chat-bubble__img {
+  width: 100%;
+}
+
 //texto del mensaje
 .chat-bubble__txt {
   margin: 0 8px 0 0;
@@ -46,7 +51,7 @@
   @include flexbox;
   @include align-items(flex-start);
   margin-bottom: 16px;
-  .chat-bubble__img {
+  .chat-bubble__avatar {
     width: 35px;
     height: 35px;
   }
@@ -66,7 +71,7 @@
   padding-left: 30px;
   margin-bottom: 16px;
 
-  .chat-bubble__img {
+  .chat-bubble__avatar {
     width: 22px;
     height: 22px;
   }
@@ -263,6 +268,14 @@
     margin-right: 0;
   }
 }
+.chat__subhead {
+  display: inline-block;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+  @include font-rem(18px);
+}
 
 .chat-break {
   display: block;
@@ -329,7 +342,7 @@
   }
   .chat__btn-solid {
     display: block;
-    margin: 14px 0 0 auto;
+    margin: 8px 0 0 auto;
   }
 }
 // caja alerta 
@@ -357,6 +370,7 @@
   }
   .chat-query {
     width: 50%;
+    padding: 0 20px;
   }
 }
 

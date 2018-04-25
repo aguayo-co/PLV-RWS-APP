@@ -55,9 +55,10 @@
               span.chat-break__bullet
         .chat-query
           form.chat__form
-            label.chat__label ¡Pregúntale a la vendedora!
+            label.chat__subhead ¡Pregúntale a la vendedora!
             textarea.form__textarea.chat__textarea
-            button.chat__btn-solid.i-shipping(type="submit")
+            button.chat__btn-solid.i-shipping(
+              type="submit")
           p.chat-alert.i-alert-circle Recuerda que al comprar en Prilov disfrutas de garantía de devolución, protección 24/7 ante cualquier problema y nuestra plataforma segura de pagos.
 </template>
 
