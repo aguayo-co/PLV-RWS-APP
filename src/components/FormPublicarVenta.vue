@@ -178,6 +178,7 @@
                   v-if="errorLog.color"
                 ) {{ errorLog.color }}
                 input.form__select(
+                  ref='color'
                   type='text',
                   id='product-color-first',
                   v-model='product.color[0]',
@@ -223,6 +224,7 @@
               ) {{ errorLog.calculatedSize }}
               .form-asisted__box
                 input.form-asisted__model(
+                  ref='calculatedSize'
                   v-model="size",
                   id="productSize",
                   type="text",
@@ -263,9 +265,6 @@
               :class='{ "is-danger": errorLog.dimensions }')
               label.form__label(
                 for='product-medidas') Medidas
-              span.help(
-                v-if="errorLog.dimensions"
-              ) {{ errorLog.dimensions }}
               input.form__control(
                 ref='dimensions'
                 id='product-medidas',
@@ -280,10 +279,11 @@
               ) {{ errorLog.price }}
               span.form__price
                 input.form__control(
+                  @keydown="filterPrice",
                   ref='price'
                   id='product-precio',
-                  v-model='product.price'
-                  type='number')
+                  :value='product.price'
+                  type='text')
             .form__row(
               :class='{ "is-danger": errorLog.original_price }')
               label.form__label(
@@ -293,10 +293,11 @@
               ) {{ errorLog.original_price }}
               span.form__price
                 input.form__control(
+                  @keydown="filterOriginalPrice",
                   ref='original_price'
                   id='product-original-price',
-                  v-model='product.original_price',
-                  type='number')
+                  :value='product.original_price',
+                  type='text')
           .form-section__item
             .form-section__slot.sticky
               h3.form-section__head Así se verá tu publicación
@@ -434,7 +435,12 @@ export default {
       imagesToUpload: [],
       imageURL: null,
       toggleImage: false,
-      toggleImageDelete: [ false, false, false, false ],
+      toggleImages: {
+        0: false,
+        1: false,
+        2: false,
+        3: false
+      },
       checkTerms: true,
       product: {
         title: null,
@@ -466,7 +472,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    toggleImageDelete () {
+      return this.toggleImages
+    }
   },
   methods: {
     createProduct: function () {
@@ -521,7 +530,6 @@ export default {
       }
 
       if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
-      if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar las medidas de tu producto'
       if (!this.product.price) {
         this.errorLog.price = 'Debes ingresar el precio de tu producto'
       } else {
@@ -534,7 +542,7 @@ export default {
       if (Object.keys(this.errorLog).length === 0) {
         this.createProduct()
       } else {
-        this.$refs.title.focus()
+        this.$refs[Object.keys(this.errorLog)[0]].focus()
       }
     },
     chooseColor: function (colorId, colorPosition) {
@@ -579,6 +587,18 @@ export default {
         return false
       }
     },
+    filterPrice: function (e) {
+      e.preventDefault()
+      if (!this.product.price) this.product.price = ''
+      if (e.keyCode >= 48 && e.keyCode <= 57) this.product.price += e.key
+      if (e.keyCode === 8) this.product.price = this.product.price.substring(0, this.product.price.length - 1)
+    },
+    filterOriginalPrice: function (e) {
+      e.preventDefault()
+      if (!this.product.original_price) this.product.original_price = ''
+      if (e.keyCode >= 48 && e.keyCode <= 57) this.product.original_price += e.key
+      if (e.keyCode === 8) this.product.original_price = this.product.original_price.substring(0, this.product.original_price.length - 1)
+    },
     handleMainImage: function () {
       if (this.images[0].hasImage()) {
         this.toggleImage = true
@@ -588,11 +608,11 @@ export default {
     addImage: function (index) {
       if (this.images[index].hasImage()) {
         if (index === 0) this.handleMainImage()
-        this.toggleImageDelete[index] = true
       }
+      this.toggleImages[index] = true
     },
     removeImage: function (index) {
-      this.toggleImageDelete[index] = false
+      this.toggleImages[index] = false
       this.images[index].remove()
       if (index === 0) this.toggleImage = false
     },

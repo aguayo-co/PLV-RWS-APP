@@ -131,7 +131,7 @@ export default new Router({
       component: Closet
     },
     {
-      path: '/compra/:id?',
+      path: '/compra/:order_id?',
       name: 'compra',
       component: Compra,
       props: true
