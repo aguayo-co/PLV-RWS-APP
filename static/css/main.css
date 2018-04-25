@@ -5236,7 +5236,7 @@ body {
       position: -ms-sticky;
       position: -o-sticky;
       position: sticky;
-      top: 30px; }
+      top: 86px; }
   .form-section_footer .btn {
     max-width: 320px; } }
 
@@ -6532,10 +6532,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -moz-align-items: center;
-  align-items: center;
   position: relative;
   padding: 8px 0;
   border-top: 1px solid #efefef; }
@@ -6770,7 +6766,7 @@ body {
     position: -ms-sticky;
     position: -o-sticky;
     position: sticky;
-    top: 10px;
+    top: 86px;
     padding-top: 0; } }
 
 .btn-sticky {
@@ -6786,7 +6782,7 @@ body {
     position: sticky;
     right: 0;
     bottom: 20px;
-    z-index: 9999;
+    z-index: 186;
     display: block;
     width: 100%;
     text-align: right;
@@ -7182,7 +7178,7 @@ body {
     position: -ms-sticky;
     position: -o-sticky;
     position: sticky;
-    top: 30px; }
+    top: 86px; }
   .list__content {
     width: 75%; }
   .list_step {

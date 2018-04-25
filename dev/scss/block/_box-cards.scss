@@ -63,7 +63,7 @@
 
 .box-cards__item {
   @include flexbox;
-  @include align-items(center);
+  // @include align-items(center);
   position: relative;
   padding: 8px 0;
   border-top: 1px solid $c-neutro-3;
