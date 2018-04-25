@@ -3,6 +3,17 @@
   .user-data
     .user-over(
       :class="{'user-avatar_active' :editPicture == true}")
+      .cover
+        span.user-edit__actions
+          span.btn_edit.i-edit-line(
+            @click.prevent="toggle('editCover')") <small class="hide"> Editar </small>
+        .user-data__cover
+          //- clic en foto de perfil de usuario
+            Se despliega un input (file) donde el usuario
+            puede subir y editar su foto de perfil.
+          img.user-data__cover-img(
+            :src="cover",
+            :alt="'Cover' + ' ' + first_name")
       .user-header
         .user-header__item
           .user-avatar-edit
