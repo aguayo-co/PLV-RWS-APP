@@ -1865,6 +1865,9 @@ body {
   width: 100%;
   background-color: #f6f6f6; }
 
+.layout_filtrate {
+  padding-top: 16px; }
+
 .content-slot {
   max-width: 524px;
   margin: 0 auto;
@@ -8251,6 +8254,7 @@ body {
   Usado en el listado de Prilovers
 \*------------------------------------*/
 .card__grid {
+  padding-top: 16px;
   padding-bottom: 80px; }
 
 .card {
@@ -8314,6 +8318,7 @@ body {
 
 @media only screen and (min-width: 768px) {
   .card__grid {
+    padding-top: 32px;
     margin: 0 -14px; }
   .card {
     width: 33.333%;
@@ -8669,6 +8674,8 @@ body {
   .filtrate__item {
     width: 50%;
     margin-bottom: 0; }
+    .filtrate__item:last-child {
+      max-width: 164px; }
   .filtrate__list {
     max-width: 164px; } }
 

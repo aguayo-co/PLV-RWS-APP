@@ -84,6 +84,9 @@
   .filtrate__item {
     width: 50%;
     margin-bottom: 0;
+    &:last-child {
+      max-width: 164px;
+    }
   }
 
   .filtrate__list {

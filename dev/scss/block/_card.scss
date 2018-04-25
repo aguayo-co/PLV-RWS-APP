@@ -3,6 +3,7 @@
   Usado en el listado de Prilovers
 \*------------------------------------*/
 .card__grid {
+  padding-top: 16px;
   padding-bottom: 80px;
 }
 
@@ -72,6 +73,7 @@
 
 @include media-query(medium) {
   .card__grid {
+    padding-top: 32px;
     margin: 0 -14px;
   }
 

@@ -1,16 +1,23 @@
 <template lang="pug">
 .layout-page
   BannerTop
-  .layout-inner
+  .layout-inner.layout_filtrate
     nav.filtrate
       .filtrate__item
-        form.filtrate(action='', method='GET')
+        form.filtrate(
+          action='',
+          method='GET')
           .filtrate__row.i-search
-            input.filtrate__input#searchMain(type='text', name='search', placeholder="Buscar")
+            input.filtrate__input(
+              type='search',
+              name='search',
+              placeholder="Buscar")
       .filtrate__item
-        span.filtrate__btn(@click.stop="openList") {{ listOptions.options[listOptions.selected].name }}
+        span.filtrate__btn(
+          @click.stop="openList") {{ listOptions.options[listOptions.selected].name }}
         transition(name='toggle-scale')
-          ul.filtrate__list(v-if="listActive")
+          ul.filtrate__list(
+            v-if="listActive")
             li.filtrate__list-item(
               @click.stop.stop="changeOrder(option.id)"
               v-for="option in listOptions.options") {{ option.name }}
