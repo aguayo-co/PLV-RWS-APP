@@ -5,7 +5,7 @@
       header.chat-band__header
         h2.subhead Preguntas sobre esta prenda
       .chat-band__grid
-        .chat.chat_bg
+        .chat
           .chat__group
             .chat-line
               .chat__bubble-main
@@ -51,7 +51,7 @@
                       @click.prevent="toggle('editorAnswer')")
             span.chat-break
               span.chat-break__bullet
-        .chat-notify
+        .chat-query
           form.chat__form
             label.chat__label ¡Pregúntale a la vendedora!
             textarea.form__textarea.chat__textarea

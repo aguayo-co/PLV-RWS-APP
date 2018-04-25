@@ -8234,14 +8234,14 @@ body {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
 
-.chat-notify {
+.chat-query {
   width: 100%;
   padding: 20px; }
-  .chat-notify .chat__form {
+  .chat-query .chat__form {
     padding: 0 0 16px 0; }
-  .chat-notify .form__textarea {
+  .chat-query .form__textarea {
     height: 162px; }
-  .chat-notify .chat__btn-solid {
+  .chat-query .chat__btn-solid {
     display: block;
     margin: 14px 0 0 auto; }
 
@@ -8263,12 +8263,26 @@ body {
 @media only screen and (min-width: 768px) {
   .chat-band .chat {
     width: 50%; }
-  .chat-notify {
+  .chat-query {
     width: 50%; } }
 
 @media only screen and (min-width: 1024px) {
-  .chat-notify {
-    width: 40%; } }
+  .chat-query {
+    width: 40%; }
+  .chat-alert {
+    width: 96%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #f65a66;
+    font-size: 14px;
+    font-size: 0.875rem; }
+    .chat-alert:before {
+      display: block;
+      font-size: 40px;
+      font-size: 2.5rem;
+      color: #f65a66;
+      text-align: center;
+      padding-bottom: 16px; } }
 
 /*------------------------------------*\
 	Valoraciones

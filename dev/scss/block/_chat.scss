@@ -319,7 +319,7 @@
   @include flex-wrap(wrap);
 }
 
-.chat-notify {
+.chat-query {
   width: 100%;
   padding: 20px;
   .chat__form {
@@ -333,7 +333,7 @@
     margin: 14px 0 0 auto;
   }
 }
-// alerta 
+// caja alerta 
 .chat-alert {
   width: 96%;
   margin: 0 auto;
@@ -356,14 +356,30 @@
       width: 50%;
     }
   }
-  .chat-notify {
+  .chat-query {
     width: 50%;
   }
 }
 
 //$bp-wide: 1024px;
 @include media-query(wide) {
-  .chat-notify {
+  .chat-query {
     width: 40%;
   }
+  // caja alerta 
+  .chat-alert {
+    width: 96%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid $c-brand;
+    @include font-rem(14px);
+    &:before {
+      display: block;
+      @include font-rem(40px);
+      color: $c-brand;
+      text-align: center;
+      padding-bottom: 16px;
+    }
+  }
+
 }
