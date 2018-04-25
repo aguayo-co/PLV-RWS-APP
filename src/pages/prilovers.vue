@@ -2,6 +2,18 @@
 .layout-page
   BannerTop
   .layout-inner
+    nav.filtrate
+      .filtrate__item
+        form.filtrate(action='', method='GET')
+          .filtrate__row.i-search
+            input.filtrate__input#searchMain(type='text', name='search', placeholder="Buscar")
+      .filtrate__item
+        span.filtrate__btn(@click.stop="openList") {{ listOptions.options[listOptions.selected].name }}
+        transition(name='toggle-scale')
+          ul.filtrate__list(v-if="listActive")
+            li.filtrate__list-item(
+              @click.stop.stop="changeOrder(option.id)"
+              v-for="option in listOptions.options") {{ option.name }}
     .card__grid
       article.card(v-for="user in prilovers")
         figure.card__circle
@@ -36,7 +48,18 @@ export default {
   },
   data () {
     return {
-      prilovers: []
+      prilovers: [],
+      listActive: false,
+      item: null,
+      listOptions: {
+        selected: 0,
+        options: [
+          { id: 0, name: 'Todas' },
+          { id: 1, name: 'Prilover' },
+          { id: 2, name: 'Prilover Star' },
+          { id: 3, name: 'It girls' }
+        ]
+      }
     }
   },
   created: function () {
@@ -44,6 +67,15 @@ export default {
       .then(response => {
         this.prilovers = response.data.data
       })
+  },
+  methods: {
+    openList: function () {
+      this.listActive = !this.listActive
+    },
+    changeOrder: function (listOptionId) {
+      this.listOptions.selected = listOptionId
+      this.listActive = false
+    }
   }
 }
 </script>
