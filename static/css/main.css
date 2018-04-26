@@ -7884,20 +7884,14 @@ body {
 /*------------------------------------*\
 	Chat
 \*------------------------------------*/
-.chat-band {
-  margin-top: 50px;
-  padding: 50px 0; }
-
-.chat-band__header {
-  padding-bottom: 44px; }
-
-/*----------------------------------------*\
-  Estilos generales para busbujas de chat
-\*----------------------------------------*/
-.chat-bubble__img {
+.chat-bubble__avatar {
   margin-right: 8px;
+  overflow: hidden;
   border-radius: 50%;
   border: 2px solid #f65a66; }
+
+.chat-bubble__img {
+  width: 100%; }
 
 .chat-bubble__txt {
   margin: 0 8px 0 0;
@@ -7939,8 +7933,9 @@ body {
   -moz-align-items: flex-start;
   align-items: flex-start;
   margin-bottom: 16px; }
-  .chat__bubble-main .chat-bubble__img {
-    width: 35px;
+  .chat__bubble-main .chat-bubble__avatar {
+    min-width: 35px;
+    max-width: 35px;
     height: 35px; }
   .chat__bubble-main .chat-bubble__txt {
     padding: 8px 18px;
@@ -7959,15 +7954,16 @@ body {
   align-items: center;
   padding-left: 30px;
   margin-bottom: 16px; }
-  .chat__bubble .chat-bubble__img {
-    width: 22px;
+  .chat__bubble .chat-bubble__avatar {
+    min-width: 22px;
+    max-width: 22px;
     height: 22px; }
   .chat__bubble .chat-bubble__txt {
     padding: 4px 24px;
     border-color: #9b9b9b; }
 
 /*------------------------------------*\
-  Grilla de producto y chat
+  Grilla chat
 \*------------------------------------*/
 .chat__grid {
   display: -webkit-box;
@@ -8072,9 +8068,68 @@ body {
   justify-content: flex-end;
   padding: 0 20px; }
 
+@media only screen and (min-width: 560px) {
+  .chat__form {
+    padding: 28px 20px 48px 30px; }
+  .chat__form-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -moz-align-items: center;
+    align-items: center; }
+  .chat__textarea {
+    margin-right: 10px;
+    border: 1px solid #D2D2D2; }
+  .chat__btn-file {
+    position: relative; }
+  .chat__label-flat {
+    display: block;
+    width: 26px;
+    height: 26px; }
+  .chat__textarea {
+    margin-bottom: 0;
+    resize: none; }
+  .btn-back {
+    margin-bottom: 28px; } }
+
+@media only screen and (min-width: 768px) {
+  /*------------------------------------*\
+    Chat
+  \*------------------------------------*/
+  .chat-bubble__txt {
+    font-size: 16px;
+    font-size: 1rem; }
+  .chat__grid {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -moz-align-items: flex-end;
+    align-items: flex-end; }
+    .chat__grid .slot_grid {
+      width: 100%;
+      max-width: 320px;
+      padding: 0 26px 0 0; }
+  .chat__message {
+    width: 100%; } }
+
 /*----------------------------------------*\
-  Preguntas detalle producto
+   Preguntas detalle producto
 \*----------------------------------------*/
+.chat-band {
+  margin-top: 50px;
+  padding: 50px 0; }
+  .chat-band .chat {
+    width: 100%; }
+
+.chat-band__header {
+  padding-bottom: 44px; }
+
 .chat__group {
   padding-bottom: 16px; }
   .chat__group .chat-line {
@@ -8082,6 +8137,15 @@ body {
     margin-right: 50px; }
   .chat__group .chat-bubble__txt {
     margin-right: 0; }
+
+.chat__subhead {
+  display: inline-block;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  font-size: 1.125rem; }
 
 .chat-break {
   display: block;
@@ -8122,65 +8186,15 @@ body {
   text-align: right;
   color: #f65a66; }
 
-@media only screen and (min-width: 560px) {
-  .chat__form {
-    padding: 28px 20px 48px 30px; }
-  .chat__form-group {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -moz-align-items: center;
-    align-items: center; }
-  .chat__textarea {
-    margin-right: 10px;
-    border: 1px solid #707070; }
-  .chat__btn-file {
-    position: relative; }
-  .chat__label-flat {
-    display: block;
-    width: 26px;
-    height: 26px; }
-  .chat__textarea {
-    margin-bottom: 0;
-    resize: none; }
-  .btn-back {
-    margin-bottom: 28px; } }
-
-@media only screen and (min-width: 768px) {
-  /*------------------------------------*\
-    Grilla de producto y chat
-  \*------------------------------------*/
-  .chat-bubble__txt {
-    font-size: 16px;
-    font-size: 1rem; }
-  .chat__grid {
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    -moz-align-items: flex-end;
-    align-items: flex-end; }
-    .chat__grid .slot_grid {
-      width: 100%;
-      max-width: 320px;
-      padding: 0 26px 0 0; }
-  .chat__message {
-    width: 100%; } }
-
-.chat-band .chat {
-  width: 100%; }
-
 .chat-band__grid {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-around;
+  justify-content: space-around; }
 
 .chat-query {
   width: 100%;
@@ -8188,10 +8202,10 @@ body {
   .chat-query .chat__form {
     padding: 0 0 16px 0; }
   .chat-query .form__textarea {
-    height: 162px; }
+    height: 100px; }
   .chat-query .chat__btn-solid {
     display: block;
-    margin: 14px 0 0 auto; }
+    margin: 8px 0 0 auto; }
 
 .chat-alert {
   width: 96%;
@@ -8212,25 +8226,30 @@ body {
   .chat-band .chat {
     width: 50%; }
   .chat-query {
-    width: 50%; } }
+    width: 50%;
+    padding: 0 20px; } }
 
 @media only screen and (min-width: 1024px) {
   .chat-query {
     width: 40%; }
+    .chat-query .form__textarea {
+      height: 160px; }
   .chat-alert {
-    width: 96%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #f65a66;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -moz-align-items: center;
+    align-items: center;
     font-size: 14px;
     font-size: 0.875rem; }
     .chat-alert:before {
-      display: block;
       font-size: 40px;
       font-size: 2.5rem;
       color: #f65a66;
-      text-align: center;
-      padding-bottom: 16px; } }
+      padding-bottom: 0;
+      padding-right: 16px; } }
 
 /*------------------------------------*\
 	Valoraciones

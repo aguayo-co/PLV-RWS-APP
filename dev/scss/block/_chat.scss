@@ -1,25 +1,17 @@
 /*------------------------------------*\
 	Chat
 \*------------------------------------*/
-.chat-band {
-  margin-top: 50px;
-  padding: 50px 0;
-}
-
-.chat-band__header{
-  padding-bottom: 44px;
-}
-
-
-/*----------------------------------------*\
-  Estilos generales para busbujas de chat
-\*----------------------------------------*/
 //avatar del mensaje
-.chat-bubble__img {
+.chat-bubble__avatar {
   margin-right: 8px;
+  overflow: hidden;
   border-radius: 50%;
   border: 2px solid $c-brand;
 }
+.chat-bubble__img {
+  width: 100%;
+}
+
 //texto del mensaje
 .chat-bubble__txt {
   margin: 0 8px 0 0;
@@ -59,8 +51,9 @@
   @include flexbox;
   @include align-items(flex-start);
   margin-bottom: 16px;
-  .chat-bubble__img {
-    width: 35px;
+  .chat-bubble__avatar {
+    min-width: 35px;
+    max-width: 35px;
     height: 35px;
   }
   .chat-bubble__txt {
@@ -79,8 +72,9 @@
   padding-left: 30px;
   margin-bottom: 16px;
 
-  .chat-bubble__img {
-    width: 22px;
+  .chat-bubble__avatar {
+    min-width: 22px;
+    max-width: 22px;
     height: 22px;
   }
   .chat-bubble__txt {
@@ -90,7 +84,7 @@
 }
 
 /*------------------------------------*\
-  Grilla de producto y chat
+  Grilla chat
 \*------------------------------------*/
 
 .chat__grid {
@@ -192,63 +186,6 @@
   padding: 0 20px;
 }
 
-/*----------------------------------------*\
-  Preguntas detalle producto
-\*----------------------------------------*/
-.chat__group {
-  padding-bottom: 16px;
-  .chat-line {
-    display: inline-block;
-    margin-right: 50px;
-  }
-  .chat-bubble__txt {
-    margin-right: 0;
-  }
-
-}
-.chat-break {
-  display: block;
-  text-align: center;
-  &:after,
-  &:before {
-    content: '';
-  }
-}
-.chat-break__bullet,
-.chat-break:before,
-.chat-break:after {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: $c-default-4;
-}
-.chat-break__bullet {
-  margin: 0 12px;
-}
-/*----------------------------------------*\
-  Editor
-\*----------------------------------------*/
-
-.editor {
-  margin-left: 46px;
-  padding-bottom: 16px;
-}
-  .editor__textarea {
-    margin-right: 12px;
-    padding: 5px 12px;
-    resize: none;
-    border-color: $c-default-4;
-    border-radius: 18px;
-  }
-  .editor__btn {
-    display: inline-block;
-    width: 100%;
-    cursor: pointer;
-    text-align: right;
-    color: $c-brand;
-  }
-
 
 @media only screen and (min-width: 560px) {
   .chat__form {
@@ -262,7 +199,7 @@
 
   .chat__textarea {
     margin-right: 10px;
-    border: 1px solid $c-default-5;
+    border: 1px solid $c-neutro-5;
   }
 
   .chat__btn-file {
@@ -287,7 +224,7 @@
 
 @include media-query(medium) {
   /*------------------------------------*\
-    Grilla de producto y chat
+    Chat
   \*------------------------------------*/
   .chat-bubble__txt {
     @include font-rem(16px);
@@ -308,15 +245,92 @@
     }
 }
 
+/*----------------------------------------*\
+   Preguntas detalle producto
+\*----------------------------------------*/
 .chat-band {
+  margin-top: 50px;
+  padding: 50px 0;
   .chat {
     width: 100%;
   }
 }
 
+.chat-band__header {
+  padding-bottom: 44px;
+}
+
+.chat__group {
+  padding-bottom: 16px;
+  .chat-line {
+    display: inline-block;
+    margin-right: 50px;
+  }
+  .chat-bubble__txt {
+    margin-right: 0;
+  }
+}
+.chat__subhead {
+  display: inline-block;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+  @include font-rem(18px);
+}
+
+.chat-break {
+  display: block;
+  text-align: center;
+  &:after,
+  &:before {
+    content: '';
+  }
+}
+
+.chat-break__bullet,
+.chat-break:before,
+.chat-break:after {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: $c-default-4;
+}
+
+.chat-break__bullet {
+  margin: 0 12px;
+}
+
+/*----------------------------------------*\
+  Editor
+\*----------------------------------------*/
+
+.editor {
+  margin-left: 46px;
+  padding-bottom: 16px;
+}
+
+.editor__textarea {
+  margin-right: 12px;
+  padding: 5px 12px;
+  resize: none;
+  border-color: $c-default-4;
+  border-radius: 18px;
+}
+
+.editor__btn {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  text-align: right;
+  color: $c-brand;
+}
+
 .chat-band__grid {
   @include flexbox;
   @include flex-wrap(wrap);
+  @include justify-content(space-around);
 }
 
 .chat-query {
@@ -326,11 +340,11 @@
     padding: 0 0 16px 0;
   }
   .form__textarea {
-    height: 162px;
+    height: 100px;
   }
   .chat__btn-solid {
     display: block;
-    margin: 14px 0 0 auto;
+    margin: 8px 0 0 auto;
   }
 }
 // caja alerta 
@@ -358,27 +372,29 @@
   }
   .chat-query {
     width: 50%;
+    padding: 0 20px;
   }
 }
 
 //$bp-wide: 1024px;
 @include media-query(wide) {
+
   .chat-query {
     width: 40%;
+    .form__textarea {
+      height: 160px;
+    }
   }
   // caja alerta 
   .chat-alert {
-    width: 96%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid $c-brand;
+    @include flexbox;
+    @include align-items(center);
     @include font-rem(14px);
     &:before {
-      display: block;
       @include font-rem(40px);
       color: $c-brand;
-      text-align: center;
-      padding-bottom: 16px;
+      padding-bottom: 0;
+      padding-right: 16px;
     }
   }
 
