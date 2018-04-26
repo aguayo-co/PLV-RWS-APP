@@ -241,7 +241,6 @@
 		  width: 100%;
 		  margin: 0;
 		}
-
 	}
 
 	.blog__out_right {
@@ -280,7 +279,6 @@
 		@include align-self(center);
 	}
 	.blog__picture {
-		min-width: 510px;
 		margin-right: 48px;
 		padding-bottom: 0;
 
@@ -290,3 +288,9 @@
 	}
 
 }
+@media only screen and (min-width: 1170px) {
+	.blog__picture {
+		min-width: 510px;
+	}
+}
+

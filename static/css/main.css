@@ -9062,7 +9062,6 @@ body {
     -ms-grid-row-align: center;
         align-self: center; }
   .blog__picture {
-    min-width: 510px;
     margin-right: 48px;
     padding-bottom: 0; }
     .blog__picture + .blog__copy {
@@ -9070,6 +9069,10 @@ body {
       -ms-flex-item-align: center;
       -ms-grid-row-align: center;
           align-self: center; } }
+
+@media only screen and (min-width: 1170px) {
+  .blog__picture {
+    min-width: 510px; } }
 
 .blog-banner .banner-hero__slot {
   width: 70%;
@@ -9169,6 +9172,10 @@ body {
       font-weight: 100;
       border-radius: 50%;
       background-color: #f65a66; }
+  .blog ol ol {
+    margin: 0;
+    padding-top: 16px;
+    padding-bottom: 0; }
 
 .blog li {
   margin-bottom: 16px; }
