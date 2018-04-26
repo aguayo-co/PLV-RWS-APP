@@ -37,9 +37,11 @@
         p.detail__price.txt-light ${{ product.price | currency }}
       .detail__actions(v-if="!isOwner")
         button.detail__btn.btn.btn_solid(
-          v-if="!inCart"
+          v-if="!inCart && product.status === 10"
           @click="addToCart") Comprar
-        button.detail__btn.btn.btn_disabled(v-else) En carrito
+        button.detail__btn.btn.btn_disabled(v-if="inCart") En carrito
+        button.detail__btn.btn.btn_disabled(v-if="product.status === 2 || product.status === 20 || product.status ===30 ") No disponible
+        button.detail__btn.btn.btn_disabled(v-if="product.status > 30") Vendido
         a.detail__btn.btn.i-heart(
           href="#") Agregar a Favoritos
       .detail__lead
