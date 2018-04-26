@@ -8019,10 +8019,12 @@ body {
   -moz-justify-content: flex-end;
   justify-content: flex-end; }
 
-.chat__btn:before {
-  color: #4a4a4a;
-  font-size: 24px;
-  font-size: 1.5rem; }
+.chat__btn {
+  padding-bottom: 2px; }
+  .chat__btn:before {
+    color: #4a4a4a;
+    font-size: 24px;
+    font-size: 1.5rem; }
 
 .chat__label-flat {
   margin-right: 10px; }
@@ -8132,11 +8134,19 @@ body {
 
 .chat__group {
   padding-bottom: 16px; }
-  .chat__group .chat-line {
-    display: inline-block;
-    margin-right: 50px; }
   .chat__group .chat-bubble__txt {
     margin-right: 0; }
+
+.chat__line {
+  margin-right: 50px; }
+  .chat__line .chat__bubble-main {
+    margin-bottom: 0; }
+  .chat__line .chat__bubble {
+    margin-bottom: 0; }
+
+.chat__inner {
+  display: inline-block;
+  padding-bottom: 16px; }
 
 .chat__subhead {
   display: inline-block;
@@ -8146,6 +8156,28 @@ body {
   font-weight: 300;
   font-size: 18px;
   font-size: 1.125rem; }
+
+.chat__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  -moz-align-items: baseline;
+  align-items: baseline;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-around;
+  justify-content: space-around;
+  padding: 6px 0 0 62px; }
+
+.chat__footer_main {
+  padding-left: 46px; }
+
+.chat__date {
+  width: 100%;
+  color: #9b9b9b;
+  font-size: 10px;
+  font-size: 0.625rem; }
 
 .chat-break {
   display: block;
@@ -8171,6 +8203,11 @@ body {
 .editor {
   margin-left: 46px;
   padding-bottom: 16px; }
+  .editor .chat__form-group {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -moz-align-items: flex-end;
+    align-items: flex-end; }
 
 .editor__textarea {
   margin-right: 12px;
@@ -8184,7 +8221,9 @@ body {
   width: 100%;
   cursor: pointer;
   text-align: right;
-  color: #f65a66; }
+  color: #f65a66;
+  font-size: 12px;
+  font-size: 0.75rem; }
 
 .chat-band__grid {
   display: -webkit-box;
@@ -8206,6 +8245,13 @@ body {
   .chat-query .chat__btn-solid {
     display: block;
     margin: 8px 0 0 auto; }
+
+.chat_sticky {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  top: 120px; }
 
 .chat-alert {
   width: 96%;

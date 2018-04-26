@@ -7,13 +7,15 @@
       .chat-band__grid
         .chat
           .chat__group(v-for="(question, index) in questions")
-            .chat-line
-              .chat__bubble-main
-                img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-                p.chat-bubble__txt {{ question.subject }}
-              .chat__footer
-                time.chat__date hace {{ question.created_at | moment("subtract", "5 hours") | moment("from", true) }}
-                span.editor__btn(@click="showAnswerBox(question.id)") Responder
+            .chat__line
+              span.chat__inner
+                .chat__bubble-main
+                  figure.chat-bubble__avatar
+                    img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+                  p.chat-bubble__txt {{ question.subject }}
+                .chat__footer.chat__footer_main
+                  time.chat__date hace {{ question.created_at | moment("subtract", "5 hours") | moment("from", true) }}
+                  span.editor__btn(@click="showAnswerBox(question.id)") Responder
             .editor(v-if="activeAnswer.id === question.id")
               form.editor__form
                 .chat__form-group
@@ -22,14 +24,16 @@
                     :class=" { 'disabled' : disabledAnswer }",
                     v-model="activeAnswer.content",
                     rows="1")
-                  .chat__btn-group
+                  .chat__btn
                     button.chat__btn-solid.i-shipping(@click.prevent="addAnswer(index)")
-            .chat-line(v-for="(message, subindex) in question.messages")
-              .chat__bubble(v-if="subindex !== 0")
-                img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
-                p.chat-bubble__txt {{ message.body }}
-              .chat__footer(v-if="subindex !== 0")
-                time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
+            .chat__line(v-for="(message, subindex) in question.messages")
+              span.chat__inner(v-if="subindex !== 0")
+                .chat__bubble
+                  figure.chat-bubble__avatar
+                    img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
+                  p.chat-bubble__txt {{ message.body }}
+                .chat__footer
+                  time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
 
             span.chat-break
               span.chat-break__bullet
@@ -52,7 +56,6 @@
                   textarea.form__textarea.editor__textarea(
                     rows="1"
                   )
-                  .chat__btn-group
                     button.chat__btn-solid.i-shipping(
                       type="submit",
                       @click.prevent="toggle('editorAnswer')")
@@ -73,26 +76,26 @@
                 .chat__form-group
                   textarea.form__textarea.editor__textarea(
                     rows="1")
-                  .chat__btn-group
                     button.chat__btn-solid.i-shipping(
                       type="submit",
                       @click.prevent="toggle('editorAnswer')")
             span.chat-break
               span.chat-break__bullet
         .chat-query
-          form.chat__form(
-            id='form-question',
-            action='#',
-            submit.prevent='',
-            method='post')
-            label.chat__label ¡Pregúntale a la vendedora!
-            span.help(v-if="errorLog.question") {{ errorLog.question }}
-            textarea-autosize.form__textarea.chat__textarea(
-              v-model="newQuestion",
-              :disabled="disabledQuestion",
-              :class=" { 'disabled' : disabledQuestion }")
-            button.chat__btn-solid.i-shipping(@click.prevent="addQuestion")
-          p.chat-alert.i-alert-circle Recuerda que al comprar en Prilov disfrutas de garantía de devolución, protección 24/7 ante cualquier problema y nuestra plataforma segura de pagos.
+          .chat_sticky
+            form.chat__form(
+              id='form-question',
+              action='#',
+              submit.prevent='',
+              method='post')
+              label.chat__subhead ¡Pregúntale a la vendedora!
+              span.help(v-if="errorLog.question") {{ errorLog.question }}
+              textarea-autosize.form__textarea.chat__textarea(
+                v-model="newQuestion",
+                :disabled="disabledQuestion",
+                :class=" { 'disabled' : disabledQuestion }")
+              button.chat__btn-solid.i-shipping(@click.prevent="addQuestion")
+            p.chat-alert.i-alert-circle Recuerda que al comprar en Prilov disfrutas de garantía de devolución, protección 24/7 ante cualquier problema y nuestra plataforma segura de pagos.
 </template>
 
 <script>

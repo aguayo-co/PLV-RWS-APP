@@ -140,6 +140,7 @@
 }
 
 .chat__btn {
+  padding-bottom: 2px;
   &:before {
     color: $c-default-2;
     @include font-rem(24px);
@@ -262,14 +263,25 @@
 
 .chat__group {
   padding-bottom: 16px;
-  .chat-line {
-    display: inline-block;
-    margin-right: 50px;
-  }
+  
   .chat-bubble__txt {
     margin-right: 0;
   }
 }
+.chat__line {
+  margin-right: 50px;
+  .chat__bubble-main {
+    margin-bottom: 0;
+  }
+  .chat__bubble {
+    margin-bottom: 0;
+  }
+}
+.chat__inner {
+  display: inline-block;
+  padding-bottom: 16px;
+}
+
 .chat__subhead {
   display: inline-block;
   padding-bottom: 8px;
@@ -277,6 +289,22 @@
   font-family: $f-fancy;
   font-weight: $fw-light;
   @include font-rem(18px);
+}
+.chat__footer {
+  @include flexbox;
+  @include align-items(baseline);
+  @include justify-content(space-around);
+  padding: 6px 0 0 62px;
+
+}
+.chat__footer_main {
+  padding-left: 46px;
+}
+
+.chat__date {
+  width: 100%;
+  color: $c-default-4;
+  @include font-rem(10px);
 }
 
 .chat-break {
@@ -309,6 +337,9 @@
 .editor {
   margin-left: 46px;
   padding-bottom: 16px;
+  .chat__form-group {
+    @include align-items(flex-end);
+  }
 }
 
 .editor__textarea {
@@ -325,6 +356,7 @@
   cursor: pointer;
   text-align: right;
   color: $c-brand;
+  @include font-rem(12px);
 }
 
 .chat-band__grid {
@@ -347,6 +379,15 @@
     margin: 8px 0 0 auto;
   }
 }
+//funcionalidad sticky
+.chat_sticky {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  top: 120px;
+}
+
 // caja alerta 
 .chat-alert {
   width: 96%;
