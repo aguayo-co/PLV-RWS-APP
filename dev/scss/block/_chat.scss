@@ -1,24 +1,26 @@
 /*------------------------------------*\
 	Chat
 \*------------------------------------*/
-
-/*----------------------------------------*\
-  Estilos generales para busbujas de chat
-\*----------------------------------------*/
-
-.chat-bubble__img {
+//avatar del mensaje
+.chat-bubble__avatar {
   margin-right: 8px;
+  overflow: hidden;
   border-radius: 50%;
   border: 2px solid $c-brand;
 }
+.chat-bubble__img {
+  width: 100%;
+}
 
+//texto del mensaje
 .chat-bubble__txt {
   margin: 0 8px 0 0;
   line-height: 1.2;
   @include font-rem(14px);
   color: $c-default-5;
-  border: 1px solid;
-  border-radius: 17px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 18px;
 }
 
 .chat-bubble__noti {
@@ -38,7 +40,7 @@
 }
 
 .chat-line {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 /*------------------------------------*\
@@ -48,12 +50,13 @@
 .chat__bubble-main {
   @include flexbox;
   @include align-items(flex-start);
-  .chat-bubble__img {
-    width: 35px;
+  margin-bottom: 16px;
+  .chat-bubble__avatar {
+    min-width: 35px;
+    max-width: 35px;
     height: 35px;
   }
   .chat-bubble__txt {
-    margin-bottom: 16px;
     padding: 8px 18px;
     border-color: $c-brand;
   }
@@ -67,8 +70,11 @@
   @include flexbox;
   @include align-items(center);
   padding-left: 30px;
-  .chat-bubble__img {
-    width: 22px;
+  margin-bottom: 16px;
+
+  .chat-bubble__avatar {
+    min-width: 22px;
+    max-width: 22px;
     height: 22px;
   }
   .chat-bubble__txt {
@@ -78,7 +84,7 @@
 }
 
 /*------------------------------------*\
-  Grilla de producto y chat
+  Grilla chat
 \*------------------------------------*/
 
 .chat__grid {
@@ -107,11 +113,12 @@
   display: block;
   padding-bottom: 8px;
 }
-
+//btn enviar
 .chat__btn-solid {
   width: 26px;
   height: 26px;
   margin-right: 10px;
+  line-height: 26px;
   color: $c-neutro;
   border: none;
   border-radius: 50%;
@@ -133,6 +140,7 @@
 }
 
 .chat__btn {
+  padding-bottom: 2px;
   &:before {
     color: $c-default-2;
     @include font-rem(24px);
@@ -178,7 +186,8 @@
   @include justify-content(flex-end);
   padding: 0 20px;
 }
- 
+
+
 @media only screen and (min-width: 560px) {
   .chat__form {
     padding: 28px 20px 48px 30px;
@@ -191,7 +200,7 @@
 
   .chat__textarea {
     margin-right: 10px;
-    border: 1px solid $c-default-4;
+    border: 1px solid $c-neutro-5;
   }
 
   .chat__btn-file {
@@ -216,7 +225,7 @@
 
 @include media-query(medium) {
   /*------------------------------------*\
-    Grilla de producto y chat
+    Chat
   \*------------------------------------*/
   .chat-bubble__txt {
     @include font-rem(16px);
@@ -235,4 +244,199 @@
     .chat__message {
       width: 100%;
     }
+}
+
+/*----------------------------------------*\
+   Preguntas detalle producto
+\*----------------------------------------*/
+.chat-band {
+  margin-top: 50px;
+  padding: 50px 0;
+  .chat {
+    width: 100%;
+  }
+}
+
+.chat-band__header {
+  padding-bottom: 44px;
+}
+
+.chat__group {
+  padding-bottom: 16px;
+  
+  .chat-bubble__txt {
+    margin-right: 0;
+  }
+}
+.chat__line {
+  margin-right: 50px;
+  .chat__bubble-main {
+    margin-bottom: 0;
+  }
+  .chat__bubble {
+    margin-bottom: 0;
+  }
+}
+.chat__inner {
+  display: inline-block;
+  padding-bottom: 16px;
+}
+
+.chat__subhead {
+  display: inline-block;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  font-family: $f-fancy;
+  font-weight: $fw-light;
+  @include font-rem(18px);
+}
+.chat__footer {
+  @include flexbox;
+  @include align-items(baseline);
+  @include justify-content(space-around);
+  padding: 6px 0 0 62px;
+
+}
+.chat__footer_main {
+  padding-left: 46px;
+}
+
+.chat__date {
+  width: 100%;
+  color: $c-default-4;
+  @include font-rem(10px);
+}
+
+.chat-break {
+  display: block;
+  text-align: center;
+  &:after,
+  &:before {
+    content: '';
+  }
+}
+
+.chat-break__bullet,
+.chat-break:before,
+.chat-break:after {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: $c-default-4;
+}
+
+.chat-break__bullet {
+  margin: 0 12px;
+}
+
+/*----------------------------------------*\
+  Editor
+\*----------------------------------------*/
+
+.editor {
+  margin-left: 46px;
+  padding-bottom: 16px;
+  .chat__form-group {
+    @include align-items(flex-end);
+  }
+}
+
+.editor__textarea {
+  margin-right: 12px;
+  padding: 5px 12px;
+  resize: none;
+  border-color: $c-default-4;
+  border-radius: 18px;
+}
+
+.editor__btn {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  text-align: right;
+  color: $c-brand;
+  @include font-rem(12px);
+}
+
+.chat-band__grid {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(space-around);
+}
+
+.chat-query {
+  width: 100%;
+  padding: 20px;
+  .chat__form {
+    padding: 0 0 16px 0;
+  }
+  .form__textarea {
+    height: 100px;
+  }
+  .chat__btn-solid {
+    display: block;
+    margin: 8px 0 0 auto;
+  }
+}
+//funcionalidad sticky
+.chat_sticky {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  top: 120px;
+}
+
+// caja alerta 
+.chat-alert {
+  width: 96%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid $c-brand;
+  @include font-rem(14px);
+  &:before {
+    display: block;
+    @include font-rem(40px);
+    color: $c-brand;
+    text-align: center;
+    padding-bottom: 16px;
+  }
+}
+
+//$bp-wide: 768px;
+@include media-query(medium) {
+  .chat-band {
+    .chat {
+      width: 50%;
+    }
+  }
+  .chat-query {
+    width: 50%;
+    padding: 0 20px;
+  }
+}
+
+//$bp-wide: 1024px;
+@include media-query(wide) {
+
+  .chat-query {
+    width: 40%;
+    .form__textarea {
+      height: 160px;
+    }
+  }
+  // caja alerta 
+  .chat-alert {
+    @include flexbox;
+    @include align-items(center);
+    @include font-rem(14px);
+    &:before {
+      @include font-rem(40px);
+      color: $c-brand;
+      padding-bottom: 0;
+      padding-right: 16px;
+    }
+  }
+
 }

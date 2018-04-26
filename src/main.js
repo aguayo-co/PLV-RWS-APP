@@ -9,17 +9,22 @@ import axiosPlugin from './axios'
 import prilovHelpers from './helpers'
 import router from './router'
 import store from './store'
+import VueTextareaAutosize from 'vue-textarea-autosize'
 
 Vue.config.productionTip = false
 
 /* View Media query */
 Vue.use(VueMqMixin)
 
+Vue.use(require('vue-moment'))
+
 // Load global Axios instances.
 Vue.use(axiosPlugin, store)
 
 // Load our helpers!
 Vue.use(prilovHelpers)
+
+Vue.use(VueTextareaAutosize)
 
 Vue.filter('currency', function (value) {
   if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')

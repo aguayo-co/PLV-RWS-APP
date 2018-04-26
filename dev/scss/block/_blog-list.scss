@@ -5,10 +5,11 @@
 .blog {
 	ul {
 		list-style: none;
-		margin: 0 0 16px;
+		margin: 0 0 0 16px;
+		padding-bottom: 16px;
 		li {
 			position: relative;
-			padding: 4px 0 4px 16px;
+			padding-left: 16px;
 			&:before {
 				content: '';
 				position: absolute;
@@ -23,15 +24,16 @@
 		}
 		ul {
 			margin: 0;
+			padding-bottom: 0;
 		}
 	}
 	ol {
 		list-style: none;
 		counter-reset: section;
 		margin: 0;
+		padding-bottom: 16px;
 		li {
 			position: relative;
-			margin: 8px 0;
 			padding-left: 24px;
 			&:before {
 				counter-increment: section;
@@ -52,22 +54,33 @@
 				background-color: $c-brand;
 			}
 		}
+		ol {
+		  margin: 0;
+		  padding-top: 16px;
+		  padding-bottom: 0;
+		}
+
+	}
+	li {
+		margin-bottom: 16px;
 	}
 }
 
 @include media-query(medium) {
 	.blog {
 		ul {
+			padding-bottom: 24px;
 			li {
-				padding: 8px 0 8px 24px;
+				padding-left: 24px;
 				&:before {
-					top: 18px;
+					top: 13px;
 					width: 10px;
 					height: 10px;
 				}
 			}
 		}
 		ol {
+			padding-bottom: 24px;
 			li {
 				padding-left: 34px;
 				&:before {
@@ -78,6 +91,9 @@
 					@include font-rem(18px);
 				}
 			}
+		}
+		li {
+		  margin-bottom: 24px;
 		}
 	}
 }
