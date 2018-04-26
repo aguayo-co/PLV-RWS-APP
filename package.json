@@ -117,5 +117,9 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "dependencies": {
+    "vue-moment": "^3.2.0",
+    "vue-textarea-autosize": "^1.0.4"
+  }
 }
