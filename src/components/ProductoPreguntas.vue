@@ -9,7 +9,7 @@
           .chat__group(v-for="(question, index) in questions")
             .chat-line
               .chat__bubble-main
-                img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+                img.chat-bubble__avatar(src="static/img/demo/user-avatar.jpg", alt="Avatar")
                 p.chat-bubble__txt {{ question.subject }}
               .chat__footer
                 time.chat__date hace {{ question.created_at | moment("subtract", "5 hours") | moment("from", true) }}
@@ -26,7 +26,7 @@
                     button.chat__btn-solid.i-shipping(@click.prevent="addAnswer(index)")
             .chat-line(v-for="(message, subindex) in question.messages")
               .chat__bubble(v-if="subindex !== 0")
-                img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
+                img.chat-bubble__avatar(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
                 p.chat-bubble__txt {{ message.body }}
               .chat__footer(v-if="subindex !== 0")
                 time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}

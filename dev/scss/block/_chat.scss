@@ -263,7 +263,6 @@
 .chat__group {
   padding-bottom: 16px;
   .chat-line {
-    display: inline-block;
     margin-right: 50px;
   }
   .chat-bubble__txt {
@@ -347,7 +346,7 @@
     margin: 8px 0 0 auto;
   }
 }
-// caja alerta 
+// caja alerta
 .chat-alert {
   width: 96%;
   margin: 0 auto;
@@ -385,7 +384,7 @@
       height: 160px;
     }
   }
-  // caja alerta 
+  // caja alerta
   .chat-alert {
     @include flexbox;
     @include align-items(center);
