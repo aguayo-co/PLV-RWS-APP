@@ -7934,7 +7934,8 @@ body {
   align-items: flex-start;
   margin-bottom: 16px; }
   .chat__bubble-main .chat-bubble__avatar {
-    width: 35px;
+    min-width: 35px;
+    max-width: 35px;
     height: 35px; }
   .chat__bubble-main .chat-bubble__txt {
     padding: 8px 18px;
@@ -7954,7 +7955,8 @@ body {
   padding-left: 30px;
   margin-bottom: 16px; }
   .chat__bubble .chat-bubble__avatar {
-    width: 22px;
+    min-width: 22px;
+    max-width: 22px;
     height: 22px; }
   .chat__bubble .chat-bubble__txt {
     padding: 4px 24px;

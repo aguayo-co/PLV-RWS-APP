@@ -52,7 +52,8 @@
   @include align-items(flex-start);
   margin-bottom: 16px;
   .chat-bubble__avatar {
-    width: 35px;
+    min-width: 35px;
+    max-width: 35px;
     height: 35px;
   }
   .chat-bubble__txt {
@@ -72,7 +73,8 @@
   margin-bottom: 16px;
 
   .chat-bubble__avatar {
-    width: 22px;
+    min-width: 22px;
+    max-width: 22px;
     height: 22px;
   }
   .chat-bubble__txt {
