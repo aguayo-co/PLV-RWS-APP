@@ -6,7 +6,7 @@
     .detail__gallery
       figure.detail__picture
         img.media-img(
-          v-if="srcActive === ''"
+          v-if="srcActive === '' && product.images"
           :src='product.images[0]',
           alt='')
         img.media-img(
@@ -24,14 +24,14 @@
           img.media-img.detail__img(
             :src='image',
             alt='')
-    .detail__content
+    .detail__content(v-if="product.user")
       header.detail__header
         h1.detail__title {{ product.title }}
-      p.detail__tag.tag Producto {{ product.condition.name }}
-      p.detail__brand {{ product.brand.name }}
+      p.detail__tag.tag(v-if="product.condition") Producto {{ product.condition.name }}
+      p.detail__brand(v-if="product.brand") {{ product.brand.name }}
       p.detail__size
         span(v-if="product.size") Talla: {{ product.size.name }} |
-        span(v-if="product.colors[0]") &nbsp; Colores: {{ product.colors[0].name }}
+        span(v-if="product.colors") &nbsp; Colores: {{ product.colors[0].name }}
       .detail__value
         p.detail__through.through ${{ product.original_price | currency }}
         p.detail__price.txt-light ${{ product.price | currency }}
@@ -46,7 +46,7 @@
         h2.detail__subtitle Descripción
         p.detail__txt {{ product.description }}
         h2.detail__subtitle Despacho
-        p.detail__txt.detail__txt_ico.i-ok(v-for="method in product.user.shipping_methods")
+        p.detail__txt.detail__txt_ico.i-ok( v-for="method in product.user.shipping_methods")
           | {{ method.name }} <small class="detail__txt_small">{{ method.description_buyer }}</small>
 </template>
 
