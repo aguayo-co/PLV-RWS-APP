@@ -14,9 +14,10 @@
           .upfile__small
             h3.upfile__title Foto de perfil
             .upfile__item
-              a.delete(
+              a.upfile__delete.i-x(
                 v-show='toggleImageDelete',
-                @click='removeImage') Eliminar
+                @click='removeImage')
+                span.hide Eliminar
               span.help(
                 v-if="errorLog.picture"
               ) {{ errorLog.picture }}
