@@ -23,11 +23,12 @@ import Compra from '@/pages/compra'
 import Categoria from '@/pages/Categoria'
 import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
+import prilovers from '@/pages/prilovers'
 import Contenido from '@/pages/Contenido'
 import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
 import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
-import prilovers from '@/pages/prilovers'
+import AyudaComoComprar from '@/pages/AyudaComoComprar'
 
 Vue.use(Router)
 
@@ -152,6 +153,11 @@ export default new Router({
       component: Instashop
     },
     {
+      path: '/prilovers',
+      name: 'prilovers',
+      component: prilovers
+    },
+    {
       path: '/contenido',
       name: 'contenido',
       component: Contenido
@@ -172,9 +178,9 @@ export default new Router({
       component: AyudaPriloverStar
     },
     {
-      path: '/prilovers',
-      name: 'prilovers',
-      component: prilovers
+      path: '/como-comprar',
+      name: 'como-comprar',
+      component: AyudaComoComprar
     }
   ],
   scrollBehavior (to, from, savedPosition) {

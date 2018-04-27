@@ -49,6 +49,10 @@
   width: 100%;
   background-color: $c-neutro-4;
 }
+.layout_filtrate {
+  padding-top: 16px;
+}
+
 
 // Content registro
 .content-slot {
@@ -112,7 +116,7 @@
 // $bp-big: 1024px;
 @include media-query(wide) {
   .content-main {
-    padding-top: 74px;
+    padding-top: 73px;
   }
 
   .layout {

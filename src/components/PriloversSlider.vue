@@ -14,9 +14,9 @@
           .slide-group__name {{ user.first_name }} {{ user.last_name }}
 
           .slide-group__type.i-it-girl(
-            v-if='user.slot__group == 1') It <span class="txt_brand">girl</span>
+            v-if='user.group_ids.indexOf(1) > -1') It <span class="txt_brand">girl</span>
           .slide-group__type.i-star-on(
-            v-if='user.slot__group == 2') Prilover <span class="txt_brand">Star</span>
+            v-if='user.group_ids.indexOf(2) > -1') Prilover <span class="txt_brand">Star</span>
       .swiper-pagination(slot='pagination')
 
     .slider-fullwide__footer(
@@ -70,71 +70,7 @@ export default {
           }
         }
       },
-      users: [
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-001.jpg',
-          first_name: 'Mariana',
-          last_name: 'Gómez',
-          slot__group: '1'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-002.jpg',
-          first_name: 'Vale',
-          last_name: 'Caballero',
-          slot__group: '0'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-003.jpg',
-          first_name: 'Juliana',
-          last_name: 'Rocha',
-          slot__group: '2'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-004.jpg',
-          first_name: 'Genevieve',
-          last_name: 'Gibson',
-          slot__group: '1'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-005.jpg',
-          first_name: 'Giovanna',
-          last_name: 'Bustos',
-          slot__group: '0'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-006.jpg',
-          first_name: 'Dani',
-          last_name: 'Herzko',
-          slot__group: '0'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-007.jpg',
-          first_name: 'Trini',
-          last_name: 'Garcés ',
-          slot__group: '2'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-008.jpg',
-          first_name: 'Loreto',
-          last_name: '',
-          slot__group: '0'
-        },
-        {
-          url: '/',
-          picture: '/static/img/demo/user-avatar-009.jpg',
-          first_name: 'Isi',
-          last_name: 'Fierro',
-          slot__group: '0'
-        }
-      ]
+      users: []
     }
   },
   created: function () {

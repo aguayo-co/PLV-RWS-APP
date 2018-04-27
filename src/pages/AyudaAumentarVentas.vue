@@ -51,13 +51,25 @@
         h2.blog__headline 4. Responde a tiempo las preguntas de otras prilovers
         .blog__copy
           p Recibirás mensajes de otras prilovers preguntando detalles de productos, dudas sobre el proceso, etc. y como tú eres una prilover experta, podrás responder a tiempo. Recuerda que luego de que vendas un producto, la compradora podrá evaluar tu servicio y dejar un feedback. Para que te evalúe positivamente, contesta a tiempo sus preguntas.
-    //TO DO imagen FALTA CAPTURA  DE LA VISTA DONDE PUEDEN OCULTAR EL PRODUCTO, MOSTRANDO EL BOTÓN
     .blog__inner
       article.blog__body.blog__body_slot
-        h2.blog__headline 5. Oculta lo que ya no tienes disponible
+        h2.blog__headline 5. Elimina lo que ya no tienes
         .blog__copy
           p ¡Evita que te evalúen negativamente, y nos ayudarás a mantener Prilov con un buen servicio!
-          p Preocúpate por mantener tu perfil actualizado y nunca tengas a la venta un producto que no está disponible, ya que puede ser comprado en cualquier momento. Para ocultar un producto, sólo debes hacer clic en la opción <strong>"Ocultar producto"</strong> justo arriba de la imagen. Si tienes problemas ocultando productos, escríbenos a <a class="link_underline" href="mailto:contacto@prilov.com">contacto@prilov.com</a> o háblanos por el chat.
+          p Preocúpate por mantener tu perfil actualizado y nunca tengas a la venta un producto que no está disponible, ya que puede ser comprado en cualquier momento. Para eliminar un producto, debes ir a la vista de <strong>"Tu Clóset"</strong> y hacer click en el ícono de basurero justo arriba de la imagen del producto que quieras eliminar.
+    figure.blog-bannerprom.banner-hero
+      picture.banner-hero__crop
+        source.banner-hero__img(
+          media='(max-width: 640px)', srcset='static/img/blog3-003-m.png')
+        img.banner-slider__img(
+          src='static/img/blog3-003.png')
+    .blog__inner
+      article.blog__body.blog__body_slot
+        h2.blog__headline 6. Oculta lo que aún no estás segura de vender
+        .blog__copy
+          p Si necesitas ocultar temporalmente un producto, puedes usar la opción <strong>"Ocultar producto"</strong>.
+          p Para ocultar un producto, debes ir a la vista de <strong>"Tu Clóset"</strong> y hacer click en el ícono de ojo, justo arriba de la imagen del producto que quieras ocultar. Siempre podrás ver tus productos ocultos en <strong>"Tu Clóset"</strong> y volverlos a habilitar para que queden nuevamente disponibles.
+          p Si tienes problemas eliminando u ocultando productos, escríbenos a <a class="link_underline" href="mailto:contacto@prilov.com">contacto@prilov.com</a> o háblanos por el chat.
 </template>
 
 <script>

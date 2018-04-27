@@ -35,9 +35,10 @@ export default {
     loadOrders (page = 1) {
       const params = {
         page,
-        orderby: '-id'
+        orderby: '-id',
+        'filter[status]': '20,99'
       }
-      this.$axiosAuth.get('/api/orders?filter[status]=30,99', {params}).then(response => {
+      this.$axiosAuth.get('/api/orders', {params}).then(response => {
         Object.keys(response.data.data).forEach(key => {
           this.setOrder(response.data.data[key])
         })
