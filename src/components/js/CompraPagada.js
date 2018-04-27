@@ -20,9 +20,7 @@ export default {
           const product = sale.products[key]
           products[product.id] = {
             ...product,
-            shipping_method_name: sale.shipping_method.name,
-            user_phone: sale.user_phone,
-            user_full_name: this.$options.filters.full_name(product.user)
+            shipping_method_name: sale.shipping_method.name
           }
         })
       })

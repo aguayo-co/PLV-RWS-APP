@@ -67,13 +67,13 @@ export default {
     /**
      * Cambia la propiedad data entre true/false.
      */
-    toggle: function (prop) {
+    toggle (prop) {
       this[prop] = !this[prop]
     },
     /**
      * Guarda el teléfono de la orden.
      */
-    updatePhone: function () {
+    updatePhone () {
       const data = {
         phone: this.new_phone
       }
