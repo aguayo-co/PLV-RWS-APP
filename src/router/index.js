@@ -13,6 +13,7 @@ import UserTusCompras from '@/components/UserTusCompras'
 import UserTuCloset from '@/components/UserTuCloset'
 import UserPriloverStar from '@/components/UserPriloverStar'
 import UserNotificaciones from '@/components/UserNotificaciones'
+import Conversation from '@/components/Conversation'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
@@ -88,6 +89,11 @@ export default new Router({
           path: 'notificaciones',
           name: 'user-notificaciones',
           component: UserNotificaciones
+        },
+        {
+          path: 'notificaciones/:threadId',
+          name: 'conversation',
+          component: Conversation
         },
         {
           path: 'tu-closet',
