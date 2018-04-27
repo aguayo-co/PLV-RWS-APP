@@ -32,7 +32,7 @@ section.single
               .collection__head
                 span.collection__title Usuaria # {{ message.participants[0].user_id }}
                 span.collection__label {{ message.product_id ? "Te hizo una pregunta en un producto" : "Te escribió un privado" }}
-              | {{ message.messages[0].body }}
+              | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
         .alert-msg.i-smile
           p No tienes mensajes sin leer
@@ -42,11 +42,14 @@ section.single
           v-if="!isUnread(message.id)"
           :class="[ message.product_id ? 'i-chat' : 'i-email']"
           v-for="message in messages.data")
-          .collection__lead
-            .collection__head
-              span.collection__title Carla  D.
-              span.collection__label {{ message.product_id ? "Ha comentado en un producto" : "Te ha escrito" }}
-            | {{ message.messages[0].body }}
+          router-link(
+            v-if="message.id",
+            :to="{ name: 'conversation', params: { threadId: message.id }}")
+            .collection__lead
+              .collection__head
+                span.collection__title Usuaria # {{ message.participants[0].user_id }}
+                span.collection__label
+              | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
         .alert-msg.i-smile
           p Actualmente no tienes otros mensajes o todos están sin leer.
