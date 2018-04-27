@@ -1,31 +1,20 @@
 <template lang="pug">
 section.single
-  .single__inner(v-if="thread")
-    router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
+  .single__inner()
+    a.btn-back.i-back(href="#") Volver
     header.single__header
-      h1.single__title Usuaria # {{ thread.participants[0].user_id }}
+      h1.single__title Privado con {{ recipient.first_name + " " + recipient.last_name }}
     .chat.chat__grid
-      .chat__slot(v-if="product.id")
-        article.slot.slot_grid
-          router-link.slot__product(:to="{ name: 'product', params: { slug: product.title + '__' + product.id }}", title="Ver este producto")
-            img.slot__img(:src="product.images[0]",
-              :alt="product.title")
-            .slot__lead
-              .slot__title {{ product.title }}
-              .slot__size
-                .slot__size-txt {{ product.size.name }}
-            .slot__info
-              .slot__brand {{ product.brand.name }}
-              .slot__price ${{ product.price | currency }}
-
       .chat__message
         .chat__message_inner
-          .chat__message-flex
+          .chat__message-flex(v-if="thread.messages.length > 0")
             .chat-line(v-for="message in thread.messages")
               .chat__bubble-main
                 .chat-bubble__avatar
                   img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
                 p.chat-bubble__txt {{ message.body }}
+          .alert-msg.alert-msg_center.i-smile(v-else)
+            p Escribe tu primer mensaje para iniciar la conversación.
         .chat-inner
           form.chat__form
             label.chat__label Escribe tu mensaje aquí
@@ -37,23 +26,22 @@ section.single
                 :class=" { 'disabled' : disabledMessage }")
               .chat__btn-group
                 button.chat__btn-solid.i-shipping(@click.prevent="send")
-  .single__inner(v-else)
-    router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
-    .alert-msg.i-alert-circle
-      p Parece que no haces parte de esta conversación.
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import threadsAPI from '@/api/thread'
-import productsAPI from '@/api/product'
+import usersAPI from '@/api/user'
 
 export default {
-  name: 'Conversation',
+  name: 'NewPrivateMessage',
   data () {
     return {
-      id: null,
-      thread: null,
+      recipientId: null,
+      recipient: {},
+      thread: {
+        messages: []
+      },
       product: {},
       errorLog: {},
       newMessage: null,
@@ -64,25 +52,11 @@ export default {
     ...mapState(['user'])
 
   },
-  watch: {
-    thread: function () {
-      if (this.thread.product_id) {
-        productsAPI.getProductById(this.thread.product_id)
-          .then(response => {
-            this.product = response.data.data[0]
-          })
-      }
-    }
-  },
   methods: {
-    isUnread: function (messageId) {
-      let result = this.unread.data.filter(x => x.id === messageId)[0]
-      if (result) {
-        return true
-      }
-      return false
-    },
     send: function () {
+      this.thread.id ? this.sendMessage() : this.createThread()
+    },
+    sendMessage: function () {
       this.errorLog = {}
       if (!this.newMessage) {
         this.errorLog.newMessage = '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.'
@@ -91,7 +65,7 @@ export default {
         const data = {
           thread_id: this.thread.id,
           user_id: this.user.id,
-          recipients: [this.thread.participants[0].user_id],
+          recipients: [this.recipient.id],
           body: this.newMessage
         }
         threadsAPI.createMessage(data)
@@ -104,17 +78,37 @@ export default {
             }
           })
       }
+    },
+    createThread: function () {
+      this.errorLog = {}
+      if (!this.newMessage) {
+        this.errorLog.newMessage = '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.'
+      } else {
+        this.disabledMessage = true
+        const data = {
+          subject: this.newMessage,
+          private: true,
+          recipients: [this.recipient.id],
+          body: this.newMessage
+        }
+        threadsAPI.create(data)
+          .then(response => {
+            if (response.data.id) {
+              this.disabledMessage = false
+              this.newMessage = ''
+              this.thread = response.data
+            }
+          })
+      }
     }
   },
   mounted: function () {
-    this.id = this.$route.params.threadId
-    threadsAPI.getThreadById(this.id)
+    this.recipientId = this.$route.params.recipientId
+    // pendiente verificar que no exista una conversación privada previa
+    // Asumimos que no existe una conversación previa
+    usersAPI.getUserById(this.recipientId)
       .then(response => {
-        console.log(response)
-        let isParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
-        if (isParticipant) {
-          this.thread = response.data
-        }
+        this.recipient = response.data
       })
   }
 }

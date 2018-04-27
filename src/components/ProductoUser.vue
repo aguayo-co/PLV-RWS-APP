@@ -28,14 +28,16 @@
       .user-card__content
         .user-card__tip
           p.user-card__txt {{ user.about }}
-          p.user-card__actions
+          p.user-card__actions(v-if="user.id")
             span.user-card__link.i-email
-              a(href='/' title='Enviar mensaje privado').link_underline Enviar mensaje privado
+              router-link(:to="{ name: 'privateMessage', params: { recipientId: user.id }}" title='Enviar mensaje privado').link_underline Enviar mensaje privado
 </template>
 <script>
-
+import { mapState } from 'vuex'
 export default {
   name: 'ProductoUser',
-  props: ['user']
+  props: ['user'],
+  computed: {
+  }
 }
 </script>
