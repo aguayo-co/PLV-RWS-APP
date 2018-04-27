@@ -3,10 +3,12 @@ import AddressEdit from '@/components/AddressEdit'
 import userAddressesAPI from '@/api/userAddresses'
 
 const addressFields = {
-  address: null,
+  number: null,
+  street: null,
+  additional: null,
   region: null,
-  city: null,
-  zone: null
+  province: null,
+  commune: null
 }
 
 export default {
@@ -47,19 +49,19 @@ export default {
     regions () {
       return Object.keys(this.regionsList)
     },
-    cities () {
+    provinces () {
       const region = this.newAddressData.region
-      const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
-      if (cities) {
-        return Object.keys(cities)
+      const provinces = this.$getNestedObject(this.regionsList, [region, 'children'])
+      if (provinces) {
+        return Object.keys(provinces)
       }
     },
-    zones () {
+    communes () {
       const region = this.newAddressData.region
-      const city = this.newAddressData.city
-      const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
-      if (zones) {
-        return Object.keys(zones)
+      const province = this.newAddressData.province
+      const communes = this.$getNestedObject(this.regionsList, [region, 'children', province, 'children'])
+      if (communes) {
+        return Object.keys(communes)
       }
     }
   },

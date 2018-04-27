@@ -77,12 +77,32 @@
         .form__grid
           .form__row
             label.form__label(
-              for='new-address') Dirección
+              for='new-number') Número
             span.help(
-              v-show="errorLog.address") {{ errorLog.address }}
+              v-show="errorLog.number") {{ errorLog.number }}
             input.form__control(
-              id='new-address'
-              v-model="newAddressData['address']"
+              id='new-number'
+              v-model="newAddressData['number']"
+              type='text')
+          .form__row
+            label.form__label(
+              for='new-street') Calle
+            span.help(
+              v-show="errorLog.street") {{ errorLog.street }}
+            input.form__control(
+              id='new-street'
+              v-model="newAddressData['street']"
+              type='text')
+
+        .form__grid
+          .form__row
+            label.form__label(
+              for='new-additional') Adicional
+            span.help(
+              v-show="errorLog.additional") {{ errorLog.additional }}
+            input.form__control(
+              id='new-additional'
+              v-model="newAddressData['additional']"
               type='text')
           .form__row
             label.form__label(
@@ -98,25 +118,25 @@
         .form__grid
           .form__row
             label.form__label(
-              for='new-address-city') Ciudad
+              for='new-address-province') Provincia
             span.help(
-              v-show="errorLog.city") {{ errorLog.city }}
+              v-show="errorLog.province") {{ errorLog.province }}
             select.form__select(
-              v-model="newAddressData['city']")
+              v-model="newAddressData['province']")
               option
               option(
-                v-for="citi in cities") {{ citi }}
+                v-for="province in provinces") {{ province }}
 
           .form__row
             label.form__label(
-              for='new-address-zone') Comuna
+              for='new-address-commune') Comuna
             span.help(
-              v-show="errorLog.zone") {{ errorLog.zone }}
+              v-show="errorLog.commune") {{ errorLog.commune }}
             select.form__select(
-              v-model="newAddressData['zone']")
+              v-model="newAddressData['commune']")
               option
               option(
-                v-for="zone in zones") {{ zone }}
+                v-for="commune in communes") {{ commune }}
 
         .form__grid.form__grid_center.form__row_away
           .form__row

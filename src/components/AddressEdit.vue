@@ -8,12 +8,32 @@
       .form__grid
         .form__row
           label.form__label(
-            :for="address.id + 'address'") Dirección
+            :for="address.id + 'address'") Númerp
           span.help(
-            v-show="errorLog.address") {{ errorLog.address }}
+            v-show="errorLog.number") {{ errorLog.number }}
           input.form__control(
-            :id="address.id + 'address'"
-            v-model="new_address"
+            :id="address.id + 'number'"
+            v-model="new_number"
+            type='text')
+        .form__row
+          label.form__label(
+            :for="address.id + 'street'") Calle
+          span.help(
+            v-show="errorLog.street") {{ errorLog.street }}
+          input.form__control(
+            :id="address.id + 'street'"
+            v-model="new_street"
+            type='text')
+
+      .form__grid
+        .form__row
+          label.form__label(
+            :for="address.id + 'address'") Adicional
+          span.help(
+            v-show="errorLog.additional") {{ errorLog.additional }}
+          input.form__control(
+            :id="address.id + 'additional'"
+            v-model="new_additional"
             type='text')
         .form__row
           label.form__label(
@@ -29,24 +49,24 @@
       .form__grid
         .form__row
           label.form__label(
-            :for="address.id  + 'city'") Ciudad
+            :for="address.id  + 'province'") Ciudad
           select.form__select(
-            v-model="new_city"
-            :id="address.id + 'city'")
+            v-model="new_province"
+            :id="address.id + 'province'")
             option
             option(
-              v-for="citi in cities") {{ citi }}
+              v-for="province in provinces") {{ province }}
         .form__row
           label.form__label(
-            :for="address.id + 'zone'") Comuna
+            :for="address.id + 'commune'") Comuna
           span.help(
-            v-show="errorLog.zone") {{ errorLog.zone }}
+            v-show="errorLog.commune") {{ errorLog.commune }}
           select.form__select(
-            :id="address.id + 'zone'"
-            v-model="new_zone")
+            :id="address.id + 'commune'"
+            v-model="new_commune")
             option
             option(
-              v-for="zone in zones") {{ zone }}
+              v-for="commune in communes") {{ commune }}
       .form__grid_reverse.form__row_away
         .form__row
           a.link_underline(

@@ -47,8 +47,8 @@
                 title="Editar Teléfono") <small class="hide"> Editar </small>
 
     //-créditos
-    h3.subhead ¿Quieres usar tus créditos en esta compra?
-    .pay-off
+    h3.subhead(v-show="credits") ¿Quieres usar tus créditos en esta compra?
+    .pay-off(v-show="credits")
       .pay-off__item
         p.pay-off__label Créditos Prilov disponibles
         p.pay-off__value {{ credits|currency }} <small class="pay-off__small">Créditos</small>
