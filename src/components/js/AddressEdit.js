@@ -2,10 +2,12 @@
 // Con esto se crean las propiedades computables
 // de cada uno.
 const editableProps = {
-  address: null,
+  number: null,
+  street: null,
+  additional: null,
   region: null,
-  city: null,
-  zone: null
+  province: null,
+  commune: null
 }
 
 /**
@@ -46,19 +48,19 @@ export default {
     regions: function () {
       return Object.keys(this.regionsList)
     },
-    cities: function () {
+    provinces: function () {
       const region = this.new_region
-      const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
-      if (cities) {
-        return Object.keys(cities)
+      const provinces = this.$getNestedObject(this.regionsList, [region, 'children'])
+      if (provinces) {
+        return Object.keys(provinces)
       }
     },
-    zones: function () {
+    communes: function () {
       const region = this.new_region
-      const city = this.new_city
-      const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
-      if (zones) {
-        return Object.keys(zones)
+      const province = this.new_province
+      const communes = this.$getNestedObject(this.regionsList, [region, 'children', province, 'children'])
+      if (communes) {
+        return Object.keys(communes)
       }
     }
   },
@@ -66,10 +68,10 @@ export default {
     // Asegura que el campo se considere vacío cuando le padre cambia.
     changed (field) {
       if (field === 'region') {
-        this.new_city = false
+        this.new_province = false
       }
-      if (field === 'city') {
-        this.new_zone = false
+      if (field === 'province') {
+        this.new_commune = false
       }
     },
     close () {
