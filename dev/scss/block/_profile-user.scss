@@ -139,6 +139,7 @@
   }
 
 .user-data__rating {
+  min-width: 33%;
   .chat__bubble-main {
     @include align-items(center);
     .chat-bubble__txt {
