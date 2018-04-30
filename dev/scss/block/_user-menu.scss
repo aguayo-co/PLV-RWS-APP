@@ -7,6 +7,7 @@
   background-color: $c-neutro;
 }
 
+
 .user-nav {
   color: $c-default;
   min-width: 212px;
@@ -154,15 +155,24 @@
   .side {
     position: relative;
     max-width: 284px;
+  }
+  .side__sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    top: 120px;
     &::after {
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
+      right: -70px;
       display: block;
       width: 1px;
       height: 98%;
       background-color: $c-default-3;
     }
   }
+
 }

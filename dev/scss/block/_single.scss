@@ -1,8 +1,6 @@
 .single__step {
-  border: 1px solid $c-neutro-3;
-  background-color: $c-neutro-4;
-  padding: 40px 20px;
   text-align: center;
+  margin-bottom: 24px;
   .single__title {
     @include font-rem(24px);
   }
@@ -19,7 +17,12 @@
     span {
       margin: 0 auto;
     }
+    span {
+      display: block;
+    }
   }
+  
+
   //- Notify dentro de UserPriloverStar
   .notify {
     max-width: 524px;
@@ -40,6 +43,10 @@
   text-align: left;
   padding: 40px 20px 40px 30px;
 }
+.single__box_bg {
+  background-color: $c-neutro-4;
+}
+
 
 .single__list-rank {
   @include font-rem(16px);
@@ -72,11 +79,18 @@
     margin-bottom: 30px;
   }
 }
+
 @include media-query(small-medium) {
   .single__box {
     padding: 60px 40px;
   }
   .single__list-rank {
     padding-bottom: 30px;
+  }
+ 
+}
+@include media-query(medium) {
+  .single__step_bg {
+    margin-bottom: 50px;
   }
 }

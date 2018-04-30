@@ -1,17 +1,18 @@
 <template lang="pug">
 .side
-  h2.headline Tu cuenta
-  //- User Nav
-  nav.user-nav
-    //- User Menu lista
-    dl.user-nav__list(
-      v-for='list in UserNavList')
-      dt.user-nav__title {{ list.title }}
-      dd.user-nav__item(
-        v-for='items in list.items')
-        router-link.user-nav__link(
-          :to='items.url',
-          :class='items.ico') {{ items.name }}
+  .side__sticky
+    h2.headline Tu cuenta
+    //- User Nav
+    nav.user-nav
+      //- User Menu lista
+      dl.user-nav__list(
+        v-for='list in UserNavList')
+        dt.user-nav__title {{ list.title }}
+        dd.user-nav__item(
+          v-for='items in list.items')
+          router-link.user-nav__link(
+            :to='items.url',
+            :class='items.ico') {{ items.name }}
 
 </template>
 
