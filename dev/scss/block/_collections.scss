@@ -22,6 +22,9 @@
 .collections__item {
   @include flexbox;
   padding: 16px 0;
+  a {
+    color: $c-default;
+  }
   &:not(:last-child) {
     border-bottom: 1px solid $c-neutro-3;
   }
