@@ -1,6 +1,7 @@
 <template lang="pug">
 //- Envíos que NO son por ChileExpress.
 .dashboard__subitem(v-if="!chileExpress")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check(v-if="delivered") Pedido Entregado
     p.status.status_check.i-check(v-else) Pedido Enviado
@@ -24,6 +25,7 @@
 
 //- Envíos que SI son por ChileExpress.
 .dashboard__subitem(v-else)
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check(v-if="!delivered") Pedido Enviado por ChileExpress
     p.status.status_check.i-check(v-else) Pedido Entregado por ChileExpress

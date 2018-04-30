@@ -1,6 +1,7 @@
 <template lang="pug">
 .dashboard__subitem(v-if="sale_return.status <= 41")
   //-5
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Pedido en proceso de devolución
     p La compradora decidió devolver este producto y está en proceso de enviártelo de vuelta.
@@ -13,6 +14,7 @@
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 49")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Pedido en proceso de devolución
 
@@ -27,17 +29,20 @@
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 50")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Pedido devuelto en revisión por Prilov
     p Nos informaste de una inconformidad en el pedido que te devolvieron y lo estamos evaluando.
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 90")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Pedido devuelto
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 99")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Devolución cancelada
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")

@@ -7,7 +7,17 @@ export default {
   },
   data: () => {
     return {
-      sales: {}
+      sales: {},
+      listActive: false,
+      item: null,
+      listOptions: {
+        selected: 0,
+        options: [
+          { id: 0, name: 'Todas' },
+          { id: 1, name: 'Pendientes de envío' },
+          { id: 2, name: 'Pendientes de pago' }
+        ]
+      }
     }
   },
   created () {
@@ -40,6 +50,13 @@ export default {
     },
     setSale (sale) {
       this.$set(this.sales, sale.id, sale)
+    },
+    openList: function () {
+      this.listActive = !this.listActive
+    },
+    changeOrder: function (listOptionId) {
+      this.listOptions.selected = listOptionId
+      this.listActive = false
     }
   }
 }

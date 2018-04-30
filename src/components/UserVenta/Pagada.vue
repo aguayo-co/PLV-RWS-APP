@@ -1,5 +1,6 @@
 <template lang="pug">
 .dashboard__subitem(v-if="!chileExpress")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check Pedido Pagado
     p.status.status_alert.i-alert-circle Pendiente de entrega acordada con compradora
@@ -48,6 +49,7 @@
         button.btn.btn_solid Enviar número de seguimiento
 
 .dashboard__subitem(v-else)
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check Pedido Pagado
     p.status.status_alert.i-alert-circle Pendiente de envío con ChileExpress

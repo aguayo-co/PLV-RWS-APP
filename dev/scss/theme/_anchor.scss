@@ -28,6 +28,27 @@ a {
     border-bottom-color: $c-default-2;
   }
 }
+.link_circle {
+  @include flexbox;
+  @include align-items(center);
+  &::before {
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+    margin-top: 2px;
+    margin-right: 8px;
+    cursor: pointer;
+    line-height: 18px;
+    text-align: center;
+    color: $c-brand;
+    @include font-rem(10px);
+    border: 2px solid $c-brand;
+    border-radius: 50%;
+  }
+}
+
 .link_underline_lower {
   margin-bottom: 20px;
 }

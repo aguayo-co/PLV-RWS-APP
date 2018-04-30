@@ -44,6 +44,7 @@
   font-weight: $fw-light;
   border-bottom: 1px solid $c-neutro-3;
 }
+
 .dashboard__data {
   @include flexbox;
   @include justify-content(space-between);
@@ -72,8 +73,10 @@
 }
 
 .dashboard__actions {
-  text-align: center;
+  max-width: 480px;
   padding: 16px 0;
+  margin: 8px auto;
+  text-align: center;
   .btn_block {
     margin-bottom: 20px;
   }
@@ -116,6 +119,8 @@
 \*------------------------------------*/
 .dashboard__status {
   text-align: center;
+  max-width: 480px;
+  margin: 8px auto;
 }
 
 @include media-query(medium) {
