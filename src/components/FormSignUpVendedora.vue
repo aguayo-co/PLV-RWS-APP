@@ -85,48 +85,70 @@
           fieldset.form__set
             legend.form__legend Nueva dirección
             .form__grid
-              .form__row(:class='{ "is-danger": errorLog.new_address }')
+              .form__row(:class='{ "is-danger": errorLog.number }')
                 label.form__label(
-                  for='new-address') Dirección
+                  for='new-number') Número
                 span.help(
-                  v-show="errorLog.new_address") {{ errorLog.new_address }}
+                  v-show="errorLog.number") {{ errorLog.number }}
                 input.form__control(
-                  id='new-address'
-                  v-model="newAddressData['new_address']"
+                  id='new-number'
+                  v-model="newAddressData['number']"
                   type='text')
-              .form__row(:class='{ "is-danger": errorLog.new_region }')
+              .form__row(:class='{ "is-danger": errorLog.street }')
+                label.form__label(
+                  for='new-address-street') Calle
+                span.help(
+                  v-show="errorLog.street") {{ errorLog.street }}
+                input.form__control(
+                  id='new-street'
+                  v-model="newAddressData['street']"
+                  type='text')
+
+            .form__grid
+              .form__row(:class='{ "is-danger": errorLog.additional }')
+                label.form__label(
+                  for='new-additional') Adicional
+                span.help(
+                  v-show="errorLog.additional") {{ errorLog.additional }}
+                input.form__control(
+                  id='new-additional'
+                  v-model="newAddressData['additional']"
+                  type='text')
+              .form__row(:class='{ "is-danger": errorLog.region }')
                 label.form__label(
                   for='new-address-region') Región
                 span.help(
-                  v-show="errorLog.new_region") {{ errorLog.new_region }}
+                  v-show="errorLog.region") {{ errorLog.region }}
                 select.form__select(
-                  v-model="newAddressData['new_region']")
+                  @change="newAddressData['province'] = null"
+                  v-model="newAddressData['region']")
                   option
                   option(
                     v-for="region in regions") {{ region }}
 
             .form__grid
-              .form__row(:class='{ "is-danger": errorLog.new_city }')
+              .form__row(:class='{ "is-danger": errorLog.province }')
                 label.form__label(
-                  for='new-address-city') Ciudad
+                  for='new-address-province') Provincia
                 span.help(
-                  v-show="errorLog.new_city") {{ errorLog.new_city }}
+                  v-show="errorLog.province") {{ errorLog.province }}
                 select.form__select(
-                  v-model="newAddressData['new_city']")
+                  @change="newAddressData['commune'] = null"
+                  v-model="newAddressData['province']")
                   option
                   option(
-                    v-for="city in cities") {{ city }}
+                    v-for="province in provinces") {{ province }}
 
-              .form__row(:class='{ "is-danger": errorLog.new_zone }')
+              .form__row(:class='{ "is-danger": errorLog.commune }')
                 label.form__label(
-                  for='new-address-zone') Comuna
+                  for='new-address-commune') Comuna
                 span.help(
-                  v-show="errorLog.new_zone") {{ errorLog.new_zone }}
+                  v-show="errorLog.commune") {{ errorLog.commune }}
                 select.form__select(
-                  v-model="newAddressData['new_zone']")
+                  v-model="newAddressData['commune']")
                   option
                   option(
-                    v-for="zone in zones") {{ zone }}
+                    v-for="commune in communes") {{ commune }}
           .form__row(
             :class='{ "is-danger": errorLog.password }')
             label.form__label(
@@ -165,10 +187,12 @@ Vue.component('croppa', Croppa.component)
 // import GSignInButton from 'vue-google-signin-button'
 // Vue.use(GSignInButton)
 const addressFields = {
-  new_address: null,
-  new_region: null,
-  new_city: null,
-  new_zone: null
+  number: null,
+  street: null,
+  additional: null,
+  region: null,
+  province: null,
+  commune: null
 }
 
 export default {
@@ -248,10 +272,11 @@ export default {
 
       if (!this.nombre) this.errorLog.nombre = 'Debes ingresar tu nombre'
       if (!this.apellidos) this.errorLog.apellidos = 'Debes ingresar tus apellidos'
-      if (!this.newAddressData.new_address) this.errorLog.new_address = 'Debes ingresar una dirección'
-      if (!this.newAddressData.new_region) this.errorLog.new_region = 'Debes ingresar una región'
-      if (!this.newAddressData.new_city) this.errorLog.new_city = 'Debes ingresar una ciudad'
-      if (!this.newAddressData.new_zone) this.errorLog.new_zone = 'Debes ingresar una comuna'
+      if (!this.newAddressData.number) this.errorLog.number = 'Debes ingresar una número'
+      if (!this.newAddressData.street) this.errorLog.street = 'Debes ingresar una calle'
+      if (!this.newAddressData.region) this.errorLog.region = 'Debes seleccionar una región'
+      if (!this.newAddressData.province) this.errorLog.province = 'Debes seleccionar una provincia'
+      if (!this.newAddressData.commune) this.errorLog.commune = 'Debes seleccionar una comuna'
       if (!this.email) {
         this.errorLog.email = 'Debes ingresar tu email'
       } else {
@@ -289,26 +314,26 @@ export default {
     }
   },
   computed: {
-    regions: function () {
+    regions () {
       return Object.keys(this.regionsList)
     },
-    cities: function () {
-      const region = this.newAddressData.new_region
-      const cities = this.$getNestedObject(this.regionsList, [region, 'children'])
-      if (cities) {
-        return Object.keys(cities)
+    provinces () {
+      const region = this.newAddressData.region
+      const provinces = this.$getNestedObject(this.regionsList, [region, 'children'])
+      if (provinces) {
+        return Object.keys(provinces)
       }
     },
-    zones: function () {
-      const region = this.newAddressData.new_region
-      const city = this.newAddressData.new_city
-      const zones = this.$getNestedObject(this.regionsList, [region, 'children', city, 'children'])
-      if (zones) {
-        return Object.keys(zones)
+    communes () {
+      const region = this.newAddressData.region
+      const province = this.newAddressData.province
+      const communes = this.$getNestedObject(this.regionsList, [region, 'children', province, 'children'])
+      if (communes) {
+        return Object.keys(communes)
       }
     }
   },
-  created: function () {
+  created () {
     const vm = this
     userAddressesAPI.getRegions().then((response) => {
       vm.regionsList = response.data

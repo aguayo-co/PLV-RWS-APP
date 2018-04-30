@@ -1,6 +1,6 @@
 <template lang="pug">
 .single__inner
-  a.btn-back.i-back(href="#") Volver
+  router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
   header.single__header
     h1.single__title Daniela Damasco
   .chat

@@ -33,7 +33,7 @@ Vue.filter('date', function (value) {
   return value ? new Date(value).toLocaleDateString() : ''
 })
 Vue.filter('address', function (address) {
-  return address.address + ', ' + address.region + ', ' + address.city + ', ' + address.zone
+  return address.number + ' ' + address.street + ', ' + address.additional + ' - ' + address.region + ', ' + address.province + ', ' + address.commune
 })
 Vue.filter('full_name', function (user) {
   return user.first_name + ' ' + user.last_name

@@ -8,7 +8,7 @@ export default {
     return Vue.axios.get('/api/regions')
   },
 
-  update: function (data) {
+  update (data) {
     if (data.user_id === null) {
       return Promise.reject(new Error('Need the address User ID.'))
     }
@@ -19,26 +19,26 @@ export default {
     return Vue.axiosAuth.patch('/api/users/' + data.user_id + '/addresses/' + data.id, payload)
   },
 
-  create: function (data) {
+  create (data) {
     if (data.user_id === null) {
       return Promise.reject(new Error('Need the address User ID.'))
     }
 
     const payload = {
-      address: data.address,
-      region: data.region,
-      city: data.city,
-      zone: data.zone
+      number: data.number,
+      street: data.street,
+      additional: data.additional,
+      commune: data.commune
     }
 
     return Vue.axiosAuth.post('/api/users/' + data.user_id + '/addresses', payload)
   },
 
-  load: function (userId) {
+  load (userId) {
     return Vue.axiosAuth.get('/api/users/' + userId + '/addresses')
   },
 
-  delete: function (data) {
+  delete (data) {
     return Vue.axiosAuth.delete('/api/users/' + data.user_id + '/addresses/' + data.id)
   }
 }

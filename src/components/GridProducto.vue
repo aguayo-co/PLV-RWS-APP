@@ -191,6 +191,7 @@ export default {
     if (this.preFilter) {
       this.filterQueryObject = this.preFilter
     }
+    this.filterQueryObject.status = '10,19'
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
     productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
       .then((response) => {
