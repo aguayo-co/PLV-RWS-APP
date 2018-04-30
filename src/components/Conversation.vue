@@ -3,7 +3,7 @@ section.single
   .single__inner(v-if="thread")
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
     header.single__header
-      h1.single__title Usuaria # {{ thread.participants[0].user_id }}
+      h1.single__title {{ thread.participants[1].user.first_name }} {{ thread.participants[1].user.last_name }}
     .chat.chat__grid
       .chat__slot(v-if="product.id")
         article.slot.slot_grid
@@ -22,9 +22,11 @@ section.single
         .chat__message_inner
           .chat__message-flex
             .chat-line(v-for="message in thread.messages")
-              .chat__bubble-main
-                .chat-bubble__avatar
-                  img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+              .chat__bubble-main(:class="{ 'own' : message.user_id === user.id }")
+                .chat-bubble__avatar(v-if="message.user_id === user.id")
+                  img.chat-bubble__img(:src="thread.participants[0].user.picture", alt="Avatar")
+                .chat-bubble__avatar(v-else)
+                  img.chat-bubble__img(:src="thread.participants[1].user.picture", alt="Avatar")
                 p.chat-bubble__txt {{ message.body }}
         .chat-inner
           form.chat__form
