@@ -91,7 +91,7 @@ export default {
             {
               name: 'Valoraciones',
               url: '/user/valoraciones',
-              ico: 'i-start-line'
+              ico: 'i-start'
             },
             {
               name: 'Método de envío',
@@ -101,7 +101,7 @@ export default {
             {
               name: 'Cerrar sesión',
               url: '#',
-              ico: ''
+              ico: 'i-x'
             }
           ]
         }
