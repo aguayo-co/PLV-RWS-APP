@@ -27,6 +27,7 @@ import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
 import prilovers from '@/pages/prilovers'
 import Contenido from '@/pages/Contenido'
+import AyudaComoEnviar from '@/pages/AyudaComoEnviar'
 import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
 import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
@@ -173,6 +174,11 @@ export default new Router({
       path: '/contenido',
       name: 'contenido',
       component: Contenido
+    },
+    {
+      path: '/como-enviar',
+      name: 'como-enviar',
+      component: AyudaComoEnviar
     },
     {
       path: '/como-cobrar',
