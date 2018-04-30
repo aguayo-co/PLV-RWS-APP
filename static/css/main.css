@@ -4564,6 +4564,10 @@ body {
     font-size: 90px;
     font-size: 5.625rem; }
 
+.user-data__avatar_small {
+  width: 140px;
+  height: 140px; }
+
 .user-data__img {
   width: 100%;
   vertical-align: bottom; }
@@ -4824,6 +4828,13 @@ body {
       line-height: 200px;
       font-size: 100px;
       font-size: 6.25rem; }
+  .user-data__avatar_small {
+    width: 160px;
+    height: 160px; }
+    .user-data__avatar_small .tool-user__letter {
+      line-height: 160px;
+      font-size: 80px;
+      font-size: 5rem; }
   .user-data__subitem {
     display: -webkit-box;
     display: -ms-flexbox;
