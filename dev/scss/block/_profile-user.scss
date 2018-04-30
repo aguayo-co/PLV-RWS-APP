@@ -116,6 +116,11 @@
       @include font-rem(90px);
     }
   }
+  .user-data__avatar_small {
+    width: 140px;
+    height: 140px;
+  }
+
   .user-data__img {
     width: 100%;
     vertical-align: bottom;
@@ -405,6 +410,16 @@
       @include font-rem(100px);
     }
   }
+  .user-data__avatar_small {
+    width: 160px;
+    height: 160px;
+    .tool-user__letter {
+      line-height: 160px;
+      @include font-rem(80px);
+    }
+
+  }
+
   .user-data__subitem {
     @include flexbox;
     @include justify-content(space-between);

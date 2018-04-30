@@ -21,6 +21,7 @@
 }
 .collections__item {
   @include flexbox;
+  @include align-items(center);
   padding: 16px 0;
   a {
     color: $c-default;

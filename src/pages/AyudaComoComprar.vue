@@ -18,12 +18,6 @@
             .blog__subarticle
               h2.blog__headline Encontré lo que quería, ¿a quién debo pagar?
               p Recuerda que todas las compras se deben hacer online a través de Prilov, pagando directamente a la página y no a las vendedoras de los productos. Ellas recibirán su dinero, una vez que tú hayas confirmado que recibiste el producto y estás conforme. De esta forma, puedes sentirte segura comprando en Prilov, ya que responderemos frente a cualquier inconveniente.
-    figure.blog-bannerprom.banner-hero
-      picture.banner-hero__crop
-        source.banner-hero__img(
-          media='(max-width: 640px)', srcset='static/img/blog6-002.png')
-        img.banner-slider__img(
-          src='static/img/blog6-002.png')
     .blog__inner
       article.blog__body.blog__body_slot
         h2.blog__headline ¿Cómo finalizo la compra y el pago?
@@ -40,6 +34,12 @@
             li Si tienes algún código de descuento, debes agregarlo antes de pagar en el campo indicado.
             li Luego haces click en <strong>Continuar</strong> para ir a pagar.  Elige el método de pago. Si eliges <strong>Transferencia bancaria</strong>, aparecerán los datos de la cuenta bancaria de Prilov. Debes hacerla desde la página de tu banco y luego, seleccionas <strong>Transferencia realizada</strong>. Tendrás un máximo de 10 minutos para realizar la transferencia desde que haces click en <strong>Pagar con transferencia</strong>. (Puedes adjuntar tu comprobante de pago como respaldo). Si eliges pago con tarjeta de crédito o débito, debes seleccionar <strong>Payu</strong> o <strong>Mercado Pago</strong> y seguir los pasos de pago.
             li Recibirás un mail de confirmación de tu compra con el número de teléfono de la vendedora para coordinar envío o entrega y la vendedora será notificada.
+    figure.blog-bannerprom.banner-hero
+      picture.banner-hero__crop
+        source.banner-hero__img(
+          media='(max-width: 640px)', srcset='static/img/blog6-002.png')
+        img.banner-slider__img(
+          src='static/img/blog6-002.png')
     article.blog__body
       .blog__out
         .blog__spread

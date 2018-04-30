@@ -1,5 +1,6 @@
 <template lang="pug">
 .dashboard__subitem
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_alert.i-alert-circle Pendiente de pago
     p Estamos confirmando el pago de este pedido por parte de la compradora.

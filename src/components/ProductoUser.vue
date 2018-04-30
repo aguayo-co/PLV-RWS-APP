@@ -8,7 +8,7 @@
     .user-data
       .user-header
         .user-header__item.user-item_gutter
-          .user-data__avatar
+          .user-data__avatar.user-data__avatar_small
             img.user-data__img(
               v-if="user.picture"
               :src="user.picture",
