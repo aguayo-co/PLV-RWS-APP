@@ -40,8 +40,6 @@
     margin: 0 auto;
     .tool-user__grid {
       @include flex-direction(column);
-      padding-bottom: 2px;
-      border-bottom: 3px solid transparent;
     }
 
     .tool-user__avatar {
@@ -66,7 +64,7 @@
 
     .badge_user {
       top: -3px;
-      left: 26px;
+      left: 22px;
     }
 
   }
@@ -94,8 +92,9 @@
     position: relative;
     display: block;
     height: auto;
-    color: $c-neutro;
     padding-bottom: 2px;
+    text-align: center;
+    color: $c-neutro;
     border-bottom: 3px solid transparent;
     transition: all 0.3s;
     &:hover {

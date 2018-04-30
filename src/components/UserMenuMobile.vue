@@ -2,11 +2,11 @@
 nav.user-menu
   ul.user-menu__list(:class="{openUserMenu : menuUsuaria}")
     li.user-menu__item
-      a(href="#", title="title").user-menu__icon.i-shop
+      router-link(:to="'/user/tu-closet'", title="title").user-menu__icon.i-shop
     li.user-menu__item
-      a(href="#", title="title").user-menu__icon.i-bell
+      router-link(:to="'/user/notificaciones'", title="title").user-menu__icon.i-bell
     li.user-menu__item
-      a(href="#", title="title").user-menu__icon.i-user
+      router-link(:to="'/user/data'", title="title").user-menu__icon.i-user
     li.user-menu__item.user-menu__item_burguer(@click.stop="openMenuUsuaria")
       span.menu-ico.user-menu__icon(:class="{'menu-ico_open' : menuUsuaria}")
         span.menu-ico__line
@@ -21,7 +21,8 @@ nav.user-menu
             v-for='list in UserNavList')
             dt.user-nav__title {{ list.title }}
             dd.user-nav__item(
-              v-for='items in list.items')
+              v-for='items in list.items',
+              @click.stop="openMenuUsuaria")
               router-link.user-nav__link(
                 :to='items.url',
                 :class='items.ico') {{ items.name }}
@@ -78,7 +79,7 @@ export default {
           title: 'Ventas',
           items: [
             {
-              name: 'Tu closet',
+              name: 'Tu clóset',
               url: '/user/tu-closet',
               ico: 'i-closet'
             },

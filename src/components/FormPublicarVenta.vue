@@ -9,9 +9,10 @@
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
           .upfile__item
-            a.upfile__btn_bg(
+            a.upfile__delete.i-x(
               v-show='toggleImageDelete[0]',
-              @click='removeImage(0)') Eliminar
+              @click='removeImage(0)')
+              span.hide Eliminar
             .upfile__label
               .upfile__text.i-upload(
                 v-if="mqDesk") Arrastra una foto o
@@ -32,9 +33,10 @@
           h3.upfile__title Fotos Secundarias (opcionales)
           .upfile__grid
             .upfile__item
-              a.delete(
+              a.upfile__delete.i-x(
                 v-show='toggleImageDelete[1]',
-                @click='removeImage(1)') Eliminar
+                @click='removeImage(1)')
+                span.hide Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
@@ -48,9 +50,10 @@
                 :prevent-white-space="true",
                 @new-image-drawn='addImage(1)')
             .upfile__item
-              a.delete(
+              a.upfile__delete.i-x(
                 v-show='toggleImageDelete[2]',
-                @click='removeImage(2)') Eliminar
+                @click='removeImage(2)')
+                span.hide Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqTablet") Arrastra una foto o
@@ -65,9 +68,10 @@
                 @new-image-drawn='addImage(2)')
             .upfile__item(
               v-if="mqDesk")
-              a.delete(
+              a.upfile__delete.i-x(
                 v-show='toggleImageDelete[3]',
-                @click='removeImage(3)') Eliminar
+                @click='removeImage(3)')
+                span.hide Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqTablet") Arrastra una foto o

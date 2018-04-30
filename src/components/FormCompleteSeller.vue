@@ -14,9 +14,10 @@
           .upfile__small
             h3.upfile__title Foto de perfil
             .upfile__item
-              a.delete(
+              a.upfile__delete.i-x(
                 v-show='toggleImageDelete',
-                @click='removeImage') Eliminar
+                @click='removeImage')
+                span.hide Eliminar
               span.help(
                 v-if="errorLog.picture"
               ) {{ errorLog.picture }}
@@ -45,7 +46,7 @@
             textarea.form__control(
               v-model='about',
               id='aboutUser')
-            p.form__note (esta breve descripción se mostrará cuando otras Prilover visiten Tu Closet)
+            p.form__note (esta breve descripción se mostrará cuando otras Prilover visiten Tu Clóset)
           .form__row(
             v-if='!user.phone',
             :class='{ "is-danger": errorLog.phone }')

@@ -63,16 +63,26 @@
   }
 }
 
-// $bp-medium: 768px;
-@include media-query(medium) {
-  .modal_scroll {
-    padding-bottom: 50px;
-
+@media only screen and (min-width: 524px) {
+  .modal_login {
     .modal__slot {
       min-height: auto;
       margin: 50px auto;
     }
-
   }
+}
 
+// only mobile
+@media only screen and (max-width: 767px) {
+  .modal_login {
+    z-index: 180;
+    padding-top: 60px;
+  }
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .modal_scroll {
+    padding-bottom: 50px;
+  }
 }

@@ -7,6 +7,7 @@
   background-color: $c-neutro;
 }
 
+
 .user-nav {
   color: $c-default;
   min-width: 212px;
@@ -124,10 +125,13 @@
     margin-left: auto;
     text-align: right;
     color: $c-neutro;
+    transition: all 0.3s;
     &:before {
       display: inline-block;
+      min-width: 30px;
       padding-bottom: 10px;
-      border-bottom: 5px solid transparent;
+      text-align: center;
+      border-bottom: 3px solid transparent;
     }
     &.i-bell,
     &.i-user {
@@ -140,9 +144,10 @@
         @include font-rem(16px);
       }
     }
-    &:active {
+    &:active,
+    &:hover {
       &:before {
-        border-bottom: 5px solid $c-brand;
+        border-bottom: 3px solid $c-brand;
       }
     }
   }
@@ -154,15 +159,24 @@
   .side {
     position: relative;
     max-width: 284px;
+  }
+  .side__sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    top: 120px;
     &::after {
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
+      right: -70px;
       display: block;
       width: 1px;
       height: 98%;
       background-color: $c-default-3;
     }
   }
+
 }

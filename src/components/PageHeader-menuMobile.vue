@@ -69,7 +69,7 @@
         a.foot-nav-mb__link(
           :href='items.url',
           :class='items.icon',
-          :target='items.target')
+          target="_blank")
           span {{ items.name }}
 </template>
 

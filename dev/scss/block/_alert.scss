@@ -1,3 +1,7 @@
+/*------------------------------------*\
+	Alertas
+\*------------------------------------*/
+
 .alert {
   border: 1px solid $c-brand;
   padding: 20px;
@@ -12,6 +16,30 @@
     }
   }
 }
+
+.alert-msg {
+  @include flexbox;
+  @include align-items(center);
+  padding: 24px;
+  @include font-rem(16px);
+  p {
+    margin: 0;
+  }
+  &:before {
+    @include font-rem(30px);
+    padding-right: 16px;
+    line-height: 1;
+  }
+  &.i-ok {
+    &:before {
+      @include font-rem(18px);
+    }
+  }
+}
+.alert-msg_center {
+  @include justify-content(center);
+}
+
 
 .alert__txt {
   font-family: $f-fancy;
@@ -51,4 +79,9 @@
   .alert {
     margin-bottom: 60px;
   }
+  .alert-msg {
+    padding: 32px 0;
+    @include font-rem(18px);
+  }
+
 }

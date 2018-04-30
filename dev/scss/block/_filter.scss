@@ -320,6 +320,7 @@
 
   .filter__box-select {
     position: relative;
+    cursor: pointer;
     .filter__arrow {
       border-bottom: 1px solid $c-default;
     }

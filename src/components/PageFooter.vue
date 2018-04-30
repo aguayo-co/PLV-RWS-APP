@@ -13,7 +13,7 @@ footer.page-foot.i-heart-on
             a.foot-nav__link(
               :href='items.url',
               :class='items.icon',
-              :target='items.target')
+              target="_blank")
               span {{ items.name }}
 
       .foot-news

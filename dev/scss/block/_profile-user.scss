@@ -1,0 +1,440 @@
+/*------------------------------------*\
+	User Data Profile
+\*------------------------------------*/
+  .user-header {
+    @include flexbox;
+    @include flex-direction(column);
+  }
+  .user-header-edit {
+    .form__edit {
+      padding: 5px 10px;
+      border: 1px solid $c-neutro-3;
+    }
+    .form__label {
+      color: $c-default-5;
+    }
+  }
+
+  .user-header-edit__item {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    color: $c-default;
+    &.edit__item_top {
+      @include align-items(start);
+    }
+  }
+
+  .user-header-edit__grid {
+    @include flexbox;
+    @include justify-content(center);
+    @include flex-wrap(wrap);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px 0;
+    .form__row {
+      @include flex-grow(1);
+      margin: 0 6px;
+    }
+    .form__label {
+      font-weight: $fw-regular;
+    }
+
+    .user-edit__save {
+      @include align-self(flex-end);
+      text-align: right;
+      margin-bottom: 5px;
+      width: 100%;
+      margin-top: 12px;
+    }
+  }
+  .user-header__item {
+    text-align: center;
+  }
+
+  .user-data__holder {
+    color: $c-default-5;
+    &:before {
+      content: '?';
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      margin-right: 8px;
+      line-height: 22px;
+      text-align: center;
+      color: $c-neutro;
+      @include font-rem(14px);
+      background-color: $c-brand;
+      border-radius: 50%;
+    }
+  }
+  .user-data__title {
+    padding-top: 16px;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+    @include font-rem(20px);
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+  }
+
+  //-Enlaces User
+  .user-data__tag {
+    &:first-child {
+      margin-right: 24px;
+    }
+    .btn-tag {
+      min-width: 140px;
+      text-align: center;
+    }
+  }
+
+  .user-edit__actions {
+    padding: 14px 0 0 16px;
+  }
+
+  .user-edit_right {
+    text-align: right
+  }
+  
+/*------------------------------------*\
+	User Profile avatar edit
+\*------------------------------------*/
+
+  .user-data__avatar {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 5px solid $c-brand;
+    border-radius: 50%;
+    .tool-user__letter {
+      line-height: 180px;
+      color: $c-neutro;
+      @include font-rem(90px);
+    }
+  }
+  .user-data__img {
+    width: 100%;
+    vertical-align: bottom;
+  }
+
+  .user-avatar-edit {
+    position: relative;
+    z-index: 3;
+    display: inline-block;
+    .user-edit__actions {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 3;
+      padding: 0;
+    }
+  }
+  .user-avatar__upfile {
+    margin-left: -4px;
+    margin-top: -4px;
+  }
+
+.user-data__rating {
+  .chat__bubble-main {
+    @include align-items(center);
+    .chat-bubble__txt {
+      padding: 4px 8px;
+    }
+  }
+  .chat__line {
+    margin-right: 0;
+  }
+}
+
+
+//grupo de prilover label Prilover star
+.user-data__group {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  @include font-rem(16px);
+  &.i-star-on {
+    &::before {
+      position: relative;
+      top: -2px;
+      padding-right: 10px;
+      font-size: 90%;
+    }
+  }
+}
+
+//ABOUT 
+.user-data__box-txt {
+  padding: 6px;
+  margin-bottom: 6px;
+  border: 1px solid $c-neutro;
+}
+.user-data__txt {
+  width: 100%;
+  margin: 0;
+  padding: 6px;
+  line-height: 1.4;
+  @include font-rem(16px);
+  border: 1px solid $c-neutro;
+}
+
+.user-data__caption-i {
+  text-align: center;
+  text-transform: uppercase;
+  &:before {
+    display: inline-block;
+    padding-bottom: 4px;
+    color: $c-default-2;
+    vertical-align: middle;
+    padding-right: 6px;
+  }
+}
+//Notificaciones
+
+.user-data__list {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  a {
+    color: $c-default;
+    &:before {
+      color: $c-brand;
+      padding-right: 6px;
+    }
+  }
+}
+
+.user-data__notify {
+  padding: 8px 0;
+}
+.user-data__block {
+  padding: 16px 0;
+}
+
+.user-data__value {
+  color: $c-default-2;
+  @include font-rem(18px);
+  @include flexbox;
+  @include align-items(center);
+  &:before {
+    color: $c-brand;
+    padding-right: 10px;
+    @include font-rem(20px);
+  }
+  &:not(:last-child) {
+    padding-right: 30px;
+  }
+  &.i-like {
+    &:before {
+      position: relative;
+      top:-2px;
+    }
+  }
+  &.i_flip {
+    &:before {
+      top: 0;
+    }
+  }
+}
+
+.i_flip {
+  &:before {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+}
+
+.user-data__track {
+  min-width: 72px;
+  padding: 2px 0;
+  text-align: center;
+  border-bottom: 3px solid $c-brand;
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+.user-data__nav {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  list-style: none;
+  margin: 0;
+  padding: 16px 0 8px;
+}
+
+.user-data__actions {
+  padding: 8px 0;
+  text-align: center;
+}
+
+.user-data_info {
+  padding: 50px 0;
+}
+
+
+.user-data__form {
+  padding-bottom: 30px;
+}
+
+// $bp-small-medium: 640px;
+@include media-query(small-medium) {
+
+    .single {
+      @include flex-grow(1);
+    }
+    .single__header {
+      text-align: left;
+    }
+    .single__title {
+      @include font-rem(32px);
+    }
+    .single__subtitle {
+      padding: 32px 0;
+      margin: 0;
+      text-transform: uppercase;
+      @include font-rem(18px);
+      font-family: $f-fancy;
+      font-weight: $fw-light;
+    }
+
+    .user-header {
+      @include flex-direction(row);
+    }
+    .user-header__item {
+      text-align: left;
+    }
+    .user-item_gutter {
+      margin-right: 20px;
+    }
+    .user-iten_grow {
+      @include flex-grow(1);
+    }
+
+    .user-data__nav {
+      @include justify-content(left);
+      padding: 24px 0 16px;
+    }
+
+    .user-data__title {
+      padding-top: 8px;
+      text-align: left;
+      @include font-rem(36px);
+    }
+    .user-header-edit__item {
+      @include justify-content(start);
+      &.edit__item_top {
+        .user-edit__actions {
+          padding-top: 14px;
+        }
+      }
+    }
+    .user-header-edit__grid {
+      @include justify-content(start);
+      margin: 0;
+    }
+
+    .user-edit__actions {
+      padding: 8px 0 0 16px;
+    }
+
+    .user-data__group {
+      @include font-rem(18px);
+    }
+
+    .user-data__notify {
+      @include flexbox;
+    }
+    .user-data__list {
+      padding: 4px 0;
+      &:not(:last-child) {
+        padding-right: 34px;
+      }
+    }
+    .user-data__actions {
+      padding-top: 20px;
+      text-align: left;
+    }
+    .user-data__value {
+      &:not(:last-child) {
+        padding-right: 20px;
+      }
+    }
+    .user-data__track {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+    .user-data__caption-i {
+      text-align: left;
+    }
+    .user-data__block {
+      padding-bottom: 24px;
+      .user-data__list {
+        @include justify-content(flex-start);
+      }
+    }
+
+}
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .single__inner {
+    width: 86%;
+    margin: 0 auto;
+  }
+  .user-item_gutter {
+    margin-right: 30px;
+  }
+}
+//$bp-wide: 1024px;
+@include media-query(wide) {
+  .user-item_gutter {
+    margin-right: 20px;
+  }
+  .user-data__avatar {
+    width: 200px;
+    height: 200px;
+    .tool-user__letter {
+      line-height: 200px;
+      @include font-rem(100px);
+    }
+  }
+  .user-data__subitem {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+  .user-data__block {
+    min-width: 380px;
+    margin-right: 20px;
+    .user-data__list {
+      padding: 8px 0; 
+    }
+
+  }
+
+}
+
+//$bp-wide: 1170px;
+@include media-query(large) {
+  .user-item_gutter {
+    margin-right: 50px;
+  }
+
+  .user-data__value {
+    &:not(:last-child) {
+      padding-right: 30px;
+    }
+  }
+  .user-data__track {
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+
+}

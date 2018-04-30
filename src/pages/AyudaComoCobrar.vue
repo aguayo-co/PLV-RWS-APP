@@ -14,7 +14,7 @@
             .blog__subarticle
               h2.blog__headline Créditos Prilov
               p Cuando vendas un producto, siempre se generarán créditos en tu cuenta Prilov. Puedes usarlos para comprar otros productos o solicitar el pago a tu cuenta bancaria.
-              p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como <strong>"Recibido"</strong>, tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov.
+              p Cuando la compradora recibe su producto de forma satisfactoria y lo marque como <strong>Recibido</strong>, tus créditos serán generados automáticamente a tu cuenta Prilov. Ese dinero puedes usarlo para seguir comprando lo que quieras en Prilov.
               p Cuando hagas una compra,  el sistema descontará el monto que tienes en créditos al total de la compra que estás realizando.
             .blog__subarticle
               h2.blog__headline Traspasando créditos a tu cuenta bancaria
