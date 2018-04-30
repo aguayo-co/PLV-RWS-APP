@@ -132,6 +132,57 @@
     }
   }
 }
+/*------------------------------------*\
+	upload file croppa Avatar
+\*------------------------------------*/
+.upfile__radius {
+  width: 184px;
+  text-align: center;
+  margin: 0;
+  .upfile__label {
+    @include font-rem(16px);
+  }
+  .upfile__item {
+    width: 184px;
+    height: 184px;
+    border-radius: 50%;
+    .help {
+      width: 70%;
+      display: inline-block;
+      margin: 8px 0;
+      @include font-rem(12px);
+      &:before {
+        left: 50%;
+        margin-left: -5px;
+      }
+    }
+  }
+  canvas {
+    border-radius: 50%;
+  }
+  .user-edit__save {
+    padding-top: 8px;
+  }
+}
+
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .upfile__radius {
+    width: 204px;
+
+    .upfile__item {
+      width: 204px;
+      height: 204px;
+    }
+
+   }
+
+}
+
+/*------------------------------------*/
+  //Responsive
+/*------------------------------------*/
+
 
 // $bp-medium: 768px;
 @include media-query(medium) {
@@ -179,6 +230,13 @@
       }
     }
   }
+  .upfile__radius {
+    .upfile__btn {
+      padding: 10px;
+      @include font-rem(14px);
+    }
+  }
+
 }
 
 @include media-query(wide) {

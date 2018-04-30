@@ -1,5 +1,5 @@
 /*------------------------------------*\
-	User Profile
+	User Data Profile
 \*------------------------------------*/
   .user-header {
     @include flexbox;
@@ -79,144 +79,40 @@
     font-weight: $fw-medium;
   }
 
-  //-Enlaces Modal
-  .user-data-nav__item {
+  //-Enlaces User
+  .user-data__tag {
     &:first-child {
-      margin-right: 14px;
+      margin-right: 24px;
+    }
+    .btn-tag {
+      min-width: 140px;
+      text-align: center;
     }
   }
+
   .user-edit__actions {
     padding: 14px 0 0 16px;
   }
 
-
   .user-edit_right {
     text-align: right
   }
-  .user-data {
-    &.tool-user__letter {
-      font-size: 600%;
-      color: $c-neutro;
-    }
-  }
   
-/*------------------------------------*\
-  User Profile avatar page "closet"
-\*------------------------------------*/
-.banner-hero_user {
-  margin: 0 auto;
-}
-.user-hero {
-  position: relative;
-  top: -57px;
-  left: 0;
-  width: 96%;
-  max-width: 1070px;
-  margin: 0 auto;
-  .user-data__avatar {
-    display: inline-block;
-    margin: 0 auto;
-  }
-  .user-data__title {
-    display: inline-block;
-    text-align: left;
-    padding: 0 0 0 20px;
-  }
-}
-.user-hero__head {
-  text-align: center;
-}
-.user-hero__notify {
-  @include flexbox;
-  @include flex-wrap(wrap);
-  @include justify-content(center);
-  text-align: center;
-  padding: 0 0 0 20px;
-  .user-data__list {
-    padding: 16px 8px;
-  }
-}
-.user-hero__item {
-  &:last-child {
-    text-align: center;
-  }
-  .user-data__group {
-    display: block;
-    padding: 10px 0;
-    //text-align: left;
-    text-align: center;
-  }
-}
-.user-data__item {
-  text-align: center;
-  .btn-tag {
-    min-width: 130px;
-  }
-  &:first-child {
-    margin-right: 20px;
-  }
-}
-  // $bp-medium: 640px;
-  @include media-query(small-medium) {
-    .user-hero {
-      @include flexbox;
-    }
-    .user-hero__item {
-      .user-data__group {
-        position: relative;
-        left: -10px;
-      }
-      &:last-child {
-        padding-top: 75px;
-        text-align: left;
-      }
-      &:first-child {
-        width: 40%;
-        max-width: 120px;
-      }
-    }
-    .user-hero__notify {
-      text-align: left;
-      @include justify-content(start);
-    }
-  }
-
-  // $bp-wide: 1024px;
-  @include media-query(big) {
-    .user-hero {
-      max-width: 1314px;
-    }
-  }
 /*------------------------------------*\
 	User Profile avatar edit
 \*------------------------------------*/
-  .user-over {
-    position: relative;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: block;
-      width: 100%;
-      opacity: 0;
-      pointer-events: none;
-      background-color: $c-neutro;
-      transition: all .2s ease-out;
-    }
-  }
+
   .user-data__avatar {
-    width: 114px;
-    height: 114px;
+    width: 180px;
+    height: 180px;
     margin: 0 auto;
     overflow: hidden;
+    border: 5px solid $c-brand;
     border-radius: 50%;
     .tool-user__letter {
-      line-height: 114px;
+      line-height: 180px;
       color: $c-neutro;
-      @include font-rem(80px);
+      @include font-rem(90px);
     }
   }
   .user-data__img {
@@ -230,41 +126,21 @@
     display: inline-block;
     .user-edit__actions {
       position: absolute;
-      right: 0;
-      top: 2px;
+      top: 12px;
+      right: 12px;
+      z-index: 3;
       padding: 0;
     }
   }
   .user-avatar__upfile {
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    opacity: 0;
-    transition: all .2s .2s ease-out;
-  }
-  .user-avatar_active {
-    min-height: 500px;
-    text-align: center;
-    &:after {
-      opacity: .97;
-      pointer-events: all;
-    }
-
-    .user-avatar__upfile {
-      opacity: 1;
-    }
-    .user-edit__save {
-      padding-top: 16px;
-    }
-
+    margin-left: -4px;
+    margin-top: -4px;
   }
 
-
-
+//grupo de prilover label Prilover star
 .user-data__group {
   margin-bottom: 0;
   text-transform: uppercase;
-  text-align: center;
   @include font-rem(16px);
   &.i-star-on {
     &::before {
@@ -274,18 +150,14 @@
       font-size: 90%;
     }
   }
-
 }
 
-.user-data__notify {
-  padding: 8px 0;
-}
+//ABOUT 
 .user-data__box-txt {
   padding: 6px;
   margin-bottom: 6px;
   border: 1px solid $c-neutro;
 }
-
 .user-data__txt {
   width: 100%;
   margin: 0;
@@ -306,31 +178,44 @@
     padding-right: 6px;
   }
 }
+//Notificaciones
+
 .user-data__list {
   @include flexbox;
   @include justify-content(center);
+  @include align-items(center);
   list-style: none;
   margin: 0;
   padding: 8px 0;
 }
-.user-data-nav {
-  @include flexbox;
-  @include justify-content(center);
-  list-style: none;
-  margin: 0;
-  padding: 16px 0 8px;
+
+.user-data__notify {
+  padding: 8px 0;
 }
 
 .user-data__value {
-  min-width: 70px;
   color: $c-default-2;
-  @include font-rem(16px);
+  @include font-rem(18px);
+  @include flexbox;
+  @include align-items(center);
   &:before {
     color: $c-brand;
     padding-right: 10px;
+    @include font-rem(20px);
   }
   &:not(:last-child) {
     padding-right: 30px;
+  }
+  &.i-like {
+    &:before {
+      position: relative;
+      top:-2px;
+    }
+  }
+  &.i_flip {
+    &:before {
+      top: 0;
+    }
   }
 }
 
@@ -344,10 +229,19 @@
 .user-data__track {
   min-width: 72px;
   padding: 2px 0;
+  text-align: center;
   border-bottom: 3px solid $c-brand;
   &:not(:last-child) {
     margin-right: 30px;
   }
+}
+.user-data__nav {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  list-style: none;
+  margin: 0;
+  padding: 16px 0 8px;
 }
 
 .user-data__actions {
@@ -363,16 +257,9 @@
   padding-bottom: 30px;
 }
 
-  // $bp-medium: 768px;
-  @include media-query(medium) {
-    .single__inner {
-      width: 86%;
-      margin: 0 auto;
-    }
-  }
+// $bp-small-medium: 640px;
+@include media-query(small-medium) {
 
-  // $bp-wide: 1024px;
-  @include media-query(wide) {
     .single {
       @include flex-grow(1);
     }
@@ -397,9 +284,13 @@
     .user-header__item {
       text-align: left;
     }
-    .user-data-nav {
+    .user-item_gutter {
+      margin-right: 20px;
+    }
+    .user-data__nav {
       @include justify-content(left);
-    }         
+      padding: 24px 0 16px;
+    }
 
     .user-data__title {
       padding-top: 8px;
@@ -422,31 +313,9 @@
     .user-edit__actions {
       padding: 8px 0 0 16px;
     }
-    /*------------------------------------*\
-	    User Profile avatar edit desktop
-    \*------------------------------------*/
-      .user-avatar_active {
-        min-height: 390px;
-      }
-
-      .user-data__avatar {
-        margin-right: 28px;
-      }
-      .user-avatar-edit {
-        .user-edit__actions {
-          right: 28px;
-        }
-      }
-      .user-avatar__upfile {
-        top: 0;
-      }
-
-
 
     .user-data__group {
-      text-align: left;
       @include font-rem(18px);
-      margin-right: 28px;
     }
 
     .user-data__notify {
@@ -454,19 +323,73 @@
     }
     .user-data__list {
       padding: 4px 0;
-
       &:not(:last-child) {
-        padding-right: 20px;
+        padding-right: 34px;
       }
     }
     .user-data__actions {
       padding-top: 20px;
       text-align: left;
     }
+    .user-data__value {
+      &:not(:last-child) {
+        padding-right: 20px;
+      }
+    }
+    .user-data__track {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
     .user-data__caption-i {
     text-align: left;
     }
+}
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .single__inner {
+    width: 86%;
+    margin: 0 auto;
   }
+  .user-item_gutter {
+    margin-right: 30px;
+  }
+}
+//$bp-wide: 1024px;
+@include media-query(wide) {
+  .user-item_gutter {
+    margin-right: 20px;
+  }
+  .user-data__avatar {
+    width: 200px;
+    height: 200px;
+    .tool-user__letter {
+      line-height: 200px;
+      @include font-rem(100px);
+    }
+  }
+
+
+}
+
+//$bp-wide: 1170px;
+@include media-query(large) {
+  .user-item_gutter {
+    margin-right: 50px;
+  }
+
+  .user-data__value {
+    &:not(:last-child) {
+      padding-right: 30px;
+    }
+  }
+  .user-data__track {
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+
+}
 
 /*------------------------------------*\
 	Info User in Producto
@@ -480,10 +403,6 @@
   @include flex-direction(column);
   @include align-items(center);
   @include justify-content(space-around);
-}
-
-.user-data__avatar_border {
-  border: 5px solid $c-brand;
 }
 
 .user-card__header {
