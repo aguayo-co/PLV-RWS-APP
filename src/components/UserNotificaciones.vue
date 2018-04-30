@@ -30,7 +30,7 @@ section.single
             :to="{ name: 'conversation', params: { threadId: message.id }}")
             .collection__lead
               .collection__head
-                span.collection__title Usuaria # {{ message.participants[0].user_id }}
+                span.collection__title {{ message.participants[1].user.first_name }} {{ message.participants[1].user.last_name }}
                 span.collection__label {{ message.product_id ? "Te hizo una pregunta en un producto" : "Te escribió un privado" }}
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
@@ -47,7 +47,7 @@ section.single
             :to="{ name: 'conversation', params: { threadId: message.id }}")
             .collection__lead
               .collection__head
-                span.collection__title Usuaria # {{ message.participants[0].user_id }}
+                span.collection__title {{ message.participants[1].user.first_name }} {{ message.participants[1].user.last_name }}
                 span.collection__label
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
@@ -58,6 +58,7 @@ section.single
 
 <script>
 import threadsAPI from '@/api/thread'
+import { mapState } from 'vuex'
 
 export default {
   name: 'UserNotificaciones',
@@ -68,6 +69,9 @@ export default {
       page: 1,
       items: 20
     }
+  },
+  computed: {
+    ...mapState(['user'])
   },
   created: function () {
     let filter = { unread: '1' }
