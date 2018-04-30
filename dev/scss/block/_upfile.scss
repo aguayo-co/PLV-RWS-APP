@@ -85,23 +85,20 @@
   font-weight: $fw-regular;
   border: 2px solid $c-default;
 }
-.upfile__btn_bg,
-.delete {
+.upfile__delete {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  @include prefixer(transform, translate(-50%,-50%), ("webkit", "moz"));
+  top: 10px;
+  right: 10px;
   display: inline-block;
-  min-width: 120px;
-  padding: 10px;
+  padding: 10px 11px;
   text-align: center;
-  color: $c-default;
-  @include font-rem(14px);
-  font-family: $f-default;
-  font-weight: $fw-regular;
-  border: 2px solid $c-default;
+  line-height: 1.2;
+  border-radius: 50%;
   background-color: $c-neutro;
   z-index: 3;
+  &:before {
+    color: $c-default;
+  }
 }
 
 .croppa-container {
