@@ -5,32 +5,40 @@
     header.single__header
       h2.subhead Sobre la vendedora
     //- data User
-    .user-card
-      .user-card__header
-        .user-header
-          .user-header__item
-            .user-data__avatar.user-data__avatar_border
-              img.user-data__img(
-                :src="user.picture",
-                :alt="'Perfil' + ' ' + user.full_name")
-            p.user-data__group.i-star-on Prilover <span class="txt_brand">Star</span>
-          .user-header__item
-            h3.user-data__title
-              | {{ user.first_name }} {{ user.last_name }}
-            .user-data__notify
+    .user-data
+      .user-header
+        .user-header__item.user-item_gutter
+          .user-data__avatar
+            img.user-data__img(
+              v-if="user.picture"
+              :src="user.picture",
+              :alt="'Perfil' + ' ' + first_name")
+            span.profile__letter(v-if="!user.picture && user.first_name") {{ user.first_name.charAt(0) }}
+        .user-header__item.user-iten_grow
+          h3.user-data__title {{ user.first_name }} {{ user.last_name }}
+          .user-data__subitem
+            //-Notificaciones
+            .user-data__block
               ul.user-data__list
-                li.user-data__value.i-like 20
-                li.user-data__value.i-like.i_flip 0
-                li.user-data__value.i-less-circle 0
+                li.user-data__value.i-like 120
+                li.user-data__value.i-like.i_flip 100
+                li.user-data__value.i-less-circle 100
               ul.user-data__list
-                li.user-data__track {{ user.followers_count }} Seguidores
-                li.user-data__track {{ user.following_count }} Siguiendo
-      .user-card__content
-        .user-card__tip
-          p.user-card__txt {{ user.about }}
-          p.user-card__actions(v-if="user.id")
-            span.user-card__link.i-email
-              router-link(:to="{ name: 'privateMessage', params: { recipientId: user.id }}" title='Enviar mensaje privado').link_underline Enviar mensaje privado
+                li.user-data__track {{ followers_count }} Seguidores
+                li.user-data__track {{ following_count }} Siguiendo
+                li.user-data__track(v-if="user.id")
+                  router-link.i-email(
+                    :to="{ name: 'privateMessage', params: { recipientId: user.id }}",
+                    title='Enviar mensaje privado') Enviar mensaje privado
+            .user-data__rating
+              .chat__line
+                span.chat__inner
+                  .chat__bubble-main
+                    figure.chat-bubble__avatar.avatar_60
+                      img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+                    .chat-bubble__item
+                      .chat-bubble__title.i-like Camila Cifuentes
+                      p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
 </template>
 <script>
 import { mapState } from 'vuex'
