@@ -1,6 +1,9 @@
 /*------------------------------------*\
 	Search generic
 \*------------------------------------*/
+.filtrate__box {
+  margin-bottom: 24px;
+}
 
 .filtrate {
   @include flexbox;
@@ -73,6 +76,10 @@
 }
 
 @media only screen and (min-width: 460px) {
+  .filtrate__box {
+    margin-bottom: 32px;
+  }
+
   .filtrate {
     @include flex-direction(row);
     @include justify-content(space-between);

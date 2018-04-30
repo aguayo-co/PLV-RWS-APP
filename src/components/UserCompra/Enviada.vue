@@ -1,5 +1,6 @@
 <template lang="pug">
 .dashboard__subitem
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check Compra confirmada y pago recibido
     div(v-if="sale.status === 40")

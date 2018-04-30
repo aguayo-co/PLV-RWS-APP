@@ -6,6 +6,7 @@
 //- Con la plataforma externa sólo mostramos mensaje sin acciones.
 //- Con la plataforma local tenemos acciones.
 .dashboard__subitem(v-if="isTransfer")
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_alert.i-alert-circle Pendiente de pago
     p.status.status_warning.i-reload(v-if="hasReceipt") Comprobante de pago en proceso de validación.
@@ -40,6 +41,7 @@
       button.btn.form-file__btn Subir
 
 .dashboard__subitem(v-else)
+  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_alert.i-alert-circle Pendiente de pago
     p Estamos esperando confirmación de tu transacción por parte de la plataforma de pagos.

@@ -1,16 +1,24 @@
 import UserCompra from '@/components/UserCompra'
-import FilterUser from '@/components/FilterUser'
 
 export default {
   name: 'UserTusCompras',
   components: {
-    UserCompra,
-    FilterUser
+    UserCompra
   },
   data: () => {
     return {
       sales: {},
-      orders: {}
+      orders: {},
+      listActive: false,
+      item: null,
+      listOptions: {
+        selected: 0,
+        options: [
+          { id: 0, name: 'Todas' },
+          { id: 1, name: 'Pendientes de envío' },
+          { id: 2, name: 'Pendientes de pago' }
+        ]
+      }
     }
   },
   created () {
@@ -51,6 +59,13 @@ export default {
         sale.user = order.sales[key].products[0].user
         this.$set(this.sales, sale.id, sale)
       })
+    },
+    openList: function () {
+      this.listActive = !this.listActive
+    },
+    changeOrder: function (listOptionId) {
+      this.listOptions.selected = listOptionId
+      this.listActive = false
     }
   }
 }

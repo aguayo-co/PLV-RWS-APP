@@ -12,6 +12,7 @@ export default {
           mqSmall: false,
           mqMobile: false,
           mqTablet: false,
+          mqTabletMax: false,
           mqDesk: false,
           mqDeskBig: false
           // wSM: false,
@@ -32,7 +33,7 @@ export default {
         getWindowWidth (event) {
           let w = document.documentElement.clientWidth
           let mediaQuery = {
-            smallmax: {
+            smallMax: {
               max: 559
             },
             small: {
@@ -43,6 +44,9 @@ export default {
             },
             tablet: {
               min: 768
+            },
+            tabletMax: {
+              max: 767
             },
             desk: {
               min: 1024
@@ -67,10 +71,11 @@ export default {
             // }
           }
           this.windowWidth = w
-          this.mqSmallMax = w <= mediaQuery.smallmax.max
+          this.mqSmallMax = w <= mediaQuery.smallMax.max
           this.mqSmall = w >= mediaQuery.small.min
           this.mqMobile = w <= mediaQuery.mobile.max
           this.mqTablet = w >= mediaQuery.tablet.min
+          this.mqTabletMax = w <= mediaQuery.tabletMax.max
           this.mqDesk = w >= mediaQuery.desk.min
           this.mqDeskBig = w >= mediaQuery.deskBig.min
           // this.wSM = w >= mediaQuery.sm.min && w <= mediaQuery.sm.max

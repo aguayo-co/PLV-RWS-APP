@@ -3,15 +3,25 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Tus Compras
-    FilterUser
-    //componente tabla
+    .filtrate__box
+      nav.filtrate.filtrate_end
+        .filtrate__item
+          span.filtrate__btn(
+            @click.stop="openList") {{ listOptions.options[listOptions.selected].name }}
+          transition(name='toggle-scale')
+            ul.filtrate__list(
+              v-if="listActive")
+              li.filtrate__list-item(
+                @click.stop.stop="changeOrder(option.id)"
+                v-for="option in listOptions.options") {{ option.name }}
+      //componente tabla
     .dashboard
       header.dashboard__head
         h2.dashboard__title Productos
-        h3.dashboard__title Estado del producto
+        h3.dashboard__title(v-if="mqTablet") Estado del producto
       UserCompra(
         v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id" v-on:refresh-order="setOrder")
-      // .dashboard__item
+      //.dashboard__item
         .dashboard__data
             p.dashboard__high Número de Orden: 12384746
             p 21/9/2017
@@ -39,8 +49,9 @@ section.single
                     p Teléfono: 97736545
                     p Dirección: Av. Pajaritos 1309, maipu
 
-          .dashboard__subitem
+          //.dashboard__subitem
             //-1
+            .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
             .dashboard__status
               p.status.status_alert.i-alert-circle Pendiente de pago
             .dashboard__actions
@@ -128,7 +139,7 @@ section.single
             //- Flujo desde => Calificación
             .dashboard__actions
               p.status.status_check.i-check Compra finalizada y calificada
-      // .dashboard__item
+      //.dashboard__item
         .dashboard__data
           p.dashboard__high Número de Orden: 12384746
           p 21/9/2017
