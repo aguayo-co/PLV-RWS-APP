@@ -1760,8 +1760,8 @@ body {
 .preload__spin {
   position: absolute;
   bottom: 0;
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   opacity: 0.5;
   border-radius: 25px;
   background: #f65a66;
@@ -1826,6 +1826,11 @@ body {
     opacity: 0.3;
     -webkit-transform: translateY(0);
             transform: translateY(0); } }
+
+@media only screen and (min-width: 768px) {
+  .preload__spin {
+    width: 20px;
+    height: 20px; } }
 
 /*------------------------------------*\
 	Transversal Elements
