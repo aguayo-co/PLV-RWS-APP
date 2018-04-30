@@ -5171,6 +5171,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
   padding: 16px 0; }
   .collections__item a {
     color: #000; }
