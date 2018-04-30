@@ -56,7 +56,7 @@
         h2.blog__headline 5. Elimina lo que ya no tienes
         .blog__copy
           p ¡Evita que te evalúen negativamente, y nos ayudarás a mantener Prilov con un buen servicio!
-          p Preocúpate por mantener tu perfil actualizado y nunca tengas a la venta un producto que no está disponible, ya que puede ser comprado en cualquier momento. Para eliminar un producto, debes ir a la vista de <strong>"Tu Clóset"</strong> y hacer click en el ícono de basurero justo arriba de la imagen del producto que quieras eliminar.
+          p Preocúpate por mantener tu perfil actualizado y nunca tengas a la venta un producto que no está disponible, ya que puede ser comprado en cualquier momento. Para eliminar un producto, debes ir a la vista de <strong>Tu Clóset</strong> y hacer click en el ícono de basurero justo arriba de la imagen del producto que quieras eliminar.
     figure.blog-bannerprom.banner-hero
       picture.banner-hero__crop
         source.banner-hero__img(
@@ -67,8 +67,8 @@
       article.blog__body.blog__body_slot
         h2.blog__headline 6. Oculta lo que aún no estás segura de vender
         .blog__copy
-          p Si necesitas ocultar temporalmente un producto, puedes usar la opción <strong>"Ocultar producto"</strong>.
-          p Para ocultar un producto, debes ir a la vista de <strong>"Tu Clóset"</strong> y hacer click en el ícono de ojo, justo arriba de la imagen del producto que quieras ocultar. Siempre podrás ver tus productos ocultos en <strong>"Tu Clóset"</strong> y volverlos a habilitar para que queden nuevamente disponibles.
+          p Si necesitas ocultar temporalmente un producto, puedes usar la opción <strong>Ocultar producto</strong>.
+          p Para ocultar un producto, debes ir a la vista de <strong>Tu Clóset</strong> y hacer click en el ícono de ojo, justo arriba de la imagen del producto que quieras ocultar. Siempre podrás ver tus productos ocultos en <strong>Tu Clóset</strong> y volverlos a habilitar para que queden nuevamente disponibles.
           p Si tienes problemas eliminando u ocultando productos, escríbenos a <a class="link_underline" href="mailto:contacto@prilov.com">contacto@prilov.com</a> o háblanos por el chat.
 </template>
 
