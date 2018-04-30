@@ -21,8 +21,7 @@
 
     .slider-fullwide__footer(
       v-if="mqTablet")
-      a.link_underline(href="#") Más sobre PriloverStars
-      a.link_underline(href="#") Más sobre IT Girls
+      router-link.link_underline(:to="{ name : 'ser-prilover' }") Más sobre Prilover Star
 
 </template>
 
