@@ -37,6 +37,7 @@ export default {
   data () {
     return {
       editPicture: false,
+      editCover: false,
       editName: false,
       editAbout: false,
       new_picture: null,
@@ -112,6 +113,8 @@ export default {
         formData.append('picture', blob)
         this.$store.dispatch('user/update', formData).then(() => {
           this.toggle('editPicture')
+          this.new_picture.refresh()
+          this.toggle('editCover')
           this.new_picture.refresh()
         }).catch((e) => {
           this.$handleApiErrors(e, ['picture'], this.errorLog)

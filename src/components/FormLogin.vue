@@ -1,6 +1,6 @@
 <template lang="pug">
 transition(name='modal-fade')
-  section.modal.modal_scroll
+  section.modal.modal_scroll.modal_login
     .modal__slot.content-slot
       .content-slot__inner
         header.modal__header

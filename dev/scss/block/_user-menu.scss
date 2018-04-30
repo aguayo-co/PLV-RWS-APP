@@ -124,10 +124,13 @@
     margin-left: auto;
     text-align: right;
     color: $c-neutro;
+    transition: all 0.3s;
     &:before {
       display: inline-block;
+      min-width: 30px;
       padding-bottom: 10px;
-      border-bottom: 5px solid transparent;
+      text-align: center;
+      border-bottom: 3px solid transparent;
     }
     &.i-bell,
     &.i-user {
@@ -140,9 +143,10 @@
         @include font-rem(16px);
       }
     }
-    &:active {
+    &:active,
+    &:hover {
       &:before {
-        border-bottom: 5px solid $c-brand;
+        border-bottom: 3px solid $c-brand;
       }
     }
   }
