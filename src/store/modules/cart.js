@@ -155,13 +155,13 @@ const mutations = {
     })
     Vue.set(state.sales, newSale.id, newSale)
 
-    store.commit('cart/setSaleSeller', {sale: state.sales[newSale.id], user: Vue.getNestedObject(sale.products, [0, 'user'])})
+    store.commit('cart/setSaleSeller', {sale: state.sales[newSale.id], user: sale.user})
     Object.keys(sale.products).forEach(function (key) {
       store.commit('cart/setSaleProduct', {sale: state.sales[newSale.id], product: sale.products[key]})
     })
   },
   /**
-   * Almacena cada vendedor en el state.
+   * Almacena datos de cada vendedor en la venta en el state.
    *
    * @param {*} state
    * @param {*} data
