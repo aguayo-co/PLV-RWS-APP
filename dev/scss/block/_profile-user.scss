@@ -52,6 +52,7 @@
   .user-header__item {
     text-align: center;
   }
+
   .user-data__holder {
     color: $c-default-5;
     &:before {
@@ -137,6 +138,19 @@
     margin-top: -4px;
   }
 
+.user-data__rating {
+  .chat__bubble-main {
+    @include align-items(center);
+    .chat-bubble__txt {
+      padding: 4px 8px;
+    }
+  }
+  .chat__line {
+    margin-right: 0;
+  }
+}
+
+
 //grupo de prilover label Prilover star
 .user-data__group {
   margin-bottom: 0;
@@ -187,10 +201,20 @@
   list-style: none;
   margin: 0;
   padding: 8px 0;
+  a {
+    color: $c-default;
+    &:before {
+      color: $c-brand;
+      padding-right: 6px;
+    }
+  }
 }
 
 .user-data__notify {
   padding: 8px 0;
+}
+.user-data__block {
+  padding: 16px 0;
 }
 
 .user-data__value {
@@ -253,6 +277,7 @@
   padding: 50px 0;
 }
 
+
 .user-data__form {
   padding-bottom: 30px;
 }
@@ -287,6 +312,10 @@
     .user-item_gutter {
       margin-right: 20px;
     }
+    .user-iten_grow {
+      @include flex-grow(1);
+    }
+
     .user-data__nav {
       @include justify-content(left);
       padding: 24px 0 16px;
@@ -342,8 +371,15 @@
       }
     }
     .user-data__caption-i {
-    text-align: left;
+      text-align: left;
     }
+    .user-data__block {
+      padding-bottom: 24px;
+      .user-data__list {
+        @include justify-content(flex-start);
+      }
+    }
+
 }
 // $bp-medium: 768px;
 @include media-query(medium) {
@@ -368,7 +404,19 @@
       @include font-rem(100px);
     }
   }
+  .user-data__subitem {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+  .user-data__block {
+    min-width: 380px;
+    margin-right: 20px;
+    .user-data__list {
+      padding: 8px 0; 
+    }
 
+  }
 
 }
 
@@ -389,108 +437,4 @@
     }
   }
 
-}
-
-/*------------------------------------*\
-	Info User in Producto
-\*------------------------------------*/
-.product-user {
-  padding-top: 32px;
-}
-
-.user-card {
-  @include flexbox;
-  @include flex-direction(column);
-  @include align-items(center);
-  @include justify-content(space-around);
-}
-
-.user-card__header {
-  width: 100%;
-}
-.user-card__tip {
-  position: relative;
-  width: 100%;
-  min-width: 220px;
-  padding: 20px;
-  background-color: $c-neutro-4;
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: transparent;
-  }
-}
-
-// Description User
-@media only screen and (max-width: 640px) {
-  .user-card__content {
-    padding-top: 20px;
-  }
-
-  .user-card__tip {
-    &:before {
-      top: -14px;
-      left: 50%;
-      border-width: 0 11px 14px 11px;
-      border-bottom-color: $c-neutro-4;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-    }
-  }
-}
-
-.user-card__actions {
-  text-align: right;
-  margin: 0;
-}
-
-.user-card__link {
-  position: relative;
-  display: inline-block;
-  padding-left: 38px;
-  &:before {
-    position: absolute;
-    left: 0;
-    top: 4px;
-    color: $c-brand;
-    @include font-rem(20px);
-  }
-}
-
-// $bp-small-medium: 640px;
-@include media-query(small-medium) {
-
-  .user-card {
-    @include flex-direction(row);
-  }
-  .user-card__tip {
-    &:before {
-      top: 50%;
-      left: -21px;
-      border-style: solid;
-      border-width: 20px 30px 20px 0;
-      border-right-color: $c-neutro-4;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-    }
-  }
-
-}
-//$bp-medium: 768px;
-@include media-query(medium) {
-  .product-user {
-    padding-top: 56px;
-  }
-}
-
-//$bp-wide: 1024px;
-@include media-query(wide) {
-  .user-card__content {
-    width: 100%;
-    padding-left: 50px;
-  }
 }

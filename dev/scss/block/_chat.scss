@@ -8,6 +8,7 @@
   border-radius: 50%;
   border: 2px solid $c-brand;
 }
+
 .chat-bubble__img {
   width: 100%;
 }
@@ -43,6 +44,21 @@
   margin-bottom: 8px;
 }
 
+.chat-bubble__title {
+  @include flexbox;
+  @include align-items(center);
+  padding-bottom: 8px;
+  font-weight: $fw-bold;
+  @include font-rem(18px);
+  &:before {
+    position: relative;
+    top: -2px;
+    padding-right: 8px;
+    color: $c-brand;
+    @include font-rem(16px);
+  }
+}
+
 /*------------------------------------*\
   Burbuja principal de chat
 \*------------------------------------*/
@@ -56,11 +72,18 @@
     max-width: 35px;
     height: 35px;
   }
+  .avatar_60 {
+    min-width: 60px;
+    max-width: 60px;
+    height: 60px;
+  }
+
   .chat-bubble__txt {
     padding: 8px 18px;
     border-color: $c-brand;
   }
 }
+
 
 /*------------------------------------*\
   Burbuja secundaria de chat

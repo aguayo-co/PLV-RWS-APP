@@ -11,7 +11,7 @@
           .upfile__item
             a.upfile__delete.i-x(
               v-show='toggleImageDelete[0]',
-              @click='removeImage(0)') 
+              @click='removeImage(0)')
               span.hide Eliminar
             .upfile__label
               .upfile__text.i-upload(
