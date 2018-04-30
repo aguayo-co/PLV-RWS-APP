@@ -66,7 +66,7 @@ export default {
           title: 'Ventas',
           items: [
             {
-              name: 'Tu closet',
+              name: 'Tu clóset',
               url: '/user/tu-closet',
               ico: 'i-closet'
             },

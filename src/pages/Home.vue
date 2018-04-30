@@ -8,7 +8,7 @@
       header.section__head
         h2.title_head Prilovers <span class="txt_brand">We Love</span>
         h3.title_subhead(
-          v-if="mqTablet") Mueve tu closet y forma parte de la comunidad más grande
+          v-if="mqTablet") ¡Únete a la comunidad más cool de clósets!
       PriloversSlider
 
   section.section_product

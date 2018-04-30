@@ -3,7 +3,7 @@
   .layout-inner
     section.chat-band
       header.chat-band__header
-        h2.subhead Preguntas sobre esta prenda
+        h2.subhead Comentarios de este producto
       .chat-band__grid
         .chat
           .chat__group(v-for="(question, index) in questions")
@@ -88,7 +88,7 @@
               action='#',
               submit.prevent='',
               method='post')
-              label.chat__subhead ¡Pregúntale a la vendedora!
+              label.chat__subhead ¡Comenta acá!
               span.help(v-if="errorLog.question") {{ errorLog.question }}
               textarea-autosize.form__textarea.chat__textarea(
                 v-model="newQuestion",
