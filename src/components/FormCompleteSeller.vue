@@ -46,7 +46,7 @@
             textarea.form__control(
               v-model='about',
               id='aboutUser')
-            p.form__note (esta breve descripción se mostrará cuando otras Prilover visiten Tu Closet)
+            p.form__note (esta breve descripción se mostrará cuando otras Prilover visiten Tu Clóset)
           .form__row(
             v-if='!user.phone',
             :class='{ "is-danger": errorLog.phone }')

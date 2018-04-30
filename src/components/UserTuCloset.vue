@@ -2,7 +2,7 @@
 section.single
   .single__inner
     header.single__header
-      h1.single__title Tu closet
+      h1.single__title Tu clóset
     //- Data user
     UserDataCloset
     UserVacaciones
