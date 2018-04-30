@@ -2972,9 +2972,7 @@ body {
       -webkit-flex-direction: column;
       -moz-flex-direction: column;
       -ms-flex-direction: column;
-      flex-direction: column;
-      padding-bottom: 2px;
-      border-bottom: 3px solid transparent; }
+      flex-direction: column; }
     .foot-nav_mb .tool-user__avatar {
       width: 26px;
       height: 26px;
@@ -2992,7 +2990,7 @@ body {
       font-size: 0.6875rem; }
     .foot-nav_mb .badge_user {
       top: -3px;
-      left: 26px; }
+      left: 22px; }
   .foot-nav__list {
     display: -webkit-box;
     display: -webkit-flex;
@@ -3020,8 +3018,9 @@ body {
     position: relative;
     display: block;
     height: auto;
-    color: #fff;
     padding-bottom: 2px;
+    text-align: center;
+    color: #fff;
     border-bottom: 3px solid transparent;
     transition: all 0.3s; }
     .foot-nav__link:hover {
@@ -3324,12 +3323,19 @@ body {
   .modal-fade-leave-to .modal__slot {
     transform: translateY(10px); }
 
+@media only screen and (min-width: 524px) {
+  .modal_login .modal__slot {
+    min-height: auto;
+    margin: 50px auto; } }
+
+@media only screen and (max-width: 767px) {
+  .modal_login {
+    z-index: 180;
+    padding-top: 60px; } }
+
 @media only screen and (min-width: 768px) {
   .modal_scroll {
-    padding-bottom: 50px; }
-    .modal_scroll .modal__slot {
-      min-height: auto;
-      margin: 50px auto; } }
+    padding-bottom: 50px; } }
 
 /*------------------------------------*  Notificacciones
 \*------------------------------------*/
@@ -4365,19 +4371,22 @@ body {
     display: block;
     margin-left: auto;
     text-align: right;
-    color: #fff; }
+    color: #fff;
+    transition: all 0.3s; }
     .user-menu__icon:before {
       display: inline-block;
+      min-width: 30px;
       padding-bottom: 10px;
-      border-bottom: 5px solid transparent; }
+      text-align: center;
+      border-bottom: 3px solid transparent; }
     .user-menu__icon.i-bell:before, .user-menu__icon.i-user:before {
       font-size: 20px;
       font-size: 1.25rem; }
     .user-menu__icon.i-shop:before {
       font-size: 16px;
       font-size: 1rem; }
-    .user-menu__icon:active:before {
-      border-bottom: 5px solid #f65a66; } }
+    .user-menu__icon:active:before, .user-menu__icon:hover:before {
+      border-bottom: 3px solid #f65a66; } }
 
 @media only screen and (min-width: 1024px) {
   .side {
