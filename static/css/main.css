@@ -4320,7 +4320,8 @@ body {
 .user-nav__link {
   position: relative;
   padding-left: 36px;
-  color: #000; }
+  color: #000;
+  text-transform: capitalize; }
   .user-nav__link:before {
     position: absolute;
     left: 0;

@@ -56,7 +56,7 @@ export default {
               ico: 'i-bag'
             },
             {
-              name: 'Tus favoritos',
+              name: 'Tus Favoritos',
               url: '/user/tus-favoritos',
               ico: 'i-favorite'
             }
@@ -66,7 +66,7 @@ export default {
           title: 'Ventas',
           items: [
             {
-              name: 'Tu clóset',
+              name: 'Tu Clóset',
               url: '/user/tu-closet',
               ico: 'i-closet'
             },
@@ -81,12 +81,12 @@ export default {
               ico: 'i-start'
             },
             {
-              name: 'Método de envío',
+              name: 'Método De Envío',
               url: '/user/metodos-envios',
               ico: 'i-shipping'
             },
             {
-              name: 'Cerrar sesión',
+              name: 'Cerrar Sesión',
               url: '#',
               ico: 'i-x'
             }

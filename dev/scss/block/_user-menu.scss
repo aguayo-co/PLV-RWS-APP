@@ -33,6 +33,7 @@
       position: relative;
       padding-left: 36px;
       color: $c-default;
+      text-transform: capitalize;
       &:before {
         position: absolute;
         left: 0;
