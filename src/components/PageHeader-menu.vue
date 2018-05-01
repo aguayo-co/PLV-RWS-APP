@@ -47,7 +47,7 @@ nav.page-menu
                 @click='toggleNav')
                 span Cerrar
               li.menu-side__footer
-                a.link_underline(href='#') Ver todas las Prendas
+                a.link_underline(href='#') Ver todos los productos
       router-link.menu__link(
           v-if='item.url'
           v-bind:to='item.url'
