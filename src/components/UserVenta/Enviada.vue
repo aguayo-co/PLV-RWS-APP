@@ -5,7 +5,7 @@
   .dashboard__status
     p.status.status_check.i-check(v-if="delivered") Pedido Entregado
     p.status.status_check.i-check(v-else) Pedido Enviado
-    p.status.status_alert.i-rocket Esperando confirmación de recibido de la Compradora.
+    p.status.status_alert.i-rocket Esperando confirmación de recibido por parte de la compradora.
   //- Si tenemos información de rastréo, la mostramos.
   .dashboard__actions(v-if="trackingInfo")
     p Ya nos informaste que enviaste el pedido,
@@ -20,7 +20,7 @@
 
   //- De lo contrario, mostramos las notas del envío.
   .dashboard__actions(v-else)
-    p Escogiste juntarte con la vendedora.
+    p Escogiste juntarte con la compradora.
     p Estamos esperando que ella nos confirme que ya le entregaste el pedido.
 
 //- Envíos que SI son por ChileExpress.
@@ -30,9 +30,9 @@
     p.status.status_check.i-check(v-if="!delivered") Pedido Enviado por ChileExpress
     p.status.status_check.i-check(v-else) Pedido Entregado por ChileExpress
     p.status.status_check.i-rocket # de seguimiento: 991238891238FR
-    p.status.status_alert.i-rocket Esperando confirmación de recibido de la Compradora.
+    p.status.status_alert.i-rocket Esperando confirmación de recibido por parte de la compradora.
   .dashboard__actions
-    p Ya nos informaste el número de seguimiento y se lo enviamos a la vendedora.
+    p Ya nos informaste el número de seguimiento y se lo enviamos a la compradora.
     a.link_underline(
       href="#") « Ingresé mal el número de seguimiento o entregué de otra forma
 

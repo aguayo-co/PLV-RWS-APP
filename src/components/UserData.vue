@@ -135,11 +135,11 @@ section.single
       //-Btn Prilovers Star
       .user-data__actions
         router-link.btn.btn_small.i-start(
-          to="/user/prilover-star",
-          title="Ser Priloverstar") Ser Prilover Star
+          :to="'/user/prilover-star'",
+          title="Ser Prilover Star") Ser Prilover Star
         //- router-link.btn.btn_small.i-sale(
-        //-   to="/publicar-venta",
-        //-   title="Publicar Producto") Publicar una venta
+              to="/publicar-venta",
+              title="Publicar un producto en Prilov") Publicar un producto
 
       //-Información direcciones
       .user-data_info

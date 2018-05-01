@@ -19,7 +19,7 @@
       AddressList(in-shopping-cart=true)
 
       .subhead Teléfono
-        small.small_high Danos tu número celular para que el vendedor pueda comunicarse contigo
+        small.small_high Ingresa tu número celular para que la vendedora pueda comunicarse contigo facilmente.
       form.form_user(
         id="form-user-phone"
         v-on:submit.prevent='updatePhone')

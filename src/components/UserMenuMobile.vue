@@ -2,11 +2,17 @@
 nav.user-menu
   ul.user-menu__list(:class="{openUserMenu : menuUsuaria}")
     li.user-menu__item
-      router-link(:to="'/user/tu-closet'", title="title").user-menu__icon.i-shop
+      router-link.user-menu__icon.i-shop(
+        :to="{ name: 'user-tu-closet'}",
+        title="Ir a tu Clóset")
     li.user-menu__item
-      router-link(:to="'/user/notificaciones'", title="title").user-menu__icon.i-bell
+      router-link.user-menu__icon.i-bell(
+        :to="{ name: 'user-notificaciones'}",
+        title="Ver Tus Notificaciones")
     li.user-menu__item
-      router-link(:to="'/user/data'", title="title").user-menu__icon.i-user
+      router-link.user-menu__icon.i-user(
+        :to="{ name: 'user-data'}",
+        title="Ver Tu Perfil")
     li.user-menu__item.user-menu__item_burguer(@click.stop="openMenuUsuaria")
       span.menu-ico.user-menu__icon(:class="{'menu-ico_open' : menuUsuaria}")
         span.menu-ico__line

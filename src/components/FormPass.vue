@@ -22,11 +22,11 @@
         .form__notify(v-if='emailFound == false')
           p No hemos encontrado una cuenta asociada al correo: {{userEmail}}
           p ¿Te gustaría crear una cuenta ahora?
-          a.btn(href="#") Crear cuenta
+          router-link.btn(:to="{ name: 'signup'}") Crear cuenta
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
           @click.prevent='validateBeforeSubmit()') Enviar Correo
-    p.form__info.i-alert-info Recuerda revisar también la carpeta de <strong>correo no deseado.</strong>
+    p.form__info.i-alert-info Recuerda revisar tu carpeta de <strong>correo no deseado.</strong>
 </template>
 
 <script>

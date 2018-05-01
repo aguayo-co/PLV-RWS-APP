@@ -55,7 +55,7 @@
             v-if='user.id')
             figure.tool-user__grid(
               @click='toggleBox()')
-              small.badge.badge_user 2
+              small.badge.badge_user(v-if="user.notifications > 0") {{ user.notifications }}
               span.tool-user__avatar
                 //-vue variable Notificaciones usuario
                 img.tool-user__photo(
@@ -73,15 +73,15 @@
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
-                      to="/user/data",
+                      :to="{ name: 'user-data'}",
                       title="Ir a tu cuenta") Tu Cuenta
                   li.user-auth__item
                     router-link.user-auth__link(
-                      :to="'/user/tus-compras'",
+                      :to="{ name: 'user-tus-compras'}",
                       title="Ir a tus compras") Tus Compras
                   li.user-auth__item
                     router-link.user-auth__link(
-                      :to="'/user/tus-ventas'",
+                      :to="{ name: 'user-tus-ventas'}",
                       title="Ir a tus Ventas") Tus Ventas
                   li.user-auth__item
                     a.user-auth__link(

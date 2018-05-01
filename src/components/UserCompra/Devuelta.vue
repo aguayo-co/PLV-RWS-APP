@@ -80,7 +80,7 @@
 .dashboard__subitem(v-else-if="sale_return.status === 90")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
-    p.status.status_alert.i-reload Pedido devuelto.
+    p.status.status_alert.i-reload Producto devuelto.
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 99")

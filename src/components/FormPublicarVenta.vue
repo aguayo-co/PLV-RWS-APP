@@ -89,7 +89,7 @@
     .layout-inner
       fieldset.form-section
         legend.subhead.form-section__title Cuéntanos más sobre tu producto
-          p.form-section__subtitle Una buena descripción hace que los compradores encuentren rápidamente tus productos.
+          p.form-section__subtitle Una buena descripción hace que los compradoras encuentren rápidamente tus productos.
 
         .form__row(
           :class='{ "is-danger": errorLog.title }')

@@ -43,7 +43,7 @@ section.single
           a.btn.btn_space(href='#') ¿Que es ser PriloverStar?
           a.btn.btn_solid(href='#') Comprar Créditos
         .step-data__box
-          a.link_underline(href='#') No quiero ser una Prilover Star
+          a.link_underline(href='#') No quiero ser una Prilover Star aún
 
     //- Step 1_b
     //- Flujo 1_b desde btn => Comprar Créditos
@@ -87,7 +87,7 @@ section.single
             .step-data__box
               button.btn.btn_solid Pagar
           .step-data__box
-            a.link_underline(href='#') No quiero ser una Prilover Star
+            a.link_underline(href='#') No quiero ser una Prilover Star aún
             //-end item 3
 
     //- Step 1_c NO => ¿Usuaria paga con pasarela online?
@@ -97,7 +97,7 @@ section.single
         header.head_ico
           small.ico__title.i-clock 10:00
           h2.title Estás a un paso de ser Prilover Star.
-          p.subtitle_heart Aun no has terminado tu compra, sube tu comprobante de pago.
+          p.subtitle_heart Aún no has finalizado tu compra. Sube tu comprobante de transferencia bancaria.
         .content-slot__inner
           .notify__body
             form.form.form_file
@@ -115,7 +115,7 @@ section.single
           .notify__footer
               button.btn.btn_solid Enviar comprobante
       .step-data__box
-        a.link_underline(href='#') No quiero ser una Prilover Star
+        a.link_underline(href='#') No quiero ser una Prilover Star aún
 
     //- Step 1_d Éxito Transferencia bancaria
     //- Flujo 1_d => Btn enviar comprobante
@@ -145,22 +145,22 @@ section.single
           a.btn.btn_space(href='#') ¿Que es ser PriloverStar?
           a.btn.btn_solid(href='#') Comprar Créditos
         .step-data__box
-          a.link_underline(href='#') No quiero ser una Prilover Star
+          a.link_underline(href='#') No quiero ser una Prilover Star aún
 
     //- Step 2_b SI => Transferencia bancaria exitosa
     //- Flujo 2_b ** CASO 1 **
     .single__step
       .alert.status_check
-        p.alert__txt.i-start ¡Genial!
-        p.alert__txt Eres toda una Prilover Star.
+        p.alert__txt.i-start ¡Cool!
+        p.alert__txt Ya eres toda una Prilover Star.
         p Ya envíamos un comprobante de compra a tu correo.
 
     //- Step 2_b SI => Transferencia bancaria exitosa
     //- Flujo 2_b ** CASO 2 **
     .single__step
       .alert.status_check
-        p.alert__txt.i-start ¡Genial!
-        p.alert__txt Eres toda una Prilover Star.
+        p.alert__txt.i-start ¡Cool!
+        p.alert__txt Ya eres toda una Prilover Star.
         p Comprobamos tu transferencia y ya envíamos un comprobante de pago a tu correo.
 
     //- Step 2_c NO => Transferencia bancaria ERROR
@@ -171,7 +171,7 @@ section.single
       .step-data__box
         a.btn.btn_solid(href='#') Reenviar comprobante
       .step-data__box
-        a.link_underline(href='#') No quiero ser una Prilover Star
+        a.link_underline(href='#') No quiero ser una Prilover Star aún
 
     //- Step 2_c NO => Transferencia bancaria ERROR
     //- Flujo 2_c ** CASO 2 **
@@ -181,7 +181,7 @@ section.single
       .step-data__box
         a.btn.btn_solid(href='#') Volverlo a intentar
       .step-data__box
-        a.link_underline(href='#') No quiero ser una Prilover Star
+        a.link_underline(href='#') No quiero ser una Prilover Star aún
 
     //- Step 3 => Información sobre Prilover Star
     //- Flujo 3
@@ -203,9 +203,9 @@ section.single
               li.single__item Tu productos serán promocionados en nuestros e-mail masivos y en redes sociales.
               li.single__item Si tus fotos y productos no cumplen con el requisito mínimo de aprobación (Revisar Manual de cómo sacar buenas fotos) no podremos permitirte ser una Prilover STAR.
         .single__row
-          a(href='#').btn.btn_solid Canjear créditos y ser una Prilover Star
+          a(href='#').btn.btn_solid Pagar con créditos y ser una Prilover Star
         .single__row
-          a(href='#').link_underline No quiero ser una Prilover Star
+          a(href='#').link_underline No quiero ser una Prilover Star aún
 
 </template>
 

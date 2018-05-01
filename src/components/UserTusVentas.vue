@@ -8,7 +8,7 @@ section.single
       nav.filtrate
         .filtrate__item
           router-link.link_circle.i-plus(
-            to="/publicar-venta") 
+            to="/publicar-venta")
             span.link_underline Publicar un Producto
         .filtrate__item
           span.filtrate__btn(
