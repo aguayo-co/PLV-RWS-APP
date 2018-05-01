@@ -6,9 +6,9 @@ section.single
       p.single__subtitle Información bancaria para depósito de ventas realizadas
       .box-flat
         .box-flat__grid
-          .box-flat__lead.i-bank-data
+          .box-flat__lead.i-credits
             h3.box-flat__title Cuenta Corriente Banco Chile
-            p.box-flat__txt ....&nbsp;....&nbsp;....&nbsp;3306
+            p.box-flat__txt 54654553306
           .box-flat__button
             a.box-flat__btn.txt-underline(href="#", title="Modificar datos bancarios") Modificar
       //2a Usuaria que no posee un método de pago
@@ -19,7 +19,7 @@ section.single
               h3.box-flat__title Aún no posees un medio de depósito para Tus Ventas
               p.box__txt Danos tu cuenta para depositar tus ganancias de Prilov. Puedes estar tranquila que tu información bancaria estará asegurada.
           .box-flat__button
-            a.btn.box-flat__btn.btn_solid(href="#", title="Agregar medio de pago") Agregar medio de pago
+            a.btn.box-flat__btn.btn_solid(href="#", title="Agregar medio de pago") Agregar cuenta
       //End 2a Usuaria que no posee un método de pago
     //-1a Usuaria que agrega su medio de pago
     form.form.form_big(
