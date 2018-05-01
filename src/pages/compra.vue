@@ -8,7 +8,7 @@
         li.steps__item(
           :class="{steps__item_current: isShoppingCart}")
           span.steps__bullet.i-ok 1
-          span.steps__label Carro y Envío
+          span.steps__label Envío
           //-TO DO: Valor compra
           span.steps__value(v-if="orderTotal") ${{ orderTotal | currency }}
         li.steps__item(
@@ -18,7 +18,7 @@
         li.steps__item(
           :class="{steps__item_current: isPayed}")
           span.steps__bullet.i-ok  3
-          span.steps__label Comprobante
+          span.steps__label Confirmación
 
   .layout-inner
     //- List paso 1:compra

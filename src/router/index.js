@@ -152,7 +152,7 @@ export default new Router({
       props: true
     },
     {
-      path: 'shop/:type/:slug',
+      path: '/shop/:type/:slug',
       name: 'categoria',
       component: Categoria
     },
