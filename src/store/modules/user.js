@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
+import threadsAPI from '@/api/thread'
 
 const baseUserGenerator = () => {
   return {
@@ -49,6 +50,7 @@ const actions = {
       .then(response => {
         commit('set', response.data)
         dispatch('loadAddresses')
+        dispatch('loadNotifications')
         return response
       })
       .catch(e => {
@@ -60,6 +62,14 @@ const actions = {
       commit('setAddresses', response.data.data)
       return response
     })
+  },
+  loadNotifications ({commit, state}) {
+    let filter = { unread: '1' }
+    return threadsAPI.get(1, 100, filter)
+      .then(response => {
+        commit('setNotifications', response.data)
+        return response
+      })
   },
   update ({commit, state}, data) {
     data.id = state.id
@@ -102,6 +112,7 @@ const actions = {
   setUser ({commit, dispatch}, user) {
     commit('set', user)
     dispatch('loadAddresses')
+    dispatch('loadNotifications')
   }
 }
 
@@ -124,6 +135,9 @@ const mutations = {
   },
   setAddress: function (state, address) {
     Vue.set(state.addresses, address.id, address)
+  },
+  setNotifications: function (state, notifications) {
+    state.notifications = notifications.total
   },
   removeAddress: function (state, address) {
     Vue.delete(state.addresses, address.id)
