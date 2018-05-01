@@ -17,7 +17,7 @@
             .blog__subarticle
               h2.blog__headline 2. Solicita la devolución en Prilov y conversa con la vendedora
               p Una vez que decidas devolver un producto, lo primero que tienes que hacer es ingresar a Tus Compras y en la vista de la compra, marcar  <strong>¿Algo no te gustó de tu producto?</strong> y luego seguir los pasos que se muestran.
-              p Recuerda que desde que recibes el producto, tienes 48 horas para notificar la devolución en Prilov. 
+              p Recuerda que desde que recibes el producto, tienes 48 horas para notificar la devolución en Prilov.
               p Si no cambias el estado en 48 horas (tanto para <strong>Recibido</strong> o como para <strong>Devolución</strong>), el producto se marcará automáticamente como <strong>Recibido</strong> y se generarán los créditos a la vendedora.
               p En caso de que envíes el producto a la vendedora a través de una empresa de courier,  tienes 5 días en total, para ingresar los datos del envío (<em>Nombre empresa y número de seguimiento</em>) y que la vendedora reciba el producto.
               p Si en lugar de enviar el producto, te juntaste con la vendedora, también podrás seleccionar esa opción desde la vista de <strong>Tus Compras</strong>. Apenas la vendedora tenga nuevamente el producto en sus manos y lo notifique en Prilov, se generarán tus créditos en tu cuenta en Prilov. Si quieres transferirlos a tu cuenta bancaria, puedes solicitarlo desde la vista de <strong>Tus Créditos</strong>.

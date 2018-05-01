@@ -1,5 +1,5 @@
 <template lang="pug">
-.layout-band
+.layout-band(ref="beggining")
   .layout-inner
     section.chat-band
       header.chat-band__header
@@ -36,51 +36,6 @@
                   p.chat-bubble__txt {{ message.body }}
                 .chat__footer
                   time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
-
-            span.chat-break
-              span.chat-break__bullet
-          // .chat__group
-            .chat-line
-              .chat__bubble-main
-                .chat-bubble__avatar
-                  img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-                p.chat-bubble__txt Hola, si está aun disponible, ¿Quieres comprarlo?
-              .chat__bubble
-                .chat-bubble__avatar
-                  img.chat-bubble__img(src="static/img/demo/user-avatar-001.jpg", alt="Avatar")
-                p.chat-bubble__txt Hola, si, me interesa comprar.
-              span.editor__btn(
-                @click="toggle('editorAnswer')") Responder
-            .editor(
-              v-if="editorAnswer == true")
-              form.editor__form
-                .chat__form-group
-                  textarea.form__textarea.editor__textarea(
-                    rows="1"
-                  )
-                    button.chat__btn-solid.i-shipping(
-                      type="submit",
-                      @click.prevent="toggle('editorAnswer')")
-            span.chat-break
-              span.chat-break__bullet
-          //.chat__group
-            .chat-line
-              .chat__bubble-main
-                .chat-bubble__avatar
-                  img.chat-bubble__img(src="static/img/demo/user-avatar-002.jpg", alt="Avatar")
-                p.chat-bubble__txt Disculpa, viajo a Argentina mañana en la tarde, será posible que lo valla yo a buscar directamente, por favor.. es para llevarlo al mencionado país, muchas gracias...
-              span.editor__btn(
-                v-if="editorAnswer == false",
-                @click="toggle('editorAnswer')") Responder
-            .editor(
-              v-if="editorAnswer == true")
-              form.editor__form
-                .chat__form-group
-                  textarea.form__textarea.editor__textarea(
-                    rows="1")
-                    button.chat__btn-solid.i-shipping(
-                      type="submit",
-                      @click.prevent="toggle('editorAnswer')")
             span.chat-break
               span.chat-break__bullet
         .chat-query
@@ -160,6 +115,7 @@ export default {
               this.newQuestion = ''
               this.questions.unshift(response.data)
             }
+            window.scrollTo(0, this.$refs.beggining.offsetTop - 75)
           })
       }
     },
@@ -183,7 +139,9 @@ export default {
               this.disabledAnswer = false
               this.activeAnswer.id = null
               this.activeAnswer.content = ''
-              this.questions[questionIndex].messages.push(response.data.messages[response.data.messages.length - 1])
+              data.created_at = new Date()
+              data.created_at.setHours(data.created_at.getHours() + 5)
+              this.questions[questionIndex].messages.push(data)
             }
           })
       }
