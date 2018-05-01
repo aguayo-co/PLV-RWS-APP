@@ -1,22 +1,6 @@
 <template lang="pug">
 section.single
   .single__inner
-    //- form.form_flex
-    //-   .form__row
-    //-     input.form__control(
-    //-       type="search",
-    //-       name="search-noti")
-    //-   ul.filter__box
-    //-     li.filter__box-select
-    //-       span.filter__arrow
-    //-         .filter__box-label Todas <strong>Nuestros favoritos</strong>
-    //-       ul.filter__list
-    //-         li.filter__item Lo último
-    //-         li.filter__item Menor precio
-    //-         li.filter__item Mayor precio
-    //-         li.filter__item Destacados
-    //-         li.filter__item Nuestros favoritos
-
     header.single__header
       h1.single__title Notificaciones
     .collections
@@ -30,7 +14,7 @@ section.single
             :to="{ name: 'conversation', params: { threadId: message.id }}")
             .collection__lead
               .collection__head
-                span.collection__title {{ message.participants[1].user.first_name }} {{ message.participants[1].user.last_name }}
+                span.collection__title {{ getMessenger(message).first_name }} {{ getMessenger(message).last_name }}
                 span.collection__label {{ message.product_id ? "Te hizo una pregunta en un producto" : "Te escribió un privado" }}
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
@@ -47,7 +31,7 @@ section.single
             :to="{ name: 'conversation', params: { threadId: message.id }}")
             .collection__lead
               .collection__head
-                span.collection__title {{ message.participants[1].user.first_name }} {{ message.participants[1].user.last_name }}
+                span.collection__title {{ getMessenger(message).first_name }} {{ getMessenger(message).last_name }}
                 span.collection__label
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
@@ -92,6 +76,13 @@ export default {
         return true
       }
       return false
+    },
+    getMessenger: function (thread) {
+      let result = thread.participants.filter(x => x.user_id !== this.user.id)[0].user
+      if (result) {
+        return result
+      }
+      return {}
     }
   }
 }

@@ -12,10 +12,12 @@
           router-link.user-nav__link(
             :to='items.url',
             :class='items.ico') {{ items.name }}
+            span.badge(v-if="items.notifications && user.notifications > 0") {{ user.notifications }}
 
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'UserMenu',
   data () {
@@ -30,9 +32,10 @@ export default {
               ico: 'i-data'
             },
             {
-              name: 'Notificaciones',
+              name: 'Mensajes',
               url: '/user/notificaciones',
-              ico: 'i-bell'
+              ico: 'i-bell',
+              notifications: true
             },
             {
               name: 'Datos Bancarios',
@@ -93,6 +96,9 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState(['user'])
   }
 }
 </script>

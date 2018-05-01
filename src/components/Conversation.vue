@@ -3,7 +3,7 @@ section.single
   .single__inner(v-if="thread")
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
     header.single__header
-      h1.single__title {{ thread.participants[1].user.first_name }} {{ thread.participants[1].user.last_name }}
+      h1.single__title {{ messenger.first_name }} {{ messenger.last_name }}
     .chat.chat__grid
       .chat__slot(v-if="product.id")
         article.slot.slot_grid
@@ -19,15 +19,17 @@ section.single
               .slot__price ${{ product.price | currency }}
 
       .chat__message
-        .chat__message_inner
+        .chat__message_inner(ref="chatBox")
           .chat__message-flex
             .chat-line(v-for="message in thread.messages")
               .chat__bubble-main(:class="{ 'own' : message.user_id === user.id }")
                 .chat-bubble__avatar(v-if="message.user_id === user.id")
-                  img.chat-bubble__img(:src="thread.participants[0].user.picture", alt="Avatar")
+                  img.chat-bubble__img(:src="user.picture", alt="user.first_name")
                 .chat-bubble__avatar(v-else)
-                  img.chat-bubble__img(:src="thread.participants[1].user.picture", alt="Avatar")
+                  img.chat-bubble__img(:src="messenger.picture", alt="messenger.first_name")
                 p.chat-bubble__txt {{ message.body }}
+              .chat__footer
+                time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
         .chat-inner
           form.chat__form
             label.chat__label Escribe tu mensaje aquí
@@ -63,12 +65,15 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    messenger () {
+      return this.thread.participants.filter(x => x.user_id !== this.user.id)[0].user
+    }
 
   },
   watch: {
     thread: function () {
-      if (this.thread.product_id) {
+      if (this.thread.product_id && !this.product.id) {
         productsAPI.getProductById(this.thread.product_id)
           .then(response => {
             this.product = response.data.data[0]
@@ -77,13 +82,6 @@ export default {
     }
   },
   methods: {
-    isUnread: function (messageId) {
-      let result = this.unread.data.filter(x => x.id === messageId)[0]
-      if (result) {
-        return true
-      }
-      return false
-    },
     send: function () {
       this.errorLog = {}
       if (!this.newMessage) {
@@ -102,13 +100,16 @@ export default {
             if (response.data.id) {
               this.disabledMessage = false
               this.newMessage = ''
-              this.thread.messages.push(response.data.messages[response.data.messages.length - 1])
+              data.created_at = new Date()
+              data.created_at.setHours(data.created_at.getHours() + 5)
+              this.thread.messages.push(data)
+              window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
             }
           })
       }
     }
   },
-  mounted: function () {
+  created: function () {
     this.id = this.$route.params.threadId
     threadsAPI.getThreadById(this.id)
       .then(response => {
