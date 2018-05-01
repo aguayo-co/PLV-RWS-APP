@@ -101,7 +101,8 @@ export default {
     'infinite',
     'pager',
     'compact',
-    'preFilter'
+    'preFilter',
+    'search'
   ],
   components: {
     FilterDesk,
@@ -127,8 +128,21 @@ export default {
       },
       orderBy: '-id',
       filterQueryObject: {},
+      searchQuery: null,
       loading: false,
       active: false
+    }
+  },
+  watch: {
+    search: function () {
+      if (this.search) this.searchQuery = this.search
+      this.filterQueryObject.status = '10,19'
+      if (this.infinite) window.addEventListener('scroll', this.handleScroll)
+      productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy, this.searchQuery)
+        .then((response) => {
+          this.products = response.data.data
+          this.$emit('queryDoneResults', response.data.total)
+        })
     }
   },
   methods: {
@@ -193,9 +207,10 @@ export default {
     }
     this.filterQueryObject.status = '10,19'
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
-    productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+    productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy, this.searchQuery)
       .then((response) => {
         this.products = response.data.data
+        this.$emit('queryDoneResults', response.data.total)
       })
   }
 }

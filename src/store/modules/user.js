@@ -48,6 +48,7 @@ const actions = {
     }
     return userAPI.load(userId)
       .then(response => {
+        console.log(response)
         commit('set', response.data)
         dispatch('loadAddresses')
         dispatch('loadNotifications')
