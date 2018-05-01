@@ -22,8 +22,8 @@
               h2.blog__headline 1. Despachando por Chilexpress
               p En este caso, <strong>la compradora habrá pagado el envío asignado por Chilexpress</strong> según la dirección que ella ingresó. Recibirás un mail con la etiqueta de Chilexpress y deberás seguir estos pasos:
               ol
-                li Imprimir la etiqueta de Chilexpress
-                li Envolver el o los productos que vendiste 
+                li Imprimir la etiqueta de Chilexpress.
+                li Envolver el o los productos que vendiste.
                 li Debes llevar el paquete junto con la etiqueta que imprimiste a la sucursal de Chilexpress más cercana.
                 li No deberás pagar nada al momento de enviar (la compradora ya pagó por el envío).
                 li El código de seguimiento le llegará automáticamente a tu compradora y tu producto quedará como estado “enviado” automáticamente en Tu Cuenta de Prilov.
@@ -38,7 +38,7 @@
 <script>
 
 export default {
-  name: 'AyudaComoComprar'
+  name: 'AyudaComoEnviar'
 }
 
 </script>
