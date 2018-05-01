@@ -4334,6 +4334,11 @@ body {
     font-size: 1rem; }
   .user-nav__link:hover {
     color: #f65a66; }
+  .user-nav__link .badge {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin-left: 8px; }
 
 @media only screen and (max-width: 1023px) {
   .user-menu {
