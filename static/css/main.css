@@ -4716,6 +4716,10 @@ body {
 .user-data__actions {
   padding: 8px 0;
   text-align: center; }
+  .user-data__actions .btn {
+    min-width: 220px;
+    margin-right: 16px;
+    margin-bottom: 16px; }
 
 .user-data_info {
   padding: 50px 0; }
@@ -4797,6 +4801,8 @@ body {
   .user-data__actions {
     padding-top: 20px;
     text-align: left; }
+    .user-data__actions .btn {
+      margin-bottom: 0; }
   .user-data__value:not(:last-child) {
     padding-right: 20px; }
   .user-data__track:not(:last-child) {
