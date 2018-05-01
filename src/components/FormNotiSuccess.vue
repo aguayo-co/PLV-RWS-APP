@@ -5,11 +5,12 @@
       p Ya puedes publicar tu primera venta y realizar compras en toda la tienda.
     .notify__footer
       .notify__row
-        a.btn.btn_solid.btn_block(
-        href='#') Publicar una venta
+        router-link.btn.btn_solid.btn_block(
+          :to="{ name: 'publicar-venta'}",
+          title="Publicar un producto en Prilov") Publicar un producto
       .notify__row
-        a.btn.btn_block(
-        href='#') Ir a la tienda
+        router-link.btn.btn_block(
+          :to="{ name: 'home'}") Ir al shop
 </template>
 
 <script>

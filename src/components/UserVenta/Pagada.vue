@@ -2,25 +2,25 @@
 .dashboard__subitem(v-if="!chileExpress")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
-    p.status.status_check.i-check Pedido Pagado
+    p.status.status_check.i-check Producto pagado
     p.status.status_alert.i-alert-circle Pendiente de entrega acordada con compradora
   .dashboard__actions(v-if="!step")
-    p ¿Ya te juntaste o lo enviaste por pagar?
+    p ¿Ya lo enviaste o entregaste?
     a.btn.btn_solid.btn_block(
-      @click.prevent="goToStep('delivered')"
-      href="#") Si, ya lo entregué.
+        @click.prevent="goToStep('delivered')"
+        href="#") Sí, ya lo envié o entregué.
     a.link_underline(
-      href="#") Escribir a la compradora
+        href="#") Escribir a la compradora
 
   .dashboard__actions(v-if="step === 'delivered'")
-    p ¿Cómo entregaste este pedido?
+    p ¿Cómo entregaste este producto?
     span.dashboard__actions_link
       a.link_underline(
-      @click.prevent="saleDelivered"
-      href="#") Nos juntamos
+        @click.prevent="saleDelivered"
+        href="#") Nos juntamos
     a.link_underline(
-      @click.prevent="goToStep('shipped')"
-      href="#") Usé una empresa de mensajería
+        @click.prevent="goToStep('shipped')"
+        href="#") Usé una empresa de trasporte
 
   .dashboard__actions(v-if="step === 'shipped'")
     form.form.dashboard__form(
@@ -51,7 +51,7 @@
 .dashboard__subitem(v-else)
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
-    p.status.status_check.i-check Pedido Pagado
+    p.status.status_check.i-check Producto pagado
     p.status.status_alert.i-alert-circle Pendiente de envío con ChileExpress
   .dashboard__actions(v-if="!step")
     p ¿Ya imprimiste la etiqueta y enviaste el producto?

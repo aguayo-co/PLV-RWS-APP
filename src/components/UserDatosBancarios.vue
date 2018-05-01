@@ -3,7 +3,7 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Datos Bancarios
-      p.single__subtitle Información bancaria para depósito de ventas realizadas
+      p.single__subtitle Información bancaria para pago de tus ventas realizadas
       .box-flat
         .box-flat__grid
           .box-flat__lead.i-bank-data
@@ -16,8 +16,8 @@ section.single
         .box-flat__grid
           .box-flat__lead.i-alert-tri
             .box-flat__lead-group
-              h3.box-flat__title Aún no posees un medio de depósito para Tus Ventas
-              p.box__txt Danos tu cuenta para depositar tus ganancias de Prilov. Puedes estar tranquila que tu información bancaria estará asegurada.
+              h3.box-flat__title Aún no posees datos bancarios para el pago de tus ventas
+              p.box__txt Ingresa los datos de tu cuenta bancaria para trasnferir tus ganancias de Prilov. Puedes estar tranquila que tu información bancaria estará asegurada.
           .box-flat__button
             a.btn.box-flat__btn.btn_solid(href="#", title="Agregar medio de pago") Agregar medio de pago
       //End 2a Usuaria que no posee un método de pago
@@ -26,7 +26,7 @@ section.single
       v-on:submit='',
       action='#',
       method='post')
-        p.single__subtitle.subtitle_line Agrega tu información bancaria para depositar tus ganancias.
+        p.single__subtitle.subtitle_line Agrega tu información bancaria para pagarte tus ganancias.
         .form-section__inner
           .form__row
             label.form__label(

@@ -12,6 +12,7 @@ section.single
         .box-flat__button
           p.box-flat__value $ 100.100
           a.link_underline(href="#") Convertir en dinero
+          //-To-do== modales del flujo, Ver wireframe https://wtsjxe.axshare.com/#g=1&p=d__cr_ditos
     h3.subhead Detalle de Créditos
     .dividers
       .dividers__item
@@ -35,7 +36,7 @@ section.single
           p.dividers__txt Créditos transferidos a tu cuenta:
           p.dividers__value $ 357.484
     .alert
-      p.alert__info.i-alert-info  Recuerda que para transferir créditos debes tener más de $4.000
+      p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener más de $4.000 en créditos.
     h3.subhead Detalle de Transacciones
     ul.collapsible
       li.collapsible__item
@@ -63,7 +64,7 @@ section.single
             p.collapsible__subtitle Descuento
             p.collapsible__meta $0
           li.collapsible__subitem
-            p.collapsible__subtitle Comprador
+            p.collapsible__subtitle Compradora
             p.collapsible__meta Carla Onetto
       //- To Do: ejemplo de elemento desplegado
           add class .collapsible__item_active
@@ -93,7 +94,7 @@ section.single
             p.collapsible__subtitle Descuento
             p.collapsible__meta $0
           li.collapsible__subitem
-            p.collapsible__subtitle Comprador
+            p.collapsible__subtitle Compradora
             p.collapsible__meta Carla Onetto
 </template>
 

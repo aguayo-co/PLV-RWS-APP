@@ -1,12 +1,12 @@
 <template lang="pug">
 .list__side
   .list__frame
-    h3.title Detalle de tu orden
+    h3.title Detalle de tu compra
     .list__data
       .list__data-table
-        //- List Detalle de tu orden
+        //- List Detalle de tu compra
         dl.data-table
-          dt.data-table__item Total de la orden
+          dt.data-table__item Total de la compra
           dd.data-table__value ${{ total | currency }}
           //estado sin creditos
           dt.data-table__item Créditos
@@ -18,9 +18,9 @@
             :class="{txt_brand: coupon_discount}"
           ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount | currency }}
         dl.data-total
-          dt.data-total__label Total de tu orden:
+          dt.data-total__label Total de tu CompraDetalle:
           dd.data-total__value ${{ due | currency }}
-        //- end List Detalle de tu orden
+        //- end List Detalle de tu compra
 
         //-código de descuento
             Estado inicial

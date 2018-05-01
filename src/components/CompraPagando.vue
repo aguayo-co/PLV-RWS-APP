@@ -3,15 +3,15 @@
   //- Opción 1: Pago externo
   .notify(v-if="!isTransfer")
     header.head_ico
-      h2.title Estás a un paso de obtener tu compra.
+      h2.title Estás a un paso de terminar tu compra.
       p.subtitle_heart Estamos esperando confirmación de tu transacción por parte de la plataforma de pagos.
 
   //- Opción 2: Pago por transferencia
   .notify(v-else)
     header.head_ico
       small.ico__title.i-clock 10:00
-      h2.title Estás a un paso de obtener tu compra.
-      p.subtitle_heart Aun no has terminado tu compra, sube tu comprobante de pago.
+      h2.title Estás a un paso de terminar tu compra.
+      p.subtitle_heart Aún no has finalizado tu compra. Sube tu comprobante de transferencia bancaria.
     .content-slot__inner
       form.form.form_file(
         @submit.prevent="uploadReceipt")

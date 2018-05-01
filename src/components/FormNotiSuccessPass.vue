@@ -4,11 +4,11 @@
       h1.title.notify__title Ya puedes recuperar tu contraseña
       .notify__body
         p Te hemos enviado un enlace  al Email <strong>{{getEmail}} </strong> para que puedas crear una nueva contraseña.
-        p.notify__info.i-alert-info Recuerda revisar también la carpeta de <strong>correo no deseado.</strong>
+        p.notify__info.i-alert-info Recuerda revisar tu carpeta de <strong>correo no deseado.</strong>
       .notify__footer
         .notify__row
-          a.btn.btn_solid.btn_block(
-          href='/') Volver al inicio
+          router-link.btn.btn_solid.btn_block(
+            :to="{ name: 'home'}") Volver al inicio
 </template>
 
 <script>
