@@ -16,7 +16,7 @@ section.single
         .box-flat__grid
           .box-flat__lead.i-alert-tri
             .box-flat__lead-group
-              h3.box-flat__title Aún no posees un medio de depósito para tus ventas
+              h3.box-flat__title Aún no posees un medio de depósito para Tus Ventas
               p.box__txt Danos tu cuenta para depositar tus ganancias de Prilov. Puedes estar tranquila que tu información bancaria estará asegurada.
           .box-flat__button
             a.btn.box-flat__btn.btn_solid(href="#", title="Agregar medio de pago") Agregar medio de pago

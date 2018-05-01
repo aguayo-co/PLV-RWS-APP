@@ -61,7 +61,7 @@
       p.btn__wrapper(
         v-if='!loading && !mqMobile')
         a.btn.i-send(
-          @click='loadMoreProducts') Ver más prendas
+          @click='loadMoreProducts') Ver más productos
       p.preload(v-if='loading')
         span.preload__spin.preload__spin_1
         span.preload__spin.preload__spin_2

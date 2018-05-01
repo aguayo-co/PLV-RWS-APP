@@ -74,11 +74,11 @@
                   li.user-auth__item
                     router-link.user-auth__link(
                       to="/user/data",
-                      title="Ir a tu cuenta") Tu cuenta
+                      title="Ir a tu cuenta") Tu Cuenta
                   li.user-auth__item
                     router-link.user-auth__link(
                       :to="'/user/tus-compras'",
-                      title="Ir a tus compras") Tus compras
+                      title="Ir a tus compras") Tus Compras
                   li.user-auth__item
                     router-link.user-auth__link(
                       :to="'/user/tus-ventas'",

@@ -2938,8 +2938,7 @@ body {
     .foot-news .foot__title {
       text-align: center; }
   .foot__form {
-    width: 88%;
-    margin: 0 auto; }
+    width: 92%; }
   .foot__txt {
     margin: 0;
     padding-bottom: 24px;
@@ -4320,7 +4319,8 @@ body {
 .user-nav__link {
   position: relative;
   padding-left: 36px;
-  color: #000; }
+  color: #000;
+  text-transform: capitalize; }
   .user-nav__link:before {
     position: absolute;
     left: 0;

@@ -3,7 +3,7 @@ section.single
   .single__inner
     //- User Profile
     header.single__header
-      h1.single__title Datos Personales
+      h1.single__title Tu cuenta
 
     //- data User
     .user-data
@@ -136,7 +136,7 @@ section.single
       .user-data__actions
         router-link.btn.btn_small.i-start(
           to="/user/prilover-star",
-          title="Ser Priloverstar") Ser Priloverstar
+          title="Ser Priloverstar") Ser Prilover Star
         //- router-link.btn.btn_small.i-sale(
         //-   to="/publicar-venta",
         //-   title="Publicar Producto") Publicar una venta

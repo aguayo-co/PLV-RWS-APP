@@ -1,7 +1,6 @@
 <template lang="pug">
 .side
   .side__sticky
-    h2.headline Tu cuenta
     //- User Nav
     nav.user-nav
       //- User Menu lista
@@ -26,6 +25,11 @@ export default {
           title: 'General',
           items: [
             {
+              name: 'Tu cuenta',
+              url: '/user/data',
+              ico: 'i-data'
+            },
+            {
               name: 'Notificaciones',
               url: '/user/notificaciones',
               ico: 'i-bell'
@@ -39,11 +43,6 @@ export default {
               name: 'Créditos',
               url: '/user/creditos',
               ico: 'i-credits'
-            },
-            {
-              name: 'Datos Personales',
-              url: '/user/data',
-              ico: 'i-data'
             }
           ]
         },
@@ -56,7 +55,7 @@ export default {
               ico: 'i-bag'
             },
             {
-              name: 'Tus favoritos',
+              name: 'Tus Favoritos',
               url: '/user/tus-favoritos',
               ico: 'i-favorite'
             }
@@ -66,7 +65,7 @@ export default {
           title: 'Ventas',
           items: [
             {
-              name: 'Tu clóset',
+              name: 'Tu Clóset',
               url: '/user/tu-closet',
               ico: 'i-closet'
             },
@@ -78,17 +77,17 @@ export default {
             {
               name: 'Valoraciones',
               url: '/user/valoraciones',
-              ico: 'i-start-line'
+              ico: 'i-start'
             },
             {
-              name: 'Método de envío',
+              name: 'Método De Envío',
               url: '/user/metodos-envios',
               ico: 'i-shipping'
             },
             {
-              name: 'Cerrar sesión',
+              name: 'Cerrar Sesión',
               url: '#',
-              ico: ''
+              ico: 'i-x'
             }
           ]
         }

@@ -13,8 +13,8 @@
 
   section.section_product
     header.section__head.section__head_big
-      h2.title_head <span class="txt_brand">Im</span>perdibles
-      h3.title_subhead Lo que más nos gusta de Prilov
+      h2.title_head <span class="txt_brand">Recién </span>llegados
+      h3.title_subhead Más de 100 nuevos productos cada día
 
     GridProducto(
       :infinite='true')

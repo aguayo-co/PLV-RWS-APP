@@ -31,6 +31,7 @@ import AyudaComoEnviar from '@/pages/AyudaComoEnviar'
 import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
 import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
+import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaComoComprar from '@/pages/AyudaComoComprar'
 
 Vue.use(Router)
@@ -194,6 +195,11 @@ export default new Router({
       path: '/ser-prilover',
       name: 'ser-prilover',
       component: AyudaPriloverStar
+    },
+    {
+      path: '/devolver-producto',
+      name: 'devolver-producto',
+      component: AyudaDevolverProducto
     },
     {
       path: '/como-comprar',
