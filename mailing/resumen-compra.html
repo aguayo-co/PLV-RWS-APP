@@ -30,6 +30,13 @@
     }
     .table__small {
       max-width: 460px;
+      min-width: 350px;
+      border-collapse: collapse;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    .table__medium {
+      /* max-width: 500px; */
       border-collapse: collapse;
       -ms-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
@@ -96,9 +103,19 @@
     .uppercase {
       text-transform: uppercase;
     }
+    .txt-bold {
+      font-weight: bold;
+    }
+    .table-prefooter__spacing-cell {
+      padding: 30px 0;
+    }
+    .table-prefooter__cell {
+      font-size: 18px;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;  
+    }
     /* tabla */
     .spacing_table {
-      padding: 30px 0 20px;
+      padding: 30px 0;
     }
     .table__header {
       font-size: 18px;
@@ -130,6 +147,27 @@
       font-size: 18px;
       font-weight: bold;
       font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;           
+    }
+    .head-table_second {
+      padding-bottom: 6px;
+      font-size: 16px;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;    
+    }
+    .txt-table_second {
+      padding: 12px 0 20px;
+      font-size: 16px;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;    
+    }
+    .txt-table_second-grey {
+      font-weight: bold;
+      color: #707070;
+    }
+    .bb_light {
+      border-bottom: 1px solid #EFEFEF;
+    }
+    .v-align_middle {
+      display: inline-block;
+      vertical-align: middle;
     }
     /* footer */
     .cell_footer {
@@ -183,16 +221,16 @@
               <!-- Body -->
               <tr class="row">
                 <td class="cell" align="center">
-                  <table class="table__small">
+                  <table class="table__small" cellpadding="0" cellspacing="0" border="0"  >
                     <tr class="row">
                       <td class="cell spacing_title center uppercase">
                         <p class="title">Hola <span class="highlight">Cony</span></p></td>
                     </tr>
                     <tr class="row">
-                      <td class="cell spacing txt highlight uppercase">Tu compra ya fue confirmada.</td>
+                      <td class="cell spacing txt highlight uppercase" align="center">Tu compra ya fue confirmada.</td>
                     </tr>
                     <tr class="row">
-                      <td class="cell spacing_table">
+                      <td class="cell spacing_table" align="center">
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
                           <thead>
                             <tr>
@@ -300,23 +338,66 @@
                         </table>
                       </td>
                     </tr>
-                    <tr class="row">
-                      <td>
-                        <table>
-                          
-                        </table>
-                      </td>
-                    </tr>
-                    <tr class="row">
-                      <td class="cell spacing txt highlight center">Kisses!</td>
-                    </tr>
-                    <tr class="row">
-                      <td class="cell center txt spacing_pre-footer">
-                        <a href="https://prilov.com" class="author">
-                          <img src="../static/img/mailing/brand_footer.jpg" alt="Prilov.com" class="img author__img">
-                        </a>
-                      </td>
-                    </tr>
+                    <!-- aqui van las tablas -->
+                  </table>
+                </td>
+              </tr>
+              <tr class="row">
+                <td align="center">
+                  <table class="table__medium" width="500" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <th class="bb_light head-table_second">MÉTODO ENVÍO</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="txt-table_second" align="center">
+                          <img src="../static/img/mailing/ico-shipping.jpg" alt="a la espera de envio" width="30" class="v-align_middle">
+                          <span class="v-align_middle">&nbsp;A la espera de envío</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr class="row">
+                <td align="center">
+                  <table class="table__medium" width="500" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <th class="bb_light head-table_second">VENDEDORA</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="txt-table_second txt-table_second-grey" align="center">
+                          <img src="../static/img/mailing/user-avatar.png" alt="a la espera de envio" width="40" class="v-align_middle">
+                          <span class="v-align_middle">&nbsp;Daniela Villanueva</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr class="row">
+                <td align="center">
+                  <table class="table__pre-footer" width="500" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                      <tr>
+                        <td class="table-prefooter__cell table-prefooter__spacing-cell" align="center">
+                          Ahora solo tienes que esperar que la vendedora haga el envío y cuando lo realice, te enviaremos el número de seguimiento
+                          de Chile Express.<br><br>
+                          ¡Ojalá te encante tu nueva joyita!
+                        </td>
+                      </tr>
+                      <tr class="row">
+                        <td class="cell spacing txt highlight center">Kisses!</td>
+                      </tr>
+                      <tr class="row">
+                        <td class="cell center txt spacing_pre-footer">
+                          <a href="https://prilov.com" class="author">
+                            <img src="../static/img/mailing/brand_footer.jpg" alt="Prilov.com" class="img author__img">
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                 </td>
               </tr>
