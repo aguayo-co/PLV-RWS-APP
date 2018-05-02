@@ -95,6 +95,7 @@ export default {
         if (this.inShoppingCart) {
           // Usa la dirección recién creada en la orden.
           this.setForOrder(response.data)
+          this.setFavorite(response.data)
         }
         this.toggleNewAddress()
       }).catch((e) => {
