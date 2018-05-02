@@ -14,9 +14,6 @@
       color: $c-default-5;
     }
   }
-  .user-cover__upfile {
-    padding-bottom: 50px;
-  }
 
   .user-header-edit__item {
     @include flexbox;
@@ -132,7 +129,10 @@
     height: 140px;
   }
   .user-avatar_cover {
-    margin-top: -20%;
+    margin-top: -80px;
+  }
+  .user-cover__upfile {
+    padding-bottom: 60px;
   }
 
 
@@ -316,7 +316,6 @@
   padding: 50px 0;
 }
 
-
 .user-data__form {
   padding-bottom: 30px;
 }
@@ -422,6 +421,10 @@
         @include justify-content(flex-start);
       }
     }
+  .user-cover__upfile {
+    padding-bottom: 0;
+  }
+
 
 }
 // $bp-medium: 768px;
@@ -436,11 +439,6 @@
   .user-avatar_cover {
     margin-top: -50%;
   }
-  .user-cover__upfile {
-    padding-bottom: 0;
-  }
-
-
 }
 //$bp-wide: 1024px;
 @include media-query(wide) {
