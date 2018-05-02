@@ -141,6 +141,7 @@
 <script>
 
 import productAPI from '@/api/product'
+import { mapState } from 'vuex'
 
 export default {
   name: 'TabsProducto',
@@ -159,6 +160,9 @@ export default {
         ]
       }
     }
+  },
+  computed: {
+    ...mapState(['user'])
   },
   methods: {
     myActive: function (e) {
@@ -183,7 +187,10 @@ export default {
   },
   created: function () {
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
-    productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+    let filterQueryObject = {}
+    filterQueryObject.status = '10,19'
+    filterQueryObject.user_id = this.user.id
+    productAPI.getProducts(this.page, this.items, filterQueryObject, this.orderBy)
       .then((response) => {
         this.products = response.data.data
       })

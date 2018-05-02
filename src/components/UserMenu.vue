@@ -40,12 +40,12 @@ export default {
             {
               name: 'Datos Bancarios',
               url: '/user/datos-bancarios',
-              ico: 'i-bank-data'
+              ico: 'i-credits'
             },
             {
               name: 'Créditos',
               url: '/user/creditos',
-              ico: 'i-credits'
+              ico: 'i-money'
             }
           ]
         },

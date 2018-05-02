@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Agregar producto</title>
+
+  <style>
+    body {
+      background-color: #ffffff;
+    }
+    p {
+      margin: 0;
+    }
+    .row {
+      width: 100%;
+    }
+    .table_main {
+      margin: 0 auto;
+      background-color: #ffffff;
+    }
+    .table {
+      border-collapse: collapse;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+      background-color: #ffffff;     
+    }
+    .table__small {
+      max-width: 460px;
+      border-collapse: collapse;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    .cell {
+      padding-right: 0;
+      padding-left: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .cell_header {
+      text-align: center;
+      background-color: #000000;
+    }
+    .cell__txt {
+      font-size: 20px;
+    }
+    .spacing {
+      padding: 22px 20px 0;
+      margin: 0;
+    }
+    .spacing_title {
+      padding: 40px 20px 10px;
+    }
+    .spacing_pre-footer {
+      padding: 40px 20px;
+    }
+    .header {
+      display: inline-block;
+      padding: 20px 0 10px;
+    }
+    .img {
+      width: 100%;
+    }
+    .img_brand {
+      width: 200px;
+    }
+    .title {
+      display: inline-block;
+      font-size: 30px;
+      font-weight: bold;
+      border-bottom: 1px solid #979797;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;
+    }
+    .highlight {
+      color: #FE7676;
+    }
+    .center {
+      text-align: center;
+    }
+    .txt {
+      font-size: 18px;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;
+    }
+    .anchor {
+      color: #000000;
+      border-bottom: 2px solid #FE7676;
+      text-decoration: none;
+      text-transform: none;
+    }
+    .author {
+      display: inline-block;
+    }
+    .author__img {
+      width: 100px;
+    }
+    .card {
+      line-height: 1;
+      font-size: 0px;
+    }
+    .card__caption {
+      font-weight: bold;
+      padding: 20px 0;
+      font-size: 16px;
+      border-bottom: 1px solid #000000;
+    }
+    /* footer */
+    .cell_footer {
+      background-color: #F6F6F6;
+    }
+    .footer__title {
+      padding: 20px 0;
+      font-size: 16px;
+      font-weight: bold;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;      
+    }
+    .footer__nav {
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .footer__link {
+      display: inline-block;
+      padding: 0 16px;
+    }
+    .footer__copyright {
+      display: block;
+      padding-bottom: 20px;
+      text-align: center;
+    }
+    .footer__txt {
+      padding: 20px;
+      margin: 0;
+      font-size: 14px;
+      font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;      
+    }
+  </style>
+</head>
+
+<body>
+  <div>&nbsp;</div>
+  <table class="table_main" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+      <tr>
+        <td align="center">
+          <table class="table" width="600" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+              <!-- Header -->
+              <tr class="row">
+                <td class="cell cell_header">
+                  <a href="https://prilov.com" class="header">
+                    <img src="../static/img/mailing/brand.jpg" alt="Prilov.com" class="img img_brand">
+                  </a>
+                </td>
+              </tr>
+              <!-- end Header -->
+              <!-- Body -->
+              <tr class="row">
+                <td class="cell" align="center">
+                  <table class="table__small">
+                    <tr class="row">
+                      <td class="cell spacing_title txt">
+                        Hola <span class="highlight">Cony</span>,
+                        <br> Acabas de agregar:
+                      </td>
+                    </tr>
+                    <!-- <tr class="row">
+                      <td class="cell spacing txt">Acabas de agregar: </td>
+                    </tr> -->
+                    <tr class="row">
+                      <td class="cell spacing txt" align="center">
+                        <table width="240" cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td class="card">
+                                <img src="../static/img/demo/banner-001.jpg" alt="producto agregado" class="img">
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="card__caption">
+                                Nombre del producto
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <td class="cell spacing txt">Te confirmaremos apenas esté aprobado y listo para ser comprado por otra prilover ;)</td>
+                    </tr>
+                    <tr class="row">
+                      <td class="cell spacing txt">Gracias por publicar en Prilov.</td>
+                    </tr>
+                    <tr class="row">
+                      <td class="cell spacing txt highlight">Kisses!</td>
+                    </tr>
+                    <tr class="row">
+                      <td class="cell center txt spacing_pre-footer">
+                        <a href="https://prilov.com" class="author">
+                          <img src="../static/img/mailing/brand_footer.jpg" alt="Prilov.com" class="img author__img">
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- end Body -->
+              <!-- Footer -->
+              <tr class="row">
+                <td class="cell cell_footer center">
+                  <table width="600" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                      <tr>
+                        <td class="footer__title">Síguenos</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a href="#" class="footer__link" title="Síguenos en Instragram">
+                            <img src="../static/img/mailing/instagram.jpg" alt="Instragram" class="img">
+                          </a>
+                          <a href="#" class="footer__link" title="Síguenos en Twitter">
+                            <img src="../static/img/mailing/twitter.jpg" alt="Twitter" class="img">
+                          </a>
+                          <a href="#" class="footer__link" title="Síguenos en Facebook">
+                            <img src="../static/img/mailing/facebook.jpg" alt="Facebook" class="img">
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="footer__txt">
+                            Copyright © 2017 prilov.com. Todos los derechos reservados.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <!-- end Footer -->
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

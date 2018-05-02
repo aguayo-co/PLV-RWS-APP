@@ -19,7 +19,8 @@ export default {
     return Vue.axiosAuth.post('/api/products', formData)
   },
 
-  getProducts: function (page, items, filter, order) {
+  getProducts: function (page, items, filter, order, search) {
+    let querySearch = ''
     let queryFilter = ''
     let queryOrder = ''
     page = page || 1
@@ -31,8 +32,9 @@ export default {
       })
     }
     if (order) queryOrder = '&orderby=' + order
-    console.log('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder)
-    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder)
+    if (search) querySearch = '&q=' + search
+    console.log('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
+    return Vue.axios.get('/api/products?items' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
   },
 
   getProductById: function (productId) {

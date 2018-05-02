@@ -77,21 +77,21 @@
         .form__grid
           .form__row
             label.form__label(
-              for='new-number') Número
-            span.help(
-              v-show="errorLog.number") {{ errorLog.number }}
-            input.form__control(
-              id='new-number'
-              v-model="newAddressData['number']"
-              type='text')
-          .form__row
-            label.form__label(
               for='new-street') Calle
             span.help(
               v-show="errorLog.street") {{ errorLog.street }}
             input.form__control(
               id='new-street'
               v-model="newAddressData['street']"
+              type='text')
+          .form__row
+            label.form__label(
+              for='new-number') Número
+            span.help(
+              v-show="errorLog.number") {{ errorLog.number }}
+            input.form__control(
+              id='new-number'
+              v-model="newAddressData['number']"
               type='text')
 
         .form__grid

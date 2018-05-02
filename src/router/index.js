@@ -152,13 +152,13 @@ export default new Router({
       props: true
     },
     {
-      path: '/:type/:slug',
+      path: '/shop/:type/:slug',
       name: 'categoria',
       component: Categoria
     },
     {
-      path: '/search',
-      name: 'Search',
+      path: '/search/:query',
+      name: 'search',
       component: Search
     },
     {

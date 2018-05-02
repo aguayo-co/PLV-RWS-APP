@@ -8,8 +8,8 @@
       submit.prevent='validateBeforeSubmit',
       method='post')
       fieldset.form-section
-        legend.subhead.form-section__title ¡Estás a un paso de publicar tu venta!
-          p.form-section__subtitle Para continuar con la publicación de tu venta, ingresa tus datos
+        legend.subhead.form-section__title ¡Estás a un paso de publicar tu producto!
+          p.form-section__subtitle Para continuar con la publicación de tu producto, ingresa tus datos
         .upfile
           .upfile__small
             h3.upfile__title Foto de perfil
@@ -83,73 +83,6 @@
               id='emailConfirm',
               type='email',
               data-vv-name='emailConfirm')
-          fieldset.form__set
-            legend.form__legend Nueva dirección
-            .form__grid
-              .form__row(:class='{ "is-danger": errorLog.number }')
-                label.form__label(
-                  for='new-number') Número
-                span.help(
-                  v-show="errorLog.number") {{ errorLog.number }}
-                input.form__control(
-                  id='new-number'
-                  v-model="newAddressData['number']"
-                  type='text')
-              .form__row(:class='{ "is-danger": errorLog.street }')
-                label.form__label(
-                  for='new-address-street') Calle
-                span.help(
-                  v-show="errorLog.street") {{ errorLog.street }}
-                input.form__control(
-                  id='new-street'
-                  v-model="newAddressData['street']"
-                  type='text')
-
-            .form__grid
-              .form__row(:class='{ "is-danger": errorLog.additional }')
-                label.form__label(
-                  for='new-additional') Adicional
-                span.help(
-                  v-show="errorLog.additional") {{ errorLog.additional }}
-                input.form__control(
-                  id='new-additional'
-                  v-model="newAddressData['additional']"
-                  type='text')
-              .form__row(:class='{ "is-danger": errorLog.region }')
-                label.form__label(
-                  for='new-address-region') Región
-                span.help(
-                  v-show="errorLog.region") {{ errorLog.region }}
-                select.form__select(
-                  @change="newAddressData['province'] = null"
-                  v-model="newAddressData['region']")
-                  option
-                  option(
-                    v-for="region in regions") {{ region }}
-
-            .form__grid
-              .form__row(:class='{ "is-danger": errorLog.province }')
-                label.form__label(
-                  for='new-address-province') Provincia
-                span.help(
-                  v-show="errorLog.province") {{ errorLog.province }}
-                select.form__select(
-                  @change="newAddressData['commune'] = null"
-                  v-model="newAddressData['province']")
-                  option
-                  option(
-                    v-for="province in provinces") {{ province }}
-
-              .form__row(:class='{ "is-danger": errorLog.commune }')
-                label.form__label(
-                  for='new-address-commune') Comuna
-                span.help(
-                  v-show="errorLog.commune") {{ errorLog.commune }}
-                select.form__select(
-                  v-model="newAddressData['commune']")
-                  option
-                  option(
-                    v-for="commune in communes") {{ commune }}
           .form__row(
             :class='{ "is-danger": errorLog.password }')
             label.form__label(
@@ -182,20 +115,10 @@
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 import userAPI from '@/api/user'
-import userAddressesAPI from '@/api/userAddresses'
 Vue.component('croppa', Croppa.component)
 
 // import GSignInButton from 'vue-google-signin-button'
 // Vue.use(GSignInButton)
-const addressFields = {
-  number: null,
-  street: null,
-  additional: null,
-  region: null,
-  province: null,
-  commune: null
-}
-
 export default {
   name: 'FormSignUpVendedora',
   props: ['email'],
@@ -209,7 +132,6 @@ export default {
       errorLog: {
         passwordDetail: []
       },
-      newAddressData: {...addressFields},
       infoTexts: {},
       regionsList: {},
       picture: null,
@@ -238,13 +160,12 @@ export default {
       userAPI.create(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-
-          this.$store.dispatch('user/createAddress', this.newAddressData).then(() => {
-            this.$store.dispatch('ui/closeModal')
-            this.$router.push('publicar-venta')
-          }).catch((e) => {
-            console.log(e)
-          })
+            .then(() => {
+              this.$store.dispatch('ui/closeModal')
+              this.$store.dispatch('user/loadUser')
+            }).catch((e) => {
+              console.log(e)
+            })
         })
         .catch(e => {
           this.$store.dispatch('ui/closeModal')
@@ -273,11 +194,6 @@ export default {
 
       if (!this.nombre) this.errorLog.nombre = 'Debes ingresar tu nombre'
       if (!this.apellidos) this.errorLog.apellidos = 'Debes ingresar tus apellidos'
-      if (!this.newAddressData.number) this.errorLog.number = 'Debes ingresar una número'
-      if (!this.newAddressData.street) this.errorLog.street = 'Debes ingresar una calle'
-      if (!this.newAddressData.region) this.errorLog.region = 'Debes seleccionar una región'
-      if (!this.newAddressData.province) this.errorLog.province = 'Debes seleccionar una provincia'
-      if (!this.newAddressData.commune) this.errorLog.commune = 'Debes seleccionar una comuna'
       if (!this.email) {
         this.errorLog.email = 'Debes ingresar tu email'
       } else {
@@ -315,30 +231,8 @@ export default {
     }
   },
   computed: {
-    regions () {
-      return Object.keys(this.regionsList)
-    },
-    provinces () {
-      const region = this.newAddressData.region
-      const provinces = this.$getNestedObject(this.regionsList, [region, 'children'])
-      if (provinces) {
-        return Object.keys(provinces)
-      }
-    },
-    communes () {
-      const region = this.newAddressData.region
-      const province = this.newAddressData.province
-      const communes = this.$getNestedObject(this.regionsList, [region, 'children', province, 'children'])
-      if (communes) {
-        return Object.keys(communes)
-      }
-    }
   },
   created () {
-    const vm = this
-    userAddressesAPI.getRegions().then((response) => {
-      vm.regionsList = response.data
-    })
   }
 }
 </script>
