@@ -8,7 +8,7 @@
       action='#',
       method='post')
       fieldset.form-section
-        legend.subhead.form-section__title ¡Te hace falta completar tu perfil para poder vender!
+        legend.subhead.form-section__title ¡Te falta completar tu perfil para poder vender!
           p.form-section__subtitle Para continuar con la publicación de tu venta por favor completa tus datos.
         .upfile(v-if='!user.picture')
           .upfile__small
@@ -46,7 +46,7 @@
             textarea.form__control(
               v-model='about',
               id='aboutUser')
-            p.form__note (esta breve descripción se mostrará cuando otras Prilover visiten Tu Clóset)
+            p.form__note (se mostrará cuando otras Prilover visiten Tu Clóset. Puedes incluir algo sobre ti, tu gustos y también el detalle de tus métodos de envío)
           .form__row(
             v-if='!user.phone',
             :class='{ "is-danger": errorLog.phone }')
@@ -59,12 +59,12 @@
               id='phoneUser',
               v-model='phone',
               type='tel')
-            p.form__note (esta info no será pública. Sólo se entregará a tu compradora.)
+            p.form__note (esta info no será pública. Sólo se entregará a tu compradora)
           .form__row(
-            v-if='Object.keys(user.addresses).length === 0',
             :class='{ "is-danger": errorLog.addresses }')
             label.form__label(
               for='addresses') Direcciones
+            p.form__note (esta info no será pública. Se requiere de todas formas para tus envíos)
             span.help(
               v-if="errorLog.addresses"
             ) {{ errorLog.addresses }}
@@ -93,7 +93,9 @@ export default {
   data () {
     return {
       errorLog: {},
-      picture: null,
+      picture: {
+        hasImage: function () { return false }
+      },
       pictureURL: null,
       toggleImageDelete: false,
       about: null,
@@ -128,27 +130,50 @@ export default {
       this.picture.remove()
     },
     updateUser: function () {
-      const data = {
-        about: this.about,
-        phone: this.phone,
-        picture: this.pictureURL
-      }
-      this.$store.dispatch('user/updateWithFile', data)
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((e) => {
-          console.log(e)
-          const modal = {
-            name: 'ModalMessage',
-            parameters: {
-              type: 'alert',
-              title: '¡Ups! Parece que ocurrió un error',
-              body: Object.values(e.response.data.errors)[0]
+      if (this.picture.hasImage()) {
+        const data = {
+          about: this.about,
+          phone: this.phone,
+          picture: this.pictureURL
+        }
+        this.$store.dispatch('user/updateWithFile', data)
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((e) => {
+            console.log(e)
+            const modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Parece que ocurrió un error',
+                body: Object.values(e.response.data.errors)[0]
+              }
             }
-          }
-          this.$store.dispatch('ui/showModal', modal)
-        })
+            this.$store.dispatch('ui/showModal', modal)
+          })
+      } else {
+        const data = {
+          about: this.about,
+          phone: this.phone
+        }
+        this.$store.dispatch('user/update', data)
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((e) => {
+            console.log(e)
+            const modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Parece que ocurrió un error',
+                body: Object.values(e.response.data.errors)[0]
+              }
+            }
+            this.$store.dispatch('ui/showModal', modal)
+          })
+      }
     }
   }
 }
