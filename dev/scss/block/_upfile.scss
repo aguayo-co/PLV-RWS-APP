@@ -26,6 +26,11 @@
     padding: 16px;
   }
 }
+.upfile__cover {
+  max-width: 100%;
+  padding: 0;
+}
+
 .upfile__small {
   max-width: 300px;
   text-align: center;
@@ -115,20 +120,7 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .upfile__main {
-    padding-bottom: 40px;
-    margin-bottom: 20px;
-    &:before {
-      bottom: 0;
-      left: 50%;
-      margin-left: -10px;
-    }
-    .upfile__title {
-      @include font-rem(24px);
-    }
-  }
-}
+
 /*------------------------------------*\
 	upload file croppa Avatar
 \*------------------------------------*/
@@ -162,24 +154,24 @@
   }
 }
 
-// $bp-medium: 768px;
-@include media-query(medium) {
-  .upfile__radius {
-    width: 204px;
-
-    .upfile__item {
-      width: 204px;
-      height: 204px;
-    }
-
-   }
-
-}
 
 /*------------------------------------*/
   //Responsive
 /*------------------------------------*/
-
+@media only screen and (max-width: 767px) {
+  .upfile__main {
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    &:before {
+      bottom: 0;
+      left: 50%;
+      margin-left: -10px;
+    }
+    .upfile__title {
+      @include font-rem(24px);
+    }
+  }
+}
 
 // $bp-medium: 768px;
 @include media-query(medium) {
@@ -227,13 +219,18 @@
       }
     }
   }
+ 
   .upfile__radius {
+    width: 204px;
+    .upfile__item {
+      width: 204px;
+      height: 204px;
+    }
     .upfile__btn {
       padding: 10px;
       @include font-rem(14px);
     }
   }
-
 }
 
 @include media-query(wide) {

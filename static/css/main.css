@@ -4460,6 +4460,9 @@ body {
 .user-header-edit .form__label {
   color: #707070; }
 
+.user-cover__upfile {
+  padding-bottom: 50px; }
+
 .user-header-edit__item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4509,6 +4512,12 @@ body {
     margin-bottom: 5px;
     width: 100%;
     margin-top: 12px; }
+
+.usert__save-right {
+  width: 100%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  text-align: right; }
 
 .user-header__item {
   text-align: center; }
@@ -4573,6 +4582,9 @@ body {
   width: 140px;
   height: 140px; }
 
+.user-avatar_cover {
+  margin-top: -20%; }
+
 .user-data__img {
   width: 100%;
   vertical-align: bottom; }
@@ -4591,6 +4603,15 @@ body {
 .user-avatar__upfile {
   margin-left: -4px;
   margin-top: -4px; }
+
+.user-cover-edit {
+  position: relative; }
+  .user-cover-edit .user-edit__actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    padding: 0; }
 
 .user-data__rating {
   min-width: 33%; }
@@ -4827,7 +4848,11 @@ body {
     width: 86%;
     margin: 0 auto; }
   .user-item_gutter {
-    margin-right: 30px; } }
+    margin-right: 30px; }
+  .user-avatar_cover {
+    margin-top: -50%; }
+  .user-cover__upfile {
+    padding-bottom: 0; } }
 
 @media only screen and (min-width: 1024px) {
   .user-item_gutter {
@@ -6190,6 +6215,10 @@ body {
   .upfile__main .upfile__btn {
     padding: 16px; }
 
+.upfile__cover {
+  max-width: 100%;
+  padding: 0; }
+
 .upfile__small {
   max-width: 300px;
   text-align: center;
@@ -6270,18 +6299,6 @@ body {
 .upfile__group .upfile__item:not(:last-child) {
   margin-right: 32px; }
 
-@media only screen and (max-width: 767px) {
-  .upfile__main {
-    padding-bottom: 40px;
-    margin-bottom: 20px; }
-    .upfile__main:before {
-      bottom: 0;
-      left: 50%;
-      margin-left: -10px; }
-    .upfile__main .upfile__title {
-      font-size: 24px;
-      font-size: 1.5rem; } }
-
 /*------------------------------------*\
 	upload file croppa Avatar
 \*------------------------------------*/
@@ -6310,15 +6327,20 @@ body {
   .upfile__radius .user-edit__save {
     padding-top: 8px; }
 
-@media only screen and (min-width: 768px) {
-  .upfile__radius {
-    width: 204px; }
-    .upfile__radius .upfile__item {
-      width: 204px;
-      height: 204px; } }
+/*------------------------------------*/
+/*------------------------------------*/
+@media only screen and (max-width: 767px) {
+  .upfile__main {
+    padding-bottom: 40px;
+    margin-bottom: 20px; }
+    .upfile__main:before {
+      bottom: 0;
+      left: 50%;
+      margin-left: -10px; }
+    .upfile__main .upfile__title {
+      font-size: 24px;
+      font-size: 1.5rem; } }
 
-/*------------------------------------*/
-/*------------------------------------*/
 @media only screen and (min-width: 768px) {
   .upfile {
     max-width: 100%; }
@@ -6356,10 +6378,15 @@ body {
   .upfile__main .upfile__text::before {
     font-size: 100px;
     font-size: 6.25rem; }
-  .upfile__radius .upfile__btn {
-    padding: 10px;
-    font-size: 14px;
-    font-size: 0.875rem; } }
+  .upfile__radius {
+    width: 204px; }
+    .upfile__radius .upfile__item {
+      width: 204px;
+      height: 204px; }
+    .upfile__radius .upfile__btn {
+      padding: 10px;
+      font-size: 14px;
+      font-size: 0.875rem; } }
 
 @media only screen and (min-width: 1024px) {
   .upfile__group {

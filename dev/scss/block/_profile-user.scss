@@ -14,6 +14,9 @@
       color: $c-default-5;
     }
   }
+  .user-cover__upfile {
+    padding-bottom: 50px;
+  }
 
   .user-header-edit__item {
     @include flexbox;
@@ -49,6 +52,14 @@
       margin-top: 12px;
     }
   }
+  .usert__save-right {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: right;
+
+  }
+
   .user-header__item {
     text-align: center;
   }
@@ -120,6 +131,10 @@
     width: 140px;
     height: 140px;
   }
+  .user-avatar_cover {
+    margin-top: -20%;
+  }
+
 
   .user-data__img {
     width: 100%;
@@ -142,6 +157,19 @@
     margin-left: -4px;
     margin-top: -4px;
   }
+
+.user-cover-edit {
+  position: relative;
+  .user-edit__actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    padding: 0;
+  }
+
+}
+
 
 .user-data__rating {
   min-width: 33%;
@@ -405,6 +433,14 @@
   .user-item_gutter {
     margin-right: 30px;
   }
+  .user-avatar_cover {
+    margin-top: -50%;
+  }
+  .user-cover__upfile {
+    padding-bottom: 0;
+  }
+
+
 }
 //$bp-wide: 1024px;
 @include media-query(wide) {

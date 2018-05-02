@@ -37,10 +37,11 @@ export default {
   data () {
     return {
       editPicture: false,
-      editCover: false,
+      editCover: false, /* add Closet */
       editName: false,
       editAbout: false,
       new_picture: null,
+      new_cover: null, /* add Closet */
       newUserData: {...editableProps},
       errorLog: {...editableProps, picture: null, exists: null}
     }
@@ -113,8 +114,6 @@ export default {
         formData.append('picture', blob)
         this.$store.dispatch('user/update', formData).then(() => {
           this.toggle('editPicture')
-          this.new_picture.refresh()
-          this.toggle('editCover')
           this.new_picture.refresh()
         }).catch((e) => {
           this.$handleApiErrors(e, ['picture'], this.errorLog)

@@ -1,6 +1,6 @@
 <template lang="pug">
 .layout-page
-  BannerAvatar(:user="owner")
+  UserDataCloset(:user="owner")
   section.section_product
     GridProducto(
       v-if="owner.id"
@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import BannerAvatar from '@/components/BannerAvatar'
+import UserDataCloset from '@/components/UserDataCloset'
 import GridProducto from '@/components/GridProducto'
 import usersAPI from '@/api/user'
 
 export default {
   name: 'Closet',
   components: {
-    BannerAvatar,
+    UserDataCloset,
     GridProducto
   },
   data () {
