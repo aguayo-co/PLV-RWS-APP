@@ -18,7 +18,7 @@
       submit.prevent='firstStep',
       method='post')
       fieldset.form-section
-        legend.subhead.form-section__title ¡Estás a un paso de publicar tu venta!
+        legend.subhead.form-section__title ¡Estás a un paso de publicar tu producto!
           p.form-section__subtitle Para publicar tu venta, ingresa tu correo
         .form-section__inner
           .form__row(
