@@ -118,15 +118,26 @@
     overflow: hidden;
     border: 5px solid $c-brand;
     border-radius: 50%;
-    .tool-user__letter {
-      line-height: 180px;
+    .tool-user__letter,
+    .profile__letter {
+      display: block;
+      width: 100%;
+      line-height: 170px;
+      text-align: center;
       color: $c-neutro;
       @include font-rem(90px);
+      background-color: $c-default;
     }
   }
   .user-data__avatar_small {
     width: 140px;
     height: 140px;
+    .tool-user__letter,
+    .profile__letter {
+      line-height: 130px;
+      @include font-rem(70px);
+    }
+
   }
   .user-avatar_cover {
     margin-top: -80px;
@@ -448,16 +459,18 @@
   .user-data__avatar {
     width: 200px;
     height: 200px;
-    .tool-user__letter {
-      line-height: 200px;
+    .tool-user__letter,
+    .profile__letter {
+      line-height: 190px;
       @include font-rem(100px);
     }
   }
   .user-data__avatar_small {
     width: 160px;
     height: 160px;
-    .tool-user__letter {
-      line-height: 160px;
+    .tool-user__letter,
+    .profile__letter {
+      line-height: 150px;
       @include font-rem(80px);
     }
 
