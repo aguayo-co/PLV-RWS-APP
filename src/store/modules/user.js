@@ -23,7 +23,8 @@ const baseUserGenerator = () => {
     following_count: null,
     roles: [],
     groups: [],
-    shipping_methods: []
+    shipping_methods: [],
+    bank_account: {}
   }
 }
 
@@ -48,6 +49,7 @@ const actions = {
     }
     return userAPI.load(userId)
       .then(response => {
+        console.log(response)
         commit('set', response.data)
         dispatch('loadAddresses')
         dispatch('loadNotifications')

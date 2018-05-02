@@ -1,14 +1,24 @@
 <template lang="pug">
 //- Sugerencias de búsqueda a nivel de:
     marcas, categorías, nombres de Prilovers.
-form.search(action='', method='GET')
+form.search(action='', method='GET', @submit.prevent="search")
   .search__row
-    input.search__input#searchMain(type='search', name='search', placeholder='¿Qué buscas?')
+    input.search__input#searchMain(type='search', name='search', placeholder='¿Qué buscas?', v-model="query")
     input.search__btn(type='submit', value='')
 </template>
 
 <script>
 export default {
-  name: 'PageHeaderSearch'
+  name: 'PageHeaderSearch',
+  data () {
+    return {
+      query: ''
+    }
+  },
+  methods: {
+    search: function () {
+      this.$router.push({ name: 'search', params: { query: this.query } })
+    }
+  }
 }
 </script>

@@ -50,7 +50,7 @@ export default {
     this.queryType = this.$route.params.type
     this.queryParameter = this.$route.params.slug
 
-    if (this.queryType === 'shop') {
+    if (this.queryType === 'categorias') {
       categoriesAPI.getCategoryBySlug(this.queryParameter)
         .then(response => {
           this.loading = false

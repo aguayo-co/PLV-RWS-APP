@@ -277,6 +277,11 @@
 .user-data__actions {
   padding: 8px 0;
   text-align: center;
+  .btn {
+    min-width: 220px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
 }
 
 .user-data_info {
@@ -365,6 +370,10 @@
     .user-data__actions {
       padding-top: 20px;
       text-align: left;
+      .btn {
+        margin-bottom: 0;
+      }
+
     }
     .user-data__value {
       &:not(:last-child) {

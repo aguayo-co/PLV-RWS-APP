@@ -134,12 +134,12 @@ section.single
             span.btn_edit.i-edit-line <small class="hide"> Editar </small>
       //-Btn Prilovers Star
       .user-data__actions
+        router-link.btn.btn_small.i-tag(
+          :to="{ name:'publicar-venta'}",
+          title="Publicar un producto en Prilov") Publicar un producto
         router-link.btn.btn_small.i-start(
-          :to="'/user/prilover-star'",
+          :to="{ name:'user-prilover-star'}"
           title="Ser Prilover Star") Ser Prilover Star
-        //- router-link.btn.btn_small.i-sale(
-              to="/publicar-venta",
-              title="Publicar un producto en Prilov") Publicar un producto
 
       //-Información direcciones
       .user-data_info
