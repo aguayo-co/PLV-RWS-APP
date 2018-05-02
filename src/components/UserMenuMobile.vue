@@ -15,9 +15,9 @@ nav.user-menu
         title="Ver Tu Perfil")
     li.user-menu__item.user-menu__item_burguer(@click.stop="openMenuUsuaria")
       span.menu-ico.user-menu__icon(:class="{'menu-ico_open' : menuUsuaria}")
-        span.menu-ico__line
-        span.menu-ico__line
-        span.menu-ico__line
+        span.menu-ico__circle
+        span.menu-ico__circle
+        span.menu-ico__circle
     transition(name='slide-right')
       .side(v-show="menuUsuaria")
         //- User Nav

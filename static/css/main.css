@@ -2378,6 +2378,26 @@ body {
   .menu-ico_open .menu-ico__line:last-child {
     -webkit-transform: rotate(-45deg) translate(0);
     transform: rotate(-45deg) translate(0); }
+  .menu-ico__circle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 4px;
+    height: 4px;
+    margin-top: -1px;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+    background-color: #fff; }
+    .menu-ico__circle:first-child {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px); }
+    .menu-ico__circle:last-child {
+      -webkit-transform: translateY(8px);
+      transform: translateY(8px); }
+  .menu-ico_open .menu-ico__circle {
+    background-color: #f65a66; }
   /* 
   Menu slide left Mobile
 */
@@ -4398,6 +4418,8 @@ body {
     padding-top: 18px; }
   .user-menu__item_burguer {
     padding-bottom: 15px; }
+    .user-menu__item_burguer .user-menu__icon {
+      width: 22px; }
   .user-menu__icon {
     display: block;
     margin-left: auto;
