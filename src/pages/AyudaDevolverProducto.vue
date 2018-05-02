@@ -23,8 +23,12 @@
               p Si en lugar de enviar el producto, te juntaste con la vendedora, también podrás seleccionar esa opción desde la vista de <strong>Tus Compras</strong>. Apenas la vendedora tenga nuevamente el producto en sus manos y lo notifique en Prilov, se generarán tus créditos en tu cuenta en Prilov. Si quieres transferirlos a tu cuenta bancaria, puedes solicitarlo desde la vista de <strong>Tus Créditos</strong>.
               p.blog__note <sup>*</sup>Nota: La compradora debe asumir el costo del envío de la devolución en la mayoría de los casos. Sólo en el caso que los productos vengan defectuosos o la información entregada por la vendedora en la publicación no es la correcta, la vendedora debe asumir ese costo de envío.
     figure.blog-bannerprom.banner-hero
-      img.banner-slider__img(
-        src='static/img/blog5-003.png')
+      picture.banner-hero__crop
+        source.banner-hero__img(
+          media='(max-width: 640px)', srcset='static/img/blog5-003-m.png')
+        img.banner-slider__img(
+          src='static/img/blog5-003.png')
+        blog5-003-m.png
     article.blog__body
       .blog__out
         .blog__spread

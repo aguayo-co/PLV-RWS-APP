@@ -21,10 +21,14 @@
   transform: scale(.9);
   transition: all .2s ease-out;
   &:before {
-    display: none;
-    padding: 0 20px;
-    color: $c-neutro;
-    @include font-rem(24px);
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 16px;
+    // padding: 0 20px;
+    border-radius: 50%; 
+    background-color: $c-neutro;
+    // @include font-rem(24px);
     transform: scale(.9);
   }
 }
@@ -184,7 +188,7 @@
       margin-right: 10px;
     }
     &:before {
-      display: block;
+      content: '';
     }
   }
   .detail__img {
@@ -207,7 +211,7 @@
   }
   .detail__thumb {
     &:before {
-      display: block;
+      content: '';
     }
   }
   .detail__img {

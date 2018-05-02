@@ -10,7 +10,7 @@
     v-if="mqDesk",
     :compact="compact")
   .section_product__scroll
-    .product-grid.product-grid_small
+    .product-grid
       //- Producto 1
       article.slot.slot_grid
         .slot__product-inner

@@ -6,8 +6,7 @@
     header.header__bar
       span.menu-ico(
         @click='MenuOpen()',
-        :class="{ 'menu-ico_open':menuOpen }"
-      )
+        :class="{ 'menu-ico_open':menuOpen }")
         span.menu-ico__line
         span.menu-ico__line
         span.menu-ico__line

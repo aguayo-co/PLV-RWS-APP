@@ -21,15 +21,18 @@ section.single
       .chat__message
         .chat__message_inner(ref="chatBox")
           .chat__message-flex
-            .chat-line(v-for="message in thread.messages")
-              .chat__bubble-main(:class="{ 'own' : message.user_id === user.id }")
-                .chat-bubble__avatar(v-if="message.user_id === user.id")
-                  img.chat-bubble__img(:src="user.picture", alt="user.first_name")
-                .chat-bubble__avatar(v-else)
-                  img.chat-bubble__img(:src="messenger.picture", alt="messenger.first_name")
-                p.chat-bubble__txt {{ message.body }}
-              .chat__footer
-                time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
+            .chat__line(v-for="message in thread.messages")
+              .chat__order(
+                :class="{ 'chat__order_own' : message.user_id === user.id }")
+                span.chat__inner  
+                  .chat__bubble-main
+                    .chat-bubble__avatar(v-if="message.user_id === user.id")
+                      img.chat-bubble__img(:src="user.picture", alt="user.first_name")
+                    .chat-bubble__avatar(v-else)
+                      img.chat-bubble__img(:src="messenger.picture", alt="messenger.first_name")
+                    p.chat-bubble__txt {{ message.body }}
+                  .chat__footer.chat__footer_main
+                    time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
         .chat-inner
           form.chat__form
             label.chat__label Escribe tu mensaje aquí

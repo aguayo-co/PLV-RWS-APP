@@ -101,6 +101,34 @@
     }
   }
 
+.menu-ico__circle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 4px;
+  height: 4px;
+  margin-top: -1px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+  background-color: $c-neutro;
+  &:first-child {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  &:last-child {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+}
+// Ico Menu Active 
+.menu-ico_open {
+  .menu-ico__circle {
+    background-color: $c-brand;
+  }
+}
+
 /* 
   Menu slide left Mobile
 */

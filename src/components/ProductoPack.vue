@@ -14,7 +14,7 @@
       //- Thumbs
       .detail__tabs(
         :class="{'detail__tabs_initial' :srcActive == ''}")
-        .detail__thumb.i-heart-on(
+        .detail__thumb(
           v-for='(image,index) in product.images',
           :key='index',
           :class="{'detail__thumb_active' :srcActive == image}",
