@@ -8,21 +8,21 @@
       .form__grid
         .form__row
           label.form__label(
-            :for="address.id + 'address'") Númerp
-          span.help(
-            v-show="errorLog.number") {{ errorLog.number }}
-          input.form__control(
-            :id="address.id + 'number'"
-            v-model="new_number"
-            type='text')
-        .form__row
-          label.form__label(
             :for="address.id + 'street'") Calle
           span.help(
             v-show="errorLog.street") {{ errorLog.street }}
           input.form__control(
             :id="address.id + 'street'"
             v-model="new_street"
+            type='text')
+        .form__row
+          label.form__label(
+            :for="address.id + 'address'") Número
+          span.help(
+            v-show="errorLog.number") {{ errorLog.number }}
+          input.form__control(
+            :id="address.id + 'number'"
+            v-model="new_number"
             type='text')
 
       .form__grid
