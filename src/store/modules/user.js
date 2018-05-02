@@ -23,7 +23,8 @@ const baseUserGenerator = () => {
     following_count: null,
     roles: [],
     groups: [],
-    shipping_methods: []
+    shipping_methods: [],
+    bank_account: {}
   }
 }
 
