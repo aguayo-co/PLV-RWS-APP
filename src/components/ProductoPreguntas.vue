@@ -27,15 +27,17 @@
                   .chat__btn
                     button.chat__btn-solid.i-shipping(@click.prevent="addAnswer(index)")
             .chat__line(v-for="(message, subindex) in question.messages")
-              span.chat__inner(v-if="subindex !== 0")
-                .chat__bubble(:class="{ 'own' : message.user_id === ownerId }")
-                  figure.chat-bubble__avatar(v-if="message.user_id === ownerId")
-                    img.chat-bubble__img(:src="question.participants[1].user.picture", alt="Avatar")
-                  figure.chat-bubble__avatar(v-else)
-                    img.chat-bubble__img(:src="question.participants[0].user.picture", alt="Avatar")
-                  p.chat-bubble__txt {{ message.body }}
-                .chat__footer
-                  time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
+              .chat__order(
+                :class="{ 'chat__order_own' : message.user_id === ownerId }")
+                span.chat__inner(v-if="subindex !== 0")
+                  .chat__bubble
+                    figure.chat-bubble__avatar(v-if="message.user_id === ownerId")
+                      img.chat-bubble__img(:src="question.participants[1].user.picture", alt="Avatar")
+                    figure.chat-bubble__avatar(v-else)
+                      img.chat-bubble__img(:src="question.participants[0].user.picture", alt="Avatar")
+                    p.chat-bubble__txt {{ message.body }}
+                  .chat__footer
+                    time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
             span.chat-break
               span.chat-break__bullet
         .chat-query
