@@ -335,7 +335,6 @@
   .slot__price {
     @include font-rem(36px);
   }
-
 }
 
 @include media-query(big) {
