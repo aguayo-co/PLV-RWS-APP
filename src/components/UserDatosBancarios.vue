@@ -10,7 +10,7 @@ section.single
             h3.box-flat__title {{ bank.name }} {{ accountType.name }}
             p.box-flat__txt ... ... ... {{ user.bank_account.accountNumber.substr(user.bank_account.accountNumber.length - 5) }}
           .box-flat__button
-            button.box-flat__btn.txt-underline(@click="switchForm", title="Modificar datos bancarios") Modificar
+            button.link_underline(@click="switchForm", title="Modificar datos bancarios") Modificar
       .box.box_alert(v-if="!user.bank_account && !editVissible")
         .box-flat__grid
           .box-flat__lead.i-alert-tri
