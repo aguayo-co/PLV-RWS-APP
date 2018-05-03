@@ -22,6 +22,9 @@ a {
   color: $black;
   font-size: inherit;
   font-weight: $fw-bold;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 3px solid $c-brand;
   transition: all 0.5s;
   &:hover {
