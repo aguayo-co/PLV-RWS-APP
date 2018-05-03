@@ -3,7 +3,7 @@
 \*------------------------------------*/
 .detail {
   max-width: 480px;
-  margin: 0 auto;
+  margin: 0 auto 32px;
 }
 
 .detail__gallery {
@@ -246,6 +246,7 @@
 @include media-query(medium) {
   .detail {
     max-width: 100%;
+    margin-bottom: 52px;
     @include flexbox;
     @include justify-content(space-between);
   }
