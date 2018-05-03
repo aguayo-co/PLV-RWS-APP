@@ -24,7 +24,7 @@ section.single
             .chat__line(v-for="message in thread.messages")
               .chat__order(
                 :class="{ 'chat__order_own' : message.user_id === user.id }")
-                span.chat__inner  
+                span.chat__inner
                   .chat__bubble-main
                     .chat-bubble__avatar(v-if="message.user_id === user.id")
                       img.chat-bubble__img(:src="user.picture", alt="user.first_name")

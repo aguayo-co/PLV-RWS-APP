@@ -5,7 +5,7 @@
       header.chat-band__header
         h2.subhead Comentarios de este producto
       .chat-band__grid
-        .chat
+        .chat(v-if="questions[0]")
           .chat__group(v-for="(question, index) in questions")
             .chat__line
               span.chat__inner
@@ -40,6 +40,9 @@
                     time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
             span.chat-break
               span.chat-break__bullet
+        .chat(v-else)
+          .alert-msg.i-smile.alert-msg_top
+            p Aún no hay comentarios de este producto. Se la primera en comentar
         .chat-query
           .chat_sticky
             form.chat__form(

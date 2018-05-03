@@ -46,10 +46,6 @@
     color: $c-brand;
     @include font-rem(20px);
   }
-  &:not(.active){
-   &:before {
-   }
-  }
   &.active {
     overflow: hidden;
     &:before {
@@ -57,8 +53,6 @@
     }
   }
 }
-//Animations
-
 
 @media only screen and (min-width: 560px) {
   .slot_grid {
@@ -335,7 +329,6 @@
   .slot__price {
     @include font-rem(36px);
   }
-
 }
 
 @include media-query(big) {
