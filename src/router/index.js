@@ -33,6 +33,7 @@ import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaComoComprar from '@/pages/AyudaComoComprar'
+import AyudaComoFunciona from '@/pages/AyudaComoFuncionaPrilov'
 
 Vue.use(Router)
 
@@ -205,6 +206,11 @@ export default new Router({
       path: '/como-comprar',
       name: 'como-comprar',
       component: AyudaComoComprar
+    },
+    {
+      path: '/como-funciona-prilov',
+      name: 'como-funciona',
+      component: AyudaComoFunciona
     }
   ],
   scrollBehavior (to, from, savedPosition) {

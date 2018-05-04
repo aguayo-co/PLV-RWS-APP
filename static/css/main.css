@@ -9141,6 +9141,9 @@ body {
 .blog_top {
   padding-top: 30px; }
 
+.blog_center {
+  text-align: center; }
+
 .blog__inner {
   width: 96%;
   max-width: 920px;
@@ -9165,6 +9168,13 @@ body {
   font-size: 1.875rem;
   padding-bottom: 8px; }
 
+.blog__subtitle {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500; }
+
 .blog__kicker {
   width: 70%;
   margin: 0;
@@ -9180,6 +9190,10 @@ body {
     width: 96%;
     padding-top: 8px;
     border-top: 1px solid #000; }
+
+.blog__kicker_center {
+  display: inline-block;
+  width: auto; }
 
 .blog__headline {
   max-width: 810px;
@@ -9269,6 +9283,40 @@ body {
 .blog__byline {
   padding-top: 16px; }
 
+.blog-card {
+  margin: 0;
+  text-align: center;
+  list-style: none;
+  counter-reset: item; }
+
+.blog-card__item:before {
+  color: #f65a66;
+  font-size: 50px;
+  font-size: 3.125rem; }
+
+.blog-card__item .blog-card__title:before {
+  counter-increment: item;
+  content: counter(item) ". "; }
+
+.blog-card__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
+  font-size: 1rem; }
+
+.blog-card__txt {
+  display: inline-block;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100; }
+
+@media only screen and (min-width: 480px) {
+  .blog-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; } }
+
 @media only screen and (min-width: 768px) {
   .blog {
     margin-bottom: 100px;
@@ -9287,13 +9335,15 @@ body {
   .blog__title {
     font-size: 50px;
     font-size: 3.125rem; }
+  .blog__subtitle {
+    font-size: 30px;
+    font-size: 1.875rem; }
   .blog__kicker {
-    text-transform: uppercase;
-    letter-spacing: 8px;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 300;
     font-size: 18px;
     font-size: 1.125rem; }
+  .blog__kicker_center {
+    font-size: 16px;
+    font-size: 1rem; }
   .blog__headline {
     padding-bottom: 24px;
     font-size: 26px;
@@ -9319,7 +9369,16 @@ body {
     font-size: 36px;
     font-size: 2.25rem; }
   .blog__byline {
-    padding-top: 16px; } }
+    padding-top: 16px; }
+  .blog-card__item:before {
+    font-size: 66px;
+    font-size: 4.125rem; }
+  .blog-card__title {
+    font-size: 18px;
+    font-size: 1.125rem; }
+  .blog-card__txt {
+    font-size: 16px;
+    font-size: 1rem; } }
 
 @media only screen and (min-width: 1024px) {
   .blog__out {
