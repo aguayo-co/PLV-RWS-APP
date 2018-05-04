@@ -177,6 +177,10 @@
 .blog__byline {
 	padding-top: 16px;
 }
+// Contenido grilla
+.blog__article {
+	padding-bottom: 16px;
+}
 
 .blog-card {
 	margin: 0;
@@ -303,6 +307,9 @@
 	}
 	.blog__byline {
 		padding-top: 16px;
+	}
+	.blog__article {
+	  padding-bottom: 30px;
 	}
 
 	.blog-card {

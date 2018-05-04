@@ -9295,6 +9295,9 @@ body {
 .blog__byline {
   padding-top: 16px; }
 
+.blog__article {
+  padding-bottom: 16px; }
+
 .blog-card {
   margin: 0;
   padding: 16px 0;
@@ -9397,6 +9400,8 @@ body {
     font-size: 2.25rem; }
   .blog__byline {
     padding-top: 16px; }
+  .blog__article {
+    padding-bottom: 30px; }
   .blog-card {
     padding: 30px 0; }
   .blog-card__item:before {
@@ -9468,9 +9473,12 @@ body {
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%); }
 
+.blog-banner .banner-hero__caption {
+  line-height: 1.4; }
+
 @media only screen and (min-width: 1024px) {
   .blog-banner .banner-hero__slot {
-    width: 50%;
+    width: 60%;
     left: 0;
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%); } }

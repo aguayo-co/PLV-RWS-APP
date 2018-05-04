@@ -6,9 +6,9 @@
       .banner-hero__slot
         .banner-hero__head.left
           figcaption.banner-hero__caption Elige la ropa que no usas y dale una segunda oportunidad
-        picture.banner-hero__crop
-          source.banner-hero__img(media='(max-width: 640px)', srcset='static/img/demo/banner-004-m.jpg')
-          img.banner-slider__img(src='static/img/demo/banner-004.jpg')
+      picture.banner-hero__crop
+        source.banner-hero__img(media='(max-width: 640px)', srcset='static/img/demo/banner-004-m.jpg')
+        img.banner-slider__img(src='static/img/demo/banner-004.jpg')
     .blog__inner
       header.blog__header
         h1.blog__title.blog_center ¿Cómo funciona Prilov?
@@ -35,7 +35,13 @@
           li.blog-card__item.i-money
             h3.blog-card__title ¡A cobrar!
             p.blog-card__txt Prilov cobra la comisión que elegiste para tu producto. Con los créditos obtenidos, podrás comprar o transferirlos a tu cuenta bancaria.
-    BlogbannerProm
+    figure.blog-banner.banner-hero
+      .banner-hero__slot
+        .banner-hero__head.left
+          figcaption.banner-hero__caption Descubre productos que te encantan y cómpralos casi regalados
+      picture.banner-hero__crop
+        source.banner-hero__img(media='(max-width: 640px)', srcset='static/img/demo/banner-005-m.jpg')
+        img.banner-slider__img(src='static/img/demo/banner-005.jpg')
     .blog__inner
       article.blog__article
           .blog_center

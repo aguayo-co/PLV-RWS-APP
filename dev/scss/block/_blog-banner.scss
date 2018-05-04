@@ -4,12 +4,15 @@
     left: 0;
     @include prefixer(transform, translate(0, -50%), ("webkit", "moz"));
   }
+  .banner-hero__caption {
+    line-height: 1.4;
+  }
 }
 
 @include media-query(wide) {
   .blog-banner {
     .banner-hero__slot {
-      width: 50%;
+      width: 60%;
       left: 0;
       @include prefixer(transform, translate(0, -50%), ("webkit", "moz"));
     }
@@ -25,3 +28,4 @@
     display: block;
   }
 }
+
