@@ -514,3 +514,28 @@
     content: unicode($i-search-plus);
   }
 }
+//-V7
+.i-box {
+  &:before {
+    content: unicode($i-box);
+  }
+}
+
+.i-camera {
+  &:before {
+    content: unicode($i-camera);
+  }
+}
+
+.i-talk {
+  &:before {
+    content: unicode($i-talk);
+  }
+}
+
+.i-return {
+  &:before {
+    content: unicode($i-return);
+  }
+}
+
