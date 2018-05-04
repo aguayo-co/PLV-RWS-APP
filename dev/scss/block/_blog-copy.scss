@@ -186,6 +186,8 @@
 }
 
 .blog-card__item {
+	display: inline-block;
+	max-width: 320px; 
 	&:before {
 		color: $c-brand;
 		@include font-rem(50px);
@@ -198,6 +200,7 @@
 	}
 }
 .blog-card__title {
+	padding-top: 22px;
 	text-transform: uppercase;
 	font-weight: $fw-bold;
 	@include font-rem(16px);
@@ -212,7 +215,14 @@
 	.blog-card {
 		@include flexbox;
 		@include flex-wrap(wrap);
+		@include justify-content(center);
+		margin: 0 -30px;
 	}
+	.blog-card__item {
+		max-width: 310px;
+		padding: 30px;
+	}
+
 }
 
 @include media-query(medium) {

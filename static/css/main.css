@@ -9289,16 +9289,19 @@ body {
   list-style: none;
   counter-reset: item; }
 
-.blog-card__item:before {
-  color: #f65a66;
-  font-size: 50px;
-  font-size: 3.125rem; }
-
-.blog-card__item .blog-card__title:before {
-  counter-increment: item;
-  content: counter(item) ". "; }
+.blog-card__item {
+  display: inline-block;
+  max-width: 320px; }
+  .blog-card__item:before {
+    color: #f65a66;
+    font-size: 50px;
+    font-size: 3.125rem; }
+  .blog-card__item .blog-card__title:before {
+    counter-increment: item;
+    content: counter(item) ". "; }
 
 .blog-card__title {
+  padding-top: 22px;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 16px;
@@ -9315,7 +9318,15 @@ body {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap; } }
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    margin: 0 -30px; }
+  .blog-card__item {
+    max-width: 310px;
+    padding: 30px; } }
 
 @media only screen and (min-width: 768px) {
   .blog {
