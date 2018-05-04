@@ -63,9 +63,6 @@ export default {
   },
   methods: {
     follow: function () {
-      console.log(this.user.id)
-      console.log(this.userId)
-      console.log(this.$route.params.userId)
       const data = {
         following_add: [this.$route.params.userId]
       }
