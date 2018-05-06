@@ -422,6 +422,7 @@
 <script>
 import { mapState } from 'vuex'
 import productAPI from '../api/product'
+import categoriesAPI from '../api/category'
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 Vue.component('croppa', Croppa.component)
@@ -631,9 +632,9 @@ export default {
     }
   },
   created: function () {
-    productAPI.getCategoriesBySlug('shop')
+    categoriesAPI.getAllCategories()
       .then(response => {
-        this.categories = response.data.children
+        this.categories = response.data.data
       })
       .catch(e => {
         console.log(e)
