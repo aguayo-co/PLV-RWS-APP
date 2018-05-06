@@ -24,7 +24,8 @@ const baseUserGenerator = () => {
     roles: [],
     groups: [],
     shipping_method_ids: [],
-    bank_account: {}
+    bank_account: {},
+    vacation_mode: null
   }
 }
 

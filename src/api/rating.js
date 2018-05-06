@@ -1,9 +1,25 @@
 /**
- * API Calls related to orders
+ * API Calls related to ratings
  */
 import Vue from 'vue'
 
 export default {
+  getPositiveByUser (userId) {
+    const params = {
+      status: '1',
+      seller_id: userId,
+      buyer_rating: '0,1'
+    }
+    return Vue.axiosAuth.get('/api/ratings/', { params })
+  },
+  getNegativeByUser (userId) {
+    const params = {
+      status: '1',
+      seller_id: userId,
+      buyer_rating: '-1,0'
+    }
+    return Vue.axiosAuth.get('/api/ratings/', { params })
+  },
   loadForSale (ratingId) {
     return Vue.axiosAuth.get('/api/ratings/' + ratingId)
   },
