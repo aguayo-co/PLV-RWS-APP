@@ -5,7 +5,7 @@ section.profile
       img.cover__picture(:src='user.cover')
     .cover__banner(v-else)
       //-1800 * 720 - 5:2 -
-      img.cover__picture(src='/static/img/user-cover.jpg')
+      img.cover__picture(:src="'/static/img/cover/cover-' + coverId + '.jpg'")
   .profile__user
     .profile__grid
       .profile__avatar.user-item_gutter
@@ -52,6 +52,13 @@ section.profile
 
 export default {
   props: ['user'],
-  name: 'UserDataCloset'
+  name: 'UserDataCloset',
+  computed: {
+    coverId () {
+      if (this.user.first_name) {
+        return (this.user.first_name.charCodeAt(0) % 7) + 1
+      }
+    }
+  }
 }
 </script>
