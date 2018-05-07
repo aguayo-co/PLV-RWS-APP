@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     seller () {
-      return this.$store.getters['user/roles'].filter(x => x.name === 'seller')[0]
+      return this.$store.state['user'].roles.filter(x => x.name === 'seller')[0]
     },
     authenticated () {
       return Boolean(this.$store.state['user'].id)
