@@ -2,9 +2,9 @@
 
 section.layout-inner
   header.section__subhead
-    h2.title_head.title_head-small Otras prendas que <span class="txt_brand">te pueden interesar</span>
+    h2.title_head.title_head-small Otros productos que <span class="txt_brand">te pueden gustar</span>
     h3.title_subhead(
-      v-if="mqTablet") Elegimos otras prendas que creemos te pueden interesar
+      v-if="mqTablet") Elegimos estos productos pensando en ti
   //- banner promociones grid
   //- TO-DO: consumir servicios
   .slider-slot

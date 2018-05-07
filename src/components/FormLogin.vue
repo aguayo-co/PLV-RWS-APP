@@ -90,7 +90,7 @@ export default {
       userAPI.login(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-          this.close()
+          this.$router.push({ name: 'user-data' })
         })
         .catch(e => {
           var modal

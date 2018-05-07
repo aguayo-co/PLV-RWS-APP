@@ -73,8 +73,12 @@
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
-                      :to="{ name: 'user-data'}",
-                      title="Ir a tu cuenta") Tu Cuenta
+                      :to="{ name: 'user-notificaciones'}",
+                      title="Ir a tus notificaciones") Notificaciones <small class="badge" v-if="user.notifications > 0">{{ user.notifications }}</small>
+                  li.user-auth__item
+                    router-link.user-auth__link(
+                      :to="{ name: 'user-tu-closet'}",
+                      title="Ir a tu clóset") Tu Clóset
                   li.user-auth__item
                     router-link.user-auth__link(
                       :to="{ name: 'user-tus-compras'}",

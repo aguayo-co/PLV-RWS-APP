@@ -182,12 +182,11 @@ export default {
 
       this.validatePassword(e)
 
-      if (Object.keys(this.errorTexts).length === 1) {
+      if (Object.keys(this.errorTexts).length === 1 && this.errorTexts.passwordDetail.length === 0) {
         this.signUp()
       }
     },
     validatePassword: function (e) {
-      console.log(this.password)
       this.errorTexts.passwordDetail = []
 
       if (!this.password) this.errorTexts.password = 'Debes ingresar una contraseña'

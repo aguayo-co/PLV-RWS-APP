@@ -6,6 +6,7 @@ import Vue from 'vue'
 export default {
   create: function (product) {
     console.log(product)
+    product.category_id = product.subcategory_id
     var formData = new FormData()
     Object.keys(product).forEach((key) => {
       if (key === 'images' || key === 'color_ids') {
@@ -38,7 +39,7 @@ export default {
   },
 
   getProductById: function (productId) {
-    return Vue.axios.get('/api/products?filter[id]=' + productId)
+    return Vue.axios.get('/api/products/' + productId)
   },
 
   getProductBySlug: function (productSlug) {

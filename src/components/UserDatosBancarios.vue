@@ -158,9 +158,9 @@ export default {
     validate: function () {
       this.errorLog = {}
       if (!this.bankData.rut) this.errorLog.rut = 'Debes ingresar tu número de Rut'
-      if (!this.bankData.fullname) this.errorLog.fullname = 'Debes ingresar el nombre completo del dueño de la cuenta'
+      if (!this.bankData.fullName) this.errorLog.fullname = 'Debes ingresar el nombre completo del dueño de la cuenta'
       if (!this.bankData.bankId) this.errorLog.bankId = 'Debes seleccionar un banco'
-      if (!this.bankData.accountTypeId) this.errorLog.accountTypeId = 'Debes seleccionar un tipo de cuenta'
+      if (!this.bankData.accountType) this.errorLog.accountTypeId = 'Debes seleccionar un tipo de cuenta'
       if (!this.bankData.accountNumber) this.errorLog.accountNumber = 'Debes ingresar un número de cuenta'
 
       if (Object.keys(this.errorLog).length === 0) {

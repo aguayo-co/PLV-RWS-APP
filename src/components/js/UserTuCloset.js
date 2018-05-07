@@ -1,5 +1,6 @@
 /* global FormData */
 import { mapGetters, mapState } from 'vuex'
+import ratingsAPI from '@/api/rating'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -43,13 +44,18 @@ export default {
       new_picture: null,
       new_cover: null, /* add Closet */
       newUserData: {...editableProps},
-      errorLog: {...editableProps, picture: null, exists: null}
+      errorLog: {...editableProps, picture: null, exists: null},
+      ratings: {
+        positive: null,
+        negative: null
+      }
     }
   },
   computed: {
     ...mapState('user', [
       'id',
       'picture',
+      'first_name',
       'cover',
       'followers_count',
       'following_count',
@@ -58,7 +64,12 @@ export default {
     ...mapGetters('user', [
       'full_name'
     ]),
-    ...createComputedProps(editableProps)
+    ...createComputedProps(editableProps),
+    coverId () {
+      if (this.first_name) {
+        return (this.first_name.charCodeAt(0) % 7) + 1
+      }
+    }
   },
   methods: {
     toggle: function (prop) {
@@ -121,6 +132,47 @@ export default {
           this.$store.dispatch('ui/closeModal', modal)
         })
       })
+    },
+    updateCover: function () {
+      if (!this.new_cover.hasImage()) {
+        this.errorLog.cover = 'No has cargado una imagen.'
+        return
+      }
+
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: 'Estamos subiendo tu imagen'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
+
+      this.errorLog.cover = null
+      this.new_cover.generateBlob((blob) => {
+        let formData = new FormData()
+        formData.append('cover', blob)
+        this.$store.dispatch('user/update', formData).then(() => {
+          this.toggle('editCover')
+          this.new_cover.refresh()
+        }).catch((e) => {
+          this.$handleApiErrors(e, ['cover'], this.errorLog)
+        }).finally(() => {
+          this.$store.dispatch('ui/closeModal', modal)
+        })
+      })
+    }
+  },
+  watch: {
+    id: function () {
+      ratingsAPI.getPositiveByUser(this.id)
+        .then(response => {
+          this.ratings.positive = response.data.total
+        })
+      ratingsAPI.getNegativeByUser(this.id)
+        .then(response => {
+          this.ratings.negative = response.data.total
+        })
     }
   }
 }

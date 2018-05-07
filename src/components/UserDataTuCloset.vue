@@ -11,7 +11,7 @@
           img.cover__picture(:src='cover')
         .cover__banner(v-else)
           //-1800 * 720 - 5:2 -
-          img.cover__picture(src='/static/img/user-cover.jpg')
+          img.cover__picture(:src="'/static/img/cover/cover-' + coverId + '.jpg'")
       form.form_user.user-cover__upfile(
         id="form-user-cover"
         v-on:submit.prevent='',
@@ -19,17 +19,22 @@
         .upfile.upfile__cover
           .upfile__item
             .upfile__label
-              .upfile__text(v-if="mqDesk") Arrastra una foto o
+              span.help(
+                v-if="errorLog.cover") {{ errorLog.cover }}
+              span.help_if(
+                v-else)
+                .upfile__text(
+                  v-if="mqDesk") Arrastra una foto o
               .upfile__btn Sube una imagen
             croppa(
               :width="1800",
               :height="700",
-              :quality="2",
+              :quality="1",
               placeholder="",
               :prevent-white-space="true"
               v-model="new_cover")
         .user-edit__save.usert__save-right(
-          @click="updatePicture")
+          @click="updateCover")
           button.btn-tag Guardar
     .user-header
       .user-header__item.user-item_gutter
@@ -45,7 +50,7 @@
                 :src="picture",
                 :alt="'Perfil' + ' ' + first_name")
               span.tool-user__letter(
-                v-else) {{ new_first_name.charAt(0) }}
+                v-if="new_first_name && !picture") {{ new_first_name.charAt(0) }}
             form.form_user.user-avatar__upfile(
               id="form-user-avatar"
               v-on:submit.prevent='',

@@ -5,7 +5,7 @@ section.profile
       img.cover__picture(:src='user.cover')
     .cover__banner(v-else)
       //-1800 * 720 - 5:2 -
-      img.cover__picture(src='/static/img/user-cover.jpg')
+      img.cover__picture(:src="'/static/img/cover/cover-' + coverId + '.jpg'")
   .profile__user
     .profile__grid
       .profile__avatar.user-item_gutter
@@ -25,12 +25,12 @@ section.profile
               li.user-data__value.i-like.i_flip 0
               li.user-data__value.i-less-circle 0
             ul.user-data__list
-              li.user-data__track {{ followers_count }} Seguidores
-              li.user-data__track {{ following_count }} Siguiendo
+              li.user-data__track {{ user.followers_count }} Seguidores
+              li.user-data__track {{ user.following_count }} Siguiendo
           //-Enlaces
           ul.user-data__nav
             li.user-data__tag
-              router-link.btn-tag.btn-tag_solid(:to="{ name: 'home'}") Seguir
+              a.btn-tag.btn-tag_solid(@click="follow") Seguir
             li.user-data__tag
               router-link.btn-tag(:to="{ name: 'home'}") Enviar Mensaje
     //- About perfil
@@ -50,8 +50,32 @@ section.profile
 
 <script>
 
+// import { mapGetters, mapState } from 'vuex'
+import usersAPI from '@/api/user'
+
 export default {
   props: ['user'],
-  name: 'UserDataCloset'
+  name: 'UserDataCloset',
+  computed: {
+    userId () {
+      return this.$store.getters['user/id']
+    },
+    coverId () {
+      if (this.user.first_name) {
+        return (this.user.first_name.charCodeAt(0) % 7) + 1
+      }
+    }
+  },
+  methods: {
+    follow: function () {
+      const data = {
+        following_add: [this.$route.params.userId]
+      }
+      usersAPI.updateFollowing(this.userId, data)
+        .then(response => {
+          console.log('ok')
+        })
+    }
+  }
 }
 </script>

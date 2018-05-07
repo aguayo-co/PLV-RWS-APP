@@ -5,9 +5,12 @@ import Vue from 'vue'
 
 export default {
   update: function (data) {
+    console.log(data)
     return Vue.axiosAuth.patch('/api/users/' + data.id, data)
   },
-
+  updateFollowing: function (user, data) {
+    return Vue.axiosAuth.patch('/api/users/' + user, data)
+  },
   updateWithFile: function (data) {
     var formData = new FormData()
     Object.keys(data).forEach((key, index) => {

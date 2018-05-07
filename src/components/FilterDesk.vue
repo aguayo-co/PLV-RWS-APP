@@ -144,6 +144,7 @@ nav.filter(@click="closeFilters")
 
 <script>
 import productAPI from '@/api/product'
+import categoriesAPI from '@/api/category'
 import FilterPrecio from '@/components/FilterPrecio'
 import userAddressesAPI from '@/api/userAddresses'
 
@@ -281,15 +282,9 @@ export default {
       .then(response => {
         this.sizes = response.data.data
       })
-    productAPI.getCategoriesBySlug('shop')
+    categoriesAPI.getAllCategories()
       .then(response => {
-        this.categories = response.data.children
-        Object.keys(this.categories).forEach((key) => {
-          productAPI.getCategoriesById(this.categories[key].id)
-            .then(response => {
-              this.categories[key].children = response.data.data[0].children
-            })
-        })
+        this.categories = response.data.data
       })
     userAddressesAPI.getRegions().then((response) => {
       this.regions = response.data
