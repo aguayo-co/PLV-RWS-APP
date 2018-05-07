@@ -206,7 +206,7 @@ export default {
 
       this.validatePassword(e)
 
-      if (Object.keys(this.errorLog).length === 1) {
+      if (Object.keys(this.errorLog).length === 1 && this.errorLog.passwordDetail.length === 0) {
         this.signUp()
       }
     },
