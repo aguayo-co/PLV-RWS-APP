@@ -70,7 +70,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    section () {
+      if (this.$route.matched[0]) {
+        return this.$route.matched[0] === 'user'
+      }
+      return false
+    }
   }
 }
 </script>
