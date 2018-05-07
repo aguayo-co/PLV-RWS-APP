@@ -9,96 +9,117 @@
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
           .upfile__item
-            a.upfile__delete.i-x(
-              v-show='toggleImageDelete[0]',
-              @click='removeImage(0)')
-              span.hide Eliminar
-            .upfile__label
-              .upfile__text.i-upload(
-                v-if="mqDesk") Arrastra una foto o
-              .upfile__btn Sube una imagen
-            span.help(
-              v-if="errorLog.image"
-            ) {{ errorLog.image }}
-            croppa(
-              v-model='images[0]',
-              :width="300",
-              :height="450",
-              :quality="2",
-              placeholder="",
-              :prevent-white-space="true",
-              @new-image-drawn='addImage(0)',
-              @draw='handleMainImage')
-              img(
-                slot="initial",
-                :src="product.images[0]")
-        .upfile__group
-          h3.upfile__title Fotos Secundarias (opcionales)
-          .upfile__grid
-            .upfile__item
+            span.upfile__actions
+              span.btn_edit.i-edit-line(
+                @click.prevent="toggle('editImg0')") <small class="hide"> Editar </small>
+            img.upfile__img(
+              v-if="editImg0 == false",
+              :src="product.images[0]",
+              :alt="product.title")
+            .upfile__edit(v-else)
               a.upfile__delete.i-x(
-                v-show='toggleImageDelete[1]',
-                @click='removeImage(1)')
+                v-show='toggleImageDelete[0]',
+                @click='removeImage(0)')
                 span.hide Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
                 .upfile__btn Sube una imagen
+              span.help(
+                v-if="errorLog.image"
+              ) {{ errorLog.image }}
               croppa(
-                v-model='images[1]',
+                v-model='images[0]',
                 :width="300",
                 :height="450",
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
-                @new-image-drawn='addImage(1)')
-                img(
-                  v-if="product.images[1]"
-                  slot="initial",
-                  :src="product.images[1]")
+                @new-image-drawn='addImage(0)',
+                @draw='handleMainImage')
+        .upfile__group
+          h3.upfile__title Fotos Secundarias (opcionales)
+          .upfile__grid
             .upfile__item
-              a.upfile__delete.i-x(
-                v-show='toggleImageDelete[2]',
-                @click='removeImage(2)')
-                span.hide Eliminar
-              .upfile__label
-                .upfile__text.i-upload(
-                  v-if="mqTablet") Arrastra una foto o
-                .upfile__btn Sube una imagen
-              croppa(
-                v-model='images[2]',
-                :width="300",
-                :height="450",
-                :quality="2",
-                placeholder="",
-                :prevent-white-space="true",
-                @new-image-drawn='addImage(2)')
-                img(
-                  v-if="product.images[2]"
-                  slot="initial",
-                  :src="product.images[2]")
+              span.upfile__actions
+                span.btn_edit.i-edit-line(
+                  @click.prevent="toggle('editImg1')") <small class="hide"> Editar </small>
+              img.upfile__img(
+                v-if="editImg1 == false && product.images[1]"
+                :src="product.images[1]",
+                :alt="product.title")
+              .upfile__edit(v-else)
+                a.upfile__delete.i-x(
+                  v-show='toggleImageDelete[1]',
+                  @click='removeImage(1)')
+                  span.hide Eliminar
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqDesk") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  v-model='images[1]',
+                  :width="300",
+                  :height="450",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true",
+                  @new-image-drawn='addImage(1)')
+            .upfile__item
+              span.upfile__actions
+                span.btn_edit.i-edit-line(
+                  @click.prevent="toggle('editImg2')") <small class="hide"> Editar </small>
+              img.upfile__img(
+                v-if="editImg2 == false && product.images[2]"
+                :src="product.images[2]",
+                :alt="product.title")
+              .upfile__edit(v-else)
+                a.upfile__delete.i-x(
+                  v-show='toggleImageDelete[2]',
+                  @click='removeImage(2)')
+                  span.hide Eliminar
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqTablet") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  v-model='images[2]',
+                  :width="300",
+                  :height="450",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true",
+                  @new-image-drawn='addImage(2)')
             .upfile__item(
               v-if="mqDesk")
-              a.upfile__delete.i-x(
-                v-show='toggleImageDelete[3]',
-                @click='removeImage(3)')
-                span.hide Eliminar
-              .upfile__label
-                .upfile__text.i-upload(
-                  v-if="mqTablet") Arrastra una foto o
-                .upfile__btn Sube una imagen
-              croppa(
-                v-model='images[3]',
-                :width="300",
-                :height="450",
-                :quality="2",
-                placeholder="",
-                :prevent-white-space="true",
-                @new-image-drawn='addImage(3)')
-                img(
-                  v-if="product.images[3]"
-                  slot="initial",
-                  :src="product.images[3]")
+              span.upfile__actions
+                span.btn_edit.i-edit-line(
+                  @click.prevent="toggle('editImg3')") <small class="hide"> Editar </small>
+              img.upfile__img(
+                v-if="editImg3 == false && product.images[3]"
+                :src="product.images[3]",
+                :alt="product.title")
+              .upfile__edit(v-else)
+                a.upfile__delete.i-x(
+                  v-show='toggleImageDelete[3]',
+                  @click='removeImage(3)')
+                  span.hide Eliminar
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqTablet") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  v-model='images[3]',
+                  :width="300",
+                  :height="450",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true",
+                  @new-image-drawn='addImage(3)')
+                  img(
+                    v-if="product.images[3]"
+                    slot="initial",
+                    :src="product.images[3]")
   .step
     //-Formulario set 1
     .layout-inner
@@ -472,7 +493,11 @@ export default {
       toggleColors: {
         first: false,
         second: false
-      }
+      },
+      editImg0: false,
+      editImg1: false,
+      editImg2: false,
+      editImg3: false
     }
   },
   computed: {
@@ -488,6 +513,9 @@ export default {
     }
   },
   methods: {
+    toggle: function (prop) {
+      this[prop] = !this[prop]
+    },
     createProduct: function () {
       const modal = {
         name: 'ModalMessage',

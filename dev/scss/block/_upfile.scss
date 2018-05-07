@@ -14,6 +14,21 @@
     display: none;
   }
 }
+// .upfile__edit {
+//   position: relative;
+//   width: 100%;
+// }
+
+.upfile__actions {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 3;
+}
+.upfile__img {
+  width: 100%;
+  vertical-align: bottom;
+}
 
 .upfile__main {
   position: relative;
