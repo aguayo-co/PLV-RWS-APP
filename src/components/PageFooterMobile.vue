@@ -88,14 +88,18 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
       //- Is authenticated
       li.foot-nav__item.tool-user__item_auth(
         v-if='user.id')
-        router-link.foot-nav__link(:to="'/user/data'")
+        router-link.foot-nav__link(:to="{ name: 'user-data' }")
           figure.tool-user__grid
             small.badge.badge_user 2
             span.tool-user__avatar
               //-vue variable Notificaciones usuario
               img.tool-user__photo(
-                src='/static/img/demo/user-avatar.jpg',
-                alt='')
+                  v-if='user.picture'
+                  :src='user.picture',
+                  alt='')
+              span.tool-user__letter(
+                v-else
+              ) {{ user.first_name.charAt(0) }}
             //-vue variable user name
             figcaption.tool-user__name {{ user.first_name }}
       //- Is NOT authenticated
