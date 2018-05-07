@@ -50,7 +50,7 @@
                 a.slot__actions-link.i-edit-line(href="#")
                 a.slot__actions-link.i-trash(href="#")
               .slot__product-actions(v-if="mqDesk && !user.vacation_mode")
-                a.slot__actions-link.i-edit-line(href="#")
+                router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
                   transition(name='toggle-scale')
                     p.slot__tooltip Editar producto
                 a.slot__actions-link.i-trash(href="#")
@@ -91,25 +91,27 @@
                   v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
                 .slot__group.i-star-on(
                   v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-      ul.pagination(v-if="products.length > 0")
+      ul.pagination(v-if="products.length > 12")
+        li.pagination__item.pagination__label Mostrando
         li.pagination__select
           select.form__select.form__select_small(
             name="numeroItems",
             v-model='productsPager.items',
             @change='updateProductList')
-              option(value="10") 12
-              option(value="20") 24
-              option(value="30") 36
-              option(value="50") 48
+              option(value="12") 12
+              option(value="24") 24
+              option(value="36") 36
+              option(value="48") 48
         li.pagination__item
           a.pagination__arrow.pagination__arrow_prev.i-back(
-            @click.prevent='prevPage'
+            @click.prevent="prevPage('active')"
             href="#")
+        li.pagination__item.pagination__label Página
         li.pagination__item 1
-        li.pagination__item.pagination__item_txt de 3
+        li.pagination__item.pagination__item_txt de {{ productsPager.total }}
         li.pagination__item
           a.pagination__arrow.pagination__arrow_next.i-next(
-            @click.prevent='nextPage'
+            @click.prevent="nextPage('active')"
             href="#")
     .tab(v-if="tabsActive2")
       .product-grid.product-grid_small
@@ -153,7 +155,28 @@
                   v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
                 .slot__group.i-star-on(
                   v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-
+      ul.pagination(v-if="soldProducts.length > 12")
+        li.pagination__item.pagination__label Mostrando
+        li.pagination__select
+          select.form__select.form__select_small(
+            name="numeroItems",
+            v-model='soldProductsPager.items',
+            @change='updateSoldProductList')
+              option(value="12") 12
+              option(value="24") 24
+              option(value="36") 36
+              option(value="48") 48
+        li.pagination__item
+          a.pagination__arrow.pagination__arrow_prev.i-back(
+            @click.prevent="prevPage('sold')"
+            href="#")
+        li.pagination__item.pagination__label Página
+        li.pagination__item 1
+        li.pagination__item.pagination__item_txt de {{ soldProductsPager.total }}
+        li.pagination__item
+          a.pagination__arrow.pagination__arrow_next.i-next(
+            @click.prevent="nextPage('sold')"
+            href="#")
 </template>
 
 <script>
@@ -165,6 +188,7 @@ export default {
   props: ['user'],
   data () {
     return {
+      orderBy: '-id',
       isActive: undefined,
       tabsActive1: true,
       tabsActive2: false,
@@ -180,11 +204,45 @@ export default {
       },
       productsPager: {
         items: 12,
-        page: 1
+        page: 1,
+        total: 1
+      },
+      soldProductsPager: {
+        items: 12,
+        page: 1,
+        total: 1
       }
     }
   },
   methods: {
+    updateProductList: function () {
+      let filterQueryObject = {}
+      filterQueryObject.status = '10,19'
+      filterQueryObject.user_id = this.user.id
+      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
+        .then((response) => {
+          this.products = response.data.data
+          this.productsPager.total = response.data.last_page
+        })
+    },
+    updateSoldProductList: function (status) {
+      let filterQueryObject = {}
+      filterQueryObject.status = '30,32'
+      filterQueryObject.user_id = this.user.id
+      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
+        .then((response) => {
+          this.soldProducts = response.data.data
+          this.soldProductsPager.total = response.data.last_page
+        })
+    },
+    nextPage: function (status) {
+      if (status === 'active' && this.productsPage.page + 1 < this.productsPager.total) this.productsPager.page += 1
+      if (status === 'sold' && this.soldProductsPage.page + 1 < this.soldProductsPager.total) this.soldProductsPager.page += 1
+    },
+    prevPage: function (status) {
+      if (status === 'active' && this.productsPage.page > 2) this.productsPager.page -= 1
+      if (status === 'sold' && this.soldProductsPage.page > 2) this.soldProductsPager.page -= 1
+    },
     myActive: function (e) {
       this.isActive = e
     },
@@ -206,21 +264,8 @@ export default {
     }
   },
   mounted: function () {
-    let filterQueryObject = {}
-    filterQueryObject.status = '10,19'
-    filterQueryObject.user_id = this.user.id
-    productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
-      .then((response) => {
-        this.products = response.data.data
-      })
-
-    filterQueryObject.status = '30,32'
-    filterQueryObject.user_id = this.user.id
-    productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
-      .then((response) => {
-        console.log(response)
-        this.soldProducts = response.data.data
-      })
+    this.updateProductList()
+    this.updateSoldProductList()
   }
 }
 </script>

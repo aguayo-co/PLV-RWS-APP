@@ -39,7 +39,7 @@ export default {
   },
 
   getProductById: function (productId) {
-    return Vue.axios.get('/api/products?filter[id]=' + productId)
+    return Vue.axios.get('/api/products/' + productId)
   },
 
   getProductBySlug: function (productSlug) {
