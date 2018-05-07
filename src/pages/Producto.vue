@@ -33,7 +33,7 @@ export default {
     let id = this.$route.params.slug.split('__')[1]
     productsAPI.getProductById(id)
       .then(response => {
-        this.product = response.data.data[0]
+        this.product = response.data
         this.user = this.product.user
       })
       .catch(e => {
