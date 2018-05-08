@@ -131,11 +131,13 @@ export default {
     },
     updateUser: function () {
       if (this.picture.hasImage()) {
-        const data = {
+        let data = {
           about: this.about,
           phone: this.phone,
           picture: this.pictureURL
         }
+        if (this.user.about) delete data.about
+        if (this.user.phone) delete data.phone
         this.$store.dispatch('user/updateWithFile', data)
           .then((response) => {
             console.log(response)
@@ -153,10 +155,12 @@ export default {
             this.$store.dispatch('ui/showModal', modal)
           })
       } else {
-        const data = {
+        let data = {
           about: this.about,
           phone: this.phone
         }
+        if (this.user.about) delete data.about
+        if (this.user.phone) delete data.phone
         this.$store.dispatch('user/update', data)
           .then((response) => {
             console.log(response)
