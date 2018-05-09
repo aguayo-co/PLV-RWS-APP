@@ -27,9 +27,15 @@ section.single
                 span.chat__inner
                   .chat__bubble-main
                     .chat-bubble__avatar(v-if="message.user_id === user.id")
-                      img.chat-bubble__img(:src="user.picture", alt="user.first_name")
+                      router-link(
+                        :to="'/closet/' + user.id",
+                        :title="'Ir al Closet de ' + user.first_name")
+                        img.chat-bubble__img(:src="user.picture", :alt="user.first_name")
                     .chat-bubble__avatar(v-else)
-                      img.chat-bubble__img(:src="messenger.picture", alt="messenger.first_name")
+                      router-link(
+                        :to="'/closet/' + message.user_id",
+                        :title="'Ir al Closet de ' + messenger.first_name")
+                        img.chat-bubble__img(:src="messenger.picture", :alt="messenger.first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer.chat__footer_main
                     time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
