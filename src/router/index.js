@@ -43,7 +43,13 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Elige la ropa que no usas y dale una segunda oportunidad',
+        metaTags: [
+          { name: 'description', content: 'Únete a la comunidad de Clósets más cool de Chile. Descubre productos que te encantan y compralos casi regalados.' }
+        ]
+      }
     },
     {
       path: '/signup',

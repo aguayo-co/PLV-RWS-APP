@@ -135,7 +135,7 @@ nav.filter(@click="closeFilters")
         span.filter__arrow
           .filter__box-label Ordenado por <br /><strong>{{ orderOptions.options[orderOptions.selected].name }}</strong>
         transition(name='toggle-scale')
-          ul.filter__list.toggle-box(v-show="dropdownState.order && active")
+          ul.filter__list.toggle-box(v-show="dropdownState.order")
             li.filter__item(
               @click.stop.stop="changeOrder(option.id)"
               v-for="option in orderOptions.options") {{ option.name }}
@@ -221,7 +221,6 @@ export default {
       const dropdownState = this.dropdownState[filter]
       this.dropdownState = {...filterFields}
       this.dropdownState[filter] = !dropdownState
-      this.active = !this.active
     },
     closeFilters: function () {
       this.dropdownState = {...filterFields}
@@ -238,7 +237,7 @@ export default {
       this.orderOptions.selected = orderOptionId
       switch (orderOptionId) {
         case 0:
-          this.filter.order = 'created_at'
+          this.filter.order = '-created_at'
           break
         case 1:
           this.filter.order = 'price'

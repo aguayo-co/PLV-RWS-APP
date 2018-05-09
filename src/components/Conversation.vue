@@ -79,7 +79,7 @@ export default {
       if (this.thread.product_id && !this.product.id) {
         productsAPI.getProductById(this.thread.product_id)
           .then(response => {
-            this.product = response.data.data[0]
+            this.product = response.data
           })
       }
     }
@@ -99,7 +99,6 @@ export default {
         }
         threadsAPI.createMessage(data)
           .then(response => {
-            console.log(response)
             if (response.data.id) {
               this.disabledMessage = false
               this.newMessage = ''
@@ -116,7 +115,6 @@ export default {
     this.id = this.$route.params.threadId
     threadsAPI.getThreadById(this.id)
       .then(response => {
-        console.log(response)
         let isParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
         if (isParticipant) {
           this.thread = response.data
