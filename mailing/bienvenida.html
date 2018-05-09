@@ -4,13 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600,700|Roboto+Condensed:400,700|Roboto:100,400'">
+
   <title>Bienvenida</title>
 
   <style>
+    /* latin */
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 300;
+      src: local('Montserrat Light'), local('Montserrat-Light'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_cJD3gnD_vx3rCs.woff) format('woff');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+      src: local('Montserrat Medium'), local('Montserrat-Medium'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_ZpC3gnD_vx3rCs.woff) format('woff');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 600;
+      src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_bZF3gnD_vx3rCs.woff) format('woff');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 700;
+      src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD_vx3rCs.woff) format('woff');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
     body {
       margin: 0;
       background-color: #F6F6F6;
-      font-family: Arial, Helvetica, sans-serif
+      font-family: Montserrat, Arial, Helvetica, sans-serif;
     }
     .main {
       display: block;
@@ -51,7 +88,8 @@
     .title {
       display: inline-block;
       margin: 50px 0 40px;
-      font-size: 36px;
+      font-size: 32px;
+      font-family: 'Montserrat';
       text-align: center;
       text-transform: uppercase;
       border-bottom: 1px solid #979797;
@@ -68,14 +106,20 @@
       margin: 0 auto 40px;
       line-height: 1.4;
       text-align: center;
-      font-size: 20px;
+      font-size: 18px;
       text-transform: uppercase;
+      font-family: 'Montserrat';
     }
     .txt {
       display: block;
       width: 90%;
       margin: 0 auto 30px;
-      font-size: 20px;
+      font-size: 18px;
+      font-family: 'Montserrat';
+    }
+    .txt-kiss {
+      font-size: 18px;
+      font-family: 'Montserrat';
     }
     .btn {
       display: block;
@@ -85,7 +129,8 @@
       margin: 0 auto 20px;
       border: 2px solid #000000;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
+      font-family: 'Montserrat';
       text-align: center;
       color: #000000;
     }
@@ -100,6 +145,7 @@
       margin-top: 30px;
       display: block;
       color: #ffffff;
+      font-family: 'Montserrat';
       background-color: #f65a66;
     }
     .byline {
@@ -109,7 +155,8 @@
       margin: 0 auto;
       line-height: 1.4;
       text-align: center;
-      font-size: 20px;
+      font-size: 18px;
+      font-family: 'Montserrat';
       text-transform: uppercase;
     }
     .nav {
@@ -123,7 +170,8 @@
       color: #000000;
       border-bottom: 2px solid #f65a66;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
+      font-family: 'Montserrat';
     }
     .nav__link {
       padding-top: 30px;
@@ -153,11 +201,14 @@
       max-width: 300px;
       margin: 0 auto 24px;
       text-align: center;
+      font-family: 'Montserrat';
     }
     .footer__txt {
       display: inline-block;
       text-align: left;
       margin: 0;
+      font-size: 14px;
+      font-family: 'Montserrat';
     }
   </style>
 </head>
@@ -217,7 +268,9 @@
       <tr class="row">
         <td class="cell" align="center">
           <p class="byline">Cualquier duda, escríbenos. Siempre estaremos felices de ayudarte.
-            <br><br><span class="highlight">Kisses!</span>
+          </p>
+          <p>
+            <span class="highlight txt-kiss">Kisses!</span>
           </p>
         </td>
       </tr>
