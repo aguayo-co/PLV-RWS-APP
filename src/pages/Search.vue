@@ -10,7 +10,7 @@
   section.section_product(v-show="hasResults && !loading")
     .filter-head
       h3.filter-head__title {{ results }} Resultados para "{{ query }}"
-    GridProducto(:infinite="true", :search="query", @queryDoneResults="doneResults")
+    GridProducto(v-if="query", :infinite="true", :search="query", @queryDoneResults="doneResults")
   section.section_product(v-show="!hasResults")
     .alert
       p.alert__txt.i-sad Lo sentimos, pero no tenemos Resultados para "{{ query }}"

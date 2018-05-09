@@ -205,15 +205,15 @@ export default {
       this.updateProductList()
     }
   },
-  created: function () {
+  beforeMount: function () {
     if (this.preFilter) {
       this.filterQueryObject = this.preFilter
     }
+    if (this.search) this.searchQuery = this.search
     this.filterQueryObject.status = '10,19'
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
     productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy, this.searchQuery)
       .then((response) => {
-        console.log(response)
         this.products = response.data.data
         this.lastPage = response.data.last_page
         this.$emit('queryDoneResults', response.data.total)
