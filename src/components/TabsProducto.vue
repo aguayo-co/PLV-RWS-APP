@@ -39,8 +39,8 @@
             href='#'
             title='Agrega a Favoritos') Agregar a Favoritos
           .slot__product-inner
-            a.slot__product(
-              :href='product.slug + "__" + product.id',
+            router-link.slot__product(
+              :to="'/producto/' + product.slug + '__' + product.id",
               :title='product.title')
               img.slot__img(
                 :src="product.images[0]",
@@ -117,9 +117,7 @@
       .product-grid.product-grid_small
         article.slot.slot_grid(
           v-for='product in soldProducts')
-          .slot__product(
-            :href='product.slug + "__" + product.id',
-            :title='product.title')
+          .slot__product
             img.slot__img(
               :src="product.images[0]",
               alt="product.title")
