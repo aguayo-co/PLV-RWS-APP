@@ -12,7 +12,7 @@
   .dashboard__actions
     p ¿Ya recibiste este producto?
     button.btn.btn_solid.btn_block(
-      @click.prevent='saleReceived') Si, Recibí y me lo quedo
+      @click.prevent='saleReceived') Si, lo recibí y me lo quedo
     a.link_underline(
       href='#') ¿Algo no te gustó de tu producto?
 </template>

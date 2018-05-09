@@ -61,7 +61,6 @@ export default {
     let filter = { unread: '1' }
     threadsAPI.get(1, 100, filter)
       .then(response => {
-        console.log(response)
         this.unread = response.data
       })
     threadsAPI.get(this.page, this.items)

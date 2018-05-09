@@ -27,11 +27,11 @@
     .detail__content(v-if="product.user")
       header.detail__header
         h1.detail__title {{ product.title }}
-      p.detail__tag.tag(v-if="product.condition") Producto {{ product.condition.name }}
       p.detail__brand(v-if="product.brand") {{ product.brand.name }}
       p.detail__size
         span(v-if="product.size") Talla: {{ product.size.name }} |
-        span(v-if="product.colors") &nbsp; Colores: {{ product.colors[0].name }}
+        span(v-if="product.colors") &nbsp; Colores: {{ product.colors[0].name }} |
+        span(v-if="product.condition") &nbsp; {{ product.condition.name }}
       .detail__value
         p.detail__through.through ${{ product.original_price | currency }}
         p.detail__price.txt-light ${{ product.price | currency }}

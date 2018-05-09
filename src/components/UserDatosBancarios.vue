@@ -8,7 +8,7 @@ section.single
         .box-flat__grid
           .box-flat__lead.i-credits
             h3.box-flat__title {{ bank.name }} {{ accountType.name }}
-            p.box-flat__txt ... ... ... {{ user.bank_account.accountNumber.substr(user.bank_account.accountNumber.length - 5) }}
+            p.box-flat__txt {{ user.bank_account.accountNumber }}
           .box-flat__button
             button.link_underline(@click="switchForm", title="Modificar datos bancarios") Modificar
       .box.box_alert(v-if="!user.bank_account && !editVissible")
@@ -91,7 +91,7 @@ section.single
             .form__row
               button.btn(@click.prevent='switchForm', title='Cancelar') Cancelar
             .form__row
-              button.btn.btn_solid(@click.prevent="validate" title='Agregar método de pago') Agregar Método de pago
+              button.btn.btn_solid(@click.prevent="validate" title='Agregar método de pago') Guardar método de pago
 
 </template>
 <script>
