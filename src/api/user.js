@@ -5,6 +5,7 @@ import Vue from 'vue'
 
 export default {
   update: function (data) {
+    console.log(data)
     return Vue.axiosAuth.patch('/api/users/' + data.id, data)
   },
   updateFollowing: function (user, data) {

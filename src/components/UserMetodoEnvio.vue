@@ -44,8 +44,8 @@ export default {
     ...mapState(['user']),
     initialMethods () {
       let methods = []
-      Object.keys(this.methods).forEach((key) => {
-        if (this.$store.state['user'].shipping_methods.filter(x => x.id === this.methods[key].id)[0]) methods.push('method-' + this.methods[key].id)
+      this.$store.state['user'].shipping_method_ids.forEach((methodId) => {
+        methods.push('method-' + methodId)
       })
       return methods
     }
@@ -60,6 +60,9 @@ export default {
       .then(response => {
         this.methods = response.data.data
       })
+  },
+  mounted: function () {
+    this.selectedMethods = this.initialMethods
   },
   methods: {
     saveMethods: function () {

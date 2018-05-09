@@ -18,6 +18,7 @@ import NewPrivateMessage from '@/components/NewPrivateMessage'
 import UserValoraciones from '@/components/UserValoraciones'
 import UserFavoritos from '@/components/UserFavoritos'
 import PublicarVenta from '@/pages/PublicarVenta'
+import EditarProducto from '@/pages/EditarProducto'
 import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
@@ -33,6 +34,7 @@ import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaComoComprar from '@/pages/AyudaComoComprar'
+import AyudaComoFunciona from '@/pages/AyudaComoFuncionaPrilov'
 
 Vue.use(Router)
 
@@ -51,12 +53,18 @@ export default new Router({
     {
       path: '/password',
       name: 'password',
-      component: Pass
+      component: Pass,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/user',
       name: 'user',
       component: User,
+      meta: {
+        requiresAuth: true
+      },
       children: [
         {
           path: 'data',
@@ -131,6 +139,18 @@ export default new Router({
       component: PublicarVenta
     },
     {
+      path: '/editar-producto/:productId',
+      name: 'editar-producto',
+      component: EditarProducto,
+      meta: {
+        requiresAuth: true,
+        title: 'Editar producto',
+        metaTags: [
+          { name: 'description', content: 'Edita los atributos y comisión de tu produco' }
+        ]
+      }
+    },
+    {
       path: '/venta-publicada/pendiente',
       name: 'venta-publicada-pendiente',
       component: PublicarVentaPendiente
@@ -149,7 +169,10 @@ export default new Router({
       path: '/compra/:order_id?',
       name: 'compra',
       component: Compra,
-      props: true
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/shop/:type/:slug',
@@ -205,6 +228,11 @@ export default new Router({
       path: '/como-comprar',
       name: 'como-comprar',
       component: AyudaComoComprar
+    },
+    {
+      path: '/como-funciona-prilov',
+      name: 'como-funciona',
+      component: AyudaComoFunciona
     }
   ],
   scrollBehavior (to, from, savedPosition) {

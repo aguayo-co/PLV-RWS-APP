@@ -29,6 +29,9 @@
 .blog_top {
 	padding-top: 30px;
 }
+.blog_center {
+	text-align: center;
+}
 
 .blog__inner {
 	width: 96%;
@@ -57,6 +60,12 @@
 	@include font-rem(30px);
 	padding-bottom: 8px;
 }
+.blog__subtitle {
+	text-transform: uppercase;
+	@include font-rem(20px);
+	font-family: $f-fancy;
+	font-weight: $fw-medium;
+}
 .blog__kicker {
 	width: 70%;
 	margin: 0;
@@ -73,6 +82,11 @@
 		border-top: 1px solid $c-default;
 	}
 }
+.blog__kicker_center {
+	display: inline-block;
+	width: auto;
+}
+
 .blog__headline {
 	max-width: 810px;
 	padding-bottom: 24px;
@@ -163,7 +177,66 @@
 .blog__byline {
 	padding-top: 16px;
 }
+// Contenido grilla
+.blog__article {
+	padding-bottom: 16px;
+}
 
+.blog-card {
+	margin: 0;
+	padding: 16px 0;
+	text-align: center;
+	list-style: none;
+	counter-reset: item;
+}
+
+.blog-card__item {
+	display: inline-block;
+	max-width: 320px; 
+	padding: 16px 0;
+
+	&:before {
+		color: $c-brand;
+		@include font-rem(50px);
+	}
+	.blog-card__title {
+		&:before {
+		  counter-increment: item;
+			content: counter(item) '. ';
+		}
+	}
+	.blog-card__sup {
+		&:before {
+		  content: '* ';
+		}
+	}
+
+}
+.blog-card__title {
+	padding-top: 22px;
+	text-transform: uppercase;
+	font-weight: $fw-bold;
+	@include font-rem(16px);
+}
+.blog-card__txt{
+	display: inline-block;
+	font-family: $f-normal;
+	font-weight: $fw-thin;
+}
+
+@media only screen and (min-width: 480px) {
+	.blog-card {
+		@include flexbox;
+		@include flex-wrap(wrap);
+		@include justify-content(center);
+		margin: 0 -30px;
+	}
+	.blog-card__item {
+		max-width: 310px;
+		padding: 16px 30px;
+	}
+
+}
 
 @include media-query(medium) {
 	.blog {
@@ -192,13 +265,17 @@
 	.blog__title {
 		@include font-rem(50px);
 	}
+	.blog__subtitle {
+	  @include font-rem(30px);
+	}
+
 	.blog__kicker {
-		text-transform: uppercase;
-		letter-spacing: 8px;
-	  font-family: $f-fancy;
-	  font-weight: $fw-light;
 	  @include font-rem(18px);
 	}
+	.blog__kicker_center {
+	  @include font-rem(16px);
+	}
+
 	.blog__headline {
 		padding-bottom: 24px;
 		@include font-rem(26px);
@@ -231,6 +308,26 @@
 	.blog__byline {
 		padding-top: 16px;
 	}
+	.blog__article {
+	  padding-bottom: 30px;
+	}
+
+	.blog-card {
+		padding: 30px 0;
+	}
+
+	.blog-card__item {
+	  &:before {
+	    @include font-rem(66px);
+		}
+	}
+	.blog-card__title {
+	  @include font-rem(18px);
+	}
+	.blog-card__txt {
+	  @include font-rem(16px);
+	}
+
 }
 @include media-query(wide) {
 	.blog__out {
@@ -286,6 +383,10 @@
 			@include align-self(center);
 		}
 	}
+	.blog-card__item {
+	  padding: 30px;
+	}
+
 
 }
 @media only screen and (min-width: 1170px) {

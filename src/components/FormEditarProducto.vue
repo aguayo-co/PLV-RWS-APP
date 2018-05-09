@@ -3,94 +3,129 @@
   .layout-band
     .layout-inner
       header.page__head
-        h1.title__main Publicar una venta
-        h2.title_subhead ¿No lo usas?, ¡Vendelo!
+        h1.title__main Edita la información de tu producto
+        h2.title_subhead Unas buenas fotos dicen más que mil palabras
       .upfile
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
           .upfile__item
-            a.upfile__delete.i-x(
-              v-show='toggleImageDelete[0]',
-              @click='removeImage(0)')
-              span.hide Eliminar
-            .upfile__label
-              .upfile__text.i-upload(
-                v-if="mqDesk") Arrastra una foto o
-              .upfile__btn Sube una imagen
-            span.help(
-              v-if="errorLog.image"
-            ) {{ errorLog.image }}
-            croppa(
-              v-model='images[0]',
-              :width="300",
-              :height="450",
-              :quality="2",
-              placeholder="",
-              :prevent-white-space="true",
-              @new-image-drawn='addImage(0)',
-              @draw='handleMainImage')
-        .upfile__group
-          h3.upfile__title Fotos Secundarias (opcionales)
-          .upfile__grid
-            .upfile__item
+            span.upfile__actions
+              span.btn_edit.i-edit-line(
+                @click.prevent="toggle('editImg0')") <small class="hide"> Editar </small>
+            img.upfile__img(
+              v-if="editImg0 == false",
+              :src="product.images[0]",
+              :alt="product.title")
+            .upfile__edit(v-else)
               a.upfile__delete.i-x(
-                v-show='toggleImageDelete[1]',
-                @click='removeImage(1)')
+                v-show='toggleImageDelete[0]',
+                @click='removeImage(0)')
                 span.hide Eliminar
               .upfile__label
                 .upfile__text.i-upload(
                   v-if="mqDesk") Arrastra una foto o
                 .upfile__btn Sube una imagen
+              span.help(
+                v-if="errorLog.image"
+              ) {{ errorLog.image }}
               croppa(
-                v-model='images[1]',
+                v-model='images[0]',
                 :width="300",
                 :height="450",
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
-                @new-image-drawn='addImage(1)')
+                @new-image-drawn='addImage(0)',
+                @draw='handleMainImage')
+        .upfile__group
+          h3.upfile__title Fotos Secundarias (opcionales)
+          .upfile__grid
             .upfile__item
-              a.upfile__delete.i-x(
-                v-show='toggleImageDelete[2]',
-                @click='removeImage(2)')
-                span.hide Eliminar
-              .upfile__label
-                .upfile__text.i-upload(
-                  v-if="mqTablet") Arrastra una foto o
-                .upfile__btn Sube una imagen
-              croppa(
-                v-model='images[2]',
-                :width="300",
-                :height="450",
-                :quality="2",
-                placeholder="",
-                :prevent-white-space="true",
-                @new-image-drawn='addImage(2)')
+              span.upfile__actions
+                span.btn_edit.i-edit-line(
+                  @click.prevent="toggle('editImg1')") <small class="hide"> Editar </small>
+              img.upfile__img(
+                v-if="editImg1 == false && product.images[1]"
+                :src="product.images[1]",
+                :alt="product.title")
+              .upfile__edit(v-else)
+                a.upfile__delete.i-x(
+                  v-show='toggleImageDelete[1]',
+                  @click='removeImage(1)')
+                  span.hide Eliminar
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqDesk") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  v-model='images[1]',
+                  :width="300",
+                  :height="450",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true",
+                  @new-image-drawn='addImage(1)')
+            .upfile__item
+              span.upfile__actions
+                span.btn_edit.i-edit-line(
+                  @click.prevent="toggle('editImg2')") <small class="hide"> Editar </small>
+              img.upfile__img(
+                v-if="editImg2 == false && product.images[2]"
+                :src="product.images[2]",
+                :alt="product.title")
+              .upfile__edit(v-else)
+                a.upfile__delete.i-x(
+                  v-show='toggleImageDelete[2]',
+                  @click='removeImage(2)')
+                  span.hide Eliminar
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqTablet") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  v-model='images[2]',
+                  :width="300",
+                  :height="450",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true",
+                  @new-image-drawn='addImage(2)')
             .upfile__item(
               v-if="mqDesk")
-              a.upfile__delete.i-x(
-                v-show='toggleImageDelete[3]',
-                @click='removeImage(3)')
-                span.hide Eliminar
-              .upfile__label
-                .upfile__text.i-upload(
-                  v-if="mqTablet") Arrastra una foto o
-                .upfile__btn Sube una imagen
-              croppa(
-                v-model='images[3]',
-                :width="300",
-                :height="450",
-                :quality="2",
-                placeholder="",
-                :prevent-white-space="true",
-                @new-image-drawn='addImage(3)')
+              span.upfile__actions
+                span.btn_edit.i-edit-line(
+                  @click.prevent="toggle('editImg3')") <small class="hide"> Editar </small>
+              img.upfile__img(
+                v-if="editImg3 == false && product.images[3]"
+                :src="product.images[3]",
+                :alt="product.title")
+              .upfile__edit(v-else)
+                a.upfile__delete.i-x(
+                  v-show='toggleImageDelete[3]',
+                  @click='removeImage(3)')
+                  span.hide Eliminar
+                .upfile__label
+                  .upfile__text.i-upload(
+                    v-if="mqTablet") Arrastra una foto o
+                  .upfile__btn Sube una imagen
+                croppa(
+                  v-model='images[3]',
+                  :width="300",
+                  :height="450",
+                  :quality="2",
+                  placeholder="",
+                  :prevent-white-space="true",
+                  @new-image-drawn='addImage(3)')
+                  img(
+                    v-if="product.images[3]"
+                    slot="initial",
+                    :src="product.images[3]")
   .step
     //-Formulario set 1
     .layout-inner
       fieldset.form-section
-        legend.subhead.form-section__title Cuéntanos más sobre tu producto
+        legend.subhead.form-section__title Detalles de tu producto
           p.form-section__subtitle Una buena descripción hace que los compradoras encuentren rápidamente tus productos.
-
         .form__row(
           :class='{ "is-danger": errorLog.title }')
           label.form__label(
@@ -132,7 +167,7 @@
               select.form__select(
                 ref='category'
                 id='product-categoria'
-                v-model='product.category_id'
+                v-model='product.category.parent.id'
                 @change='loadSubCategories')
                 optgroup(label='Categoría principal')
                   option(
@@ -150,7 +185,7 @@
               select.form__select(
                 ref='subcategory'
                 id='product-subcategoria'
-                v-model='product.subcategory_id')
+                v-model='product.category_id')
                 optgroup(label='Categoría específica')
                   option(
                     v-for='category in subcategories'
@@ -182,10 +217,11 @@
                   v-if="errorLog.color"
                 ) {{ errorLog.color }}
                 input.form__select(
-                  ref='color'
+                  v-if="product.colors[0]",
+                  ref='color',
                   type='text',
                   id='product-color-first',
-                  v-model='product.color[0]',
+                  v-model='product.colors[0].name',
                   disabled)
                 .toggle-select(
                   v-show='toggleColors.first')
@@ -203,9 +239,10 @@
                 label.form__label(
                   for='product-color-second') Color adicional
                 input.form__select(
+                  v-if="product.colors[1]",
                   type='text',
                   id='product-color-second',
-                  v-model='product.color[1]',
+                  v-model='product.colors[1].name',
                   disabled)
                 .toggle-select(
                   v-show='toggleColors.second')
@@ -310,8 +347,7 @@
                   :href='product.url',
                   :title='product.title')
                   img.slot__img(
-                    v-if='toggleImage'
-                    :src='imageURL',
+                    :src='product.images[0]',
                     :alt='product.title')
 
                   //-title/dimensions
@@ -428,7 +464,8 @@ import Croppa from 'vue-croppa'
 Vue.component('croppa', Croppa.component)
 
 export default {
-  name: 'FormPublicarVenta',
+  name: 'FormEditarProducto',
+  props: ['productToEdit'],
   data () {
     return {
       displayedSize: '---',
@@ -447,23 +484,6 @@ export default {
         3: false
       },
       checkTerms: true,
-      product: {
-        title: null,
-        description: null,
-        dimensions: null,
-        original_price: null,
-        price: null,
-        commission: 20,
-        brand_id: null,
-        category_id: null,
-        subcategory_id: null,
-        color_ids: [],
-        condition_id: null,
-        brand: null,
-        file: [],
-        color: [ null, null ],
-        images: []
-      },
       conditions: {},
       categories: {},
       subcategories: {},
@@ -473,16 +493,29 @@ export default {
       toggleColors: {
         first: false,
         second: false
-      }
+      },
+      editImg0: false,
+      editImg1: false,
+      editImg2: false,
+      editImg3: false
     }
   },
   computed: {
     ...mapState(['user']),
     toggleImageDelete () {
       return this.toggleImages
+    },
+    isOwner () {
+      return this.product.user_id === this.user.id
+    },
+    product () {
+      return this.productToEdit
     }
   },
   methods: {
+    toggle: function (prop) {
+      this[prop] = !this[prop]
+    },
     createProduct: function () {
       const modal = {
         name: 'ModalMessage',
@@ -492,33 +525,6 @@ export default {
         }
       }
       this.$store.dispatch('ui/showModal', modal)
-
-      this.images.forEach((image, index, array) => {
-        if (image.hasImage()) this.imagesToUpload.push(image)
-      })
-
-      this.imagesToUpload.forEach((image, index, array) => {
-        if (image.hasImage()) {
-          image.generateBlob((blob) => {
-            this.product.images.push(blob)
-            if (index === this.imagesToUpload.length - 1) {
-              this.product.user_id = this.user.id
-              productAPI.create(this.product)
-                .then(response => {
-                  console.log(response)
-                  this.$store.dispatch('ui/closeModal')
-                  let pending
-                  response.data.status === 0 ? pending = true : pending = false
-                  if (!pending) {
-                    this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
-                  } else {
-                    this.$router.push('/venta-publicada/pendiente')
-                  }
-                })
-            }
-          })
-        }
-      })
     },
     validateBeforeSubmit: function (e) {
       this.errorLog = {}
@@ -622,7 +628,7 @@ export default {
       if (index === 0) this.toggleImage = false
     },
     loadSubCategories: async function () {
-      await productAPI.getCategoriesById(this.product.category_id)
+      await productAPI.getCategoriesById(this.product.category.parent.id)
         .then(response => {
           this.subcategories = response.data.data[0].children
         })
@@ -635,6 +641,11 @@ export default {
     categoriesAPI.getAllCategories()
       .then(response => {
         this.categories = response.data.data
+        this.loadSubCategories()
+        this.colors = this.product.colors
+        if (this.product.colors.length === 1) this.product.colors.push({ name: '' })
+        this.displayedSize = ('---' + this.product.size.name).slice(-3)
+        this.calculatedSize = this.product.size.name
       })
       .catch(e => {
         console.log(e)

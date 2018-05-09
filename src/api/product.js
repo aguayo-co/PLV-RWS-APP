@@ -6,6 +6,7 @@ import Vue from 'vue'
 export default {
   create: function (product) {
     console.log(product)
+    product.category_id = product.subcategory_id
     var formData = new FormData()
     Object.keys(product).forEach((key) => {
       if (key === 'images' || key === 'color_ids') {
@@ -34,11 +35,11 @@ export default {
     if (order) queryOrder = '&orderby=' + order
     if (search) querySearch = '&q=' + search
     console.log('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
-    return Vue.axios.get('/api/products?items' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
+    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
   },
 
   getProductById: function (productId) {
-    return Vue.axios.get('/api/products?filter[id]=' + productId)
+    return Vue.axios.get('/api/products/' + productId)
   },
 
   getProductBySlug: function (productSlug) {
