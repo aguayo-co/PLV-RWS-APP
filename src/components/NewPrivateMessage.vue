@@ -70,7 +70,6 @@ export default {
         }
         threadsAPI.createMessage(data)
           .then(response => {
-            console.log(response)
             if (response.data.id) {
               this.disabledMessage = false
               this.newMessage = ''
