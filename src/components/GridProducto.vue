@@ -114,6 +114,7 @@ export default {
       products: [],
       items: 12,
       page: 1,
+      lastPage: null,
       filter: {},
       totalPages: null,
       filterValues: {
@@ -153,17 +154,19 @@ export default {
       this.isActive = undefined
     },
     loadMoreProducts: async function (e) {
-      this.page += 1
-      this.loading = true
-      await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
-        .then((response) => {
-          this.products.push(...response.data.data)
-          this.loading = false
-        })
+      if (this.lastPage > this.page) {
+        this.page += 1
+        this.loading = true
+        await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+          .then((response) => {
+            this.products.push(...response.data.data)
+            this.loading = false
+          })
+      }
     },
     handleScroll: function (e) {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
-        this.loadMoreProducts()
+        if (this.lastPage > this.page) this.loadMoreProducts()
       }
     },
     computeFilters: async function () {
@@ -190,6 +193,7 @@ export default {
       productAPI.getProducts(this.page, this.items, this.filter)
         .then(response => {
           this.products = response.data.data
+          this.lastPage = response.data.last_page
         })
     },
     nextPage: function () {
@@ -209,7 +213,9 @@ export default {
     if (this.infinite) window.addEventListener('scroll', this.handleScroll)
     productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy, this.searchQuery)
       .then((response) => {
+        console.log(response)
         this.products = response.data.data
+        this.lastPage = response.data.last_page
         this.$emit('queryDoneResults', response.data.total)
       })
   }
