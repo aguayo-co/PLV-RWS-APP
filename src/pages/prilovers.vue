@@ -37,6 +37,7 @@
           li.user-data__value.i-like {{ user.followers_count }}
           li.user-data__value.i-like.i_flip 0
           li.user-data__value.i-less-circle 0
+        //- Fix Issue #106 se integra funcionalidad para grupos
         .card__group
           .slot__group.i-star-on(
             v-if='user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
