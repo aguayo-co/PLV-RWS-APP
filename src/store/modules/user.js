@@ -124,6 +124,7 @@ const mutations = {
     Object.keys(baseUser).forEach((key) => {
       state[key] = user[key]
     })
+    console.log(user)
     if (user.api_token) {
       window.localStorage.setItem('token', user.api_token)
       window.localStorage.setItem('userId', user.id)
