@@ -88,7 +88,8 @@
                       title="Ir a tus Ventas") Tus Ventas
                   li.user-auth__item
                     a.user-auth__link(
-                      @click.prevent='logout()'
+                      @click.prevent='logout()',
+                      href="#",
                       title="Cerrar sesión de usuario") Cerrar sesión
           //- Is NOT authenticated
           li.tool-user__item.i-user(v-else
