@@ -21,18 +21,18 @@ section.profile
           //-Notificaciones
           .user-data__notify
             ul.user-data__list
-              li.user-data__value.i-like 20
-              li.user-data__value.i-like.i_flip 0
-              li.user-data__value.i-less-circle 0
+              li.user-data__value.i-like {{ user.ratings_positive_count }}
+              li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
+              li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
             ul.user-data__list
               li.user-data__track {{ user.followers_count }} Seguidores
               li.user-data__track {{ user.following_count }} Siguiendo
           //-Enlaces
-          ul.user-data__nav
+          ul.user-data__nav(v-if="userId")
             li.user-data__tag
               a.btn-tag.btn-tag_solid(@click="follow") Seguir
             li.user-data__tag
-              router-link.btn-tag(:to="{ name: 'home'}") Enviar Mensaje
+              router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: user.id }}") Enviar Mensaje
     //- About perfil
     .profile__about
       .profile__box-txt.user-data__box-txt
