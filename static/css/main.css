@@ -1425,6 +1425,9 @@ select {
     border-width: 9px 10px 0 10px;
     border-color: #f65a66 transparent transparent transparent; }
 
+.help_price {
+  margin-left: 36px; }
+
 /*------------------------------------*\
 	Mensajes formulario
 \*------------------------------------*/
@@ -3397,6 +3400,7 @@ body {
   .modal_login .modal__slot {
     margin: 50px auto; }
   .modal_scroll .modal__slot {
+    margin: 50px auto;
     min-height: auto; } }
 
 @media only screen and (max-width: 767px) {

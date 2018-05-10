@@ -13,6 +13,11 @@
             :to='items.url',
             :class='items.ico') {{ items.name }}
             span.badge(v-if="items.notifications && user.notifications > 0") {{ user.notifications }}
+      .user-nav__item
+        a.user-nav__link(
+          @click.prevent='logout()',
+          href="#",
+          class='i-x') Cerrar Sesión
 
 </template>
 
@@ -86,15 +91,16 @@ export default {
               name: 'Método De Envío',
               url: '/user/metodos-envios',
               ico: 'i-shipping'
-            },
-            {
-              name: 'Cerrar Sesión',
-              url: '#',
-              ico: 'i-x'
             }
           ]
         }
       ]
+    }
+  },
+  methods: {
+    logout: function () {
+      this.$store.dispatch('user/logOut')
+      this.$router.push({name: 'home'})
     }
   },
   computed: {
