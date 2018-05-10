@@ -78,6 +78,25 @@ export default {
     return Vue.axios.post('/api/users/login', payload)
   },
 
+  passwordRecovery: function (email) {
+    return Vue.axios.get('/api/users/password/recovery/' + email)
+  },
+
+  validateToken: function (token, email) {
+    const data = {
+      token: token
+    }
+    return Vue.axios.post('/api/users/password/recovery/' + email, data)
+  },
+
+  passwordChange: function (token, email, password) {
+    const data = {
+      token: token,
+      password: password
+    }
+    return Vue.axios.post('/api/users/password/reset/' + email, data)
+  },
+
   checkEmail: function (email) {
     // return Vue.axios.post('/api/users/email', payload)
     setTimeout(function () { return true }, 1000)

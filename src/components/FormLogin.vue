@@ -42,7 +42,7 @@ transition(name='modal-fade')
               type='password')
             p.form__note.form__note_right
               |¿Olvidaste tu contraseña?
-              | <a class='link_underline' @click='close' href='#/password' title='Ir a recuperar contraseña'>Recuperar contraseña.</a>
+              | <router-link class='link_underline' @click='close' :to="{ name: 'password' }" title='Ir a recuperar contraseña'>Recuperar contraseña.</router-link>
           .form__row.form__row_away
             button.btn.btn_solid.btn_block(
               @click.prevent='validateBeforeSubmit') Iniciar sesión
