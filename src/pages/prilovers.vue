@@ -27,7 +27,7 @@
           img.card__photo(
             v-if="user.picture"
             :src='user.picture',
-            alt='')
+            :alt='user.first_name')
           span.tool-user__letter(
             v-else
           ) {{ user.first_name.charAt(0) }}
@@ -37,11 +37,13 @@
           li.user-data__value.i-like {{ user.followers_count }}
           li.user-data__value.i-like.i_flip 0
           li.user-data__value.i-less-circle 0
+        //- Fix Issue #106 se integra funcionalidad para grupos
         .card__group
-          .slot__group.i-it-girl(
-            v-show="true") It <span class="txt_brand">girl</span>
           .slot__group.i-star-on(
-            v-show="false") Prilover <span class="txt_brand">Star</span>
+            v-if='user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
+          .slot__group.i-it-girl(
+            v-if='user.group_ids.indexOf(2) > -1') It <span class="txt_brand">girl</span>
+
     .section_product__footer
       p.btn__wrapper
         a.btn Ver más Prilovers

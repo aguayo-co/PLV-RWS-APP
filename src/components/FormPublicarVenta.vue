@@ -192,11 +192,9 @@
                   ul.toggle-select__list
                     li.toggle-select__item(
                       v-for='color in colors',
-                      @click='chooseColor(color.id, 1)'
-                    )
+                      @click='chooseColor(color.id, 1)')
                       span.color-circle(
-                        :style='{ backgroundColor: color.hex_code }'
-                      )
+                        :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
               .form__row.color(
                 @click='toggleColors.second = !toggleColors.second')
@@ -212,11 +210,9 @@
                   ul.toggle-select__list
                     li.toggle-select__item(
                       v-for='color in colors',
-                      @click='chooseColor(color.id, 2)'
-                    )
+                      @click='chooseColor(color.id, 2)')
                       span.color-circle(
-                        :style='{ backgroundColor: color.hex_code }'
-                      )
+                        :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
 
             .form__row(

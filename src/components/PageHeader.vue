@@ -61,10 +61,9 @@
                 img.tool-user__photo(
                   v-if='user.picture'
                   :src='user.picture',
-                  alt='')
+                  :alt='user.first_name')
                 span.tool-user__letter(
-                  v-else
-                ) {{ user.first_name.charAt(0) }}
+                  v-else) {{ user.first_name.charAt(0) }}
               //-vue variable user name
               figcaption.tool-user__name {{ user.first_name }}
             transition(name='toggle-scale')
