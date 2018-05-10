@@ -11,7 +11,9 @@
               span.chat__inner
                 .chat__bubble-main
                   figure.chat-bubble__avatar
-                    img.chat-bubble__img(:src="question.participants[0].user.picture", :alt="question.participants[0].user.first_name")
+                    img.chat-bubble__img(
+                      :src="question.participants[0].user.picture",
+                      :alt="question.participants[0].user.first_name")
                   p.chat-bubble__txt {{ question.subject }}
                 .chat__footer.chat__footer_main
                   time.chat__date hace {{ question.created_at | moment("subtract", "5 hours") | moment("from", true) }}
