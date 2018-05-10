@@ -36,37 +36,40 @@
             v-model="new_additional"
             type='text')
         .form__row
-          label.form__label(
-            :for="address.id + 'region'") Región
-          span.help(
-            v-show="errorLog.region") {{ errorLog.region }}
-          select.form__select(
-            :id="address.id + 'region'"
-            v-model="new_region")
-            option
-            option(
-              v-for="region in regions") {{ region }}
+          .form__hide
+            label.form__label(
+              :for="address.id + 'region'") Región
+            span.help(
+              v-show="errorLog.region") {{ errorLog.region }}
+            select.form__select(
+              :id="address.id + 'region'"
+              v-model="new_region")
+              option
+              option(
+                v-for="region in regions") {{ region }}
       .form__grid
         .form__row
-          label.form__label(
-            :for="address.id  + 'province'") Ciudad
-          select.form__select(
-            v-model="new_province"
-            :id="address.id + 'province'")
-            option
-            option(
-              v-for="province in provinces") {{ province }}
+          .form__hide(v-if="new_region")
+            label.form__label(
+              :for="address.id  + 'province'") Ciudad
+            select.form__select(
+              v-model="new_province"
+              :id="address.id + 'province'")
+              option
+              option(
+                v-for="province in provinces") {{ province }}
         .form__row
-          label.form__label(
-            :for="address.id + 'commune'") Comuna
-          span.help(
-            v-show="errorLog.commune") {{ errorLog.commune }}
-          select.form__select(
-            :id="address.id + 'commune'"
-            v-model="new_commune")
-            option
-            option(
-              v-for="commune in communes") {{ commune }}
+          .form__hide(v-if="new_province")
+            label.form__label(
+              :for="address.id + 'commune'") Comuna
+            span.help(
+              v-show="errorLog.commune") {{ errorLog.commune }}
+            select.form__select(
+              :id="address.id + 'commune'"
+              v-model="new_commune")
+              option
+              option(
+                v-for="commune in communes") {{ commune }}
       .form__grid_reverse.form__row_away
         .form__row
           a.link_underline(

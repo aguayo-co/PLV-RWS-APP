@@ -38,42 +38,18 @@
         :regionsList="regionsList"
         :address="address"
         v-on:close="NotActive")
-    //- clic "nueva dirección"
-      Se despliega un cuadro con los inputs de:
-      Dirección, Número, Dpto/villa/block,
-      región, ciudad y comuna.
-      Con las acciones de "agregar nueva direccion" o "cancelar".
-      Wireframe 1c
-      Bloque Editar Direcciones Perfil de usuaria
-      1. Aparece un listado de direcciones (Si tiene más de una)
-      con una marcada como favorita por medio de una estrella.
-      2. El usuario puede cambiar su dirección
-      predeterminada eligiendo una nueva favorita,
-      editando o agregando una nueva dirección.
-      3. Para cambiar la dirección favorita sólo debe
-      seleccionar la estrella de otra dirección.
-      En mobile solo se selecciona la dirección
-      y esta cambiará de color.
-      4. Si quiere agregar una nueva dirección
-      el usuario deberá seleccionar esta opción
-      y llenar el formulario.
-      5. Si decide editarla, debe seleccionar el ícono de edición
-      y cambiar la información que desee en el formulario.
-      6. Para eliminar la dirección debe seleccionar
-      el ícono de edición y la opción eliminar."
     li.dividers__bottom(
       :class="{'dividers__bottom_active': newAddress == true}")
       a.dividers__add.i-plus(
         @click.prevent="toggleNewAddress()",
         href="#",
         title="Agregar dirección") Nueva dirección
-    //-TO-DO: efect transition
     form.form_user.user-data__form(
       id="form-user-address-new"
       v-on:submit.prevent='createAddress'
       v-if='newAddress')
       fieldset.form__set
-        legend.form__legend Nueva dirección
+        legend.form__legend Nueva dirección Progresivo
         .form__grid
           .form__row
             label.form__label(
@@ -105,38 +81,40 @@
               v-model="newAddressData['additional']"
               type='text')
           .form__row
-            label.form__label(
-              for='new-address-region') Región
-            span.help(
-              v-show="errorLog.region") {{ errorLog.region }}
-            select.form__select(
-              v-model="newAddressData['region']")
-              option
-              option(
-                v-for="region in regions") {{ region }}
+              label.form__label(
+                for='new-address-region') Región
+              span.help(
+                v-show="errorLog.region") {{ errorLog.region }}
+              select.form__select(
+                v-model="newAddressData['region']")
+                option
+                option(
+                  v-for="region in regions") {{ region }}
 
         .form__grid
           .form__row
-            label.form__label(
-              for='new-address-province') Provincia
-            span.help(
-              v-show="errorLog.province") {{ errorLog.province }}
-            select.form__select(
-              v-model="newAddressData['province']")
-              option
-              option(
-                v-for="province in provinces") {{ province }}
+            .form__hide(v-if="newAddressData['region']")
+              label.form__label(
+                for='new-address-province') Provincia
+              span.help(
+                v-show="errorLog.province") {{ errorLog.province }}
+              select.form__select(
+                v-model="newAddressData['province']")
+                option
+                option(
+                  v-for="province in provinces") {{ province }}
 
           .form__row
-            label.form__label(
-              for='new-address-commune') Comuna
-            span.help(
-              v-show="errorLog.commune") {{ errorLog.commune }}
-            select.form__select(
-              v-model="newAddressData['commune']")
-              option
-              option(
-                v-for="commune in communes") {{ commune }}
+            .form__hide(v-if="newAddressData['province']")
+              label.form__label(
+                for='new-address-commune') Comuna
+              span.help(
+                v-show="errorLog.commune") {{ errorLog.commune }}
+              select.form__select(
+                v-model="newAddressData['commune']")
+                option
+                option(
+                  v-for="commune in communes") {{ commune }}
 
         .form__grid.form__grid_center.form__row_away
           .form__row

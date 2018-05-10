@@ -1,13 +1,16 @@
 <template lang="pug">
 section.single
   .single__inner(v-if="thread")
-    router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
+    router-link.btn-back.i-back(
+      :to="{ name: 'user-notificaciones' }") Volver
     header.single__header
       h1.single__title {{ messenger.first_name }} {{ messenger.last_name }}
     .chat.chat__grid
       .chat__slot(v-if="product.id")
         article.slot.slot_grid
-          router-link.slot__product(:to="{ name: 'product', params: { slug: product.title + '__' + product.id }}", title="Ver este producto")
+          router-link.slot__product(
+            :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+            title="Ver este producto")
             img.slot__img(:src="product.images[0]",
               :alt="product.title")
             .slot__lead
@@ -28,12 +31,12 @@ section.single
                   .chat__bubble-main
                     .chat-bubble__avatar(v-if="message.user_id === user.id")
                       router-link(
-                        :to="'/closet/' + user.id",
+                        :to="{ name: 'closet', params: { userId: user.id }}",
                         :title="'Ir al Closet de ' + user.first_name")
                         img.chat-bubble__img(:src="user.picture", :alt="user.first_name")
                     .chat-bubble__avatar(v-else)
                       router-link(
-                        :to="'/closet/' + message.user_id",
+                        :to="{ name: 'closet', params: { userId: message.user_id }}",
                         :title="'Ir al Closet de ' + messenger.first_name")
                         img.chat-bubble__img(:src="messenger.picture", :alt="messenger.first_name")
                     p.chat-bubble__txt {{ message.body }}

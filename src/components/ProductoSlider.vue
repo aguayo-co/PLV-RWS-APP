@@ -8,8 +8,7 @@ section.layout-inner
   //- banner promociones grid
   //- TO-DO: consumir servicios
   .slider-slot
-    swiper(
-      :options='swiperOption')
+    swiper(:options='swiperOption')
       swiper-slide(
         v-for='(product, index) in products' :key='index')
         article.slot
@@ -18,45 +17,47 @@ section.layout-inner
             :class='{active: isActive == product}'
             href='#'
             title='Agrega a Favoritos') Agregar a Favoritos
-          a.slot__product(
-            :href='product.url',
-            :title='product.title')
+          router-link.slot__product
             img.slot__img(
-              :src="product.file",
+              :src="product.images[0]",
               alt="product.title")
 
             //-title/dimensions
             .slot__lead
               .slot__title {{ product.title }}
-              .slot__size
-                .slot__size-txt {{ product.dimensions }}
+              .slot__size(
+                v-if="product.size")
+                .slot__size-txt {{ product.size.name }}
 
             //- brand/price
             .slot__info
-              .slot__brand {{ product.brand }}
-              .slot__price ${{ product.price }}
+              .slot__brand {{ product.brand.name }}
+              .slot__price ${{ product.price | currency }}
 
           //- user: picture/first_name/last_name
-          a.slot__user(
-            :href='product.user',
-            :title='product.first_name')
+          router-link.slot__user
             .slot__user-img
               .slot__avatar
                 img.slot__picture(
-                  :src="product.picture",
-                  :alt="product.first_name")
+                  v-if='product.user.picture'
+                  :src='product.user.picture',
+                  :alt='product.user.first_name')
+                span.tool-user__letter(
+                  v-else) {{ product.user.first_name.charAt(0) }}
             .slot__user-info
-              .slot__prilover {{ product.first_name }} {{ product.last_name }}
-              .slot__group.i-it-girl(
-                v-if='product.slot__group == 1') It <span class="txt_brand">girl</span>
-              .slot__group.i-star-on(
-                v-if='product.slot__group == 2') Prilover <span class="txt_brand">Star</span>
-      //- Paginador en este caso dots
+              .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
+              .group(v-if='product.user.groups.length > 0')
+                .slot__group.i-it-girl(
+                  v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
+                .slot__group.i-star-on(
+                  v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
+      //- Paginador Arrow
       .swiper-button-next.i-next-s(slot='button-prev')
       .swiper-button-prev.i-back-s(slot='button-next')
 </template>
 
 <script>
+import productAPI from '@/api/product'
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
@@ -66,8 +67,16 @@ export default {
     swiper,
     swiperSlide
   },
+  props: ['category_id'],
   data () {
     return {
+      orderBy: '-id',
+      products: [],
+      productsPager: {
+        items: 12,
+        page: 1,
+        total: 1
+      },
       isActive: undefined,
       swiperOption: {
         slidesPerView: 4,
@@ -99,135 +108,7 @@ export default {
             spaceBetween: 50
           }
         }
-      },
-      products: [
-        {
-          url: '/',
-          title: 'Blusa Rayas',
-          dimensions: 'm',
-          brand: 'Nicopoly',
-          price: '12.000',
-          status_id: '',
-          file: '/static/img/demo/product-001.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-009.jpg',
-          first_name: 'Mariana',
-          last_name: 'Gómez',
-          slot__group: '2'
-        },
-        {
-          url: '/',
-          title: 'Chaqueta Mostaza',
-          dimensions: 's',
-          brand: 'Rubinella',
-          price: '16.000',
-          status_id: '',
-          file: '/static/img/demo/product-002.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-007.jpg',
-          first_name: 'Juliana',
-          last_name: 'Rocha',
-          slot__group: '2'
-        },
-        {
-          url: '/',
-          title: 'Vestido Maaji',
-          dimensions: 's',
-          brand: 'Maaji',
-          price: '50.000',
-          status_id: '',
-          file: '/static/img/demo/product-003.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-005.jpg',
-          first_name: 'Vale',
-          last_name: 'Caballero',
-          slot__group: '1'
-        },
-        {
-          url: '/',
-          title: 'Sandalias de Cuero y Tachas Saville Row',
-          dimensions: 'xs',
-          brand: 'Straadivaruois & Zara Home Juntos',
-          price: '40.000',
-          status_id: '',
-          file: '/static/img/demo/product-004.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-003.jpg',
-          first_name: 'Genevieve',
-          last_name: 'Gibson',
-          slot__group: '1'
-        },
-        {
-          url: '/',
-          title: 'Chaqueta Ecocuero Dorada',
-          dimensions: 'm',
-          brand: 'Soviet',
-          price: '12.000',
-          status_id: '',
-          file: '/static/img/demo/product-005.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-001.jpg',
-          first_name: 'Giovanna',
-          last_name: 'Bustos',
-          slot__group: '1'
-        },
-        {
-          url: '/',
-          title: 'Jeans Ripped',
-          dimensions: '40',
-          brand: 'Zara',
-          price: '14.000',
-          status_id: '',
-          file: '/static/img/demo/product-006.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-002.jpg',
-          first_name: 'Dani',
-          last_name: 'Herzko',
-          slot__group: '2'
-        },
-        {
-          url: '/',
-          title: 'Chaqueta Ecocuero Negra',
-          dimensions: 's',
-          brand: 'Forever 21 ',
-          price: '15.000',
-          status_id: '',
-          file: '/static/img/demo/product-007.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-004.jpg',
-          first_name: 'Trini',
-          last_name: 'Garcés ',
-          slot__group: '1'
-        },
-        {
-          url: '/',
-          title: 'Blazer Rojo',
-          dimensions: '46',
-          brand: 'Desconocida',
-          price: '8.000',
-          status_id: '',
-          file: '/static/img/demo/product-008.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-006.jpg',
-          first_name: 'Loreto',
-          last_name: '',
-          slot__group: '2'
-        },
-        {
-          url: '/',
-          title: 'Blusa H&M Studio',
-          dimensions: 's',
-          brand: 'H&M ',
-          price: '12.000',
-          status_id: '',
-          file: '/static/img/demo/product-009.jpg',
-          user: '/',
-          picture: '/static/img/demo/user-avatar-008.jpg',
-          first_name: 'Isi',
-          last_name: 'Fierro',
-          slot__group: '2'
-        }
-      ]
+      }
     }
   },
   methods: {
@@ -236,6 +117,19 @@ export default {
     },
     NotActive: function (e) {
       this.isActive = undefined
+    },
+    updateProductList: function () {
+      let filterQueryObject = {}
+      filterQueryObject.status = '10,19'
+      filterQueryObject.category_id = this.category.id
+      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
+        .then((response) => {
+          this.products = response.data.data
+          this.productsPager.total = response.data.last_page
+        })
+    },
+    mounted: function () {
+      this.updateProductList()
     }
   }
 }

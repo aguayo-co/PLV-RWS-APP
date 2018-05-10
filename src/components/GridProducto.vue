@@ -19,7 +19,7 @@
           href='#'
           title='Agrega a Favoritos') Agregar a Favoritos
         router-link.slot__product(
-          :to='"producto/" + product.slug + "__" + product.id',
+          :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
           :title='product.title')
           img.slot__img(
             :src="product.images[0]",
@@ -39,7 +39,7 @@
 
         //- user: picture/first_name/last_name
         router-link.slot__user(
-          :to="'/closet/' + product.user.id",
+          :to="{ name: 'closet', params: { userId: product.user.id }}",
           :title='product.user.first_name')
           .slot__user-img
             .slot__avatar
@@ -48,8 +48,7 @@
                 :src='product.user.picture',
                 :alt='product.user.first_name')
               span.tool-user__letter(
-                v-else
-              ) {{ product.user.first_name.charAt(0) }}
+                v-else) {{ product.user.first_name.charAt(0) }}
           .slot__user-info
             .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
             .group(v-if='product.user.groups.length > 0')

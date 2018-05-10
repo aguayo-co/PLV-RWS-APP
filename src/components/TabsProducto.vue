@@ -1,16 +1,5 @@
 <template lang="pug">
 .tabs
-  //- nav.tabs__nav(v-if="mqMobile")
-  //- nav.tabs__nav
-  //-   p.tabs__nav-btn
-  //-     span.tabs__nav-link.tabs__list-inner(@click.stop="openToggle") {{ orderOptions.options[orderOptions.selected].name }}
-  //-     transition(name='toggle-scale')
-  //-       ul.tabs__nav-list(v-show="activeToggle")
-  //-         li.tabs__nav-item(v-for="option in orderOptions.options")
-  //-           a.tabs__nav-link(href="#",
-  //-             @click.prevent="tabActive1",
-  //-             :class="{tabActive: tabsActive1 == true}") {{ option.name }}
-  //- nav.tabs__nav(v-if="mqDesk")
   nav.tabs__nav
     p.tabs__inner
       span.tabs__nav-btn(@click.stop="openToggle") {{ navOptions.options[navOptions.selected].name }}
@@ -40,7 +29,7 @@
             title='Agrega a Favoritos') Agregar a Favoritos
           .slot__product-inner
             router-link.slot__product(
-              :to="'/producto/' + product.slug + '__' + product.id",
+              :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
               :title='product.title')
               img.slot__img(
                 :src="product.images[0]",
@@ -81,9 +70,7 @@
                   v-if='product.user.picture'
                   :src='product.user.picture',
                   :alt='product.user.first_name')
-                span.tool-user__letter(
-                  v-else
-                ) {{ product.user.first_name.charAt(0) }}
+                span.tool-user__letter(v-else) {{ product.user.first_name.charAt(0) }}
             .slot__user-info
               .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
               .group(v-if='product.user.groups.length > 0')

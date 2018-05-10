@@ -3,7 +3,8 @@
   ProductoDetalle(:product="product")
   ProductoUser(:user="user")
   ProductoPreguntas(:product_id="product.id", :owner_id="user.id")
-  ProductoSlider
+  ProductoSlider(
+    :category_id="product.category_id")
 </template>
 
 <script>

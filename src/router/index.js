@@ -172,7 +172,7 @@ export default new Router({
     },
     {
       path: '/closet/:userId',
-      name: 'Closet',
+      name: 'closet',
       component: Closet
     },
     {
