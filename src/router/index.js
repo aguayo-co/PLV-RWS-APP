@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/Home'
 import SignUp from '@/pages/SignUp'
-import Pass from '@/pages/Pass'
+import PasswordRequest from '@/pages/PasswordRequest'
+import PasswordRecoverySet from '@/pages/PasswordRecoverySet'
 import User from '@/pages/User'
 import UserData from '@/components/UserData'
 import UserMetodoEnvio from '@/components/UserMetodoEnvio'
@@ -39,6 +40,7 @@ import AyudaComoFunciona from '@/pages/AyudaComoFuncionaPrilov'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -59,10 +61,12 @@ export default new Router({
     {
       path: '/password',
       name: 'password',
-      component: Pass,
-      meta: {
-        requiresAuth: true
-      }
+      component: PasswordRequest
+    },
+    {
+      path: '/password/token/:tokenString/:email',
+      name: 'password-recovery',
+      component: PasswordRecoverySet
     },
     {
       path: '/user',
