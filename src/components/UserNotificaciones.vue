@@ -77,9 +77,10 @@ export default {
       return false
     },
     getMessenger: function (thread) {
-      let result = thread.participants.filter(x => x.user_id !== this.user.id)[0].user
+      let result = thread.participants.filter(x => x.user_id !== this.user.id)[0]
       if (result) {
-        return result
+        console.log(result.user)
+        return result.user
       }
       return {}
     }
