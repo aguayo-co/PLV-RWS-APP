@@ -82,7 +82,7 @@ export default {
     this.$moment.locale('es')
     this.$store.dispatch('user/loadUser')
       .then(response => {
-        if (response.data.id) this.$store.dispatch('cart/load')
+        if (response) this.$store.dispatch('cart/load')
       })
   }
 }
