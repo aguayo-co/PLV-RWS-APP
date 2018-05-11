@@ -44,7 +44,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState } from 'vuex'
+import usersAPI from '@/api/user'
 export default {
   name: 'FormStepLogin',
   data () {
@@ -53,6 +54,9 @@ export default {
       password: '',
       errorTexts: {}
     }
+  },
+  computed: {
+    ...mapState(['guestCart'])
   },
   methods: {
     validateBeforeSubmit: function () {
@@ -73,15 +77,57 @@ export default {
       }
     },
     login: function () {
-      axios.post('https://prilov.aguayo.co/api/users/login', {
-        email: this.email,
-        password: this.password
-      }).then(response => {
-        this.$store.dispatch('user/setUser', response.data)
-        this.close()
-      }).catch(e => {
-        console.log('ERROR : ' + e)
+      userAPI.login(payload)
+        .then(response => {
+          this.$store.dispatch('user/setUser', response.data)
+          this.migrateCart()
+          this.$router.push({ name: 'user-data' })
+        })
+        .catch(e => {
+          var modal
+
+          if (this.$store.getters['ui/loginAttempts'] < 3) {
+            modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Parece que ocurrió un error',
+                body: this.$getNestedObject(e, ['response', 'data', 'errors', 0])
+              }
+            }
+          } else {
+            modal = {
+              name: 'ModalMessage',
+              parameters: {
+                type: 'alert',
+                title: '¡Ups! Ya has intentado autenticarte varias veces',
+                primaryButtonTitle: '¿Olvidaste tu contraseña?',
+                primaryButtonURL: 'password'
+              }
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
+          this.$store.dispatch('ui/loginAttempt')
+        })
+    },
+    migrateCart: function () {
+      let errors = 0
+      const products = this.guestCart.products
+      products.forEach((product) => {
+        this.$store.dispatch('cart/addProduct', { id: product.id })
+          .catch(e => {
+            errors += 1
+          })
       })
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'alert',
+          title: 'Tuvimos que eliminar algunos productos de tu carrito porque ya no están disponibles.'
+        }
+      }
+      if (errors > 0) this.$store.dispatch('ui/showModal', modal)
+      this.$store.dispatch('guestCart/kill')
     }
   }
 }
