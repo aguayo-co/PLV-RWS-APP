@@ -93,12 +93,18 @@
   .slot_grid {
     padding: 0 17px 110px;
   }
+  .product-grid_small {
+    margin: 0 -16px;
+    .slot_grid {
+      padding: 0 16px 52px;
+    }
+  }
+
   .slot__ico {
     right: 24px;
   }
 }
 
-// $bp-wide: 1024px;
 @include media-query(big) {
   .section_product {
     max-width: 1314px;
@@ -303,8 +309,6 @@
     padding-bottom: 60px;
     text-align: center;
   }
-
-
 }
 // $bp-wide: 1024px;
 @include media-query(wide) {
@@ -327,7 +331,7 @@
   }
 
   .slot__price {
-    @include font-rem(36px);
+    @include font-rem(32px);
   }
 }
 
