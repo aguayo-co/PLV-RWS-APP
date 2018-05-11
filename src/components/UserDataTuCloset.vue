@@ -10,7 +10,7 @@
         .cover__banner(v-if="cover")
           img.cover__picture(:src='cover')
         .cover__banner(v-else)
-          //-1800 * 720 - 5:2 -
+          //-1800 * 560
           img.cover__picture(:src="'/static/img/cover/cover-' + coverId + '.jpg'")
       form.form_user.user-cover__upfile(
         id="form-user-cover"
@@ -28,7 +28,7 @@
               .upfile__btn Sube una imagen
             croppa(
               :width="1800",
-              :height="700",
+              :height="560",
               :quality="1",
               placeholder="",
               :prevent-white-space="true"
