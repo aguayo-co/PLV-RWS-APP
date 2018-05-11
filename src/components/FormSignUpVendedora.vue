@@ -112,6 +112,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 import userAPI from '@/api/user'
@@ -163,6 +164,7 @@ export default {
             .then(() => {
               this.$store.dispatch('ui/closeModal')
               this.$store.dispatch('user/loadUser')
+              this.migrateCart()
             }).catch((e) => {
               console.log(e)
             })
@@ -228,9 +230,29 @@ export default {
     removeImage: function (index) {
       this.toggleImageDelete = false
       this.picture.remove()
+    },
+    migrateCart: function () {
+      let errors = 0
+      const products = this.guestCart.products
+      products.forEach((product) => {
+        this.$store.dispatch('cart/addProduct', { id: product.id })
+          .catch(e => {
+            errors += 1
+          })
+      })
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'alert',
+          title: 'Tuvimos que eliminar algunos productos de tu carrito porque ya no están disponibles.'
+        }
+      }
+      if (errors > 0) this.$store.dispatch('ui/showModal', modal)
+      this.$store.dispatch('guestCart/kill')
     }
   },
   computed: {
+    ...mapState(['guestCart'])
   },
   created () {
   }

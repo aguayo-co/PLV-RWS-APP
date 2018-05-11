@@ -32,8 +32,9 @@
                   .box-cards__subhead
                     .box-cards__value
                       p.box-cards__title Total
-                      span.box-cards__number ${{ cart.total | currency }}
-                    router-link.btn.btn_solid(:to="'/compra/'") Ir a Pagar
+                      span.box-cards__number ${{ shoppingCart.total | currency }}
+                    router-link.btn.btn_solid(v-if="user.id", :to="'/compra/'") Ir a Pagar
+                    router-link.btn.btn_solid(v-else, :to="{ name: 'compra-guest' }") Ir a Pagar
                   .box-cards__item(v-for="product in totalProducts")
                     article.list__card
                       a.card__product
@@ -46,7 +47,8 @@
                         .card__info
                           .card__header
                             h3.card__title {{ product.title }}
-                            p.card__size Talla: {{ product.size }}
+                            p.card__size(v-if="product.size.name") Talla: {{ product.size.name }}
+                            p.card__size(v-else) Talla: {{ product.size }}
                           p.card__price ${{ product.price | currency }}
                     button.box-cards__btn.i-x(@click="removeFromCart(product.id)") Eliminar
 
@@ -128,10 +130,17 @@ export default {
       this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'user' })
     },
     toggleCart: function () {
-      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
+      if (this.totalProducts.length > 0) {
+        this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
+      }
     },
     removeFromCart: function (productId) {
-      this.$store.dispatch('cart/removeProduct', { id: productId })
+      if (this.totalProducts.length === 1) this.toggleCart()
+      if (this.user.id) {
+        this.$store.dispatch('cart/removeProduct', { id: productId })
+      } else {
+        this.$store.dispatch('guestCart/removeProduct', { id: productId })
+      }
     },
     logout: function () {
       this.$store.dispatch('user/logOut')
@@ -141,11 +150,17 @@ export default {
   computed: {
     ...mapState(['user']),
     ...mapState(['cart']),
+    ...mapState(['guestCart']),
     totalProducts () {
-      return this.$store.getters['cart/products']
+      if (this.user.id) return this.$store.getters['cart/products']
+      return this.guestCart.products
     },
     activeDropDowns () {
       return this.$store.getters['ui/headerDropdownsVisible']
+    },
+    shoppingCart () {
+      if (this.user.id) return this.cart
+      return this.guestCart
     }
   }
 }

@@ -24,6 +24,7 @@ import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
 import Closet from '@/pages/Closet'
 import Producto from '@/pages/Producto'
 import Compra from '@/pages/compra'
+import CompraGuest from '@/pages/CompraGuest'
 import Categoria from '@/pages/Categoria'
 import Instashop from '@/pages/Instashop'
 import Search from '@/pages/Search'
@@ -67,6 +68,14 @@ export default new Router({
       path: '/password/token/:tokenString/:email',
       name: 'password-recovery',
       component: PasswordRecoverySet
+    },
+    {
+      path: '/compra-invitado',
+      name: 'compra-guest',
+      component: CompraGuest,
+      meta: {
+        title: 'Estás a un paso de completar tu compra'
+      }
     },
     {
       path: '/user',

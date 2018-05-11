@@ -98,8 +98,10 @@ export default {
   },
 
   checkEmail: function (email) {
-    // return Vue.axios.post('/api/users/email', payload)
-    setTimeout(function () { return true }, 1000)
+    const params = {
+      email: email
+    }
+    return Vue.axios.get('/api/users', { params })
   },
 
   load: function (userId) {
