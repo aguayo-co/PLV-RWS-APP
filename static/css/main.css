@@ -8732,6 +8732,9 @@ body {
     min-width: 56PX;
     padding: 0 4px; }
 
+.card__link {
+  color: #000; }
+
 .card__circle {
   display: inline-block;
   width: 114px;
