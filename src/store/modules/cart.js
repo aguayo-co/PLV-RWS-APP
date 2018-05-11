@@ -18,7 +18,7 @@ const baseSale = {
   id: null,
   shipping_method_id: null,
   shipping_method: null,
-  total: null
+  shipping_cost: null
 }
 
 // Propiedades que son hijos directos de cada producto.
@@ -122,6 +122,10 @@ const mutations = {
     state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
     state['gateway'] = Vue.getNestedObject(cart, ['payments', 0, 'gateway']) || state.gateway
 
+    if (state['address'].id) {
+      store.commit('cart/setShippingInformation', state['address'].id)
+    }
+
     const activeSales = []
 
     // Agrega o sobre-escribe los Sale.
@@ -223,6 +227,15 @@ const mutations = {
     due -= parseInt(value) || 0
     state.due = due
     state.used_credits = parseInt(value) || 0
+  },
+  /**
+   * Almacena la información de envío en el sale
+   *
+   * @param {*} state
+   * @param {*} addressId
+   */
+  setShippingInformation (state, addressId) {
+    shoppingCartAPI.setAddress(addressId)
   }
 }
 

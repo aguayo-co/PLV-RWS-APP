@@ -28,5 +28,11 @@ export default {
       ...data
     }
     return Vue.axiosAuth.get('/api/shopping_cart/payment', {params})
+  },
+  setAddress (addressId) {
+    const payload = {
+      address_id: addressId
+    }
+    return Vue.axiosAuth.patch('/api/shopping_cart', payload)
   }
 }

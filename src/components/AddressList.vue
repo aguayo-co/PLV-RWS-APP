@@ -49,7 +49,7 @@
       v-on:submit.prevent='createAddress'
       v-if='newAddress')
       fieldset.form__set
-        legend.form__legend Nueva dirección Progresivo
+        legend.form__legend Nueva dirección
         .form__grid
           .form__row
             label.form__label(
@@ -89,7 +89,7 @@
                 v-model="newAddressData['region']")
                 option
                 option(
-                  v-for="region in regions") {{ region }}
+                  v-for="region in regions.sort()") {{ region }}
 
         .form__grid
           .form__row
@@ -102,7 +102,7 @@
                 v-model="newAddressData['province']")
                 option
                 option(
-                  v-for="province in provinces") {{ province }}
+                  v-for="province in provinces.sort()") {{ province }}
 
           .form__row
             .form__hide(v-if="newAddressData['province']")
@@ -114,7 +114,7 @@
                 v-model="newAddressData['commune']")
                 option
                 option(
-                  v-for="commune in communes") {{ commune }}
+                  v-for="commune in communes.sort()") {{ commune }}
 
         .form__grid.form__grid_center.form__row_away
           .form__row
