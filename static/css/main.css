@@ -4618,8 +4618,8 @@ body {
 	User Profile avatar edit
 \*------------------------------------*/
 .user-data__avatar {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   margin: 0 auto;
   overflow: hidden;
   border: 5px solid #f65a66;
@@ -4628,7 +4628,7 @@ body {
   .user-data__avatar .profile__letter {
     display: block;
     width: 100%;
-    line-height: 170px;
+    line-height: 160px;
     text-align: center;
     color: #fff;
     font-size: 90px;
