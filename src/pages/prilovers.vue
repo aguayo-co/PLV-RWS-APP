@@ -23,24 +23,27 @@
               v-for="option in listOptions.options") {{ option.name }}
     .card__grid
       article.card(v-for="user in prilovers")
-        figure.card__circle
-          img.card__photo(
-            v-if="user.picture"
-            :src='user.picture',
-            :alt='user.first_name')
-          span.tool-user__letter(v-else) {{ user.first_name.charAt(0) }}
-        h2.card__name {{ user.first_name }} {{ user.last_name }}
-        p.card__meta.i-bag {{ user.published_products_count }} Productos
-        ul.user-data__list
-          li.user-data__value.i-like {{ user.followers_count }}
-          li.user-data__value.i-like.i_flip 0
-          li.user-data__value.i-less-circle 0
-        //- Fix Issue #106 se integra funcionalidad para grupos
-        .card__group
-          .slot__group.i-star-on(
-            v-if='user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
-          .slot__group.i-it-girl(
-            v-if='user.group_ids.indexOf(2) > -1') It <span class="txt_brand">girl</span>
+        router-link.card__link(
+          :to="{ name: 'closet', params: { userId: user.id }}",
+          :title="'Ir al Closet de ' + user.first_name")
+          figure.card__circle
+            img.card__photo(
+              v-if="user.picture"
+              :src='user.picture',
+              :alt='user.first_name')
+            span.tool-user__letter(v-else) {{ user.first_name.charAt(0) }}
+          h2.card__name {{ user.first_name }} {{ user.last_name }}
+          p.card__meta.i-bag {{ user.published_products_count }} Productos
+          ul.user-data__list
+            li.user-data__value.i-like {{ user.followers_count }}
+            li.user-data__value.i-like.i_flip 0
+            li.user-data__value.i-less-circle 0
+          //- Fix Issue #106 se integra funcionalidad para grupos
+          .card__group
+            .slot__group.i-star-on(
+              v-if='user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
+            .slot__group.i-it-girl(
+              v-if='user.group_ids.indexOf(2) > -1') It <span class="txt_brand">girl</span>
 
     .section_product__footer
       p.btn__wrapper

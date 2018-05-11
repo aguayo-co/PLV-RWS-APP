@@ -214,6 +214,11 @@
                       span.color-circle(
                         :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
+                    li.toggle-select__item(
+                      @click="noneColor(2)")
+                      span.color-circle(
+                        :style='{ opacity: 0 }')
+                      span Ninguno
 
             .form__row(
               :class='{ "is-danger": errorLog.calculatedSize }')
@@ -274,7 +279,7 @@
               :class='{ "is-danger": errorLog.price }')
               label.form__label(
                 for='product-precio') Precio de venta
-              span.help(
+              span.help.help_price(
                 v-if="errorLog.price"
               ) {{ errorLog.price }}
               span.form__price
@@ -288,7 +293,7 @@
               :class='{ "is-danger": errorLog.original_price }')
               label.form__label(
                 for='product-original-price') Precio al que compraste tu producto
-              span.help(
+              span.help.help_price(
                 v-if="errorLog.original_price"
               ) {{ errorLog.original_price }}
               span.form__price
@@ -549,6 +554,10 @@ export default {
     chooseColor: function (colorId, colorPosition) {
       this.product.color[colorPosition - 1] = this.colors[colorId - 1].name
       this.product.color_ids[colorPosition - 1] = colorId
+    },
+    noneColor: function (colorPosition) {
+      this.product.color[colorPosition - 1] = null
+      this.product.color_ids.splice(colorPosition - 1)
     },
     chooseSize: function (sizeId) {
       this.sizeScheme = sizeId - 1

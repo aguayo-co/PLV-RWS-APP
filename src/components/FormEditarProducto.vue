@@ -228,11 +228,9 @@
                   ul.toggle-select__list
                     li.toggle-select__item(
                       v-for='color in colors',
-                      @click='chooseColor(color.id, 1)'
-                    )
+                      @click='chooseColor(color.id, 1)')
                       span.color-circle(
-                        :style='{ backgroundColor: color.hex_code }'
-                      )
+                        :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
               .form__row.color(
                 @click='toggleColors.second = !toggleColors.second')
@@ -249,12 +247,15 @@
                   ul.toggle-select__list
                     li.toggle-select__item(
                       v-for='color in colors',
-                      @click='chooseColor(color.id, 2)'
-                    )
+                      @click='chooseColor(color.id, 2)')
                       span.color-circle(
-                        :style='{ backgroundColor: color.hex_code }'
-                      )
+                        :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
+                    li.toggle-select__item(
+                      @click="noneColor(2)")
+                      span.color-circle(
+                        :style='{ opacity: 0 }')
+                      span Ninguno
 
             .form__row(
               :class='{ "is-danger": errorLog.calculatedSize }')
@@ -559,6 +560,10 @@ export default {
     chooseColor: function (colorId, colorPosition) {
       this.product.color[colorPosition - 1] = this.colors[colorId - 1].name
       this.product.color_ids[colorPosition - 1] = colorId
+    },
+    noneColor: function (colorPosition) {
+      this.product.color[colorPosition - 1] = null
+      this.product.color_ids.splice(colorPosition - 1)
     },
     chooseSize: function (sizeId) {
       this.sizeScheme = sizeId - 1

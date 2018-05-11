@@ -4,7 +4,7 @@ section.profile
     .cover__banner(v-if="user.cover")
       img.cover__picture(:src='user.cover')
     .cover__banner(v-else)
-      //-1800 * 720 - 5:2 -
+      //-1800 * 560
       img.cover__picture(:src="'/static/img/cover/cover-' + coverId + '.jpg'")
   .profile__user
     .profile__grid

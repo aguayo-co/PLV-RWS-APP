@@ -15,9 +15,6 @@ section.single
                 @click.prevent="toggle('editPicture')") <small class="hide"> Editar </small>
             .user-data__avatar(
               v-if="editPicture == false")
-              //- clic en foto de perfil de usuario
-                Se despliega un input (file) donde el usuario
-                puede subir y editar su foto de perfil.
               img.user-data__img(
                 v-if="picture"
                 :src="picture",
@@ -145,13 +142,6 @@ section.single
       .user-data_info
         .subhead Direcciones
         AddressList
-        //- Bloque Editar Correo Perfil de usuaria
-          1. Se debe seleccionar el ícono de editar
-          y el correo se convierte en un campo de
-          formulario que se puede editar. Luego se da guardar.
-          2. Se debe confirmar el nuevo correo para que este
-          cambio sea validado. (Ver Formulario de Registro paso 5)
-
         .dividers
           form.form_user(
             id="form-user-email"
@@ -177,9 +167,6 @@ section.single
                     href="#",
                     title="Editar correo") <small class="hide"> Editar </small>
 
-        //- Bloque Editar Teléfono Perfil de usuaria
-          1. Selecciona el ícono de edición frente al
-          teléfono y edita el número en el campo de formulario.
         .dividers
           form.form_user(
             id="form-user-phone"
