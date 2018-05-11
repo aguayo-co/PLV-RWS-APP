@@ -65,8 +65,10 @@ export default {
   computed: {
     ...mapState(['cart']),
     ...mapState(['user']),
+    ...mapState(['guestCart']),
     totalProducts () {
-      return this.$store.getters['cart/products']
+      if (this.user.id) return this.$store.getters['cart/products']
+      return this.guestCart.products
     },
     inCart () {
       if (this.totalProducts.length > 0) {
@@ -84,7 +86,11 @@ export default {
       this.srcActive = e
     },
     addToCart: function () {
-      this.$store.dispatch('cart/addProduct', { id: this.product.id })
+      if (this.user.id) {
+        this.$store.dispatch('cart/addProduct', { id: this.product.id })
+      } else {
+        this.$store.dispatch('guestCart/addProduct', { ...this.product })
+      }
     }
   }
 }
