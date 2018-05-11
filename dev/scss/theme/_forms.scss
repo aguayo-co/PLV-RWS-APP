@@ -733,7 +733,13 @@ select {
   }
   
 }
-
+.form__control_disabled {
+  opacity: .4;
+  cursor: none;
+  pointer-events: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
 /*------------------------------------*\
 	Mensajes Error
 \*------------------------------------*/
