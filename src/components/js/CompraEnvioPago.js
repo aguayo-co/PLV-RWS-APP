@@ -8,7 +8,8 @@ import { mapFields } from 'vuex-map-fields'
 // de cada uno.
 const editableProps = {
   phone: null,
-  used_credits: null
+  used_credits: null,
+  shipping_information: null
 }
 
 /**

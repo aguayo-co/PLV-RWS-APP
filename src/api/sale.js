@@ -4,10 +4,10 @@
 import Vue from 'vue'
 
 export default {
-  load (saleId) {
+  load: function (saleId) {
     return Vue.axiosAuth.get('/api/sales/' + saleId)
   },
-  shipped (saleId, company, code) {
+  shipped: function (saleId, company, code) {
     const data = {
       status: 40,
       shipment_details: {
@@ -19,7 +19,7 @@ export default {
     }
     return Vue.axiosAuth.patch('/api/sales/' + saleId, data)
   },
-  delivered (saleId, note) {
+  delivered: function (saleId, note) {
     const data = {
       status: 41,
       shipment_details: {
@@ -27,5 +27,12 @@ export default {
       }
     }
     return Vue.axiosAuth.patch('/api/sales/' + saleId, data)
+  },
+  setShippingMethod: function (sale) {
+    const data = {
+      shipping_method_id: sale.shipping_method_id,
+      id: sale.id
+    }
+    return Vue.axiosAuth.patch('/api/sales/' + sale.id, data)
   }
 }

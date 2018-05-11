@@ -18,7 +18,7 @@
             :class="{txt_brand: coupon_discount}"
           ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount | currency }}
         dl.data-total
-          dt.data-total__label Total de tu CompraDetalle:
+          dt.data-total__label Total de la orden:
           dd.data-total__value ${{ due | currency }}
         //- end List Detalle de tu compra
 
