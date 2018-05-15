@@ -16,7 +16,7 @@
       .dividers
         .dividers__item(v-if="address") {{ address | address }}
       .subhead.subhead_top ¿Cambiar dirección?
-      AddressList(in-shopping-cart=true)
+      AddressList(:in-shopping-cart="true", v-on:updatedAddress="updateShippingInformation")
 
       .subhead Teléfono
         small.small_high Ingresa tu número celular para que la vendedora pueda comunicarse contigo facilmente.
