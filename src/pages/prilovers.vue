@@ -35,9 +35,9 @@
           h2.card__name {{ user.first_name }} {{ user.last_name }}
           p.card__meta.i-bag {{ user.published_products_count }} Productos
           ul.user-data__list
-            li.user-data__value.i-like {{ user.followers_count }}
-            li.user-data__value.i-like.i_flip 0
-            li.user-data__value.i-less-circle 0
+            li.user-data__value.i-like {{ user.ratings_positive_count }}
+            li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
+            li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
           //- Fix Issue #106 se integra funcionalidad para grupos
           .card__group
             .slot__group.i-star-on(
