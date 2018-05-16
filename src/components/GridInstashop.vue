@@ -14,12 +14,13 @@
       //- Producto 1
       article.slot.slot_grid
         .slot__product-inner
-          a.slot__product.sold(
+          a.slot__product.slot__product_sold(
             href='#',
             title='Producto 1')
             img.slot__img(
-              src="/static/img/demo/prod-instagram/vendido.png",
+              src="/static/img/demo/prod-instagram/insta-2.png",
               alt="Producto 1")
+            span.slot__badge Vendido
           .slot__lead
             .slot__title Black Bike
             .slot__size
