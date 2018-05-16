@@ -14,7 +14,7 @@ section.single
         .box-flat__button
           p.box-flat__value(v-if="user.credits") $ {{ user.credits | currency }}
           p.box-flat__value(v-else) $ 0
-          //- a.link_underline(href="#") Convertir en dinero
+          a.link_underline(href="#") Convertir en dinero
           //-To-do== modales del flujo, Ver wireframe https://wtsjxe.axshare.com/#g=1&p=d__cr_ditos
     h3.subhead Detalle de Créditos
     .dividers
@@ -22,7 +22,7 @@ section.single
         .dividers__grid
           p.dividers__txt Créditos ya solicitados para ser transferidos
           p.dividers__value 0
-    .alert
+    .alert(v-if="user.credits <= 4000")
       p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener más de $4.000 en créditos.
     h3.subhead Detalle de Transacciones
     //- Lista de transacciones
