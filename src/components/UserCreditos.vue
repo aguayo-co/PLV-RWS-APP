@@ -14,7 +14,9 @@ section.single
         .box-flat__button
           p.box-flat__value(v-if="user.credits") $ {{ user.credits | currency }}
           p.box-flat__value(v-else) $ 0
-          a.link_underline(href="#") Convertir en dinero
+          a.link_underline(
+            v-if="user.credits",
+            href="#") Convertir en dinero
           //-To-do== modales del flujo, Ver wireframe https://wtsjxe.axshare.com/#g=1&p=d__cr_ditos
     h3.subhead Detalle de Créditos
     .dividers
