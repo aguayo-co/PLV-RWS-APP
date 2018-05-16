@@ -4,6 +4,9 @@
 import Vue from 'vue'
 
 export default {
+  getBySeller (sellerId) {
+    return Vue.axios.get('/api/rating_archives?seller_id=' + sellerId)
+  },
   getPositiveByUser (userId) {
     const params = {
       status: '1',
