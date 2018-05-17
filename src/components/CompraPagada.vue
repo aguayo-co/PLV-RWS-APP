@@ -14,8 +14,8 @@ section.list-slot
       v-for="product in products")
       //-link a producto
       router-link.card__product(
-        to="#",
-        title="")
+        :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+        :title="'Ver detalle de ' + product.title")
 
         //-img producto
         .card__figure
@@ -36,15 +36,15 @@ section.list-slot
       .card__column
         //-link a usuario
         router-link.card__user(
-          to="#",
-          title="")
+          :to="{ name: 'closet', params: { userId: product.user.id }}",
+          :title="'Ir al Clóset de ' +  product.user.first_name")
           .card__user-img
             .card__avatar
               img.card__picture(
                 :src="product.user.picture",
-                alt="")
+                :alt="product.user.first_name")
           .card__user-info
-            .card__status Vendedora
+            .card__status Vendedora con link
             .card__prilover  {{ product.user | full_name }}
 
         //-datos contacto usuaria

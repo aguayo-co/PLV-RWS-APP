@@ -1,9 +1,7 @@
 <template lang="pug">
 //- metodos de envío vendedora lista de productos
 .list__item
-  router-link.card__user(
-    to="#",
-    title="Ir al Clóset de la vendedora")
+  .card__user
     .card__user-img
       .card__avatar
         img.card__picture(
