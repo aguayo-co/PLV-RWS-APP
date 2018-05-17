@@ -26,64 +26,17 @@ section.single
       p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener más de $4.000 en créditos.
     h3.subhead Detalle de Transacciones
     //- Lista de transacciones
-      ul.collapsible
-        li.collapsible__item
-          .collapsible__header.i-down
-            .collapsible__child
-              p.collapsible__title Compra: Polerón Pink Zara
-              p.collapsible__label ········5678
-            .collapsible__child
-              .collapsible__subchild
-                p.collapsible__value.txt_danger -$2.100
-                time.collapsible__data(
-                  datetime="2017-08-22") 22 de agosto, 2017
-          ul.collapsible__body(
-            v-show="false")
-            li.collapsible__subitem.collapsible_big
-              img.collapsible__img(
-                src="static/img/demo/product-003.jpg")
-            li.collapsible__subitem
-              p.collapsible__subtitle Precio de venta
-              p.collapsible__meta $18.700
-            li.collapsible__subitem
-              p.collapsible__subtitle Cobro Prilov
-              p.collapsible__meta $1.700
-            li.collapsible__subitem
-              p.collapsible__subtitle Descuento
-              p.collapsible__meta $0
-            li.collapsible__subitem
-              p.collapsible__subtitle Compradora
-              p.collapsible__meta Carla Onetto
-      //- To Do: ejemplo de elemento desplegado
-          add class .collapsible__item_active
-          change class  .i-down por .i-up
-        li.collapsible__item.collapsible__item_active
-          .collapsible__header.i-up
-            .collapsible__child
-              p.collapsible__title Venta
-              p.collapsible__label Jeans Americanino
-            .collapsible__child
-              .collapsible__subchild
-                p.collapsible__value $ 22.100
-                time.collapsible__data(
-                  datetime="2017-07-02") 2 de Julio, 2017
-          ul.collapsible__body(
-            v-show="true")
-            li.collapsible__subitem.collapsible_big
-              img.collapsible__img(
-                src="static/img/demo/product-003.jpg")
-            li.collapsible__subitem
-              p.collapsible__subtitle Precio de venta
-              p.collapsible__meta $18.700
-            li.collapsible__subitem
-              p.collapsible__subtitle Cobro Prilov
-              p.collapsible__meta $1.700
-            li.collapsible__subitem
-              p.collapsible__subtitle Descuento
-              p.collapsible__meta $0
-            li.collapsible__subitem
-              p.collapsible__subtitle Compradora
-              p.collapsible__meta Carla Onetto
+    ul.collapsible
+      li.collapsible__item
+        .collapsible__header.i-down
+          .collapsible__child
+            p.collapsible__title Transferencia de créditos de Prilov 1.0
+            p.collapsible__label ········5678
+          .collapsible__child
+            .collapsible__subchild
+              p.collapsible__value.txt_danger $19.800
+              time.collapsible__data(
+                datetime="2017-08-22") 22 de agosto, 2017
 </template>
 
 <script>
