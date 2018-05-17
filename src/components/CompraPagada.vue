@@ -8,8 +8,6 @@ section.list-slot
     h2.title_heart ¡Cool! estamos confirmando tu pago
     p.subtitle_heart Apenas lo confirmemos, enviaremos un comprobante de compra a tu correo.
 
-  //- To do: crear componente
-  //1d Cliente Registrado, logueado, comprando a  diferentes vendedoras
   .list-slot__content
     //-Item
     article.list__card(
@@ -32,7 +30,7 @@ section.list-slot
             p.card__brand Marca: {{ product.brand.name }}
             p.card__size Talla: {{ product.size.name }}
           p.card__price $ {{ product.price | currency }}
-          p.card__tag.tag {{ product.condition.name }}
+          p.card__tag {{ product.condition.name }}
 
       //-info User
       .card__column
@@ -66,14 +64,14 @@ section.list-slot
   .form__grid.form__grid_center.form__row_away
     .form__row
       router-link.btn.btn_solid(
-        :to="{name: 'home'}",
+        :to="{ name: 'home' }",
         title="Ir a Vitinear") Vitinear
     .form__row
       router-link.btn(
         :to="{name: 'user-tus-compras'}",
         title="Ir a mis compras") Ir a mis compras
   router-link.form-brand(
-    :to="{name: 'home'}",
+    :to="{ name: 'home' }",
     title='Ir a la página de inicio')
     span.brand
       img.brand__logo(src='/static/img/brand-prilov.svg', alt='Prilov Compra. Usa. Vende')

@@ -76,6 +76,12 @@
     font-family: $f-fancy;
     font-weight: $fw-medium;
   }
+  .card__tag {
+    color: $c-brand;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+  }
+
   .card__title {
     @include font-rem(16px);
   }

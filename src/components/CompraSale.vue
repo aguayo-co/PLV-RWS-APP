@@ -3,12 +3,12 @@
 .list__item
   router-link.card__user(
     to="#",
-    title="")
+    title="Ir al Clóset de la vendedora")
     .card__user-img
       .card__avatar
         img.card__picture(
           :src="sale.user_picture",
-          alt="")
+          :alt="sale.user_full_name")
     .card__user-info
       .card__status Vendedora
       .card__prilover  {{ sale.user_full_name }}
@@ -23,7 +23,7 @@
           .card__figure
             img.card__img(
               :src="product.images[0]",
-              alt="")
+              :alt="product.title")
 
           //-info producto
           .card__info
@@ -32,7 +32,7 @@
               p.card__brand {{ product.brand }}
               p.card__size Talla: {{ product.size }}
             p.card__price $ {{ product.price | currency }}
-            p.card__tag.tag {{ product.condition }}
+            p.card__tag {{ product.condition }}
             .card__actions
               a.i-trash.card__link(
                 href="#"
