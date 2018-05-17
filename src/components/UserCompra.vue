@@ -24,7 +24,7 @@
               p.card__size Talla: {{ product.size.name }}
             p.card__price $ {{ product.price | currency }}
             .card__user-data
-              p Vendedora: {{ sale.user.first_name }} {{ sale.user.last_name }}
+              p Vendedora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.user_id }}">  {{ sale.user.first_name }} {{ sale.user.last_name }}</router-link>
               p Teléfono: {{ sale.user.phone }}
               p Dirección: Av. Pajaritos 1309, maipu
 
