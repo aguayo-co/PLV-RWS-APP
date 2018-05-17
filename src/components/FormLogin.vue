@@ -13,29 +13,23 @@ transition(name='modal-fade')
           v-on:submit='',
           action='#',
           submit.prevent='validateBeforeSubmit',
-          method='post'
-        )
+          method='post')
           .form__row(
-            v-bind:class='{ "is-danger": errorTexts.email }'
-          )
+            v-bind:class='{ "is-danger": errorTexts.email }')
             label.form__label(
               for='email') Correo
             span.help(
-              v-if="errorTexts.email"
-            ) {{ errorTexts.email }}
+              v-if="errorTexts.email") {{ errorTexts.email }}
             input.form__control(
               v-model='email',
               id='email',
               type='email')
           .form__row(
-            v-bind:class='{ "is-danger": errorTexts.password }'
-          )
+            v-bind:class='{ "is-danger": errorTexts.password }')
             label.form__label(
-              for='password'
-            ) Contraseña
+              for='password') Contraseña
             span.help(
-              v-if="errorTexts.password"
-            ) {{ errorTexts.password }}
+              v-if="errorTexts.password") {{ errorTexts.password }}
             input.form__control(
               v-model='password',
               id='password',
@@ -49,8 +43,8 @@ transition(name='modal-fade')
         .break
           span.break__txt O
         router-link.btn.btn_block(
-          to='signup',
-          title='Ir a Registro') Regístrate
+          to="/signup",
+          title='Ir al formulario de Registro') Regístrate
 </template>
 
 <script>
