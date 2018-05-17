@@ -539,7 +539,7 @@ export default {
       if (!this.product.price) {
         this.errorLog.price = 'Debes ingresar el precio de tu producto'
       } else {
-        if (this.product.price > this.product.original_price) this.errorLog.price = 'No puedes vender un producto más caro de lo que cuesta originalmente'
+        if (parseInt(this.product.price) > parseInt(this.product.original_price)) this.errorLog.price = 'No puedes vender un producto más caro de lo que cuesta originalmente'
       }
       if (!this.product.original_price) this.errorLog.original_price = 'Debes indicarnos el precio original de tu producto'
       if (!this.product.commission) this.errorLog.commission = 'Debes escoger una opción de comisión'
@@ -598,10 +598,14 @@ export default {
       }
     },
     filterPrice: function (e) {
-      e.preventDefault()
-      if (!this.product.price) this.product.price = ''
-      if (e.keyCode >= 48 && e.keyCode <= 57) this.product.price += e.key
-      if (e.keyCode === 8) this.product.price = this.product.price.substring(0, this.product.price.length - 1)
+      if (e.keyCode === 9) {
+
+      } else {
+        e.preventDefault()
+        if (!this.product.price) this.product.price = ''
+        if (e.keyCode >= 48 && e.keyCode <= 57) this.product.price += e.key
+        if (e.keyCode === 8) this.product.price = this.product.price.substring(0, this.product.price.length - 1)
+      }
     },
     filterOriginalPrice: function (e) {
       e.preventDefault()
@@ -661,6 +665,9 @@ export default {
     productAPI.getAllBrands()
       .then(response => {
         this.brands = response.data.data
+        this.brands.sort((a, b) => {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        })
       })
       .catch(e => {
         console.log(e)

@@ -37,7 +37,7 @@ export default {
               ico: 'i-data'
             },
             {
-              name: 'Mensajes',
+              name: 'Notificaciones',
               url: '/user/notificaciones',
               ico: 'i-bell',
               notifications: true

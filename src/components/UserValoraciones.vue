@@ -5,45 +5,40 @@ section.single
       h1.single__title Valoraciones
     .valuations
       ul.user-data__list
-        li.user-data__value.i-like 20
-        li.user-data__value.i-like.i_flip 0
-        li.user-data__value.i-less-circle 0
-      .valuations__item
+        li.user-data__value.i-like {{ user.ratings_positive_count }}
+        li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
+        li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
+      .valuations__item(
+        v-for="rating in ratings",
+        v-if="rating.buyer_comment.length > 0")
         p.valuations__date
-          time.valuations__date-txt 23/09/2017
-        p.valuations__label.i-bag Sweater Blanco Forever 21
+          time.valuations__date-txt {{ rating.created_at }}
+        // p.valuations__label.i-bag Sweater Blanco Forever 21
         figure.valuations__avatar
-          img.valuations__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-          figcaption.valuations__name Daniela Villanueva
-        p.valuations__bubble Todo bien vendedora siempre atenta, responde rápido y muy atenta.
-      .valuations__item
-        p.valuations__date
-          time.valuations__date-txt 23/09/2017
-        p.valuations__label.i-bag Sweater Blanco Forever 21
-        figure.valuations__avatar
-          img.valuations__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-          figcaption.valuations__name Daniela Villanueva
-        p.valuations__bubble Todo muy bien, rápido.
-        //dos items
-        p.valuations__label.i-bag Sweater Blanco Forever 21
-        figure.valuations__avatar
-          img.valuations__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-          figcaption.valuations__name Daniela Villanueva
-        p.valuations__bubble Todo bien vendedora siempre atenta, responde rápido y muy atenta.
-      .valuations__item
-        p.valuations__date
-          time.valuations__date-txt 23/09/2017
-        p.valuations__label.i-bag Sweater Blanco Forever 21
-        figure.valuations__avatar
-          img.valuations__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
-          figcaption.valuations__name Daniela Villanueva
-        p.valuations__bubble Todo muy bien, rápido.
+          img.valuations__img(:src="rating.buyer.picture", alt="Avatar")
+          figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
+        p.valuations__bubble {{ rating.buyer_comment }}
 
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
+import ratingsAPI from '@/api/rating'
 export default {
-  name: 'UserValoraciones'
+  name: 'UserValoraciones',
+  data () {
+    return {
+      ratings: []
+    }
+  },
+  computed: {
+    ...mapState(['user'])
+  },
+  created: function () {
+    ratingsAPI.getBySeller(this.user.id)
+      .then(response => {
+        this.ratings = response.data.data
+      })
+  }
 }
 </script>

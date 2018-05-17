@@ -20,9 +20,9 @@
             //-Notificaciones
             .user-data__block
               ul.user-data__list
-                li.user-data__value.i-like 120
-                li.user-data__value.i-like.i_flip 100
-                li.user-data__value.i-less-circle 100
+                li.user-data__value.i-like {{ userData.ratings_positive_count }}
+                li.user-data__value.i-like.i_flip {{ userData.ratings_negative_count }}
+                li.user-data__value.i-less-circle {{ userData.ratings_neutral_count }}
               ul.user-data__list
                 li.user-data__track {{ userData.followers_count }} Seguidores
                 li.user-data__track {{ userData.following_count }} Siguiendo

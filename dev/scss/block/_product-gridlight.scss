@@ -13,35 +13,47 @@
     margin: 0 auto;
     padding-top: 0;
   }
-  .sold {
+  .slot__product_sold {
     position: relative;
     background-color: $c-default-3;
     &:before {
-      content: 'Vendido';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      @include prefixer(transform, translate(-50%,-50%), ("webkit", "moz"));
+      content: '';
       display: block;
-      color: $c-neutro;
-      @include font-rem(18px);
-      font-family: $f-normal;
-      font-weight: 100;
-      text-transform: uppercase;
-      z-index: 1;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.7);
     }
+  }
+  .slot__badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include prefixer(transform, translate(-50%, -50%), ("webkit", "moz"));
+    display: block;
+    color: $c-neutro;
+    @include font-rem(18px);
+    font-family: $f-normal;
+    font-weight: 100;
+    text-transform: uppercase;
+    z-index: 1;
     &:after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      @include prefixer(transform, translate(-50%, -50%), ("webkit", "moz"));
+      z-index: -1;
       display: block;
       width: 106px;
       height: 106px;
+      margin: auto;
       background-color: $c-default;
       border-radius: 50%;
-      margin: auto;
+      @include prefixer(transform, translate(-50%, -50%), ("webkit", "moz"));
     }
   }
   .filtrate-box {

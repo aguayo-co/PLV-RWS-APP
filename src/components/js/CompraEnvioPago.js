@@ -8,7 +8,8 @@ import { mapFields } from 'vuex-map-fields'
 // de cada uno.
 const editableProps = {
   phone: null,
-  used_credits: null
+  used_credits: null,
+  shipping_information: null
 }
 
 /**
@@ -102,6 +103,12 @@ export default {
       }).finally(() => {
         this.disabled.used_credits = false
       })
+    },
+    updateShippingInformation (address) {
+      const data = {
+        address_id: address.id
+      }
+      this.$store.dispatch('cart/update', data)
     }
   },
   watch: {

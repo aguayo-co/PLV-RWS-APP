@@ -34,7 +34,6 @@ export default {
     }
     if (order) queryOrder = '&orderby=' + order
     if (search) querySearch = '&q=' + search
-    console.log('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
     return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
   },
 
@@ -62,7 +61,7 @@ export default {
   },
 
   getAllBrands: function () {
-    return Vue.axios.get('/api/brands')
+    return Vue.axios.get('/api/brands?items=500')
   },
 
   getAllSizes: function () {

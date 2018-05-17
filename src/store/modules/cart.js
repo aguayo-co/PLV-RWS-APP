@@ -18,7 +18,7 @@ const baseSale = {
   id: null,
   shipping_method_id: null,
   shipping_method: null,
-  total: null
+  shipping_cost: null
 }
 
 // Propiedades que son hijos directos de cada producto.
