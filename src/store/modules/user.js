@@ -115,9 +115,9 @@ const actions = {
     commit('clear')
   },
   setUser ({commit, dispatch}, user) {
-    commit('set', user)
-    dispatch('loadAddresses')
-    dispatch('loadNotifications')
+    window.localStorage.setItem('token', user.api_token)
+    window.localStorage.setItem('userId', user.id)
+    dispatch('loadUser')
   }
 }
 
@@ -127,11 +127,6 @@ const mutations = {
     Object.keys(baseUser).forEach((key) => {
       state[key] = user[key]
     })
-    console.log(user)
-    if (user.api_token) {
-      window.localStorage.setItem('token', user.api_token)
-      window.localStorage.setItem('userId', user.id)
-    }
   },
   setAddresses: function (state, addresses) {
     Object.keys(addresses).forEach(function (key) {

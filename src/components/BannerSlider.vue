@@ -44,7 +44,6 @@ export default {
     slidersAPI.getAllSlides()
       .then(response => {
         this.slides = response.data.data
-        console.log(this.slides)
       })
   }
 }
