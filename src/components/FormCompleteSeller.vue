@@ -61,13 +61,13 @@
               type='tel')
             p.form__note (esta info no será pública. Sólo se entregará a tu compradora)
           .form__row(
-            :class='{ "is-danger": errorLog.addresses }')
+            :class='{ "is-danger": errorLog.addressView }')
             label.form__label(
               for='addresses') Direcciones
             p.form__note (esta info no será pública. Se requiere de todas formas para tus envíos)
             span.help(
-              v-if="errorLog.addresses"
-            ) {{ errorLog.addresses }}
+              v-if="errorLog.addressView"
+            ) {{ errorLog.addressView }}
             AddressList
           .form-section.form-section_footer
             .form__row.form__row_away
@@ -100,18 +100,22 @@ export default {
       toggleImageDelete: false,
       about: null,
       phone: null,
-      addresses: null
+      addressView: null
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    ...mapState('user', [
+      'addresses',
+      'address'
+    ])
   },
   methods: {
     validate: function () {
       this.errorLog = {}
       if (!this.about && !this.user.about) this.errorLog.about = 'Debes ingresar una descripción para tu perfil'
       if (!this.phone && !this.user.phone) this.errorLog.phone = 'Debes indicarnos tu teléfono'
-      // if (!this.$store.state['user'].addresses) this.errorLog.addresses = 'Debes ingresar al menos una dirección'
+      if (Object.keys(this.addresses).length === 0 && this.address === undefined) this.errorLog.addressView = 'Debes indicarnos tu dirección'
       if (!this.picture.hasImage() && !this.user.picture) this.errorLog.picture = 'Debes cargar una imagen para tu perfil'
 
       if (Object.keys(this.errorLog).length === 0) {

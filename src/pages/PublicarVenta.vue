@@ -28,14 +28,14 @@
             span.help(
               v-if='errorTexts.email') {{ errorTexts.email }}
             input.form__control(
-              v-model='email',
+              v-model='newUser.email',
               id='email',
               type='email')
           .form__row.form__row_away
             button.btn.btn_solid(
-              v-if='!login && !signup'
-              @click.prevent='firstStep') Continuar
-        .form-section__inner(v-if='login')
+              v-if='!login && !signup && !userFound'
+              @click.prevent='next') Continuar
+        .form-section__inner(v-if='userFound')
           .form__row(
             v-bind:class='{ "is-danger": errorTexts.password }')
             p.form-section__subtitle Vemos que ya tienes una cuenta, por favor ingresa tu contraseña
@@ -44,7 +44,7 @@
             span.help(
               v-if="errorTexts.password") {{ errorTexts.password }}
             input.form__control(
-              v-model='password',
+              v-model='newUser.password',
               id='password',
               type='password')
           .form__row.form__row_away
@@ -73,15 +73,21 @@ export default {
   },
   data () {
     return {
+      errorLog: {},
+      newUser: {},
+      showForm: false,
+      userFound: false,
       signup: false,
       login: false,
       email: null,
       password: null,
-      errorTexts: {}
+      errorTexts: {},
+      viewPass: false
     }
   },
   computed: {
     ...mapState(['guestCart']),
+    ...mapState(['user']),
     seller () {
       if (this.$store.state['user'].roles) {
         return this.$store.state['user'].roles.filter(x => x.name === 'seller')[0]
@@ -94,19 +100,37 @@ export default {
   },
   methods: {
     validateEmail: function () {
-      delete this.errorTexts.email
+      this.errorLog = {}
 
-      if (!this.email) {
+      if (!this.newUser.email) {
         this.errorTexts.email = 'Debes ingresar tu email'
       } else {
-        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.email)) {
+        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.newUser.email)) {
           this.errorTexts.email = 'El email que ingresaste no parece válido.'
         }
       }
+      if (Object.keys(this.errorLog).length === 0) {
+        return true
+      }
+      return false
     },
     validatePassword: function () {
       delete this.errorTexts.password
-      if (!this.password) this.errorTexts.password = 'Debes ingresar una contraseña'
+      if (!this.newUser.password) this.errorTexts.password = 'Debes ingresar una contraseña'
+    },
+    next: function () {
+      if (this.validateEmail()) {
+        userAPI.checkEmail(this.newUser.email)
+          .then(response => {
+            this.userFound = true
+            this.showForm = true
+          })
+          .catch(response => {
+            this.userFound = false
+            this.showForm = true
+            this.signup = true
+          })
+      }
     },
     firstStep: function () {
       this.validateEmail()
@@ -118,14 +142,14 @@ export default {
     secondStep: function () {
       this.validateEmail()
       this.validatePassword()
-      if (Object.keys(this.errorTexts).length === 0) {
+      if (Object.keys(this.errorLog).length === 0) {
         this.loginUser()
       }
     },
     loginUser: function () {
       const payload = {
-        email: this.email,
-        password: this.password
+        email: this.newUser.email,
+        password: this.newUser.password
       }
       userAPI.login(payload)
         .then(response => {
