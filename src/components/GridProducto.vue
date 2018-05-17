@@ -13,10 +13,10 @@
     .product-grid
       article.slot.slot_grid(
         v-for='product in products')
-        a.slot__ico.i-heart(
-          @click.prevent='myActive(product)'
-          :class='{active: isActive == product}'
-          href='#'
+        button.slot__ico.i-heart(
+          v-if="user.id"
+          @click.prevent='setFavorite(product.id)'
+          :class='{ active: user.favorites_ids.includes(product.id) }'
           title='Agrega a Favoritos') Agregar a Favoritos
         router-link.slot__product(
           :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
@@ -58,7 +58,7 @@
                 v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
     .section_product__footer
       p.btn__wrapper(
-        v-if='!loading && !mqMobile')
+        v-if='!loading && !mqMobile && infinite')
         a.btn.i-send(
           @click='loadMoreProducts') Ver más productos
       p.preload(v-if='loading')
@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import productAPI from '@/api/product'
 import FilterDesk from '@/components/FilterDesk'
 import FilterMobile from '@/components/FilterMobile'
@@ -106,6 +107,9 @@ export default {
   components: {
     FilterDesk,
     FilterMobile
+  },
+  computed: {
+    ...mapState(['user'])
   },
   data () {
     return {
@@ -146,11 +150,12 @@ export default {
     }
   },
   methods: {
-    myActive: function (e) {
-      this.isActive = e
-    },
-    NotActive: function (e) {
-      this.isActive = undefined
+    setFavorite: function (productId) {
+      let data = {
+        id: this.user.id
+      }
+      this.user.favorites_ids.includes(productId) ? data.favorites_remove = [productId] : data.favorites_add = [productId]
+      this.$store.dispatch('user/update', data)
     },
     loadMoreProducts: async function (e) {
       if (this.lastPage > this.page) {
