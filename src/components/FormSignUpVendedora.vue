@@ -89,12 +89,15 @@
               for='passwordUser') Contraseña
             span.help(
               v-if="errorLog.password") {{ errorLog.password }}
-            input.form__control(
-              v-model='password',
-              id='passwordUser',
-              type='password',
-              data-vv-name='password',
-              v-on:input='validatePassword')
+            .form__password
+              input.form__control(
+                v-model='password',
+                id='passwordUser',
+                :type="viewPass ? 'text' : 'password'",
+                data-vv-name='password',
+                v-on:input='validatePassword')
+              span.form__visible.i-view(
+                @click='visiblePass')
             span.password-bar(
               v-if='errorLog.passwordDetail.length > 0',
               :class='"level-"+(3-errorLog.passwordDetail.length)')
@@ -137,10 +140,14 @@ export default {
       regionsList: {},
       picture: null,
       pictureURL: null,
-      toggleImageDelete: false
+      toggleImageDelete: false,
+      viewPass: false
     }
   },
   methods: {
+    visiblePass: function () {
+      this.viewPass = !this.viewPass
+    },
     signUp: function () {
       // console.log(this.$store.get('userAuth'))
       const payload = {
