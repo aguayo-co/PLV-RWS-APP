@@ -27,9 +27,9 @@ section.single
             title="Cancelar",
             @click.prevent="convertMoney") Cancelar
         .form__row
-          router-link.btn.btn_solid(
-            to="Transferir a mi cuenta",
-            title="Transferir a mi cuenta") Transferir a mi cuenta
+          button.btn.btn_solid(
+            title="Transferir a mi cuenta",
+            @click="confirmConvertMoney") Transferir a mi cuenta
     h3.subhead Detalle de Créditos
     .dividers
       .dividers__item
@@ -102,6 +102,8 @@ section.single
 
 <script>
 import { mapState } from 'vuex'
+import userAPI from '@/api/user'
+
 export default {
   name: 'UserCreditos',
   computed: {
@@ -115,6 +117,21 @@ export default {
   methods: {
     convertMoney: function () {
       this.alertConvert = !this.alertConvert
+    },
+    confirmConvertMoney: function () {
+      const payload = {
+        user_id: this.user.id,
+        amount: this.user.credits,
+        transfer_status: 0,
+        extra: {
+          'reason': 'Solicitud de transferencia de créditos a tu cuenta bancaria'
+        }
+      }
+      userAPI.creditsWidthDrawal(payload)
+        .then(response => {
+          this.$store.dispatch('user/loadUser', response.data)
+          this.alertConvert = !this.alertConvert
+        })
     }
   }
 }
