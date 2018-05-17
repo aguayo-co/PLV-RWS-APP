@@ -6,7 +6,9 @@ import Vue from 'vue'
 export default {
   getBySeller (sellerId) {
     const params = {
-      'filter[seller_id]': sellerId
+      'filter[seller_id]': sellerId,
+      orderBy: '-id',
+      items: 100
     }
     return Vue.axios.get('/api/rating_archives', { params })
   },
