@@ -28,7 +28,8 @@ const baseUserGenerator = () => {
     vacation_mode: null,
     ratings_negative_count: null,
     ratings_neutral_count: null,
-    ratings_positive_count: null
+    ratings_positive_count: null,
+    favorites_ids: []
   }
 }
 
