@@ -71,15 +71,11 @@
 
 <script>
 import BannerTop from '@/components/BannerTop'
-import Blogbanner from '@/components/Blogbanner'
-import BlogbannerProm from '@/components/BlogbannerProm'
 
 export default {
   name: 'ComoFuncionaPrilov',
   components: {
-    BannerTop,
-    BlogbannerProm,
-    Blogbanner
+    BannerTop
   }
 }
 

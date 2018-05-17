@@ -32,6 +32,14 @@
 .blog_center {
 	text-align: center;
 }
+.blog_center_ico {
+  &:before {
+		display: block;
+		padding-bottom: 22px;
+    color: $c-brand;
+    @include font-rem(50px);
+  }
+}
 
 .blog__inner {
 	width: 96%;
@@ -223,6 +231,127 @@
 	font-family: $f-normal;
 	font-weight: $fw-thin;
 }
+//panel
+
+.panel {
+	padding-top: 8px;
+	padding-bottom: 32px;
+	line-height: 1.6;
+}
+
+.panel__head {
+	@include flexbox;
+	padding: 16px 0;
+	margin: 16px 0 12px;
+	cursor: pointer;
+  text-transform: uppercase;
+  font-weight: $fw-bold;
+	@include font-rem(18px);
+	border-bottom: 1px solid #efefef;
+
+	&:before {
+		position: relative;
+		top: -1px;
+		display: inline-block;
+		vertical-align: middle;
+		width: 18px;
+		height: 18px;
+		padding: 2px;
+		margin-right: 12px;
+		cursor: pointer;
+		line-height: 18px;
+		text-align: center;
+		@include font-rem(10px);
+		border: 1px solid $c-default;
+		border-radius: 50%;
+	}
+
+}
+
+.panel__body {
+	height: 0;
+	opacity: 0;
+	padding-left: 0;
+	overflow: hidden;
+	visibility: hidden;
+  font-family: $f-normal;
+	font-weight: $fw-thin;
+	@include font-rem(16px);
+	transition: all .3s;
+	p {
+		margin: 16px 0;
+	}
+}
+.panel_active {
+	&:before {
+		content: unicode($i-less);
+		color: $c-brand;
+		@include font-rem(2px);
+		border: 1px solid $c-brand;
+	}
+	+ .panel__body {
+		height: auto;
+		padding-left: 36px;
+	  opacity: 1;
+	  visibility: visible;
+	}
+}
+.panel__list {
+  list-style: none;
+  margin: 0;
+  li {
+    position: relative;
+    padding-left: 16px;
+    margin: 8px 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0;
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $c-brand;
+    }
+  }
+}
+
+.panel__ordenlist {
+  list-style: none;
+  counter-reset: section;
+  margin: 0;
+  li {
+    position: relative;
+    padding-left: 24px;
+    margin: 16px 0;
+    &:before {
+      counter-increment: section;
+      content: counter(section);
+      position: absolute;
+      top: 4px;
+      left: 0;
+      text-align: center;
+      display: block;
+      width: 18px;
+      height: 18px;
+      line-height: 16px;
+      color: $c-neutro;
+      @include font-rem(12px);
+      font-family: $f-normal;
+      font-weight: $fw-thin;
+      border-radius: 50%;
+      background-color: $c-brand;
+    }
+  }
+}
+
+@include media-query(medium) {
+	.panel {
+		padding-top: 16px;
+	  padding-bottom: 54px;
+	}
+}
 
 @media only screen and (min-width: 480px) {
 	.blog-card {
@@ -327,6 +456,12 @@
 	.blog-card__txt {
 	  @include font-rem(16px);
 	}
+	.blog_center_ico {
+		&:before {
+			@include font-rem(66px);
+		}
+	}
+
 
 }
 @include media-query(wide) {
