@@ -116,7 +116,6 @@ export default {
       if (!this.about && !this.user.about) this.errorLog.about = 'Debes ingresar una descripción para tu perfil'
       if (!this.phone && !this.user.phone) this.errorLog.phone = 'Debes indicarnos tu teléfono'
       if (Object.keys(this.addresses).length === 0 && this.address === undefined) this.errorLog.addressView = 'Debes indicarnos tu dirección'
-      // if (!this.$store.state['user'].addresses) this.errorLog.addresses = 'Debes ingresar al menos una dirección'
       if (!this.picture.hasImage() && !this.user.picture) this.errorLog.picture = 'Debes cargar una imagen para tu perfil'
 
       if (Object.keys(this.errorLog).length === 0) {
