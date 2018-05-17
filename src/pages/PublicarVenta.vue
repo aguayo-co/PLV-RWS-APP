@@ -122,17 +122,13 @@ export default {
       if (this.validateEmail()) {
         userAPI.checkEmail(this.newUser.email)
           .then(response => {
-            // this.loading = false
             this.userFound = true
             this.showForm = true
-            console.log('entró')
           })
           .catch(response => {
-            // this.loading = false
             this.userFound = false
             this.showForm = true
             this.signup = true
-            console.log('NO entró')
           })
       }
     },
