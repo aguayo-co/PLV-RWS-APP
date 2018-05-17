@@ -75,6 +75,9 @@
     @include font-rem(38px);
   }
 }
+.alert__info_spacing {
+  padding-bottom: 12px;
+}
 @media only screen and (max-width: 600px) {
   .alert__info {
     &:before {

@@ -12,12 +12,24 @@ section.single
             h3.box-flat__title Créditos disponibles
             p.box__txt Estos son los créditos que estan disponibles para tranferir a tu cuenta bancaria o usar en compras.
         .box-flat__button
-          p.box-flat__value(v-if="user.credits") $ {{ user.credits | currency }}
-          p.box-flat__value(v-else) $ 0
+          p.box-flat__value(v-if="user.credits") {{ user.credits | currency }}
+          p.box-flat__value(v-else) 0
           a.link_underline(
             v-if="user.credits",
-            href="#") Convertir en dinero
-          //-To-do== modales del flujo, Ver wireframe https://wtsjxe.axshare.com/#g=1&p=d__cr_ditos
+            href="#",
+            @click.prevent="convertMoney") Convertir en dinero
+    .alert(v-if="alertConvert")
+      p.alert__info.alert__info_spacing.i-alert-info Transferir a mi cuenta Tienes {{ user.credits | currency }} Créditos, ¿Deseas transferirlos?
+      .form__grid_inline.form__row_away
+        .form__row
+          a.btn(
+            href="#",
+            title="Cancelar",
+            @click.prevent="convertMoney") Cancelar
+        .form__row
+          router-link.btn.btn_solid(
+            to="Transferir a mi cuenta",
+            title="Transferir a mi cuenta") Transferir a mi cuenta
     h3.subhead Detalle de Créditos
     .dividers
       .dividers__item
@@ -47,6 +59,16 @@ export default {
   name: 'UserCreditos',
   computed: {
     ...mapState(['user'])
+  },
+  data () {
+    return {
+      alertConvert: false
+    }
+  },
+  methods: {
+    convertMoney: function () {
+      this.alertConvert = !this.alertConvert
+    }
   }
 }
 </script>

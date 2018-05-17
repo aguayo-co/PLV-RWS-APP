@@ -658,6 +658,20 @@ select {
   .form-brand {
     padding-top: 50px;
   }
+
+  .form__grid_inline {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    .form__row {
+      &:first-child {
+        margin-right: 8px;
+      }
+      &:last-child {
+        margin-left: 8px;
+      }
+    }
+  }
 }
 
 // $bp-wide: 1024px;
