@@ -1292,7 +1292,27 @@ select {
     font-size: 18px;
     font-size: 1.125rem; }
   .form-brand {
-    padding-top: 50px; } }
+    padding-top: 50px; }
+  .form__grid_inline {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+    .form__grid_inline .form__row:first-child {
+      margin-right: 8px; }
+    .form__grid_inline .form__row:last-child {
+      margin-left: 8px; } }
 
 @media only screen and (min-width: 1024px) {
   .form__set {
@@ -2047,6 +2067,9 @@ body {
     color: #f65a66;
     font-size: 38px;
     font-size: 2.375rem; }
+
+.alert__info_spacing {
+  padding-bottom: 12px; }
 
 @media only screen and (max-width: 600px) {
   .alert__info:before {
