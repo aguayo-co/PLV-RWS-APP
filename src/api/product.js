@@ -62,7 +62,7 @@ export default {
   },
 
   getAllBrands: function () {
-    return Vue.axios.get('/api/brands')
+    return Vue.axios.get('/api/brands?items=500')
   },
 
   getAllSizes: function () {

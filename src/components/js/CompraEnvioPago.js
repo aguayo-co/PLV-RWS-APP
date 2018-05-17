@@ -103,6 +103,12 @@ export default {
       }).finally(() => {
         this.disabled.used_credits = false
       })
+    },
+    updateShippingInformation (address) {
+      const data = {
+        address_id: address.id
+      }
+      this.$store.dispatch('cart/update', data)
     }
   },
   watch: {

@@ -25,7 +25,10 @@ const baseUserGenerator = () => {
     groups: [],
     shipping_method_ids: [],
     bank_account: {},
-    vacation_mode: null
+    vacation_mode: null,
+    ratings_negative_count: null,
+    ratings_neutral_count: null,
+    ratings_positive_count: null
   }
 }
 

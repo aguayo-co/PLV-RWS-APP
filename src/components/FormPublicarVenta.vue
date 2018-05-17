@@ -665,6 +665,9 @@ export default {
     productAPI.getAllBrands()
       .then(response => {
         this.brands = response.data.data
+        this.brands.sort((a, b) => {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        })
       })
       .catch(e => {
         console.log(e)
