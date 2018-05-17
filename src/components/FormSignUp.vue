@@ -87,15 +87,12 @@
             @click='visiblePass')
         span.password-bar(
           v-if="password"
-          :class='"level-"+(3-errorTexts.passwordDetail.length)'
-        )
+          :class='"level-"+(3-errorTexts.passwordDetail.length)')
         div.helper(
-          v-if='errorTexts.passwordDetail.length > 0'
-        )
+          v-if='errorTexts.passwordDetail.length > 0')
           ul.helper__list
             li(
-              v-for='detail in errorTexts.passwordDetail'
-            ) {{ detail }}
+              v-for='detail in errorTexts.passwordDetail') {{ detail }}
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
           @click.prevent='validateBeforeSubmit') Registrarse
