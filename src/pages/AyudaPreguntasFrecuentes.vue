@@ -13,7 +13,7 @@
       header.blog__header
         h1.blog__title.blog_center Preguntas Frecuentes
       .blog__article
-        .blog_center.i-talk.blog_center_ico 
+        .blog_center.i-talk.blog_center_ico
           h2.blog__subtitle Preguntas Generales
           p.blog__kicker.blog__kicker_center Cosas básicas que debes saber para usar Prilov
         dl.panel
@@ -73,7 +73,7 @@
 
     .blog__inner
       .blog__article
-        .blog_center.i-heart.blog_center_ico 
+        .blog_center.i-heart.blog_center_ico
           h2.blog__subtitle Siéntete segura en Prilov
           p.blog__kicker.blog__kicker_center Todo lo que tienes que saber para confiar en nosotros
         dl.panel
@@ -86,7 +86,7 @@
 
     .blog__inner
       .blog__article
-        .blog_center.i-bag.blog_center_ico 
+        .blog_center.i-bag.blog_center_ico
           h2.blog__subtitle Comprando
           p.blog__kicker.blog__kicker_center Resuelve tus dudas sobre cómo comprar en Prilov
         dl.panel
@@ -137,7 +137,7 @@
 
     .blog__inner
       .blog__article
-        .blog_center.i-money.blog_center_ico 
+        .blog_center.i-money.blog_center_ico
           h2.blog__subtitle  Vendiendo
           p.blog__kicker.blog__kicker_center Resuelve tus dudas sobre cómo cómo vender en Prilov
         dl.panel
@@ -200,7 +200,7 @@
 
     .blog__inner
       .blog__article
-        .blog_center.i-send.blog_center_ico 
+        .blog_center.i-send.blog_center_ico
           h2.blog__subtitle  Enviando
           p.blog__kicker.blog__kicker_center Todo lo que necesitas saber para despachar tus ventas
         dl.panel
@@ -237,7 +237,7 @@
             p Desde que la compra se realizó, la compradora deberá recibir la compra dentro de los próximos 5 días hábiles. Por lo que te recomendamos enviarlo dentro de un plazo máximo de 3 días desde la compra.
     .blog__inner
       .blog__article
-        .blog_center.i-user.blog_center_ico 
+        .blog_center.i-user.blog_center_ico
           h2.blog__subtitle Mi cuenta
           p.blog__kicker.blog__kicker_center Resuelve todas tus dudas sobre cómo gestionar tus datos y tu cuenta
         dl.panel
@@ -270,7 +270,7 @@
 
     .blog__inner
       .blog__article
-        .blog_center.i-dress.blog_center_ico 
+        .blog_center.i-dress.blog_center_ico
           h2.blog__subtitle Mis productos
           p.blog__kicker.blog__kicker_center Todo lo que debes saber sobre tus productos publicados en Prilov
         dl.panel
