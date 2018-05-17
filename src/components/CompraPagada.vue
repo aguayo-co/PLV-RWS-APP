@@ -21,7 +21,7 @@ section.list-slot
         .card__figure
           img.card__img(
             :src="product.images[0]",
-            alt="")
+            :alt="product.title")
 
         //-info producto
         .card__info
