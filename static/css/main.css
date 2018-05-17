@@ -7219,11 +7219,11 @@ body {
     z-index: 186;
     display: block;
     width: 100%;
-    text-align: right;
-    padding: 20px; }
+    padding: 50px 20px;
+    text-align: right; }
   .btn-sticky__link {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 17px;
     color: #fff;
     font-size: 14px;
     font-size: 0.875rem;
@@ -7231,15 +7231,17 @@ body {
     border-radius: 25px;
     background-color: #f65a66;
     cursor: pointer;
-    transition: all 0.2s; }
+    box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.25);
+    transition: all .4s, bottom .8s ease-in-out; }
     .btn-sticky__link:before {
-      color: #fff;
+      padding-right: 10px;
       font-size: 20px;
       font-size: 1.25rem;
-      padding-right: 10px; }
+      color: #fff; }
     .btn-sticky__link:hover, .btn-sticky__link:active {
+      color: #f65a66;
       background-color: #fff;
-      color: #f65a66; }
+      box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.5); }
       .btn-sticky__link:hover:before, .btn-sticky__link:active:before {
         color: #f65a66; } }
 

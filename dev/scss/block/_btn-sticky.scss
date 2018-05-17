@@ -15,34 +15,35 @@
     z-index: 186;
     display: block;
     width: 100%;
+    padding: 50px 20px;
     text-align: right;
-    padding: 20px;
-
   }
   
   .btn-sticky__link {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 17px;
     color: $c-neutro;
     @include font-rem(14px);
     border: 1px solid $c-brand;
     border-radius: 25px;
     background-color: $c-brand;
     cursor: pointer;
-    transition: all 0.2s;
+    // transition: all 0.2s;
+    box-shadow: 0 3px 15px 0 rgba(0,0,0,0.25);
+    transition: all .4s, bottom .8s ease-in-out;
     &:before {
-      color: $c-neutro;
-      @include font-rem(20px);
       padding-right: 10px;
+      @include font-rem(20px);
+      color: $c-neutro;
     }
     &:hover,
     &:active {
-      background-color: $c-neutro;
       color: $c-brand;
+      background-color: $c-neutro;
+      box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.5);
       &:before {
         color: $c-brand;
       }
     }
   }
-
 }
