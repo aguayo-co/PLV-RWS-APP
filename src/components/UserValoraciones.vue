@@ -8,7 +8,9 @@ section.single
         li.user-data__value.i-like {{ user.ratings_positive_count }}
         li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
         li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
-      .valuations__item(v-for="rating in ratings")
+      .valuations__item(
+        v-for="rating in ratings",
+        v-if="rating.buyer_comment.length > 0")
         p.valuations__date
           time.valuations__date-txt {{ rating.created_at }}
         // p.valuations__label.i-bag Sweater Blanco Forever 21
