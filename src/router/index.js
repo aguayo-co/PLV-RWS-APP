@@ -38,6 +38,7 @@ import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaComoComprar from '@/pages/AyudaComoComprar'
 import AyudaComoFunciona from '@/pages/AyudaComoFuncionaPrilov'
 import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
+import AyudaTerminos from '@/pages/AyudaTerminos'
 
 Vue.use(Router)
 
@@ -258,6 +259,11 @@ export default new Router({
       path: '/preguntas-frecuentes',
       name: 'preguntas-frecuentes',
       component: AyudaPreguntasFrecuentes
+    },
+    {
+      path: '/terminos',
+      name: 'terminos',
+      component: AyudaTerminos
     }
   ],
   scrollBehavior (to, from, savedPosition) {

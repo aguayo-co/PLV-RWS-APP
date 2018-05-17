@@ -32,8 +32,8 @@ footer.page-foot.i-heart-on
               id='subscriberEmail',
               type='email'
             )
-            a.link_underline(
-              href="#") Ver Política de Datos
+            router-link.link_underline(
+              :to="{ name: 'terminos' }") Ver Condiciones de uso
 
           .form__row.form__row_away.form__btn
             button.btn.btn_solid Inscribir en el Newsletter
