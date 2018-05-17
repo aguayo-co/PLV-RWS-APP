@@ -62,7 +62,7 @@
   .dashboard__status
     p.status.status_warning.i-reload Esperando confirmación de recibido de la Vendedora.
   .dashboard__actions
-    p Escogiste juntarte con la vendedora. Estamos esperando que ella nos confirme que ya le entregaste el pedido.
+    p Escogiste juntarte con la vendedora. Estamos esperando que ella nos confirme que ya le entregaste la compra.
     a.link_underline(
       href='#') Escribir a la vendedora
     .break
