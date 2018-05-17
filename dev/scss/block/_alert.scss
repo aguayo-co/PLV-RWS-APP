@@ -42,6 +42,11 @@
 .alert-msg_top {
   padding-top: 0;
 }
+.alert-msg_spacing {
+ display: block;
+ text-align: center;
+ padding-bottom: 24px;
+}
 
 
 
@@ -89,6 +94,9 @@
   }
   .alert-msg_top {
     padding-top: 0;
+  }
+  .alert-msg_spacing {
+    padding: 0;
   }
 
 }

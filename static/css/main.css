@@ -2044,6 +2044,11 @@ body {
 .alert-msg_top {
   padding-top: 0; }
 
+.alert-msg_spacing {
+  display: block;
+  text-align: center;
+  padding-bottom: 24px; }
+
 .alert__txt {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
@@ -2083,7 +2088,9 @@ body {
     font-size: 18px;
     font-size: 1.125rem; }
   .alert-msg_top {
-    padding-top: 0; } }
+    padding-top: 0; }
+  .alert-msg_spacing {
+    padding: 0; } }
 
 /*------------------------------------*	Page header
 \*------------------------------------*/
