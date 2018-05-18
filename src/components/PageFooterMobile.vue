@@ -63,7 +63,7 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                     .card__figure
                       img.card__img(
                         :src="product.images[0]",
-                        :alt="product.title")
+                        :alt="'Foto de ' + product.title")
                     //-info producto
                     .card__info
                       .card__header
@@ -72,19 +72,11 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                       p.card__price ${{ product.price | currency }}
                 button.box-cards__btn.i-x(@click="removeFromCart(product.id)") Eliminar
       li.foot-nav__item.foot-nav__item_brand
-        router-link.foot-nav__link(:to="'/'")
+        router-link.foot-nav__link(:to="{ name: 'home' }")
           span.foot-nav__name.i-brand Ir al home
       li.foot-nav__item
         router-link.foot-nav__link(:to="'/publicar-venta/'")
           span.foot-nav__name.i-tag Vender
-      //- li.foot-nav-mb__item(v-for='list in footer')
-      //-   a.foot-nav-mb__link(
-      //-     @click.prevent='itemActive(list)'
-      //-     :class='{active: isActive == list}',
-      //-     :href='list.url',
-      //-     :title='list.title')
-      //-     span.foot-nav-mb__name(
-      //-     :class='list.icon') {{ list.name }}
       //- Is authenticated
       li.foot-nav__item.tool-user__item_auth(
         v-if='user.id')
@@ -94,22 +86,16 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
             span.tool-user__avatar
               //-vue variable Notificaciones usuario
               img.tool-user__photo(
-                  v-if='user.picture'
+                  v-if='user.picture',
                   :src='user.picture',
-                  alt='')
+                  :alt='user.first_name')
               span.tool-user__letter(
-                v-else
-              ) {{ user.first_name.charAt(0) }}
+                v-else) {{ user.first_name.charAt(0) }}
             //-vue variable user name
             figcaption.tool-user__name {{ user.first_name }}
       //- Is NOT authenticated
       li.foot-nav-mb__item(
         v-else)
-        //- a.foot-nav-mb__link(
-        //-   :href='itemAuth.url',
-        //-   :title='itemAuth.title')
-        //-   span.foot-nav-mb__name(
-        //-   :class='itemAuth.icon') {{ itemAuth.name }}
         a.foot-nav__link(@click='logIn')
           span.foot-nav__name.i-user Ingresar
 
@@ -126,43 +112,7 @@ export default {
       isActive: undefined,
       active: false,
       ProfActive: false,
-      activeCart: false,
-      // Data del menú mobile-footer
-      footer: [
-        {
-          url: '/',
-          icon: 'i-search',
-          title: 'Buscar en el sitio',
-          name: 'Buscar'
-        },
-        {
-          url: '/',
-          icon: 'i-sale',
-          title: 'Ir al carrito de compras',
-          name: 'Carrito'
-        },
-        {
-          url: '/',
-          icon: 'i-brand',
-          title: 'Ir al home',
-          name: 'Inicio'
-        },
-        {
-          url: '/',
-          icon: 'i-tag',
-          title: 'Ir a vender',
-          name: 'Vender'
-        }
-      ],
-      // Data del Item Auth menú mobile footer
-      itemAuth: [
-        {
-          url: '/',
-          icon: 'i-user',
-          title: 'Ir a mi perfil',
-          name: 'Mi perfil'
-        }
-      ]
+      activeCart: false
     }
   },
   methods: {

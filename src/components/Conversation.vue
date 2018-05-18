@@ -11,8 +11,9 @@ section.single
           router-link.slot__product(
             :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
             title="Ver este producto")
-            img.slot__img(:src="product.images[0]",
-              :alt="product.title")
+            img.slot__img(
+              :src="product.images[0]",
+              :alt="'Foto de ' + product.title")
             .slot__lead
               .slot__title {{ product.title }}
               .slot__size

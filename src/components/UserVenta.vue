@@ -7,15 +7,13 @@
     .dashboard__subitem
       article.list__card(
         v-for="product in sale.products" :key="product.id")
-        router-link.card__product(
-          to="#",
-          title="")
+        .card__product
 
           //-img producto
           .card__figure
             img.card__img(
               :src="product.images[0]",
-              alt="")
+              :alt="'Foto de ' + product.title")
 
           //-info producto
           .card__info
@@ -24,7 +22,7 @@
               p.card__size Talla: {{ product.size.name }}
             p.card__price $ {{ product.price | currency }}
             .card__user-data
-              p Compradora: {{ sale.order.user.first_name }} {{ sale.order.user.last_name }}
+              p Compradora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.order.user_id }}"> {{ sale.order.user.first_name }} {{ sale.order.user.last_name }}</router-link>
               p Teléfono: {{ sale.order.user.phone }}
               p Dirección: Av. Pajaritos 1309, maipu
 

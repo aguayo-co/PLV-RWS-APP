@@ -21,7 +21,7 @@
   //- De lo contrario, mostramos las notas del envío.
   .dashboard__actions(v-else)
     p Escogiste juntarte con la compradora.
-    p Estamos esperando que ella nos confirme que ya le entregaste el pedido.
+    p Estamos esperando que ella nos confirme que ya le entregaste la compra.
 
 //- Envíos que SI son por ChileExpress.
 .dashboard__subitem(v-else)

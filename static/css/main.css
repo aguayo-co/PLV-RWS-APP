@@ -3083,7 +3083,7 @@ body {
       font-size: 0.6875rem; }
     .foot-nav_mb .badge_user {
       top: -3px;
-      left: 22px; }
+      left: 30px; }
   .foot-nav__list {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3374,10 +3374,10 @@ body {
             transform: translateY(10px); }
 
 /*------------------------------------*\
-	código para todos los menu desplegables
+	Modal
 \*------------------------------------*/
 .page.is-modal {
-  height: 0;
+  height: 100vh;
   overflow-y: hidden; }
 
 .modal {

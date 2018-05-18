@@ -32,8 +32,7 @@
             span.help(
               v-show="errorLog.coupon_code") {{ errorLog.coupon_code }}
             .form__combo(
-              :class="{'form__combo_ok i-ok': couponValid}"
-            )
+              :class="{'form__combo_ok i-ok': couponValid}")
               input.form__control.combo__control(
                 id='codigo'
                 type='text'

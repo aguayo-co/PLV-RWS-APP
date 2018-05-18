@@ -4,7 +4,7 @@
     .layout-inner
       header.page__head
         h1.title__main Publicar una venta
-        h2.title_subhead ¿No lo usas?, ¡Vendelo!
+        h2.title_subhead ¿No lo usas?, ¡Véndelo!
       .upfile
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
@@ -414,7 +414,7 @@
             checked)
           label.form__label.form__label_check.i-ok(
             for='checkTerms')
-            | Estoy de acuerdo con la <a class="form__label-link" href="#">politica de privacidad</a> de Prilov
+            | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
         .form__row.form__row_away
           button.btn.btn_solid(
             @click.prevent='validateBeforeSubmit') Continuar

@@ -1,8 +1,8 @@
 /*------------------------------------*\
-	código para todos los menu desplegables
+	Modal
 \*------------------------------------*/
 .page.is-modal {
-  height: 0;
+  height: 100vh;
   overflow-y: hidden;
 }
 
@@ -91,3 +91,4 @@
     padding-bottom: 50px;
   }
 }
+

@@ -33,7 +33,7 @@
               :title='product.title')
               img.slot__img(
                 :src="product.images[0]",
-                alt="product.title")
+                :alt="'Foto de ' + product.title")
               //- Eliminar producto
               .slot__product-actions(v-if="mqMobile && !user.vacation_mode")
                 a.slot__actions-link.i-edit-line(href="#")
@@ -107,7 +107,7 @@
           .slot__product
             img.slot__img(
               :src="product.images[0]",
-              alt="product.title")
+              :alt="'Foto de ' + product.title")
 
             //-title/dimensions
             .slot__lead
@@ -131,8 +131,7 @@
                   :src='product.user.picture',
                   :alt='product.user.first_name')
                 span.tool-user__letter(
-                  v-else
-                ) {{ product.user.first_name.charAt(0) }}
+                  v-else) {{ product.user.first_name.charAt(0) }}
             .slot__user-info
               .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
               .group(v-if='product.user.groups.length > 0')

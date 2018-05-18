@@ -1,20 +1,20 @@
 <template lang="pug">
 .layout-inner
   .alert-msg.alert-msg_center(v-if="isOwner")
-    p Este es es un producto de tu clóset <router :to="'/closet/' + user.id" class="link_underline"> Ir a mi Clóset</router>
+    p Este es es un producto de tu clóset <router :to="{ name: 'closet', params: { userId: user.id }}" class="link_underline"> Ir a mi Clóset</router>
   .alert-msg_spacing(v-if="isOwner")
-    router-link.btn(:to="'/editar-producto/' + product.id") editar producto
+    router-link.btn(:to="{ name: 'editar-producto', params: { productId: product.id }}") editar producto
   article.detail
     .detail__gallery
       figure.detail__picture
         img.media-img(
           v-if="srcActive === '' && product.images"
           :src='product.images[0]',
-          alt='')
+          :alt="'Foto principal ' + product.title")
         img.media-img(
           v-else='',
           :src='srcActive',
-          alt='')
+          :alt="'Foto ' + product.title")
       //- Thumbs
       .detail__tabs(
         :class="{'detail__tabs_initial' :srcActive == ''}")
@@ -25,7 +25,7 @@
           @click='SrcActive(image)')
           img.media-img.detail__img(
             :src='image',
-            alt='')
+            :alt="'Detalle ' + product.title + ' foto ' + (index  + 1)")
     .detail__content(v-if="product.user")
       header.detail__header
         h1.detail__title {{ product.title }}

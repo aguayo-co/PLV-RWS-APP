@@ -15,7 +15,9 @@ section.single
           time.valuations__date-txt {{ rating.created_at }}
         // p.valuations__label.i-bag Sweater Blanco Forever 21
         figure.valuations__avatar
-          img.valuations__img(:src="rating.buyer.picture", alt="Avatar")
+          img.valuations__img(
+            :src="rating.buyer.picture",
+            :alt="rating.buyer.first_name")
           figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
         p.valuations__bubble {{ rating.buyer_comment }}
 
