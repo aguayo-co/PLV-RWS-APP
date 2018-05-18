@@ -450,7 +450,7 @@
             checked)
           label.form__label.form__label_check.i-ok(
             for='checkTerms')
-            | Estoy de acuerdo con la <a class="form__label-link" href="#">politica de privacidad</a> de Prilov
+            | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
         .form__row.form__row_away
           button.btn.btn_solid(
             @click.prevent='validateBeforeSubmit') Continuar
