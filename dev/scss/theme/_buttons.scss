@@ -2,6 +2,13 @@
 	Transversal Elements
     #Styles links - appearance buttons
 \*------------------------------------*/
+button {
+  outline-width: 0;
+  border: none;
+  &:focus {
+    outline-width: 0;
+  }
+}
 
 .btn {
   display: inline-block;
