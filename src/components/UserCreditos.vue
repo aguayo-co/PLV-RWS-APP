@@ -30,6 +30,8 @@ section.single
           button.btn.btn_solid(
             title="Transferir a mi cuenta",
             @click="confirmConvertMoney") Transferir a mi cuenta
+    .alert(v-if="alertInfo")
+      p.alert__info.alert__info_spacing.i-alert-info Verás tu dinero reflejado en tu cuenta bancaria entre 1 a 4 días hábiles.
     h3.subhead Detalle de Créditos
     .dividers
       .dividers__item
@@ -64,7 +66,8 @@ export default {
   },
   data () {
     return {
-      alertConvert: false
+      alertConvert: false,
+      alertInfo: false
     }
   },
   methods: {
@@ -74,7 +77,7 @@ export default {
     confirmConvertMoney: function () {
       const payload = {
         user_id: this.user.id,
-        amount: this.user.credits,
+        amount: -this.user.credits,
         transfer_status: 0,
         extra: {
           'reason': 'Solicitud de transferencia de créditos a tu cuenta bancaria'
@@ -84,6 +87,7 @@ export default {
         .then(response => {
           this.$store.dispatch('user/loadUser', response.data)
           this.alertConvert = !this.alertConvert
+          this.alertInfo = !this.alertInfo
         })
     }
   }
