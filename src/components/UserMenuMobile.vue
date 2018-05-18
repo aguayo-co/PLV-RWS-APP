@@ -32,6 +32,11 @@ nav.user-menu
               router-link.user-nav__link(
                 :to='items.url',
                 :class='items.ico') {{ items.name }}
+          .user-nav__item
+            a.user-nav__link(
+              @click.prevent='logout()',
+              href="#",
+              class='i-x') Cerrar Sesión
 
 </template>
 
@@ -103,11 +108,6 @@ export default {
               name: 'Método De Envío',
               url: '/user/metodos-envios',
               ico: 'i-shipping'
-            },
-            {
-              name: 'Cerrar Sesión',
-              url: '#',
-              ico: 'i-x'
             }
           ]
         }
@@ -118,7 +118,10 @@ export default {
   methods: {
     openMenuUsuaria: function () {
       this.menuUsuaria = !this.menuUsuaria
-      console.log('click')
+    },
+    logout: function () {
+      this.$store.dispatch('user/logOut')
+      this.$router.push({name: 'home'})
     }
   }
 }
