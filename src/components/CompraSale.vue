@@ -21,7 +21,7 @@
           .card__figure
             img.card__img(
               :src="product.images[0]",
-              :alt="product.title")
+              :alt="'Foto de ' + product.title")
 
           //-info producto
           .card__info

@@ -7,15 +7,13 @@
     .dashboard__subitem
       article.list__card(
         v-for="product in sale.products" :key="product.id")
-        router-link.card__product(
-          to="#",
-          title="")
+        .card__product
 
           //-img producto
           .card__figure
             img.card__img(
               :src="product.images[0]",
-              alt="")
+              :alt="'Foto de ' + product.title")
 
           //-info producto
           .card__info

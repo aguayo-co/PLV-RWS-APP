@@ -20,7 +20,7 @@ section.layout-inner
           router-link.slot__product
             img.slot__img(
               :src="product.images[0]",
-              alt="product.title")
+              alt="'Foto de ' + product.title")
 
             //-title/dimensions
             .slot__lead
