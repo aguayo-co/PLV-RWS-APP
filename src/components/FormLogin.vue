@@ -43,7 +43,7 @@ transition(name='modal-fade')
         .break
           span.break__txt O
         router-link.btn.btn_block(
-          to="/signup",
+          :to="{ name: 'signup' }",
           title='Ir al formulario de Registro') Regístrate
 </template>
 
