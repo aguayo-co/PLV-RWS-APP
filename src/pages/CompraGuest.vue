@@ -158,7 +158,7 @@ export default {
       userFound: false,
       forgot: false,
       emailConfirm: null,
-      viewPass: false,
+      viewPass: false
     }
   },
   computed: {
