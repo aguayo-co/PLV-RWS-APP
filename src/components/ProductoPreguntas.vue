@@ -34,9 +34,13 @@
                 span.chat__inner(v-if="subindex !== 0")
                   .chat__bubble
                     figure.chat-bubble__avatar(v-if="message.user_id === ownerId")
-                      img.chat-bubble__img(:src="question.participants[1].user.picture", alt="Avatar")
+                      img.chat-bubble__img(
+                        :src="question.participants[1].user.picture",
+                        :alt="question.participants[1].user.first_name")
                     figure.chat-bubble__avatar(v-else)
-                      img.chat-bubble__img(:src="question.participants[0].user.picture", alt="Avatar")
+                      img.chat-bubble__img(
+                        :src="question.participants[0].user.picture",
+                        :alt="question.participants[0].user.first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer
                     time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}

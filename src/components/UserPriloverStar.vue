@@ -72,7 +72,9 @@ section.single
               label.form__label.form__label_radio(
                 for="PayU")
                 span.boxcheck__box
-                  img(src="/static/img/logo-payu.png", alt="Pagar por medio de PayU")
+                  img(
+                    src="/static/img/logo-payu.png",
+                    alt="Pagar por medio de PayU")
             //-end item 2
             //-item 3
             .boxcheck__card

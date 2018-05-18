@@ -35,7 +35,9 @@
                 span.chat__inner
                   .chat__bubble-main
                     figure.chat-bubble__avatar.avatar_60
-                      img.chat-bubble__img(src="static/img/demo/user-avatar.jpg", alt="Avatar")
+                      img.chat-bubble__img(
+                        src="static/img/demo/user-avatar.jpg",
+                        alt="Avatar")
                     .chat-bubble__item
                       .chat-bubble__title.i-like Camila Cifuentes
                       p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable

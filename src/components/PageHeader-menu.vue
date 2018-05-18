@@ -33,7 +33,9 @@ nav.page-menu
                         :to='grandChildren.url || "#"') {{grandChildren.name}}
               //- Nivel 2: Promo
               .menu-promo(v-if="banner")
-                img.menu-promo__img(:src="banner.image" :alt="banner.title + banner.subtitle")
+                img.menu-promo__img(
+                  :src="banner.image",
+                  :alt="banner.title + banner.subtitle")
                 .menu-promo__lead
                   h4.menu-promo__title.title_line {{ banner.title }}
                   p.menu-promo__txt {{ banner.subtitle }}
