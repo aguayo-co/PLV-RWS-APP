@@ -4,7 +4,7 @@
     .layout-inner
       header.page__head
         h1.title__main Publicar una venta
-        h2.title_subhead ¿No lo usas?, ¡Vendelo!
+        h2.title_subhead ¿No lo usas?, ¡Véndelo!
       .upfile
         .upfile__main.i-plus
           h3.upfile__title Foto Principal
