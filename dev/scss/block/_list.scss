@@ -62,6 +62,7 @@
   .card__actions {
     padding-top: 16px;
   }
+  
   .card__link {
     color: $c-default;
     @include font-rem(16px);
@@ -76,6 +77,13 @@
     font-family: $f-fancy;
     font-weight: $fw-medium;
   }
+
+  .card__tag {
+    color: $c-brand;
+    font-family: $f-fancy;
+    font-weight: $fw-medium;
+  }
+
   .card__title {
     @include font-rem(16px);
   }

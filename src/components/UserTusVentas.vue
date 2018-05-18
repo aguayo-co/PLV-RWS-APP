@@ -2,15 +2,15 @@
 section.single
   .single__inner
     .alert
-      p.alert__txt.i-alert Si tienes ventas sin finalizar en el Prilov antiguo <a href="#" class="link_underline">gestionalas aquí</a>
+      p.alert__txt.i-alert Si tienes ventas sin finalizar en el Prilov antiguo <a href="#" class="link_underline">gestiónalas aquí</a>
     header.single__header
       h1.single__title Tus Ventas
-    //componente acciones filtro
+    //-componente acciones filtro
     .filtrate__box
       nav.filtrate
         .filtrate__item
           router-link.link_circle.i-plus(
-            to="/publicar-venta")
+            :to="{ name: 'publicar-venta'}")
             span.link_underline Publicar un Producto
         .filtrate__item
           span.filtrate__btn(
@@ -21,7 +21,7 @@ section.single
               li.filtrate__list-item(
                 @click.stop.stop="changeOrder(option.id)"
                 v-for="option in listOptions.options") {{ option.name }}
-    //componente tabla
+    //-componente tabla
     .dashboard
       header.dashboard__head
         h2.dashboard__title Productos

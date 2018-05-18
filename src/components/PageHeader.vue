@@ -42,7 +42,7 @@
                         .card__figure
                           img.card__img(
                             :src="product.images[0]",
-                            :alt="product.title")
+                            :alt="'Foto de ' + product.title")
                         //-info producto
                         .card__info
                           .card__header
@@ -74,12 +74,20 @@
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
                     router-link.user-auth__link(
+                      :to="{ name: 'user-tu-closet'}",
+                      title="Ir a tu clóset") Tu Cuenta
+                  li.user-auth__item
+                    router-link.user-auth__link(
                       :to="{ name: 'user-notificaciones'}",
                       title="Ir a tus notificaciones") Notificaciones <small class="badge" v-if="user.notifications > 0">{{ user.notifications }}</small>
                   li.user-auth__item
                     router-link.user-auth__link(
                       :to="{ name: 'user-tu-closet'}",
                       title="Ir a tu clóset") Tu Clóset
+                  li.user-auth__item
+                    router-link.user-auth__link(
+                      :to="{ name: 'user-tus-ventas'}",
+                      title="Ir a tus Ventas") Tus Favoritos
                   li.user-auth__item
                     router-link.user-auth__link(
                       :to="{ name: 'user-tus-compras'}",

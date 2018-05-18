@@ -15,7 +15,7 @@
             img.upfile__img(
               v-if="editImg0 == false",
               :src="product.images[0]",
-              :alt="product.title")
+              :alt="'Foto de ' + product.title")
             .upfile__edit(v-else)
               a.upfile__delete.i-x(
                 v-show='toggleImageDelete[0]',
@@ -47,7 +47,7 @@
               img.upfile__img(
                 v-if="editImg1 == false && product.images[1]"
                 :src="product.images[1]",
-                :alt="product.title")
+                :alt="'Foto de ' + product.title")
               .upfile__edit(v-else)
                 a.upfile__delete.i-x(
                   v-show='toggleImageDelete[1]',
@@ -72,7 +72,7 @@
               img.upfile__img(
                 v-if="editImg2 == false && product.images[2]"
                 :src="product.images[2]",
-                :alt="product.title")
+                :alt="'Foto de ' + product.title")
               .upfile__edit(v-else)
                 a.upfile__delete.i-x(
                   v-show='toggleImageDelete[2]',
@@ -98,7 +98,7 @@
               img.upfile__img(
                 v-if="editImg3 == false && product.images[3]"
                 :src="product.images[3]",
-                :alt="product.title")
+                :alt="'Foto de ' + product.title")
               .upfile__edit(v-else)
                 a.upfile__delete.i-x(
                   v-show='toggleImageDelete[3]',
@@ -450,7 +450,7 @@
             checked)
           label.form__label.form__label_check.i-ok(
             for='checkTerms')
-            | Estoy de acuerdo con la <a class="form__label-link" href="#">politica de privacidad</a> de Prilov
+            | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
         .form__row.form__row_away
           button.btn.btn_solid(
             @click.prevent='validateBeforeSubmit') Continuar
