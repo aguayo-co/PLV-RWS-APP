@@ -43,7 +43,7 @@
                     v-model='newUser.email',
                     id='email',
                     type='email',
-                    :disabled="showForm")
+                    @change="next")
                   p.form__note Si ya eres Prilover te pediremos una contraseña. Si no tienes cuenta, te creamos una al tiro.
                 div(v-if="showForm && userFound")
                   .alert-msg.i-smile
@@ -158,7 +158,7 @@ export default {
       userFound: false,
       forgot: false,
       emailConfirm: null,
-      viewPass: false
+      viewPass: false,
     }
   },
   computed: {
