@@ -3374,10 +3374,10 @@ body {
             transform: translateY(10px); }
 
 /*------------------------------------*\
-	código para todos los menu desplegables
+	Modal
 \*------------------------------------*/
 .page.is-modal {
-  height: 0;
+  height: 100vh;
   overflow-y: hidden; }
 
 .modal {
