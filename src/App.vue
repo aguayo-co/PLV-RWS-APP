@@ -14,7 +14,13 @@ div.page(
   main.content-main
 
     //- Router Page
-    router-view
+    p.preload(v-if="loading")
+      span.preload__spin.preload__spin_1
+      span.preload__spin.preload__spin_2
+      span.preload__spin.preload__spin_3
+      span.preload__spin.preload__spin_4
+
+    router-view(v-else)
 
   //- footer template Mobile
   PageFooterMobile(
@@ -64,6 +70,7 @@ export default {
   },
   data () {
     return {
+      loading: true
     }
   },
   methods: {
@@ -87,6 +94,7 @@ export default {
         } else {
           this.$store.dispatch('guestCart/load')
         }
+        this.loading = false
       })
   }
 }
