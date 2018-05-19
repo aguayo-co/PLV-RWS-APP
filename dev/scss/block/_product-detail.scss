@@ -127,6 +127,11 @@
         color: $c-neutro;
       }
     }
+    &.active {
+      &:before {
+        content: unicode($i-heart-on);
+      }
+    }
   }
   .detail__lead {
     @include font-rem(16px);
