@@ -510,7 +510,10 @@ template {
 \*------------------------------------*/
 a {
   cursor: pointer;
-  text-decoration: none; }
+  text-decoration: none;
+  outline-width: 0; }
+  a:focus {
+    outline-width: 0; }
 
 .link_underline {
   display: inline-block;
@@ -8019,7 +8022,7 @@ body {
 \*------------------------------------*/
 @media only screen and (min-width: 1024px) {
   .filter {
-    margin-bottom: 60px; }
+    margin-bottom: 8px; }
   .filter__group {
     display: -webkit-box;
     display: -ms-flexbox;
