@@ -139,7 +139,7 @@ const mutations = {
     Vue.set(state.addresses, address.id, address)
   },
   setNotifications: function (state, notifications) {
-    state.notifications = notifications.total
+    Vue.set(state, 'notifications', notifications.total)
   },
   removeAddress: function (state, address) {
     Vue.delete(state.addresses, address.id)
