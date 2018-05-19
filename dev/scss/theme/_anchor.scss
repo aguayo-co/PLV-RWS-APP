@@ -4,6 +4,10 @@
 a {
   cursor: pointer;
   text-decoration: none;
+  outline-width: 0;
+  &:focus {
+    outline-width: 0;
+  }
 }
 
 .link {

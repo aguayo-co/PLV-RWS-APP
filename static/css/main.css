@@ -510,7 +510,10 @@ template {
 \*------------------------------------*/
 a {
   cursor: pointer;
-  text-decoration: none; }
+  text-decoration: none;
+  outline-width: 0; }
+  a:focus {
+    outline-width: 0; }
 
 .link_underline {
   display: inline-block;
@@ -559,6 +562,12 @@ a {
 	Transversal Elements
     #Styles links - appearance buttons
 \*------------------------------------*/
+button {
+  outline-width: 0;
+  border: none; }
+  button:focus {
+    outline-width: 0; }
+
 .btn {
   display: inline-block;
   width: 100%;
@@ -590,6 +599,22 @@ a {
     font-size: 20px;
     font-size: 1.25rem;
     padding-right: 12px; }
+  .btn:disabled, .btn[disabled] {
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-size: 1rem;
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    border: 2px solid #D2D2D2;
+    background-color: #D2D2D2;
+    cursor: none;
+    pointer-events: none;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s; }
 
 .btn_small {
   width: auto;
@@ -791,6 +816,10 @@ select {
   line-height: 40px;
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
+  .form__control:disabled, .form__control[disabled] {
+    color: #707070;
+    border-color: #cbcbcb;
+    background-color: #f6f6f6; }
 
 .form__edit {
   width: 100%;
@@ -1401,13 +1430,6 @@ select {
     .form__grid_reverse .form__grid-item {
       width: 100%;
       min-width: 100px; } }
-
-.form__control_disabled {
-  opacity: .4;
-  cursor: none;
-  pointer-events: none;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s; }
 
 /*------------------------------------*\
 	Mensajes Error
@@ -5650,6 +5672,8 @@ body {
     color: #f65a66; }
   .detail__btn:hover:before {
     color: #fff; }
+  .detail__btn.active:before {
+    content: "\e923"; }
 
 .detail__lead {
   font-size: 16px;
@@ -8011,7 +8035,7 @@ body {
 \*------------------------------------*/
 @media only screen and (min-width: 1024px) {
   .filter {
-    margin-bottom: 60px; }
+    margin-bottom: 8px; }
   .filter__group {
     display: -webkit-box;
     display: -ms-flexbox;
