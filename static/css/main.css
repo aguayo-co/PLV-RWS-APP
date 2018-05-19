@@ -599,6 +599,22 @@ button {
     font-size: 20px;
     font-size: 1.25rem;
     padding-right: 12px; }
+  .btn:disabled, .btn[disabled] {
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-size: 1rem;
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    border: 2px solid #D2D2D2;
+    background-color: #D2D2D2;
+    cursor: none;
+    pointer-events: none;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s; }
 
 .btn_small {
   width: auto;
@@ -800,6 +816,10 @@ select {
   line-height: 40px;
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #4a4a4a; }
+  .form__control:disabled, .form__control[disabled] {
+    color: #707070;
+    border-color: #cbcbcb;
+    background-color: #f6f6f6; }
 
 .form__edit {
   width: 100%;
@@ -1410,13 +1430,6 @@ select {
     .form__grid_reverse .form__grid-item {
       width: 100%;
       min-width: 100px; } }
-
-.form__control_disabled {
-  opacity: .4;
-  cursor: none;
-  pointer-events: none;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s; }
 
 /*------------------------------------*\
 	Mensajes Error

@@ -99,7 +99,14 @@ select {
     line-height: 40px;
     font-family: $f-default;
     border: 1px solid $c-default-2;
+    &:disabled,
+    &[disabled] {
+      color: $c-default-5;
+      border-color: $c-default-3;
+      background-color: $c-neutro-4;
+    }
   }
+  
   .form__edit {
     width: 100%;
     line-height: 1.6;
@@ -747,13 +754,7 @@ select {
   }
   
 }
-.form__control_disabled {
-  opacity: .4;
-  cursor: none;
-  pointer-events: none;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
+
 /*------------------------------------*\
 	Mensajes Error
 \*------------------------------------*/

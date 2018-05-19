@@ -43,6 +43,23 @@ button {
     @include font-rem(20px);
     padding-right: 12px;
   }
+  &:disabled,
+  &[disabled] {
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    color: $c-neutro;
+    @include font-rem(16px);
+    font-family: $f-default;
+    font-weight: $fw-regular;
+    border: 2px solid $c-neutro-5;
+    background-color: $c-neutro-5;
+    cursor: none;
+    pointer-events: none;
+    transition: all 0.2s;
+  }
+
 }
 .btn_small {
   width: auto;
