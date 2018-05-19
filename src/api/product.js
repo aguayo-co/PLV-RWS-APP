@@ -46,6 +46,7 @@ export default {
   },
 
   getCategoriesBySlug: function (categorySlug) {
+    categorySlug = categorySlug || ''
     return Vue.axios.get('/api/categories/' + categorySlug)
   },
   getCategoriesById: function (categoryId) {
