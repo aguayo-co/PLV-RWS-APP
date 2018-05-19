@@ -57,14 +57,15 @@ nav.page-menu
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import bannersAPI from '@/api/banner'
+import menusAPI from '@/api/menu'
 export default {
   name: 'PageHeaderMenu',
   data () {
     return {
       // show: true,
       selected: undefined,
+      menu: {},
       banner: {},
       fixedPosition: {
         position: 'fixed',
@@ -73,12 +74,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['ui']),
     active: function () {
       return this.$store.getters['ui/headerDropdownsVisible']
-    },
-    menu () {
-      return this.ui.menus.principal
     }
   },
   methods: {
@@ -102,6 +99,10 @@ export default {
     }
   },
   created () {
+    menusAPI.getMenuByName('principal')
+      .then(response => {
+        this.menu = response.data
+      })
     bannersAPI.getBannerBySlug('menu-campaign')
       .then(response => {
         this.banner = response.data.data[0]
