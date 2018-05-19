@@ -44,6 +44,7 @@
               v-if="errorLog.about"
             ) {{ errorLog.about }}
             textarea.form__control(
+              @keyup='errorLog.about = undefined',
               v-model='about',
               id='aboutUser')
             p.form__note (se mostrará cuando otras Prilover visiten Tu Clóset. Puedes incluir algo sobre ti, tu gustos y también el detalle de tus métodos de envío)
@@ -56,6 +57,7 @@
               v-if="errorLog.phone"
             ) {{ errorLog.phone }}
             input.form__control(
+              @keyup='errorLog.phone = undefined',
               id='phoneUser',
               v-model='phone',
               type='tel')
@@ -72,7 +74,7 @@
           .form-section.form-section_footer
             .form__row.form__row_away
               button.btn.btn_solid(
-                @click.prevent = 'validate') Guardar y continuar
+                @click.prevent = 'validate($event)') Guardar y continuar
     UserMetodoEnvio(v-else)
 </template>
 
@@ -111,7 +113,8 @@ export default {
     ])
   },
   methods: {
-    validate: function () {
+    validate: function (event) {
+      event.target.disabled = true
       this.errorLog = {}
       if (!this.about && !this.user.about) this.errorLog.about = 'Debes ingresar una descripción para tu perfil'
       if (!this.phone && !this.user.phone) this.errorLog.phone = 'Debes indicarnos tu teléfono'
@@ -119,8 +122,9 @@ export default {
       if (!this.picture.hasImage() && !this.user.picture) this.errorLog.picture = 'Debes cargar una imagen para tu perfil'
 
       if (Object.keys(this.errorLog).length === 0) {
-        this.updateUser()
+        this.updateUser(event)
       } else {
+        event.target.disabled = false
       }
     },
     handlePicture: function () {
@@ -133,7 +137,7 @@ export default {
       this.toggleImageDelete = false
       this.picture.remove()
     },
-    updateUser: function () {
+    updateUser: function (event) {
       if (this.picture.hasImage()) {
         let data = {
           about: this.about,
@@ -144,7 +148,6 @@ export default {
         if (this.user.phone) delete data.phone
         this.$store.dispatch('user/updateWithFile', data)
           .then((response) => {
-            console.log(response)
           })
           .catch((e) => {
             console.log(e)
@@ -157,6 +160,7 @@ export default {
               }
             }
             this.$store.dispatch('ui/showModal', modal)
+            event.target.disabled = false
           })
       } else {
         let data = {
@@ -180,6 +184,7 @@ export default {
               }
             }
             this.$store.dispatch('ui/showModal', modal)
+            event.target.disabled = false
           })
       }
     }

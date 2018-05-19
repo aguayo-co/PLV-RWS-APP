@@ -4,7 +4,13 @@ section.single
     header.single__header
       h1.single__title Método de envío
       p.single__subtitle Escoge un método de envío para Tus Ventas
+      p.preload(v-if="loading")
+        span.preload__spin.preload__spin_1
+        span.preload__spin.preload__spin_2
+        span.preload__spin.preload__spin_3
+        span.preload__spin.preload__spin_4
       form.form(
+        v-else,
         id="form-envios"
         v-on:submit='',
         action='#',
@@ -25,7 +31,7 @@ section.single
                     :for="'method-' + method.id")
                       span.switch__status
           .form__row.form__row_away.form__btn
-            button.btn.btn_solid(@click.prevent="saveMethods") Guardar
+            button.btn.btn_solid(@click.prevent="saveMethods($event)") Guardar
 
 </template>
 
@@ -37,7 +43,8 @@ export default {
   data () {
     return {
       methods: {},
-      selectedMethods: []
+      selectedMethods: [],
+      loading: true
     }
   },
   computed: {
@@ -59,13 +66,15 @@ export default {
     shippingMethodsAPI.getAllMethods()
       .then(response => {
         this.methods = response.data.data
+        this.loading = false
       })
   },
   mounted: function () {
     this.selectedMethods = this.initialMethods
   },
   methods: {
-    saveMethods: function () {
+    saveMethods: function (event) {
+      event.target.disabled = true
       if (this.selectedMethods.length === 0) {
         const modal = {
           name: 'ModalMessage',
@@ -76,6 +85,7 @@ export default {
         }
         this.$store.dispatch('ui/showModal', modal)
         this.selectedMethods = this.initialMethods
+        event.target.disabled = false
       } else {
         let methodIds = []
         this.selectedMethods.forEach(item => {
@@ -96,6 +106,7 @@ export default {
         }).catch((e) => {
           this.$handleApiErrors(e, ['about'], this.errorLog)
         })
+        event.target.disabled = false
       }
     }
   }

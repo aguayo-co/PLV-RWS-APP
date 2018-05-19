@@ -60,7 +60,7 @@ const actions = {
         return response
       })
       .catch(e => {
-        console.log('No autenticado')
+        commit('clear')
       })
   },
   loadAddresses ({commit, state}) {

@@ -27,7 +27,7 @@ export default {
       regionsList: {},
       newAddress: false,
       newAddressData: {...addressFields},
-      errorLog: {...addressFields}
+      errorLog: {...addressFields, additional: undefined }
     }
   },
   computed: {
@@ -89,19 +89,32 @@ export default {
       }
       this.$store.dispatch('cart/update', data)
     },
-    createAddress () {
-      // Para poder usarlo dentro de los forEach().
-      this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
-        if (this.inShoppingCart) {
-          // Usa la dirección recién creada en la orden.
-          this.setForOrder(response.data)
-          this.setFavorite(response.data)
-        }
-        this.toggleNewAddress()
-      }).catch((e) => {
-        // Si hay errores, mostrarlos.
-        this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
-      })
+    createAddress (event) {
+      event.target.disabled = true
+
+      this.errorLog = {}
+      if (!this.newAddressData.street) this.errorLog.street = 'Debes especificar una calle'
+      if (!this.newAddressData.number) this.errorLog.number = 'Debes especificar un número'
+      if (!this.newAddressData.region) this.errorLog.region = 'Debes especificar una región'
+      if (!this.newAddressData.province) this.errorLog.province = 'Debes especificar una provincia'
+      if (!this.newAddressData.commune) this.errorLog.commune = 'Debes especificar una comuna'
+
+      if (Object.keys(this.errorLog).length === 0) {
+        // Para poder usarlo dentro de los forEach().
+        this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
+          if (this.inShoppingCart) {
+            // Usa la dirección recién creada en la orden.
+            this.setForOrder(response.data)
+            this.setFavorite(response.data)
+          }
+          this.toggleNewAddress()
+        }).catch((e) => {
+          // Si hay errores, mostrarlos.
+          this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
+        })
+      } else {
+        event.target.disabled = false
+      }
     }
   },
   created () {
