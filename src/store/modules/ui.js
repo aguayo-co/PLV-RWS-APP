@@ -1,4 +1,7 @@
 // UI store will be used to handle data regarding general elements of UI.
+import productsAPI from '@/api/product'
+import userAddressesAPI from '@/api/userAddresses'
+import menusAPI from '@/api/menu'
 // initial state
 const state = {
   // Modal property is used to define if the application is showing a modal
@@ -13,7 +16,15 @@ const state = {
     user: false,
     cart: false,
     menu: false
-  }
+  },
+  menus: {},
+  conditions: [],
+  colors: [],
+  brands: [],
+  sizes: [],
+  categories: [],
+  regions: []
+
 }
 
 // getters
@@ -26,6 +37,68 @@ const getters = {
 
 // actions
 const actions = {
+  loadProperties ({ commit }) {
+    productsAPI.getAllConditions()
+      .then(response => {
+        const property = {
+          name: 'conditions',
+          data: response.data.data
+        }
+        commit('setProperty', { property })
+      })
+    productsAPI.getAllColors()
+      .then(response => {
+        const property = {
+          name: 'colors',
+          data: response.data.data
+        }
+        commit('setProperty', { property })
+      })
+    productsAPI.getAllBrands()
+      .then(response => {
+        const property = {
+          name: 'brands',
+          data: response.data.data
+        }
+        commit('setProperty', { property })
+      })
+    productsAPI.getAllSizes()
+      .then(response => {
+        const property = {
+          name: 'sizes',
+          data: response.data.data
+        }
+        commit('setProperty', { property })
+      })
+    productsAPI.getCategoriesBySlug()
+      .then(response => {
+        const property = {
+          name: 'categories',
+          data: response.data.data
+        }
+        commit('setProperty', { property })
+      })
+    userAddressesAPI.getRegions()
+      .then(response => {
+        const property = {
+          name: 'regions',
+          data: response.data
+        }
+        commit('setProperty', { property })
+      })
+    menusAPI.getMenuByName()
+      .then(response => {
+        let menus = {}
+        response.data.data.forEach((menu) => {
+          menus[menu.slug] = menu
+        })
+        const property = {
+          name: 'menus',
+          data: menus
+        }
+        commit('setProperty', { property })
+      })
+  },
   clearBody (context) {
     context.commit('noModal')
   },
@@ -57,6 +130,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  setProperty (state, { property }) {
+    state[property.name] = property.data
+  },
   switchModal (state) {
     state.modal = !state.modal
   },
