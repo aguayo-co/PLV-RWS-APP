@@ -27,7 +27,7 @@ nav.page-menu
                   //- Nivel 3: Lista de enlaces
                   ul.submenu__list(v-show= "selected == children")
                     li.submenu__subitem(
-                      v-for="(grandChildren, indexG) in children.children")
+                      v-for="(grandChildren, indexG) in children.children.concat().sort((a, b) => { return a.name.toLowerCase().localeCompare(b.name.toLowerCase()) })")
                       router-link.subitem__link(
                         @click.stop="toggleNav"
                         :to="{ name: 'categoria', params: {slug: grandChildren.url.split('/')[3], type: grandChildren.url.split('/')[2]}} ") {{ grandChildren.name }}

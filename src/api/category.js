@@ -9,7 +9,6 @@ export default {
   },
 
   getCategoryBySlug: function (slug) {
-    console.log('/api/categories?filter[slug]=' + slug)
     return Vue.axios.get('/api/categories?filter[slug]=' + slug)
   }
 }
