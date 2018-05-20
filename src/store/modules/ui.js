@@ -48,9 +48,12 @@ const actions = {
       })
     productsAPI.getAllColors()
       .then(response => {
+        let colors = response.data.data.sort(function (a, b) {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        })
         const property = {
           name: 'colors',
-          data: response.data.data
+          data: colors
         }
         commit('setProperty', { property })
       })
@@ -75,6 +78,11 @@ const actions = {
       })
     productsAPI.getCategoriesBySlug()
       .then(response => {
+        response.data.data.forEach((category) => {
+          category.children.sort(function (a, b) {
+            return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+          })
+        })
         const property = {
           name: 'categories',
           data: response.data.data
@@ -83,9 +91,12 @@ const actions = {
       })
     userAddressesAPI.getRegions()
       .then(response => {
+        let regions = Object.values(response.data).sort(function (a, b) {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        })
         const property = {
           name: 'regions',
-          data: response.data
+          data: regions
         }
         commit('setProperty', { property })
       })

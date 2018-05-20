@@ -143,10 +143,8 @@ nav.filter(@click="closeFilters")
 </template>
 
 <script>
-import productAPI from '@/api/product'
-import categoriesAPI from '@/api/category'
+import { mapState } from 'vuex'
 import FilterPrecio from '@/components/FilterPrecio'
-import userAddressesAPI from '@/api/userAddresses'
 
 const filterFields = {
   category: null,
@@ -167,14 +165,18 @@ export default {
   components: {
     FilterPrecio
   },
+  computed: {
+    ...mapState('ui', [
+      'conditions',
+      'categories',
+      'colors',
+      'brands',
+      'sizes',
+      'regions'
+    ])
+  },
   data () {
     return {
-      conditions: {},
-      categories: {},
-      colors: {},
-      brands: {},
-      sizes: {},
-      regions: {},
       orderOptions: {
         selected: 0,
         options: [
@@ -254,43 +256,6 @@ export default {
       this.dropdownState.order = false
       this.$emit('filterChange')
     }
-  },
-  created: function () {
-    productAPI.getAllConditions()
-      .then(response => {
-        this.conditions = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllColors()
-      .then(response => {
-        this.colors = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllBrands()
-      .then(response => {
-        this.brands = response.data.data
-        this.brands.sort((a, b) => {
-          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-        })
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllSizes()
-      .then(response => {
-        this.sizes = response.data.data
-      })
-    categoriesAPI.getAllCategories()
-      .then(response => {
-        this.categories = response.data.data
-      })
-    userAddressesAPI.getRegions().then((response) => {
-      this.regions = response.data
-    })
   }
 }
 </script>
