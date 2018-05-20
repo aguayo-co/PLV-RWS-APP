@@ -73,31 +73,31 @@
                   v-show='activeDropDowns.user')
                 ul.user-auth__list.toggle-box__list
                   li.user-auth__item
-                    router-link.user-auth__link(
-                      :to="{ name: 'user-tu-closet'}",
-                      title="Ir a tu clóset") Tu Cuenta
+                    router-link.user-auth__link.i-data(
+                      :to="{ name: 'user-data'}",
+                      title="Ir a Tu cuenta") Tu Cuenta
                   li.user-auth__item
-                    router-link.user-auth__link(
+                    router-link.user-auth__link.i-bell(
                       :to="{ name: 'user-notificaciones'}",
                       title="Ir a tus notificaciones") Notificaciones <small class="badge" v-if="user.notifications > 0">{{ user.notifications }}</small>
                   li.user-auth__item
-                    router-link.user-auth__link(
+                    router-link.user-auth__link.i-closet(
                       :to="{ name: 'user-tu-closet'}",
-                      title="Ir a tu clóset") Tu Clóset
+                      title="Ir a Tu Clóset") Tu Clóset
                   li.user-auth__item
-                    router-link.user-auth__link(
-                      :to="{ name: 'user-tus-ventas'}",
-                      title="Ir a tus Ventas") Tus Favoritos
+                    router-link.user-auth__link.i-favorite(
+                      :to="{ name: 'user-tus-favoritos'}",
+                      title="Ir a Tus Favoritos") Tus Favoritos
                   li.user-auth__item
-                    router-link.user-auth__link(
+                    router-link.user-auth__link.i-bag(
                       :to="{ name: 'user-tus-compras'}",
-                      title="Ir a tus compras") Tus Compras
+                      title="Ir a Tus Compras") Tus Compras
                   li.user-auth__item
-                    router-link.user-auth__link(
+                    router-link.user-auth__link.i-sale(
                       :to="{ name: 'user-tus-ventas'}",
-                      title="Ir a tus Ventas") Tus Ventas
+                      title="Ir a Tus Ventas") Tus Ventas
                   li.user-auth__item
-                    a.user-auth__link(
+                    a.user-auth__link.i-x(
                       @click.prevent='logout()',
                       href="#",
                       title="Cerrar sesión de usuario") Cerrar sesión

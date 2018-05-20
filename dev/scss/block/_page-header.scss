@@ -232,14 +232,22 @@
     }
   }
   .user-auth__link {
-    display: block;
+    @include flexbox;
+    @include align-items(center);
     padding: 14px 2px 8px;
     color: $c-default;
     &:hover,
-    &.active {
+    &.router-link-active {
       color: $c-brand;
-
     }
+    &:before {
+      width: 20px;
+      padding-right: 4px;
+    }
+    .badge {
+      margin-left: 8px;
+    }
+
   }
 
 /*

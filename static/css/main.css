@@ -2329,11 +2329,22 @@ body {
   border-bottom: 1px solid #efefef; }
 
 .user-auth__link {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
   padding: 14px 2px 8px;
   color: #000; }
-  .user-auth__link:hover, .user-auth__link.active {
+  .user-auth__link:hover, .user-auth__link.router-link-active {
     color: #f65a66; }
+  .user-auth__link:before {
+    width: 20px;
+    padding-right: 4px; }
+  .user-auth__link .badge {
+    margin-left: 8px; }
 
 /*
     *Page header
@@ -2386,11 +2397,12 @@ body {
   .menu__link:hover {
     color: #f65a66; }
 
-.menu__link_active {
+.menu__link.router-link-active,
+.subitem__link.router-link-active {
   color: #f65a66; }
-
-.menu__link.menu__link_active {
-  color: #f65a66; }
+  .menu__link.router-link-active:hover,
+  .subitem__link.router-link-active:hover {
+    color: #f65a66; }
 
 .submenu__close {
   position: absolute;
@@ -4419,21 +4431,24 @@ body {
 
 .user-nav__link {
   position: relative;
-  padding-left: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
   color: #000;
   text-transform: capitalize; }
   .user-nav__link:before {
-    position: absolute;
-    left: 0;
-    top: 50%;
     display: block;
     width: 22px;
-    margin-top: -8px;
-    line-height: 1;
     text-align: center;
     font-size: 16px;
     font-size: 1rem; }
   .user-nav__link:hover {
+    color: #f65a66; }
+  .user-nav__link.router-link-active {
     color: #f65a66; }
   .user-nav__link .badge {
     width: 18px;
@@ -4519,7 +4534,7 @@ body {
     .user-menu__icon.i-shop:before {
       font-size: 16px;
       font-size: 1rem; }
-    .user-menu__icon:active:before, .user-menu__icon:hover:before {
+    .user-menu__icon.router-link-active:before, .user-menu__icon:hover:before {
       border-bottom: 3px solid #f65a66; } }
 
 @media only screen and (min-width: 1024px) {

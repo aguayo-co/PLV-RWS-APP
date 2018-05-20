@@ -3,17 +3,21 @@ nav.user-menu
   ul.user-menu__list(:class="{openUserMenu : menuUsuaria}")
     li.user-menu__item
       router-link.user-menu__icon.i-shop(
+        @click.native="closeMenuUsuaria",
         :to="{ name: 'user-tu-closet'}",
         title="Ir a tu Clóset")
     li.user-menu__item
       router-link.user-menu__icon.i-bell(
+        @click.native="closeMenuUsuaria",
         :to="{ name: 'user-notificaciones'}",
         title="Ver Tus Notificaciones")
     li.user-menu__item
       router-link.user-menu__icon.i-user(
+        @click.native="closeMenuUsuaria",
         :to="{ name: 'user-data'}",
         title="Ver Tu Perfil")
-    li.user-menu__item.user-menu__item_burguer(@click.stop="openMenuUsuaria")
+    li.user-menu__item.user-menu__item_burguer(
+      @click.stop="toggleMenuUsuaria")
       span.menu-ico.user-menu__icon(:class="{'menu-ico_open' : menuUsuaria}")
         span.menu-ico__circle
         span.menu-ico__circle
@@ -28,7 +32,7 @@ nav.user-menu
             dt.user-nav__title {{ list.title }}
             dd.user-nav__item(
               v-for='items in list.items',
-              @click.stop="openMenuUsuaria")
+              @click.stop="toggleMenuUsuaria")
               router-link.user-nav__link(
                 :to='items.url',
                 :class='items.ico') {{ items.name }}
@@ -45,6 +49,7 @@ export default {
   name: 'UserMenuMobile',
   data () {
     return {
+      menuUsuaria: false,
       UserNavList: [
         {
           title: 'General',
@@ -111,13 +116,15 @@ export default {
             }
           ]
         }
-      ],
-      menuUsuaria: false
+      ]
     }
   },
   methods: {
-    openMenuUsuaria: function () {
+    toggleMenuUsuaria: function () {
       this.menuUsuaria = !this.menuUsuaria
+    },
+    closeMenuUsuaria: function () {
+      this.menuUsuaria = false
     },
     logout: function () {
       this.$store.dispatch('user/logOut')

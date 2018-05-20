@@ -2,16 +2,17 @@
 nav.page-menu
   ul.menu
     li.menu__item(
-      v-for='item in menu.items'
-    )
+      v-for='item in menu.items')
       a.menu__link(
         v-if='!item.url'
         href='#',
-        @click='handler(item)',
-        :class="{ 'menu__link_active' : active.menu }") {{ item.name }}
+        :class="[{ 'menu__link_active' : active.menu }, {'router-link-active': $route.path.includes('/shop')}]"
+        @click='handler(item)') {{ item.name }}
       //- Nivel 2: submenu con Lista de enlaces, Promo, side de enlaces
-      transition(name='slide-fade')
-        .menu-level2(v-show='active.menu' v-if='!item.url')
+      transition(name="slide-fade")
+        .menu-level2(
+          v-show="active.menu",
+          v-if="!item.url")
           .menu-level2__inner
             .submenu-grid
               //- Nivel 2: submenu
@@ -20,17 +21,16 @@ nav.page-menu
                 li.submenu__item(
                   v-for= "(children, index) in item.children"
                   :class="[{ submenu:children != selected }, { submenu__item_active:children == selected }]"
-                  @click="menuHandler(children, index)"
-                  )
-                  span.submenu__label {{children.name}}
+                  @click="menuHandler(children, index)")
+                  span.submenu__label {{ children.name }}
                   //- Nivel 3: Lista de enlaces
                   ul.submenu__list(v-show= "selected == children")
                     li.submenu__subitem(
-                      v-for="(grandChildren, indexG) in children.children"
-                      )
+                      v-for="(grandChildren, indexG) in children.children")
                       router-link.subitem__link(
                         @click.stop="toggleNav"
-                        :to='grandChildren.url || "#"') {{grandChildren.name}}
+                        :to="{ name: 'categoria', params: {slug: grandChildren.url.split('/')[3], type: grandChildren.url.split('/')[2]}} ") {{ grandChildren.name }}
+              //-:to="grandChildren.url || '#'") {{ grandChildren.url.split('/') }}
               //- Nivel 2: Promo
               .menu-promo(v-if="banner")
                 img.menu-promo__img(
@@ -40,20 +40,19 @@ nav.page-menu
                   h4.menu-promo__title.title_line {{ banner.title }}
                   p.menu-promo__txt {{ banner.subtitle }}
                   router-link.menu-promo__foot.btn(
-                    :to='banner.url || "#"',
-                    :title="'Ir' + banner.title") {{ banner.button_text }}
+                    :to="banner.url || '#'",
+                    :title="'Ir ' + banner.title") {{ banner.button_text }}
 
             //- Nivel 2: fside de enlaces
             ul.level2__side
               li.btn_close.i-x(
-                @click='toggleNav')
+                @click="toggleNav")
                 span Cerrar
-              li.menu-side__footer
-                a.link_underline(href='#') Ver todos los productos
+              //- li.menu-side__footer
+              //-   a.link_underline(href='#') Ver todos los productos
       router-link.menu__link(
-          v-if='item.url'
-          v-bind:to='item.url'
-      ) {{ item.name }}
+        v-if="item.url",
+        :to="item.url") {{ item.name }}
 </template>
 
 <script>

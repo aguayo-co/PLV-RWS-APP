@@ -12,12 +12,16 @@
     color: $c-brand;
   }
 }
-.menu__link_active {
-  color: $c-brand;
-}
-.menu__link {
-  &.menu__link_active {
+// .menu__link_active {
+//   color: $c-brand;
+// }
+.menu__link,
+.subitem__link {
+  &.router-link-active {
     color: $c-brand;
+    &:hover {
+      color: $c-brand;
+    }
   }
 }
 .submenu__close {
