@@ -38,6 +38,7 @@
       &:before {
         display: block;
         width: 22px;
+        padding-right: 10px;
         text-align: center;
         @include font-rem(16px);
       }
