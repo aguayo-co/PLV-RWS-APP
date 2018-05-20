@@ -2,6 +2,7 @@
 nav.page-menu
   ul.menu
     li.menu__item(
+      v-if="menu.items"
       v-for='item in menu.items'
     )
       a.menu__link(
@@ -78,7 +79,7 @@ export default {
       return this.$store.getters['ui/headerDropdownsVisible']
     },
     menu () {
-      return this.ui.menus.principal
+      return this.ui.menus.principal ? this.ui.menus.principal : {}
     }
   },
   methods: {
