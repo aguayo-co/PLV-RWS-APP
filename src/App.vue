@@ -87,6 +87,7 @@ export default {
   },
   created: function () {
     this.$moment.locale('es')
+    this.$store.dispatch('ui/loadProperties')
     this.$store.dispatch('user/loadUser')
       .then(response => {
         if (response) {
