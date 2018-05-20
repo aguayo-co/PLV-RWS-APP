@@ -10,13 +10,13 @@
           h3.upfile__title Foto Principal
           .upfile__item
             a.upfile__delete.i-x(
-              v-show='toggleImageDelete[0]',
+              v-show='toggleImageControls[0]',
               @click='removeImage(0)')
               span.hide Eliminar
             .upfile__label
               .upfile__text.i-upload(
                 v-if="mqDesk") Arrastra una foto o
-              .upfile__btn Sube una imagen
+              button.upfile__btn(ref="image") Sube una imagen
             span.help(
               v-if="errorLog.image"
             ) {{ errorLog.image }}
@@ -28,13 +28,21 @@
               placeholder="",
               :prevent-white-space="true",
               @new-image-drawn='addImage(0)',
+              :zoom-speed="10",
+              :disable-scroll-to-zoom="true",
+              :disable-drag-to-move="!mqDesk",
               @draw='handleMainImage')
+          .upfile__controls(v-show='toggleImageControls[0]')
+            button.upfile__zoom-out(
+              @click.prevent="zoom(0, 'out')") Alejar
+            button.upfile__zoom-in(
+              @click.prevent="zoom(0, 'in')") Acercar
         .upfile__group
           h3.upfile__title Fotos Secundarias (opcionales)
           .upfile__grid
             .upfile__item
               a.upfile__delete.i-x(
-                v-show='toggleImageDelete[1]',
+                v-show='toggleImageControls[1]',
                 @click='removeImage(1)')
                 span.hide Eliminar
               .upfile__label
@@ -48,10 +56,18 @@
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
-                @new-image-drawn='addImage(1)')
+                @new-image-drawn='addImage(1)',
+                :zoom-speed="10",
+                :disable-scroll-to-zoom="true",
+                :disable-drag-to-move="!mqDesk")
+              .upfile__controls(v-show='toggleImageControls[1]')
+                button.upfile__zoom-out(
+                  @click.prevent="zoom(1, 'out')") Alejar
+                button.upfile__zoom-in(
+                  @click.prevent="zoom(1, 'in')") Acercar
             .upfile__item
               a.upfile__delete.i-x(
-                v-show='toggleImageDelete[2]',
+                v-show='toggleImageControls[2]',
                 @click='removeImage(2)')
                 span.hide Eliminar
               .upfile__label
@@ -65,11 +81,19 @@
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
-                @new-image-drawn='addImage(2)')
+                @new-image-drawn='addImage(2)',
+                :zoom-speed="10",
+                :disable-scroll-to-zoom="true",
+                :disable-drag-to-move="!mqDesk")
+              .upfile__controls(v-show='toggleImageControls[2]')
+                button.upfile__zoom-out(
+                  @click.prevent="zoom(2, 'out')") Alejar
+                button.upfile__zoom-in(
+                  @click.prevent="zoom(2, 'in')") Acercar
             .upfile__item(
               v-if="mqDesk")
               a.upfile__delete.i-x(
-                v-show='toggleImageDelete[3]',
+                v-show='toggleImageControls[3]',
                 @click='removeImage(3)')
                 span.hide Eliminar
               .upfile__label
@@ -83,7 +107,15 @@
                 :quality="2",
                 placeholder="",
                 :prevent-white-space="true",
-                @new-image-drawn='addImage(3)')
+                @new-image-drawn='addImage(3)',
+                :zoom-speed="10",
+                :disable-scroll-to-zoom="true",
+                :disable-drag-to-move="!mqDesk")
+              .upfile__controls(v-show='toggleImageControls[2]')
+                button.upfile__zoom-out(
+                  @click.prevent="zoom(2, 'out')") Alejar
+                button.upfile__zoom-in(
+                  @click.prevent="zoom(2, 'in')") Acercar
   .step
     //-Formulario set 1
     .layout-inner
@@ -99,6 +131,7 @@
             v-if="errorLog.title"
           ) {{ errorLog.title }}
           input.form__control(
+            @keyup="errorLog.title = undefined",
             ref='title'
             id='product-name',
             v-model='product.title',
@@ -111,6 +144,7 @@
             v-if="errorLog.description"
           ) {{ errorLog.description }}
           textarea.form__textarea(
+            @keyup="errorLog.description = undefined",
             ref='description'
             id='product-description',
             v-model='product.description'
@@ -130,30 +164,31 @@
                 v-if="errorLog.category"
               ) {{ errorLog.category }}
               select.form__select(
-                ref='category'
-                id='product-categoria'
-                v-model='product.category_id'
-                @change='loadSubCategories')
+                ref='category',
+                id='product-categoria',
+                v-model='product.category',
+                @change='errorLog.category = undefined')
                 optgroup(label='Categoría principal')
                   option(
                     v-for='category in categories'
                     :value='category.id'
                   ) {{ category.name }}
             .form__row(
-              v-if='product.category_id'
-              :class='{ "is-danger": errorLog.category }')
+              v-if='product.category'
+              :class='{ "is-danger": errorLog.subcategory }')
               label.form__label(
                 for='product-subcategoria') Categoría específica
               span.help(
                 v-if="errorLog.subcategory"
               ) {{ errorLog.subcategory }}
               select.form__select(
+                @change="errorLog.subcategory = undefined",
                 ref='subcategory'
                 id='product-subcategoria'
-                v-model='product.subcategory_id')
+                v-model='product.category_id')
                 optgroup(label='Categoría específica')
                   option(
-                    v-for='category in subcategories'
+                    v-for='category in categories.filter(x => x.id === product.category)[0].children'
                     :value='category.id'
                   ) {{ category.name }}
             .form__row(
@@ -164,6 +199,7 @@
                 v-if="errorLog.condition"
               ) {{ errorLog.condition }}
               select.form__select(
+                @change="errorLog.condition = undefined",
                 ref='condition'
                 id='product-estado'
                 v-model='product.condition_id')
@@ -182,7 +218,8 @@
                   v-if="errorLog.color"
                 ) {{ errorLog.color }}
                 input.form__select(
-                  ref='color'
+                  @change="errorLog.color = undefined",
+                  ref='color',
                   type='text',
                   id='product-color-first',
                   v-model='product.color[0]',
@@ -258,20 +295,22 @@
                 v-if="errorLog.brand"
               ) {{ errorLog.brand }}
               select.form__select(
-                ref='brand'
+                @change="errorLog.brand = undefined",
+                ref='brand',
                 id='product-marca'
                 v-model='product.brand_id')
                 optgroup(label='Marca')
                   option(
                     v-for='brand in brands'
                     :value='brand.id'
-                  ) {{ brand.name }}
+                  ) {{ brand.name.charAt(0).toUpperCase() + brand.name.slice(1) }}
             .form__row(
               :class='{ "is-danger": errorLog.dimensions }')
               label.form__label(
                 for='product-medidas') Medidas
               input.form__control(
-                ref='dimensions'
+                @keyup="errorLog.dimensions = undefined",
+                ref='dimensions',
                 id='product-medidas',
                 type='text',
                 v-model='product.dimensions')
@@ -325,7 +364,7 @@
                   .slot__info
                     .slot__brand(
                         v-if='product.brand_id'
-                    ) {{ brands[product.brand_id - 1].name }}
+                    ) {{ brands.filter(x => x.id === product.brand_id)[0].name }}
                     .slot__price ${{ product.price | currency }}
 
                 //- user: picture/first_name/last_name
@@ -417,13 +456,12 @@
             | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
         .form__row.form__row_away
           button.btn.btn_solid(
-            @click.prevent='validateBeforeSubmit') Continuar
+            @click.prevent='validateBeforeSubmit($event)') Continuar
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import productAPI from '../api/product'
-import categoriesAPI from '../api/category'
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 Vue.component('croppa', Croppa.component)
@@ -435,7 +473,6 @@ export default {
       displayedSize: '---',
       calculatedSize: '',
       size: null,
-      sizes: [],
       uniqueSize: false,
       images: [],
       imagesToUpload: [],
@@ -465,11 +502,6 @@ export default {
         color: [ null, null ],
         images: []
       },
-      conditions: {},
-      categories: {},
-      subcategories: {},
-      colors: {},
-      brands: {},
       errorLog: {},
       toggleColors: {
         first: false,
@@ -479,7 +511,15 @@ export default {
   },
   computed: {
     ...mapState(['user']),
-    toggleImageDelete () {
+    ...mapState('ui', [
+      'menus',
+      'categories',
+      'conditions',
+      'colors',
+      'brands',
+      'sizes'
+    ]),
+    toggleImageControls () {
       return this.toggleImages
     }
   },
@@ -506,7 +546,6 @@ export default {
               this.product.user_id = this.user.id
               productAPI.create(this.product)
                 .then(response => {
-                  console.log(response)
                   this.$store.dispatch('ui/closeModal')
                   let pending
                   response.data.status === 0 ? pending = true : pending = false
@@ -521,12 +560,14 @@ export default {
         }
       })
     },
-    validateBeforeSubmit: function (e) {
+    validateBeforeSubmit: function (event) {
+      event.target.disabled = true
       this.errorLog = {}
+      if (!this.images[0].hasImage()) this.errorLog.image = 'Carga una fotografía de tu producto'
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
-      if (!this.product.category_id) this.errorLog.category = 'Debes seleccionar una categoría principal'
-      if (!this.product.subcategory_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
+      if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría principal'
+      if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
       if (!this.calculatedSize) {
@@ -549,9 +590,11 @@ export default {
         this.createProduct()
       } else {
         this.$refs[Object.keys(this.errorLog)[0]].focus()
+        event.target.disabled = false
       }
     },
     chooseColor: function (colorId, colorPosition) {
+      this.errorLog.color = undefined
       this.product.color[colorPosition - 1] = this.colors[colorId - 1].name
       this.product.color_ids[colorPosition - 1] = colorId
     },
@@ -564,6 +607,7 @@ export default {
       this.toggleSize = true
     },
     assistedSize: function (e) {
+      this.errorLog.calculatedSize = undefined
       e.preventDefault()
       if (e.keyCode === 8) {
         if (this.calculatedSize) {
@@ -588,7 +632,12 @@ export default {
       }
     },
     validateSize: function () {
-      let size = this.sizes.filter(x => x.name === this.calculatedSize)[0]
+      let size = {}
+      this.sizes.forEach((element) => {
+        if (element.children.filter(x => x.name === this.calculatedSize)[0]) {
+          size = element.children.filter(x => x.name === this.calculatedSize)[0]
+        }
+      })
       if (size.id) {
         this.product.size_id = size.id
         return true
@@ -598,6 +647,7 @@ export default {
       }
     },
     filterPrice: function (e) {
+      this.errorLog.price = undefined
       if (e.keyCode === 9) {
 
       } else {
@@ -608,10 +658,22 @@ export default {
       }
     },
     filterOriginalPrice: function (e) {
+      this.errorLog.original_price = undefined
       e.preventDefault()
       if (!this.product.original_price) this.product.original_price = ''
       if (e.keyCode >= 48 && e.keyCode <= 57) this.product.original_price += e.key
       if (e.keyCode === 8) this.product.original_price = this.product.original_price.substring(0, this.product.original_price.length - 1)
+    },
+    zoom: function (id, direction) {
+      let image = this.images[id]
+      direction === 'in' ? image.zoomIn() : image.zoomOut()
+    },
+    handleZoom: function (action, image, direction) {
+      if (action === 'set') {
+        window.zoomEvent = window.setTimeout(this.zoom(image, direction), 200)
+      } else {
+        window.clearTimeout(window.zoomEvent)
+      }
     },
     handleMainImage: function () {
       if (this.images[0].hasImage()) {
@@ -629,53 +691,7 @@ export default {
       this.toggleImages[index] = false
       this.images[index].remove()
       if (index === 0) this.toggleImage = false
-    },
-    loadSubCategories: async function () {
-      await productAPI.getCategoriesById(this.product.category_id)
-        .then(response => {
-          this.subcategories = response.data.data[0].children
-        })
-        .catch(e => {
-          console.log(e)
-        })
     }
-  },
-  created: function () {
-    categoriesAPI.getAllCategories()
-      .then(response => {
-        this.categories = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllConditions()
-      .then(response => {
-        this.conditions = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllColors()
-      .then(response => {
-        this.colors = response.data.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllBrands()
-      .then(response => {
-        this.brands = response.data.data
-        this.brands.sort((a, b) => {
-          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-        })
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    productAPI.getAllSizes()
-      .then(response => {
-        response.data.data.forEach((item) => this.sizes.push(...item.children))
-      })
   }
 }
 </script>
