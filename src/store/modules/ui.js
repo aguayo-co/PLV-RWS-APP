@@ -56,9 +56,12 @@ const actions = {
       })
     productsAPI.getAllBrands()
       .then(response => {
+        let brands = response.data.data.sort(function (a, b) {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        })
         const property = {
           name: 'brands',
-          data: response.data.data
+          data: brands
         }
         commit('setProperty', { property })
       })

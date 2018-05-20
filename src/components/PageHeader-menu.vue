@@ -2,12 +2,13 @@
 nav.page-menu
   ul.menu
     li.menu__item(
-      v-for='item in menu.items')
+      v-if="menu.items"
+      v-for="item in menu.items")
       a.menu__link(
-        v-if='!item.url'
-        href='#',
+        v-if="!item.url"
+        href="#",
         :class="[{ 'menu__link_active' : active.menu }, {'router-link-active': $route.path.includes('/shop')}]"
-        @click='handler(item)') {{ item.name }}
+        @click="handler(item)") {{ item.name }}
       //- Nivel 2: submenu con Lista de enlaces, Promo, side de enlaces
       transition(name="slide-fade")
         .menu-level2(
@@ -77,7 +78,7 @@ export default {
       return this.$store.getters['ui/headerDropdownsVisible']
     },
     menu () {
-      return this.ui.menus.principal
+      return this.ui.menus.principal ? this.ui.menus.principal : {}
     }
   },
   methods: {
