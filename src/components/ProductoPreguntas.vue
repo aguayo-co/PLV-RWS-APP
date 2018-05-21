@@ -110,7 +110,7 @@ export default {
       this.errorLog = {}
       if (!this.newQuestion) {
         this.errorLog.question = '¡Ups! No podemos enviar tu pregunta si no la escribes primero.'
-      } else {
+      } else if (this.user.id) {
         this.disabledQuestion = true
         const data = {
           subject: this.newQuestion,
@@ -128,6 +128,8 @@ export default {
             }
             window.scrollTo(0, this.$refs.beggining.offsetTop - 75)
           })
+      } else {
+        this.errorLog.question = 'Si quieres comentar este producto inicia sesión o regístrate.'
       }
     },
     showAnswerBox: function (questionId) {
