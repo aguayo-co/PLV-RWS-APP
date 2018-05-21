@@ -66,7 +66,7 @@ export default {
             },
             {
               name: 'Créditos',
-              url: '#',
+              url: '/user/creditos',
               ico: 'i-credits'
             },
             {
