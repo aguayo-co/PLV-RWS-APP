@@ -48,16 +48,19 @@
     .section_product__footer
       p.btn__wrapper
         a.btn Ver más Prilovers
+  ButtonSticky
 </template>
 
 <script>
 import BannerTop from '@/components/BannerTop'
 import usersAPI from '@/api/user'
+import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
   name: 'Prilovers',
   components: {
-    BannerTop
+    BannerTop,
+    ButtonSticky
   },
   data () {
     return {
