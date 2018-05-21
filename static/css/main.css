@@ -5918,6 +5918,21 @@ body {
 .slot {
   position: relative; }
 
+.slot_disabled .slot__img {
+  opacity: .2; }
+
+.slot_disabled .slot__lead {
+  opacity: .4; }
+
+.slot_disabled .slot__info {
+  opacity: .4; }
+
+.slot_disabled .slot__user {
+  opacity: .4; }
+
+.slot__status {
+  color: #fff; }
+
 .slot_grid {
   width: 50%;
   padding: 0 10px 32px; }
