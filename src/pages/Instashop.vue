@@ -14,17 +14,20 @@
           name='search',
           placeholder="Buscar")
     GridInstashop
+  ButtonSticky
 </template>
 
 <script>
 import BannerTop from '@/components/BannerTop'
 import GridInstashop from '@/components/GridInstashop'
+import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
   name: 'Instashop',
   components: {
     BannerTop,
-    GridInstashop
+    GridInstashop,
+    ButtonSticky
   }
 }
 </script>
