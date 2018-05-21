@@ -3532,6 +3532,18 @@ body {
     font-size: 32px;
     font-size: 2rem; }
 
+.notify__txt_bg {
+  padding: 20px;
+  margin: 32px 0;
+  background-color: #f6f6f6; }
+  .notify__txt_bg p {
+    margin: 0; }
+
+.notify__bottom {
+  padding: 16px 0; }
+  .notify__bottom .notify__txt {
+    margin-top: 0; }
+
 .banner-slider {
   position: relative;
   width: 100%;
