@@ -8980,11 +8980,20 @@ body {
   -ms-flex-pack: end;
   -moz-justify-content: flex-end;
   justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 6px 14px;
   background-color: #f65a66; }
+
+.slot__status {
+  display: block;
+  text-align: left;
+  width: 100%; }
 
 .slot__actions-link {
   position: relative;
