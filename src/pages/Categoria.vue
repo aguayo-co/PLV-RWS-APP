@@ -19,7 +19,7 @@
     .layout_nofound
       .alert
         p.alert__txt.i-sad La URL que estás intentando acceder no existe
-
+  ButtonSticky
 </template>
 
 <script>
@@ -28,12 +28,14 @@ import BannerHero from '@/components/BannerHero'
 import bannersAPI from '@/api/banner'
 import brandsAPI from '@/api/brand'
 import categoriesAPI from '@/api/category'
+import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
   name: 'Category',
   components: {
     BannerHero,
-    GridProducto
+    GridProducto,
+    ButtonSticky
   },
   data () {
     return {

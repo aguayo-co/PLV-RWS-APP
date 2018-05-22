@@ -59,3 +59,20 @@
     @include font-rem(32px);
   }
 }
+.notify__txt_bg {
+  padding: 20px;
+  margin: 32px 0;
+  background-color: $c-neutro-4;
+  p {
+    margin: 0;
+  }
+}
+
+.notify__bottom {
+  padding: 16px 0;
+  .notify__txt {
+    margin-top: 0;
+  }
+}
+
+

@@ -3532,6 +3532,18 @@ body {
     font-size: 32px;
     font-size: 2rem; }
 
+.notify__txt_bg {
+  padding: 20px;
+  margin: 32px 0;
+  background-color: #f6f6f6; }
+  .notify__txt_bg p {
+    margin: 0; }
+
+.notify__bottom {
+  padding: 16px 0; }
+  .notify__bottom .notify__txt {
+    margin-top: 0; }
+
 .banner-slider {
   position: relative;
   width: 100%;
@@ -5905,6 +5917,21 @@ body {
 
 .slot {
   position: relative; }
+
+.slot_disabled .slot__img {
+  opacity: .2; }
+
+.slot_disabled .slot__lead {
+  opacity: .4; }
+
+.slot_disabled .slot__info {
+  opacity: .4; }
+
+.slot_disabled .slot__user {
+  opacity: .4; }
+
+.slot__status {
+  color: #fff; }
 
 .slot_grid {
   width: 50%;

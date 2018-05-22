@@ -23,6 +23,24 @@
 .slot {
   position: relative;
 }
+.slot_disabled {
+  .slot__img {
+    opacity: .2;
+  }
+  .slot__lead {
+    opacity: .4;
+  }
+  .slot__info {
+    opacity: .4;
+  }
+  .slot__user {
+    opacity: .4;
+  }
+}
+
+.slot__status {
+  color: $c-neutro;
+}
 
 .slot_grid {
   width: 50%;
