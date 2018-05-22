@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted: function () {
-    productsAPI.getProductById(this.$route.params.productId)
+    productsAPI.getProductAuthById(this.$route.params.productId)
       .then(response => {
         this.product = response.data
         this.exists = true
