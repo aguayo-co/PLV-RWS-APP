@@ -21,7 +21,7 @@
       .product-grid.product-grid_small
         article.slot.slot_grid(
           v-for='product in products',
-          :class="{ 'slot_disabled' : user.vacation_mode }")
+          :class="{ 'slot_disabled' : user.vacation_mode || product.status < 10 }")
           a.slot__ico.i-heart(
             @click.prevent='myActive(product)'
             :class='{active: isActive == product}'
@@ -38,7 +38,10 @@
               .slot__product-actions(v-if="mqMobile && !user.vacation_mode")
                 a.slot__actions-link.i-edit-line(href="#")
                 a.slot__actions-link.i-trash(href="#")
-              .slot__product-actions(v-if="mqDesk && !user.vacation_mode")
+              .slot__product-actions(
+                :class="{ 'slot__product-actions_status': product.status < 10 }",
+                v-if="mqDesk && !user.vacation_mode")
+                span.slot__status(v-show="product.status < 10") {{ product.status | product_status }}
                 router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
                   transition(name='toggle-scale')
                     p.slot__tooltip Editar producto
@@ -201,9 +204,9 @@ export default {
   methods: {
     updateProductList: function () {
       let filterQueryObject = {}
-      filterQueryObject.status = '10,29'
+      filterQueryObject.status = '1,19'
       filterQueryObject.user_id = this.user.id
-      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
+      productAPI.getAuth(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
         .then((response) => {
           this.products = response.data.data
           this.productsPager.total = response.data.last_page
@@ -213,7 +216,7 @@ export default {
       let filterQueryObject = {}
       filterQueryObject.status = '30,32'
       filterQueryObject.user_id = this.user.id
-      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
+      productAPI.getAuth(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
         .then((response) => {
           this.soldProducts = response.data.data
           this.soldProductsPager.total = response.data.last_page
