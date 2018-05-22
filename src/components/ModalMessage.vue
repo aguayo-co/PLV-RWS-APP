@@ -34,7 +34,7 @@
                 v-if='attributes.type === "positive"')
                 h2.title.notify__title {{ attributes.title }}
 
-              .notify__ico.i-alert-tri(
+              .notify__ico.i-alert(
                 v-if='attributes.type === "alert"')
                 h2.title.notify__title {{ attributes.title }}
 
