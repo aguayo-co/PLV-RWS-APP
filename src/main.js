@@ -38,6 +38,22 @@ Vue.filter('address', function (address) {
 Vue.filter('full_name', function (user) {
   return user.first_name + ' ' + user.last_name
 })
+Vue.filter('product_status', function (value) {
+  switch (value) {
+    case 0:
+      return 'Pendiente'
+    case 1:
+      return 'Rechazado'
+    case 10:
+      return 'Aprobado'
+    case 19:
+      return 'Disponible'
+    case 30:
+      return 'Vendido'
+    default:
+      return 'Deshabilitado'
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

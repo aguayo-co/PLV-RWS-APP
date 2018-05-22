@@ -11,15 +11,10 @@
 
     //- direcciones editable
     .compra-data_info
-      .subhead Direcciones
-        small.small_high Esta sería la dirección a la que la vendedora enviará tu producto. También servirá de referencia en caso de que decidan juntarse.
-      .dividers
-        .dividers__item(v-if="address") {{ address | address }}
-      .subhead.subhead_top ¿Cambiar dirección?
+      .subhead.subhead_top Dirección de envío
       AddressList(:in-shopping-cart="true", v-on:updatedAddress="updateShippingInformation")
 
       .subhead Teléfono
-        small.small_high Ingresa tu número celular para que la vendedora pueda comunicarse contigo facilmente.
       form.form_user(
         id="form-user-phone"
         v-on:submit.prevent='updatePhone')
