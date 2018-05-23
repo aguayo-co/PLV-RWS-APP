@@ -40,7 +40,7 @@ export default {
       const params = {
         page,
         orderby: '-id',
-        'filter[status]': '20,99'
+        'filter[status]': '20,92'
       }
       this.$axiosAuth.get('/api/sales', {params}).then(response => {
         Object.keys(response.data.data).forEach(key => {
