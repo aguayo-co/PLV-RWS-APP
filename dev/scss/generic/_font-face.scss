@@ -64,145 +64,7 @@
 @function unicode($str) {
   @return unquote("\"")+$str+unquote("\"");
 }
-//-V6
-.i-prilov {
-  &:before {
-    content: unicode($i-prilov);
-  }
-}
-
-.i-starts {
-  &:before {
-    content: unicode($i-starts);
-  }
-}
-
-.i-it-girl {
-  &:before {
-    content: unicode($i-it-girl);
-  }
-}
-
-.i-dress {
-  &:before {
-    content: unicode($i-dress);
-  }
-}
-
-.i-like {
-  &:before {
-    content: unicode($i-like);
-  }
-}
-
-.i-search {
-  &:before {
-    content: unicode($i-search);
-  }
-}
-
-.i-view {
-  &:before {
-    content: unicode($i-view);
-  }
-}
-
-.i-ok {
-  &:before {
-    content: unicode($i-ok);
-  }
-}
-
-.i-filter {
-  &:before {
-    content: unicode($i-filter);
-  }
-}
-
-.i-reload {
-  &:before {
-    content: unicode($i-reload);
-  }
-}
-
-.i-bag {
-  &:before {
-    content: unicode($i-bag);
-  }
-}
-
-.i-car {
-  &:before {
-    content: unicode($i-car);
-  }
-}
-
-.i-tag {
-  &:before {
-    content: unicode($i-tag);
-  }
-}
-
-.i-shop {
-  &:before {
-    content: unicode($i-shop);
-  }
-}
-
-.i-send {
-  &:before {
-    content: unicode($i-send);
-  }
-}
-
-.i-feedback {
-  &:before {
-    content: unicode($i-feedback);
-  }
-}
-
-.i-alert {
-  &:before {
-    content: unicode($i-alert);
-  }
-}
-
-.i-help {
-  &:before {
-    content: unicode($i-help);
-  }
-}
-
-.i-sell {
-  &:before {
-    content: unicode($i-sell);
-  }
-}
-
-.i-card {
-  &:before {
-    content: unicode($i-card);
-  }
-}
-
-.i-money {
-  &:before {
-    content: unicode($i-money);
-  }
-}
-
-.i-trip {
-  &:before {
-    content: unicode($i-trip);
-  }
-}
-
-.i-singup {
-  &:before {
-    content: unicode($i-singup);
-  }
-}
-
+//-V7
 .i-insta {
   &:before {
     content: unicode($i-insta);
@@ -218,48 +80,6 @@
 .i-twitter {
   &:before {
     content: unicode($i-twitter);
-  }
-}
-
-.i-heart {
-  &:before {
-    content: unicode($i-heart);
-  }
-}
-
-.i-heart-on {
-  &:before {
-    content: unicode($i-heart-on);
-  }
-}
-
-.i-alert-info {
-  &:before {
-    content: unicode($i-alert-info);
-  }
-}
-
-.i-alert-circle {
-  &:before {
-    content: unicode($i-alert-circle);
-  }
-}
-
-.i-alert-tri {
-  &:before {
-    content: unicode($i-alert-tri);
-  }
-}
-
-.i-user {
-  &:before {
-    content: unicode($i-user);
-  }
-}
-
-.i-user-x {
-  &:before {
-    content: unicode($i-user-x);
   }
 }
 
@@ -281,33 +101,63 @@
   }
 }
 
-.i-bell {
+.i-prilov {
   &:before {
-    content: unicode($i-bell);
+    content: unicode($i-prilov);
   }
 }
 
-.i-shipping {
+.i-starts {
   &:before {
-    content: unicode($i-shipping);
+    content: unicode($i-starts);
   }
 }
 
-.i-favorite {
+.i-alert-info {
   &:before {
-    content: unicode($i-favorite);
+    content: unicode($i-alert-info);
   }
 }
 
-.i-credits {
+.i-alert-circle {
   &:before {
-    content: unicode($i-credits);
+    content: unicode($i-alert-circle);
   }
 }
 
-.i-closet {
+.i-alert {
   &:before {
-    content: unicode($i-closet);
+    content: unicode($i-alert);
+  }
+}
+
+.i-help {
+  &:before {
+    content: unicode($i-help);
+  }
+}
+
+.i-sell {
+  &:before {
+    content: unicode($i-sell);
+  }
+}
+
+.i-feedback {
+  &:before {
+    content: unicode($i-feedback);
+  }
+}
+
+.i-chat {
+  &:before {
+    content: unicode($i-chat);
+  }
+}
+
+.i-card {
+  &:before {
+    content: unicode($i-card);
   }
 }
 
@@ -317,15 +167,171 @@
   }
 }
 
+.i-data {
+  &:before {
+    content: unicode($i-data);
+  }
+}
+
+.i-money {
+  &:before {
+    content: unicode($i-money);
+  }
+}
+
+.i-credits {
+  &:before {
+    content: unicode($i-credits);
+  }
+}
+
+.i-tula {
+  &:before {
+    content: unicode($i-tula);
+  }
+}
+
+.i-return {
+  &:before {
+    content: unicode($i-return);
+  }
+}
+
+.i-trip {
+  &:before {
+    content: unicode($i-trip);
+  }
+}
+
+.i-user {
+  &:before {
+    content: unicode($i-user);
+  }
+}
+
+.i-user-x {
+  &:before {
+    content: unicode($i-user-x);
+  }
+}
+
+.i-bell {
+  &:before {
+    content: unicode($i-bell);
+  }
+}
+
+.i-tag {
+  &:before {
+    content: unicode($i-tag);
+  }
+}
+
+.i-shop {
+  &:before {
+    content: unicode($i-shop);
+  }
+}
+
+.i-closet {
+  &:before {
+    content: unicode($i-closet);
+  }
+}
+
+.i-dress {
+  &:before {
+    content: unicode($i-dress);
+  }
+}
+
+.i-bag {
+  &:before {
+    content: unicode($i-bag);
+  }
+}
+
+.i-clock {
+  &:before {
+    content: unicode($i-clock);
+  }
+}
+
+.i-camera {
+  &:before {
+    content: unicode($i-camera);
+  }
+}
+
+.i-box {
+  &:before {
+    content: unicode($i-box);
+  }
+}
+
+.i-it-girl {
+  &:before {
+    content: unicode($i-it-girl);
+  }
+}
+
+.i-favorite {
+  &:before {
+    content: unicode($i-favorite);
+  }
+}
+
+.i-heart {
+  &:before {
+    content: unicode($i-heart);
+  }
+}
+
+.i-heart-on {
+  &:before {
+    content: unicode($i-heart-on);
+  }
+}
+
+.i-start {
+  &:before {
+    content: unicode($i-start);
+  }
+}
+
+.i-star-on {
+  &:before {
+    content: unicode($i-star-on);
+  }
+}
+
+.i-smile {
+  &:before {
+    content: unicode($i-smile);
+  }
+}
+
+.i-sad {
+  &:before {
+    content: unicode($i-sad);
+  }
+}
+
+.i-car {
+  &:before {
+    content: unicode($i-car);
+  }
+}
+
 .i-sale {
   &:before {
     content: unicode($i-sale);
   }
 }
 
-.i-data {
+.i-upload {
   &:before {
-    content: unicode($i-data);
+    content: unicode($i-upload);
   }
 }
 
@@ -335,9 +341,147 @@
   }
 }
 
-.i-x {
+.i-email {
   &:before {
-    content: unicode($i-x);
+    content: unicode($i-email);
+  }
+}
+
+.i-rocket {
+  &:before {
+    content: unicode($i-rocket);
+  }
+}
+
+.i-send {
+  &:before {
+    content: unicode($i-send);
+  }
+}
+
+.i-shipping {
+  &:before {
+    content: unicode($i-shipping);
+  }
+}
+
+.i-singup {
+  &:before {
+    content: unicode($i-singup);
+  }
+}
+
+.i-report {
+  &:before {
+    content: unicode($i-report);
+  }
+}
+
+.i-filter {
+  &:before {
+    content: unicode($i-filter);
+  }
+}
+
+.i-filter-admin {
+  &:before {
+    content: unicode($i-filter-admin);
+  }
+}
+
+.i-config {
+  &:before {
+    content: unicode($i-config);
+  }
+}
+
+.i-search {
+  &:before {
+    content: unicode($i-search);
+  }
+}
+
+.i-search-plus {
+  &:before {
+    content: unicode($i-search-plus);
+  }
+}
+
+.i-search-less {
+  &:before {
+    content: unicode($i-search-less);
+  }
+}
+
+.i-view {
+  &:before {
+    content: unicode($i-view);
+  }
+}
+
+.i-trash {
+  &:before {
+    content: unicode($i-trash);
+  }
+}
+
+.i-edit-line {
+  &:before {
+    content: unicode($i-edit-line);
+  }
+}
+
+.i-edit {
+  &:before {
+    content: unicode($i-edit);
+  }
+}
+
+.i-blog-admin {
+  &:before {
+    content: unicode($i-blog-admin);
+  }
+}
+
+.i-reload {
+  &:before {
+    content: unicode($i-reload);
+  }
+}
+
+.i-like {
+  &:before {
+    content: unicode($i-like);
+  }
+}
+
+.i-check {
+  &:before {
+    content: unicode($i-check);
+  }
+}
+
+.i-ok {
+  &:before {
+    content: unicode($i-ok);
+  }
+}
+
+.i-plus {
+  &:before {
+    content: unicode($i-plus);
+  }
+}
+
+.i-less {
+  &:before {
+    content: unicode($i-less);
+  }
+}
+
+.i-less-circle {
+  &:before {
+    content: unicode($i-less-circle);
   }
 }
 
@@ -347,9 +491,9 @@
   }
 }
 
-.i-plus {
+.i-x {
   &:before {
-    content: unicode($i-plus);
+    content: unicode($i-x);
   }
 }
 
@@ -389,153 +533,4 @@
   }
 }
 
-.i-less {
-  &:before {
-    content: unicode($i-less);
-  }
-}
-
-.i-less-circle {
-  &:before {
-    content: unicode($i-less-circle);
-  }
-}
-
-.i-edit-line {
-  &:before {
-    content: unicode($i-edit-line);
-  }
-}
-
-.i-edit {
-  &:before {
-    content: unicode($i-edit);
-  }
-}
-
-.i-start {
-  &:before {
-    content: unicode($i-start);
-  }
-}
-
-.i-star-on {
-  &:before {
-    content: unicode($i-star-on);
-  }
-}
-
-.i-email {
-  &:before {
-    content: unicode($i-email);
-  }
-}
-
-.i-upload {
-  &:before {
-    content: unicode($i-upload);
-  }
-}
-
-.i-tula {
-  &:before {
-    content: unicode($i-tula);
-  }
-}
-
-.i-clock {
-  &:before {
-    content: unicode($i-clock);
-  }
-}
-
-.i-sad {
-  &:before {
-    content: unicode($i-sad);
-  }
-}
-
-.i-trash {
-  &:before {
-    content: unicode($i-trash);
-  }
-}
-
-.i-rocket {
-  &:before {
-    content: unicode($i-rocket);
-  }
-}
-
-.i-config {
-  &:before {
-    content: unicode($i-config);
-  }
-}
-
-.i-check {
-  &:before {
-    content: unicode($i-check);
-  }
-}
-
-.i-report {
-  &:before {
-    content: unicode($i-report);
-  }
-}
-
-.i-blog-admin {
-  &:before {
-    content: unicode($i-blog-admin);
-  }
-}
-
-.i-filter-admin {
-  &:before {
-    content: unicode($i-filter-admin);
-  }
-}
-
-.i-chat {
-  &:before {
-    content: unicode($i-chat);
-  }
-}
-
-.i-smile {
-  &:before {
-    content: unicode($i-smile);
-  }
-}
-
-.i-search-plus {
-  &:before {
-    content: unicode($i-search-plus);
-  }
-}
-//-V7
-.i-box {
-  &:before {
-    content: unicode($i-box);
-  }
-}
-
-.i-camera {
-  &:before {
-    content: unicode($i-camera);
-  }
-}
-
-.i-talk {
-  &:before {
-    content: unicode($i-talk);
-  }
-}
-
-.i-return {
-  &:before {
-    content: unicode($i-return);
-  }
-}
 

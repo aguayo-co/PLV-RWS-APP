@@ -1,6 +1,6 @@
 <template lang="pug">
   .notify
-    .notify__ico.i-alert-tri
+    .notify__ico.i-alert
       h1.title.notify__title Lo sentimos, algo salió mal
     .notify__body.notify__body_center
       p Por favor intenta registrarte nuevamente.

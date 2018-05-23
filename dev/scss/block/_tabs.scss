@@ -39,11 +39,18 @@
 .slot__product-actions {
   @include flexbox;
   @include justify-content(flex-end);
+  @include align-items(center);
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 6px 14px;
   background-color: $c-brand;
+}
+
+.slot__status {
+  display: block;
+  text-align: left;
+  width: 100%;
 }
 
 .slot__actions-link {

@@ -20,7 +20,7 @@
           li.blog-card__item.i-camera
             h3.blog-card__title Sube tus productos
             p.blog-card__txt Crea tu perfil, sube fotos de tu ropa y describe tu producto. Tu primera publicación debe aprobarse por nuestro Team antes de publicarse.
-          li.blog-card__item.i-talk
+          li.blog-card__item.i-help
             h3.blog-card__title Conversa
             p.blog-card__txt Contesta a los mensajes y comentarios de las otras Prilovers a tiempo para que no pierdas ni una sola venta.
           li.blog-card__item.i-bag
@@ -29,7 +29,7 @@
           li.blog-card__item.i-send
             h3.blog-card__title Envía tus productos
             p.blog-card__txt Cuando envíes tu producto o te juntes con la compradora para la entrega, debes entrar a Tus Ventas y marcar el producto como “Enviado”.
-          li.blog-card__item.i-talk
+          li.blog-card__item.i-help
             h3.blog-card__title Tu compradora recibe
             p.blog-card__txt La compradora marcará "Recibido" el producto y tus créditos serán traspasado a tu cuenta Prilov.
           li.blog-card__item.i-money
