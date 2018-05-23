@@ -58,7 +58,8 @@ export default {
       'total',
       'coupon_discount',
       'coupon_code',
-      'gateway'
+      'gateway',
+      'sales'
     ]),
     ...createComputedProps(editableProps),
     responseUrl () {
@@ -89,12 +90,36 @@ export default {
      * Continúa al siguiente paso de la compra.
      */
     nextStep () {
-      if (this.shoppingCartStep < 1) {
-        this.$emit('nextStep')
+      if (this.shoppingCartStep === null) {
+        this.continueToPaymentMethod()
         return
       }
 
-      this.continueToPayment()
+      if (this.shoppingCartStep === 'método') {
+        this.continueToPayment()
+      }
+    },
+    continueToPaymentMethod () {
+      let hasErrors = Object.keys(this.sales).some((saleId) => {
+        if (!this.sales[saleId].shipping_method_id) {
+          const modal = {
+            name: 'ModalMessage',
+            parameters: {
+              type: 'alert',
+              title: 'Ha habido un problema.',
+              body: 'No has seleccionado el método de envío de alguna vendedora.'
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
+          return true
+        }
+      })
+
+      if (hasErrors) {
+        return
+      }
+
+      this.$emit('setShoppingCartStep', 'método')
     },
     continueToPayment () {
       // Este es el último paso.
@@ -120,6 +145,8 @@ export default {
       }
       request.catch((e) => {
         this.$handleApiErrors(e)
+      }).finally(() => {
+        this.$emit('setShoppingCartStep', null)
       })
     },
     /**

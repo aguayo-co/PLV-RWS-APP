@@ -1,5 +1,3 @@
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'CompraSale',
   props: ['sale'],

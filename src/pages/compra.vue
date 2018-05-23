@@ -30,7 +30,7 @@
         //-end list content
 
         //-Tabla Total
-        CompraDetalle(v-bind:shoppingCartStep="shoppingCartStep" v-on:nextStep="shoppingCartStep += 1")
+        CompraDetalle(v-bind:shoppingCartStep="shoppingCartStep" v-on:setShoppingCartStep="shoppingCartStep = $event")
         //-End Tabla Total
       //-End grid
     //- End List paso 1:compra
