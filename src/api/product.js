@@ -35,7 +35,7 @@ export default {
     // Check if there are images to remove
     if (Object.keys(product).includes('images_remove')) {
       product.images_remove.forEach(name => {
-        formData.append('images_remove[]', name)
+        formData.append('delete_images[]', name)
       })
       delete product.images_remove
     }
