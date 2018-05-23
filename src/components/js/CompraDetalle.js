@@ -38,6 +38,7 @@ export default {
   components: {
     CompraPayU
   },
+  props: ['shoppingCartStep'],
   data () {
     return {
       payUPayment: null,
@@ -88,6 +89,15 @@ export default {
      * Continúa al siguiente paso de la compra.
      */
     nextStep () {
+      if (this.shoppingCartStep < 1) {
+        this.$emit('nextStep')
+        return
+      }
+
+      this.continueToPayment()
+    },
+    continueToPayment () {
+      // Este es el último paso.
       const gateway = this.gateway
       let request
       if (!gateway) {

@@ -1,7 +1,7 @@
 <template lang="pug">
 .list__content
   //-Compra: Envío y pago: 1a Cliente Registrado, logueado
-  section.list_step
+  section.list_step(v-if="shoppingCartStep === 0")
     h2.subhead Selecciona tu método de envío
     //- metodos de envío
     CompraSale(
@@ -60,6 +60,7 @@
             :disabled='disabled.used_credits',
             v-model='new_used_credits')
           small.pay-off__small Créditos
+  section.list_step(v-if="shoppingCartStep === 1")
     //-tipo de medio de pago
     h3.subhead ¿Con que medio te gustaría pagar?
     //-checkbox tipo pago
