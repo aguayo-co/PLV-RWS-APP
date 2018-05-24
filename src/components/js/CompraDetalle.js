@@ -137,22 +137,54 @@ export default {
         this.$store.dispatch('ui/showModal', modal)
         return
       }
-      if (gateway === 'pay_u') {
+
+      if (gateway === 'mercado_pago') {
+        request = this.setMercadoPagoPayment()
+      } else if (gateway === 'pay_u') {
         request = this.setPayUPayment()
-      }
-      if (gateway === 'transfer') {
+      } else if (gateway === 'transfer') {
         request = this.setTransferPayment()
       }
+
       request.catch((e) => {
         this.$handleApiErrors(e)
-      }).finally(() => {
-        this.$emit('setShoppingCartStep', null)
+      })
+    },
+    /**
+     * Envía al usuario a MercadoPago.
+     */
+    setMercadoPagoPayment () {
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'positive',
+          title: 'Te estamos enviando a MercadoPago.',
+          body: 'Por favor no refresques esta página.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
+      let data = {
+        'back_urls[success]': this.responseUrl,
+        'back_urls[pending]': this.responseUrl,
+        'back_urls[failure]': this.responseUrl
+      }
+      return shoppingCartAPI.getPayment('mercado_pago', data).then((response) => {
+        window.location = response.data.request_data
       })
     },
     /**
      * Envía al usuario a PayU.
      */
     setPayUPayment () {
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'positive',
+          title: 'Te estamos enviando a PayU.',
+          body: 'Por favor no refresques esta página.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
       return shoppingCartAPI.getPayment('pay_u').then((response) => {
         this.payUPayment = {
           ...response.data.request_data,
@@ -164,6 +196,7 @@ export default {
      * Genera pago de transferencia.
      */
     setTransferPayment () {
+      this.$emit('setShoppingCartStep', null)
       return shoppingCartAPI.getPayment('transfer').then((response) => {
         this.$router.push({name: 'compra', params: { order_id: this.id }})
       })
