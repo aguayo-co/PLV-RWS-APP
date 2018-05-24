@@ -82,7 +82,8 @@ export default {
         if (window.localStorage.getItem('userId')) {
         } else {
           this.$router.replace({
-            path: '/acceso-denegado'
+            path: '/acceso-denegado',
+            query: { redirect: to.fullPath }
           })
         }
       }
