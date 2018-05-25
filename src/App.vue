@@ -83,7 +83,7 @@ export default {
         } else {
           this.$router.replace({
             path: '/acceso-denegado',
-            query: { redirect: to.fullPath }
+            query: { redirect: route.fullPath }
           })
         }
       }
