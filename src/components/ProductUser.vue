@@ -59,9 +59,6 @@ export default {
     IsActive: function (e) {
       this.isActive = e
     },
-    NotActive: function (e) {
-      this.isActive = ''
-    },
     EditName: function () {
       this.editName = !this.editName
     },
