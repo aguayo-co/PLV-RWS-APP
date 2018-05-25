@@ -43,7 +43,7 @@
         form.boxcheck__form
           //-item
           .boxcheck__item(
-            v-for="shippingMethod in sale.user_shipping_methods" :key="shippingMethod.name")
+            v-for="shippingMethod in shippingMethods(sale)" :key="shippingMethod.name")
             input.form__input-radio(
               @change="shipping_method_id = shippingMethod.id"
               :id="sale.id + shippingMethod.slug",

@@ -18,7 +18,8 @@ const baseSale = {
   id: null,
   shipping_method_id: null,
   shipping_method: null,
-  shipping_cost: null
+  shipping_cost: null,
+  allow_chilexpress: null
 }
 
 // Propiedades que son hijos directos de cada producto.
