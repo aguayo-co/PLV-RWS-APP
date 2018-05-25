@@ -1,5 +1,3 @@
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'CompraSale',
   props: ['sale'],
@@ -38,6 +36,21 @@ export default {
   methods: {
     removeProduct (product) {
       this.$store.dispatch('cart/removeProduct', product)
+    },
+    shippingMethods (sale) {
+      const filteredShippingMethods = []
+      const shippingMethods = sale.user_shipping_methods
+      Object.keys(shippingMethods).forEach(function (key) {
+        const shippingMethod = shippingMethods[key]
+
+        // Skip Chilexpress if sale does not allow it.
+        if (shippingMethod.slug.includes('chilexpress') && !sale.allow_chilexpress) {
+          return
+        }
+
+        filteredShippingMethods.push(shippingMethod)
+      })
+      return filteredShippingMethods
     }
   }
 }

@@ -10,6 +10,7 @@ export default {
   props: ['order_id'],
   data () {
     return {
+      shoppingCartStep: null,
       order: null
     }
   },

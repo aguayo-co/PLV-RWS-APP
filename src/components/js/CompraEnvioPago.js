@@ -41,6 +41,7 @@ export default {
     AddressList,
     CompraSale
   },
+  props: ['shoppingCartStep'],
   data () {
     return {
       userDataTimeout: null,
