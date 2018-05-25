@@ -228,8 +228,8 @@
                   v-show='toggleColors.first')
                   ul.toggle-select__list
                     li.toggle-select__item(
-                      v-for='color in colors',
-                      @click='chooseColor(color.id, 1)')
+                      v-for='(color, index) in colors',
+                      @click='chooseColor(index, 0)')
                       span.color-circle(
                         :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
@@ -246,8 +246,8 @@
                   v-show='toggleColors.second')
                   ul.toggle-select__list
                     li.toggle-select__item(
-                      v-for='color in colors',
-                      @click='chooseColor(color.id, 2)')
+                      v-for='(color, index) in colors',
+                      @click='chooseColor(index, 1)')
                       span.color-circle(
                         :style='{ backgroundColor: color.hex_code }')
                       span {{ color.name }}
@@ -595,8 +595,8 @@ export default {
     },
     chooseColor: function (colorId, colorPosition) {
       this.errorLog.color = undefined
-      this.product.color[colorPosition - 1] = this.colors[colorId - 1].name
-      this.product.color_ids[colorPosition - 1] = colorId
+      this.product.color[colorPosition] = this.colors[colorId].name
+      this.product.color_ids[colorPosition] = colorId
     },
     noneColor: function (colorPosition) {
       this.product.color[colorPosition - 1] = null
