@@ -1,3 +1,5 @@
+import MultiSelect from 'vue-multiselect'
+
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
 // de cada uno.
@@ -5,8 +7,6 @@ const editableProps = {
   number: null,
   street: null,
   additional: null,
-  region: null,
-  province: null,
   commune: null
 }
 
@@ -26,8 +26,6 @@ function createComputedProps (props) {
         return this.newAddressData[key] !== null ? this.newAddressData[key] : this.address[key]
       },
       set: function (value) {
-        // Dispara cambio en el campo. Con esto los hijos son cambiados a valor vacío.
-        this.changed(key)
         this.newAddressData[key] = value
       }
     }
@@ -36,43 +34,23 @@ function createComputedProps (props) {
 }
 
 export default {
-  props: ['address', 'regionsList'],
+  props: ['address', 'multiSelectOptions'],
+  components: { MultiSelect },
   data () {
     return {
       newAddressData: {...editableProps},
-      errorLog: {...editableProps}
+      errorLog: {...editableProps},
+      value: []
     }
   },
   computed: {
-    ...createComputedProps(editableProps),
-    regions: function () {
-      return Object.keys(this.regionsList)
-    },
-    provinces: function () {
-      const region = this.new_region
-      const provinces = this.$getNestedObject(this.regionsList, [region, 'children'])
-      if (provinces) {
-        return Object.keys(provinces)
-      }
-    },
-    communes: function () {
-      const region = this.new_region
-      const province = this.new_province
-      const communes = this.$getNestedObject(this.regionsList, [region, 'children', province, 'children'])
-      if (communes) {
-        return Object.keys(communes)
-      }
-    }
+    ...createComputedProps(editableProps)
   },
   methods: {
-    // Asegura que el campo se considere vacío cuando le padre cambia.
-    changed (field) {
-      if (field === 'region') {
-        this.new_province = false
-      }
-      if (field === 'province') {
-        this.new_commune = false
-      }
+    hasErrors () {
+      return this.errorLog.every((item) => {
+        return item.length !== 0
+      })
     },
     close () {
       this.errorLog = {...editableProps}
@@ -85,7 +63,21 @@ export default {
       }
       this.$store.dispatch('user/deleteAddress', data)
     },
-    updateAddress () {
+    updateAddress (event) {
+      this.errorLog = {}
+      if (!this.newAddressData.street) this.errorLog.street = 'Debes especificar una calle'
+      if (!this.newAddressData.number) this.errorLog.number = 'Debes especificar un número'
+      if (!this.newAddressData.commune) this.errorLog.commune = 'Debes especificar una comuna'
+
+      if (this.hasErrors) {
+        return
+      }
+
+      const buttons = event.target.querySelectorAll('button')
+      buttons.forEach((button) => {
+        button.disabled = true
+      })
+
       let data = {
         id: this.address.id
       }
@@ -104,6 +96,10 @@ export default {
         this.close()
       }).catch((e) => {
         this.$handleApiErrors(e, Object.keys(editableProps), this.errorLog)
+
+        buttons.forEach((button) => {
+          button.disabled = true
+        })
       })
     }
   }
