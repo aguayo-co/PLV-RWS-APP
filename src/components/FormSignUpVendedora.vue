@@ -158,7 +158,7 @@ export default {
           last_name: this.newUser.apellidos,
           email: this.newUser.email,
           password: this.newUser.password,
-          picture: this.newUser.pictureURL
+          picture: this.newUser.pictureBlob
         }
         const modal = {
           name: 'ModalMessage',
@@ -233,7 +233,9 @@ export default {
     },
     handlePicture: function () {
       if (this.newUser.picture.hasImage()) {
-        this.newUser.pictureURL = this.newUser.picture.generateDataUrl()
+        this.newUser.picture.generateBlob((blob) => {
+          this.newUser.pictureBlob = blob
+        })
         this.toggleImageDelete = true
       }
     },
