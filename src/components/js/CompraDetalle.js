@@ -6,7 +6,6 @@ import CompraPayU from '@/components/CompraPayU'
 // Con esto se crean las propiedades computables
 // de cada uno.
 const editableProps = {
-  phone: null,
   coupon_code: null
 }
 
@@ -59,6 +58,7 @@ export default {
       'coupon_discount',
       'coupon_code',
       'gateway',
+      'shipping_cost',
       'sales'
     ]),
     ...createComputedProps(editableProps),

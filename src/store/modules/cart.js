@@ -10,6 +10,7 @@ const baseCart = {
   status: null,
   used_credits: null,
   shipping_information: null,
+  shipping_cost: null,
   coupon_discount: null
 }
 

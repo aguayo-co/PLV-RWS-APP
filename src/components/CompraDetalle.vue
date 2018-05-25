@@ -8,6 +8,8 @@
         dl.data-table
           dt.data-table__item Total de la compra
           dd.data-table__value ${{ total | currency }}
+          dt.data-table__item Costo de envío
+          dd.data-table__value ${{ shipping_cost | currency }}
           //- Estado sin creditos
           dt.data-table__item Créditos
           dd.data-table__value(
