@@ -9,16 +9,16 @@
           dt.data-table__item Total de la compra
           dd.data-table__value ${{ total | currency }}
           dt.data-table__item Costo de envío
-          dd.data-table__value ${{ shipping_cost | currency }}
+          dd.data-table__value {{ shipping_cost ? '$' : '-' }}{{ shipping_cost | currency }}
           //- Estado sin creditos
           dt.data-table__item Créditos
           dd.data-table__value(
             :class="{txt_brand: used_credits}"
-          ) {{ used_credits ? '-' : '' }}${{ used_credits | currency }}
+          ) -{{ used_credits ? '$' : '' }}{{ used_credits | currency }}
           dt.data-table__item Código de descuento
           dd.data-table__value(
             :class="{txt_brand: coupon_discount}"
-          ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount | currency }}
+          ) -{{ coupon_discount ? '$' : '' }}{{ coupon_discount | currency }}
         dl.data-total
           dt.data-total__label Total de la orden:
           dd.data-total__value ${{ due | currency }}
@@ -53,6 +53,9 @@
         .form__row
           button.btn.btn_solid.btn_block(
             @click.prevent="nextStep") Continuar
+          a(
+            v-if="shoppingCartStep"
+            @click.prevent="$emit('setShoppingCartStep', null)") Volver
           compraPayU(v-if="payUPayment", :payment-data="payUPayment")
         //- End botón continuar
 </template>
