@@ -138,6 +138,7 @@ export default {
     removeImage: function (index) {
       this.toggleImageDelete = false
       this.picture.remove()
+      this.pictureBlob = null
     },
     updateUser: function (event) {
       let data = {
@@ -146,7 +147,7 @@ export default {
       }
       let action = 'user/update'
 
-      if (this.picture.hasImage()) {
+      if (this.pictureBlob) {
         data.picture = this.pictureBlob
         action = 'user/updateWithFile'
       }

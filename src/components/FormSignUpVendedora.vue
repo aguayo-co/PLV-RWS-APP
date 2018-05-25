@@ -242,6 +242,7 @@ export default {
     removeImage: function (index) {
       this.toggleImageDelete = false
       this.newUser.picture.remove()
+      this.newUser.pictureBlob = null
     },
     migrateCart: function () {
       let errors = 0
