@@ -107,7 +107,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import PageHeaderBrand from '@/components/PageHeader-brand'
 import PageHeaderMenu from '@/components/PageHeader-menu'
 import PageHeaderSearch from '@/components/PageHeader-search'
