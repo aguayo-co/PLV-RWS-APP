@@ -1,12 +1,15 @@
 import UserVenta from '@/components/UserVenta'
+import Pager from '@/Mixin/Pager'
 
 export default {
   name: 'UserTusVentas',
   components: {
-    UserVenta
+    UserVenta,
+    Pager
   },
   data: () => {
     return {
+      pagination: null,
       sales: {},
       listActive: false,
       item: null,
@@ -43,20 +46,26 @@ export default {
         'filter[status]': '20,92'
       }
       this.$axiosAuth.get('/api/sales', {params}).then(response => {
-        Object.keys(response.data.data).forEach(key => {
-          this.setSale(response.data.data[key])
-        })
+        this.pagination = response.data
       })
     },
     setSale (sale) {
       this.$set(this.sales, sale.id, sale)
     },
-    openList: function () {
+    openList () {
       this.listActive = !this.listActive
     },
-    changeOrder: function (listOptionId) {
+    changeOrder (listOptionId) {
       this.listOptions.selected = listOptionId
       this.listActive = false
+    }
+  },
+  watch: {
+    pagination (pagination, oldPagination) {
+      this.sales = {}
+      Object.keys(pagination.data).forEach(key => {
+        this.setSale(pagination.data[key])
+      })
     }
   }
 }
