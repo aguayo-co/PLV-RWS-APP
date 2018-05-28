@@ -12,7 +12,7 @@
         span.menu-ico__line
       //- brand
       router-link.page-brand(
-        to='/home',
+        :to="{ name: 'home' }",
         title='Ir a la página de inicio')
         PageHeaderBrand
     //- Menu
