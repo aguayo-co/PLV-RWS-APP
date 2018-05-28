@@ -2,10 +2,14 @@
 .section_filter
   //- filter Mobile
   FilterMobile(
-    v-if="mqMobile")
+    @filterChange="computeFilters",
+    :filter="filterValues",
+    v-if="mqMobile",
+    @clearFilters="clearFilters")
   //- filter desktop
   FilterDesk(
     @filterChange="computeFilters",
+    @setFilters="setFilters(filterObject)",
     :filter="filterValues",
     v-if="mqDesk",
     :compact="compact")
@@ -193,6 +197,18 @@ export default {
           this.page = 1
         })
     },
+    clearFilters: function () {
+      this.filterValues = {
+        category: [],
+        size: [],
+        brand: [],
+        color: [],
+        condition: [],
+        region: [],
+        price: null,
+        order: null
+      }
+    },
     updateProductList: function () {
       productAPI.getProducts(this.page, this.items, this.filter)
         .then(response => {
@@ -207,6 +223,9 @@ export default {
     prevPage: function () {
       if (this.page > 1) this.page -= 1
       this.updateProductList()
+    },
+    setFilters: function (filterObject) {
+      this.filterValues = {...filterObject}
     }
   },
   beforeMount: function () {
