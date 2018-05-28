@@ -5,10 +5,18 @@ import transactionAPI from '@/api/creditsTransaction'
 export default {
   name: 'UserCreditos',
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    pendingTransferTotal () {
+      let total = 0
+      this.transactionsPendingTransfer.forEach((transaction) => {
+        total += transaction.amount
+      })
+      return -total
+    }
   },
   data () {
     return {
+      transactionsPendingTransfer: [],
       transactions: [],
       alertConvert: false,
       alertInfo: false
@@ -16,6 +24,7 @@ export default {
   },
   created: function () {
     this.loadTransactions()
+    this.loadPendingTransfer()
   },
   methods: {
     getTitle (transaction) {
@@ -45,6 +54,11 @@ export default {
     loadTransactions () {
       transactionAPI.all(this.user.id).then((response) => {
         this.transactions = response.data.data
+      })
+    },
+    loadPendingTransfer () {
+      transactionAPI.pending(this.user.id).then((response) => {
+        this.transactionsPendingTransfer = response.data.data
       })
     },
     convertMoney () {

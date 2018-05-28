@@ -9,5 +9,12 @@ export default {
       page
     }
     return Vue.axiosAuth.get('/api/credits_transactions', {params})
+  },
+  pending (userId) {
+    const params = {
+      items: 1000,
+      'filter[transfer_status]': 0
+    }
+    return Vue.axiosAuth.get('/api/credits_transactions', {params})
   }
 }

@@ -37,7 +37,7 @@ section.single
       .dividers__item
         .dividers__grid
           p.dividers__txt Créditos ya solicitados para ser transferidos
-          p.dividers__value 0
+          p.dividers__value ${{ pendingTransferTotal|currency }}
     .alert(v-if="user.credits <= 4000")
       p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener más de $4.000 en créditos.
     h3.subhead Detalle de Transacciones
