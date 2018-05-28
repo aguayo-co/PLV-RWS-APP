@@ -233,9 +233,6 @@ export default {
     myActive: function (e) {
       this.isActive = e
     },
-    NotActive: function (e) {
-      this.isActive = undefined
-    },
     tabActive1: function () {
       this.tabsActive1 = true
       this.tabsActive2 = false

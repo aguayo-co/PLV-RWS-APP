@@ -8,21 +8,23 @@
         dl.data-table
           dt.data-table__item Total de la compra
           dd.data-table__value ${{ total | currency }}
-          //estado sin creditos
+          dt.data-table__item Costo de envío
+          dd.data-table__value {{ shipping_cost ? '$' : '-' }}{{ shipping_cost | currency }}
+          //- Estado sin creditos
           dt.data-table__item Créditos
           dd.data-table__value(
             :class="{txt_brand: used_credits}"
-          ) {{ used_credits ? '-' : '' }}${{ used_credits | currency }}
+          ) -{{ used_credits ? '$' : '' }}{{ used_credits | currency }}
           dt.data-table__item Código de descuento
           dd.data-table__value(
             :class="{txt_brand: coupon_discount}"
-          ) {{ coupon_discount ? '-' : '' }}${{ coupon_discount | currency }}
+          ) -{{ coupon_discount ? '$' : '' }}{{ coupon_discount | currency }}
         dl.data-total
           dt.data-total__label Total de la orden:
           dd.data-total__value ${{ due | currency }}
-        //- end List Detalle de tu compra
+        //- End List Detalle de tu compra
 
-        //-código de descuento
+        //- Código de descuento
             Estado inicial
         form.form.data-form(
           @submit.prevent="updateCouponCode")
@@ -45,14 +47,17 @@
               button.btn.combo__btn(
                 :disabled="disabled.coupon_code"
                 v-show="coupon_code && !new_coupon_code") Eliminar
-        //- end código de descuento
+        //- End código de descuento
 
-        //- btn continuar
+        //- Botón continuar
         .form__row
           button.btn.btn_solid.btn_block(
             @click.prevent="nextStep") Continuar
+          a(
+            v-if="shoppingCartStep"
+            @click.prevent="$emit('setShoppingCartStep', null)") Volver
           compraPayU(v-if="payUPayment", :payment-data="payUPayment")
-        //- end btn continuar
+        //- End botón continuar
 </template>
 
 <script src="./js/CompraDetalle.js"></script>

@@ -76,17 +76,19 @@
         name="numeroItems",
         v-model='items',
         @change='updateProductList')
-          option(value="10") 10
-          option(value="20") 20
-          option(value="30") 30
-          option(value="50") 50
-    li.pagination__item
+          option(value="9") 9
+          option(value="18") 18
+          option(value="27") 27
+          option(value="45") 45
+    li.pagination__item(
+      v-if='page > lastPage')
       a.pagination__arrow.pagination__arrow_prev.i-back(
         @click.prevent='prevPage'
         href="#")
     li.pagination__item {{ page }}
-    li.pagination__item.pagination__item_txt de 3
-    li.pagination__item
+    li.pagination__item.pagination__item_txt de {{ lastPage }}
+    li.pagination__item(
+        v-if='page < lastPage')
       a.pagination__arrow.pagination__arrow_next.i-next(
         @click.prevent='nextPage'
         href="#")
@@ -119,11 +121,10 @@ export default {
     return {
       isActive: undefined,
       products: [],
-      items: 12,
+      items: 18,
       page: 1,
       lastPage: null,
       filter: {},
-      totalPages: null,
       filterValues: {
         category: [],
         size: [],

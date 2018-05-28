@@ -2,7 +2,7 @@
   //-TO-DO: efect transition
   form.form_user.user-data__form(
     id="form-user-address-edit"
-    v-on:submit.prevent='updateAddress')
+    v-on:submit.prevent='updateAddress($event)')
     fieldset.form__set
       legend.form__legend Editar Dirección
       .form__grid
@@ -12,15 +12,17 @@
           span.help(
             v-show="errorLog.street") {{ errorLog.street }}
           input.form__control(
+            @input="errorLog.street = null",
             :id="address.id + 'street'"
             v-model="new_street"
             type='text')
         .form__row
           label.form__label(
-            :for="address.id + 'address'") Número
+            :for="address.id + 'number'") Número
           span.help(
             v-show="errorLog.number") {{ errorLog.number }}
           input.form__control(
+            @input="errorLog.number = null",
             :id="address.id + 'number'"
             v-model="new_number"
             type='text')
@@ -28,48 +30,32 @@
       .form__grid
         .form__row
           label.form__label(
-            :for="address.id + 'address'") Adicional
+            :for="address.id + 'additional'") Adicional
           span.help(
             v-show="errorLog.additional") {{ errorLog.additional }}
           input.form__control(
+            @input="errorLog.aditional = null",
             :id="address.id + 'additional'"
             v-model="new_additional"
             type='text')
         .form__row
-          .form__hide
-            label.form__label(
-              :for="address.id + 'region'") Región
-            span.help(
-              v-show="errorLog.region") {{ errorLog.region }}
-            select.form__select(
-              :id="address.id + 'region'"
-              v-model="new_region")
-              option
-              option(
-                v-for="region in regions.sort()") {{ region }}
-      .form__grid
-        .form__row
-          .form__hide(v-if="new_region")
-            label.form__label(
-              :for="address.id  + 'province'") Ciudad
-            select.form__select(
-              v-model="new_province"
-              :id="address.id + 'province'")
-              option
-              option(
-                v-for="province in provinces.sort()") {{ province }}
-        .form__row
-          .form__hide(v-if="new_province")
-            label.form__label(
-              :for="address.id + 'commune'") Comuna
-            span.help(
-              v-show="errorLog.commune") {{ errorLog.commune }}
-            select.form__select(
-              :id="address.id + 'commune'"
-              v-model="new_commune")
-              option
-              option(
-                v-for="commune in communes.sort()") {{ commune }}
+          label.form__label(
+            :for="address.id + 'commune'") Comuna
+          span.help(
+            v-show="errorLog.commune") {{ errorLog.commune }}
+          MultiSelect(
+            :id="address.id + 'commune'"
+            @open="errorLog.commune = null",
+            v-model="new_commune",
+            :options="multiSelectOptions",
+            :multiple="false",
+            group-values="communes",
+            group-label="region",
+            :group-select="false",
+            placeholder="Escribe para buscar"
+          )
+            span(slot="noResult").
+              Ups, no encontramos ninguna comuna.
       .form__grid_reverse.form__row_away
         .form__row
           a.link_underline(

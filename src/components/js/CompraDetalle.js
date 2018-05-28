@@ -6,7 +6,6 @@ import CompraPayU from '@/components/CompraPayU'
 // Con esto se crean las propiedades computables
 // de cada uno.
 const editableProps = {
-  phone: null,
   coupon_code: null
 }
 
@@ -38,6 +37,7 @@ export default {
   components: {
     CompraPayU
   },
+  props: ['shoppingCartStep'],
   data () {
     return {
       payUPayment: null,
@@ -57,7 +57,9 @@ export default {
       'total',
       'coupon_discount',
       'coupon_code',
-      'gateway'
+      'gateway',
+      'shipping_cost',
+      'sales'
     ]),
     ...createComputedProps(editableProps),
     responseUrl () {
@@ -88,6 +90,39 @@ export default {
      * Continúa al siguiente paso de la compra.
      */
     nextStep () {
+      if (this.shoppingCartStep === null) {
+        this.continueToPaymentMethod()
+        return
+      }
+
+      if (this.shoppingCartStep === 'método') {
+        this.continueToPayment()
+      }
+    },
+    continueToPaymentMethod () {
+      let hasErrors = Object.keys(this.sales).some((saleId) => {
+        if (!this.sales[saleId].shipping_method_id) {
+          const modal = {
+            name: 'ModalMessage',
+            parameters: {
+              type: 'alert',
+              title: 'Ha habido un problema.',
+              body: 'No has seleccionado el método de envío de alguna vendedora.'
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
+          return true
+        }
+      })
+
+      if (hasErrors) {
+        return
+      }
+
+      this.$emit('setShoppingCartStep', 'método')
+    },
+    continueToPayment () {
+      // Este es el último paso.
       const gateway = this.gateway
       let request
       if (!gateway) {
@@ -102,20 +137,54 @@ export default {
         this.$store.dispatch('ui/showModal', modal)
         return
       }
-      if (gateway === 'pay_u') {
+
+      if (gateway === 'mercado_pago') {
+        request = this.setMercadoPagoPayment()
+      } else if (gateway === 'pay_u') {
         request = this.setPayUPayment()
-      }
-      if (gateway === 'transfer') {
+      } else if (gateway === 'transfer') {
         request = this.setTransferPayment()
       }
+
       request.catch((e) => {
         this.$handleApiErrors(e)
+      })
+    },
+    /**
+     * Envía al usuario a MercadoPago.
+     */
+    setMercadoPagoPayment () {
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'positive',
+          title: 'Te estamos enviando a MercadoPago.',
+          body: 'Por favor no refresques esta página.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
+      let data = {
+        'back_urls[success]': this.responseUrl,
+        'back_urls[pending]': this.responseUrl,
+        'back_urls[failure]': this.responseUrl
+      }
+      return shoppingCartAPI.getPayment('mercado_pago', data).then((response) => {
+        window.location = response.data.request_data
       })
     },
     /**
      * Envía al usuario a PayU.
      */
     setPayUPayment () {
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'positive',
+          title: 'Te estamos enviando a PayU.',
+          body: 'Por favor no refresques esta página.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
       return shoppingCartAPI.getPayment('pay_u').then((response) => {
         this.payUPayment = {
           ...response.data.request_data,
@@ -127,6 +196,7 @@ export default {
      * Genera pago de transferencia.
      */
     setTransferPayment () {
+      this.$emit('setShoppingCartStep', null)
       return shoppingCartAPI.getPayment('transfer').then((response) => {
         this.$router.push({name: 'compra', params: { order_id: this.id }})
       })

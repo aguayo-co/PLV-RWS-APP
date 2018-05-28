@@ -98,7 +98,7 @@ export default {
       picture: {
         hasImage: function () { return false }
       },
-      pictureURL: null,
+      pictureBlob: null,
       toggleImageDelete: false,
       about: null,
       phone: null,
@@ -129,64 +129,46 @@ export default {
     },
     handlePicture: function () {
       if (this.picture.hasImage()) {
-        this.pictureURL = this.picture.generateDataUrl()
+        this.picture.generateBlob((blob) => {
+          this.pictureBlob = blob
+        })
         this.toggleImageDelete = true
       }
     },
     removeImage: function (index) {
       this.toggleImageDelete = false
       this.picture.remove()
+      this.pictureBlob = null
     },
     updateUser: function (event) {
-      if (this.picture.hasImage()) {
-        let data = {
-          about: this.about,
-          phone: this.phone,
-          picture: this.pictureURL
-        }
-        if (this.user.about) delete data.about
-        if (this.user.phone) delete data.phone
-        this.$store.dispatch('user/updateWithFile', data)
-          .then((response) => {
-          })
-          .catch((e) => {
-            console.log(e)
-            const modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Parece que ocurrió un error',
-                body: Object.values(e.response.data.errors)[0]
-              }
-            }
-            this.$store.dispatch('ui/showModal', modal)
-            event.target.disabled = false
-          })
-      } else {
-        let data = {
-          about: this.about,
-          phone: this.phone
-        }
-        if (this.user.about) delete data.about
-        if (this.user.phone) delete data.phone
-        this.$store.dispatch('user/update', data)
-          .then((response) => {
-            console.log(response)
-          })
-          .catch((e) => {
-            console.log(e)
-            const modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Parece que ocurrió un error',
-                body: Object.values(e.response.data.errors)[0]
-              }
-            }
-            this.$store.dispatch('ui/showModal', modal)
-            event.target.disabled = false
-          })
+      let data = {
+        about: this.about,
+        phone: this.phone
       }
+      let action = 'user/update'
+
+      if (this.pictureBlob) {
+        data.picture = this.pictureBlob
+        action = 'user/updateWithFile'
+      }
+
+      if (this.user.about) delete data.about
+      if (this.user.phone) delete data.phone
+      this.$store.dispatch(action, data)
+        .then((response) => {
+        })
+        .catch((e) => {
+          const modal = {
+            name: 'ModalMessage',
+            parameters: {
+              type: 'alert',
+              title: '¡Ups! Parece que ocurrió un error',
+              body: Object.values(e.response.data.errors)[0]
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
+          event.target.disabled = false
+        })
     }
   }
 }

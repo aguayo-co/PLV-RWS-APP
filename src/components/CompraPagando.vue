@@ -16,7 +16,7 @@
       form.form.form_file(
         @submit.prevent="uploadReceipt")
         .notify__body.notify__body_center
-          p.notify__txt Para finalizar tu compra, ingresa a la página de tu banco y haz la transferencia de $25.000 a la siguiente cuenta:
+          p.notify__txt Para finalizar tu compra, ingresa a la página de tu banco y haz la transferencia de ${{order.due | currency}} a la siguiente cuenta:
           .notify__txt.notify__txt_bg
             p <strong>Banco:</strong> BCI (Banco de crédito e inversiones)
             p <strong>Nº Cuenta Corriente:</strong> 61649236

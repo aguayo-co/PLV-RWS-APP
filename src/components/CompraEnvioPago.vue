@@ -1,7 +1,7 @@
 <template lang="pug">
 .list__content
   //-Compra: Envío y pago: 1a Cliente Registrado, logueado
-  section.list_step
+  section.list_step(v-if="shoppingCartStep === null")
     h2.subhead Selecciona tu método de envío
     //- metodos de envío
     CompraSale(
@@ -42,6 +42,7 @@
                 title="Editar Teléfono") <small class="hide"> Editar </small>
 
     //-créditos
+  section.list_step(v-if="shoppingCartStep === 'método'")
     h3.subhead(v-show="credits") ¿Quieres usar tus créditos en esta compra?
     .pay-off(v-show="credits")
       .pay-off__item
@@ -66,6 +67,18 @@
     .boxcheck-wrap
       .boxcheck
         form.boxcheck__grid
+          //-item 1
+          .boxcheck__card
+            input.form__input-radio(
+              id="MercadoPago",
+              type="radio",
+              value="mercado_pago",
+              v-model="gateway")
+            label.form__label.form__label_radio(
+              for="MercadoPago")
+              span.boxcheck__box
+                img(src="/static/img/logo-mercadopago.png", alt="Pagar por medio de MercadoPago")
+          //-end item 1
           //-item 2
           .boxcheck__card
             input.form__input-radio(

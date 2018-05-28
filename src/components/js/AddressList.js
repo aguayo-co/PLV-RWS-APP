@@ -1,19 +1,19 @@
 import { mapState } from 'vuex'
 import AddressEdit from '@/components/AddressEdit'
 import userAddressesAPI from '@/api/userAddresses'
+import MultiSelect from 'vue-multiselect'
 
 const addressFields = {
   number: null,
   street: null,
   additional: null,
-  region: null,
-  province: null,
   commune: null
 }
 
 export default {
   components: {
-    AddressEdit
+    AddressEdit,
+    MultiSelect
   },
   props: {
     inShoppingCart: {
@@ -27,7 +27,7 @@ export default {
       regionsList: {},
       newAddress: false,
       newAddressData: {...addressFields},
-      errorLog: {...addressFields, additional: undefined }
+      errorLog: {...addressFields}
     }
   },
   computed: {
@@ -46,36 +46,46 @@ export default {
         this.setForOrder(this.addresses[newId])
       }
     },
-    regions () {
-      return Object.keys(this.regionsList)
-    },
-    provinces () {
-      const region = this.newAddressData.region
-      const provinces = this.$getNestedObject(this.regionsList, [region, 'children'])
-      if (provinces) {
-        return Object.keys(provinces)
-      }
-    },
-    communes () {
-      const region = this.newAddressData.region
-      const province = this.newAddressData.province
-      const communes = this.$getNestedObject(this.regionsList, [region, 'children', province, 'children'])
-      if (communes) {
-        return Object.keys(communes)
-      }
+    multiSelectOptions: function () {
+      const options = []
+      Object.keys(this.regionsList).forEach((regionKey) => {
+        const region = this.regionsList[regionKey]
+        const provinces = region.children
+
+        const option = {
+          region: region.name,
+          communes: []
+        }
+
+        Object.keys(provinces).forEach((provinceKey) => {
+          const province = provinces[provinceKey]
+          const communes = province.children
+
+          Object.keys(communes).forEach((communeKey) => {
+            const commune = communes[communeKey]
+            option.communes.push(commune.name)
+          })
+        })
+
+        options.push(option)
+      })
+      return options
     }
   },
   methods: {
     IsActive (e) {
+      this.toggleNewAddress(false)
       this.isActive = e
     },
-    NotActive () {
-      this.isActive = ''
-    },
-    toggleNewAddress (prop) {
+    toggleNewAddress (open = null) {
+      this.isActive = null
       this.errorLog = {...addressFields}
       this.newAddressData = {...addressFields}
-      this.newAddress = !this.newAddress
+      if (open === null) {
+        this.newAddress = !this.newAddress
+        return
+      }
+      this.newAddress = open
     },
     setFavorite (address) {
       const data = {
@@ -95,8 +105,6 @@ export default {
       this.errorLog = {}
       if (!this.newAddressData.street) this.errorLog.street = 'Debes especificar una calle'
       if (!this.newAddressData.number) this.errorLog.number = 'Debes especificar un número'
-      if (!this.newAddressData.region) this.errorLog.region = 'Debes especificar una región'
-      if (!this.newAddressData.province) this.errorLog.province = 'Debes especificar una provincia'
       if (!this.newAddressData.commune) this.errorLog.commune = 'Debes especificar una comuna'
 
       if (Object.keys(this.errorLog).length === 0) {
@@ -111,6 +119,7 @@ export default {
         }).catch((e) => {
           // Si hay errores, mostrarlos.
           this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
+          event.target.disabled = false
         })
       } else {
         event.target.disabled = false

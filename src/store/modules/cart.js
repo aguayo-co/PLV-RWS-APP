@@ -10,6 +10,7 @@ const baseCart = {
   status: null,
   used_credits: null,
   shipping_information: null,
+  shipping_cost: null,
   coupon_discount: null
 }
 
@@ -18,7 +19,8 @@ const baseSale = {
   id: null,
   shipping_method_id: null,
   shipping_method: null,
-  shipping_cost: null
+  shipping_cost: null,
+  allow_chilexpress: null
 }
 
 // Propiedades que son hijos directos de cada producto.

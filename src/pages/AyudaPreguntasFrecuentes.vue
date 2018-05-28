@@ -13,7 +13,7 @@
       header.blog__header
         h1.blog__title.blog_center Preguntas Frecuentes
       .blog__article
-        .blog_center.i-talk.blog_center_ico
+        .blog_center.i-help.blog_center_ico
           h2.blog__subtitle Preguntas Generales
           p.blog__kicker.blog__kicker_center Cosas básicas que debes saber para usar Prilov
         dl.panel

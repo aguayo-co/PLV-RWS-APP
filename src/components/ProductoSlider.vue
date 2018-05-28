@@ -115,9 +115,6 @@ export default {
     myActive: function (e) {
       this.isActive = e
     },
-    NotActive: function (e) {
-      this.isActive = undefined
-    },
     updateProductList: function () {
       let filterQueryObject = {}
       filterQueryObject.status = '10,19'
