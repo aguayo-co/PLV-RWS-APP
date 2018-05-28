@@ -5,12 +5,18 @@
   .user-data__list {
     padding-bottom: 18px;
   }
+  .user-data__list_center {
+    padding-right: 0;
+  }
   .user-data__value {
     min-width: inherit; 
     @include font-rem(22px);
     &:before {
       @include font-rem(24px);
     }
+  }
+  .alert-msg {
+    padding-top: 12px;
   }
 }
 
