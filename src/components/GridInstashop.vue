@@ -178,9 +178,6 @@ export default {
     myActive: function (e) {
       this.isActive = e
     },
-    NotActive: function (e) {
-      this.isActive = undefined
-    },
     loadMoreProducts: async function (e) {
       this.page += 1
       this.loading = true

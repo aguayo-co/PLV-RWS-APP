@@ -71,11 +71,11 @@ export default {
   methods: {
     follow: function () {
       const data = {
+        id: this.userId,
         following_add: [this.$route.params.userId]
       }
-      usersAPI.updateFollowing(this.userId, data)
+      usersAPI.update(data)
         .then(response => {
-          console.log('ok')
         })
     }
   }

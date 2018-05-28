@@ -2,7 +2,7 @@
 > Prilov.com: Compra, Usa, Vende
 
 # Documentación API
-> URL: https://prilov.aguayo.co/storage/api.html
+> URL: En el repositorio de Laravel.
 
 ## Build Setup
 > Single page Application

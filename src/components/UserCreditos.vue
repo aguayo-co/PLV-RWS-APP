@@ -37,59 +37,22 @@ section.single
       .dividers__item
         .dividers__grid
           p.dividers__txt Créditos ya solicitados para ser transferidos
-          p.dividers__value 0
+          p.dividers__value ${{ pendingTransferTotal|currency }}
     .alert(v-if="user.credits <= 4000")
       p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener más de $4.000 en créditos.
     h3.subhead Detalle de Transacciones
     //- Lista de transacciones
-    ul.collapsible
+    ul.collapsible(v-for="transaction in transactions")
       li.collapsible__item
         .collapsible__header.i-down
           .collapsible__child
-            p.collapsible__title Transferencia de créditos de Prilov 1.0
-            p.collapsible__label ········5678
+            p.collapsible__title(v-html="getTitle(transaction)")
+            p.collapsible__label -
           .collapsible__child
             .collapsible__subchild
-              p.collapsible__value.txt_danger $19.800
+              p.collapsible__value.txt_danger ${{ transaction.amount|currency }}
               time.collapsible__data(
-                datetime="2017-08-22") 22 de agosto, 2017
+                :datetime="transaction.created_at") {{ transaction.created_at|date }}
 </template>
 
-<script>
-import { mapState } from 'vuex'
-import userAPI from '@/api/user'
-
-export default {
-  name: 'UserCreditos',
-  computed: {
-    ...mapState(['user'])
-  },
-  data () {
-    return {
-      alertConvert: false,
-      alertInfo: false
-    }
-  },
-  methods: {
-    convertMoney: function () {
-      this.alertConvert = !this.alertConvert
-    },
-    confirmConvertMoney: function () {
-      const payload = {
-        user_id: this.user.id,
-        amount: -this.user.credits,
-        transfer_status: 0,
-        extra: {
-          'reason': 'Solicitud de transferencia de créditos a tu cuenta bancaria'
-        }
-      }
-      userAPI.creditsWidthDrawal(payload)
-        .then(response => {
-          this.$store.dispatch('user/loadUser', response.data)
-          this.alertConvert = !this.alertConvert
-          this.alertInfo = !this.alertInfo
-        })
-    }
-  }
-}
-</script>
+<script src="./js/UserCreditos.js"></script>
