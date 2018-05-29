@@ -13,7 +13,7 @@ export default Base.merge({
       return this.$getNestedObject(this.sale, ['shipment_details', 'tracking_codes', 0])
     }
   },
-  method: {
+  methods: {
     askForShippingDetails () {
       this.sale.status = 30
     }
