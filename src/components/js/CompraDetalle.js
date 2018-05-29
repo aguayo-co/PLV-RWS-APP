@@ -157,7 +157,7 @@ export default {
       const modal = {
         name: 'ModalMessage',
         parameters: {
-          type: 'positive',
+          type: 'preload',
           title: 'Te estamos enviando a MercadoPago.',
           body: 'Por favor no refresques esta página.'
         }
@@ -179,7 +179,7 @@ export default {
       const modal = {
         name: 'ModalMessage',
         parameters: {
-          type: 'positive',
+          type: 'preload',
           title: 'Te estamos enviando a PayU.',
           body: 'Por favor no refresques esta página.'
         }
