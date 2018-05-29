@@ -5109,7 +5109,9 @@ body {
   .user-item_gutter {
     margin-right: 30px; }
   .user-avatar_cover {
-    margin-top: -50%; } }
+    margin-top: -50%; }
+  .user-data__rating {
+    width: 33%; } }
 
 @media only screen and (min-width: 1024px) {
   .user-item_gutter {
