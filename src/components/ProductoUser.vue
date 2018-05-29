@@ -30,19 +30,22 @@
                   router-link.i-email(
                     :to="{ name: 'privateMessage', params: { recipientId: userData.id }}",
                     title='Enviar mensaje privado') Enviar mensaje privado
-            .user-data__rating
+            .user-data__rating(v-if="ratings.length > 0")
               .chat__line
                 span.chat__inner
                   .chat__bubble-main
-                    figure.chat-bubble__avatar.avatar_60
-                      img.chat-bubble__img(
-                        src="static/img/demo/user-avatar.jpg",
-                        alt="Avatar")
+                    img.chat-bubble__avatar.avatar_60(
+                      :src="rating.buyer.picture",
+                      :alt="rating.buyer.first_name")
                     .chat-bubble__item
-                      .chat-bubble__title.i-like Camila Cifuentes
+                      .chat-bubble__title.i-like {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
                       p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
 </template>
+
 <script>
+
+import ratingsAPI from '@/api/rating'
+
 export default {
   name: 'ProductoUser',
   props: ['user'],
@@ -50,6 +53,21 @@ export default {
     userData () {
       return this.user
     }
+  },
+  data () {
+    return {
+      ratings: [],
+      rating: {}
+    }
+  },
+  mounted: function () {
+    ratingsAPI.getBySeller(this.user.id)
+      .then(response => {
+        this.ratings = response.data.data
+        this.rating = this.ratings[this.ratings.length - 1]
+        console.log(this.userData.id)
+        console.log(this.rating)
+      })
   }
 }
 </script>
