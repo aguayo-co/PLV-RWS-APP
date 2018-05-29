@@ -53,6 +53,7 @@ section.single
               p.collapsible__value.txt_danger ${{ transaction.amount|currency }}
               time.collapsible__data(
                 :datetime="transaction.created_at") {{ transaction.created_at|date }}
+    Pager(v-model="pagination", :auth="true")
 </template>
 
 <script src="./js/UserCreditos.js"></script>
