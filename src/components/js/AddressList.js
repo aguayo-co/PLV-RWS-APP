@@ -43,7 +43,7 @@ export default {
         return this.$getNestedObject(this.address, ['id'])
       },
       set (newId) {
-        this.setForOrder(this.addresses[newId])
+        this.setForOrder(newId)
       }
     },
     multiSelectOptions: function () {
@@ -94,15 +94,15 @@ export default {
       }
       this.newAddress = open
     },
-    setFavorite (address) {
+    setFavorite (addressId) {
       const data = {
-        favorite_address_id: address.id
+        favorite_address_id: addressId
       }
       this.$store.dispatch('user/update', data)
     },
-    setForOrder (address) {
+    setForOrder (addressId) {
       const data = {
-        address_id: address.id
+        address_id: addressId
       }
       this.$store.dispatch('cart/update', data)
     },
@@ -124,8 +124,7 @@ export default {
       this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
         if (this.inShoppingCart) {
           // Usa la dirección recién creada en la orden.
-          this.setForOrder(response.data)
-          this.setFavorite(response.data)
+          this.setForOrder(response.data.id)
         }
         this.toggleNewAddress()
       }).catch((e) => {

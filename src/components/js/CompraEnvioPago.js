@@ -61,7 +61,8 @@ export default {
       'cart.gateway'
     ]),
     ...mapState('user', [
-      'credits'
+      'credits',
+      'favorite_address_id'
     ]),
     ...createComputedProps(editableProps)
   },
@@ -105,6 +106,7 @@ export default {
         this.disabled.used_credits = false
       })
     },
+    // Si una dirección se actualiza, se usa cómo dirección de la orden.
     updateShippingInformation (address) {
       const data = {
         address_id: address.id
@@ -119,7 +121,7 @@ export default {
      *
      * Esto se eliminaría si se usa un botón para enviar el formulario.
      */
-    new_used_credits: function (newUsedCredits, oldUsedCredits) {
+    new_used_credits (newUsedCredits, oldUsedCredits) {
       window.clearTimeout(this.userDataTimeout)
       this.errorLog.used_credits = null
       // Si usa lo que ya había asignado, no hacer nada.
@@ -139,6 +141,14 @@ export default {
       }, 2000)
       // Actualiza due en el state.
       this.$store.commit('cart/setUsedCredits', newUsedCredits)
+    }
+  },
+  created () {
+    if (this.favorite_address_id) {
+      const data = {
+        address_id: this.favorite_address_id
+      }
+      this.$store.dispatch('cart/update', data)
     }
   }
 }
