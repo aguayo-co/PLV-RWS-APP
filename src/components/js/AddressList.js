@@ -73,6 +73,12 @@ export default {
     }
   },
   methods: {
+    isValid () {
+      const vue = this
+      return Object.keys(this.errorLog).every((key) => {
+        return !vue.errorLog[key]
+      })
+    },
     IsActive (e) {
       this.toggleNewAddress(false)
       this.isActive = e
@@ -81,6 +87,7 @@ export default {
       this.isActive = null
       this.errorLog = {...addressFields}
       this.newAddressData = {...addressFields}
+      // Si no tenemos una acción específica, cambia estado actual.
       if (open === null) {
         this.newAddress = !this.newAddress
         return
@@ -100,30 +107,35 @@ export default {
       this.$store.dispatch('cart/update', data)
     },
     createAddress (event) {
-      event.target.disabled = true
-
-      this.errorLog = {}
       if (!this.newAddressData.street) this.errorLog.street = 'Debes especificar una calle'
       if (!this.newAddressData.number) this.errorLog.number = 'Debes especificar un número'
       if (!this.newAddressData.commune) this.errorLog.commune = 'Debes especificar una comuna'
 
-      if (Object.keys(this.errorLog).length === 0) {
-        // Para poder usarlo dentro de los forEach().
-        this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
-          if (this.inShoppingCart) {
-            // Usa la dirección recién creada en la orden.
-            this.setForOrder(response.data)
-            this.setFavorite(response.data)
-          }
-          this.toggleNewAddress()
-        }).catch((e) => {
-          // Si hay errores, mostrarlos.
-          this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
-          event.target.disabled = false
-        })
-      } else {
-        event.target.disabled = false
+      if (!this.isValid()) {
+        return
       }
+
+      const buttons = event.target.querySelectorAll('button')
+      buttons.forEach((button) => {
+        button.disabled = true
+      })
+
+      // Para poder usarlo dentro de los forEach().
+      this.$store.dispatch('user/createAddress', this.newAddressData).then((response) => {
+        if (this.inShoppingCart) {
+          // Usa la dirección recién creada en la orden.
+          this.setForOrder(response.data)
+          this.setFavorite(response.data)
+        }
+        this.toggleNewAddress()
+      }).catch((e) => {
+        // Si hay errores, mostrarlos.
+        this.$handleApiErrors(e, Object.keys(addressFields), this.errorLog)
+
+        buttons.forEach((button) => {
+          button.disabled = true
+        })
+      })
     }
   },
   created () {
