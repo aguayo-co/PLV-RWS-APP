@@ -26,7 +26,7 @@
       //-grid
       .list__grid
         //-list content
-        CompraEnvioPago(v-bind:shoppingCartStep="shoppingCartStep")
+        CompraEnvioPago(v-bind:shoppingCartStep="shoppingCartStep"  v-on:setShoppingCartStep="shoppingCartStep = $event")
         //-end list content
 
         //-Tabla Total

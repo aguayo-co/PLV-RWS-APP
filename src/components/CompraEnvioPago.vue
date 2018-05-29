@@ -43,6 +43,8 @@
 
     //-créditos
   section.list_step(v-if="shoppingCartStep === 'método'")
+    a(
+      @click.prevent="$emit('setShoppingCartStep', null)") Volver
     h3.subhead(v-show="credits") ¿Quieres usar tus créditos en esta compra?
     .pay-off(v-show="credits")
       .pay-off__item
