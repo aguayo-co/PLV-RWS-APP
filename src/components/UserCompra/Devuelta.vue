@@ -1,10 +1,6 @@
 <template lang="pug">
 //- La compradora no ha enviado le producto de vuelta.
-.dashboard__subitem(v-if="!sale_return")
-  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
-  .dashboard__status
-    p.status.status_warning.i-reload En proceso de devolución
-.dashboard__subitem(v-else-if="sale_return.status === 0")
+.dashboard__subitem(v-if="sale_return.status === 0")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload A la espera de que devuelvas el producto
