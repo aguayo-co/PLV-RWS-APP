@@ -17,7 +17,9 @@ section.layout-inner
             :class='{active: isActive == product}'
             href='#'
             title='Agrega a Favoritos') Agregar a Favoritos
-          router-link.slot__product
+          router-link.slot__product(
+            :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+            :title='product.title')
             img.slot__img(
               :src="product.images[0]",
               alt="'Foto de ' + product.title")
@@ -35,7 +37,9 @@ section.layout-inner
               .slot__price ${{ product.price | currency }}
 
           //- user: picture/first_name/last_name
-          router-link.slot__user
+          router-link.slot__user(
+            :to="{ name: 'closet', params: { userId: product.user.id }}",
+            :title='product.user.first_name')
             .slot__user-img
               .slot__avatar
                 img.slot__picture(
@@ -67,7 +71,7 @@ export default {
     swiper,
     swiperSlide
   },
-  props: ['category_id'],
+  props: ['category_id', 'product_id'],
   data () {
     return {
       orderBy: '-id',
@@ -111,6 +115,11 @@ export default {
       }
     }
   },
+  watch: {
+    '$route.params': function () {
+      this.updateProductList()
+    }
+  },
   methods: {
     myActive: function (e) {
       this.isActive = e
@@ -118,16 +127,17 @@ export default {
     updateProductList: function () {
       let filterQueryObject = {}
       filterQueryObject.status = '10,19'
-      filterQueryObject.category_id = this.category.id
+      filterQueryObject.category_id = this.category_id
       productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
         .then((response) => {
           this.products = response.data.data
+          this.products = this.products.filter(product => product.id !== this.product_id)
           this.productsPager.total = response.data.last_page
         })
-    },
-    mounted: function () {
-      this.updateProductList()
     }
+  },
+  mounted: function () {
+    this.updateProductList()
   }
 }
 </script>
