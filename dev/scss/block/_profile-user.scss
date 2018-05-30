@@ -450,6 +450,11 @@
   .user-avatar_cover {
     margin-top: -50%;
   }
+
+  .user-data__rating {
+    width: 33%;
+  }
+
 }
 //$bp-wide: 1024px;
 @include media-query(wide) {

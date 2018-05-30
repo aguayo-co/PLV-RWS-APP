@@ -4,7 +4,7 @@ section.single
     header.single__header
       h1.single__title Valoraciones
     .valuations
-      ul.user-data__list
+      ul.user-data__list.user-data__list_center
         li.user-data__value.i-like {{ user.ratings_positive_count }}
         li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
         li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
@@ -20,6 +20,8 @@ section.single
             :alt="rating.buyer.first_name")
           figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
         p.valuations__bubble {{ rating.buyer_comment }}
+      .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.length <= 0")
+        p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
 
 </template>
 

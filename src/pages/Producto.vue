@@ -1,7 +1,7 @@
  <template lang="pug">
 .layout-page
   ProductoDetalle(:product="product")
-  ProductoUser(:user="user")
+  ProductoUser(v-if="user.id", :user="user")
   ProductoPreguntas(:product_id="product.id", :owner_id="user.id")
   ProductoSlider(
     :category_id="product.category_id")
