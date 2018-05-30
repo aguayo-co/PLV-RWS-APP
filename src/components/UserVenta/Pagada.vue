@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard__subitem(v-if="!chileExpress")
+.dashboard__subitem(v-if="!sale.is_chilexpress")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check Producto pagado
@@ -52,14 +52,15 @@
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check Producto pagado
-    p.status.status_alert.i-alert-circle Pendiente de envío con ChileExpress
+    p.status.status_alert.i-alert-circle Pendiente de envío con Chilexpress
   .dashboard__actions(v-if="!step")
     p ¿Ya imprimiste la etiqueta y enviaste el producto?
     a.btn.btn_solid.btn_block(
       @click.prevent="goToStep('shipped')"
       href="#") Si, ya lo envié.
     a.link_underline(
-      href="#") Reimprimir etiqueta de ChileExpress
+      target="_blank"
+      :href="sale.shipping_label") Reimprimir etiqueta de Chilexpress
 
   .dashboard__actions(v-if="step === 'shipped'")
     form.form.dashboard__form(
@@ -68,7 +69,7 @@
       method='post')
       .form__row
         label.form__label(
-          for='numTracing') Ingresa el Nº de seguimiento de ChileExpress
+          for='numTracing') Ingresa el Nº de seguimiento de Chilexpress
         input.form__control(
           id='numTracing',
           type='text'

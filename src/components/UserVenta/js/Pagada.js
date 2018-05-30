@@ -14,11 +14,6 @@ export default Base.merge({
       }
     }
   },
-  computed: {
-    chileExpress () {
-      return this.sale.shipping_method.slug.includes('chilexpress')
-    }
-  },
   methods: {
     saleDelivered () {
       saleAPI.delivered(this.sale.id, 'Entrega coordinada por vendedora.').then(response => {

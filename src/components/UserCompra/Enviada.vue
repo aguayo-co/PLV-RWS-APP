@@ -3,17 +3,29 @@
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check Compra confirmada y pago recibido
-    div(v-if="sale.status === 40")
-      p.status.status_check.i-check Enviado
-      p Nº de seguimiento: 00123123123
-      p Empresa de mensajería: Chile Express
-      a.link_underline(href='#') ¿Dónde está mi paquete?
-    p.status.status_check.i-check(v-else) La compradora ya te entregó el producto
+  .dashboard__status(v-if="sale.is_chilexpress")
+    p.status.status_check.i-check Enviado
+    p Empresa:
+      span  Chilexpress
+    p Número de Seguimiento:
+      span  0000000000000000000000
+    a.link_underline(href='#') ¿Dónde está mi paquete?
+  //- La vendedora ya lo envió por otra transortadora.
+  .dashboard__status(v-else-if="!delivered")
+    p.status.status_check.i-check La compradora ya envío el producto
+    p Empresa:
+      span  {{ trackingInfo.company }}
+    p Número de Seguimiento:
+      span  {{ trackingInfo.code }}
+  //- Entregado de otra forma.
+  .dashboard__status(v-else)
+    p.status.status_check.i-check La compradora ya te entregó el producto
   .dashboard__actions
     p ¿Ya recibiste este producto?
     button.btn.btn_solid.btn_block(
-      @click.prevent='saleReceived') Si, lo recibí y me lo quedo
+      @click.prevent='saleCompleted') Si, lo recibí y me lo quedo
     a.link_underline(
+      @click.prevent='saleReceived'
       href='#') ¿Algo no te gustó de tu producto?
 </template>
 
