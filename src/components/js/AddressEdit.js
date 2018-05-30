@@ -47,9 +47,10 @@ export default {
     ...createComputedProps(editableProps)
   },
   methods: {
-    hasErrors () {
-      return this.errorLog.every((item) => {
-        return item.length !== 0
+    isValid () {
+      const vue = this
+      return Object.keys(this.errorLog).every((key) => {
+        return !vue.errorLog[key]
       })
     },
     close () {
@@ -64,12 +65,11 @@ export default {
       this.$store.dispatch('user/deleteAddress', data)
     },
     updateAddress (event) {
-      this.errorLog = {}
-      if (!this.newAddressData.street) this.errorLog.street = 'Debes especificar una calle'
-      if (!this.newAddressData.number) this.errorLog.number = 'Debes especificar un número'
-      if (!this.newAddressData.commune) this.errorLog.commune = 'Debes especificar una comuna'
+      if (!this.new_street) this.errorLog.street = 'Debes especificar una calle'
+      if (!this.new_number) this.errorLog.number = 'Debes especificar un número'
+      if (!this.new_commune) this.errorLog.commune = 'Debes especificar una comuna'
 
-      if (this.hasErrors) {
+      if (!this.isValid()) {
         return
       }
 

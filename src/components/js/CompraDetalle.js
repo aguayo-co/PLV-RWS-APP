@@ -58,6 +58,7 @@ export default {
       'coupon_discount',
       'coupon_code',
       'gateway',
+      'phone',
       'shipping_cost',
       'sales'
     ]),
@@ -100,22 +101,28 @@ export default {
       }
     },
     continueToPaymentMethod () {
-      let hasErrors = Object.keys(this.sales).some((saleId) => {
+      const errors = []
+      Object.keys(this.sales).some((saleId) => {
         if (!this.sales[saleId].shipping_method_id) {
-          const modal = {
-            name: 'ModalMessage',
-            parameters: {
-              type: 'alert',
-              title: 'Ha habido un problema.',
-              body: 'No has seleccionado el método de envío de alguna vendedora.'
-            }
-          }
-          this.$store.dispatch('ui/showModal', modal)
-          return true
+          errors.push('No has seleccionado el método de envío de alguna vendedora.')
+          return false
         }
       })
 
-      if (hasErrors) {
+      if (!this.phone) {
+        errors.push('No has seleccionado el teléfono de la orden.')
+      }
+
+      if (errors.length) {
+        const modal = {
+          name: 'ModalMessage',
+          parameters: {
+            type: 'alert',
+            title: 'Ha habido un problema.',
+            body: errors[0]
+          }
+        }
+        this.$store.dispatch('ui/showModal', modal)
         return
       }
 
@@ -157,7 +164,7 @@ export default {
       const modal = {
         name: 'ModalMessage',
         parameters: {
-          type: 'positive',
+          type: 'preload',
           title: 'Te estamos enviando a MercadoPago.',
           body: 'Por favor no refresques esta página.'
         }
@@ -179,7 +186,7 @@ export default {
       const modal = {
         name: 'ModalMessage',
         parameters: {
-          type: 'positive',
+          type: 'preload',
           title: 'Te estamos enviando a PayU.',
           body: 'Por favor no refresques esta página.'
         }
