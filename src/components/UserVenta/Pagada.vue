@@ -9,8 +9,8 @@
     a.btn.btn_solid.btn_block(
         @click.prevent="goToStep('delivered')"
         href="#") Sí, ya lo envié o entregué.
-    a.link_underline(
-        href="#") Escribir a la compradora
+    router-link.link_underline(
+      :to="{ name: 'privateMessage', params: { recipientId: sale.order.user_id }}") Escribir a la compradora
 
   .dashboard__actions(v-if="step === 'delivered'")
     p ¿Cómo entregaste este producto?

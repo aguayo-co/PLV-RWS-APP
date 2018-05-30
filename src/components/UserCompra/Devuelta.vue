@@ -3,7 +3,7 @@
 .dashboard__subitem(v-if="!sale_return")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
-    p.status.status_warning.i-reload Cargando información
+    p.status.status_warning.i-reload En proceso de devolución
 .dashboard__subitem(v-else-if="sale_return.status === 0")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
@@ -63,8 +63,8 @@
     p.status.status_warning.i-reload Esperando confirmación de recibido de la Vendedora.
   .dashboard__actions
     p Escogiste juntarte con la vendedora. Estamos esperando que ella nos confirme que ya le entregaste la compra.
-    a.link_underline(
-      href='#') Escribir a la vendedora
+    router-link.link_underline(
+      :to="{ name: 'privateMessage', params: { recipientId: sale.user_id }}") Escribir a la vendedora
     .break
       span.break__txt O
     a.link_underline(

@@ -70,7 +70,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import menusAPI from '@/api/menu'
+
 export default {
   name: 'PageHeaderMenuMobile',
   data () {
@@ -99,21 +100,14 @@ export default {
     }
   },
   created () {
-    axios.get('https://prilov.aguayo.co/api/menus/principal', {
-    })
+    menusAPI.getMenuByName('principal')
       .then(response => {
         this.menu = response.data
       })
-      .catch(e => {
-        console.log('ERROR : ' + e)
-      })
-    axios.get('https://prilov.aguayo.co/api/menus/footer', {
-    })
+
+    menusAPI.getMenuByName('footer')
       .then(response => {
         this.footer = response.data
-      })
-      .catch(e => {
-        console.log('ERROR : ' + e)
       })
   }
 }

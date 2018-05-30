@@ -35,9 +35,9 @@
             title="Editar Dirección") <small class="hide"> Editar </small>
       AddressEdit(
         v-if="isActive == address"
-        :regionsList="regionsList"
+        :multiSelectOptions="multiSelectOptions"
         :address="address"
-        v-on:close="NotActive")
+        v-on:close="IsActive(null)")
     li.dividers__bottom(
       :class="{'dividers__bottom_active': newAddress == true}")
       a.dividers__add.i-plus(
@@ -46,7 +46,7 @@
         title="Agregar dirección") Nueva dirección
     form.form_user.user-data__form(
       id="form-user-address-new"
-      @:submit.prevent=''
+      @submit.prevent='createAddress($event)'
       v-if='newAddress')
       fieldset.form__set
         legend.form__legend Nueva dirección
@@ -57,7 +57,7 @@
             span.help(
               v-show="errorLog.street") {{ errorLog.street }}
             input.form__control(
-              @keyup="errorLog.street = undefined",
+              @input="errorLog.street = null",
               id='new-street'
               v-model="newAddressData['street']"
               type='text')
@@ -67,7 +67,7 @@
             span.help(
               v-show="errorLog.number") {{ errorLog.number }}
             input.form__control(
-              @keyup="errorLog.number = undefined",
+              @input="errorLog.number = null",
               id='new-number'
               v-model="newAddressData['number']"
               type='text')
@@ -79,52 +79,28 @@
             span.help(
               v-show="errorLog.additional") {{ errorLog.additional }}
             input.form__control(
-              @keyup="errorLog.additional = undefined",
+              @input="errorLog.additional = null",
               id='new-additional'
               v-model="newAddressData['additional']"
               type='text')
           .form__row
-              label.form__label(
-                for='new-address-region') Región
-              span.help(
-                v-show="errorLog.region") {{ errorLog.region }}
-              select.form__select(
-                @change="errorLog.region = undefined",
-                v-model="newAddressData['region']")
-                option
-                option(
-                  v-if="regions",
-                  v-for="region in regions.sort()") {{ region }}
-
-        .form__grid
-          .form__row
-            .form__hide(v-if="newAddressData['region']")
-              label.form__label(
-                for='new-address-province') Provincia
-              span.help(
-                v-show="errorLog.province") {{ errorLog.province }}
-              select.form__select(
-                @change="errorLog.province = undefined",
-                v-model="newAddressData['province']")
-                option
-                option(
-                  v-if="provinces"
-                  v-for="province in provinces.sort()") {{ province }}
-
-          .form__row
-            .form__hide(v-if="newAddressData['province']")
-              label.form__label(
-                for='new-address-commune') Comuna
-              span.help(
-                v-show="errorLog.commune") {{ errorLog.commune }}
-              select.form__select(
-                @change="errorLog.commune = undefined",
-                v-model="newAddressData['commune']")
-                option
-                option(
-                  v-if="communes"
-                  v-for="commune in communes.sort()") {{ commune }}
-
+            label.form__label(
+              for='new-commune') Comuna
+            span.help(
+              v-show="errorLog.commune") {{ errorLog.commune }}
+            MultiSelect(
+              id="new-commune"
+              @open="errorLog.commune = null",
+              v-model="newAddressData['commune']",
+              :options="multiSelectOptions",
+              :multiple="false",
+              group-values="communes",
+              group-label="region",
+              :group-select="false",
+              placeholder="Escribe para buscar"
+            )
+              span(slot="noResult").
+                Ups, no encontramos ninguna comuna.
         .form__grid.form__grid_center.form__row_away
           .form__row
             button.btn(
@@ -133,7 +109,6 @@
               title="Cancelar Edición") Cancelar
           .form__row
             button.btn.btn_solid(
-              @click.prevent="createAddress($event)",
               title="Guardar Cambios") Guardar dirección
 </template>
 
