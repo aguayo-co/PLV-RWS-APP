@@ -22,6 +22,9 @@
   .dashboard__actions(v-else)
     p Escogiste juntarte con la compradora.
     p Estamos esperando que ella nos confirme que ya le entregaste la compra.
+    a.link_underline(
+      href="#",
+      @click.prevent="askForShippingDetails") « Ingresé mal el número de seguimiento o entregué de otra forma
 
 //- Envíos que SI son por ChileExpress.
 .dashboard__subitem(v-else)
