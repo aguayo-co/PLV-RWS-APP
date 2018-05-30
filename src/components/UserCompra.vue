@@ -32,6 +32,7 @@
     Recibida(:order="order" :sale="sale" v-else-if="sale.status === 49" v-on:refresh-order="$emit('refresh-order', $event)")
     Completada(:order="order" :sale="sale" v-else-if="sale.status === 90" v-on:refresh-order="$emit('refresh-order', $event)")
     Devuelta(:order="order" :sale="sale" v-else-if="sale.status === 91 || sale.status === 92" v-on:refresh-order="$emit('refresh-order', $event)")
+    Cancelada(:order="order" :sale="sale" v-else-if="sale.status === 99")
 </template>
 
 <script src="./js/UserCompra.js"></script>
