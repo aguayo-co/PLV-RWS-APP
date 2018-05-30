@@ -24,7 +24,7 @@
 
   .dashboard__actions(v-if="step === 'shipped'")
     form.form.dashboard__form(
-      @submit.prevent="saleShipped")
+      @submit.prevent="saleShippedAgreed")
       .form__row
         label.form__label(
           for='getName') Ingresa el nombre de la empresa de mensajería
@@ -56,8 +56,8 @@
   .dashboard__actions(v-if="!step")
     p ¿Ya imprimiste la etiqueta y enviaste el producto?
     a.btn.btn_solid.btn_block(
-      @click.prevent="goToStep('shipped')"
-      href="#") Si, ya lo envié.
+      @click.prevent="saleShippedChilexpress"
+      href="#") Sí, ya lo envié.
     a.link_underline(
       target="_blank"
       :href="sale.shipping_label") Reimprimir etiqueta de Chilexpress

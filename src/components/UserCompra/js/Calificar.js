@@ -2,7 +2,7 @@ import Base from './Base'
 import ratingAPI from '@/api/rating'
 
 export default Base.merge({
-  name: 'Completada',
+  name: 'Calificar',
   data: () => {
     return {
       rating: {},
@@ -15,6 +15,12 @@ export default Base.merge({
     }
   },
   computed: {
+    can_rate () {
+      if (this.rating.status) {
+        return false
+      }
+      return !this.rating.created_at || !this.buyer_comment
+    },
     buyer_comment: {
       get () {
         return this.new_buyer_comment !== null ? this.new_buyer_comment : this.$getNestedObject(this.rating, ['buyer_comment'])

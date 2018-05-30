@@ -32,7 +32,7 @@
   .dashboard__status
     p.status.status_check.i-check(v-if="!delivered") Pedido Enviado por Chilexpress
     p.status.status_check.i-check(v-else) Pedido Entregado por Chilexpress
-    p.status.status_check.i-rocket # de seguimiento: 991238891238FR
+    p.status.status_check.i-rocket # de seguimiento: {{ numeroOT }}
     p.status.status_alert.i-rocket Esperando confirmación de recibido por parte de la compradora.
 
 </template>

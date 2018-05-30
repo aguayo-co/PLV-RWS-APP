@@ -2,7 +2,7 @@ import Base from './Base'
 import ratingAPI from '@/api/rating'
 
 export default Base.merge({
-  name: 'Completada',
+  name: 'Calificar',
   data: () => {
     return {
       rating: {},

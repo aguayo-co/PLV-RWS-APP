@@ -8,8 +8,9 @@
     p Empresa:
       span  Chilexpress
     p Número de Seguimiento:
-      span  0000000000000000000000
-    a.link_underline(href='#') ¿Dónde está mi paquete?
+      span  {{ numeroOT }}
+    a.link_underline(
+      :href="'https://www.chilexpress.cl/Views/ChilexpressCL/Resultado.aspx?uq=' + numeroOT") ¿Dónde está mi paquete?
   //- La vendedora ya lo envió por otra transortadora.
   .dashboard__status(v-else-if="!delivered")
     p.status.status_check.i-check La compradora ya envío el producto

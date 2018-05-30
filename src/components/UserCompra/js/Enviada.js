@@ -9,6 +9,9 @@ export default Base.merge({
     },
     trackingInfo () {
       return this.$getNestedObject(this.sale, ['shipment_details', 'tracking_codes', 0])
+    },
+    numeroOT () {
+      return this.$getNestedObject(this.sale, ['shipment_details', 'label_data', 'numeroOT'])
     }
   },
   methods: {

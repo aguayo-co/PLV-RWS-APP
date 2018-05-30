@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard__actions(v-show="!rating.status")
+.dashboard__actions(v-if="can_rate")
   p Califica esta compra
   //-Notificaciones
   span.help(
@@ -26,6 +26,24 @@
       v-model="buyer_comment"
       maxlength='255')
     button.btn.i-send Comentar
+.dashboard__actions(v-else)
+  p.status.status_check.i-check Ya calificaste esta compra
+  //-Notificaciones
+  span.help(
+    v-show="errorLog.buyer_rating") {{ errorLog.buyer_rating }}
+  .user-data__notify
+    ul.user-data__list
+      li.user-data__value.i-like.like__active(
+        v-if="buyer_rating === 1")
+      li.user-data__value.i-like.i_flip.like__active(
+        v-if="buyer_rating === -1")
+      li.user-data__value.i-less-circle.like__active(
+        v-if="buyer_rating === 0")
+  p {{ buyer_comment }}
+  button.btn.i-send(
+    v-if="!rating.status"
+    @click.prevent="rating.created_at = null") Cambiar calificación
+
 </template>
 
 <script src="./js/Calificar.js"></script>
