@@ -26,7 +26,7 @@
         .list__content
           //-Compra: cliente sin autenticar
           section.list_step
-            h2.subhead.form-section__title ¡Cool! Estás a un paso de terminar tu compra
+            h2.subhead.form-section__title.form-section__title_center ¡Cool! Estás a un paso de terminar tu compra
             .content-slot__inner.form-section__inner
               form.form(
                 v-on:submit='',
