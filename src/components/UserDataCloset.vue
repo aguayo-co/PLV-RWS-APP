@@ -37,22 +37,25 @@ section.profile
     .profile__about
       .profile__box-txt.user-data__box-txt
         p.user-data__txt {{ user.about }}
-      .user-data__rating
+      .user-data__rating(v-if="ratings.length >= 1")
         .chat__line
           span.chat__inner
             .chat__bubble-main
               figure.chat-bubble__avatar.avatar_60
                 img.chat-bubble__img(
-                  src="static/img/demo/user-avatar.jpg",
-                  alt="Avatar")
+                  :src="rating.buyer.picture",
+                  :alt="rating.buyer.first_name")
+              //- .chat-bubble__item
+              //-   .chat-bubble__title.i-like Camila Cifuentes
+              //-   p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
               .chat-bubble__item
-                .chat-bubble__title.i-like Camila Cifuentes
-                p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
+                .chat-bubble__title.i-like {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
+                p.chat-bubble__txt {{ rating.buyer_comment }}
 </template>
 
 <script>
 
-// import { mapGetters, mapState } from 'vuex'
+import ratingsAPI from '@/api/rating'
 import usersAPI from '@/api/user'
 
 export default {
@@ -68,6 +71,12 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      ratings: [],
+      rating: {}
+    }
+  },
   methods: {
     follow: function () {
       const data = {
@@ -78,6 +87,13 @@ export default {
         .then(response => {
         })
     }
+  },
+  created: function () {
+    ratingsAPI.getBySeller(this.$route.params.userId)
+      .then(response => {
+        this.ratings = response.data.data
+        this.rating = this.ratings[this.ratings.length - 1]
+      })
   }
 }
 </script>

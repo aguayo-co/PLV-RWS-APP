@@ -52,7 +52,9 @@
             group-values="communes",
             group-label="region",
             :group-select="false",
-            placeholder="Escribe para buscar"
+            placeholder="Escribe para buscar",
+            selectLabel="Seleccionar",
+            deselectLabel="Eliminar"
           )
             span(slot="noResult").
               Ups, no encontramos ninguna comuna.
