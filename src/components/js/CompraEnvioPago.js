@@ -53,6 +53,7 @@ export default {
   },
   computed: {
     ...mapState('cart', [
+      'due',
       'sales',
       'address',
       ...Object.keys(editableProps)
@@ -62,7 +63,8 @@ export default {
     ]),
     ...mapState('user', [
       'credits',
-      'favorite_address_id'
+      'favorite_address_id',
+      'phone'
     ]),
     ...createComputedProps(editableProps)
   },
@@ -124,30 +126,40 @@ export default {
     new_used_credits (newUsedCredits, oldUsedCredits) {
       window.clearTimeout(this.userDataTimeout)
       this.errorLog.used_credits = null
-      // Si usa lo que ya había asignado, no hacer nada.
-      if (parseInt(this.new_used_credits) === parseInt(this.used_credits)) {
-        this.new_used_credits = null
-        return
-      }
+
       // No permite más de lo disponible.
       if (parseInt(this.new_used_credits) > parseInt(this.credits)) {
-        this.errorLog.used_credits = 'Estás usando más créditos de los disponibles.'
-        // Actualiza due en el state.
-        this.$store.commit('cart/setUsedCredits', 0)
+        this.new_used_credits = parseInt(this.credits)
         return
       }
+
+      // Actualiza State.
+      this.$store.commit('cart/setUsedCredits', newUsedCredits)
+
+      // Si el usuario usa más de lo que vale la orden,
+      // usar únicamente lo que le falta para completar la orden.
+      if (this.due < 0 && newUsedCredits > 0) {
+        this.$store.commit('cart/setUsedCredits', 0)
+        this.new_used_credits = this.due
+        return
+      }
+
       this.userDataTimeout = window.setTimeout(() => {
         this.updateUsedCredits()
       }, 2000)
-      // Actualiza due en el state.
-      this.$store.commit('cart/setUsedCredits', newUsedCredits)
     }
   },
   created () {
+    const data = {
+    }
     if (this.favorite_address_id) {
-      const data = {
-        address_id: this.favorite_address_id
-      }
+      data['address_id'] = this.favorite_address_id
+    }
+    if (this.phone) {
+      data['phone'] = this.phone
+    }
+
+    if (Object.keys(data).length > 0) {
       this.$store.dispatch('cart/update', data)
     }
   }

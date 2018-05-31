@@ -1,6 +1,7 @@
 import { mapState } from 'vuex'
 import shoppingCartAPI from '@/api/shoppingCart'
 import CompraPayU from '@/components/CompraPayU'
+import { mapFields } from 'vuex-map-fields'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -57,15 +58,17 @@ export default {
       'total',
       'coupon_discount',
       'coupon_code',
-      'gateway',
       'phone',
       'shipping_cost',
       'sales'
     ]),
+    ...mapFields([
+      'cart.gateway'
+    ]),
     ...createComputedProps(editableProps),
     responseUrl () {
       const a = document.createElement('a')
-      a.href = this.$router.resolve({name: 'compra', params: { order_id: this.id }}).href
+      a.href = this.$router.resolve({name: 'compra', params: { path: this.id }}).href
       return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
     }
   },
@@ -144,7 +147,6 @@ export default {
 
       // Este es el último paso.
       const gateway = this.gateway
-      let request
       if (!gateway) {
         const modal = {
           name: 'ModalMessage',
@@ -158,12 +160,15 @@ export default {
         return
       }
 
+      let request
       if (gateway === 'mercado_pago') {
         request = this.setMercadoPagoPayment()
       } else if (gateway === 'pay_u') {
         request = this.setPayUPayment()
       } else if (gateway === 'transfer') {
         request = this.setTransferPayment()
+      } else if (gateway === 'free') {
+        request = this.setTransferFree()
       }
 
       request.catch((e) => {
@@ -218,8 +223,39 @@ export default {
     setTransferPayment () {
       this.$emit('setShoppingCartStep', null)
       return shoppingCartAPI.getPayment('transfer').then((response) => {
-        this.$router.push({name: 'compra', params: { order_id: this.id }})
+        this.$router.push({name: 'compra', params: { path: this.id }})
       })
+    },
+    /**
+     * Genera pago de cuando el valor es 0.
+     */
+    setTransferFree () {
+      this.$emit('setShoppingCartStep', null)
+      return shoppingCartAPI.getPayment('free').then((response) => {
+        this.$router.push({name: 'compra', params: { path: this.id }})
+      })
+    }
+  },
+  watch: {
+    /**
+     * Calcula un timeout sin modificación para guardar
+     * used_credits en el back.
+     *
+     * Esto se eliminaría si se usa un botón para enviar el formulario.
+     */
+    due (newDue, oldDue) {
+      if (newDue < 0) {
+        this.gateway = null
+      }
+
+      if (this.gateway === 'free' && newDue > 0) {
+        this.gateway = null
+        return
+      }
+
+      if (this.gateway !== 'free' && newDue === 0) {
+        this.gateway = null
+      }
     }
   }
 }
