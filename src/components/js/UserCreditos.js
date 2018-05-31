@@ -34,7 +34,7 @@ export default {
   methods: {
     getTitle (transaction) {
       if (transaction.order_id) {
-        const orderUrl = this.$router.resolve({name: 'compra', params: { order_id: transaction.order_id }}).href
+        const orderUrl = this.$router.resolve({name: 'compra', params: { path: transaction.order_id }}).href
         return 'Usado en orden <a href="' + orderUrl + '">' + transaction.order_id + '</a>'
       }
 

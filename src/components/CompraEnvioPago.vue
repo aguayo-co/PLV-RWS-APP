@@ -70,7 +70,7 @@
       .boxcheck
         form.boxcheck__grid
           //-item 1
-          .boxcheck__card
+          .boxcheck__card(v-if="due > 0")
             input.form__input-radio(
               id="MercadoPago",
               type="radio",
@@ -82,7 +82,7 @@
                 img(src="/static/img/logo-mercado-pago.png", alt="Pagar por medio de MercadoPago")
           //-end item 1
           //-item 2
-          .boxcheck__card
+          .boxcheck__card(v-if="due > 0")
             input.form__input-radio(
               id="PayU",
               type="radio",
@@ -94,7 +94,7 @@
                 img(src="/static/img/logo-payu.png", alt="Pagar por medio de PayU")
           //-end item 2
           //-item 3
-          .boxcheck__card
+          .boxcheck__card(v-if="due > 0")
             input.form__input-radio(
               id="transferencia",
               type="radio",
@@ -105,6 +105,18 @@
               span.boxcheck__box
                 span Transferencia Bancaria
           //-end item 3
+          //-item 4
+          .boxcheck__card(v-if="due == 0")
+            input.form__input-radio(
+              id="SinPago",
+              type="radio",
+              value="free",
+              v-model="gateway")
+            label.form__label.form__label_radio(
+              for="SinPago")
+              span.boxcheck__box
+                img(src="/static/img/logo-mercadopago.png", alt="Tu compra no requiere pago!")
+          //-end item 4
 </template>
 
 <script src="./js/CompraEnvioPago.js"></script>
