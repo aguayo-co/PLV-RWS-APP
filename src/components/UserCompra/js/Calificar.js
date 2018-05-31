@@ -19,7 +19,7 @@ export default Base.merge({
       if (this.rating.status) {
         return false
       }
-      return !this.rating.created_at || !this.buyer_comment
+      return !this.rating.created_at || !this.$getNestedObject(this.rating, ['buyer_comment'])
     },
     buyer_comment: {
       get () {

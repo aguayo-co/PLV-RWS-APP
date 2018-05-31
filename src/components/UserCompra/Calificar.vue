@@ -28,9 +28,6 @@
     button.btn.i-send Comentar
 .dashboard__actions(v-else)
   p.status.status_check.i-check Ya calificaste esta compra
-  //-Notificaciones
-  span.help(
-    v-show="errorLog.buyer_rating") {{ errorLog.buyer_rating }}
   .user-data__notify
     ul.user-data__list
       li.user-data__value.i-like.like__active(
