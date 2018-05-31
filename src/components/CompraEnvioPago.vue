@@ -42,7 +42,7 @@
                 title="Editar Teléfono") <small class="hide"> Editar </small>
 
     //-créditos
-  section.list_step(v-if="shoppingCartStep === 'método'")
+  section.list_step(v-if="shoppingCartStep === 'medio-de-pago'")
     a(
       @click.prevent="$emit('setShoppingCartStep', null)") Volver
     h3.subhead(v-show="credits") ¿Quieres usar tus créditos en esta compra?

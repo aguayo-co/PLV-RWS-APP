@@ -26,11 +26,11 @@
       //-grid
       .list__grid
         //-list content
-        CompraEnvioPago(v-bind:shoppingCartStep="shoppingCartStep"  v-on:setShoppingCartStep="shoppingCartStep = $event")
+        CompraEnvioPago(v-bind:shoppingCartStep="shoppingCartStep"  v-on:setShoppingCartStep="setShoppingCartStep($event)")
         //-end list content
 
         //-Tabla Total
-        CompraDetalle(v-bind:shoppingCartStep="shoppingCartStep" v-on:setShoppingCartStep="shoppingCartStep = $event")
+        CompraDetalle(v-bind:shoppingCartStep="shoppingCartStep" v-on:setShoppingCartStep="setShoppingCartStep($event)")
         //-End Tabla Total
       //-End grid
     //- End List paso 1:compra

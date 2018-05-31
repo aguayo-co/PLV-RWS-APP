@@ -1,6 +1,6 @@
 <template lang="pug">
-//- Envíos que NO son por ChileExpress.
-.dashboard__subitem(v-if="!chileExpress")
+//- Envíos que NO son por Chilexpress.
+.dashboard__subitem(v-if="!sale.is_chilexpress")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_check.i-check(v-if="delivered") Pedido Entregado
@@ -26,13 +26,13 @@
       href="#",
       @click.prevent="askForShippingDetails") « Ingresé mal el número de seguimiento o entregué de otra forma
 
-//- Envíos que SI son por ChileExpress.
+//- Envíos que SI son por Chilexpress.
 .dashboard__subitem(v-else)
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
-    p.status.status_check.i-check(v-if="!delivered") Pedido Enviado por ChileExpress
-    p.status.status_check.i-check(v-else) Pedido Entregado por ChileExpress
-    p.status.status_check.i-rocket # de seguimiento: 991238891238FR
+    p.status.status_check.i-check(v-if="!delivered") Pedido Enviado por Chilexpress
+    p.status.status_check.i-check(v-else) Pedido Entregado por Chilexpress
+    p.status.status_check.i-rocket # de seguimiento: {{ numeroOT }}
     p.status.status_alert.i-rocket Esperando confirmación de recibido por parte de la compradora.
 
 </template>

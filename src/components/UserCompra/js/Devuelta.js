@@ -21,14 +21,9 @@ export default Base.merge({
     }
   },
   created () {
-    this.loadSaleReturn()
+    this.sale_return = this.sale.returns[0]
   },
   methods: {
-    loadSaleReturn () {
-      saleReturnAPI.load(this.sale.returns[0].id).then(response => {
-        this.sale_return = response.data
-      })
-    },
     saleReturnDelivered () {
       saleReturnAPI.delivered(this.sale_return.id, 'Entrega coordinada por compradora.').then(response => {
         this.sale_return = response.data

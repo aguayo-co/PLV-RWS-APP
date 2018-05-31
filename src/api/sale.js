@@ -7,7 +7,7 @@ export default {
   load: function (saleId) {
     return Vue.axiosAuth.get('/api/sales/' + saleId)
   },
-  shipped: function (saleId, company, code) {
+  setShippingInformation: function (saleId, company, code) {
     const data = {
       status: 40,
       shipment_details: {
@@ -16,6 +16,12 @@ export default {
           code
         }]
       }
+    }
+    return Vue.axiosAuth.patch('/api/sales/' + saleId, data)
+  },
+  shipped: function (saleId) {
+    const data = {
+      status: 40
     }
     return Vue.axiosAuth.patch('/api/sales/' + saleId, data)
   },
