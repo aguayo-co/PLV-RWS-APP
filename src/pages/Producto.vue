@@ -4,7 +4,9 @@
   ProductoUser(v-if="user.id", :user="user")
   ProductoPreguntas(:product_id="product.id", :owner_id="user.id")
   ProductoSlider(
-    :category_id="product.category_id")
+    v-if="product.category_id && product.id",
+    :category_id="product.category_id",
+    :product_id="product.id")
 </template>
 
 <script>
@@ -24,22 +26,36 @@ export default {
     ProductoPreguntas,
     ProductoSlider
   },
+  watch: {
+    '$route.params': function () {
+      this.loadProduct()
+    }
+  },
+  computed: {
+    productId () {
+      return this.$route.params.slug.split('__')[1]
+    }
+  },
   data () {
     return {
       product: {},
       user: {}
     }
   },
+  methods: {
+    loadProduct: function () {
+      productsAPI.getProductById(this.productId)
+        .then(response => {
+          this.product = response.data
+          this.user = this.product.user
+        })
+        .catch(e => {
+          console.log('ERROR : ' + e)
+        })
+    }
+  },
   created () {
-    let id = this.$route.params.slug.split('__')[1]
-    productsAPI.getProductById(id)
-      .then(response => {
-        this.product = response.data
-        this.user = this.product.user
-      })
-      .catch(e => {
-        console.log('ERROR : ' + e)
-      })
+    this.loadProduct()
   }
 }
 </script>
