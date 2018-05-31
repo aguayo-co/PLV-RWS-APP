@@ -96,11 +96,11 @@ export default {
         return
       }
 
-      if (this.shoppingCartStep === 'método') {
+      if (this.shoppingCartStep === 'medio-de-pago') {
         this.continueToPayment()
       }
     },
-    continueToPaymentMethod () {
+    validateShoppingCart () {
       const errors = []
       Object.keys(this.sales).some((saleId) => {
         if (!this.sales[saleId].shipping_method_id) {
@@ -122,13 +122,26 @@ export default {
             body: errors[0]
           }
         }
+        // De vuelta al primer paso
+        this.$emit('setShoppingCartStep', null)
+        // Muestra modal después de cambiar de ruta,
+        // de lo contrario se cierra con el cambio.
         this.$store.dispatch('ui/showModal', modal)
+        return false
+      }
+      return true
+    },
+    continueToPaymentMethod () {
+      if (!this.validateShoppingCart()) {
+        return
+      }
+      this.$emit('setShoppingCartStep', 'medio-de-pago')
+    },
+    continueToPayment () {
+      if (!this.validateShoppingCart()) {
         return
       }
 
-      this.$emit('setShoppingCartStep', 'método')
-    },
-    continueToPayment () {
       // Este es el último paso.
       const gateway = this.gateway
       let request
