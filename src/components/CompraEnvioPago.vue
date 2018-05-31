@@ -79,7 +79,7 @@
             label.form__label.form__label_radio(
               for="MercadoPago")
               span.boxcheck__box
-                img(src="/static/img/logo-mercadopago.png", alt="Pagar por medio de MercadoPago")
+                img(src="/static/img/logo-mercado-pago.png", alt="Pagar por medio de MercadoPago")
           //-end item 1
           //-item 2
           .boxcheck__card
