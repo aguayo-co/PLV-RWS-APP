@@ -64,7 +64,7 @@
     color: $c-brand;
     @include font-rem(20px);
   }
-  &.active {
+  &.enableFavorite {
     overflow: hidden;
     &:before {
       content: unicode($i-heart-on);

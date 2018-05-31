@@ -63,6 +63,10 @@ export default {
     return Vue.axiosAuth.patch('/api/products/' + product.id, formData)
   },
 
+  get: function (params) {
+    return Vue.axios.get('/api/products', { params })
+  },
+
   getProducts: function (page, items, filter, order, search) {
     let querySearch = ''
     let queryFilter = ''

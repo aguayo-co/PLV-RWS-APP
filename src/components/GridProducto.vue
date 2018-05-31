@@ -1,22 +1,28 @@
 <template lang="pug">
 .section_filter
   //- filter Mobile
-  FilterMobile(
+  //- FilterMobile(
     v-if="mqMobile")
   //- filter desktop
-  FilterDesk(
+  //- FilterDesk(
     @filterChange="computeFilters",
     :filter="filterValues",
     v-if="mqDesk",
     :compact="compact")
   .section_product__scroll
+    //- .preload(v-if="loading")
+    //-   span.preload__spin.preload__spin_1
+    //-   span.preload__spin.preload__spin_2
+    //-   span.preload__spin.preload__spin_3
+    //-   span.preload__spin.preload__spin_4
+    //- .product-grid(v-else)
     .product-grid
       article.slot.slot_grid(
         v-for='product in products')
         button.slot__ico.i-heart(
           v-if="user.id"
           @click.prevent='setFavorite(product.id)'
-          :class='{ active: user.favorites_ids.includes(product.id) }'
+          :class='{ enableFavorite: user.favorites_ids.includes(product.id) }'
           title='Agrega a Favoritos') Agregar a Favoritos
         router-link.slot__product(
           :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
@@ -115,39 +121,21 @@ export default {
   },
   data () {
     return {
-      isActive: undefined,
       products: [],
-      items: 18,
-      page: 1,
       lastPage: null,
-      filter: {},
-      filterValues: {
-        category: [],
-        size: [],
-        brand: [],
-        color: [],
-        condition: [],
-        region: [],
-        price: null,
-        order: null
+      parameters: {
+        'page': 1,
+        'items': 12,
+        'orderBy': '-id'
       },
-      orderBy: '-id',
-      filterQueryObject: {},
-      searchQuery: null,
       loading: false,
-      active: false
+      enableFavorite: false
     }
   },
   watch: {
-    search: function () {
-      if (this.search) this.searchQuery = this.search
-      this.filterQueryObject.status = '10,19'
-      if (this.infinite) window.addEventListener('scroll', this.handleScroll)
-      productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy, this.searchQuery)
-        .then((response) => {
-          this.products = response.data.data
-          this.$emit('queryDoneResults', response.data.total)
-        })
+    preFilter: function () {
+      this.applyPreFilter()
+      this.updateProductList()
     }
   },
   methods: {
@@ -158,11 +146,21 @@ export default {
       this.user.favorites_ids.includes(productId) ? data.favorites_remove = [productId] : data.favorites_add = [productId]
       this.$store.dispatch('user/update', data)
     },
+    updateProductList: function () {
+      this.loading = true
+      productAPI.get(this.parameters)
+        .then((response) => {
+          this.products = response.data.data
+          this.lastPage = response.data.last_page
+          this.loading = false
+        })
+    },
     loadMoreProducts: async function (e) {
-      if (this.lastPage > this.page) {
-        this.page += 1
+      console.log('entro')
+      if (this.lastPage > this.parameters.page) {
+        this.parameters.page += 1
         this.loading = true
-        await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
+        await productAPI.get(this.parameters)
           .then((response) => {
             this.products.push(...response.data.data)
             this.loading = false
@@ -171,58 +169,30 @@ export default {
     },
     handleScroll: function (e) {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
-        if (this.lastPage > this.page) this.loadMoreProducts()
+        if (this.lastPage > this.parameters.page) this.loadMoreProducts()
       }
     },
     computeFilters: async function () {
-      this.loading = true
-      this.products = []
-      this.filterQueryObject = {
-        category_id: this.filterValues.category.join(','),
-        size_id: this.filterValues.size.join(','),
-        brand_id: this.filterValues.brand.join(','),
-        color_id: this.filterValues.color.join(','),
-        condition_id: this.filterValues.condition.join(','),
-        region_id: this.filterValues.region.join(','),
-        price: this.filterValues.price
-      }
-      this.orderBy = this.filterValues.order || this.orderBy
-      await productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy)
-        .then((response) => {
-          this.loading = false
-          this.products = response.data.data
-          this.page = 1
-        })
-    },
-    updateProductList: function () {
-      productAPI.getProducts(this.page, this.items, this.filter)
-        .then(response => {
-          this.products = response.data.data
-          this.lastPage = response.data.last_page
-        })
     },
     nextPage: function () {
-      this.page += 1
+      this.parameters.page += 1
       this.updateProductList()
     },
     prevPage: function () {
-      if (this.page > 1) this.page -= 1
+      if (this.parameters.page > 1) this.parameters.page -= 1
       this.updateProductList()
+    },
+    applyPreFilter: function () {
+      if (this.preFilter) {
+        Object.keys(this.preFilter).forEach(key => {
+          this.parameters[key] = this.preFilter[key]
+        })
+      }
     }
   },
-  beforeMount: function () {
-    if (this.preFilter) {
-      this.filterQueryObject = this.preFilter
-    }
-    if (this.search) this.searchQuery = this.search
-    this.filterQueryObject.status = '10,19'
-    if (this.infinite) window.addEventListener('scroll', this.handleScroll)
-    productAPI.getProducts(this.page, this.items, this.filterQueryObject, this.orderBy, this.searchQuery)
-      .then((response) => {
-        this.products = response.data.data
-        this.lastPage = response.data.last_page
-        this.$emit('queryDoneResults', response.data.total)
-      })
+  created: function () {
+    this.applyPreFilter()
+    this.updateProductList()
   }
 }
 </script>

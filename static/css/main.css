@@ -6154,9 +6154,9 @@ body {
     color: #f65a66;
     font-size: 20px;
     font-size: 1.25rem; }
-  .slot__ico.active {
+  .slot__ico.enableFavorite {
     overflow: hidden; }
-    .slot__ico.active:before {
+    .slot__ico.enableFavorite:before {
       content: "\e923"; }
 
 @media only screen and (min-width: 560px) {
