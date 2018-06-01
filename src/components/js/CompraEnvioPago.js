@@ -53,6 +53,7 @@ export default {
   },
   computed: {
     ...mapState('cart', [
+      'due',
       'sales',
       'address',
       ...Object.keys(editableProps)
@@ -61,7 +62,9 @@ export default {
       'cart.gateway'
     ]),
     ...mapState('user', [
-      'credits'
+      'credits',
+      'favorite_address_id',
+      'phone'
     ]),
     ...createComputedProps(editableProps)
   },
@@ -105,6 +108,7 @@ export default {
         this.disabled.used_credits = false
       })
     },
+    // Si una dirección se actualiza, se usa cómo dirección de la orden.
     updateShippingInformation (address) {
       const data = {
         address_id: address.id
@@ -119,26 +123,44 @@ export default {
      *
      * Esto se eliminaría si se usa un botón para enviar el formulario.
      */
-    new_used_credits: function (newUsedCredits, oldUsedCredits) {
+    new_used_credits (newUsedCredits, oldUsedCredits) {
       window.clearTimeout(this.userDataTimeout)
       this.errorLog.used_credits = null
-      // Si usa lo que ya había asignado, no hacer nada.
-      if (parseInt(this.new_used_credits) === parseInt(this.used_credits)) {
-        this.new_used_credits = null
-        return
-      }
+
       // No permite más de lo disponible.
       if (parseInt(this.new_used_credits) > parseInt(this.credits)) {
-        this.errorLog.used_credits = 'Estás usando más créditos de los disponibles.'
-        // Actualiza due en el state.
-        this.$store.commit('cart/setUsedCredits', 0)
+        this.new_used_credits = parseInt(this.credits)
         return
       }
+
+      // Actualiza State.
+      this.$store.commit('cart/setUsedCredits', newUsedCredits)
+
+      // Si el usuario usa más de lo que vale la orden,
+      // usar únicamente lo que le falta para completar la orden.
+      if (this.due < 0 && newUsedCredits > 0) {
+        this.$store.commit('cart/setUsedCredits', 0)
+        this.new_used_credits = this.due
+        return
+      }
+
       this.userDataTimeout = window.setTimeout(() => {
         this.updateUsedCredits()
       }, 2000)
-      // Actualiza due en el state.
-      this.$store.commit('cart/setUsedCredits', newUsedCredits)
+    }
+  },
+  created () {
+    const data = {
+    }
+    if (this.favorite_address_id) {
+      data['address_id'] = this.favorite_address_id
+    }
+    if (this.phone) {
+      data['phone'] = this.phone
+    }
+
+    if (Object.keys(data).length > 0) {
+      this.$store.dispatch('cart/update', data)
     }
   }
 }

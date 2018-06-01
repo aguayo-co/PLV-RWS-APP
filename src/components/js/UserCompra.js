@@ -5,6 +5,7 @@ import Enviada from '../UserCompra/Enviada'
 import Recibida from '../UserCompra/Recibida'
 import Completada from '../UserCompra/Completada'
 import Devuelta from '../UserCompra/Devuelta'
+import Cancelada from '../UserCompra/Cancelada'
 
 export default Base.merge({
   name: 'UserCompra',
@@ -14,6 +15,7 @@ export default Base.merge({
     Enviada,
     Recibida,
     Completada,
-    Devuelta
+    Devuelta,
+    Cancelada
   }
 })

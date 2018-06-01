@@ -73,7 +73,7 @@
           .form__row
             button.btn.btn_solid.form__grid-item(
               type="submit"
-              title="Guardar Cambios") Editar dirección
+              title="Guardar Cambios") Guardar dirección
 </template>
 
 <script src="./js/AddressEdit.js"></script>
