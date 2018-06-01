@@ -76,21 +76,21 @@
     li.pagination__select
       select.form__select.form__select_small(
         name="numeroItems",
-        v-model='items',
+        v-model='parameters.items',
         @change='updateProductList')
           option(value="9") 9
           option(value="18") 18
           option(value="27") 27
           option(value="45") 45
     li.pagination__item(
-      v-if='page > lastPage')
+      v-if='parameters.page > lastPage')
       a.pagination__arrow.pagination__arrow_prev.i-back(
         @click.prevent='prevPage'
         href="#")
-    li.pagination__item {{ page }}
+    li.pagination__item {{ parameters.page }}
     li.pagination__item.pagination__item_txt de {{ lastPage }}
     li.pagination__item(
-        v-if='page < lastPage')
+        v-if='parameters.page < lastPage')
       a.pagination__arrow.pagination__arrow_next.i-next(
         @click.prevent='nextPage'
         href="#")
