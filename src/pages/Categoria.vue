@@ -10,7 +10,7 @@
       GridProducto(
         :preFilter='filter'
         :infinite='true')
-  .layout-inner(v-if="queryObject")
+  .layout-inner(v-if="queryObject === null")
     .layout_nofound
       .alert
         p.alert__txt.i-sad La URL que estás intentando acceder no existe
@@ -68,11 +68,12 @@ export default {
         result = this.flattenedCategories.filter(x => x.slug === this.queryParameter)[0]
         return result
       }
-      if (this.queryType === 'marcas') {
+      else if (this.queryType === 'marcas') {
         result = this.brands.filter(x => x.slug === this.queryParameter)[0]
         return result
+      } else {
+        return result
       }
-      return result
     },
     filter () {
       if (this.queryType === 'categorias' && this.queryObject) {
