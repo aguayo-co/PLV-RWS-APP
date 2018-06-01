@@ -66,7 +66,6 @@ export default {
       let result = null
       if (this.queryType === 'categorias') {
         result = this.flattenedCategories.filter(x => x.slug === this.queryParameter)[0]
-        console.log('prueba categoria')
         this.loadBannerCategory()
         return result
       } else if (this.queryType === 'marcas') {
@@ -88,11 +87,9 @@ export default {
   },
   methods: {
     loadBannerCategory () {
-      console.log('prueba metodo load')
       bannersAPI.getBannerBySlug('categoria-' + this.queryParameter)
         .then(response => {
           this.banner = response.data.data[0]
-          console.log(this.banner)
         })
     },
     loadBannerBrand () {
