@@ -66,10 +66,12 @@ export default {
       let result = null
       if (this.queryType === 'categorias') {
         result = this.flattenedCategories.filter(x => x.slug === this.queryParameter)[0]
+        console.log('prueba categoria')
+        this.loadBannerCategory()
         return result
-      }
-      else if (this.queryType === 'marcas') {
+      } else if (this.queryType === 'marcas') {
         result = this.brands.filter(x => x.slug === this.queryParameter)[0]
+        this.loadBannerBrand()
         return result
       } else {
         return result
@@ -82,6 +84,22 @@ export default {
       if (this.queryType === 'marcas' && this.queryObject) {
         return { 'filter[brand_id]': this.queryObject.id }
       }
+    }
+  },
+  methods: {
+    loadBannerCategory () {
+      console.log('prueba metodo load')
+      bannersAPI.getBannerBySlug('categoria-' + this.queryParameter)
+        .then(response => {
+          this.banner = response.data.data[0]
+          console.log(this.banner)
+        })
+    },
+    loadBannerBrand () {
+      bannersAPI.getBannerBySlug('marca-' + this.queryParameter)
+        .then(response => {
+          this.banner = response.data.data[0]
+        })
     }
   }
 }
