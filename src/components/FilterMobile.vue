@@ -1,6 +1,6 @@
 <template lang="pug">
   nav.filter(
-    :class="{ 'filter__nav_open':filterActive || filterMultiActive }")
+    :class="{ 'filter__nav_open':openFilters || filterMultiActive }")
     a.filter__btn(href="#", @click.prevent='openFMultinivel') Ordenado por<br />{{ orderOptions.options[orderOptions.selected].name }}
     a.filter__btn(href="#", @click.prevent='switchFilterMb') Filtrar
     //-Item Ordenar Articulos
@@ -24,17 +24,17 @@
     //-Item filtrar
     transition(name='slide-right')
       ul.filter__list.filter__list_level(
-        v-show="filterActive")
+        v-show="openFilters")
         li.filter__select_header.i-close
           button(@click='switchFilterMb') Cerrar
           span Filtrar
-          button(@click="this.emit('clearFilters')") Borrar filtros
+          button(@click="clearFilters") Borrar filtros
         //- Item Prenda
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'category' }",
           @click="switchFilter('category')")
           span.filter__arrow Categoría
-          span.filter__details(v-if="filter.category && filter.category.length > 0") {{ filterSelectedCategories(filter.category) }}
+          span.filter__details(v-if="new_filter.category && new_filter.category.length > 0") {{ filterSelectedCategories(new_filter.category) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'category'")
               li.filter__select_header.i-close(@click.stop='switchFilter') Categoría
@@ -52,7 +52,7 @@
                           v-for="subcategory in category.children")
                           .filter__item-check
                             input.filter__input-check(
-                              v-model="filter.category",
+                              v-model="new_filter.category",
                               :value="subcategory.id",
                               :id="'category-' + subcategory.id"
                               type="checkbox")
@@ -80,7 +80,7 @@
                           v-for="subsize in size.children")
                           .filter__item-check
                             input.filter__input-check(
-                              v-model="filter.size",
+                              v-model="new_filter.size",
                               :value="subsize.id",
                               :id="'size-' + subsize.id"
                               type="checkbox")
@@ -100,7 +100,7 @@
                 .filter__item-check
                   input.filter__input-check(
                     type="checkbox",
-                    v-model="filter.brand",
+                    v-model="new_filter.brand",
                     :value="brand.id",
                     :id="'brand-' + brand.id")
                   label.filter__label-check.i-ok(for="'brand-' + brand.id")
@@ -118,7 +118,7 @@
                 v-for="(color, index) in colors")
                 .filter__item-check
                   input.filter__input-check(
-                  v-model="filter.color",
+                  v-model="new_filter.color",
                   :value="color.id"
                   :id="'color-' + color.id",
                   type="checkbox")
@@ -142,7 +142,7 @@
                 .filter__item-check
                   input.filter__input-check(
                     type="checkbox",
-                    v-model="filter.condition",
+                    v-model="new_filter.condition",
                     :value="condition.id",
                     :id="'condition-' + condition.id")
                   label.filter__label-check.i-ok(:for="'condition-' + condition.id")
@@ -160,7 +160,7 @@
                 v-for="(region, index) in regions")
                 .filter__item-check
                   input.filter__input-check(
-                    v-model="filter.region",
+                    v-model="new_filter.region",
                     :value="region.admin1_code",
                     :id="'region-' + region.admin1_code",
                     type="checkbox")
@@ -278,11 +278,11 @@ export default {
       selectedFilterOption: null,
       selectedCategory: null,
       selectedSize: null,
-      filterActive: false,
+      openFilters: false,
       filterMultiActive: false,
       selectedFItem: false,
       selectState: {...filterFields},
-      latestFilters: {}
+      new_filter: {}
     }
   },
   methods: {
@@ -290,13 +290,12 @@ export default {
       this.selectedFilterOption = option || false
     },
     switchFilterMb: function () {
-      if (!this.filterActive) {
-        console.log('Abre filtros')
-        this.latestFilters = {...this.filter}
+      if (this.openFilters) {
+        this.openFilters = false
       } else {
-        this.$emit('setFilters', this.latestFilters)
+        this.new_filter = {...this.filter}
+        this.openFilters = true
       }
-      this.filterActive = !this.filterActive
     },
     openFMultinivel: function () {
       this.filterMultiActive = !this.filterMultiActive
@@ -306,11 +305,10 @@ export default {
     },
     filterChange: function () {
       if (this.precio.value[1] === 150000) {
-        this.filter.price = this.precio.value[0] + ',500000'
+        this.new_filter.price = this.precio.value[0] + ',500000'
       } else {
-        this.filter.price = this.precio.value[0] + ',' + this.precio.value[1]
+        this.new_filter.price = this.precio.value[0] + ',' + this.precio.value[1]
       }
-      this.$emit('filterChange')
     },
     filterSelectedCategories: function (values) {
       let filtered = []
@@ -341,9 +339,21 @@ export default {
       this.$emit('filterChange')
     },
     applyAndClose: function () {
-      this.filterChange()
-      this.$emit('filterChange')
+      this.$emit('filterChange', this.new_filter)
       this.switchFilterMb()
+    },
+    clearFilters: function () {
+      this.$emit('clearFilters')
+      this.new_filter = {
+        category: [],
+        size: [],
+        brand: [],
+        color: [],
+        condition: [],
+        region: [],
+        price: null,
+        order: this.new_filter.order
+      }
     }
   }
 }
