@@ -14,7 +14,7 @@ section.layout-inner
         article.slot
           a.slot__ico.i-heart(
             @click.prevent='myActive(product)'
-            :class='{active: isActive == product}'
+            :class='{enableFavorite: isActive == product}'
             href='#'
             title='Agrega a Favoritos') Agregar a Favoritos
           router-link.slot__product(
