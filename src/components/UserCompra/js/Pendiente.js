@@ -14,10 +14,10 @@ export default Base.merge({
   },
   computed: {
     isTransfer () {
-      return this.order.payments[0].gateway === 'Transfer'
+      return this.$getNestedObject(this.order, ['payments', 0, 'gateway']) === 'Transfer'
     },
     hasReceipt () {
-      return this.order.payments[0].transfer_receipt !== null
+      return this.$getNestedObject(this.order, ['payments', 0, 'transfer_receipt']) !== null
     },
     canUploadReceipt () {
       return this.isTransfer && (!this.hasReceipt || this.changeReceipt)

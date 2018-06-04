@@ -1,9 +1,13 @@
 import { mapState } from 'vuex'
 import userAPI from '@/api/user'
 import transactionAPI from '@/api/creditsTransaction'
+import Pager from '@/Mixin/Pager'
 
 export default {
   name: 'UserCreditos',
+  components: {
+    Pager
+  },
   computed: {
     ...mapState(['user']),
     pendingTransferTotal () {
@@ -16,6 +20,7 @@ export default {
   },
   data () {
     return {
+      pagination: null,
       transactionsPendingTransfer: [],
       transactions: [],
       alertConvert: false,
@@ -29,7 +34,7 @@ export default {
   methods: {
     getTitle (transaction) {
       if (transaction.order_id) {
-        const orderUrl = this.$router.resolve({name: 'compra', params: { order_id: transaction.order_id }}).href
+        const orderUrl = this.$router.resolve({name: 'compra', params: { path: transaction.order_id }}).href
         return 'Usado en orden <a href="' + orderUrl + '">' + transaction.order_id + '</a>'
       }
 
@@ -53,7 +58,7 @@ export default {
     },
     loadTransactions () {
       transactionAPI.all(this.user.id).then((response) => {
-        this.transactions = response.data.data
+        this.pagination = response.data
       })
     },
     loadPendingTransfer () {
@@ -79,6 +84,11 @@ export default {
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo
         })
+    }
+  },
+  watch: {
+    pagination (pagination, oldPagination) {
+      this.transactions = pagination.data
     }
   }
 }

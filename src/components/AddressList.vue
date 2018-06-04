@@ -11,12 +11,12 @@
       .dividers__grid.dividers__list(
         :class="{'dividers__list_active': isActive == address}")
         input.form__input-radio(
-        name="shippingAddress"
-        :value="address.id"
-        :id="address.id"
-        v-model="cartAddressId"
-        type="radio"
-        v-if="inShoppingCart")
+          name="shippingAddress"
+          :value="address.id"
+          :id="address.id"
+          v-model="cartAddressId"
+          type="radio"
+          v-if="inShoppingCart")
         label.form__label_radio(
           v-if="inShoppingCart"
           :for="address.id") {{ address | address }}
@@ -25,7 +25,7 @@
         span.dividers__actions
           a.dividers__select.i-star-on(
             v-if="!inShoppingCart"
-            @click.prevent="setFavorite(address)",
+            @click.prevent="setFavorite(address.id)",
             :class="{dividers__select_on: favorite_address_id == address.id}",
             href="#",
             title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
@@ -97,7 +97,9 @@
               group-values="communes",
               group-label="region",
               :group-select="false",
-              placeholder="Escribe para buscar"
+              placeholder="Escribe para buscar",
+              selectLabel="Seleccionar",
+              deselectLabel="Eliminar"
             )
               span(slot="noResult").
                 Ups, no encontramos ninguna comuna.

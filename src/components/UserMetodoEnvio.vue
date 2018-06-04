@@ -19,19 +19,25 @@ section.single
             h3.box__title {{ method.name}}
             .box__grid
               .box__lead
+                p.box__txt(
+                  v-if="!isAllowed(method)")
+                  strong Tu dirección favorita no permite usar este método de envío. Actualízala e intenta nuevamente.
                 p.box__txt {{ method.description_seller}}
               .box__switch
                 .form__switch
                   input.switch__input(
+                    :disabled="!isAllowed(method)"
                     v-model="selectedMethods",
                     type="checkbox",
                     :id="'method-' + method.id",
-                    :value="'method-' + method.id")
+                    :value="method.id")
                   label.switch__label(
                     :for="'method-' + method.id")
                       span.switch__status
           .form__row.form__row_away.form__btn
-            button.btn.btn_solid(@click.prevent="saveMethods($event)") Guardar
+            button.btn.btn_solid(
+              :disabled="processing"
+              @click.prevent="saveMethods") Guardar
 
 </template>
 
@@ -42,6 +48,7 @@ export default {
   name: 'UserMetodoEnvio',
   data () {
     return {
+      processing: false,
       methods: {},
       selectedMethods: [],
       loading: true
@@ -52,7 +59,7 @@ export default {
     initialMethods () {
       let methods = []
       this.$store.state['user'].shipping_method_ids.forEach((methodId) => {
-        methods.push('method-' + methodId)
+        methods.push(methodId)
       })
       return methods
     }
@@ -73,8 +80,39 @@ export default {
     this.selectedMethods = this.initialMethods
   },
   methods: {
-    saveMethods: function (event) {
-      event.target.disabled = true
+    isAllowed (method) {
+      if (!this.isChilexpress(method) || this.allowChilexpress()) {
+        return true
+      }
+      var index = this.selectedMethods.indexOf(method.id)
+      if (index > -1) {
+        this.selectedMethods.splice(index, 1)
+      }
+
+      return false
+    },
+    isChilexpress (method) {
+      return method.slug.indexOf('chilexpress') >= 0
+    },
+    allowChilexpress () {
+      const favoriteId = this.$getNestedObject(this.user, ['favorite_address_id'])
+      if (!favoriteId) {
+        return false
+      }
+
+      const chilexpressCoverage = this.$getNestedObject(this.user, [
+        'addresses',
+        favoriteId,
+        'chilexpress_geodata',
+        'coverage_type'])
+      if (!chilexpressCoverage || chilexpressCoverage === 2) {
+        return false
+      }
+
+      return true
+    },
+    saveMethods () {
+      this.processing = true
       if (this.selectedMethods.length === 0) {
         const modal = {
           name: 'ModalMessage',
@@ -85,29 +123,26 @@ export default {
         }
         this.$store.dispatch('ui/showModal', modal)
         this.selectedMethods = this.initialMethods
-        event.target.disabled = false
-      } else {
-        let methodIds = []
-        this.selectedMethods.forEach(item => {
-          methodIds.push(item.split('-')[1])
-        })
-        const data = {
-          shipping_method_ids: methodIds
-        }
-        this.$store.dispatch('user/update', data).then(() => {
-          const modal = {
-            name: 'ModalMessage',
-            parameters: {
-              type: 'positive',
-              title: 'Has actualizado tus opciones de envío'
-            }
-          }
-          this.$store.dispatch('ui/showModal', modal)
-        }).catch((e) => {
-          this.$handleApiErrors(e, ['about'], this.errorLog)
-        })
-        event.target.disabled = false
+        this.processing = false
+        return
       }
+
+      const data = {
+        shipping_method_ids: this.selectedMethods
+      }
+      this.$store.dispatch('user/update', data).then(() => {
+        const modal = {
+          name: 'ModalMessage',
+          parameters: {
+            type: 'positive',
+            title: 'Has actualizado tus opciones de envío'
+          }
+        }
+        this.$store.dispatch('ui/showModal', modal)
+      }).catch((e) => {
+        this.$handleApiErrors(e, ['about'], this.errorLog)
+      })
+      this.processing = false
     }
   }
 }

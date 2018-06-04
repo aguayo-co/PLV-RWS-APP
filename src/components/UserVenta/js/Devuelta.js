@@ -13,14 +13,9 @@ export default Base.merge({
     Calificar
   },
   created () {
-    this.loadSaleReturn()
+    this.sale_return = this.sale.returns[0]
   },
   methods: {
-    loadSaleReturn () {
-      saleReturnAPI.load(this.sale.returns[0].id).then(response => {
-        this.sale_return = response.data
-      })
-    },
     saleReturnReceived () {
       saleReturnAPI.received(this.sale_return.id).then(response => {
         this.sale_return = response.data

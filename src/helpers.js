@@ -1,5 +1,17 @@
 export default {
   install (Vue) {
+    // Evalúa si el valor es numérico
+    //
+    // @param  value EL valor a evaluar.
+    const isNumeric = function (value) {
+      if (value === null || value === undefined) {
+        return false
+      }
+      return !isNaN(value)
+    }
+    Vue.isNumeric = isNumeric
+    Vue.prototype.$isNumeric = isNumeric
+
     // Busca de forma recursiva en un objeto sin necesidad de verificar
     // que todas las propiedades estén definidas.
     //

@@ -14,11 +14,6 @@ export default Base.merge({
       }
     }
   },
-  computed: {
-    chileExpress () {
-      return this.sale.shipping_method.slug.includes('chilexpress')
-    }
-  },
   methods: {
     saleDelivered () {
       saleAPI.delivered(this.sale.id, 'Entrega coordinada por vendedora.').then(response => {
@@ -27,11 +22,18 @@ export default Base.merge({
         this.$handleApiErrors(e)
       })
     },
-    saleShipped () {
+    saleShippedChilexpress () {
+      saleAPI.shipped(this.sale.id).then(response => {
+        this.$emit('refresh-sale', response.data)
+      }).catch((e) => {
+        this.$handleApiErrors(e)
+      })
+    },
+    saleShippedAgreed () {
       this.errorLog.shipping_company = null
       this.errorLog.tracking_code = null
       if (this.shipping_company && this.tracking_code) {
-        saleAPI.shipped(this.sale.id, this.shipping_company, this.tracking_code).then(response => {
+        saleAPI.setShippingInformation(this.sale.id, this.shipping_company, this.tracking_code).then(response => {
           this.$emit('refresh-sale', response.data)
         }).catch((e) => {
           this.$handleApiErrors(e)

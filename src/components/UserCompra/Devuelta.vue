@@ -1,10 +1,6 @@
 <template lang="pug">
 //- La compradora no ha enviado le producto de vuelta.
-.dashboard__subitem(v-if="!sale_return")
-  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
-  .dashboard__status
-    p.status.status_warning.i-reload Cargando información
-.dashboard__subitem(v-else-if="sale_return.status === 0")
+.dashboard__subitem(v-if="sale_return.status === 0")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload A la espera de que devuelvas el producto
@@ -48,8 +44,10 @@
     p.status.status_warning.i-reload Esperando confirmación de recibido de la Vendedora.
   .dashboard__actions
     p Ya nos informaste que devolviste el pedido:
-    p Empresa: Correos de Chile
-    p Número de Seguimiento: AS123102931203
+    p Empresa:
+      span  {{ shipping_company }}
+    p Número de Seguimiento:
+      span  {{ tracking_code }}
     p Estamos esperando que la vendedora nos confirme que recibió la devolución.
     a.link_underline(
       @click.prevent="askForShippingDetails"
@@ -63,11 +61,12 @@
     p.status.status_warning.i-reload Esperando confirmación de recibido de la Vendedora.
   .dashboard__actions
     p Escogiste juntarte con la vendedora. Estamos esperando que ella nos confirme que ya le entregaste la compra.
-    a.link_underline(
-      href='#') Escribir a la vendedora
+    router-link.link_underline(
+      :to="{ name: 'privateMessage', params: { recipientId: sale.user_id }}") Escribir a la vendedora
     .break
       span.break__txt O
     a.link_underline(
+      @click.prevent="askForShippingDetails"
       href='#') « Lo entregué de otra forma
   Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 

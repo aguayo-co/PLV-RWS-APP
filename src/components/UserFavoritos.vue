@@ -24,8 +24,9 @@ export default {
   computed: {
     ...mapState(['user']),
     filters () {
-      let filters = {}
-      filters.id = this.user.favorites_ids.join(',')
+      let filters = {
+        'filter[id]': this.user.favorites_ids.join(',')
+      }
       return filters
     }
   }

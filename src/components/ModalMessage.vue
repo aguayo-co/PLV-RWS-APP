@@ -39,6 +39,7 @@
                 h2.title.notify__title {{ attributes.title }}
 
               .btn_close.modal__btn_close.i-x(
+                v-if='attributes.type !== "preload"'
                 @click='close')
                 span Cerrar
 

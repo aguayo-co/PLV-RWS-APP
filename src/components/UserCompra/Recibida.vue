@@ -5,12 +5,12 @@
     p.status.status_check.i-check Producto recibido
   .dashboard__actions(v-if="!step")
     p ¿Quieres devolver este producto a la vendedora?
-    a.link_underline.link_underline_lower(
-      @click.prevent="completeSale"
-      href='#') Pensándolo bien, me lo quedo.
     a.btn.btn_solid.btn_block(
       @click.prevent="goToStep('return')"
       href='#') Estoy segura de devolverlo
+    a.link_underline.link_underline_lower(
+      @click.prevent="completeSale"
+      href='#') Pensándolo bien, me lo quedo.
     p (Tienes 20h 12m para devolverlo)
 
   .dashboard__actions(v-if="step === 'return'")
@@ -27,12 +27,12 @@
         :value="product.id")
         label.form__label_check.i-ok(
           :for="sale.id + 'returncheck' + product.id") {{ product.title }}
-    a.link_underline.link_underline_lower(
-      @click.prevent="goToStep(null)"
-      href='#') Pensándolo bien, me lo quedo.
     a.btn.btn_solid.btn_block(
       @click.prevent="goToStep('reason')"
       href='#') Estoy segura de devolverlo
+    a.link_underline.link_underline_lower(
+      @click.prevent="goToStep(null)"
+      href='#') Pensándolo bien, me lo quedo.
     p (Tienes 20h 12m para devolverlo)
 
   .dashboard__actions(v-if="step === 'reason'")

@@ -28,6 +28,7 @@ section.single
         h3.dashboard__title(v-if="mqTablet") Estado del pedido
       UserVenta(
         v-for="sale in sortedSales" :sale="sale" :key="sale.id" v-on:refresh-sale="setSale")
+      Pager(v-model="pagination", :auth="true")
 </template>
 
 <script src="./js/UserTusVentas.js"></script>

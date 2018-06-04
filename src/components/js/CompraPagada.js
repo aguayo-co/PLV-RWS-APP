@@ -14,10 +14,8 @@ export default {
     products () {
       const products = {}
       // Listado de productos con información básica de la Venta y la vendedora en cada uno.
-      Object.keys(this.order.sales).forEach((key) => {
-        const sale = this.order.sales[key]
-        Object.keys(sale.products).forEach((key) => {
-          const product = sale.products[key]
+      this.order.sales.forEach(sale => {
+        sale.products.forEach(product => {
           products[product.id] = {
             ...product,
             shipping_method_name: sale.shipping_method.name

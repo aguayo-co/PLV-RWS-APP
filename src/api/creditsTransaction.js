@@ -6,7 +6,8 @@ import Vue from 'vue'
 export default {
   all (userId, page = 1) {
     const params = {
-      page
+      page,
+      orderby: '-created_at'
     }
     return Vue.axiosAuth.get('/api/credits_transactions', {params})
   },

@@ -4,7 +4,7 @@
   section.section_product
     GridProducto(
       v-if="owner.id"
-      :preFilter="{ 'user_id': owner.id }",
+      :preFilter="{ 'filter[user_id]': owner.id }",
       :infinite="true")
 </template>
 
