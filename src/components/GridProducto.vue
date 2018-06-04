@@ -4,20 +4,18 @@
   //- FilterMobile(
     v-if="mqMobile")
   //- filter desktop
-  //- FilterDesk(
-    @filterChange="computeFilters",
-    @setFilters="setFilters(filterObject)",
-    :filter="filterValues",
+  FilterDesk(
+    @setFilters="setParameters",
+    :filter="parameters",
     v-if="mqDesk",
     :compact="compact")
   .section_product__scroll
-    //- .preload(v-if="loading")
-    //-   span.preload__spin.preload__spin_1
-    //-   span.preload__spin.preload__spin_2
-    //-   span.preload__spin.preload__spin_3
-    //-   span.preload__spin.preload__spin_4
-    //- .product-grid(v-else)
-    .product-grid
+    .preload(v-if="loading")
+      span.preload__spin.preload__spin_1
+      span.preload__spin.preload__spin_2
+      span.preload__spin.preload__spin_3
+      span.preload__spin.preload__spin_4
+    .product-grid(v-else)
       article.slot.slot_grid(
         v-for='product in products')
         button.slot__ico.i-heart(
@@ -127,7 +125,7 @@ export default {
       parameters: {
         'page': 1,
         'items': 12,
-        'orderBy': '-id'
+        'orderby': '-id'
       },
       loading: false,
       enableFavorite: false
@@ -149,11 +147,17 @@ export default {
     },
     updateProductList: function () {
       this.loading = true
+      Object.keys(this.parameters).forEach(key => {
+        if (!this.parameters[key]) {
+          delete this.parameters[key]
+        }
+      })
       productAPI.get(this.parameters)
         .then((response) => {
           this.products = response.data.data
           this.lastPage = response.data.last_page
           this.loading = false
+          this.$emit('doneResults', response.data.total)
         })
     },
     loadMoreProducts: async function (e) {
@@ -173,7 +177,11 @@ export default {
         if (this.lastPage > this.parameters.page) this.loadMoreProducts()
       }
     },
-    computeFilters: async function () {
+    setParameters: function (setFilters) {
+      Object.keys(setFilters).forEach(key => {
+        this.parameters[key] = setFilters[key]
+      })
+      this.updateProductList()
     },
     nextPage: function () {
       this.parameters.page += 1
