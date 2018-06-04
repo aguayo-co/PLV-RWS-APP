@@ -19,18 +19,20 @@
         .card__product
           //-img producto
           .card__figure
-            img.card__img(
-              :src="product.images[0]",
-              :alt="'Foto de ' + product.title")
+            router-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+              img.card__img(
+                :src="product.images[0]",
+                :alt="'Foto de ' + product.title")
 
           //-info producto
           .card__info
-            .card__header
-              h3.card__title {{ product.title }}
-              p.card__brand {{ product.brand }}
-              p.card__size Talla: {{ product.size }}
-            p.card__price $ {{ product.price | currency }}
-            p.card__tag {{ product.condition }}
+            router-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+              .card__header
+                h3.card__title {{ product.title }}
+                p.card__brand {{ product.brand }}
+                p.card__size Talla: {{ product.size }}
+              p.card__price $ {{ product.price | currency }}
+              p.card__tag {{ product.condition }}
             .card__actions
               a.i-trash.card__link(
                 href="#"
