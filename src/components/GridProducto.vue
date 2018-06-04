@@ -108,8 +108,7 @@ export default {
     'infinite',
     'pager',
     'compact',
-    'preFilter',
-    'search'
+    'preFilter'
   ],
   components: {
     FilterDesk,
