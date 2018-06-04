@@ -5,10 +5,12 @@
     nav.filtrate
       .filtrate__item
         form.filtrate(
+          @submit.prevent="updateUserList",
           action='',
           method='GET')
           .filtrate__row.i-search
             input.filtrate__input(
+              v-model="parameters.q",
               type='search',
               name='search',
               placeholder="Buscar")
@@ -47,7 +49,12 @@
 
     .section_product__footer
       p.btn__wrapper
-        a.btn Ver más Prilovers
+        a.btn(@click.prevent='loadMoreUsers') Ver más Prilovers
+    p.preload(v-if='loading')
+      span.preload__spin.preload__spin_1
+      span.preload__spin.preload__spin_2
+      span.preload__spin.preload__spin_3
+      span.preload__spin.preload__spin_4
   ButtonSticky
 </template>
 
@@ -66,6 +73,8 @@ export default {
     return {
       prilovers: [],
       listActive: false,
+      loading: false,
+      lastPage: null,
       item: null,
       listOptions: {
         selected: 0,
@@ -75,14 +84,15 @@ export default {
           { id: 2, name: 'Prilover Star' },
           { id: 3, name: 'It girls' }
         ]
+      },
+      parameters: {
+        'page': 1,
+        'items': 12
       }
     }
   },
   created: function () {
-    usersAPI.getAll()
-      .then(response => {
-        this.prilovers = response.data.data
-      })
+    this.updateUserList()
   },
   methods: {
     openList: function () {
@@ -91,6 +101,26 @@ export default {
     changeOrder: function (listOptionId) {
       this.listOptions.selected = listOptionId
       this.listActive = false
+    },
+    updateUserList: function () {
+      this.loading = true
+      usersAPI.get(this.parameters)
+        .then((response) => {
+          this.prilovers = response.data.data
+          this.lastPage = response.data.last_page
+          this.loading = false
+        })
+    },
+    loadMoreUsers: async function (e) {
+      if (this.lastPage > this.parameters.page) {
+        this.parameters.page += 1
+        this.loading = true
+        await usersAPI.get(this.parameters)
+          .then((response) => {
+            this.prilovers.push(...response.data.data)
+            this.loading = false
+          })
+      }
     }
   }
 }
