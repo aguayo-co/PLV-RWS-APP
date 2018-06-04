@@ -80,9 +80,8 @@ export default {
         selected: 0,
         options: [
           { id: 0, name: 'Todas' },
-          { id: 1, name: 'Prilover' },
-          { id: 2, name: 'Prilover Star' },
-          { id: 3, name: 'It girls' }
+          { id: 1, name: 'Prilover Star' },
+          { id: 2, name: 'It Girl' }
         ]
       },
       parameters: {
@@ -101,6 +100,12 @@ export default {
     changeOrder: function (listOptionId) {
       this.listOptions.selected = listOptionId
       this.listActive = false
+      if (this.listOptions.selected === 0) {
+        delete this.parameters['filter[group_ids]']
+      } else {
+        this.parameters['filter[group_ids]'] = listOptionId
+      }
+      this.updateUserList()
     },
     updateUserList: function () {
       this.loading = true
