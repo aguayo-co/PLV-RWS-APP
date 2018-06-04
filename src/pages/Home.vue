@@ -17,6 +17,7 @@
       h3.title_subhead Más de 100 nuevos productos cada día
 
     GridProducto(
+      :preFilter="{ 'filter[status]': 10 }",
       :infinite='true')
   ButtonSticky
 </template>
