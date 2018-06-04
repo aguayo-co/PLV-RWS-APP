@@ -34,7 +34,7 @@
           :class="{ 'filter__select_open' : selectedFilterOption === 'category' }",
           @click="switchFilter('category')")
           span.filter__arrow Categoría
-          span.filter__details(v-if="new_filter.category && new_filter.category.length > 0") {{ filterSelectedCategories(new_filter.category) }}
+          span.filter__details(v-if="new_filter.category_id && new_filter.category_id.length > 0") {{ filterSelectedCategories(new_filter.category_id) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'category'")
               li.filter__select_header.i-close(@click.stop='switchFilter') Categoría
@@ -52,7 +52,7 @@
                           v-for="subcategory in category.children")
                           .filter__item-check
                             input.filter__input-check(
-                              v-model="new_filter.category",
+                              v-model="new_filter.category_id",
                               :value="subcategory.id",
                               :id="'category-' + subcategory.id"
                               type="checkbox")
@@ -63,6 +63,7 @@
           :class="{ 'filter__select_open' : selectedFilterOption === 'size' }",
           @click.stop="switchFilter('size')")
           span.filter__arrow Talla
+          span.filter__details(v-if="new_filter.size_id && new_filter.size_id.length > 0") {{ filterSelectedSizes(new_filter.size_id) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'size'")
               li.filter__select_header.i-close(@click.stop='switchFilter') Talla
@@ -80,7 +81,7 @@
                           v-for="subsize in size.children")
                           .filter__item-check
                             input.filter__input-check(
-                              v-model="new_filter.size",
+                              v-model="new_filter.size_id",
                               :value="subsize.id",
                               :id="'size-' + subsize.id"
                               type="checkbox")
@@ -91,6 +92,7 @@
           :class="{ 'filter__select_open' : selectedFilterOption === 'brand' }",
           @click.stop="switchFilter('brand')")
           span.filter__arrow Marca
+          span.filter__details(v-if="new_filter.brand_id && new_filter.brand_id.length > 0") {{ filterSelectedAttributes(new_filter.brand_id, brands) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'brand'")
               li.filter__select_header.i-close(@click.stop='switchFilter') Marca
@@ -100,16 +102,17 @@
                 .filter__item-check
                   input.filter__input-check(
                     type="checkbox",
-                    v-model="new_filter.brand",
+                    v-model="new_filter.brand_id",
                     :value="brand.id",
                     :id="'brand-' + brand.id")
-                  label.filter__label-check.i-ok(for="'brand-' + brand.id")
+                  label.filter__label-check.i-ok(:for="'brand-' + brand.id")
                 span.filter__arrow {{ brand.name }}
         //- Item Color
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'color' }",
           @click.stop="switchFilter('color')")
           span.filter__arrow Color
+          span.filter__details(v-if="new_filter.color_ids && new_filter.color_ids.length > 0") {{ filterSelectedAttributes(new_filter.color_ids, colors) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'color'")
               li.filter__select_header.i-close(@click.stop='switchFilter') Color
@@ -118,7 +121,7 @@
                 v-for="(color, index) in colors")
                 .filter__item-check
                   input.filter__input-check(
-                  v-model="new_filter.color",
+                  v-model="new_filter.color_ids",
                   :value="color.id"
                   :id="'color-' + color.id",
                   type="checkbox")
@@ -133,6 +136,7 @@
           :class="{ 'filter__select_open' : selectedFilterOption === 'condition'}",
           @click.stop="switchFilter('condition')")
           span.filter__arrow Condición
+          span.filter__details(v-if="new_filter.condition_id && new_filter.condition_id.length > 0") {{ filterSelectedAttributes(new_filter.condition_id, conditions) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'condition'")
               li.filter__select_header.i-close(@click.stop='switchFilter') Condición
@@ -142,7 +146,7 @@
                 .filter__item-check
                   input.filter__input-check(
                     type="checkbox",
-                    v-model="new_filter.condition",
+                    v-model="new_filter.condition_id",
                     :value="condition.id",
                     :id="'condition-' + condition.id")
                   label.filter__label-check.i-ok(:for="'condition-' + condition.id")
@@ -152,6 +156,7 @@
           :class="{ 'filter__select_open' : selectedFilterOption === 'region' }",
           @click.stop="switchFilter('region')")
           span.filter__arrow Región
+          span.filter__details(v-if="new_filter.region_id && new_filter.region_id.length > 0") {{ filterSelectedAttributes(new_filter.region_id, regions) }}
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'region'")
               li.filter__select_header.i-close(@click.stop="switchFilter()") Región
@@ -160,7 +165,7 @@
                 v-for="(region, index) in regions")
                 .filter__item-check
                   input.filter__input-check(
-                    v-model="new_filter.region",
+                    v-model="new_filter.region_id",
                     :value="region.admin1_code",
                     :id="'region-' + region.admin1_code",
                     type="checkbox")
@@ -181,14 +186,13 @@ import { mapState } from 'vuex'
 import FilterPrecio from '@/components/FilterPrecio'
 
 const filterFields = {
-  category: null,
-  size: null,
-  brand: null,
-  color: null,
-  condition: null,
-  region: null,
-  price: null,
-  order: null
+  category_id: null,
+  size_id: null,
+  brand_id: null,
+  color_ids: null,
+  condition_id: null,
+  region_id: null,
+  price: null
 }
 export default {
   name: 'FilterMobile',
@@ -282,7 +286,20 @@ export default {
       filterMultiActive: false,
       selectedFItem: false,
       selectState: {...filterFields},
-      new_filter: {}
+      new_filter: {
+        category_id: [],
+        size_id: [],
+        brand_id: [],
+        color_ids: [],
+        condition_id: [],
+        region_id: [],
+        orderby: null
+      }
+    }
+  },
+  watch: {
+    filter: function () {
+      this.setPreFilter()
     }
   },
   methods: {
@@ -290,12 +307,8 @@ export default {
       this.selectedFilterOption = option || false
     },
     switchFilterMb: function () {
-      if (this.openFilters) {
-        this.openFilters = false
-      } else {
-        this.new_filter = {...this.filter}
-        this.openFilters = true
-      }
+      this.setPreFilter()
+      this.openFilters = !this.openFilters
     },
     openFMultinivel: function () {
       this.filterMultiActive = !this.filterMultiActive
@@ -317,44 +330,79 @@ export default {
       })
       return filtered.join(',')
     },
+    filterSelectedSizes: function (values) {
+      let filtered = []
+      values.forEach(value => {
+        filtered.push(this.flatenedSizes.filter(x => x.id === value)[0].name)
+      })
+      return filtered.join(',')
+    },
+    filterSelectedAttributes: function (values, attribute) {
+      let filtered = []
+      values.forEach(value => {
+        filtered.push(attribute.filter(x => x.id === value)[0].name)
+      })
+      return filtered.join(',')
+    },
     changeOrder: function (orderOptionId) {
       this.openFMultinivel()
       this.orderOptions.selected = orderOptionId
       switch (orderOptionId) {
         case 0:
-          this.filter.order = '-created_at'
+          this.filter.orderby = '-created_at'
           break
         case 1:
-          this.filter.order = 'price'
+          this.filter.orderby = 'price'
           break
         case 2:
-          this.filter.order = '-price'
+          this.filter.orderby = '-price'
           break
         case 3:
-          this.filter.order = '-commission'
+          this.filter.orderby = '-commission'
           break
         default:
-          this.filter.order = 'favorites'
+          this.filter.orderby = 'favorites'
       }
-      this.$emit('filterChange')
+      const filters = {
+        orderby: this.filter.orderby
+      }
+      this.$emit('setFilters', filters)
+    },
+    setPreFilter: function () {
+      Object.keys(this.filter).forEach(key => {
+        if (key.includes('filter')) {
+          if (key === 'price') {
+            this.new_filter.price = this.filter[key]
+          } else {
+            const parameter = key.match(/\[(.*?)\]/)[1]
+            this.new_filter[parameter] = String(this.filter[key]).split(',').map(Number)
+          }
+        } else {
+          this.new_filter[key] = this.filter[key]
+        }
+      })
     },
     applyAndClose: function () {
-      this.$emit('filterChange', this.new_filter)
+      this.filterChange()
+      const filters = {}
+      Object.keys(filterFields).forEach(key => {
+        if (key === 'price') {
+          filters['filter[price]'] = this.new_filter.price
+        } else {
+          filters['filter[' + key + ']'] = this.new_filter[key].join(',') || ''
+        }
+      })
+      filters.orderby = this.new_filter.orderby
+      this.$emit('setFilters', filters)
       this.switchFilterMb()
     },
     clearFilters: function () {
       this.$emit('clearFilters')
-      this.new_filter = {
-        category: [],
-        size: [],
-        brand: [],
-        color: [],
-        condition: [],
-        region: [],
-        price: null,
-        order: this.new_filter.order
-      }
+      this.switchFilterMb()
     }
+  },
+  mounted: function () {
+    this.setPreFilter()
   }
 }
 </script>

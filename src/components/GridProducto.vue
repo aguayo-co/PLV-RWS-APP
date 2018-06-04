@@ -1,8 +1,11 @@
 <template lang="pug">
 .section_filter
-  //- filter Mobile
-  //- FilterMobile(
-    v-if="mqMobile")
+  //- filter mobile
+  FilterMobile(
+    v-if="mqMobile",
+    @setFilters="setParameters",
+    @clearFilters="clearFilters",
+    :filter="parameters")
   //- filter desktop
   FilterDesk(
     @setFilters="setParameters",
@@ -196,6 +199,15 @@ export default {
           this.parameters[key] = this.preFilter[key]
         })
       }
+    },
+    clearFilters: function () {
+      this.parameters = {
+        'page': 1,
+        'items': 12,
+        'orderby': this.parameters.orderby
+      }
+      this.applyPreFilter()
+      this.updateProductList()
     }
   },
   created: function () {
