@@ -2,17 +2,17 @@
 .list__content
   //-Compra: Envío y pago: 1a Cliente Registrado, logueado
   section.list_step(v-if="shoppingCartStep === null")
-    h2.subhead Selecciona tu método de envío
-    //- metodos de envío
-    CompraSale(
-      v-for="sale in sales"
-      :key="sale.id"
-      :sale="sale")
-
+    h2.subhead Dirección de envío
+    p Dependiendo de tu dirección y la de la compradora, podrás escoger Chilexpress como método de envío.
     //- direcciones editable
+    AddressList(:in-shopping-cart="true", v-on:updatedAddress="updateShippingInformation")
+    //- metodos de envío
     .compra-data_info
-      .subhead.subhead_top Dirección de envío
-      AddressList(:in-shopping-cart="true", v-on:updatedAddress="updateShippingInformation")
+      .subhead.subhead_top Selecciona tu método de envío
+      CompraSale(
+        v-for="sale in sales"
+        :key="sale.id"
+        :sale="sale")
 
       .subhead Teléfono
       form.form_user(
