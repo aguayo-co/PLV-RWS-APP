@@ -65,7 +65,6 @@ new Vue({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('Before each')
   store.dispatch('ui/closeModal')
   store.dispatch('ui/closeAllDropdowns')
   // This goes through the matched routes from last to first, finding the closest route with a title.
@@ -100,7 +99,6 @@ router.beforeEach((to, from, next) => {
       .forEach(tag => document.head.appendChild(tag))
   }
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log('Requires Auth')
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (window.localStorage.getItem('userId')) {

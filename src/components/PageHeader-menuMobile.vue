@@ -10,6 +10,7 @@
         alt="Prilov Compra. Usa. Vende")
   ul.menu
     li.menu__item(
+      v-if="menu.items",
       v-for="(item, index) in menu.items",
       :class="{'menu__item_current' : active == index, 'i-next' : !item.url}")
       a.menu__link(
@@ -53,6 +54,7 @@
   //- menu footer
   ul.menu-footer(v-show="active == undefined")
     li.menu-footer__item(
+      v-if="footer.items",
       v-for="(items, indice) in footer.items")
       a.menu-footer__link(v-if="indice != footer.items.length - 1",
       :href="items.url") {{ items.name }}
@@ -61,6 +63,7 @@
     p.menu-social__title {{ footer.name }}
     ul.menu-social__list(v-if="footer.items")
       li.menu-social__item(
+        v-if="footer.items && footer.items.length > 0",
         v-for="items in footer.items[3].children")
         a.foot-nav-mb__link(
           :href="items.url",
@@ -70,16 +73,24 @@
 </template>
 
 <script>
-import menusAPI from '@/api/menu'
-
+import { mapState } from 'vuex'
 export default {
   name: 'PageHeaderMenuMobile',
   data () {
     return {
       active: undefined,
-      selected: undefined,
-      menu: {},
-      footer: {}
+      selected: undefined
+    }
+  },
+  computed: {
+    ...mapState('ui', [
+      'menus'
+    ]),
+    menu () {
+      return this.menus.principal || {}
+    },
+    footer () {
+      return this.menus.footer || {}
     }
   },
   methods: {
@@ -98,17 +109,6 @@ export default {
     subMenuClose2: function () {
       this.selected = undefined
     }
-  },
-  created () {
-    menusAPI.getMenuByName('principal')
-      .then(response => {
-        this.menu = response.data
-      })
-
-    menusAPI.getMenuByName('footer')
-      .then(response => {
-        this.footer = response.data
-      })
   }
 }
 </script>

@@ -1,14 +1,11 @@
 <template lang="pug">
 nav.filter(@click="closeFilters")
-  //-To-do: individualizar funcionalidad toogle
-    para cada item deplegable
   ul.filter__group
     //Item Prenda
     li.filter__select(
       @click.stop="OpenFilter('category')",
       :class="{ 'filter__select_open' : dropdownState.category }")
       span.filter__arrow Categoría
-        //-To-do: Consumir servicios
       transition(name='toggle-scale')
         ul.filter__list.filter__list_column.toggle-box(
           v-show="dropdownState.category")
@@ -19,7 +16,7 @@ nav.filter(@click="closeFilters")
               v-for="children in category.children")
               input.form__input-check(
                 @change="filterChange"
-                v-model="filter.category",
+                v-model="new_filter.category_id",
                 :value="children.id",
                 :id="'category-' + children.id",
                 type="checkbox")
@@ -40,7 +37,7 @@ nav.filter(@click="closeFilters")
             dd.filter__item(v-for="children in size.children")
               input.form__input-check(
                 @change="filterChange"
-                v-model="filter.size",
+                v-model="new_filter.size_id",
                 :value="children.id"
                 :id="'size-' + children.id",
                 type="checkbox")
@@ -58,7 +55,7 @@ nav.filter(@click="closeFilters")
             v-for="brand in brands")
             input.form__input-check(
               @change="filterChange"
-              v-model="filter.brand",
+              v-model="new_filter.brand_id",
               :value="brand.id"
               :id="'brand-' + brand.id",
               type="checkbox")
@@ -76,7 +73,7 @@ nav.filter(@click="closeFilters")
             v-for="color in colors")
             input.form__input-check(
               @change="filterChange"
-              v-model="filter.color",
+              v-model="new_filter.color_ids",
               :value="color.id",
               :id="'color-' + color.id",
               type="checkbox")
@@ -98,7 +95,7 @@ nav.filter(@click="closeFilters")
             v-for="condition in conditions")
             input.form__input-check(
               @change="filterChange"
-              v-model="filter.condition",
+              v-model="new_filter.condition_id",
               :value="condition.id",
               :id="'condition-' + condition.id",
               type="checkbox")
@@ -117,7 +114,7 @@ nav.filter(@click="closeFilters")
             v-for="region in regions")
             input.form__input-check(
               @change="filterChange"
-              v-model="filter.region",
+              v-model="new_filter.region_id",
               :value="region.admin1_code",
               :id="'region-' + region.admin1_code",
               type="checkbox")
@@ -147,14 +144,13 @@ import { mapState } from 'vuex'
 import FilterPrecio from '@/components/FilterPrecio'
 
 const filterFields = {
-  category: null,
-  size: null,
-  brand: null,
-  color: null,
-  condition: null,
-  region: null,
-  price: null,
-  order: null
+  category_id: null,
+  size_id: null,
+  brand_id: null,
+  color_ids: null,
+  condition_id: null,
+  region_id: null,
+  price: null
 }
 export default {
   name: 'FilterDesk',
@@ -215,7 +211,21 @@ export default {
         }
       },
       dropdownState: {...filterFields},
-      active: false
+      active: false,
+      new_filter: {
+        category_id: [],
+        size_id: [],
+        brand_id: [],
+        color_ids: [],
+        condition_id: [],
+        region_id: [],
+        orderby: null
+      }
+    }
+  },
+  watch: {
+    filter: function () {
+      this.setPreFilter()
     }
   },
   methods: {
@@ -229,33 +239,63 @@ export default {
     },
     filterChange: function () {
       if (this.precio.value[1] === 150000) {
-        this.filter.price = this.precio.value[0] + ',500000'
+        this.new_filter.price = this.precio.value[0] + ',500000'
       } else {
-        this.filter.price = this.precio.value[0] + ',' + this.precio.value[1]
+        this.new_filter.price = this.precio.value[0] + ',' + this.precio.value[1]
       }
-      this.$emit('filterChange')
+      this.applyFilters()
     },
     changeOrder: function (orderOptionId) {
       this.orderOptions.selected = orderOptionId
       switch (orderOptionId) {
         case 0:
-          this.filter.order = '-created_at'
+          this.new_filter.orderby = '-created_at'
           break
         case 1:
-          this.filter.order = 'price'
+          this.new_filter.orderby = 'price'
           break
         case 2:
-          this.filter.order = '-price'
+          this.new_filter.orderby = '-price'
           break
         case 3:
-          this.filter.order = '-commission'
+          this.new_filter.orderby = '-commission'
           break
         default:
-          this.filter.order = 'favorites'
+          this.new_filter.orderby = 'favorites'
       }
       this.dropdownState.order = false
-      this.$emit('filterChange')
+      this.applyFilters()
+    },
+    setPreFilter: function () {
+      Object.keys(this.filter).forEach(key => {
+        if (key.includes('filter')) {
+          if (key === 'price') {
+            this.new_filter.price = this.filter[key]
+          } else {
+            const parameter = key.match(/\[(.*?)\]/)[1]
+            this.new_filter[parameter] = String(this.filter[key]).split(',').map(Number)
+          }
+        } else {
+          this.new_filter[key] = this.filter[key]
+        }
+      })
+    },
+    applyFilters: function () {
+      const filters = {}
+      Object.keys(filterFields).forEach(key => {
+        if (key === 'price') {
+          filters['filter[price]'] = this.new_filter.price
+        } else {
+          filters['filter[' + key + ']'] = this.new_filter[key].join(',') || ''
+        }
+      })
+      filters.orderby = this.new_filter.orderby
+      console.log(filters)
+      this.$emit('setFilters', filters)
     }
+  },
+  mounted: function () {
+    this.setPreFilter()
   }
 }
 </script>

@@ -9,11 +9,11 @@
       span.preload__spin.preload__spin_4
   section.section_product(v-show="hasResults && !loading")
     .filter-head
-      h3.filter-head__title {{ results }} Resultados para "{{ query }}"
-    GridProducto(v-if="query", :infinite="true", :search="query", @queryDoneResults="doneResults")
+      h3.filter-head__title {{ results }} Resultados para "{{ query.q }}"
+    GridProducto(v-if="query", :infinite="true", :preFilter="query", @doneResults="doneResults")
   section.section_product(v-show="!hasResults")
     .alert
-      p.alert__txt.i-sad Lo sentimos, pero no tenemos Resultados para "{{ query }}"
+      p.alert__txt.i-sad Lo sentimos, pero no tenemos Resultados para "{{ query.q }}"
 </template>
 
 <script>
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     query () {
-      return this.$route.params.query
+      return { 'q': this.$route.params.query }
     }
   },
   methods: {
