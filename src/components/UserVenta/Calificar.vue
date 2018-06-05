@@ -7,13 +7,13 @@
   .user-data__notify
     ul.user-data__list
       li.user-data__value.i-like(
-        :class="{like__active: seller_rating === 1}",
+        :class="{'user-data__value_active': seller_rating === 1}",
         @click="seller_rating = 1")
       li.user-data__value.i-like.i_flip(
-        :class="{like__active: seller_rating === -1}",
+        :class="{'user-data__value_active': seller_rating === -1}",
         @click="seller_rating = -1")
       li.user-data__value.i-less-circle(
-        :class="{like__active: seller_rating === 0}",
+        :class="{'user-data__value_active': seller_rating === 0}",
         @click="seller_rating = 0")
   form.form.dashboard__form(@submit.prevent="setSellerRating")
     .form__row
@@ -37,9 +37,6 @@
       li.user-data__value.i-less-circle.like__active(
         v-if="seller_rating === 0")
   p {{ seller_comment }}
-  button.btn.i-send(
-    v-if="!rating.status"
-    @click.prevent="rating.created_at = null") Cambiar calificación
 </template>
 
 <script src="./js/Calificar.js"></script>
