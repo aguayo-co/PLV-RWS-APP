@@ -26,7 +26,7 @@
 
           //-info producto
           .card__info
-            router-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+            router-link.card__info-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
               .card__header
                 h3.card__title {{ product.title }}
                 p.card__brand {{ product.brand }}

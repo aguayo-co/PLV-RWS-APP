@@ -7523,6 +7523,11 @@ body {
   .card__info p {
     margin: 0; }
 
+.card__info-link {
+  color: #000; }
+  .card__info-link:active, .card__info-link:focus, .card__info-link:hover {
+    color: #000; }
+
 .card__actions {
   padding-top: 16px; }
 
