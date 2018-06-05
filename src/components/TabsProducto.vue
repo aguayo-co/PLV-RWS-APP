@@ -204,7 +204,7 @@ export default {
   methods: {
     updateProductList: function () {
       let filterQueryObject = {}
-      filterQueryObject.status = '1,19'
+      filterQueryObject.status = '10,19'
       filterQueryObject.user_id = this.user.id
       productAPI.getAuth(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
         .then((response) => {
