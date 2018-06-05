@@ -97,6 +97,7 @@
     }
     .filter__sublist {
       right: 0;
+      padding-bottom: 80px;
     }
     
     .filter__select {
@@ -117,6 +118,18 @@
         text-transform: none;
       }
     }
+    
+    .filter__details {
+      display: inline-block;
+      max-width: 140px;
+      @include font-rem(16px);
+      color: $c-default-4;
+    }
+
+    .filter__item_selected {
+      color: $c-brand;
+    }
+
     .filter__slide {
       margin: 0 15px;
       padding: 20px 20px 12px;
@@ -127,22 +140,63 @@
     }
 
     .filter__select_header {
-      padding: 13px 0 15px 10px;
-      text-transform: uppercase;
+      @include flexbox;
+      @include align-items(center);
+      padding: 13px 10px 15px;
       @include font-rem(18px);
       color: $c-neutro;
       background-color: $c-brand;
       &:before {
         position: relative;
-        top: -4px;
         display: inline-block;
-        padding: 6px;
+        padding: 6px 8px;
         margin-right: 20px;
-        @include font-rem(7px);
+        @include font-rem(8px);
         border-radius: 50%;
         border: 2px solid $c-neutro;
       }
     }
+    .filter__select-header_main {
+      @include justify-content(space-between);
+    }
+
+      .filter__btn_action {
+        padding: 0;
+        color: $c-neutro;
+        font-weight: $fw-light;
+        background-color: transparent;
+      }
+
+      .filter__btn_close {
+        @include flexbox;
+        @include align-items(center);
+        &:before {
+          position: relative;
+          display: inline-block;
+          padding: 6px;
+          margin-right: 20px;
+          @include font-rem(7px);
+          border-radius: 50%;
+          border: 2px solid $c-neutro;
+        }
+      }
+
+      .filter__btn_delete {
+        @include flexbox;
+        @include flex-direction(row-reverse);
+        @include align-items(center);
+        @include justify-content(flex-start);
+        &:before {
+          @include font-rem(18px);
+        }
+      }
+      .filter__btn-txt {
+        display: inline-block;
+        @include font-rem(12px);
+        padding-right: 10px;
+        line-height: 1;
+      }
+
     .filter__slide {
       @include flex-direction(column);
       border: none;
@@ -186,7 +240,17 @@
         height: 28px;
       }
     }
+
+    .filter__footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 10000;
+      padding: 10px;
+      background-color: #efefef;
+    }
   }
+
 /*------------------------------------*\
     Filter desktop
 \*------------------------------------*/

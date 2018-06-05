@@ -6140,8 +6140,8 @@ body {
   position: absolute;
   top: 6px;
   right: 15px;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   font-size: 0px;
   font-size: 0rem;
   text-align: center;
@@ -6150,6 +6150,7 @@ body {
   transition: all 2s ease; }
   .slot__ico:before {
     position: relative;
+    top: 2px;
     line-height: 1.7;
     color: #f65a66;
     font-size: 20px;
@@ -7587,7 +7588,6 @@ body {
 /*------------------------------------*    List carrito dividers
   \*------------------------------------*/
 .compra-data_info {
-  padding-top: 16px;
   padding-bottom: 20px; }
 
 /*------------------------------------*  List carrito factura
@@ -7699,8 +7699,6 @@ body {
   .list {
     padding-top: 56px; }
   .list__item {
-    padding-top: 32px; }
-  .compra-data_info {
     padding-top: 32px; }
   .card__txt {
     font-size: 16px;
@@ -8275,7 +8273,8 @@ body {
       left: inherit;
       right: 0; }
   .filter__sublist {
-    right: 0; }
+    right: 0;
+    padding-bottom: 80px; }
   .filter__select {
     display: -webkit-box;
     display: -webkit-flex;
@@ -8310,6 +8309,14 @@ body {
     .filter__select .filter__label {
       padding-right: 0;
       text-transform: none; }
+  .filter__details {
+    display: inline-block;
+    max-width: 140px;
+    font-size: 16px;
+    font-size: 1rem;
+    color: #9b9b9b; }
+  .filter__item_selected {
+    color: #f65a66; }
   .filter__slide {
     margin: 0 15px;
     padding: 20px 20px 12px; }
@@ -8318,15 +8325,54 @@ body {
       font-size: 1.125rem;
       text-transform: none; }
   .filter__select_header {
-    padding: 13px 0 15px 10px;
-    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    padding: 13px 10px 15px;
     font-size: 18px;
     font-size: 1.125rem;
     color: #fff;
     background-color: #f65a66; }
     .filter__select_header:before {
       position: relative;
-      top: -4px;
+      display: inline-block;
+      padding: 6px 8px;
+      margin-right: 20px;
+      font-size: 8px;
+      font-size: 0.5rem;
+      border-radius: 50%;
+      border: 2px solid #fff; }
+  .filter__select-header_main {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between; }
+  .filter__btn_action {
+    padding: 0;
+    color: #fff;
+    font-weight: 300;
+    background-color: transparent; }
+  .filter__btn_close {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+    .filter__btn_close:before {
+      position: relative;
       display: inline-block;
       padding: 6px;
       margin-right: 20px;
@@ -8334,6 +8380,37 @@ body {
       font-size: 0.4375rem;
       border-radius: 50%;
       border: 2px solid #fff; }
+  .filter__btn_delete {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row-reverse;
+    -moz-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    justify-content: flex-start; }
+    .filter__btn_delete:before {
+      font-size: 18px;
+      font-size: 1.125rem; }
+  .filter__btn-txt {
+    display: inline-block;
+    font-size: 12px;
+    font-size: 0.75rem;
+    padding-right: 10px;
+    line-height: 1; }
   .filter__slide {
     -webkit-box-direction: normal;
     -webkit-box-orient: vertical;
@@ -8369,7 +8446,14 @@ body {
     display: inline-block;
     vertical-align: middle;
     width: 28px;
-    height: 28px; } }
+    height: 28px; }
+  .filter__footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 10px;
+    background-color: #efefef; } }
 
 /*------------------------------------*    Filter desktop
 \*------------------------------------*/

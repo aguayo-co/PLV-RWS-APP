@@ -25,77 +25,76 @@
     transition(name='slide-right')
       ul.filter__list.filter__list_level(
         v-show="openFilters")
-        li.filter__select_header.i-close
-          button(@click='switchFilterMb') Cerrar
-          span Filtrar
-          button(@click="clearFilters") Borrar filtros
+        li.filter__select_header.filter__select-header_main
+          button.filter__btn_action.filter__btn_close.i-close(@click='switchFilterMb')
+            span Filtrar
+          button.filter__btn_action.filter__btn_delete.i-trash(@click="clearFilters")
+            span.filter__btn-txt Borrar filtros
         //- Item Prenda
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'category' }",
           @click="switchFilter('category')")
-          span.filter__arrow Categoría
           span.filter__details(v-if="new_filter.category_id && new_filter.category_id.length > 0") {{ filterSelectedCategories(new_filter.category_id) }}
+          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.category_id && new_filter.category_id.length > 0 }") Categoría
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'category'")
-              li.filter__select_header.i-close(@click.stop='switchFilter') Categoría
-              li.filter__item.filter__select(
+              li.filter__select_header.i-back(@click.stop='switchFilter') Categoría
+              li.filter__item.filter__select.i-next(
                 v-if="categories",
-                v-for="(category, subIndex) in categories")
-                ul
-                  li.filter__select.i-next(@click="selectedCategory = subIndex")
-                    span.filter__arrow {{ category.name }}
-                    transition(name='slide-right')
-                      ul.filter__sublist.toggle-box__list(v-show="selectedCategory === subIndex")
-                        li.filter__select_header.i-close(@click.stop='selectedCategory = undefined') {{ category.name }}
-                        li.filter__item.filter__select(
-                          v-if="category.children",
-                          v-for="subcategory in category.children")
-                          .filter__item-check
-                            input.filter__input-check(
-                              v-model="new_filter.category_id",
-                              :value="subcategory.id",
-                              :id="'category-' + subcategory.id"
-                              type="checkbox")
-                            label.filter__label-check.i-ok(:for="'category-' + subcategory.id")
-                          span.filter__arrow {{ subcategory.name }}
+                v-for="(category, subIndex) in categories",
+                @click="selectedCategory = subIndex")
+                span.filter__arrow {{ category.name }}
+                transition(name='slide-right')
+                  ul.filter__sublist.toggle-box__list(v-show="selectedCategory === subIndex")
+                    li.filter__select_header.i-back(@click.stop='selectedCategory = undefined') {{ category.name }}
+                    li.filter__item.filter__select(
+                      v-if="category.children",
+                      v-for="subcategory in category.children")
+                      .filter__item-check
+                        input.filter__input-check(
+                          v-model="new_filter.category_id",
+                          :value="subcategory.id",
+                          :id="'category-' + subcategory.id"
+                          type="checkbox")
+                        label.filter__label-check.i-ok(:for="'category-' + subcategory.id")
+                      span.filter__arrow {{ subcategory.name }}
         //- Item Talla
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'size' }",
           @click.stop="switchFilter('size')")
-          span.filter__arrow Talla
           span.filter__details(v-if="new_filter.size_id && new_filter.size_id.length > 0") {{ filterSelectedSizes(new_filter.size_id) }}
+          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.size_id && new_filter.size_id.length > 0 }") Talla
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'size'")
-              li.filter__select_header.i-close(@click.stop='switchFilter') Talla
-              li.filter__item.filter__select(
+              li.filter__select_header.i-back(@click.stop='switchFilter') Talla
+              li.filter__item.filter__select.i-next(
                 v-if="sizes",
-                v-for="(size, subIndex) in sizes")
-                ul
-                  li.filter__select.i-next(@click="selectedSize = subIndex")
-                    span.filter__arrow {{ size.name }}
-                    transition(name='slide-right')
-                      ul.filter__sublist.toggle-box__list(v-show="selectedSize === subIndex")
-                        li.filter__select_header.i-close(@click.stop='selectedSize = undefined') {{ size.name }}
-                        li.filter__item.filter__select(
-                          v-if="size.children",
-                          v-for="subsize in size.children")
-                          .filter__item-check
-                            input.filter__input-check(
-                              v-model="new_filter.size_id",
-                              :value="subsize.id",
-                              :id="'size-' + subsize.id"
-                              type="checkbox")
-                            label.filter__label-check.i-ok(:for="'size-' + subsize.id")
-                          span.filter__arrow {{ subsize.name }}
+                v-for="(size, subIndex) in sizes",
+                @click="selectedSize = subIndex")
+                span.filter__arrow {{ size.name }}
+                transition(name='slide-right')
+                  ul.filter__sublist.toggle-box__list(v-show="selectedSize === subIndex")
+                    li.filter__select_header.i-back(@click.stop='selectedSize = undefined') {{ size.name }}
+                    li.filter__item.filter__select(
+                      v-if="size.children",
+                      v-for="subsize in size.children")
+                      .filter__item-check
+                        input.filter__input-check(
+                          v-model="new_filter.size_id",
+                          :value="subsize.id",
+                          :id="'size-' + subsize.id"
+                          type="checkbox")
+                        label.filter__label-check.i-ok(:for="'size-' + subsize.id")
+                      span.filter__arrow {{ subsize.name }}
         //- Item Marca
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'brand' }",
           @click.stop="switchFilter('brand')")
-          span.filter__arrow Marca
           span.filter__details(v-if="new_filter.brand_id && new_filter.brand_id.length > 0") {{ filterSelectedAttributes(new_filter.brand_id, brands) }}
+          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.brand_id && new_filter.brand_id.length > 0 }") Marca
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'brand'")
-              li.filter__select_header.i-close(@click.stop='switchFilter') Marca
+              li.filter__select_header.i-back(@click.stop='switchFilter') Marca
               li.filter__item.filter__select(
                 v-if="brands",
                 v-for="(brand, index) in brands")
@@ -111,11 +110,11 @@
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'color' }",
           @click.stop="switchFilter('color')")
-          span.filter__arrow Color
           span.filter__details(v-if="new_filter.color_ids && new_filter.color_ids.length > 0") {{ filterSelectedAttributes(new_filter.color_ids, colors) }}
+          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.color_ids && new_filter.color_ids.length > 0 }") Color
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'color'")
-              li.filter__select_header.i-close(@click.stop='switchFilter') Color
+              li.filter__select_header.i-back(@click.stop='switchFilter') Color
               li.filter__item.filter__select(
                 v-if="colors",
                 v-for="(color, index) in colors")
@@ -135,11 +134,11 @@
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'condition'}",
           @click.stop="switchFilter('condition')")
-          span.filter__arrow Condición
           span.filter__details(v-if="new_filter.condition_id && new_filter.condition_id.length > 0") {{ filterSelectedAttributes(new_filter.condition_id, conditions) }}
+          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.condition_id && new_filter.condition_id.length > 0 }") Condición
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'condition'")
-              li.filter__select_header.i-close(@click.stop='switchFilter') Condición
+              li.filter__select_header.i-back(@click.stop='switchFilter') Condición
               li.filter__item.filter__select(
                 v-if="conditions",
                 v-for="(condition, index) in conditions")
@@ -155,11 +154,11 @@
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'region' }",
           @click.stop="switchFilter('region')")
-          span.filter__arrow Región
           span.filter__details(v-if="new_filter.region_id && new_filter.region_id.length > 0") {{ filterSelectedAttributes(new_filter.region_id, regions) }}
+          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.region_id && new_filter.region_id.length > 0 }") Región
           transition(name='slide-right')
             ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'region'")
-              li.filter__select_header.i-close(@click.stop="switchFilter()") Región
+              li.filter__select_header.i-back(@click.stop="switchFilter()") Región
               li.filter__item.filter__select(
                 v-if="regions",
                 v-for="(region, index) in regions")
@@ -328,21 +327,21 @@ export default {
       values.forEach(value => {
         filtered.push(this.flatenedCategories.filter(x => x.id === value)[0].name)
       })
-      return filtered.join(',')
+      return filtered.join(', ')
     },
     filterSelectedSizes: function (values) {
       let filtered = []
       values.forEach(value => {
         filtered.push(this.flatenedSizes.filter(x => x.id === value)[0].name)
       })
-      return filtered.join(',')
+      return filtered.join(', ')
     },
     filterSelectedAttributes: function (values, attribute) {
       let filtered = []
       values.forEach(value => {
         filtered.push(attribute.filter(x => x.id === value)[0].name)
       })
-      return filtered.join(',')
+      return filtered.join(', ')
     },
     changeOrder: function (orderOptionId) {
       this.openFMultinivel()
