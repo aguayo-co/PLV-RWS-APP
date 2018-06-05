@@ -59,6 +59,14 @@
       margin: 0;
     }
   }
+  .card__info-link {
+    color: $c-default;
+    &:active,
+    &:focus,
+    &:hover {
+      color: $c-default;
+    }
+  }
   .card__actions {
     padding-top: 16px;
   }
