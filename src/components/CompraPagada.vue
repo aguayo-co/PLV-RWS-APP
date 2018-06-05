@@ -44,7 +44,7 @@ section.list-slot
                 :src="product.user.picture",
                 :alt="product.user.first_name")
           .card__user-info
-            .card__status Vendedora con link
+            .card__status Vendedora:
             .card__prilover  {{ product.user | full_name }}
 
         //-datos contacto usuaria
