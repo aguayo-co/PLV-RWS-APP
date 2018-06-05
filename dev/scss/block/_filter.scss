@@ -97,6 +97,7 @@
     }
     .filter__sublist {
       right: 0;
+      padding-bottom: 80px;
     }
     
     .filter__select {
@@ -127,22 +128,45 @@
     }
 
     .filter__select_header {
-      padding: 13px 0 15px 10px;
+      @include flexbox;
+      @include align-items(center);      
+      @include justify-content(space-between);
+      padding: 13px 10px 15px;
       text-transform: uppercase;
       @include font-rem(18px);
       color: $c-neutro;
       background-color: $c-brand;
-      &:before {
-        position: relative;
-        top: -4px;
-        display: inline-block;
-        padding: 6px;
-        margin-right: 20px;
-        @include font-rem(7px);
-        border-radius: 50%;
-        border: 2px solid $c-neutro;
-      }
     }
+      .filter__btn_action {
+        background-color: transparent;
+        color: $c-neutro;
+        padding: 0;
+        font-weight: $fw-light;
+        text-transform: uppercase;
+      }
+
+      .filter__btn_close {
+        @include flexbox;
+        @include align-items(center);
+        &:before {
+          position: relative;
+          display: inline-block;
+          padding: 6px;
+          margin-right: 20px;
+          @include font-rem(7px);
+          border-radius: 50%;
+          border: 2px solid $c-neutro;
+        }
+      }
+
+      .filter__btn_delete {
+        position: relative;
+        @include font-rem(0px);
+        &:before {
+          @include font-rem(18px);
+        }
+      }
+
     .filter__slide {
       @include flex-direction(column);
       border: none;
@@ -186,7 +210,17 @@
         height: 28px;
       }
     }
+
+    .filter__footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 10000;
+      padding: 10px;
+      background-color: #efefef;
+    }
   }
+
 /*------------------------------------*\
     Filter desktop
 \*------------------------------------*/

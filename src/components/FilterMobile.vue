@@ -25,10 +25,11 @@
     transition(name='slide-right')
       ul.filter__list.filter__list_level(
         v-show="openFilters")
-        li.filter__select_header.i-close
-          button(@click='switchFilterMb') Cerrar
-          span Filtrar
-          button(@click="clearFilters") Borrar filtros
+        li.filter__select_header
+          button.filter__btn_action.filter__btn_close.i-close(@click='switchFilterMb')
+            span Filtrar
+          button.filter__btn_action.filter__btn_delete.i-trash(@click="clearFilters")
+            span.filter__btn-txt Borrar filtros
         //- Item Prenda
         li.filter__select.i-next(
           :class="{ 'filter__select_open' : selectedFilterOption === 'category' }",

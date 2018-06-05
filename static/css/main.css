@@ -7587,7 +7587,6 @@ body {
 /*------------------------------------*    List carrito dividers
   \*------------------------------------*/
 .compra-data_info {
-  padding-top: 16px;
   padding-bottom: 20px; }
 
 /*------------------------------------*  List carrito factura
@@ -7699,8 +7698,6 @@ body {
   .list {
     padding-top: 56px; }
   .list__item {
-    padding-top: 32px; }
-  .compra-data_info {
     padding-top: 32px; }
   .card__txt {
     font-size: 16px;
@@ -8275,7 +8272,8 @@ body {
       left: inherit;
       right: 0; }
   .filter__sublist {
-    right: 0; }
+    right: 0;
+    padding-bottom: 80px; }
   .filter__select {
     display: -webkit-box;
     display: -webkit-flex;
@@ -8318,15 +8316,46 @@ body {
       font-size: 1.125rem;
       text-transform: none; }
   .filter__select_header {
-    padding: 13px 0 15px 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    padding: 13px 10px 15px;
     text-transform: uppercase;
     font-size: 18px;
     font-size: 1.125rem;
     color: #fff;
     background-color: #f65a66; }
-    .filter__select_header:before {
+  .filter__btn_action {
+    background-color: transparent;
+    color: #fff;
+    padding: 0;
+    font-weight: 300;
+    text-transform: uppercase; }
+  .filter__btn_close {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center; }
+    .filter__btn_close:before {
       position: relative;
-      top: -4px;
       display: inline-block;
       padding: 6px;
       margin-right: 20px;
@@ -8334,6 +8363,13 @@ body {
       font-size: 0.4375rem;
       border-radius: 50%;
       border: 2px solid #fff; }
+  .filter__btn_delete {
+    position: relative;
+    font-size: 0px;
+    font-size: 0rem; }
+    .filter__btn_delete:before {
+      font-size: 18px;
+      font-size: 1.125rem; }
   .filter__slide {
     -webkit-box-direction: normal;
     -webkit-box-orient: vertical;
@@ -8369,7 +8405,14 @@ body {
     display: inline-block;
     vertical-align: middle;
     width: 28px;
-    height: 28px; } }
+    height: 28px; }
+  .filter__footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 10px;
+    background-color: #efefef; } }
 
 /*------------------------------------*    Filter desktop
 \*------------------------------------*/
