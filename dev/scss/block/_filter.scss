@@ -118,6 +118,18 @@
         text-transform: none;
       }
     }
+    
+    .filter__details {
+      display: inline-block;
+      max-width: 140px;
+      @include font-rem(16px);
+      color: $c-default-4;
+    }
+
+    .filter__item_selected {
+      color: $c-brand;
+    }
+
     .filter__slide {
       margin: 0 15px;
       padding: 20px 20px 12px;
@@ -129,20 +141,30 @@
 
     .filter__select_header {
       @include flexbox;
-      @include align-items(center);      
-      @include justify-content(space-between);
+      @include align-items(center);
       padding: 13px 10px 15px;
-      text-transform: uppercase;
       @include font-rem(18px);
       color: $c-neutro;
       background-color: $c-brand;
+      &:before {
+        position: relative;
+        display: inline-block;
+        padding: 6px 8px;
+        margin-right: 20px;
+        @include font-rem(8px);
+        border-radius: 50%;
+        border: 2px solid $c-neutro;
+      }
     }
+    .filter__select-header_main {
+      @include justify-content(space-between);
+    }
+
       .filter__btn_action {
-        background-color: transparent;
-        color: $c-neutro;
         padding: 0;
+        color: $c-neutro;
         font-weight: $fw-light;
-        text-transform: uppercase;
+        background-color: transparent;
       }
 
       .filter__btn_close {
@@ -160,11 +182,19 @@
       }
 
       .filter__btn_delete {
-        position: relative;
-        @include font-rem(0px);
+        @include flexbox;
+        @include flex-direction(row-reverse);
+        @include align-items(center);
+        @include justify-content(flex-start);
         &:before {
           @include font-rem(18px);
         }
+      }
+      .filter__btn-txt {
+        display: inline-block;
+        @include font-rem(12px);
+        padding-right: 10px;
+        line-height: 1;
       }
 
     .filter__slide {
