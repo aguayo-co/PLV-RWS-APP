@@ -3,7 +3,7 @@
   //-Compra: Envío y pago: 1a Cliente Registrado, logueado
   section.list_step(v-if="shoppingCartStep === null")
     h2.subhead Dirección de envío
-    p Dependiendo de tu dirección y la de la compradora, podrás escoger Chilexpress como método de envío.
+    p Tu dirección solamente será usada en el caso de que selecciones Chilexpress como método de envío en alguna de tus compras.
     //- direcciones editable
     AddressList(:in-shopping-cart="true", v-on:updatedAddress="updateShippingInformation")
     //- metodos de envío
