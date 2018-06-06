@@ -61,11 +61,11 @@ export default {
     ...mapFields([
       'cart.gateway'
     ]),
-    ...mapState('user', [
-      'credits',
-      'favorite_address_id',
-      'phone'
-    ]),
+    ...mapState('user', {
+      credits: 'credits',
+      favorite_address_id: 'favorite_address_id',
+      default_phone: 'phone'
+    }),
     ...createComputedProps(editableProps)
   },
   methods: {
@@ -155,8 +155,8 @@ export default {
     if (this.favorite_address_id) {
       data['address_id'] = this.favorite_address_id
     }
-    if (this.phone) {
-      data['phone'] = this.phone
+    if (this.default_phone) {
+      data['phone'] = this.default_phone
     }
 
     if (Object.keys(data).length > 0) {
