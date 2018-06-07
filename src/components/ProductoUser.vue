@@ -65,8 +65,6 @@ export default {
       .then(response => {
         this.ratings = response.data.data
         this.rating = this.ratings[this.ratings.length - 1]
-        console.log(this.userData.id)
-        console.log(this.rating)
       })
   }
 }
