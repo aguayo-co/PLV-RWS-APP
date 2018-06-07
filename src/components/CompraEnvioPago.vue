@@ -19,25 +19,22 @@
         id="form-user-phone"
         v-on:submit.prevent='updatePhone')
         .dividers__item(
-          :class="{'dividers__item_active' :editPhone == true}")
+          :class="{'dividers__item_active' :editing}")
           span.help(
-            v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
+            v-show="editing == true && errorLog.phone") {{ errorLog.phone }}
           .dividers__grid
-            span.user-data__holder(
-              v-if="!phone && !editPhone") Aún no has ingresado tú número de teléfono
             input.form__edit(
-              v-else=""
               v-model='new_phone',
-              id='editPhone',
               :placeholder="phone",
-              :disabled="!editPhone"
+              :disabled="!editing"
               type='tel')
 
             span.dividers__actions
               button.btn-tag(
-                v-show="editPhone == true") Guardar
+                v-show="editing") Guardar
               a.dividers__edit.i-edit-line(
-                @click.prevent="toggle('editPhone')",
+                v-show="phone"
+                @click.prevent="toggleEditPhone",
                 href="#",
                 title="Editar Teléfono") <small class="hide"> Editar </small>
 
