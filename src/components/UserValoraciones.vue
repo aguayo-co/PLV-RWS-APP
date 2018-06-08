@@ -21,10 +21,12 @@ section.single
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.length <= 0")
         p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
 
-  div.btn_block(v-if="loading")
-    p.preload.preload__spin(@click="loadRatings")
-  div.btn__wrapper(v-else)
+  .preload(v-if="loading")
+    .preload__spin
+  .btn__wrapper(v-else-if="loadFrom")
     button.btn(@click="loadRatings") Cargar más valoraciones
+  .btn__wrapper(v-else)
+    button.btn(disabled) Estas son todas las valoraciones
 </template>
 
 <script>
@@ -45,12 +47,15 @@ export default {
   },
   methods: {
     handleArchiveApiResponse (data) {
-      if (!data.data) {
+      if (!data.data.length) {
         this.loadFrom = null
         return
       }
 
       this.ratings = this.ratings.concat(data.data)
+      if (!data.next_page_url) {
+        this.loadFrom = null
+      }
     },
     handleApiResponse (data) {
       if (!data.data.length) {
