@@ -9,11 +9,9 @@ section.single
         li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
         li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
       .valuations__item(
-        v-for="rating in ratings",
-        v-if="rating.buyer_comment.length > 0")
+        v-for="rating in ratings")
         p.valuations__date
           time.valuations__date-txt {{ rating.created_at }}
-        // p.valuations__label.i-bag Sweater Blanco Forever 21
         figure.valuations__avatar
           img.valuations__img(
             :src="rating.buyer.picture",
@@ -23,6 +21,10 @@ section.single
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.length <= 0")
         p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
 
+  div.btn_block(v-if="loading")
+    p.preload.preload__spin(@click="loadRatings")
+  div.btn__wrapper(v-else)
+    button.btn(@click="loadRatings") Cargar más valoraciones
 </template>
 
 <script>
@@ -32,17 +34,56 @@ export default {
   name: 'UserValoraciones',
   data () {
     return {
-      ratings: []
+      ratings: [],
+      page: 0,
+      loading: true,
+      loadFrom: 'new'
     }
   },
   computed: {
     ...mapState(['user'])
   },
+  methods: {
+    handleArchiveApiResponse (data) {
+      if (!data.data) {
+        this.loadFrom = null
+        return
+      }
+
+      this.ratings = this.ratings.concat(data.data)
+    },
+    handleApiResponse (data) {
+      if (!data.data.length) {
+        this.loadFrom = 'archive'
+        this.page = 0
+        this.loadRatings()
+        return
+      }
+      this.ratings = this.ratings.concat(data.data)
+      if (!data.next_page_url) {
+        this.loadFrom = 'archive'
+        this.page = 0
+      }
+    },
+    loadRatings () {
+      if (!this.loadFrom) {
+        return
+      }
+      const api = this.loadFrom === 'new' ? ratingsAPI.getBySeller : ratingsAPI.getArchiveBySeller
+      this.loading = true
+      api(this.user.id, ++this.page)
+        .then(response => {
+          this.loading = false
+          if (this.loadFrom === 'new') {
+            this.handleApiResponse(response.data)
+            return
+          }
+          this.handleArchiveApiResponse(response.data)
+        })
+    }
+  },
   created: function () {
-    ratingsAPI.getBySeller(this.user.id)
-      .then(response => {
-        this.ratings = response.data.data
-      })
+    this.loadRatings()
   }
 }
 </script>

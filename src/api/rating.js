@@ -4,11 +4,20 @@
 import Vue from 'vue'
 
 export default {
-  getBySeller (sellerId) {
+  getBySeller (sellerId, page, status = 1) {
     const params = {
       'filter[seller_id]': sellerId,
       orderBy: '-id',
-      items: 100
+      page,
+      'filter[status]': status
+    }
+    return Vue.axios.get('/api/ratings', { params })
+  },
+  getArchiveBySeller (sellerId, page) {
+    const params = {
+      'filter[seller_id]': sellerId,
+      orderBy: '-id',
+      page
     }
     return Vue.axios.get('/api/rating_archives', { params })
   },
