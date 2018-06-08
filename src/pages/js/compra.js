@@ -15,7 +15,8 @@ export default {
   },
   data () {
     return {
-      order: null
+      order: null,
+      errors: {}
     }
   },
   components: {
@@ -41,7 +42,11 @@ export default {
     ...mapState('cart', [
       'id',
       'due',
-      'status'
+      'status',
+      'sales',
+      'address',
+      'gateway',
+      'phone'
     ]),
     orderTotal () {
       return this.order ? this.order.due : this.due
@@ -69,6 +74,70 @@ export default {
     this.loadOrder()
   },
   methods: {
+    /**
+     * Ejecuta validaciones para el proceso de pago.
+     * Cada validación debe pertenecer a un paso.
+     * Cada validación es responsable por eliminar y poner errores.
+     */
+    validate (finalStep) {
+      const vm = this
+      Object.keys(this.errors).forEach(key => {
+        vm.$delete(vm.errors, key)
+      })
+      const validations = [
+        {
+          _step: null,
+          phone () {
+            if (!vm.phone) vm.$set(vm.errors, 'phone', 'El teléfono es obligatorio.')
+          },
+          address () {
+            if (!vm.address) vm.$set(vm.errors, 'address', 'No has seleccionado una dirección.')
+          },
+          /**
+           * Valida que se haya seleccionado método de envío para cada Sale.
+           */
+          shippingMethods () {
+            Object.keys(vm.sales).some((saleId) => {
+              if (!vm.sales[saleId].shipping_method_id) {
+                vm.$set(vm.errors, 'shippingMethod' + saleId, 'No has seleccionado el método de envío.')
+              }
+            })
+          }
+        },
+        {
+          _step: 'medio-de-pago',
+          gateway () {
+            if (!vm.gateway) vm.$set(vm.errors, 'gateway', 'Tienes que seleccionar un método de pago.')
+          }
+        }
+      ]
+
+      // Itera por todos los pasos.
+      // Si encuentra errores en alguno, manda al usuario a ese paso y
+      // detiene la validación.
+      // Usa "some" y no "forEach" para poder romper el loop.
+      validations.some(stepValidations => {
+        Object.keys(stepValidations).forEach(validation => {
+          if (typeof stepValidations[validation] === 'function') stepValidations[validation]()
+        })
+
+        // Rompe cuando encuentra errores en un paso.
+        if (Object.keys(vm.errors).length) {
+          this.setShoppingCartStep(stepValidations._step)
+          return true
+        }
+
+        // Termina en el paso solicitado.
+        console.log(finalStep)
+        console.log(stepValidations._step)
+        if (finalStep === stepValidations._step) {
+          return true
+        }
+      })
+    },
+    clearError (field) {
+      this.$delete(this.errors, field)
+    },
     setShoppingCartStep (step) {
       if (step === this.shoppingCartStep) {
         return

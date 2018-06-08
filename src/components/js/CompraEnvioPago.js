@@ -41,7 +41,7 @@ export default {
     AddressList,
     CompraSale
   },
-  props: ['shoppingCartStep'],
+  props: ['shoppingCartStep', 'errors'],
   data () {
     return {
       userDataTimeout: null,
@@ -52,6 +52,9 @@ export default {
     }
   },
   computed: {
+    allErrors () {
+      return {...this.errorLog, ...this.errors}
+    },
     editing () {
       return this.editPhone || !this.phone
     },
@@ -85,6 +88,7 @@ export default {
      * Guarda el teléfono de la orden.
      */
     updatePhone () {
+      this.$emit('clearError', 'phone')
       if (!this.new_phone) {
         this.errorLog.phone = 'Este campo es requerido.'
         return
@@ -121,6 +125,7 @@ export default {
     },
     // Si una dirección se actualiza, se usa cómo dirección de la orden.
     updateShippingInformation (address) {
+      this.$emit('clearError', 'address')
       const data = {
         address_id: address.id
       }
@@ -128,6 +133,9 @@ export default {
     }
   },
   watch: {
+    gateway () {
+      this.$emit('clearError', 'gateway')
+    },
     /**
      * Calcula un timeout sin modificación para guardar
      * used_credits en el back.
@@ -158,6 +166,9 @@ export default {
       this.userDataTimeout = window.setTimeout(() => {
         this.updateUsedCredits()
       }, 2000)
+    },
+    address () {
+      this.$emit('clearError', 'address')
     }
   },
   created () {

@@ -32,7 +32,7 @@
             label.form__label(
               for='codigo') ¿Tienes algún código de descuento?
             span.help(
-              v-show="errorLog.coupon_code") {{ errorLog.coupon_code }}
+              v-if="errorLog.coupon_code") {{ errorLog.coupon_code }}
             .form__combo(
               :class="{'form__combo_ok i-ok': couponValid}")
               input.form__control.combo__control(
@@ -43,10 +43,10 @@
                 v-model="new_coupon_code")
               button.btn.combo__btn(
                 :disabled="disabled.coupon_code"
-                v-show="!couponValid && new_coupon_code") Validar
+                v-if="!couponValid && new_coupon_code") Validar
               button.btn.combo__btn(
                 :disabled="disabled.coupon_code"
-                v-show="coupon_code && !new_coupon_code") Eliminar
+                v-if="coupon_code && !new_coupon_code") Eliminar
         //- End código de descuento
 
         //- Botón continuar
