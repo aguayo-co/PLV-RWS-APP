@@ -1,6 +1,6 @@
 export default {
   name: 'CompraSale',
-  props: ['sale'],
+  props: ['sale', 'errors'],
   data () {
     return {
       new_shipping_method_id: null
@@ -14,6 +14,7 @@ export default {
       set (shippingMethodId) {
         this.new_shipping_method_id = shippingMethodId
         const saleId = this.sale.id
+        this.$emit('clearError', 'shippingMethod' + saleId)
         const data = {sales: {}}
         data.sales[saleId] = {
           shipping_method_id: shippingMethodId
@@ -44,7 +45,7 @@ export default {
         const shippingMethod = shippingMethods[key]
 
         // Skip Chilexpress if sale does not allow it.
-        if (shippingMethod.slug.includes('chilexpress') && sale.allow_chilexpress === false) {
+        if (shippingMethod.slug.includes('chilexpress') && !sale.allow_chilexpress) {
           return
         }
 

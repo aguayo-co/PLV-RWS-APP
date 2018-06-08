@@ -42,6 +42,8 @@
       .boxcheck__sticky
         h4.boxcheck__headline Métodos de envío disponibles:
         p.boxcheck__subheadline Estos son los métodos de envío habilitados por la vendedora de estos productos.
+        span.help(
+          v-if="errors['shippingMethod' + sale.id]") {{ errors['shippingMethod' + sale.id] }}
         form.boxcheck__form
           //-item
           .boxcheck__item(

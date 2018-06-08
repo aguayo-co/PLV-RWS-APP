@@ -11,7 +11,6 @@
     a.btn.btn_solid.btn_block(
       @click.prevent="saleReturnReceived"
       href='#') Si, la recibí
-  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 49")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
@@ -26,26 +25,22 @@
     a.btn.btn_block(
       @click.prevent="saleReturnAdminManagement"
       href='#') Lo recibí en peores condiciones
-  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 50")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Producto devuelto en revisión por Prilov
     p Nos informaste de una inconformidad con el producto que te devolvieron y lo estamos evaluando.
-  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 90")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Producto devuelto
-  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 
 .dashboard__subitem(v-else-if="sale_return.status === 99")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
     p.status.status_warning.i-reload Devolución cancelada
-  Calificar(:sale="sale" v-on:refresh-sale="$emit('refresh-sale', $event)")
 </template>
 
 <script src="./js/Devuelta.js"></script>

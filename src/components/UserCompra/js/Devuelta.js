@@ -1,12 +1,8 @@
 import Base from './Base'
 import saleReturnAPI from '@/api/saleReturn'
-import Calificar from '../Calificar'
 
 export default Base.merge({
   name: 'Devuelta',
-  components: {
-    Calificar
-  },
   data () {
     return {
       sale_return: null,

@@ -38,7 +38,7 @@ export default {
   components: {
     CompraPayU
   },
-  props: ['shoppingCartStep'],
+  props: ['shoppingCartStep', 'errors'],
   data () {
     return {
       payUPayment: null,
@@ -58,9 +58,7 @@ export default {
       'total',
       'coupon_discount',
       'coupon_code',
-      'phone',
-      'shipping_cost',
-      'sales'
+      'shipping_cost'
     ]),
     ...mapFields([
       'cart.gateway'
@@ -95,71 +93,28 @@ export default {
      */
     nextStep () {
       if (this.shoppingCartStep === null) {
+        this.$emit('validate', null)
+        if (Object.keys(this.errors).length) {
+          return
+        }
         this.continueToPaymentMethod()
         return
       }
 
       if (this.shoppingCartStep === 'medio-de-pago') {
+        this.$emit('validate', 'medio-de-pago')
+        if (Object.keys(this.errors).length) {
+          return
+        }
         this.continueToPayment()
       }
     },
-    validateShoppingCart () {
-      const errors = []
-      Object.keys(this.sales).some((saleId) => {
-        if (!this.sales[saleId].shipping_method_id) {
-          errors.push('No has seleccionado el método de envío de alguna vendedora.')
-          return false
-        }
-      })
-
-      if (!this.phone) {
-        errors.push('No has seleccionado el teléfono de la orden.')
-      }
-
-      if (errors.length) {
-        const modal = {
-          name: 'ModalMessage',
-          parameters: {
-            type: 'alert',
-            title: 'Ha habido un problema.',
-            body: errors[0]
-          }
-        }
-        // De vuelta al primer paso
-        this.$emit('setShoppingCartStep', null)
-        // Muestra modal después de cambiar de ruta,
-        // de lo contrario se cierra con el cambio.
-        this.$store.dispatch('ui/showModal', modal)
-        return false
-      }
-      return true
-    },
     continueToPaymentMethod () {
-      if (!this.validateShoppingCart()) {
-        return
-      }
       this.$emit('setShoppingCartStep', 'medio-de-pago')
     },
     continueToPayment () {
-      if (!this.validateShoppingCart()) {
-        return
-      }
-
       // Este es el último paso.
       const gateway = this.gateway
-      if (!gateway) {
-        const modal = {
-          name: 'ModalMessage',
-          parameters: {
-            type: 'alert',
-            title: 'Ha habido un problema.',
-            body: 'No has seleccionado el método de pago.'
-          }
-        }
-        this.$store.dispatch('ui/showModal', modal)
-        return
-      }
-
       let request
       if (gateway === 'mercado_pago') {
         request = this.setMercadoPagoPayment()
@@ -222,6 +177,15 @@ export default {
      */
     setTransferPayment () {
       this.$emit('setShoppingCartStep', null)
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: 'Estamos confirmando tu compra.',
+          body: 'Por favor no refresques esta página.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
       return shoppingCartAPI.getPayment('transfer').then((response) => {
         this.$router.push({name: 'compra', params: { path: this.id }})
       })
@@ -231,6 +195,15 @@ export default {
      */
     setTransferFree () {
       this.$emit('setShoppingCartStep', null)
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: 'Estamos confirmando tu compra.',
+          body: 'Por favor no refresques esta página.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
       return shoppingCartAPI.getPayment('free').then((response) => {
         this.$router.push({name: 'compra', params: { path: this.id }})
       })

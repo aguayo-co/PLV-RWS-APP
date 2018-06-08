@@ -5,39 +5,43 @@
     h2.subhead Dirección de envío
     p Tu dirección solamente será usada en el caso de que selecciones Chilexpress como método de envío en alguna de tus compras.
     //- direcciones editable
-    AddressList(:in-shopping-cart="true", v-on:updatedAddress="updateShippingInformation")
+    span.help(
+      v-if="allErrors.address") {{ allErrors.address }}
+    AddressList(
+      :in-shopping-cart="true"
+      v-on:updatedAddress="updateShippingInformation")
     //- metodos de envío
     .compra-data_info
       .subhead.subhead_top Selecciona tu método de envío
       CompraSale(
         v-for="sale in sales"
+        :errors="allErrors"
         :key="sale.id"
-        :sale="sale")
+        :sale="sale"
+        v-on:clearError="$emit('clearError', $event)")
 
       .subhead Teléfono
       form.form_user(
         id="form-user-phone"
         v-on:submit.prevent='updatePhone')
         .dividers__item(
-          :class="{'dividers__item_active' :editPhone == true}")
+          :class="{'dividers__item_active' :editing}")
           span.help(
-            v-show="editPhone == true && errorLog.phone") {{ errorLog.phone }}
+            v-if="allErrors.phone") {{ allErrors.phone }}
           .dividers__grid
-            span.user-data__holder(
-              v-if="!phone && !editPhone") Aún no has ingresado tú número de teléfono
             input.form__edit(
-              v-else=""
+              @input="$emit('clearError', 'phone')"
               v-model='new_phone',
-              id='editPhone',
               :placeholder="phone",
-              :disabled="!editPhone"
+              :disabled="!editing"
               type='tel')
 
             span.dividers__actions
               button.btn-tag(
-                v-show="editPhone == true") Guardar
+                v-if="editing") Guardar
               a.dividers__edit.i-edit-line(
-                @click.prevent="toggle('editPhone')",
+                v-if="phone"
+                @click.prevent="toggleEditPhone",
                 href="#",
                 title="Editar Teléfono") <small class="hide"> Editar </small>
 
@@ -45,8 +49,8 @@
   section.list_step(v-if="shoppingCartStep === 'medio-de-pago'")
     a(
       @click.prevent="$emit('setShoppingCartStep', null)") Volver
-    h3.subhead(v-show="credits") ¿Quieres usar tus créditos en esta compra?
-    .pay-off(v-show="credits")
+    h3.subhead(v-if="credits") ¿Quieres usar tus créditos en esta compra?
+    .pay-off(v-if="credits")
       .pay-off__item
         p.pay-off__label Créditos Prilov disponibles
         p.pay-off__value {{ credits|currency }} <small class="pay-off__small">Créditos</small>
@@ -56,7 +60,7 @@
           for="creditos-on") Usar en esta compra
         .pay-off__group
           span.help(
-            v-show="errorLog.used_credits") {{ errorLog.used_credits }}
+            v-if="allErrors.used_credits") {{ allErrors.used_credits }}
           input.form__control.pay-off__control(
             id="creditos-on",
             type="text",
@@ -66,6 +70,8 @@
     //-tipo de medio de pago
     h3.subhead ¿Con que medio te gustaría pagar?
     //-checkbox tipo pago
+    span.help(
+      v-if="errors.gateway") {{ errors.gateway }}
     .boxcheck-wrap
       .boxcheck
         form.boxcheck__grid
