@@ -25,14 +25,19 @@ export default {
   },
   methods: {
     loadProducts () {
-      this.loading = true
+      this.products = null
       let filters = {}
       filters.status = this.tabs[this.activeTab]
       filters.user_id = this.user.id
-      productAPI.getAuth(1, null, filters, this.orderBy)
+      const currentLoader = this.loading = productAPI.getAuth(1, null, filters, this.orderBy)
         .then((response) => {
-          this.pagination = response.data
-          this.loading = false
+          // Maybe the user exited the current tab already
+          // Since a promise is not cancelable (yet) we ignore
+          // a callback which is not the latest one.
+          if (this.loading === currentLoader) {
+            this.pagination = response.data
+            this.loading = false
+          }
         })
     },
     paging (state) {
