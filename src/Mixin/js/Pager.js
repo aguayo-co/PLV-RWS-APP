@@ -23,10 +23,12 @@ export default {
   },
   methods: {
     goTo (url) {
+      this.$emit('paging', true)
       const axios = this.auth ? this.$axiosAuth : this.$axios
       axios.get(url).then((response) => {
         this.$emit('paged', response.data)
         window.scrollTo(0, 0)
+        this.$emit('paging', false)
       })
     }
   }
