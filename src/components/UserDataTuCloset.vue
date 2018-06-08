@@ -158,6 +158,9 @@
       router-link.btn.btn_small.i-tag(
         :to="{ name:'publicar-venta'}",
         title="Publicar un producto en Prilov") Publicar un producto
+      router-link.btn.btn_small.i-starts(
+        :to="{ name:'publicar-venta'}",
+        title="Publicar un producto en Prilov") Vista pública de tu closet
 
 </template>
 

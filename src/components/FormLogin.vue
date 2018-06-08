@@ -8,7 +8,7 @@ transition(name='modal-fade')
           .btn_close.modal__btn_close.i-x(
             @click='close')
             span Cerrar
-        p.form__info.i-alert-info(v-if="loginError") No podemos reconocer tu usuario y contraseña.
+        p.form__info.i-alert-info(v-if="loginError") No podemos reconocer tu usuario o contraseña.
         form.form(
           v-on:submit='',
           action='#',

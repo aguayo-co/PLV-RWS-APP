@@ -3,7 +3,7 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Método de envío
-      p.single__subtitle Escoge un método de envío para Tus Ventas
+      p.single__subtitle Escoge tus métodos de envío
       p.preload(v-if="loading")
         span.preload__spin.preload__spin_1
         span.preload__spin.preload__spin_2

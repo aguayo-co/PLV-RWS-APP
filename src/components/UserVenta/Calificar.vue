@@ -18,7 +18,7 @@
   form.form.dashboard__form(@submit.prevent="setSellerRating")
     .form__row
       label.form__label(
-      for='CommentSale') Deja un comentario sobre la vendedora
+      for='CommentSale') Deja un comentario sobre la compradora
       span.help(
         v-show="errorLog.seller_comment") {{ errorLog.seller_comment }}
       input.form__textarea.form__textarea_height(
