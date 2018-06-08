@@ -57,7 +57,6 @@ export default {
       this.$set(this.orders, order.id, order)
       Object.keys(order.sales).forEach(key => {
         const sale = order.sales[key]
-        sale.user = order.sales[key].products[0].user
         this.$set(this.sales, sale.id, sale)
       })
     },

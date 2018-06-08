@@ -41,7 +41,7 @@ export default {
     AddressList,
     CompraSale
   },
-  props: ['shoppingCartStep'],
+  props: ['shoppingCartStep', 'errors'],
   data () {
     return {
       userDataTimeout: null,
@@ -52,6 +52,12 @@ export default {
     }
   },
   computed: {
+    allErrors () {
+      return {...this.errorLog, ...this.errors}
+    },
+    editing () {
+      return this.editPhone || !this.phone
+    },
     ...mapState('cart', [
       'due',
       'sales',
@@ -61,30 +67,39 @@ export default {
     ...mapFields([
       'cart.gateway'
     ]),
-    ...mapState('user', [
-      'credits',
-      'favorite_address_id',
-      'phone'
-    ]),
+    ...mapState('user', {
+      credits: 'credits',
+      favorite_address_id: 'favorite_address_id',
+      default_phone: 'phone'
+    }),
     ...createComputedProps(editableProps)
   },
   methods: {
     /**
      * Cambia la propiedad data entre true/false.
      */
-    toggle (prop) {
-      this[prop] = !this[prop]
+    toggleEditPhone () {
+      if (!this.phone) {
+        this.editPhone = true
+      }
+      this.editPhone = !this.editPhone
     },
     /**
      * Guarda el teléfono de la orden.
      */
     updatePhone () {
+      this.$emit('clearError', 'phone')
+      if (!this.new_phone) {
+        this.errorLog.phone = 'Este campo es requerido.'
+        return
+      }
+
       const data = {
         phone: this.new_phone
       }
       this.errorLog.phone = null
       this.$store.dispatch('cart/update', data).then(() => {
-        this.toggle('editPhone')
+        this.editPhone = false
         // Obliga a usar valores de Vuex.
         this.new_phone = null
       }).catch((e) => {
@@ -110,6 +125,7 @@ export default {
     },
     // Si una dirección se actualiza, se usa cómo dirección de la orden.
     updateShippingInformation (address) {
+      this.$emit('clearError', 'address')
       const data = {
         address_id: address.id
       }
@@ -117,6 +133,9 @@ export default {
     }
   },
   watch: {
+    gateway () {
+      this.$emit('clearError', 'gateway')
+    },
     /**
      * Calcula un timeout sin modificación para guardar
      * used_credits en el back.
@@ -147,6 +166,9 @@ export default {
       this.userDataTimeout = window.setTimeout(() => {
         this.updateUsedCredits()
       }, 2000)
+    },
+    address () {
+      this.$emit('clearError', 'address')
     }
   },
   created () {
@@ -155,12 +177,25 @@ export default {
     if (this.favorite_address_id) {
       data['address_id'] = this.favorite_address_id
     }
-    if (this.phone) {
-      data['phone'] = this.phone
+    if (this.default_phone) {
+      data['phone'] = this.default_phone
     }
 
     if (Object.keys(data).length > 0) {
-      this.$store.dispatch('cart/update', data)
+      // Apenas se carga la página, se hace un llamado para actualizar
+      // dirección y teléfono. Mostrar modal mientras este llamado.
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: 'Estamos cargando tu carrito.'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
+
+      this.$store.dispatch('cart/update', data).then(() => {
+        this.$store.dispatch('ui/closeModal')
+      })
     }
   }
 }

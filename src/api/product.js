@@ -67,38 +67,21 @@ export default {
     return Vue.axios.get('/api/products', { params })
   },
 
-  getProducts: function (page, items, filter, order, search) {
-    let querySearch = ''
-    let queryFilter = ''
-    let queryOrder = ''
-    page = page || 1
-    items = items || 8
-
-    if (filter) {
-      Object.keys(filter).forEach((key) => {
-        if (filter[key]) queryFilter += '&filter[' + key + ']=' + filter[key]
-      })
-    }
-    if (order) queryOrder = '&orderby=' + order
-    if (search) querySearch = '&q=' + search
-    return Vue.axios.get('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
+  getProducts: function (page, items, filter, order, search, auth = false) {
+    const params = {}
+    Object.keys(filter).forEach((key) => {
+      params['filter[' + key + ']'] = filter[key]
+    })
+    if (items) params['items'] = items
+    if (page) params['page'] = page
+    if (order) params['orderby'] = order
+    if (search) params['q'] = search
+    const axios = auth ? Vue.axiosAuth : Vue.axios
+    return axios.get('/api/products', {params})
   },
 
   getAuth: function (page, items, filter, order, search) {
-    let querySearch = ''
-    let queryFilter = ''
-    let queryOrder = ''
-    page = page || 1
-    items = items || 8
-
-    if (filter) {
-      Object.keys(filter).forEach((key) => {
-        if (filter[key]) queryFilter += '&filter[' + key + ']=' + filter[key]
-      })
-    }
-    if (order) queryOrder = '&orderby=' + order
-    if (search) querySearch = '&q=' + search
-    return Vue.axiosAuth.get('/api/products?items=' + items + '&page=' + page + queryFilter + queryOrder + querySearch)
+    return this.getProducts(page, items, filter, order, search, true)
   },
 
   getProductById: function (productId) {

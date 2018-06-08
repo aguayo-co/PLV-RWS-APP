@@ -17,5 +17,19 @@ export default Base.merge({
     Completada,
     Devuelta,
     Cancelada
+  },
+  computed: {
+    sellerPhone () {
+      if (this.sale.status < 30 || this.sale.status === 99) {
+        return
+      }
+      return this.sale.user.phone
+    },
+    phone () {
+      return this.$getNestedObject(this.order, ['shipping_information', 'phone'])
+    },
+    address () {
+      return this.$getNestedObject(this.order, ['shipping_information', 'address'])
+    }
   }
 })

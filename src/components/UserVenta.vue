@@ -23,8 +23,8 @@
             p.card__price $ {{ product.price | currency }}
             .card__user-data
               p Compradora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.order.user_id }}"> {{ sale.order.user.first_name }} {{ sale.order.user.last_name }}</router-link>
-              p Teléfono: {{ sale.order.user.phone }}
-              p Dirección: Av. Pajaritos 1309, maipu
+              p(v-if="phone") Teléfono: {{ phone }}
+              p(v-if="address") Dirección: {{ address | address }}
 
     Pendiente(:sale="sale" v-if="sale.status === 20" v-on:refresh-sale="$emit('refresh-sale', $event)")
     Pagada(:sale="sale" v-else-if="sale.status === 30" v-on:refresh-sale="$emit('refresh-sale', $event)")

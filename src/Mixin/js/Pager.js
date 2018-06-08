@@ -23,10 +23,17 @@ export default {
   },
   methods: {
     goTo (url) {
+      this.$emit('paging', true)
       const axios = this.auth ? this.$axiosAuth : this.$axios
       axios.get(url).then((response) => {
+        // Scroll to the top of the parent element.
+        const bodyRect = document.body.getBoundingClientRect()
+        const elemRect = this.$parent.$el.getBoundingClientRect()
+        const offset = elemRect.top - bodyRect.top
+        window.scrollTo(0, offset)
+
         this.$emit('paged', response.data)
-        window.scrollTo(0, 0)
+        this.$emit('paging', false)
       })
     }
   }

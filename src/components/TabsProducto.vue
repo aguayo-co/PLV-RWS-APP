@@ -2,30 +2,39 @@
 .tabs
   nav.tabs__nav
     p.tabs__inner
-      span.tabs__nav-btn(@click.stop="openToggle") {{ navOptions.options[navOptions.selected].name }}
-      ul.tabs__nav-list(:class="{openlist: activeToggle == true}")
+      ul.tabs__nav-list
         li.tabs__nav-item
-          a.tabs__nav-link(href="#",
-            @click.prevent="tabActive1",
-            :class="{tabActive: tabsActive1 == true}") Prendas Publicadas
+          a.tabs__nav-link(
+            @click.prevent="activeTab = 'published'",
+            :class="{tabActive: activeTab === 'published'}") Prendas Publicadas
         li.tabs__nav-item
-          a.tabs__nav-link(href="#",
-            @click.prevent="tabActive2",
-            :class="{tabActive: tabsActive2 == true}") Productos vendidos
+          a.tabs__nav-link(
+            @click.prevent="activeTab = 'sold'",
+            :class="{tabActive: activeTab === 'sold'}") Productos vendidos
+        li.tabs__nav-item
+          a.tabs__nav-link(
+            @click.prevent="activeTab = 'hidden'",
+            :class="{tabActive: activeTab === 'hidden'}") Productos ocultos
+        li.tabs__nav-item
+          a.tabs__nav-link(
+            @click.prevent="activeTab = 'rejected'",
+            :class="{tabActive: activeTab === 'rejected'}") Productos rechazados
   .tabs__content
-    .tab(v-if="tabsActive1")
-      .alert-msg.alert-msg_center.alert-msg_top.i-alert(v-if="user.vacation_mode && products.length > 0")
+    .tab
+      .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="loading")
+          p Estamos cargando tus productos.
+      .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-else-if="activeTab !== 'published' && !products")
+          p No tienes productos por aquí!
+      .alert-msg.alert-msg_center.alert-msg_top.i-alert(v-else-if="activeTab === 'published' && user.vacation_mode")
           p Tienes habilitado el modo vacaciones. Todos tus productos están deshabilitados.
-      .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="products.length === 0")
+      .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-else-if="activeTab === 'published' && !products")
           p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
-      .product-grid.product-grid_small
+      .product-grid.product-grid_small(v-else)
         article.slot.slot_grid(
           v-for='product in products',
           :class="{ 'slot_disabled' : user.vacation_mode || product.status < 10 }")
           a.slot__ico.i-heart(
-            @click.prevent='myActive(product)'
-            :class='{active: isActive == product}'
-            href='#'
+            v-if="activeTab === 'published'"
             title='Agrega a Favoritos') Agregar a Favoritos
           .slot__product-inner
             router-link.slot__product(
@@ -40,7 +49,7 @@
                 a.slot__actions-link.i-trash(href="#")
               .slot__product-actions(
                 :class="{ 'slot__product-actions_status': product.status < 10 }",
-                v-if="mqDesk && !user.vacation_mode")
+                v-if="mqDesk && !user.vacation_mode && product.status < 30")
                 span.slot__status(v-show="product.status < 10") {{ product.status | product_status }}
                 router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
                   transition(name='toggle-scale')
@@ -81,175 +90,7 @@
                   v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
                 .slot__group.i-star-on(
                   v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-      ul.pagination(v-if="products.length > 12")
-        li.pagination__item.pagination__label Mostrando
-        li.pagination__select
-          select.form__select.form__select_small(
-            name="numeroItems",
-            v-model='productsPager.items',
-            @change='updateProductList')
-              option(value="12") 12
-              option(value="24") 24
-              option(value="36") 36
-              option(value="48") 48
-        li.pagination__item
-          a.pagination__arrow.pagination__arrow_prev.i-back(
-            @click.prevent="prevPage('active')"
-            href="#")
-        li.pagination__item.pagination__label Página
-        li.pagination__item 1
-        li.pagination__item.pagination__item_txt de {{ productsPager.total }}
-        li.pagination__item
-          a.pagination__arrow.pagination__arrow_next.i-next(
-            @click.prevent="nextPage('active')"
-            href="#")
-    .tab(v-if="tabsActive2")
-      .product-grid.product-grid_small
-        article.slot.slot_grid(
-          v-for='product in soldProducts')
-          .slot__product
-            img.slot__img(
-              :src="product.images[0]",
-              :alt="'Foto de ' + product.title")
-
-            //-title/dimensions
-            .slot__lead
-              .slot__title {{ product.title }}
-              .slot__size(
-                v-if="product.size")
-                .slot__size-txt {{ product.size.name }}
-
-            //- brand/price
-            .slot__info
-              .slot__brand {{ product.brand.name }}
-              .slot__price ${{ product.price | currency }}
-
-          //- user: picture/first_name/last_name
-          .slot__user(
-            :title='product.user.first_name')
-            .slot__user-img
-              .slot__avatar
-                img.slot__picture(
-                  v-if='product.user.picture'
-                  :src='product.user.picture',
-                  :alt='product.user.first_name')
-                span.tool-user__letter(
-                  v-else) {{ product.user.first_name.charAt(0) }}
-            .slot__user-info
-              .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
-              .group(v-if='product.user.groups.length > 0')
-                .slot__group.i-it-girl(
-                  v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
-                .slot__group.i-star-on(
-                  v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-      ul.pagination(v-if="soldProducts.length > 12")
-        li.pagination__item.pagination__label Mostrando
-        li.pagination__select
-          select.form__select.form__select_small(
-            name="numeroItems",
-            v-model='soldProductsPager.items',
-            @change='updateSoldProductList')
-              option(value="12") 12
-              option(value="24") 24
-              option(value="36") 36
-              option(value="48") 48
-        li.pagination__item
-          a.pagination__arrow.pagination__arrow_prev.i-back(
-            @click.prevent="prevPage('sold')"
-            href="#")
-        li.pagination__item.pagination__label Página
-        li.pagination__item 1
-        li.pagination__item.pagination__item_txt de {{ soldProductsPager.total }}
-        li.pagination__item
-          a.pagination__arrow.pagination__arrow_next.i-next(
-            @click.prevent="nextPage('sold')"
-            href="#")
+      Pager(v-if="products" v-model="pagination", :auth="true", v-on:paging="paging($event)")
 </template>
 
-<script>
-
-import productAPI from '@/api/product'
-
-export default {
-  name: 'TabsProducto',
-  props: ['user'],
-  data () {
-    return {
-      orderBy: '-id',
-      isActive: undefined,
-      tabsActive1: true,
-      tabsActive2: false,
-      products: [],
-      soldProducts: [],
-      activeToggle: false,
-      navOptions: {
-        selected: 0,
-        options: [
-          { id: 0, name: 'Prendas Publicadas' },
-          { id: 1, name: 'Productos vendidos' }
-        ]
-      },
-      productsPager: {
-        items: 12,
-        page: 1,
-        total: 1
-      },
-      soldProductsPager: {
-        items: 12,
-        page: 1,
-        total: 1
-      }
-    }
-  },
-  methods: {
-    updateProductList: function () {
-      let filterQueryObject = {}
-      filterQueryObject.status = '10,19'
-      filterQueryObject.user_id = this.user.id
-      productAPI.getAuth(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
-        .then((response) => {
-          this.products = response.data.data
-          this.productsPager.total = response.data.last_page
-        })
-    },
-    updateSoldProductList: function (status) {
-      let filterQueryObject = {}
-      filterQueryObject.status = '30,32'
-      filterQueryObject.user_id = this.user.id
-      productAPI.getAuth(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
-        .then((response) => {
-          this.soldProducts = response.data.data
-          this.soldProductsPager.total = response.data.last_page
-        })
-    },
-    nextPage: function (status) {
-      if (status === 'active' && this.productsPage.page + 1 < this.productsPager.total) this.productsPager.page += 1
-      if (status === 'sold' && this.soldProductsPage.page + 1 < this.soldProductsPager.total) this.soldProductsPager.page += 1
-    },
-    prevPage: function (status) {
-      if (status === 'active' && this.productsPage.page > 2) this.productsPager.page -= 1
-      if (status === 'sold' && this.soldProductsPage.page > 2) this.soldProductsPager.page -= 1
-    },
-    myActive: function (e) {
-      this.isActive = e
-    },
-    tabActive1: function () {
-      this.tabsActive1 = true
-      this.tabsActive2 = false
-      this.activeToggle = false
-    },
-    tabActive2: function () {
-      this.tabsActive2 = true
-      this.tabsActive1 = false
-      this.activeToggle = false
-    },
-    openToggle: function () {
-      this.activeToggle = !this.activeToggle
-    }
-  },
-  mounted: function () {
-    this.updateProductList()
-    this.updateSoldProductList()
-  }
-}
-</script>
+<script src="./js/TabsProducto.js"></script>

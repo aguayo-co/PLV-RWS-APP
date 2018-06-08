@@ -45,17 +45,18 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
           //-Carrito de compras
         transition(name='slide-right')
           .foot-nav__fixed(v-show='activeCart')
-            a.foot-nav__close.i-x(href="#", @click='animCart')
+            a.foot-nav__close.i-x(@click='animCart')
             h4.foot-nav__title Carrito
             .box-cards
               .box-cards__head
-                p.box-cards__title(v-if="totalProducts.length > 1") {{ totalProducts.length }} productos en tu carrito
-                p.box-cards__title(v-else) {{ totalProducts.length }} producto en tu carrito
-              .box-cards__subhead
+                p.box-cards__title(v-if="totalProducts.length == 1") {{ totalProducts.length }} producto en tu carrito
+                p.box-cards__title(v-else) {{ totalProducts.length }} productos en tu carrito
+              .box-cards__subhead(v-if="totalProducts.length")
                 .box-cards__value
                   p.box-cards__title Total
                   span.box-cards__number ${{ cart.total | currency }}
-                router-link.btn.btn_solid.btn_small(:to="'/compra/'") Ir a Pagar
+                a.btn.btn_solid.btn_small(
+                  @click.prevent="goToPayment") Ir a Pagar
               .box-cards__item(v-for="product in totalProducts")
                 article.list__card
                   a.card__product
@@ -134,6 +135,13 @@ export default {
     animCart: function () {
       this.activeCart = !this.activeCart
     },
+    removeFromCart: function (productId) {
+      if (this.user.id) {
+        this.$store.dispatch('cart/removeProduct', { id: productId })
+      } else {
+        this.$store.dispatch('guestCart/removeProduct', { id: productId })
+      }
+    },
     logIn: function () {
       const payload = {
         name: 'FormLogin'
@@ -142,6 +150,10 @@ export default {
     },
     toggleBox: function () {
       this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'user' })
+    },
+    goToPayment () {
+      this.$router.push({name: 'compra'})
+      this.animCart()
     }
   },
   computed: {
