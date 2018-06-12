@@ -23,7 +23,25 @@ const actions = {
   removeProduct ({ commit }, product) {
     commit('remove', product)
   },
-  kill ({commit}) {
+  merge ({dispatch, commit}) {
+    let alerted = false
+    state.products.forEach((product) => {
+      dispatch('cart/addProduct', { id: product.id }, { root: true }).catch(e => {
+        if (alerted) {
+          return
+        }
+
+        alerted = true
+        const modal = {
+          name: 'ModalMessage',
+          parameters: {
+            type: 'alert',
+            title: 'Tuvimos que eliminar algunos productos de tu carrito porque ya no están disponibles.'
+          }
+        }
+        dispatch('ui/showModal', modal, { root: true })
+      })
+    })
     commit('kill')
   }
 }
