@@ -1,10 +1,7 @@
 export default {
-  name: 'CompraPagada',
+  name: 'CompraPago',
   props: ['order'],
   computed: {
-    couponValid () {
-      return this.coupon_code && this.newOrderData.coupon_code === null
-    },
     address () {
       return this.$getNestedObject(this.order, ['shipping_information', 'address'])
     },

@@ -1,12 +1,8 @@
 <template lang="pug">
 //Paso 3: Comprobante
 section.list-slot
-  header.header_heart.i-heart-on(v-if="paymentStatus !== 1")
-    h2.title_heart ¡Cool! tu compra ha sido realizada
-    p.subtitle_heart Ya envíamos un comprobante de compra a tu correo.
-  header.header_heart.i-heart-on(v-else)
-    h2.title_heart ¡Cool! estamos confirmando tu pago
-    p.subtitle_heart Apenas lo confirmemos, enviaremos un comprobante de compra a tu correo.
+  header.header_heart.i-heart-on
+    h2.title_heart Tu compra ha sido cancelada
 
   .list-slot__content
     //-Item
@@ -46,14 +42,6 @@ section.list-slot
           .card__user-info
             .card__status Vendedora:
             .card__prilover  {{ product.user | full_name }}
-
-        //-datos contacto usuaria
-        .card__actions
-          .card__data
-            p.card__txt <strong class="card__label">Teléfono:</strong> {{ product.user.phone }}
-            p.card__txt(v-if="product.user.email") <strong class="card__label">Correo:</strong>  {{ product.user.email }}
-            p.card__txt <strong class="card__label">Envío:</strong> {{ product.shipping_method_name }}
-            p.card__txt(v-if="product.delivery_date") <strong class="card__label">Fecha estimada:</strong> {{ product.delivery_date }}
     //-End Item
 
   //-End list content
@@ -80,4 +68,4 @@ section.list-slot
         span.brand__tagline  Compra. Usa. Vende.
 </template>
 
-<script src="./js/CompraPagada.js"></script>
+<script src="./js/CompraCancelada.js"></script>

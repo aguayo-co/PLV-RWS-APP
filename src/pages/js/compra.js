@@ -1,8 +1,9 @@
 import { mapState } from 'vuex'
 import CompraEnvioPago from '@/components/CompraEnvioPago'
 import CompraDetalle from '@/components/CompraDetalle'
-import CompraPagada from '@/components/CompraPagada'
-import CompraPagando from '@/components/CompraPagando'
+import CompraPago from '@/components/CompraPago'
+import CompraTransferencia from '@/components/CompraTransferencia'
+import CompraCancelada from '@/components/CompraCancelada'
 import orderAPI from '@/api/order'
 
 export default {
@@ -22,8 +23,9 @@ export default {
   components: {
     CompraEnvioPago,
     CompraDetalle,
-    CompraPagada,
-    CompraPagando
+    CompraPago,
+    CompraTransferencia,
+    CompraCancelada
   },
   computed: {
     orderId () {
@@ -56,10 +58,20 @@ export default {
       return !this.orderId
     },
     isPayment () {
+      // paymentStatus => 1 cuando es por transferencia y está pendiente
+      // de validación por las administradoras.
       return this.orderStatus === 20 && this.paymentStatus !== 1
     },
+    isTransfer () {
+      return this.isPayment && this.$getNestedObject(this.order, ['payments', 0, 'gateway']) === 'Transfer'
+    },
     isPayed () {
+      // paymentStatus => 1 cuando es por transferencia y está pendiente
+      // de validación por las administradoras.
       return this.orderStatus === 30 || this.paymentStatus === 1
+    },
+    isCanceled () {
+      return this.orderStatus === 99
     },
     // Data about the loaded order.
     orderStatus () {
@@ -71,9 +83,41 @@ export default {
   },
   created: function () {
     this.reloadShoppingCart()
-    this.loadOrder()
+    const loadOrderPromise = this.loadOrder()
+
+    if (!loadOrderPromise) {
+      return
+    }
+
+    loadOrderPromise.then(() => {
+      if (this.$route.query.gateway) {
+        this.processGatewayCallback()
+      }
+    })
   },
   methods: {
+    processGatewayCallback () {
+      // If Order already is out fo payment step, do nothing.
+      if (!this.isPayment) {
+        return
+      }
+
+      // For now, only process PayU callbacks.
+      if (this.$route.query.gateway !== 'pay_u') {
+        return
+      }
+
+      // Only send callback if rejected or approved.
+      // Other states wait for PayU to send callback.
+      const state = this.$route.query.transactionState
+      if (['4', '6'].indexOf(state) === -1) {
+        return
+      }
+
+      orderAPI.payUCallback(this.$route.query).then(() => {
+        this.loadOrder()
+      })
+    },
     /**
      * Ejecuta validaciones para el proceso de pago.
      * Cada validación debe pertenecer a un paso.
@@ -128,8 +172,6 @@ export default {
         }
 
         // Termina en el paso solicitado.
-        console.log(finalStep)
-        console.log(stepValidations._step)
         if (finalStep === stepValidations._step) {
           return true
         }
@@ -152,7 +194,7 @@ export default {
       this.order = null
       // Carga orden de URL si existe una a cargar.
       if (this.orderId) {
-        orderAPI.load(this.orderId).then(response => {
+        return orderAPI.load(this.orderId).then(response => {
           this.order = response.data
         })
       }
