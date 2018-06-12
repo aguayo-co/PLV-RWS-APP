@@ -1,13 +1,6 @@
 <template lang="pug">
 .modal__slot.content-slot
-  //- Opción 1: Pago externo
-  .notify(v-if="!isTransfer")
-    header.head_ico
-      h2.title Estás a un paso de terminar tu compra.
-      p.subtitle_heart Estamos esperando confirmación de tu transacción por parte de la plataforma de pagos.
-
-  //- Opción 2: Pago por transferencia
-  .notify(v-else)
+  .notify
     header.head_ico
       small.ico__title.i-clock 20:00
       h2.title Sube el comprobante de transferencia
@@ -44,4 +37,4 @@
           button.btn.btn_solid Terminar compra
 </template>
 
-<script src="./js/CompraPagando.js"></script>
+<script src="./js/CompraTransferencia.js"></script>

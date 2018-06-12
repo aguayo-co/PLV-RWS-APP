@@ -1,7 +1,7 @@
 import orderAPI from '@/api/order'
 
 export default {
-  name: 'CompraPagando',
+  name: 'CompraTransferencia',
   model: {
     prop: 'order',
     event: 'refresh'
@@ -16,12 +16,6 @@ export default {
     }
   },
   computed: {
-    gateway () {
-      return this.$getNestedObject(this.order, ['payments', 0, 'gateway'])
-    },
-    isTransfer () {
-      return this.gateway === 'Transfer'
-    },
     fileName () {
       return this.transfer_receipt ? this.transfer_receipt.name : 'no se eligió archivo'
     }

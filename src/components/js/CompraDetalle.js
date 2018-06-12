@@ -66,7 +66,7 @@ export default {
     ...createComputedProps(editableProps),
     responseUrl () {
       const a = document.createElement('a')
-      a.href = this.$router.resolve({name: 'compra', params: { path: this.id }}).href
+      a.href = this.$router.resolve({name: 'compra', params: { path: this.id }, query: {gateway: this.gateway}}).href
       return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
     }
   },
