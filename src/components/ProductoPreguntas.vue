@@ -5,21 +5,22 @@
       header.chat-band__header
         h2.subhead Comentarios de este producto
       .chat-band__grid
-        .chat(v-if="questions[0]")
-          .chat__group(v-for="(question, index) in questions")
+        .chat(v-if="threads[0]")
+          .chat__group(v-for="(thread, index) in threads")
             .chat__line
               span.chat__inner
                 .chat__bubble-main
                   figure.chat-bubble__avatar
                     img.chat-bubble__img(
-                      :src="question.participants[0].user.picture",
-                      :alt="question.participants[0].user.first_name")
-                  p.chat-bubble__txt {{ question.messages[0].body }}
+                      :src="thread.participants[0].user.picture",
+                      :alt="thread.participants[0].user.first_name")
+                  p.chat-bubble__txt {{ thread.messages[0].body }}
                 .chat__footer.chat__footer_main
-                  time.chat__date hace {{ question.created_at | moment("subtract", "5 hours") | moment("from", true) }}
-                  span.editor__btn(@click="showAnswerBox(question.id)") Responder
-            .editor(v-if="activeAnswer.id === question.id")
+                  time.chat__date hace {{ thread.created_at | moment("from") }}
+                  span.editor__btn(@click="showAnswerBox(thread.id)") Responder
+            .editor(v-if="activeAnswer.id === thread.id")
               form.editor__form
+                span.help(v-if="errorLog.answer") {{ errorLog.answer }}
                 .chat__form-group
                   textarea-autosize.form__textarea.editor__textarea(
                     :disabled="disabledAnswer",
@@ -28,22 +29,22 @@
                     rows="1")
                   .chat__btn
                     button.chat__btn-solid.i-shipping(@click.prevent="addAnswer(index)")
-            .chat__line(v-for="(message, subindex) in question.messages")
+            .chat__line(v-for="(message, subindex) in thread.messages")
               .chat__order(
                 :class="{ 'chat__order_own' : message.user_id === ownerId }")
                 span.chat__inner(v-if="subindex !== 0")
                   .chat__bubble
                     figure.chat-bubble__avatar(v-if="message.user_id === ownerId")
                       img.chat-bubble__img(
-                        :src="question.participants[1].user.picture",
-                        :alt="question.participants[1].user.first_name")
+                        :src="thread.participants[1].user.picture",
+                        :alt="thread.participants[1].user.first_name")
                     figure.chat-bubble__avatar(v-else)
                       img.chat-bubble__img(
-                        :src="question.participants[0].user.picture",
-                        :alt="question.participants[0].user.first_name")
+                        :src="thread.participants[0].user.picture",
+                        :alt="thread.participants[0].user.first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer
-                    time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
+                    time.chat__date hace {{ message.created_at | moment("from") }}
             span.chat-break
               span.chat-break__bullet
         .chat(v-else)
@@ -52,17 +53,17 @@
         .chat-query
           .chat_sticky
             form.chat__form(
-              id='form-question',
+              id='form-thread',
               action='#',
               submit.prevent='',
               method='post')
               label.chat__subhead ¡Comenta acá!
-              span.help(v-if="errorLog.question") {{ errorLog.question }}
+              span.help(v-if="errorLog.body") {{ errorLog.body }}
               textarea-autosize.form__textarea.chat__textarea(
-                v-model="newQuestion",
-                :disabled="disabledQuestion",
-                :class=" { 'disabled' : disabledQuestion }")
-              button.chat__btn-solid.i-shipping(@click.prevent="addQuestion")
+                v-model="newThread",
+                :disabled="disabledThread",
+                :class=" { 'disabled' : disabledThread }")
+              button.chat__btn-solid.i-shipping(@click.prevent="addThread")
             p.chat-alert.i-alert-circle Recuerda que al comprar en Prilov disfrutas de garantía de devolución, protección 24/7 ante cualquier problema y nuestra plataforma segura de pagos.
 </template>
 
@@ -74,9 +75,9 @@ export default {
   props: ['product_id', 'owner_id'],
   data () {
     return {
-      questions: [],
-      newQuestion: null,
-      disabledQuestion: false,
+      threads: [],
+      newThread: null,
+      disabledThread: false,
       disabledAnswer: false,
       activeAnswer: {
         id: null,
@@ -98,7 +99,7 @@ export default {
     productId: function () {
       threadsAPI.getByProduct(this.productId)
         .then(response => {
-          this.questions = response.data.data
+          this.threads = response.data.data
         })
     }
   },
@@ -106,56 +107,57 @@ export default {
     toggle: function (prop) {
       this[prop] = !this[prop]
     },
-    addQuestion: function () {
-      this.errorLog = {}
-      if (!this.newQuestion) {
-        this.errorLog.question = '¡Ups! No podemos enviar tu pregunta si no la escribes primero.'
+    addThread: function () {
+      this.errorLog.body = ''
+      if (!this.newThread) {
+        this.errorLog.body = '¡Ups! No podemos enviar tu pregunta si no la escribes primero.'
       } else if (this.user.id) {
-        this.disabledQuestion = true
+        this.disabledThread = true
         const data = {
-          subject: this.newQuestion,
+          subject: this.newThread,
           private: false,
           product_id: this.productId,
           recipients: [this.ownerId],
-          body: this.newQuestion
+          body: this.newThread
         }
         threadsAPI.create(data)
           .then(response => {
-            if (response.data.id) {
-              this.disabledQuestion = false
-              this.newQuestion = ''
-              this.questions.unshift(response.data)
-            }
+            this.newThread = ''
+            this.threads.unshift(response.data)
             window.scrollTo(0, this.$refs.beggining.offsetTop - 75)
+          }).catch(e => {
+            this.$handleApiErrors(e, ['body'], this.errorLog)
+          }).finally(() => {
+            this.disabledThread = false
           })
       } else {
-        this.errorLog.question = 'Si quieres comentar este producto inicia sesión o regístrate.'
+        this.errorLog.body = 'Si quieres comentar este producto inicia sesión o regístrate.'
       }
     },
-    showAnswerBox: function (questionId) {
-      this.activeAnswer.id = questionId
+    showAnswerBox: function (threadId) {
+      this.activeAnswer.id = threadId
       this.activeAnswer.content = ''
+      this.errorLog.answer = ''
     },
-    addAnswer: function (questionIndex) {
+    addAnswer: function (threadIndex) {
       if (this.activeAnswer.content && this.activeAnswer.content !== '') {
+        this.errorLog.answer = ''
         this.disabledAnswer = true
         const data = {
-          thread_id: this.questions[questionIndex].id,
+          thread_id: this.threads[threadIndex].id,
           user_id: this.user.id,
           recipients: [this.ownerId],
           body: this.activeAnswer.content
         }
         threadsAPI.createMessage(data)
           .then(response => {
-            console.log(response)
-            if (response.data.id) {
-              this.disabledAnswer = false
-              this.activeAnswer.id = null
-              this.activeAnswer.content = ''
-              data.created_at = new Date()
-              data.created_at.setHours(data.created_at.getHours() + 5)
-              this.questions[questionIndex].messages.push(data)
-            }
+            this.activeAnswer.id = null
+            this.activeAnswer.content = ''
+            this.threads[threadIndex].messages.push(data)
+          }).catch(e => {
+            this.errorLog.answer = this.$getNestedObject(e, ['response', 'data', 'errors', 'body', 0])
+          }).finally(() => {
+            this.disabledAnswer = false
           })
       }
     }

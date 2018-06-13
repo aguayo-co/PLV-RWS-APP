@@ -42,7 +42,7 @@ section.single
                         img.chat-bubble__img(:src="messenger.picture", :alt="messenger.first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer.chat__footer_main
-                    time.chat__date hace {{ message.created_at | moment("subtract", "5 hours") | moment("from", true) }}
+                    time.chat__date hace {{ message.created_at | moment("from", true) }}
         .chat-inner
           form.chat__form
             label.chat__label Escribe tu mensaje aquí
@@ -112,8 +112,6 @@ export default {
             if (response.data.id) {
               this.disabledMessage = false
               this.newMessage = ''
-              data.created_at = new Date()
-              data.created_at.setHours(data.created_at.getHours() + 5)
               this.thread.messages.push(data)
               window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
             }
