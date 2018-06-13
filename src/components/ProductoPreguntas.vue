@@ -96,18 +96,24 @@ export default {
     }
   },
   watch: {
-    productId: function () {
+    productId () {
+      this.loadThreads()
+    }
+  },
+  created () {
+    this.loadThreads()
+  },
+  methods: {
+    loadThreads () {
       threadsAPI.getByProduct(this.productId)
         .then(response => {
           this.threads = response.data.data
         })
-    }
-  },
-  methods: {
-    toggle: function (prop) {
+    },
+    toggle (prop) {
       this[prop] = !this[prop]
     },
-    addThread: function () {
+    addThread () {
       this.errorLog.body = ''
       if (!this.newThread) {
         this.errorLog.body = '¡Ups! No podemos enviar tu pregunta si no la escribes primero.'
@@ -134,12 +140,12 @@ export default {
         this.errorLog.body = 'Si quieres comentar este producto inicia sesión o regístrate.'
       }
     },
-    showAnswerBox: function (threadId) {
+    showAnswerBox (threadId) {
       this.activeAnswer.id = threadId
       this.activeAnswer.content = ''
       this.errorLog.answer = ''
     },
-    addAnswer: function (threadIndex) {
+    addAnswer (threadIndex) {
       if (this.activeAnswer.content && this.activeAnswer.content !== '') {
         this.errorLog.answer = ''
         this.disabledAnswer = true
@@ -153,7 +159,7 @@ export default {
           .then(response => {
             this.activeAnswer.id = null
             this.activeAnswer.content = ''
-            this.threads[threadIndex].messages.push(data)
+            this.threads[threadIndex].messages.push(response.data)
           }).catch(e => {
             this.errorLog.answer = this.$getNestedObject(e, ['response', 'data', 'errors', 'body', 0])
           }).finally(() => {
