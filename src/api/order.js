@@ -29,5 +29,8 @@ export default {
     var data = new window.FormData()
     data.append('transfer_receipt', file)
     return Vue.axiosAuth.patch('/api/orders/' + orderId, data)
+  },
+  payUCallback (data) {
+    return Vue.axios.post('/callback/gateway/pay-u/', data)
   }
 }

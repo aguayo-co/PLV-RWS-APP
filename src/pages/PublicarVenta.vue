@@ -156,7 +156,7 @@ export default {
       userAPI.login(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-          this.migrateCart()
+          this.$store.dispatch('guestCart/merge')
         })
         .catch(e => {
           var modal
@@ -185,25 +185,6 @@ export default {
           this.$store.dispatch('ui/loginAttempt')
           event.target.disabled = false
         })
-    },
-    migrateCart: function () {
-      let errors = 0
-      const products = this.guestCart.products
-      products.forEach((product) => {
-        this.$store.dispatch('cart/addProduct', { id: product.id })
-          .catch(e => {
-            errors += 1
-          })
-      })
-      const modal = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'alert',
-          title: 'Tuvimos que eliminar algunos productos de tu carrito porque ya no están disponibles.'
-        }
-      }
-      if (errors > 0) this.$store.dispatch('ui/showModal', modal)
-      this.$store.dispatch('guestCart/kill')
     }
   }
 }

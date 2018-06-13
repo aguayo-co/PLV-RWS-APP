@@ -46,11 +46,12 @@
     //- End List paso 1:compra
 
     //- Paso 2: Pago
-    CompraPagando(v-else-if="isPayment" v-model="order")
+    CompraTransferencia(v-else-if="isTransfer" v-model="order")
     //- End Paso 2: Pago
 
     //- Paso 3: Comprobante
-    CompraPagada(v-else-if="isPayed" :order="order")
+    CompraPago(v-else-if="isPayment || isPayed" :order="order")
+    CompraCancelada(v-else-if="isCanceled" :order="order")
     //- End Paso 3: Comprobante
 </template>
 
