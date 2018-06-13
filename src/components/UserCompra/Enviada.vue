@@ -13,7 +13,7 @@
       :href="'https://www.chilexpress.cl/Views/ChilexpressCL/Resultado.aspx?uq=' + numeroOT") ¿Dónde está mi paquete?
   //- La vendedora ya lo envió por otra transortadora.
   .dashboard__status(v-else-if="!delivered")
-    p.status.status_check.i-check La compradora ya envío el producto
+    p.status.status_check.i-check La vendedora ya envío el producto
     p Empresa:
       span  {{ trackingInfo.company }}
     p Número de Seguimiento:

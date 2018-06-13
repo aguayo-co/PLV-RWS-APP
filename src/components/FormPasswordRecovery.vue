@@ -7,7 +7,7 @@
       .form__row(
         :class='{ "is-danger": errorLog.password }')
         label.form__label(
-          for='password') Contraseña
+          for='password') Nueva contraseña
         span.help(v-if="errorLog.password") {{ errorLog.password }}
         .form__password
           input.form__control(
@@ -27,7 +27,7 @@
       .form__row(
         :class='{ "is-danger": errorLog.passwordConfirm }')
         label.form__label(
-          for='passwordConfirm') Escribe nuevamente tu contraseña
+          for='passwordConfirm') Repite tu nueva contraseña
         span.help(v-if="errorLog.passwordConfirm") {{ errorLog.passwordConfirm }}
         .form__password
           input.form__control(
