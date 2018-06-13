@@ -7,13 +7,9 @@
         span.txt_brand Insta
         | shop
       h2.title_subhead Encuentra TODO lo que publicamos en nuestro Instagram @prilovchile y cómpralo directamente
-    .filtrate-box
-      .filtrate__row.i-search
-        input.filtrate__input#searchMain(
-          type='text',
-          name='search',
-          placeholder="Buscar")
-    GridInstashop
+    GridInstashop(
+      :preFilter='filter',
+      :infinite='true')
   ButtonSticky
 </template>
 
@@ -28,6 +24,11 @@ export default {
     BannerTop,
     GridInstashop,
     ButtonSticky
+  },
+  data () {
+    return {
+      filter: { 'filter[campaign_ids]': 1 }
+    }
   }
 }
 </script>
