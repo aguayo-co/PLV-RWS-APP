@@ -70,11 +70,9 @@ export default {
         }
         threadsAPI.createMessage(data)
           .then(response => {
-            if (response.data.id) {
-              this.disabledMessage = false
-              this.newMessage = ''
-              this.thread.messages.push(response.data.messages[response.data.messages.length - 1])
-            }
+            this.disabledMessage = false
+            this.newMessage = ''
+            this.thread.messages.push(response.data)
           })
       }
     },
@@ -92,11 +90,9 @@ export default {
         }
         threadsAPI.create(data)
           .then(response => {
-            if (response.data.id) {
-              this.disabledMessage = false
-              this.newMessage = ''
-              this.thread = response.data
-            }
+            this.disabledMessage = false
+            this.newMessage = ''
+            this.thread = response.data
           })
       }
     }

@@ -109,12 +109,10 @@ export default {
         }
         threadsAPI.createMessage(data)
           .then(response => {
-            if (response.data.id) {
-              this.disabledMessage = false
-              this.newMessage = ''
-              this.thread.messages.push(data)
-              window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
-            }
+            this.disabledMessage = false
+            this.newMessage = ''
+            this.thread.messages.push(response.data)
+            window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
           })
       }
     }
