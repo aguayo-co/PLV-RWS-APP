@@ -71,7 +71,7 @@ export default {
       parameters: {
         'page': 1,
         'items': 12,
-        'orderby': '-id'
+        'orderby': '-updated_at'
       },
       loading: false,
       enableFavorite: false
