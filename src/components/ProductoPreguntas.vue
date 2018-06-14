@@ -53,9 +53,9 @@
         .chat-query
           .chat_sticky
             form.chat__form(
+              v-if="this.user.id"
               id='form-thread',
-              action='#',
-              submit.prevent='',
+              @submit.prevent='addThread',
               method='post')
               label.chat__subhead ¡Comenta acá!
               span.help(v-if="errorLog.body") {{ errorLog.body }}
@@ -63,7 +63,11 @@
                 v-model="newThread",
                 :disabled="disabledThread",
                 :class=" { 'disabled' : disabledThread }")
-              button.chat__btn-solid.i-shipping(@click.prevent="addThread")
+              button.chat__btn-solid.i-shipping
+            p(v-else) Para comentar en este producto
+              a(
+                href=''
+                @click.prevent="logIn")  Inicia sesión
             p.chat-alert.i-alert-circle Recuerda que al comprar en Prilov disfrutas de garantía de devolución, protección 24/7 ante cualquier problema y nuestra plataforma segura de pagos.
 </template>
 
@@ -113,32 +117,37 @@ export default {
     toggle (prop) {
       this[prop] = !this[prop]
     },
+    logIn: function () {
+      const payload = {
+        name: 'FormLogin'
+      }
+      this.$store.dispatch('ui/showModal', payload)
+    },
     addThread () {
       this.errorLog.body = ''
       if (!this.newThread) {
         this.errorLog.body = '¡Ups! No podemos enviar tu pregunta si no la escribes primero.'
-      } else if (this.user.id) {
-        this.disabledThread = true
-        const data = {
-          subject: this.newThread,
-          private: false,
-          product_id: this.productId,
-          recipients: [this.ownerId],
-          body: this.newThread
-        }
-        threadsAPI.create(data)
-          .then(response => {
-            this.newThread = ''
-            this.threads.unshift(response.data)
-            window.scrollTo(0, this.$refs.beggining.offsetTop - 75)
-          }).catch(e => {
-            this.$handleApiErrors(e, ['body'], this.errorLog)
-          }).finally(() => {
-            this.disabledThread = false
-          })
-      } else {
-        this.errorLog.body = 'Si quieres comentar este producto inicia sesión o regístrate.'
+        return
       }
+
+      this.disabledThread = true
+      const data = {
+        subject: this.newThread,
+        private: false,
+        product_id: this.productId,
+        recipients: [this.ownerId],
+        body: this.newThread
+      }
+      threadsAPI.create(data)
+        .then(response => {
+          this.newThread = ''
+          this.threads.unshift(response.data)
+          window.scrollTo(0, this.$refs.beggining.offsetTop - 75)
+        }).catch(e => {
+          this.$handleApiErrors(e, ['body'], this.errorLog)
+        }).finally(() => {
+          this.disabledThread = false
+        })
     },
     showAnswerBox (threadId) {
       this.activeAnswer.id = threadId
