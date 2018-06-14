@@ -28,6 +28,7 @@
         //-list content
         CompraEnvioPago(
           :errors="errors"
+          :hasChilexpress="hasChilexpress"
           v-bind:shoppingCartStep="shoppingCartStep"
           v-on:setShoppingCartStep="setShoppingCartStep($event)"
           v-on:validate="validate($event)"

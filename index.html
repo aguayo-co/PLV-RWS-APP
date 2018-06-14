@@ -11,7 +11,7 @@
 
     <!-- responsive-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- favico-->
     <link rel="apple-touch-icon" sizes="180x180" href="favico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favico/favicon-32x32.png">
@@ -33,6 +33,13 @@
   </head>
 
   <body>
+    <% // Set vue-devtools loader script if an URL is provided %>
+    <%
+      if (process.env.VUE_URL) {
+        print('<script>window.__VUE_DEVTOOLS_HOST__ = "' + process.env.VUE_HOST + '";window.__VUE_DEVTOOLS_PORT__ = "' + process.env.VUE_PORT + '"</script>')
+        print('<script type="text/javascript" src="' + process.env.VUE_URL + '"></script>')
+      }
+    %>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KX38D2K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -43,7 +50,7 @@
     <!-- built files will be auto injected -->
   </body>
 
-  
+
 
   <!-- begin olark code -->
   <!-- <script type="text/javascript" async>
@@ -82,6 +89,4 @@
 
   </script> -->
   <!-- end olark code -->
-
-
 </html>

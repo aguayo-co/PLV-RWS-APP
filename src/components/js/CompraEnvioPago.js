@@ -41,7 +41,7 @@ export default {
     AddressList,
     CompraSale
   },
-  props: ['shoppingCartStep', 'errors'],
+  props: ['shoppingCartStep', 'errors', 'hasChilexpress'],
   data () {
     return {
       userDataTimeout: null,
@@ -174,7 +174,7 @@ export default {
   created () {
     const data = {
     }
-    if (this.favorite_address_id) {
+    if (this.favorite_address_id && this.hasChilexpress) {
       data['address_id'] = this.favorite_address_id
     }
     if (this.default_phone) {

@@ -1,6 +1,11 @@
+import 'moment/locale/es'
+
+import moment from 'moment'
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VueMoment from 'vue-moment'
+import VueTextareaAutosize from 'vue-textarea-autosize'
 
 import VueMqMixin from '@/Mixin/VueMq-mixin'
 
@@ -9,14 +14,11 @@ import axiosPlugin from './axios'
 import prilovHelpers from './helpers'
 import router from './router'
 import store from './store'
-import VueTextareaAutosize from 'vue-textarea-autosize'
-
-Vue.config.productionTip = false
 
 /* View Media query */
 Vue.use(VueMqMixin)
 
-Vue.use(require('vue-moment'))
+Vue.use(VueMoment, {moment})
 
 // Load global Axios instances.
 Vue.use(axiosPlugin, store)
@@ -30,7 +32,7 @@ Vue.filter('currency', function (value) {
   if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
 })
 Vue.filter('date', function (value) {
-  return value ? new Date(value).toLocaleDateString() : ''
+  return value ? Vue.moment(value).format('LL') : ''
 })
 Vue.filter('address', function (address) {
   return address.street + ' ' + address.number + ' ' + (address.additional || '') + ' - ' + address.commune + ', ' + address.province + ', ' + address.region

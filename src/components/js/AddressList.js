@@ -31,6 +31,20 @@ export default {
     }
   },
   computed: {
+    addressesList () {
+      if (!this.inShoppingCart) {
+        return this.addresses
+      }
+
+      const filteredAddresses = {}
+      Object.keys(this.addresses).forEach((addressId) => {
+        const address = this.addresses[addressId]
+        if (address.can_deliver_chilexpress) {
+          filteredAddresses[addressId] = address
+        }
+      })
+      return Object.keys(filteredAddresses).length ? filteredAddresses : null
+    },
     ...mapState('user', [
       'favorite_address_id',
       'addresses'
