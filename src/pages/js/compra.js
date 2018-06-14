@@ -73,6 +73,13 @@ export default {
     isCanceled () {
       return this.orderStatus === 99
     },
+    hasChilexpress () {
+      return Object.keys(this.sales).some((saleId) => {
+        if (this.sales[saleId].is_chilexpress) {
+          return true
+        }
+      })
+    },
     // Data about the loaded order.
     orderStatus () {
       return this.$getNestedObject(this.order, ['status'])
@@ -135,7 +142,7 @@ export default {
             if (!vm.phone) vm.$set(vm.errors, 'phone', 'El teléfono es obligatorio.')
           },
           address () {
-            if (!vm.address) vm.$set(vm.errors, 'address', 'No has seleccionado una dirección.')
+            if (vm.hasChilexpress && !vm.address) vm.$set(vm.errors, 'address', 'No has seleccionado una dirección.')
           },
           /**
            * Valida que se haya seleccionado método de envío para cada Sale.

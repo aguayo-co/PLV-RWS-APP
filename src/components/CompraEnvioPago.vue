@@ -2,14 +2,6 @@
 .list__content
   //-Compra: Envío y pago: 1a Cliente Registrado, logueado
   section.list_step(v-if="shoppingCartStep === null")
-    h2.subhead Dirección de envío
-    p Tu dirección solamente será usada en el caso de que selecciones Chilexpress como método de envío en alguna de tus compras.
-    //- direcciones editable
-    span.help(
-      v-if="allErrors.address") {{ allErrors.address }}
-    AddressList(
-      :in-shopping-cart="true"
-      v-on:updatedAddress="updateShippingInformation")
     //- metodos de envío
     .compra-data_info
       .subhead.subhead_top Selecciona tu método de envío
@@ -19,6 +11,15 @@
         :key="sale.id"
         :sale="sale"
         v-on:clearError="$emit('clearError', $event)")
+
+      template(v-if='hasChilexpress')
+        .subhead Dirección de envío
+        //- direcciones editable
+        span.help(
+          v-if="allErrors.address") {{ allErrors.address }}
+        AddressList(
+          :in-shopping-cart="true"
+          v-on:updatedAddress="updateShippingInformation")
 
       .subhead Teléfono
       form.form_user(

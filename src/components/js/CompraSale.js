@@ -45,7 +45,7 @@ export default {
         const shippingMethod = shippingMethods[key]
 
         // Skip Chilexpress if sale does not allow it.
-        if (shippingMethod.slug.includes('chilexpress') && !sale.allow_chilexpress) {
+        if (shippingMethod.slug.includes('chilexpress') && sale.allow_chilexpress === false) {
           return
         }
 

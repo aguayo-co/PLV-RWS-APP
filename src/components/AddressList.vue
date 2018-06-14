@@ -1,15 +1,16 @@
 <template lang="pug">
   ul.dividers
     li.dividers__item(
-      v-if="addresses == null")
-      span.user-data__holder Aún no has ingresado ninguna dirección para tu cuenta
+      v-if="addressesList == null")
+      span.user-data__holder(v-if="inShoppingCart") Ninguna de tus direcciones es compatible con Chilexpress en este momento
+      span.user-data__holder(v-else) Aún no has ingresado ninguna dirección para tu cuenta
     //- To-Do: Funcionalidad seleccionar
         addresss pricipal class:.dividers__item_select
     li.dividers__item(
       v-else="",
-      v-for="address in addresses")
+      v-for="address in addressesList")
       .dividers__grid.dividers__list(
-        :class="{'dividers__list_active': isActive == address}")
+        :class="{'dividers__list_active': isActive === address.id}")
         input.form__input-radio(
           name="shippingAddress"
           :value="address.id"
@@ -30,14 +31,14 @@
             href="#",
             title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
           a.dividers__edit.i-edit-line(
-            @click.prevent="IsActive(address)",
+            @click.prevent="IsActive(address.id)",
             href="#",
             title="Editar Dirección") <small class="hide"> Editar </small>
       AddressEdit(
-        v-if="isActive == address"
+        v-if="isActive == address.id"
         :multiSelectOptions="multiSelectOptions"
         :address="address"
-        v-on:close="IsActive(null)")
+        v-on:updatedAddress="$emit('updatedAddress', $event)")
     li.dividers__bottom(
       :class="{'dividers__bottom_active': newAddress == true}")
       a.dividers__add.i-plus(

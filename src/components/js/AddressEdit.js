@@ -90,7 +90,7 @@ export default {
       // Guarda la dirección
       this.$store.dispatch('user/updateAddress', data).then(() => {
         // Elimina datos locales, para que se usen los de Vuex
-        this.$parent.$emit('updatedAddress', data)
+        this.$emit('updatedAddress', data)
         this.newAddressData = {...editableProps}
         this.errorLog = {...editableProps}
         this.close()
