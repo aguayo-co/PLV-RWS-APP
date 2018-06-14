@@ -28,6 +28,7 @@
                 strong Datos de la orden
               p(v-if="phone") Teléfono: {{ phone }}
               p(v-if="address") Dirección: {{ address | address }}
+              p Método de envío: {{ sale.shipping_method.name }}
 
     Pendiente(:order="order" :sale="sale" v-if="sale.status === 20" v-on:refresh-order="$emit('refresh-order', $event)")
     Pagada(:order="order" :sale="sale" v-else-if="sale.status === 30" v-on:refresh-order="$emit('refresh-order', $event)")

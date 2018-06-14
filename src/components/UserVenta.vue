@@ -25,6 +25,7 @@
               p Compradora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.order.user_id }}"> {{ sale.order.user.first_name }} {{ sale.order.user.last_name }}</router-link>
               p(v-if="phone") Teléfono: {{ phone }}
               p(v-if="address") Dirección: {{ address | address }}
+              p Método de envío: {{ sale.shipping_method.name }}
 
     Pendiente(:sale="sale" v-if="sale.status === 20" v-on:refresh-sale="$emit('refresh-sale', $event)")
     Pagada(:sale="sale" v-else-if="sale.status === 30" v-on:refresh-sale="$emit('refresh-sale', $event)")
