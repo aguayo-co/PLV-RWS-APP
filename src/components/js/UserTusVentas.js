@@ -9,6 +9,7 @@ export default {
   },
   data: () => {
     return {
+      currentLoader: null,
       pagination: null,
       sales: {},
       listActive: false,
@@ -16,9 +17,9 @@ export default {
       listOptions: {
         selected: 0,
         options: [
-          { id: 0, name: 'Todas' },
-          { id: 1, name: 'Pendientes de envío' },
-          { id: 2, name: 'Pendientes de pago' }
+          { id: '20,92', name: 'Todas' },
+          { id: 30, name: 'Pendientes de envío' },
+          { id: 20, name: 'Pendientes de pago' }
         ]
       }
     }
@@ -39,15 +40,18 @@ export default {
     }
   },
   methods: {
-    loadSales (page = 1) {
+    loadSales () {
       const params = {
-        page,
         orderby: '-id',
-        'filter[status]': '20,92'
+        'filter[status]': this.listOptions.options[this.listOptions.selected].filter
       }
-      this.$axiosAuth.get('/api/sales', {params}).then(response => {
-        this.pagination = response.data
-      })
+      const currentLoader = this.currentLoader = this.$axiosAuth.get('/api/sales', {params})
+        .then(response => {
+          // Make sure this is our latest request.
+          if (currentLoader === this.currentLoader) {
+            this.pagination = response.data
+          }
+        })
     },
     setSale (sale) {
       this.$set(this.sales, sale.id, sale)
@@ -55,9 +59,10 @@ export default {
     openList () {
       this.listActive = !this.listActive
     },
-    changeOrder (listOptionId) {
-      this.listOptions.selected = listOptionId
+    changeOrder (index) {
+      this.listOptions.selected = index
       this.listActive = false
+      this.loadSales()
     }
   },
   watch: {

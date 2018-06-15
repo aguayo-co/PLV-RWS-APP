@@ -19,8 +19,8 @@ section.single
             ul.filtrate__list(
               v-if="listActive")
               li.filtrate__list-item(
-                @click.stop.stop="changeOrder(option.id)"
-                v-for="option in listOptions.options") {{ option.name }}
+                v-for="(option, index) in listOptions.options"
+                @click.stop.stop="changeOrder(index)") {{ option.name }}
     //-componente tabla
     .dashboard
       header.dashboard__head
