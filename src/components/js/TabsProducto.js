@@ -9,7 +9,7 @@ export default {
   props: ['user'],
   data () {
     return {
-      orderBy: '-id',
+      orderby: '-id',
       isActive: undefined,
       activeTab: 'published',
       pagination: null,
@@ -73,7 +73,7 @@ export default {
       let filters = {}
       filters.status = this.tabs[this.activeTab]
       filters.user_id = this.user.id
-      const currentLoader = this.loading = productAPI.getAuth(1, null, filters, this.orderBy)
+      const currentLoader = this.loading = productAPI.getAuth(1, null, filters, this.orderby)
         .then((response) => {
           // Maybe the user exited the current tab already
           // Since a promise is not cancelable (yet) we ignore

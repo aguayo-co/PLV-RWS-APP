@@ -3,7 +3,8 @@ section.single
   .single__inner
     header.single__header
       h1.single__title Valoraciones
-    .valuations
+    Loader(v-if="!ratings.length && loading")
+    .valuations(v-else)
       ul.user-data__list.user-data__list_center
         li.user-data__value.i-like {{ user.ratings_positive_count }}
         li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
@@ -11,7 +12,7 @@ section.single
       .valuations__item(
         v-for="rating in ratings")
         p.valuations__date
-          time.valuations__date-txt {{ rating.created_at }}
+          time.valuations__date-txt {{ rating.created_at | date }}
         figure.valuations__avatar
           img.valuations__img(
             :src="rating.buyer.picture",
@@ -19,14 +20,14 @@ section.single
           figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
         p.valuations__bubble {{ rating.buyer_comment }}
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.length <= 0")
-        p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
+        p Aún no tienes valoraciones.
 
-  .preload(v-if="loading")
-    .preload__spin
-  .btn__wrapper(v-else-if="loadFrom")
-    button.btn(@click="loadRatings") Cargar más valoraciones
-  .btn__wrapper(v-else)
-    button.btn(disabled) Estas son todas las valoraciones
+  template(v-if="ratings.length")
+    Loader(v-if="loading")
+    .btn__wrapper(v-else-if="loadFrom")
+      button.btn(@click="loadRatings") Cargar más valoraciones
+    .btn__wrapper(v-else)
+      button.btn(disabled) Estas son todas las valoraciones
 </template>
 
 <script>
