@@ -7,6 +7,16 @@
   width: 100%;
   vertical-align: bottom;
 }
+.preload__inner {
+  margin-top: 60px;
+}
+// $bp-medium: 768px;
+@include media-query(medium) {
+  .preload__inner {
+    margin-top: 100px;
+  }
+}
+
 .preload {
   position: relative;
   width: 160px;
