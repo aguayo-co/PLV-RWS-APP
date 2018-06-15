@@ -26,10 +26,10 @@ export default Base.merge({
       return this.sale.user.phone
     },
     phone () {
-      return this.$getNestedObject(this.order, ['shipping_information', 'phone'])
+      return this.$getNestedObject(this.sale.order, ['shipping_information', 'phone'])
     },
     address () {
-      return this.$getNestedObject(this.order, ['shipping_information', 'address'])
+      return this.$getNestedObject(this.sale.order, ['shipping_information', 'address'])
     }
   }
 })

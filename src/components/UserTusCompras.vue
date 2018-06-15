@@ -22,7 +22,7 @@ section.single
         h2.dashboard__title Productos
         h3.dashboard__title(v-if="mqTablet") Estado del producto
       UserCompra(
-        v-for="sale in sortedSales" :order="orders[sale.order_id]" :sale="sale" :key="sale.id" v-on:refresh-order="setOrder")
+        v-for="sale in sortedSales" :sale="sale" :key="sale.id" v-on:refresh-order="refreshOrder")
       Pager(v-model="pagination", :auth="true")
 
 </template>

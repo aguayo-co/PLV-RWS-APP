@@ -30,7 +30,7 @@ export default Base.merge({
 
       if (reason) {
         saleReturnAPI.return(this.sale.id, this.to_return_ids, reason).then(response => {
-          return orderAPI.load(this.order.id)
+          return orderAPI.load(this.sale.order_id)
         }).then(response => {
           this.$emit('refresh-order', response.data)
         }).catch((e) => {
@@ -42,7 +42,7 @@ export default Base.merge({
       this.errorLog.return_reason = 'Tienes que seleccionar un motivo.'
     },
     completeSale () {
-      orderAPI.salesCompleted(this.order.id, [this.sale.id]).then(response => {
+      orderAPI.salesCompleted(this.sale.order_id, [this.sale.id]).then(response => {
         this.$emit('refresh-order', response.data)
       }).catch((e) => {
         this.$handleApiErrors(e)

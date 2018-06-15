@@ -14,10 +14,10 @@ export default Base.merge({
   },
   computed: {
     isTransfer () {
-      return this.$getNestedObject(this.order, ['payments', 0, 'gateway']) === 'Transfer'
+      return this.$getNestedObject(this.sale.order, ['payments', 0, 'gateway']) === 'Transfer'
     },
     hasReceipt () {
-      return this.$getNestedObject(this.order, ['payments', 0, 'transfer_receipt']) !== null
+      return this.$getNestedObject(this.sale.order, ['payments', 0, 'transfer_receipt']) !== null
     },
     canUploadReceipt () {
       return this.isTransfer && (!this.hasReceipt || this.changeReceipt)
@@ -34,7 +34,7 @@ export default Base.merge({
       this.transfer_receipt = event.target.files[0]
     },
     uploadReceipt () {
-      orderAPI.uploadTransferReceipt(this.order.id, this.transfer_receipt).then(response => {
+      orderAPI.uploadTransferReceipt(this.sale.order_id, this.transfer_receipt).then(response => {
         this.changeReceipt = false
         this.$emit('refresh-order', response.data)
       }).catch(e => {

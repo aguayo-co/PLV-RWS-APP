@@ -11,7 +11,6 @@ export default {
     return {
       pagination: null,
       sales: {},
-      orders: {},
       listActive: false,
       item: null,
       listOptions: {
@@ -25,7 +24,7 @@ export default {
     }
   },
   created () {
-    this.loadOrders()
+    this.loadSales()
   },
   computed: {
     totalProducts () {
@@ -43,20 +42,26 @@ export default {
     }
   },
   methods: {
-    loadOrders (page = 1) {
+    loadSales (page = 1) {
       const params = {
         page,
+        buyer: true,
         orderby: '-id',
         'filter[status]': '20,99'
       }
-      this.$axiosAuth.get('/api/orders', {params}).then(response => {
+      this.$axiosAuth.get('/api/sales', {params}).then(response => {
         this.pagination = response.data
       })
     },
-    setOrder (order) {
-      this.$set(this.orders, order.id, order)
-      Object.keys(order.sales).forEach(key => {
-        const sale = order.sales[key]
+    refreshOrder (order) {
+      const sales = order.sales
+      delete order.sales
+      Object.keys(sales).forEach(key => {
+        const sale = sales[key]
+        if (!this.sales[sale.id]) {
+          return
+        }
+        this.$set(sale, 'order', order)
         this.$set(this.sales, sale.id, sale)
       })
     },
@@ -70,10 +75,10 @@ export default {
   },
   watch: {
     pagination (pagination, oldPagination) {
-      this.orders = {}
       this.sales = {}
       Object.keys(pagination.data).forEach(key => {
-        this.setOrder(pagination.data[key])
+        const sale = pagination.data[key]
+        this.$set(this.sales, sale.id, sale)
       })
     }
   }
