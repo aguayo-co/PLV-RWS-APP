@@ -38,7 +38,8 @@
         v-if="isActive == address.id"
         :multiSelectOptions="multiSelectOptions"
         :address="address"
-        v-on:updatedAddress="$emit('updatedAddress', $event)")
+        v-on:updatedAddress="$emit('updatedAddress', $event)"
+        v-on:close="IsActive(null)")
     li.dividers__bottom(
       :class="{'dividers__bottom_active': newAddress == true}")
       a.dividers__add.i-plus(
