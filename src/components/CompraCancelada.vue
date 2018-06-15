@@ -45,7 +45,7 @@ section.list-slot
     //-End Item
 
   //-End list content
-  dl.dividers.dividers_list
+  dl.dividers.dividers_list(v-if="address")
     dt.subhead Dirección de envío
     dd.dividers__item {{ address | address }}
 
