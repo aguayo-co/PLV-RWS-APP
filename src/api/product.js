@@ -21,15 +21,14 @@ export default {
     })
     return Vue.axiosAuth.post('/api/products/', formData)
   },
-
+  delete: function (product) {
+    return Vue.axiosAuth.delete('/api/products/' + product.id)
+  },
   update: function (product) {
-    console.log(product)
     var formData = new FormData()
 
     if (product.status === STATUS_REJECTED || product.status === STATUS_HIDDEN) {
       product.status = STATUS_CHANGED_FOR_APPROVAL
-    } else {
-      delete product.status
     }
 
     // Check if there are images to remove

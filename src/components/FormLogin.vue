@@ -90,7 +90,7 @@ export default {
       userAPI.login(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data).then(() => {
-            this.$router.push({ name: 'user-data' })
+            this.close()
             this.$store.dispatch('guestCart/merge')
           })
         })

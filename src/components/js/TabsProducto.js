@@ -24,6 +24,50 @@ export default {
     }
   },
   methods: {
+    hideProduct (product) {
+      const data = {
+        id: product.id,
+        status: 20
+      }
+      this.$set(product, '_loading', true)
+      productAPI.update(data).then(() => {
+        const index = this.products.indexOf(product)
+        this.$delete(this.products, index)
+        if (this.products.length === 0) {
+          this.products = null
+        }
+      }).finally(() => {
+        this.$delete(product, '_loading')
+      })
+    },
+    unHideProduct (product) {
+      const data = {
+        id: product.id,
+        status: 19
+      }
+      this.$set(product, '_loading', true)
+      productAPI.update(data).then(() => {
+        const index = this.products.indexOf(product)
+        this.$delete(this.products, index)
+        if (this.products.length === 0) {
+          this.products = null
+        }
+      }).finally(() => {
+        this.$delete(product, '_loading')
+      })
+    },
+    deleteProduct (product) {
+      this.$set(product, '_loading', true)
+      productAPI.delete(product).then(() => {
+        const index = this.products.indexOf(product)
+        this.$delete(this.products, index)
+        if (this.products.length === 0) {
+          this.products = null
+        }
+      }).finally(() => {
+        this.$delete(product, '_loading')
+      })
+    },
     loadProducts () {
       this.products = null
       let filters = {}

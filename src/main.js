@@ -14,6 +14,7 @@ import axiosPlugin from './axios'
 import prilovHelpers from './helpers'
 import router from './router'
 import store from './store'
+import Loader from './components/Loader'
 
 /* View Media query */
 Vue.use(VueMqMixin)
@@ -56,6 +57,8 @@ Vue.filter('product_status', function (value) {
       return 'Deshabilitado'
   }
 })
+
+Vue.component('Loader', Loader)
 
 /* eslint-disable no-new */
 new Vue({

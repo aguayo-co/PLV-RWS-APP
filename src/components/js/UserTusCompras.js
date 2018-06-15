@@ -9,23 +9,23 @@ export default {
   },
   data: () => {
     return {
+      currentLoader: null,
       pagination: null,
       sales: {},
-      orders: {},
       listActive: false,
       item: null,
       listOptions: {
         selected: 0,
         options: [
-          { id: 0, name: 'Todas' },
-          { id: 1, name: 'Pendientes de envío' },
-          { id: 2, name: 'Pendientes de pago' }
+          { filter: '20,99', name: 'Todas' },
+          { filter: 30, name: 'Pendientes de envío' },
+          { filter: 20, name: 'Pendientes de pago' }
         ]
       }
     }
   },
   created () {
-    this.loadOrders()
+    this.loadSales()
   },
   computed: {
     totalProducts () {
@@ -43,37 +43,47 @@ export default {
     }
   },
   methods: {
-    loadOrders (page = 1) {
+    loadSales () {
       const params = {
-        page,
+        buyer: true,
         orderby: '-id',
-        'filter[status]': '20,99'
+        'filter[status]': this.listOptions.options[this.listOptions.selected].filter
       }
-      this.$axiosAuth.get('/api/orders', {params}).then(response => {
-        this.pagination = response.data
-      })
+      const currentLoader = this.currentLoader = this.$axiosAuth.get('/api/sales', {params})
+        .then(response => {
+          // Make sure this is our latest request.
+          if (currentLoader === this.currentLoader) {
+            this.pagination = response.data
+          }
+        })
     },
-    setOrder (order) {
-      this.$set(this.orders, order.id, order)
-      Object.keys(order.sales).forEach(key => {
-        const sale = order.sales[key]
+    refreshOrder (order) {
+      const sales = order.sales
+      delete order.sales
+      Object.keys(sales).forEach(key => {
+        const sale = sales[key]
+        if (!this.sales[sale.id]) {
+          return
+        }
+        this.$set(sale, 'order', order)
         this.$set(this.sales, sale.id, sale)
       })
     },
     openList () {
       this.listActive = !this.listActive
     },
-    changeOrder (listOptionId) {
-      this.listOptions.selected = listOptionId
+    changeOrder (index) {
+      this.listOptions.selected = index
       this.listActive = false
+      this.loadSales()
     }
   },
   watch: {
     pagination (pagination, oldPagination) {
-      this.orders = {}
       this.sales = {}
       Object.keys(pagination.data).forEach(key => {
-        this.setOrder(pagination.data[key])
+        const sale = pagination.data[key]
+        this.$set(this.sales, sale.id, sale)
       })
     }
   }

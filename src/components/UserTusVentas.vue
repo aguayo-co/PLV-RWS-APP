@@ -19,15 +19,15 @@ section.single
             ul.filtrate__list(
               v-if="listActive")
               li.filtrate__list-item(
-                @click.stop.stop="changeOrder(option.id)"
-                v-for="option in listOptions.options") {{ option.name }}
+                v-for="(option, index) in listOptions.options"
+                @click.stop.stop="changeOrder(index)") {{ option.name }}
     //-componente tabla
     .dashboard
       header.dashboard__head
         h2.dashboard__title Productos
         h3.dashboard__title(v-if="mqTablet") Estado del pedido
       UserVenta(
-        v-for="sale in sortedSales" :sale="sale" :order="sale.order" :key="sale.id" v-on:refresh-sale="setSale")
+        v-for="sale in sortedSales" :sale="sale" :key="sale.id" v-on:refresh-sale="setSale")
       Pager(v-model="pagination", :auth="true")
 </template>
 

@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'loader'
+  name: 'Loader'
 }
 </script>
