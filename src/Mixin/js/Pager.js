@@ -4,6 +4,11 @@ export default {
     prop: 'pagination',
     event: 'paged'
   },
+  data () {
+    return {
+      loading: null
+    }
+  },
   props: {
     pagination: null,
     auth: {
@@ -25,15 +30,17 @@ export default {
     goTo (url) {
       this.$emit('paging', true)
       const axios = this.auth ? this.$axiosAuth : this.$axios
-      axios.get(url).then((response) => {
-        // Scroll to the top of the parent element.
-        const bodyRect = document.body.getBoundingClientRect()
-        const elemRect = this.$parent.$el.getBoundingClientRect()
-        const offset = elemRect.top - bodyRect.top
-        window.scrollTo(0, offset)
-
-        this.$emit('paged', response.data)
-        this.$emit('paging', false)
+      const bodyRect = document.body.getBoundingClientRect()
+      const elemRect = this.$parent.$el.getBoundingClientRect()
+      const offset = elemRect.top - bodyRect.top
+      window.scrollTo(0, offset)
+      const localRequest = this.loading = axios.get(url).then((response) => {
+        if (localRequest === this.loading) {
+          // Scroll to the top of the parent element.
+          this.$emit('paged', response.data)
+          this.$emit('paging', null)
+          this.loading = null
+        }
       })
     }
   }

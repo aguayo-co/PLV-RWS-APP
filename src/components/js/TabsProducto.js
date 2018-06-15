@@ -83,9 +83,6 @@ export default {
             this.loading = false
           }
         })
-    },
-    paging (state) {
-      this.loading = state
     }
   },
   created: function () {

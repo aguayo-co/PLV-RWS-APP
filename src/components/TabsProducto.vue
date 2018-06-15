@@ -99,7 +99,7 @@
                     v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
                   .slot__group.i-star-on(
                     v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-      Pager(v-if="products" v-model="pagination", :auth="true", v-on:paging="paging($event)")
+      Pager(v-if="products" v-model="pagination", :auth="true", v-on:paging="loading = $event")
 </template>
 
 <script src="./js/TabsProducto.js"></script>
