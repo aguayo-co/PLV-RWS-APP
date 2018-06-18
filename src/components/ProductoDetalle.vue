@@ -39,13 +39,21 @@
         p.detail__price.txt-light ${{ product.price | currency }}
       .detail__actions(v-if="!isOwner")
         button.detail__btn.btn.btn_solid(
-          v-if="!inCart && product.status >= 10 && product.status < 20"
+          @click.prevent=""
+          v-if="loading.addToCart")
+          Dots
+        button.detail__btn.btn.btn_solid(
+          v-else-if="!inCart && product.status >= 10 && product.status < 20"
           @click="addToCart") Comprar
-        button.detail__btn.btn.btn_disabled(v-if="inCart") En carrito
-        button.detail__btn.btn.btn_disabled(v-if="product.status < 10 || (product.status >= 20 && product.status <= 30)") No disponible
-        button.detail__btn.btn.btn_disabled(v-if="product.status > 30") Vendido
+        button.detail__btn.btn.btn_disabled(v-else-if="inCart") En carrito
+        button.detail__btn.btn.btn_disabled(v-else-if="product.status < 10 || (product.status >= 20 && product.status <= 30)") No disponible
+        button.detail__btn.btn.btn_disabled(v-else="product.status > 30") Vendido
         button.detail__btn.btn.i-heart(
-          v-if="user.id"
+          @click.prevent=""
+          v-if="loading.favorite")
+          Dots
+        button.detail__btn.btn.i-heart(
+          v-else-if="user.id"
           @click.prevent='setFavorite(product.id)'
           :class='{ active: user.favorites_ids.includes(product.id) }'
           :title="'Agrega ' + product.title + ' a Favoritos'") {{ user.favorites_ids.includes(product.id) ? "En tus favoritos" : "Agregar favoritos" }}
@@ -64,7 +72,11 @@ export default {
   props: ['product'],
   data () {
     return {
-      srcActive: ''
+      srcActive: '',
+      loading: {
+        addToCart: null,
+        favorite: null
+      }
     }
   },
   computed: {
@@ -91,18 +103,30 @@ export default {
       this.srcActive = e
     },
     addToCart: function () {
+      this.loading.addToCart = true
+
       if (this.user.id) {
         this.$store.dispatch('cart/addProduct', { id: this.product.id })
-      } else {
-        this.$store.dispatch('guestCart/addProduct', { ...this.product })
+          .finally(() => {
+            this.loading.addToCart = false
+          })
+        return
       }
+
+      this.$store.dispatch('guestCart/addProduct', { ...this.product })
+        .finally(() => {
+          this.loading.addToCart = false
+        })
     },
     setFavorite: function (productId) {
+      this.loading.favorite = true
       let data = {
         id: this.user.id
       }
       this.user.favorites_ids.includes(productId) ? data.favorites_remove = [productId] : data.favorites_add = [productId]
-      this.$store.dispatch('user/update', data)
+      this.$store.dispatch('user/update', data).then(() => {
+        this.loading.favorite = false
+      })
     }
   }
 }
