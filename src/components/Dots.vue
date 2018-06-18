@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style scoped>
+.saving.dark {
+  color: black;
+}
+
 .saving span {
   animation-name: blink;
   animation-duration: 1.6s;
