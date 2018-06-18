@@ -31,7 +31,10 @@ section.profile
           ul.user-data__nav(v-if="userId")
             li.user-data__tag
               a.btn-tag.btn-tag_solid(
-                v-if="!followed"
+                v-if="loading")
+                Dots
+              a.btn-tag.btn-tag_solid(
+                v-else-if="!followed"
                 @click="follow") Seguir
               a.btn-tag.btn-tag_solid(
                 v-else
@@ -84,21 +87,28 @@ export default {
   data () {
     return {
       ratings: [],
-      rating: {}
+      rating: {},
+      loading: null
     }
   },
   methods: {
     follow: function () {
+      this.loading = true
       const data = {
         following_add: [this.user.id]
       }
-      this.$store.dispatch('user/update', data)
+      this.$store.dispatch('user/update', data).finally(() => {
+        this.loading = false
+      })
     },
     unfollow: function () {
+      this.loading = true
       const data = {
         following_remove: [this.user.id]
       }
-      this.$store.dispatch('user/update', data)
+      this.$store.dispatch('user/update', data).finally(() => {
+        this.loading = false
+      })
     }
   },
   created: function () {

@@ -15,6 +15,7 @@ import prilovHelpers from './helpers'
 import router from './router'
 import store from './store'
 import Loader from './components/Loader'
+import Dots from './components/Dots'
 
 /* View Media query */
 Vue.use(VueMqMixin)
@@ -59,6 +60,7 @@ Vue.filter('product_status', function (value) {
 })
 
 Vue.component('Loader', Loader)
+Vue.component('Dots', Dots)
 
 /* eslint-disable no-new */
 new Vue({
