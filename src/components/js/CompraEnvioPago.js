@@ -143,6 +143,10 @@ export default {
      * Esto se eliminaría si se usa un botón para enviar el formulario.
      */
     new_used_credits (newUsedCredits, oldUsedCredits) {
+      if (parseInt(newUsedCredits) === parseInt(oldUsedCredits)) {
+        return
+      }
+
       window.clearTimeout(this.userDataTimeout)
       this.errorLog.used_credits = null
 
