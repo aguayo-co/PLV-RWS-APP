@@ -1,6 +1,6 @@
 <template lang="pug">
 .layout-page
-  UserDataCloset(:user="owner")
+  UserDataCloset(:user="owner" v-on:update:user="owner = $event")
   section.section_product
     GridProducto(
       v-if="owner.id"
@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     userId () {
-      return this.$store.getters['user/id']
+      return this.$getNestedObject(this.$store.state, ['user', 'id'])
     }
   },
   created: function () {
