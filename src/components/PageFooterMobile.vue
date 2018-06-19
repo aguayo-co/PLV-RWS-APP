@@ -71,7 +71,8 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                         h3.card__title {{ product.title }}
                         p.card__size Talla: {{ product.size }}
                       p.card__price ${{ product.price | currency }}
-                button.box-cards__btn.i-x(@click="removeFromCart(product.id)") Eliminar
+                Dots.dark(v-if="deleting[product.id]")
+                button.box-cards__btn.i-x(v-else @click="removeFromCart(product)") Eliminar
       li.foot-nav__item.foot-nav__item_brand
         router-link.foot-nav__link(:to="{ name: 'home' }")
           span.foot-nav__name.i-brand Ir al home
@@ -110,6 +111,7 @@ export default {
   name: 'PageFooterMobile',
   data () {
     return {
+      deleting: {},
       isActive: undefined,
       active: false,
       ProfActive: false,
@@ -135,12 +137,21 @@ export default {
     animCart: function () {
       this.activeCart = !this.activeCart
     },
-    removeFromCart: function (productId) {
+    removeFromCart: function (product) {
+      this.$set(this.deleting, product.id, true)
+
       if (this.user.id) {
-        this.$store.dispatch('cart/removeProduct', { id: productId })
-      } else {
-        this.$store.dispatch('guestCart/removeProduct', { id: productId })
+        this.$store.dispatch('cart/removeProduct', { id: product.id })
+          .finally(() => {
+            this.$delete(this.deleting, product.id)
+          })
+        return
       }
+
+      this.$store.dispatch('guestCart/removeProduct', { id: product.id })
+        .finally(() => {
+          this.$delete(this.deleting, product.id)
+        })
     },
     logIn: function () {
       const payload = {

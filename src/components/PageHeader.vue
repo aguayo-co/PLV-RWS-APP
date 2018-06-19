@@ -50,7 +50,8 @@
                             p.card__size(v-if="product.size.name") Talla: {{ product.size.name }}
                             p.card__size(v-else) Talla: {{ product.size }}
                           p.card__price ${{ product.price | currency }}
-                    button.box-cards__btn.i-x(@click="removeFromCart(product.id)") Eliminar
+                    Dots.dark(v-if="deleting[product.id]")
+                    button.box-cards__btn.i-x(v-else @click="removeFromCart(product)") Eliminar
 
           //- Is authenticated
           li.tool-user__item.tool-user__item_auth(
@@ -121,7 +122,9 @@ export default {
     PageHeaderSearch
   },
   data () {
-    return { }
+    return {
+      deleting: {}
+    }
   },
   methods: {
     logIn: function () {
@@ -141,13 +144,26 @@ export default {
         this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
       }
     },
-    removeFromCart: function (productId) {
+    removeFromCart: function (product) {
+      this.$set(this.deleting, product.id, true)
+
       if (this.totalProducts.length === 1) this.toggleCart()
+
       if (this.user.id) {
-        this.$store.dispatch('cart/removeProduct', { id: productId })
-      } else {
-        this.$store.dispatch('guestCart/removeProduct', { id: productId })
+        this.$store.dispatch('cart/removeProduct', { id: product.id })
+          .then(() => {
+            if (this.totalProducts.length === 0) this.toggleCart()
+          })
+          .finally(() => {
+            this.$delete(this.deleting, product.id)
+          })
+        return
       }
+
+      this.$store.dispatch('guestCart/removeProduct', { id: product.id })
+        .finally(() => {
+          this.$delete(this.deleting, product.id)
+        })
     },
     logout: function () {
       this.$store.dispatch('user/logOut')

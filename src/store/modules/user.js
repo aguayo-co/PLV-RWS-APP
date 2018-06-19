@@ -20,7 +20,9 @@ const baseUserGenerator = () => {
     published_products_count: null,
     sold_products_count: null,
     followers_count: null,
+    followers_ids: null,
     following_count: null,
+    following_ids: null,
     roles: [],
     groups: [],
     shipping_method_ids: [],
@@ -42,8 +44,7 @@ const baseStateGenerator = () => {
 
 const getters = {
   full_name: state => Vue.options.filters.full_name(state),
-  roles: state => state.roles,
-  id: state => state.id
+  roles: state => state.roles
 }
 
 const actions = {
