@@ -98,12 +98,6 @@ export default {
       return this.$store.getters['ui/modalWindow']
     }
   },
-  beforeCreate () {
-    const link=location.href.split('://')
-    if (link[0] === 'http') {
-      window.location.replace('https://' + link[1])
-    }
-  },
   created: function () {
     this.routeGuard()
     this.$moment.locale('es')
