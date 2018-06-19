@@ -7,7 +7,7 @@ export default {
   getBySeller (sellerId, page, status = 1) {
     const params = {
       'filter[seller_id]': sellerId,
-      orderBy: '-id',
+      orderby: '-id',
       page,
       'filter[status]': status
     }
@@ -16,7 +16,7 @@ export default {
   getArchiveBySeller (sellerId, page) {
     const params = {
       'filter[seller_id]': sellerId,
-      orderBy: '-id',
+      orderby: '-id',
       page
     }
     return Vue.axios.get('/api/rating_archives', { params })

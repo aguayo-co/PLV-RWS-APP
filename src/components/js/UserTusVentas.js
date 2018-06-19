@@ -9,7 +9,7 @@ export default {
   },
   data: () => {
     return {
-      currentLoader: null,
+      loading: true,
       pagination: null,
       sales: {},
       listActive: false,
@@ -45,11 +45,16 @@ export default {
         orderby: '-id',
         'filter[status]': this.listOptions.options[this.listOptions.selected].filter
       }
-      const currentLoader = this.currentLoader = this.$axiosAuth.get('/api/sales', {params})
+      const currentLoader = this.loading = this.$axiosAuth.get('/api/sales', {params})
         .then(response => {
           // Make sure this is our latest request.
-          if (currentLoader === this.currentLoader) {
+          if (currentLoader === this.loading) {
             this.pagination = response.data
+          }
+        })
+        .finally(() => {
+          if (currentLoader === this.loading) {
+            this.loading = null
           }
         })
     },

@@ -74,7 +74,7 @@ export default {
   props: ['category_id', 'product_id'],
   data () {
     return {
-      orderBy: '-id',
+      orderby: '-id',
       products: [],
       productsPager: {
         items: 12,
@@ -128,7 +128,7 @@ export default {
       let filterQueryObject = {}
       filterQueryObject.status = '10,19'
       filterQueryObject.category_id = this.category_id
-      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderBy)
+      productAPI.getProducts(this.productsPager.page, this.productsPager.items, filterQueryObject, this.orderby)
         .then((response) => {
           this.products = response.data.data
           this.products = this.products.filter(product => product.id !== this.product_id)
