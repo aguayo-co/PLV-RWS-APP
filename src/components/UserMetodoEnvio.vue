@@ -21,7 +21,7 @@ section.single
               .box__lead
                 p.box__txt(
                   v-if="!isAllowed(method)")
-                  strong Tu dirección favorita no permite usar este método de envío. Actualízala e intenta nuevamente.
+                  strong Tu dirección ingresada como favorita no permite usar este método de envío ya que estás fuera de cobertura.
                 p.box__txt {{ method.description_seller}}
               .box__switch
                 .form__switch
