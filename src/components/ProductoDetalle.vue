@@ -35,7 +35,7 @@
         span(v-if="product.colors") &nbsp; Colores: {{ product.colors[0].name }} |
         span(v-if="product.condition") &nbsp; {{ product.condition.name }}
       .detail__value
-        p.detail__through.through ${{ product.original_price | currency }}
+        p.detail__through.through(v-if="product.original_price") ${{ product.original_price | currency }}
         p.detail__price.txt-light ${{ product.price | currency }}
       .detail__actions(v-if="!isOwner")
         button.detail__btn.btn.btn_solid(
