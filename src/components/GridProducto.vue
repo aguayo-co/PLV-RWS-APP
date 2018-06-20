@@ -62,7 +62,8 @@
     .section_product__footer
       p.btn__wrapper(
         v-if='!loading && !mqMobile && infinite')
-        span(v-if="this.lastPage === this.parameters.page") Ya cargaste todos los productos
+        span(v-if="products.length === 0") No hay productos a mostrar
+        span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
         button.btn.i-send(
           v-else
           @click='loadMoreProducts') Ver más productos
@@ -73,9 +74,9 @@
         name="numeroItems",
         v-model='parameters.items',
         @change='updateProductList')
-          option(value="9") 9
-          option(value="18") 18
-          option(value="27") 27
+          option(value="15") 15
+          option(value="21") 21
+          option(value="33") 33
           option(value="45") 45
     li.pagination__item(
       v-if='parameters.page > lastPage')
@@ -119,7 +120,7 @@ export default {
       lastPage: null,
       parameters: {
         'page': 1,
-        'items': 12,
+        'items': 15,
         'orderby': '-id'
       },
       loading: false,
@@ -195,7 +196,7 @@ export default {
     clearFilters: function () {
       this.parameters = {
         'page': 1,
-        'items': 12,
+        'items': 15,
         'orderby': this.parameters.orderby
       }
       this.applyPreFilter()

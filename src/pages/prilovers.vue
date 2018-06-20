@@ -49,14 +49,13 @@
 
     .section_product__footer
       p.btn__wrapper(
-        v-if='!loading && !mqMobile && lastPage > parameters.page')
+        v-if='!loading && !mqMobile')
+        span(v-if="prilovers.length === 0") No hay Prilovers a mostrar
+        span(v-else-if="lastPage === parameters.page") Ya cargaste todas las Prilovers
         a.btn(
+          v-else
           @click.prevent='loadMoreUsers') Ver más Prilovers
-    p.preload(v-if='loading')
-      span.preload__spin.preload__spin_1
-      span.preload__spin.preload__spin_2
-      span.preload__spin.preload__spin_3
-      span.preload__spin.preload__spin_4
+      Loader(v-if='loading')
   ButtonSticky
 </template>
 
@@ -87,8 +86,7 @@ export default {
         ]
       },
       parameters: {
-        'page': 1,
-        'items': 12
+        'page': 1
       }
     }
   },
@@ -124,11 +122,11 @@ export default {
           this.loading = false
         })
     },
-    loadMoreUsers: async function (e) {
+    loadMoreUsers: function (e) {
       if (this.lastPage > this.parameters.page) {
         this.parameters.page += 1
         this.loading = true
-        await usersAPI.get(this.parameters)
+        usersAPI.get(this.parameters)
           .then((response) => {
             this.prilovers.push(...response.data.data)
             this.loading = false
