@@ -28,7 +28,7 @@ section.profile
               li.user-data__track {{ user.followers_count }} Seguidores
               li.user-data__track {{ user.following_count }} Siguiendo
           //-Enlaces
-          ul.user-data__nav(v-if="userId")
+          ul.user-data__nav(v-if="userId && user.id !== userId")
             li.user-data__tag
               a.btn-tag.btn-tag_solid(
                 v-if="loading")

@@ -4,14 +4,13 @@
 import Vue from 'vue'
 
 export default {
-  all (userId, page = 1) {
+  all () {
     const params = {
-      page,
       orderby: '-created_at'
     }
     return Vue.axiosAuth.get('/api/credits_transactions', {params})
   },
-  pending (userId) {
+  pending () {
     const params = {
       items: 1000,
       'filter[transfer_status]': 0

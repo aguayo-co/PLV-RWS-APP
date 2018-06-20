@@ -34,6 +34,7 @@ export default (to, from, next) => {
       // Add the meta tags to the document head.
       .forEach(tag => document.head.appendChild(tag))
   }
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.

@@ -1,7 +1,7 @@
 <template lang="pug">
 .layout-inner
   .alert-msg.alert-msg_center(v-if="isOwner")
-    p Este es es un producto de tu clóset <router :to="{ name: 'closet', params: { userId: user.id }}" class="link_underline"> Ir a mi Clóset</router>
+    p Este es es un producto de tu clóset <router-link :to="{ name: 'closet', params: { userId: user.id }}" class="link_underline"> Ir a mi Clóset</router-link>
   .alert-msg_spacing(v-if="isOwner")
     router-link.btn(:to="{ name: 'editar-producto', params: { productId: product.id }}") editar producto
   article.detail
@@ -35,7 +35,7 @@
         span(v-if="product.colors") &nbsp; Colores: {{ product.colors[0].name }} |
         span(v-if="product.condition") &nbsp; {{ product.condition.name }}
       .detail__value
-        p.detail__through.through ${{ product.original_price | currency }}
+        p.detail__through.through(v-if="product.original_price") ${{ product.original_price | currency }}
         p.detail__price.txt-light ${{ product.price | currency }}
       .detail__actions(v-if="!isOwner")
         button.detail__btn.btn.btn_solid(

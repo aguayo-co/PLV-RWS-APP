@@ -5,9 +5,7 @@
     nav.filtrate
       .filtrate__item
         form.filtrate(
-          @submit.prevent="updateUserList",
-          action='',
-          method='GET')
+          @submit.prevent="updateUserList(true)")
           .filtrate__row.i-search
             input.filtrate__input(
               v-model="parameters.q",
@@ -48,13 +46,14 @@
               v-if='user.group_ids.indexOf(2) > -1') It <span class="txt_brand">girl</span>
 
     .section_product__footer
-      p.btn__wrapper
-        a.btn(@click.prevent='loadMoreUsers') Ver más Prilovers
-    p.preload(v-if='loading')
-      span.preload__spin.preload__spin_1
-      span.preload__spin.preload__spin_2
-      span.preload__spin.preload__spin_3
-      span.preload__spin.preload__spin_4
+      p.btn__wrapper(
+        v-if='!loading')
+        span(v-if="prilovers.length === 0") No hay Prilovers a mostrar
+        span(v-else-if="lastPage === parameters.page") Ya cargaste todas las Prilovers
+        a.btn(
+          v-else-if="!mqMobile"
+          @click.prevent='loadMoreUsers') Ver más Prilovers
+      Loader(v-else)
   ButtonSticky
 </template>
 
@@ -73,7 +72,7 @@ export default {
     return {
       prilovers: [],
       listActive: false,
-      loading: false,
+      loading: true,
       lastPage: null,
       item: null,
       listOptions: {
@@ -85,8 +84,7 @@ export default {
         ]
       },
       parameters: {
-        'page': 1,
-        'items': 12
+        page: 1
       }
     }
   },
@@ -94,6 +92,11 @@ export default {
     this.updateUserList()
   },
   methods: {
+    handleScroll (e) {
+      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+        if (this.lastPage > this.parameters.page) this.loadMoreUsers()
+      }
+    },
     openList: function () {
       this.listActive = !this.listActive
     },
@@ -107,7 +110,10 @@ export default {
       }
       this.updateUserList()
     },
-    updateUserList: function () {
+    updateUserList (resetPage = false) {
+      if (resetPage) {
+        this.parameters.page = 1
+      }
       this.loading = true
       usersAPI.get(this.parameters)
         .then((response) => {
@@ -116,16 +122,23 @@ export default {
           this.loading = false
         })
     },
-    loadMoreUsers: async function (e) {
-      if (this.lastPage > this.parameters.page) {
-        this.parameters.page += 1
-        this.loading = true
-        await usersAPI.get(this.parameters)
-          .then((response) => {
-            this.prilovers.push(...response.data.data)
-            this.loading = false
-          })
+    loadMoreUsers: function (e) {
+      this.parameters.page += 1
+      this.loading = true
+      usersAPI.get(this.parameters)
+        .then((response) => {
+          this.prilovers.push(...response.data.data)
+          this.loading = false
+        })
+    }
+  },
+  watch: {
+    mqMobile (mqMobile) {
+      if (mqMobile) {
+        window.addEventListener('scroll', this.handleScroll)
+        return
       }
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 }

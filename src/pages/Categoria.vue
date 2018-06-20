@@ -10,7 +10,8 @@
       GridProducto(
         :preFilter='filter'
         :infinite='true')
-  .layout-inner(v-if="queryObject === null")
+  Loader(v-if="loading")
+  .layout-inner(v-else-if="queryObject === null")
     .layout_nofound
       .alert
         p.alert__txt.i-sad La URL que estás intentando acceder no existe
@@ -22,6 +23,7 @@ import { mapState } from 'vuex'
 import GridProducto from '@/components/GridProducto'
 import BannerHero from '@/components/BannerHero'
 import bannersAPI from '@/api/banner'
+import campaignsAPI from '@/api/campaigns'
 import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
@@ -33,7 +35,9 @@ export default {
   },
   data () {
     return {
-      banner: null
+      loading: true,
+      banner: null,
+      campaign: null
     }
   },
   computed: {
@@ -41,11 +45,28 @@ export default {
       'categories',
       'brands'
     ]),
+    queryObject () {
+      if (this.queryType === 'categorias') {
+        const category = this.flattenedCategories.filter(x => x.slug === this.slug)[0]
+        this.loadBannerCategory()
+        return category
+      }
+
+      if (this.queryType === 'marcas') {
+        const brand = this.brands.filter(x => x.slug === this.slug)[0]
+        this.loadBannerBrand()
+        return brand
+      }
+
+      if (this.queryType === 'campanas') {
+        return this.campaign
+      }
+    },
     queryType () {
       // - Checks if query corresponds to brand or category
       return this.$route.params.type
     },
-    queryParameter () {
+    slug () {
       // - Gets the slug URL parameter
       return this.$route.params.slug
     },
@@ -61,42 +82,65 @@ export default {
       })
       return flattened
     },
-    queryObject () {
-      // - Gets the object associated with the query parameters
-      let result = null
-      if (this.queryType === 'categorias') {
-        result = this.flattenedCategories.filter(x => x.slug === this.queryParameter)[0]
-        this.loadBannerCategory()
-        return result
-      } else if (this.queryType === 'marcas') {
-        result = this.brands.filter(x => x.slug === this.queryParameter)[0]
-        this.loadBannerBrand()
-        return result
-      } else {
-        return result
-      }
-    },
     filter () {
       if (this.queryType === 'categorias' && this.queryObject) {
         return { 'filter[category_id]': this.queryObject.id }
       }
+
       if (this.queryType === 'marcas' && this.queryObject) {
         return { 'filter[brand_id]': this.queryObject.id }
+      }
+
+      if (this.queryType === 'campanas' && this.queryObject) {
+        return { 'filter[campaign_ids]': this.queryObject.id }
       }
     }
   },
   methods: {
-    loadBannerCategory () {
-      bannersAPI.getBannerBySlug('categoria-' + this.queryParameter)
+    loadCampaign () {
+      this.campaign = null
+      if (this.queryType !== 'campanas') {
+        return
+      }
+
+      this.loading = true
+      campaignsAPI.getBySlug(this.slug)
         .then(response => {
-          this.banner = response.data.data[0]
+          this.campaign = response.data
+        })
+        .finally(() => {
+          this.loading = false
         })
     },
-    loadBannerBrand () {
-      bannersAPI.getBannerBySlug('marca-' + this.queryParameter)
+    loadBannerCategory () {
+      bannersAPI.getBannerBySlug('categoria-' + this.slug)
         .then(response => {
-          this.banner = response.data.data[0]
-        })
+          this.banner = response.data
+        }).catch(() => {})
+    },
+    loadBannerBrand () {
+      bannersAPI.getBannerBySlug('marca-' + this.slug)
+        .then(response => {
+          this.banner = response.data
+        }).catch(() => {})
+    }
+  },
+  created () {
+    if (this.queryType !== 'campanas') {
+      this.loading = false
+      return
+    }
+
+    this.loadCampaign()
+  },
+  watch: {
+    queryType () {
+      if (this.queryType !== 'campanas') {
+        this.loading = false
+        return
+      }
+
+      this.loadCampaign()
     }
   }
 }
