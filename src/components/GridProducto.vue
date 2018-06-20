@@ -13,12 +13,7 @@
     v-if="mqDesk",
     :compact="compact")
   .section_product__scroll
-    .preload(v-if="loading")
-      span.preload__spin.preload__spin_1
-      span.preload__spin.preload__spin_2
-      span.preload__spin.preload__spin_3
-      span.preload__spin.preload__spin_4
-    .product-grid(v-else)
+    .product-grid
       article.slot.slot_grid(
         v-for='product in products')
         button.slot__ico.i-heart(
@@ -67,13 +62,11 @@
     .section_product__footer
       p.btn__wrapper(
         v-if='!loading && !mqMobile && infinite')
-        a.btn.i-send(
+        span(v-if="this.lastPage === this.parameters.page") Ya cargaste todos los productos
+        button.btn.i-send(
+          v-else
           @click='loadMoreProducts') Ver más productos
-      p.preload(v-if='loading')
-        span.preload__spin.preload__spin_1
-        span.preload__spin.preload__spin_2
-        span.preload__spin.preload__spin_3
-        span.preload__spin.preload__spin_4
+      Loader(v-if='loading')
   ul.pagination(v-if="pager")
     li.pagination__select
       select.form__select.form__select_small(
@@ -163,11 +156,10 @@ export default {
         })
     },
     loadMoreProducts: async function (e) {
-      console.log('entro')
       if (this.lastPage > this.parameters.page) {
         this.parameters.page += 1
         this.loading = true
-        await productAPI.get(this.parameters)
+        productAPI.get(this.parameters)
           .then((response) => {
             this.products.push(...response.data.data)
             this.loading = false

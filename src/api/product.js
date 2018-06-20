@@ -101,14 +101,6 @@ export default {
 
   },
 
-  getCategoriesBySlug: function (categorySlug) {
-    categorySlug = categorySlug || ''
-    return Vue.axios.get('/api/categories/' + categorySlug)
-  },
-  getCategoriesById: function (categoryId) {
-    return Vue.axios.get('/api/categories?filter[id]=' + categoryId)
-  },
-
   getAllConditions: function () {
     return Vue.axios.get('/api/conditions')
   },
