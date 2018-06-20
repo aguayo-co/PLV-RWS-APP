@@ -132,7 +132,7 @@ export default {
 
       this.disabledThread = true
       const data = {
-        subject: this.newThread,
+        subject: 'Pregunta de ' + this.user.id + ' para productp ' + this.productId,
         private: false,
         product_id: this.productId,
         recipients: [this.ownerId],
