@@ -10,7 +10,7 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
           //- Sugerencias de búsqueda a nivel de:
               marcas, categorías, nombres de Prilovers.
           .foot-nav__fixed(v-show='active')
-            a.foot-nav__close.i-x(href="#", @click='animSearch')
+            a.foot-nav__close.i-x(@click='animSearch')
             h4.foot-nav__title Buscar
             form.foot-nav__search(action='', method='GET')
               .foot-nav__search-row.i-search
@@ -41,7 +41,7 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
         a.foot-nav__link(
           @click='animCart')
           span.foot-nav__name.i-bag Carrito
-          small.badge.badge_user(v-if="totalProducts.length > 0") {{ totalProducts.length }}
+          small.badge.badge_user(v-if="totalProducts && totalProducts.length > 0") {{ totalProducts.length }}
           //-Carrito de compras
         transition(name='slide-right')
           .foot-nav__fixed(v-show='activeCart')
@@ -160,9 +160,6 @@ export default {
       }
       this.$store.dispatch('ui/showModal', payload)
     },
-    toggleBox: function () {
-      this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'user' })
-    },
     goToPayment () {
       this.$router.push({name: 'compra'})
       this.animCart()
@@ -173,23 +170,9 @@ export default {
     ...mapState(['cart']),
     ...mapState(['guestCart']),
     totalProducts () {
-      if (this.user.id) return this.cart.products
+      if (this.user.id) return this.$store.getters['cart/products']
       return this.guestCart.products
-    },
-    activeDropDowns () {
-      return this.$store.getters['ui/headerDropdownsVisible']
-    },
-    getName () {
-      return this.$store.getters['UserModule/getUserName']
-    },
-    getAuth () {
-      if (this.$store.getters['UserModule/getAuth'] !== null && this.getName !== '') {
-        return true
-      } else {
-        return false
-      }
     }
-    // ...mapState(['user'])
   }
 }
 </script>

@@ -140,9 +140,7 @@ export default {
       this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'user' })
     },
     toggleCart: function () {
-      if (this.totalProducts.length > 0) {
-        this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
-      }
+      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
     },
     removeFromCart: function (product) {
       this.$set(this.deleting, product.id, true)
@@ -175,7 +173,7 @@ export default {
     ...mapState(['cart']),
     ...mapState(['guestCart']),
     totalProducts () {
-      if (this.user.id) return this.cart.products
+      if (this.user.id) return this.$store.getters['cart/products']
       return this.guestCart.products
     },
     activeDropDowns () {
