@@ -12,8 +12,8 @@
                 .chat__bubble-main
                   figure.chat-bubble__avatar
                     img.chat-bubble__img(
-                      :src="thread.participants[0].user.picture",
-                      :alt="thread.participants[0].user.first_name")
+                      :src="thread.participants[1].user.picture",
+                      :alt="thread.participants[1].user.first_name")
                   p.chat-bubble__txt {{ thread.messages[0].body }}
                 .chat__footer.chat__footer_main
                   time.chat__date hace {{ thread.created_at | moment("from") }}
@@ -40,8 +40,8 @@
                         :alt="thread.participants[1].user.first_name")
                     figure.chat-bubble__avatar(v-else)
                       img.chat-bubble__img(
-                        :src="thread.participants[0].user.picture",
-                        :alt="thread.participants[0].user.first_name")
+                        :src="thread.participants.find(x=>x.user_id==message.user_id).user.picture",
+                        :alt="thread.participants.find(x=>x.user_id==message.user_id).first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer
                     time.chat__date hace {{ message.created_at | moment("from") }}
@@ -112,6 +112,7 @@ export default {
       threadsAPI.getByProduct(this.productId)
         .then(response => {
           this.threads = response.data.data
+          console.log(response.data.data)
         })
     },
     toggle (prop) {
