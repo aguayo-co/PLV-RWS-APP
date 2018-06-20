@@ -9,107 +9,66 @@ transition(name='modal-fade')
             @click='close')
             span Cerrar
 
+        template(v-if="changed")
+          p Has cambiado exitosamente tu contraseña
+          .form__row.form__row_away
+            button.btn.btn_solid.btn_block(@click="close") Cerrar
         form.form(
-          v-on:submit='',
-          action='#',
-          submit.prevent='validateBeforeSubmit',
-          method='post'
-        )
+          v-else
+          @submit.prevent='submit')
           .form__row
-            //- (v-bind:class='{ "is-danger": errorTexts.email }')
-            label.form__label(
-              for='passwordCurrent') Contraseña Actual
-            //- span.help(
-            //-   v-if="errorTexts.email"
-            //- ) {{ errorTexts.email }}
-            input.form__control(
-              id='passwordCurrent',
-              type='password')
-          .form__row
-            //- (v-bind:class='{ "is-danger": errorTexts.password }')
             label.form__label(
               for='passwordNew'
             ) Nueva Contraseña
-            //- span.help(
-            //-   v-if="errorTexts.password"
-            //- ) {{ errorTexts.password }}
+            span.help(
+              v-if="errorTexts.password"
+            ) {{ errorTexts.password }}
             input.form__control(
-              id='passwordNew',
+              v-model="password"
+              id='passwordNew'
               type='password')
 
           .form__row.form__row_away
-            button.btn.btn_solid.btn_block(
-              @click.prevent='validateBeforeSubmit') Cambiar Contraseña
+            button.btn.btn_solid.btn_block Cambiar Contraseña
           .form__row
             p.form__note.form__note_center
-              a.link_underline No quiero cambiar mi contraseña
-              a.link_underline Regresar
+              a.link_underline(@click="close") No quiero cambiar mi contraseña
 </template>
 
 <script>
 import userAPI from '@/api/user'
+import { mapState } from 'vuex'
+
 export default {
   name: 'ModalPasswordChange',
   data () {
     return {
-      email: '',
-      password: '',
+      changed: null,
+      password: null,
       errorTexts: {}
     }
   },
+  computed: {
+    ...mapState('user', ['id'])
+  },
   methods: {
-    validateBeforeSubmit: function () {
+    submit: function () {
       this.errorTexts = {}
 
-      if (!this.email) {
-        this.errorTexts.email = 'Debes ingresar tu email'
-      } else {
-        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.email)) {
-          this.errorTexts.email = 'El email que ingresaste no parece válido.'
-        }
+      if (!this.password) {
+        this.errorTexts.password = 'Debes ingresar una contraseña'
+        return
       }
 
-      if (!this.password) this.errorTexts.password = 'Debes ingresar una contraseña'
-
-      if (Object.keys(this.errorTexts).length === 0) {
-        this.login()
-      }
-    },
-    login: function () {
       const payload = {
-        email: this.email,
+        id: this.id,
         password: this.password
       }
-      userAPI.login(payload)
+
+      userAPI.update(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-          this.close()
-        })
-        .catch(e => {
-          var modal
-
-          if (this.$store.getters['ui/loginAttempts'] < 3) {
-            modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Parece que ocurrió un error',
-                body: Object.values(e.response.data.errors)[0]
-              }
-            }
-          } else {
-            modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Ya has intentado autenticarte varias veces',
-                primaryButtonTitle: '¿Olvidaste tu contraseña?',
-                primaryButtonURL: 'password'
-              }
-            }
-          }
-          this.$store.dispatch('ui/showModal', modal)
-          this.$store.dispatch('ui/loginAttempt')
+          this.changed = true
         })
     },
     close: function () {
