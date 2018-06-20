@@ -22,7 +22,7 @@
       article.slot.slot_grid(
         v-for='product in products')
         button.slot__ico.i-heart(
-          v-if="user.id"
+          v-if="user.id && user.id !== product.user_id"
           @click.prevent='setFavorite(product.id)'
           :class='{ enableFavorite: user.favorites_ids.includes(product.id) }'
           title='Agrega a Favoritos') Agregar a Favoritos

@@ -34,9 +34,6 @@
           :class="{ 'slot_disabled' : user.vacation_mode || product.status < 10 }")
           Loader(v-if="product._loading")
           template(v-else)
-            a.slot__ico.i-heart(
-              v-if="activeTab === 'published'"
-              title='Agrega a Favoritos') Agregar a Favoritos
             .slot__product-inner
               router-link.slot__product(
                 :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
