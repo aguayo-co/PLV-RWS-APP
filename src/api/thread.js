@@ -26,7 +26,7 @@ export default {
   },
 
   getThreadById: function (threadId) {
-    return Vue.axiosAuth.get('/api/threads' + threadId)
+    return Vue.axiosAuth.get('/api/threads/' + threadId)
   },
 
   getPrivateWith: function (userId) {
