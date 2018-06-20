@@ -48,8 +48,10 @@
               v-if='user.group_ids.indexOf(2) > -1') It <span class="txt_brand">girl</span>
 
     .section_product__footer
-      p.btn__wrapper
-        a.btn(@click.prevent='loadMoreUsers') Ver más Prilovers
+      p.btn__wrapper(
+        v-if='!loading && !mqMobile && lastPage > parameters.page')
+        a.btn(
+          @click.prevent='loadMoreUsers') Ver más Prilovers
     p.preload(v-if='loading')
       span.preload__spin.preload__spin_1
       span.preload__spin.preload__spin_2
@@ -91,9 +93,15 @@ export default {
     }
   },
   created: function () {
+    window.addEventListener('scroll', this.handleScroll)
     this.updateUserList()
   },
   methods: {
+    handleScroll: function (e) {
+      if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+        if (this.lastPage > this.parameters.page) this.loadMoreUsers()
+      }
+    },
     openList: function () {
       this.listActive = !this.listActive
     },
