@@ -59,15 +59,15 @@
                 v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
               .slot__group.i-star-on(
                 v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-    .section_product__footer
+    .section_product__footer(v-if="infinite")
       p.btn__wrapper(
-        v-if='!loading && !mqMobile && infinite')
+        v-if='!loading')
         span(v-if="products.length === 0") No hay productos a mostrar
         span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
         button.btn.i-send(
-          v-else
+          v-else-if="!mqMobile"
           @click='loadMoreProducts') Ver más productos
-      Loader(v-if='loading')
+      Loader(v-else)
   ul.pagination(v-if="pager")
     li.pagination__select
       select.form__select.form__select_small(
@@ -123,7 +123,7 @@ export default {
         'items': 15,
         'orderby': '-id'
       },
-      loading: false,
+      loading: true,
       enableFavorite: false
     }
   },

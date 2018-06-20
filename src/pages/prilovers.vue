@@ -5,9 +5,7 @@
     nav.filtrate
       .filtrate__item
         form.filtrate(
-          @submit.prevent="updateUserList",
-          action='',
-          method='GET')
+          @submit.prevent="updateUserList(true)")
           .filtrate__row.i-search
             input.filtrate__input(
               v-model="parameters.q",
@@ -49,13 +47,13 @@
 
     .section_product__footer
       p.btn__wrapper(
-        v-if='!loading && !mqMobile')
+        v-if='!loading')
         span(v-if="prilovers.length === 0") No hay Prilovers a mostrar
         span(v-else-if="lastPage === parameters.page") Ya cargaste todas las Prilovers
         a.btn(
-          v-else
+          v-else-if="!mqMobile"
           @click.prevent='loadMoreUsers') Ver más Prilovers
-      Loader(v-if='loading')
+      Loader(v-else)
   ButtonSticky
 </template>
 
@@ -74,7 +72,7 @@ export default {
     return {
       prilovers: [],
       listActive: false,
-      loading: false,
+      loading: true,
       lastPage: null,
       item: null,
       listOptions: {
@@ -86,7 +84,7 @@ export default {
         ]
       },
       parameters: {
-        'page': 1
+        page: 1
       }
     }
   },
@@ -95,7 +93,7 @@ export default {
     this.updateUserList()
   },
   methods: {
-    handleScroll: function (e) {
+    handleScroll (e) {
       if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.lastPage > this.parameters.page) this.loadMoreUsers()
       }
@@ -113,7 +111,10 @@ export default {
       }
       this.updateUserList()
     },
-    updateUserList: function () {
+    updateUserList (resetPage = false) {
+      if (resetPage) {
+        this.parameters.page = 1
+      }
       this.loading = true
       usersAPI.get(this.parameters)
         .then((response) => {
@@ -123,15 +124,13 @@ export default {
         })
     },
     loadMoreUsers: function (e) {
-      if (this.lastPage > this.parameters.page) {
-        this.parameters.page += 1
-        this.loading = true
-        usersAPI.get(this.parameters)
-          .then((response) => {
-            this.prilovers.push(...response.data.data)
-            this.loading = false
-          })
-      }
+      this.parameters.page += 1
+      this.loading = true
+      usersAPI.get(this.parameters)
+        .then((response) => {
+          this.prilovers.push(...response.data.data)
+          this.loading = false
+        })
     }
   }
 }

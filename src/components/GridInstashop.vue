@@ -36,13 +36,13 @@
             .slot__price ${{ product.price | currency }}
     .section_product__footer
       p.btn__wrapper(
-        v-if='!loading && !mqMobile')
+        v-if='!loading')
         span(v-if="products.length === 0") No hay productos a mostrar
         span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
         a.btn.i-send(
-          v-else
+          v-else-if="!mqMobile"
           @click='loadMoreProducts') Ver más prendas
-      Loader(v-if='loading')
+      Loader(v-else)
 </template>
 
 <script>
@@ -72,7 +72,7 @@ export default {
         'items': 12,
         'orderby': '-updated_at'
       },
-      loading: false,
+      loading: true,
       enableFavorite: false
     }
   },
