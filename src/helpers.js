@@ -48,7 +48,7 @@ export default {
       let hasFieldErrors = false
       fields.forEach((field) => {
         hasFieldErrors = true
-        errorLog[field] = this.$getFirstError(e, field)
+        Vue.set(errorLog, field, this.$getFirstError(e, field))
       })
 
       // Si hay errores en los campos pasados, no mostrar Modal.
