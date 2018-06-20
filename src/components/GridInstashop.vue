@@ -16,13 +16,13 @@
     .product-grid
       //- For each producto
       article.slot.slot_grid(v-for="product in products")
-        .slot__product-inner(v-if="product.image_instagram")
+        .slot__product-inner
           router-link.slot__product(
             :class="{ 'slot__product_sold' : product.status > 30 }",
             :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
             :title="product.title")
             img.slot__img(
-              :src="product.image_instagram",
+              :src="product.image_instagram || product.images[0]",
               :alt="product.title")
             span.slot__badge(v-if="product.status > 30") Vendido
           .slot__lead
