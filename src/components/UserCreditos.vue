@@ -15,9 +15,8 @@ section.single
           p.box-flat__value(v-if="user.credits") {{ user.credits | currency }}
           p.box-flat__value(v-else) 0
           a.link_underline(
-            v-if="user.credits",
-            href="#",
-            @click.prevent="convertMoney") Convertir en dinero
+            v-if="user.credits >= 4000",
+            @click.prevent="toggleConvertMoney") Convertir en dinero
     .alert(v-if="alertConvert")
       p.alert__info.alert__info_spacing.i-alert-info Transferir a mi cuenta Tienes {{ user.credits | currency }} Créditos, ¿Deseas transferirlos?
       .form__grid_inline.form__row_away
@@ -25,7 +24,7 @@ section.single
           a.btn(
             href="#",
             title="Cancelar",
-            @click.prevent="convertMoney") Cancelar
+            @click.prevent="toggleConvertMoney") Cancelar
         .form__row
           button.btn.btn_solid(
             title="Transferir a mi cuenta",
@@ -38,8 +37,8 @@ section.single
         .dividers__grid
           p.dividers__txt Créditos ya solicitados para ser transferidos
           p.dividers__value ${{ pendingTransferTotal|currency }}
-    .alert(v-if="user.credits <= 4000")
-      p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener más de $4.000 en créditos.
+    .alert(v-if="user.credits < 4000")
+      p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener $4.000 o más en créditos.
     h3.subhead Detalle de Transacciones
     //- Lista de transacciones
     ul.collapsible(v-for="transaction in transactions")
@@ -47,10 +46,13 @@ section.single
         .collapsible__header.i-down
           .collapsible__child
             p.collapsible__title(v-html="getTitle(transaction)")
-            p.collapsible__label -
+            p.collapsible__label(
+              v-if="getLabel(transaction)"
+              v-html="getLabel(transaction)")
           .collapsible__child
             .collapsible__subchild
-              p.collapsible__value.txt_danger ${{ transaction.amount|currency }}
+              p.collapsible__value(
+                :class="{txt_danger : transaction.amount < 0}") ${{ transaction.amount|currency }}
               time.collapsible__data(
                 :datetime="transaction.created_at") {{ transaction.created_at|date }}
     Pager(v-model="pagination", :auth="true")
