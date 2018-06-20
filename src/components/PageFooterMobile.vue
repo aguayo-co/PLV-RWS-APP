@@ -69,7 +69,8 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                     .card__info
                       .card__header
                         h3.card__title {{ product.title }}
-                        p.card__size Talla: {{ product.size }}
+                        p.card__size(v-if="product.size.name") Talla: {{ product.size.name }}
+                        p.card__size(v-else) Talla: {{ product.size }}
                       p.card__price ${{ product.price | currency }}
                 Dots.dark(v-if="deleting[product.id]")
                 button.box-cards__btn.i-x(v-else @click="removeFromCart(product)") Eliminar
@@ -170,8 +171,10 @@ export default {
   computed: {
     ...mapState(['user']),
     ...mapState(['cart']),
+    ...mapState(['guestCart']),
     totalProducts () {
-      return this.$store.getters['cart/products']
+      if (this.user.id) return this.cart.products
+      return this.guestCart.products
     },
     activeDropDowns () {
       return this.$store.getters['ui/headerDropdownsVisible']

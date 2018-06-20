@@ -25,8 +25,8 @@
                   v-show='activeDropDowns.cart')
                 .box-cards.toggle-box__list
                   .box-cards__head
-                    p.box-cards__title(v-if="totalProducts.length > 1") {{ totalProducts.length }} productos en tu carrito
-                    p.box-cards__title(v-else) {{ totalProducts.length }} producto en tu carrito
+                    p.box-cards__title(v-if="totalProducts.length == 1") {{ totalProducts.length }} producto en tu carrito
+                    p.box-cards__title(v-else) {{ totalProducts.length }} productos en tu carrito
                     a.box-cards__btn-x.i-x(
                       @click='toggleCart') Cerrar
                   .box-cards__subhead
@@ -175,7 +175,7 @@ export default {
     ...mapState(['cart']),
     ...mapState(['guestCart']),
     totalProducts () {
-      if (this.user.id) return this.$store.getters['cart/products']
+      if (this.user.id) return this.cart.products
       return this.guestCart.products
     },
     activeDropDowns () {
