@@ -89,12 +89,11 @@ export default {
     }
   },
   created: function () {
-    window.addEventListener('scroll', this.handleScroll)
     this.updateUserList()
   },
   methods: {
     handleScroll (e) {
-      if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.lastPage > this.parameters.page) this.loadMoreUsers()
       }
     },
@@ -131,6 +130,15 @@ export default {
           this.prilovers.push(...response.data.data)
           this.loading = false
         })
+    }
+  },
+  watch: {
+    mqMobile (mqMobile) {
+      if (mqMobile) {
+        window.addEventListener('scroll', this.handleScroll)
+        return
+      }
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 }

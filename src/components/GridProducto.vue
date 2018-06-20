@@ -128,6 +128,13 @@ export default {
     }
   },
   watch: {
+    mqMobile (mqMobile) {
+      if (mqMobile) {
+        window.addEventListener('scroll', this.handleScroll)
+        return
+      }
+      window.removeEventListener('scroll', this.handleScroll)
+    },
     preFilter: function () {
       this.applyPreFilter()
       this.updateProductList()
@@ -168,7 +175,7 @@ export default {
       }
     },
     handleScroll: function (e) {
-      if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.lastPage > this.parameters.page) this.loadMoreProducts()
       }
     },
@@ -204,7 +211,6 @@ export default {
     }
   },
   created: function () {
-    window.addEventListener('scroll', this.handleScroll)
     this.applyPreFilter()
     this.updateProductList()
   }
