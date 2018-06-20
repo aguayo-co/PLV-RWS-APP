@@ -12,10 +12,10 @@ section.layout-inner
       swiper-slide(
         v-for='(product, index) in products' :key='index')
         article.slot
-          a.slot__ico.i-heart(
+          button.slot__ico.i-heart(
+            v-if="user.id && user.id !== product.user_id"
             @click.prevent='setFavorite(product)'
             :class='{ enableFavorite: user.favorites_ids.includes(product.id) }'
-            href=''
             title='Agrega a Favoritos') Agregar a Favoritos
           router-link.slot__product(
             :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
