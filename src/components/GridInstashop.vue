@@ -39,11 +39,7 @@
         v-if='!loading && !mqMobile && lastPage > parameters.page')
         a.btn.i-send(
           @click='loadMoreProducts') Ver más prendas
-      p.preload(v-if='loading')
-        span.preload__spin.preload__spin_1
-        span.preload__spin.preload__spin_2
-        span.preload__spin.preload__spin_3
-        span.preload__spin.preload__spin_4
+      Loader(v-if='loading')
 </template>
 
 <script>
@@ -154,6 +150,7 @@ export default {
     }
   },
   created: function () {
+    window.addEventListener('scroll', this.handleScroll)
     this.applyPreFilter()
     this.updateProductList()
   }

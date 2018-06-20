@@ -203,6 +203,7 @@ export default {
     }
   },
   created: function () {
+    window.addEventListener('scroll', this.handleScroll)
     this.applyPreFilter()
     this.updateProductList()
   }
