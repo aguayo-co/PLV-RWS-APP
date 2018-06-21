@@ -542,10 +542,13 @@ export default {
 
       patchProduct.images = {}
       patchProduct.images_remove = []
+      // Para mantener el orden de las imágenes, recorremos el arreglo de imágenes nuevas
+      // y las ponémos con el indice en el que le usuario la ubicó.
       for (let index = 0; index < this.images.length; index++) {
         if (this.images[index] && this.images[index].hasImage()) {
           const blob = await this.images[index].promisedBlob()
           patchProduct.images[index] = blob
+          // Verificamos las imágenes ordenadas y si existía una en esa posición, la eliminamos.
           if (this.sortedImages[index]) {
             const imageName = this.sortedImages[index].split('/').slice(-1)[0]
             patchProduct.images_remove.push(imageName)
