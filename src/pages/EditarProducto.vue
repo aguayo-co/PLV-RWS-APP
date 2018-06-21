@@ -542,13 +542,14 @@ export default {
 
       patchProduct.images = {}
       patchProduct.images_remove = []
-      let blob
       for (let index = 0; index < this.images.length; index++) {
         if (this.images[index] && this.images[index].hasImage()) {
-          blob = await this.images[index].promisedBlob()
+          const blob = await this.images[index].promisedBlob()
           patchProduct.images[index] = blob
-          const imageName = this.product.images[index].split('/').slice(-1)[0]
-          patchProduct.images_remove.push(imageName)
+          if (this.sortedImages[index]) {
+            const imageName = this.sortedImages[index].split('/').slice(-1)[0]
+            patchProduct.images_remove.push(imageName)
+          }
         }
       }
 
@@ -579,6 +580,9 @@ export default {
           this.$store.dispatch('ui/closeModal').then(response => {
             this.$store.dispatch('ui/showModal', modalDone)
           })
+        })
+        .finally(e => {
+          this.loading = false
         })
     },
     validateBeforeSubmit () {
