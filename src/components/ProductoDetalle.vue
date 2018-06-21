@@ -1,7 +1,7 @@
 <template lang="pug">
 .layout-inner
   .alert-msg.alert-msg_center(v-if="isOwner")
-    p Este es es un producto de tu clóset <router :to="{ name: 'closet', params: { userId: user.id }}" class="link_underline"> Ir a mi Clóset</router>
+    p Este es es un producto de tu clóset <router-link :to="{ name: 'user-tu-closet' }" class="link_underline"> Ir a mi Clóset</router-link>
   .alert-msg_spacing(v-if="isOwner")
     router-link.btn(:to="{ name: 'editar-producto', params: { productId: product.id }}") editar producto
   article.detail

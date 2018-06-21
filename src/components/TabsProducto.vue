@@ -52,11 +52,7 @@
                   router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
                     transition(name='toggle-scale')
                       p.slot__tooltip Editar producto
-                  a.slot__actions-link.i-trash(
-                    @click.prevent="deleteProduct(product)")
-                    transition(name='toggle-scale')
-                      p.slot__tooltip Eliminar producto
-                  a.slot__actions-link.i-trash(
+                  a.slot__actions-link.i-view(
                     v-if="product.status >= 10 && product.status < 20"
                     @click.prevent="hideProduct(product)")
                     transition(name='toggle-scale')
@@ -66,6 +62,10 @@
                     @click.prevent="unHideProduct(product)")
                     transition(name='toggle-scale')
                       p.slot__tooltip Habilitar producto
+                  a.slot__actions-link.i-trash(
+                    @click.prevent="deleteProduct(product)")
+                    transition(name='toggle-scale')
+                      p.slot__tooltip Eliminar producto
                 //- Producto en proceso de compra
                 //- .slot__product-alert
                 //-   p.slot__alert-txt  Este producto está siendo comprado.
