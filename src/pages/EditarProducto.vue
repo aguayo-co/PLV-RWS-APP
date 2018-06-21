@@ -1,12 +1,13 @@
 <template lang="pug">
 .layout-page
-  section.section_product(v-show='loading')
+  section.section_product(v-if='loading')
     Loader
-  section.section_product(v-show="!isOwner")
+  section.section_product(v-else-if="!isOwner")
     .alert
       p.alert__txt.i-sad No puedes editar este producto porque pertenece al clóset de alguien más
-  template(
-    v-if="isOwner")
+  form(
+    v-else-if="isOwner"
+    @submit.prevent='validateBeforeSubmit')
     .layout-form
       .layout-band
         .layout-inner
@@ -304,7 +305,7 @@
                     input.form__control(
                       ref='price'
                       id='product-precio',
-                      :value='product.price'
+                      v-model='product.price'
                       type='number'
                       min=0
                       step=1)
@@ -320,7 +321,7 @@
                     input.form__control(
                       ref='original_price'
                       id='product-original-price',
-                      :value='product.original_price',
+                      v-model='product.original_price',
                       type='number'
                       min=0
                       step=1)
@@ -395,8 +396,7 @@
                 for='checkTerms')
                 | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
             .form__row.form__row_away
-              button.btn.btn_solid(
-                @click.prevent='validateBeforeSubmit($event)') Guardar cambios
+              button.btn.btn_solid(:disabled="saving") Guardar cambios
 </template>
 
 <script>
@@ -425,6 +425,7 @@ const editableProperties = [
 
 const initialData = () => {
   return {
+    saving: null,
     displayedSize: '',
     calculatedSize: '',
     size: null,
@@ -522,7 +523,7 @@ export default {
       }
       this.displayedSize += this.calculatedSize
     },
-    async updateProduct (event) {
+    async updateProduct () {
       const modalUpdating = {
         name: 'ModalMessage',
         parameters: {
@@ -566,7 +567,7 @@ export default {
       }
       productAPI.update(patchProduct)
         .then(response => {
-          event.target.disabled = false
+          this.saving = false
           this.product = response.data
           const data = initialData()
           Object.keys(data).forEach(key => {
@@ -578,8 +579,8 @@ export default {
           })
         })
     },
-    validateBeforeSubmit: function (event) {
-      event.target.disabled = true
+    validateBeforeSubmit () {
+      this.saving = true
       this.errorLog = {}
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar una medida para tu producto'
@@ -605,10 +606,10 @@ export default {
       if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
 
       if (Object.keys(this.errorLog).length === 0) {
-        this.updateProduct(event)
+        this.updateProduct()
       } else {
         this.$refs[Object.keys(this.errorLog)[0]].focus()
-        event.target.disabled = false
+        this.saving = false
       }
     },
     chooseColor: function (colorId, colorPosition) {
