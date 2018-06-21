@@ -17,9 +17,9 @@ export default {
       listOptions: {
         selected: 0,
         options: [
-          { id: '20,92', name: 'Todas' },
-          { id: 30, name: 'Pendientes de envío' },
-          { id: 20, name: 'Pendientes de pago' }
+          { filter: '20,92', name: 'Todas' },
+          { filter: 30, name: 'Pendientes de envío' },
+          { filter: 20, name: 'Pendientes de pago' }
         ]
       }
     }
