@@ -486,7 +486,9 @@ export default {
       const nonIndexed = []
       this.product.images.forEach(url => {
         const name = url.split('/').slice(-1)[0]
-        const matches = name.match(/^([0-9]+)-/)
+        // Match an index between 0 and 3
+        // Anything else, consider out of index.
+        const matches = name.match(/^([0-3])-/)
         if (matches &&
           !indexed[parseInt(matches[1])]) {
           indexed[matches[1]] = url
@@ -540,13 +542,17 @@ export default {
 
       patchProduct.images = {}
       patchProduct.images_remove = []
-      let blob
+      // Para mantener el orden de las imágenes, recorremos el arreglo de imágenes nuevas
+      // y las ponémos con el indice en el que le usuario la ubicó.
       for (let index = 0; index < this.images.length; index++) {
         if (this.images[index] && this.images[index].hasImage()) {
-          blob = await this.images[index].promisedBlob()
+          const blob = await this.images[index].promisedBlob()
           patchProduct.images[index] = blob
-          const imageName = this.product.images[index].split('/').slice(-1)[0]
-          patchProduct.images_remove.push(imageName)
+          // Verificamos las imágenes ordenadas y si existía una en esa posición, la eliminamos.
+          if (this.sortedImages[index]) {
+            const imageName = this.sortedImages[index].split('/').slice(-1)[0]
+            patchProduct.images_remove.push(imageName)
+          }
         }
       }
 
@@ -577,6 +583,9 @@ export default {
           this.$store.dispatch('ui/closeModal').then(response => {
             this.$store.dispatch('ui/showModal', modalDone)
           })
+        })
+        .finally(e => {
+          this.loading = false
         })
     },
     validateBeforeSubmit () {
