@@ -77,13 +77,13 @@ export default {
     return Vue.axios.get('/api/users/' + userId)
   },
 
-  // transación de créditos
-  creditsWidthDrawal: function (ammount) {
+  // Transacción de créditos
+  creditWithdrawal: function (data) {
     const payload = {
-      user_id: ammount.user_id,
-      amount: ammount.amount,
-      transfer_status: ammount.transfer_status,
-      extra: ammount.extra
+      user_id: data.user_id,
+      amount: data.amount,
+      transfer_status: data.transfer_status,
+      extra: data.extra
     }
     return Vue.axiosAuth.post('/api/credits_transactions', payload)
   }

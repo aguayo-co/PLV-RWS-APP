@@ -12,10 +12,10 @@ section.layout-inner
       swiper-slide(
         v-for='(product, index) in products' :key='index')
         article.slot
-          a.slot__ico.i-heart(
-            @click.prevent='myActive(product)'
-            :class='{enableFavorite: isActive == product}'
-            href='#'
+          button.slot__ico.i-heart(
+            v-if="user.id && user.id !== product.user_id"
+            @click.prevent='setFavorite(product)'
+            :class='{ enableFavorite: user.favorites_ids.includes(product.id) }'
             title='Agrega a Favoritos') Agregar a Favoritos
           router-link.slot__product(
             :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
@@ -64,6 +64,7 @@ section.layout-inner
 import productAPI from '@/api/product'
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ProductoSlider',
@@ -115,14 +116,21 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState(['user'])
+  },
   watch: {
     '$route.params': function () {
       this.updateProductList()
     }
   },
   methods: {
-    myActive: function (e) {
-      this.isActive = e
+    setFavorite: function (product) {
+      let data = {
+        id: this.user.id
+      }
+      this.user.favorites_ids.includes(product.id) ? data.favorites_remove = [product.id] : data.favorites_add = [product.id]
+      this.$store.dispatch('user/update', data)
     },
     updateProductList: function () {
       let filterQueryObject = {}

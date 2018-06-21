@@ -20,7 +20,9 @@ const baseUserGenerator = () => {
     published_products_count: null,
     sold_products_count: null,
     followers_count: null,
+    followers_ids: null,
     following_count: null,
+    following_ids: null,
     roles: [],
     groups: [],
     shipping_method_ids: [],
@@ -42,8 +44,7 @@ const baseStateGenerator = () => {
 
 const getters = {
   full_name: state => Vue.options.filters.full_name(state),
-  roles: state => state.roles,
-  id: state => state.id
+  roles: state => state.roles
 }
 
 const actions = {
@@ -60,7 +61,14 @@ const actions = {
         return response
       })
       .catch(e => {
-        commit('clear')
+        const code = Vue.getNestedObject(e, ['response', 'status'])
+        // Not all errors should log the user out.
+        // Some errors are handled by our axios instance axios.
+        // Others, deal here if necessary.
+        switch (code) {
+          case 404:
+            dispatch('logOut')
+        }
       })
   },
   loadAddresses ({commit, state}) {
@@ -115,7 +123,7 @@ const actions = {
   logOut ({commit}) {
     commit('clear')
   },
-  setUser ({commit, dispatch}, user) {
+  setUser ({dispatch}, user) {
     window.localStorage.setItem('token', user.api_token)
     window.localStorage.setItem('userId', user.id)
     dispatch('loadUser')

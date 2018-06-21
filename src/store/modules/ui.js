@@ -1,5 +1,6 @@
 // UI store will be used to handle data regarding general elements of UI.
 import productsAPI from '@/api/product'
+import categoriesAPI from '@/api/category'
 import userAddressesAPI from '@/api/userAddresses'
 import menusAPI from '@/api/menu'
 // initial state
@@ -76,7 +77,7 @@ const actions = {
         }
         commit('setProperty', { property })
       })
-    productsAPI.getCategoriesBySlug()
+    categoriesAPI.getAll()
       .then(response => {
         response.data.data.forEach((category) => {
           category.children.sort(function (a, b) {

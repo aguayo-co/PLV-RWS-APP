@@ -9,6 +9,6 @@ export default {
   },
 
   getBannerBySlug: function (slug) {
-    return Vue.axios.get('/api/banners?filter[slug]=' + slug)
+    return Vue.axios.get('/api/banners/' + slug)
   }
 }

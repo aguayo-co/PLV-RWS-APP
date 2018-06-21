@@ -64,7 +64,10 @@
             v-if="allErrors.used_credits") {{ allErrors.used_credits }}
           input.form__control.pay-off__control(
             id="creditos-on",
-            type="text",
+            type="number",
+            min=0
+            :max="credits"
+            step=1
             :disabled='disabled.used_credits',
             v-model='new_used_credits')
           small.pay-off__small Créditos

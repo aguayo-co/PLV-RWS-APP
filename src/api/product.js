@@ -6,6 +6,8 @@ import Vue from 'vue'
 const STATUS_REJECTED = 1
 const STATUS_HIDDEN = 2
 const STATUS_CHANGED_FOR_APPROVAL = 3
+const STATUS_APPROVED = 10
+const STATUS_AVAILABLE = 19
 
 export default {
   create: function (product) {
@@ -29,6 +31,10 @@ export default {
 
     if (product.status === STATUS_REJECTED || product.status === STATUS_HIDDEN) {
       product.status = STATUS_CHANGED_FOR_APPROVAL
+    }
+
+    if (product.status === STATUS_APPROVED) {
+      product.status = STATUS_AVAILABLE
     }
 
     // Check if there are images to remove
@@ -93,14 +99,6 @@ export default {
 
   getProductBySlug: function (productSlug) {
 
-  },
-
-  getCategoriesBySlug: function (categorySlug) {
-    categorySlug = categorySlug || ''
-    return Vue.axios.get('/api/categories/' + categorySlug)
-  },
-  getCategoriesById: function (categoryId) {
-    return Vue.axios.get('/api/categories?filter[id]=' + categoryId)
   },
 
   getAllConditions: function () {

@@ -6,13 +6,13 @@
         h1.title__main Tu Carrito de Compras
       ul.steps__list
         li.steps__item(
-          :class="{steps__item_current: isShoppingCart}")
+          :class="{steps__item_current: isShoppingCart && !shoppingCartStep}")
           span.steps__bullet.i-ok 1
           span.steps__label Envío
           //-TO DO: Valor compra
           span.steps__value(v-if="orderTotal") ${{ orderTotal | currency }}
         li.steps__item(
-          :class="{steps__item_current: isPayment}")
+          :class="{steps__item_current: isPayment || shoppingCartStep}")
           span.steps__bullet.i-ok  2
           span.steps__label Pago
         li.steps__item(

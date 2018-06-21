@@ -28,9 +28,17 @@ section.profile
               li.user-data__track {{ user.followers_count }} Seguidores
               li.user-data__track {{ user.following_count }} Siguiendo
           //-Enlaces
-          ul.user-data__nav(v-if="userId")
+          ul.user-data__nav(v-if="userId && user.id !== userId")
             li.user-data__tag
-              a.btn-tag.btn-tag_solid(@click="follow") Seguir
+              a.btn-tag.btn-tag_solid(
+                v-if="loading")
+                Dots
+              a.btn-tag.btn-tag_solid(
+                v-else-if="!followed"
+                @click="follow") Seguir
+              a.btn-tag.btn-tag_solid(
+                v-else
+                @click="unfollow") Siguiendo
             li.user-data__tag
               router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: user.id }}") Enviar Mensaje
     //- About perfil
@@ -56,14 +64,19 @@ section.profile
 <script>
 
 import ratingsAPI from '@/api/rating'
-import usersAPI from '@/api/user'
 
 export default {
   props: ['user'],
   name: 'UserDataCloset',
   computed: {
+    followed () {
+      return this.following_ids && this.following_ids.indexOf(this.user.id) !== -1
+    },
     userId () {
-      return this.$store.getters['user/id']
+      return this.$getNestedObject(this.$store.state, ['user', 'id'])
+    },
+    following_ids () {
+      return this.$getNestedObject(this.$store.state, ['user', 'following_ids'])
     },
     coverId () {
       if (this.user.first_name) {
@@ -74,18 +87,28 @@ export default {
   data () {
     return {
       ratings: [],
-      rating: {}
+      rating: {},
+      loading: null
     }
   },
   methods: {
     follow: function () {
+      this.loading = true
       const data = {
-        id: this.userId,
-        following_add: [this.$route.params.userId]
+        following_add: [this.user.id]
       }
-      usersAPI.update(data)
-        .then(response => {
-        })
+      this.$store.dispatch('user/update', data).finally(() => {
+        this.loading = false
+      })
+    },
+    unfollow: function () {
+      this.loading = true
+      const data = {
+        following_remove: [this.user.id]
+      }
+      this.$store.dispatch('user/update', data).finally(() => {
+        this.loading = false
+      })
     }
   },
   created: function () {

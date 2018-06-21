@@ -1,48 +1,51 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home'
-import SignUp from '@/pages/SignUp'
-import PasswordRequest from '@/pages/PasswordRequest'
-import PasswordRecoverySet from '@/pages/PasswordRecoverySet'
-import User from '@/pages/User'
-import UserData from '@/components/UserData'
-import UserMetodoEnvio from '@/components/UserMetodoEnvio'
-import UserDatosBancarios from '@/components/UserDatosBancarios'
-import UserCreditos from '@/components/UserCreditos'
-import UserTusVentas from '@/components/UserTusVentas'
-import UserTusCompras from '@/components/UserTusCompras'
-import UserTuCloset from '@/components/UserTuCloset'
-import UserPriloverStar from '@/components/UserPriloverStar'
-import UserNotificaciones from '@/components/UserNotificaciones'
+
 import Conversation from '@/components/Conversation'
 import NewPrivateMessage from '@/components/NewPrivateMessage'
-import UserValoraciones from '@/components/UserValoraciones'
+import UserCreditos from '@/components/UserCreditos'
+import UserData from '@/components/UserData'
+import UserDatosBancarios from '@/components/UserDatosBancarios'
 import UserFavoritos from '@/components/UserFavoritos'
-import PublicarVenta from '@/pages/PublicarVenta'
-import EditarProducto from '@/pages/EditarProducto'
-import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
-import Closet from '@/pages/Closet'
-import Producto from '@/pages/Producto'
-import Compra from '@/pages/compra'
-import CompraGuest from '@/pages/CompraGuest'
-import Categoria from '@/pages/Categoria'
-import Instashop from '@/pages/Instashop'
-import Search from '@/pages/Search'
-import prilovers from '@/pages/prilovers'
-import Contenido from '@/pages/Contenido'
-import AyudaComoEnviar from '@/pages/AyudaComoEnviar'
-import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
+import UserMetodoEnvio from '@/components/UserMetodoEnvio'
+import UserNotificaciones from '@/components/UserNotificaciones'
+import UserPriloverStar from '@/components/UserPriloverStar'
+import UserTuCloset from '@/components/UserTuCloset'
+import UserTusCompras from '@/components/UserTusCompras'
+import UserTusVentas from '@/components/UserTusVentas'
+import UserValoraciones from '@/components/UserValoraciones'
 import AyudaAumentarVentas from '@/pages/AyudaAumentarVentas'
-import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
-import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
+import AyudaComoCobrar from '@/pages/AyudaComoCobrar'
 import AyudaComoComprar from '@/pages/AyudaComoComprar'
+import AyudaComoEnviar from '@/pages/AyudaComoEnviar'
 import AyudaComoFunciona from '@/pages/AyudaComoFuncionaPrilov'
+import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
+import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaTerminos from '@/pages/AyudaTerminos'
+import Categoria from '@/pages/Categoria'
+import Closet from '@/pages/Closet'
+import CompraGuest from '@/pages/CompraGuest'
+import Contenido from '@/pages/Contenido'
+import EditarProducto from '@/pages/EditarProducto'
+import Home from '@/pages/Home'
+import Instashop from '@/pages/Instashop'
+import PasswordRecoverySet from '@/pages/PasswordRecoverySet'
+import PasswordRequest from '@/pages/PasswordRequest'
+import Producto from '@/pages/Producto'
+import PublicarVenta from '@/pages/PublicarVenta'
+import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
+import Search from '@/pages/Search'
+import SignUp from '@/pages/SignUp'
+import User from '@/pages/User'
+import Compra from '@/pages/compra'
+import prilovers from '@/pages/prilovers'
+
+import beforeEach from './beforeEach'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -270,3 +273,7 @@ export default new Router({
     return { x: 0, y: 0 }
   }
 })
+
+router.beforeEach(beforeEach)
+
+export default router
