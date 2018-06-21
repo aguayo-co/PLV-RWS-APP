@@ -486,7 +486,9 @@ export default {
       const nonIndexed = []
       this.product.images.forEach(url => {
         const name = url.split('/').slice(-1)[0]
-        const matches = name.match(/^([0-9]+)-/)
+        // Match an index between 0 and 3
+        // Anything else, consider out of index.
+        const matches = name.match(/^([0-3])-/)
         if (matches &&
           !indexed[parseInt(matches[1])]) {
           indexed[matches[1]] = url
