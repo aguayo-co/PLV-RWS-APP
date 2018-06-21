@@ -29,7 +29,7 @@
                     p.box-cards__title(v-else) {{ totalProducts.length }} productos en tu carrito
                     a.box-cards__btn-x.i-x(
                       @click='toggleCart') Cerrar
-                  .box-cards__subhead
+                  .box-cards__subhead(v-if="totalProducts.length")
                     .box-cards__value
                       p.box-cards__title Total
                       span.box-cards__number ${{ shoppingCart.total | currency }}
