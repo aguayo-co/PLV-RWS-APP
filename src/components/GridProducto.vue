@@ -13,16 +13,11 @@
     v-if="mqDesk",
     :compact="compact")
   .section_product__scroll
-    .preload(v-if="loading")
-      span.preload__spin.preload__spin_1
-      span.preload__spin.preload__spin_2
-      span.preload__spin.preload__spin_3
-      span.preload__spin.preload__spin_4
-    .product-grid(v-else)
+    .product-grid
       article.slot.slot_grid(
         v-for='product in products')
         button.slot__ico.i-heart(
-          v-if="user.id"
+          v-if="user.id && user.id !== product.user_id"
           @click.prevent='setFavorite(product.id)'
           :class='{ enableFavorite: user.favorites_ids.includes(product.id) }'
           title='Agrega a Favoritos') Agregar a Favoritos
@@ -64,25 +59,24 @@
                 v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
               .slot__group.i-star-on(
                 v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
-    .section_product__footer
+    .section_product__footer(v-if="infinite")
       p.btn__wrapper(
-        v-if='!loading && !mqMobile && infinite')
-        a.btn.i-send(
+        v-if='!loading')
+        span(v-if="products.length === 0") No hay productos a mostrar
+        span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
+        button.btn.i-send(
+          v-else-if="!mqMobile"
           @click='loadMoreProducts') Ver más productos
-      p.preload(v-if='loading')
-        span.preload__spin.preload__spin_1
-        span.preload__spin.preload__spin_2
-        span.preload__spin.preload__spin_3
-        span.preload__spin.preload__spin_4
+      Loader(v-else)
   ul.pagination(v-if="pager")
     li.pagination__select
       select.form__select.form__select_small(
         name="numeroItems",
         v-model='parameters.items',
         @change='updateProductList')
-          option(value="9") 9
-          option(value="18") 18
-          option(value="27") 27
+          option(value="15") 15
+          option(value="21") 21
+          option(value="33") 33
           option(value="45") 45
     li.pagination__item(
       v-if='parameters.page > lastPage')
@@ -126,14 +120,21 @@ export default {
       lastPage: null,
       parameters: {
         'page': 1,
-        'items': 12,
+        'items': 15,
         'orderby': '-id'
       },
-      loading: false,
+      loading: true,
       enableFavorite: false
     }
   },
   watch: {
+    mqMobile (mqMobile) {
+      if (mqMobile) {
+        window.addEventListener('scroll', this.handleScroll)
+        return
+      }
+      window.removeEventListener('scroll', this.handleScroll)
+    },
     preFilter: function () {
       this.applyPreFilter()
       this.updateProductList()
@@ -163,11 +164,10 @@ export default {
         })
     },
     loadMoreProducts: async function (e) {
-      console.log('entro')
       if (this.lastPage > this.parameters.page) {
         this.parameters.page += 1
         this.loading = true
-        await productAPI.get(this.parameters)
+        productAPI.get(this.parameters)
           .then((response) => {
             this.products.push(...response.data.data)
             this.loading = false
@@ -175,7 +175,7 @@ export default {
       }
     },
     handleScroll: function (e) {
-      if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.lastPage > this.parameters.page) this.loadMoreProducts()
       }
     },
@@ -203,7 +203,7 @@ export default {
     clearFilters: function () {
       this.parameters = {
         'page': 1,
-        'items': 12,
+        'items': 15,
         'orderby': this.parameters.orderby
       }
       this.applyPreFilter()

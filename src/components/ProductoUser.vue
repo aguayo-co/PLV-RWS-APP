@@ -7,7 +7,8 @@
     //- data User
     .user-data
       .user-header
-        .user-header__item.user-item_gutter
+        router-link.user-header__item.user-item_gutter(
+            :to="{ name: 'closet', params: { userId: userData.id }}")
           .user-data__avatar.user-data__avatar_small
             img.user-data__img(
               v-if="userData.picture"
@@ -15,7 +16,9 @@
               :alt="'Perfil' + ' ' + userData.first_name")
             span.profile__letter(v-if="!userData.picture && userData.first_name") {{ userData.first_name.charAt(0) }}
         .user-header__item.user-iten_grow
-          h3.user-data__title {{ userData.first_name }} {{ userData.last_name }}
+          h3.user-data__title
+            router-link(
+              :to="{ name: 'closet', params: { userId: userData.id }}") {{ userData.first_name }} {{ userData.last_name }}
           .user-data__subitem
             //-Notificaciones
             .user-data__block

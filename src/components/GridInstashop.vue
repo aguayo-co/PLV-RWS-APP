@@ -16,13 +16,13 @@
     .product-grid
       //- For each producto
       article.slot.slot_grid(v-for="product in products")
-        .slot__product-inner(v-if="product.image_instagram")
+        .slot__product-inner
           router-link.slot__product(
             :class="{ 'slot__product_sold' : product.status > 30 }",
             :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
             :title="product.title")
             img.slot__img(
-              :src="product.image_instagram",
+              :src="product.image_instagram || product.images[0]",
               :alt="product.title")
             span.slot__badge(v-if="product.status > 30") Vendido
           .slot__lead
@@ -36,14 +36,13 @@
             .slot__price ${{ product.price | currency }}
     .section_product__footer
       p.btn__wrapper(
-        v-if='!loading && !mqMobile && lastPage > parameters.page')
+        v-if='!loading')
+        span(v-if="products.length === 0") No hay productos a mostrar
+        span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
         a.btn.i-send(
+          v-else-if="!mqMobile"
           @click='loadMoreProducts') Ver más prendas
-      p.preload(v-if='loading')
-        span.preload__spin.preload__spin_1
-        span.preload__spin.preload__spin_2
-        span.preload__spin.preload__spin_3
-        span.preload__spin.preload__spin_4
+      Loader(v-else)
 </template>
 
 <script>
@@ -73,11 +72,18 @@ export default {
         'items': 12,
         'orderby': '-updated_at'
       },
-      loading: false,
+      loading: true,
       enableFavorite: false
     }
   },
   watch: {
+    mqMobile (mqMobile) {
+      if (mqMobile) {
+        window.addEventListener('scroll', this.handleScroll)
+        return
+      }
+      window.removeEventListener('scroll', this.handleScroll)
+    },
     preFilter: function () {
       this.applyPreFilter()
       this.updateProductList()
@@ -118,7 +124,7 @@ export default {
       }
     },
     handleScroll: function (e) {
-      if (this.mqMobile && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.lastPage > this.parameters.page) this.loadMoreProducts()
       }
     },

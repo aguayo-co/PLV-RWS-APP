@@ -208,7 +208,7 @@ const mutations = {
    * @param {*} state
    * @param {*} user
    */
-  clear (state, user) {
+  clear (state) {
     const baseState = baseStateGenerator()
     Object.keys(baseState).forEach((key) => {
       state[key] = baseState[key]

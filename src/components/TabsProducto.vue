@@ -34,9 +34,6 @@
           :class="{ 'slot_disabled' : user.vacation_mode || product.status < 10 }")
           Loader(v-if="product._loading")
           template(v-else)
-            a.slot__ico.i-heart(
-              v-if="activeTab === 'published'"
-              title='Agrega a Favoritos') Agregar a Favoritos
             .slot__product-inner
               router-link.slot__product(
                 :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
@@ -52,11 +49,7 @@
                   router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
                     transition(name='toggle-scale')
                       p.slot__tooltip Editar producto
-                  a.slot__actions-link.i-trash(
-                    @click.prevent="deleteProduct(product)")
-                    transition(name='toggle-scale')
-                      p.slot__tooltip Eliminar producto
-                  a.slot__actions-link.i-trash(
+                  a.slot__actions-link.i-view(
                     v-if="product.status >= 10 && product.status < 20"
                     @click.prevent="hideProduct(product)")
                     transition(name='toggle-scale')
@@ -66,6 +59,10 @@
                     @click.prevent="unHideProduct(product)")
                     transition(name='toggle-scale')
                       p.slot__tooltip Habilitar producto
+                  a.slot__actions-link.i-trash(
+                    @click.prevent="deleteProduct(product)")
+                    transition(name='toggle-scale')
+                      p.slot__tooltip Eliminar producto
                 //- Producto en proceso de compra
                 //- .slot__product-alert
                 //-   p.slot__alert-txt  Este producto está siendo comprado.

@@ -56,17 +56,29 @@ export default {
           return reason
       }
     },
+    getLabel (transaction) {
+      if (transaction.transfer_status === 1) {
+        return 'Transferencia completada'
+      }
+
+      if (transaction.transfer_status === 0) {
+        return 'Transferencia pendiente'
+      }
+
+      return null
+    },
     loadTransactions () {
-      transactionAPI.all(this.user.id).then((response) => {
+      transactionAPI.all().then((response) => {
         this.pagination = response.data
       })
     },
     loadPendingTransfer () {
-      transactionAPI.pending(this.user.id).then((response) => {
+      transactionAPI.pending().then((response) => {
+        console.log(response)
         this.transactionsPendingTransfer = response.data.data
       })
     },
-    convertMoney () {
+    toggleConvertMoney () {
       this.alertConvert = !this.alertConvert
     },
     confirmConvertMoney () {
@@ -78,7 +90,7 @@ export default {
           'reason': 'Solicitud de transferencia de créditos a tu cuenta bancaria'
         }
       }
-      userAPI.creditsWidthDrawal(payload)
+      userAPI.creditWithdrawal(payload)
         .then(response => {
           this.$store.dispatch('user/loadUser', response.data)
           this.alertConvert = !this.alertConvert
@@ -87,7 +99,7 @@ export default {
     }
   },
   watch: {
-    pagination (pagination, oldPagination) {
+    pagination (pagination) {
       this.transactions = pagination.data
     }
   }

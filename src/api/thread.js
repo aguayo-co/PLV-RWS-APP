@@ -5,24 +5,35 @@ import Vue from 'vue'
 
 export default {
   get: function (page, items, filter) {
-    let queryFilter = ''
-    page = page || 1
-    items = items || 8
+    const params = {
+      page: page || 1,
+      items: items || 8
+    }
 
     if (filter) {
       Object.keys(filter).forEach((key) => {
-        queryFilter += '&filter[' + key + ']=' + filter[key]
+        params['filter[' + key + ']'] = filter[key]
       })
     }
-    return Vue.axiosAuth.get('/api/threads?items=' + items + '&page=' + page + queryFilter)
+    return Vue.axiosAuth.get('/api/threads', { params })
   },
 
   getByProduct: function (productId) {
-    return Vue.axios.get('/api/threads?filter[product_id]=' + productId)
+    const params = {
+      'filter[product_id]': productId
+    }
+    return Vue.axios.get('/api/threads', { params })
   },
 
   getThreadById: function (threadId) {
     return Vue.axiosAuth.get('/api/threads/' + threadId)
+  },
+
+  getPrivateWith: function (userId) {
+    const params = {
+      'filter[private_with]': userId
+    }
+    return Vue.axiosAuth.get('/api/threads', { params })
   },
 
   create: function (data) {

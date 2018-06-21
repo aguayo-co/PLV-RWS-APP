@@ -21,8 +21,18 @@
           span.steps__label Confirmación
 
   .layout-inner
+    Loader(v-if="loading")
+    .list(v-else-if="!Object.keys(sales).length")
+      .list__grid
+        .list__content
+          //-Compra: Envío y pago: 1a Cliente Registrado, logueado
+          section.list_step
+            //- metodos de envío
+            .compra-data_info
+              .subhead.subhead_top En este momento no tienes items en tu carro de compras
+              router-link.btn(:to="{ name: 'home' }") Ir al Shop
     //- List paso 1:compra
-    .list(v-if="isShoppingCart")
+    .list(v-else-if="isShoppingCart")
       //-grid
       .list__grid
         //-list content

@@ -1,13 +1,7 @@
 <template lang="pug">
 .layout-page
   //- If user is logged in and has role of seller, show default form
-  form.form.form_big(
-    v-if='seller && authenticated',
-    id='form-publicar',
-    action='#',
-    submit.prevent='',
-    method='post')
-    FormPublicarVenta
+  FormPublicarVenta(v-if='seller && authenticated')
   //- If user is logged in but not seller, show data completion form
   FormCompleteSeller(v-if='authenticated && !seller')
   //- If user is not authenticated

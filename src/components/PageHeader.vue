@@ -25,11 +25,11 @@
                   v-show='activeDropDowns.cart')
                 .box-cards.toggle-box__list
                   .box-cards__head
-                    p.box-cards__title(v-if="totalProducts.length > 1") {{ totalProducts.length }} productos en tu carrito
-                    p.box-cards__title(v-else) {{ totalProducts.length }} producto en tu carrito
+                    p.box-cards__title(v-if="totalProducts.length == 1") {{ totalProducts.length }} producto en tu carrito
+                    p.box-cards__title(v-else) {{ totalProducts.length }} productos en tu carrito
                     a.box-cards__btn-x.i-x(
                       @click='toggleCart') Cerrar
-                  .box-cards__subhead
+                  .box-cards__subhead(v-if="totalProducts.length")
                     .box-cards__value
                       p.box-cards__title Total
                       span.box-cards__number ${{ shoppingCart.total | currency }}
@@ -140,9 +140,7 @@ export default {
       this.activeDropDowns.user ? this.$store.dispatch('ui/closeDropdown', { name: 'user' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'user' })
     },
     toggleCart: function () {
-      if (this.totalProducts.length > 0) {
-        this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
-      }
+      this.activeDropDowns.cart ? this.$store.dispatch('ui/closeDropdown', { name: 'cart' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'cart' })
     },
     removeFromCart: function (product) {
       this.$set(this.deleting, product.id, true)
