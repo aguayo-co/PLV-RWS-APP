@@ -40,8 +40,8 @@
                         :alt="thread.participants[1].user.first_name")
                     figure.chat-bubble__avatar(v-else)
                       img.chat-bubble__img(
-                        :src="thread.participants.find(x=>x.user_id==message.user_id).user.picture",
-                        :alt="thread.participants.find(x=>x.user_id==message.user_id).first_name")
+                        :src="authorMessage(thread.participants, message).picture",
+                        :alt="authorMessage(thread.participants, message).first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer
                     time.chat__date hace {{ message.created_at | moment("from") }}
@@ -112,7 +112,6 @@ export default {
       threadsAPI.getByProduct(this.productId)
         .then(response => {
           this.threads = response.data.data
-          console.log(response.data.data)
         })
     },
     toggle (prop) {
@@ -176,6 +175,9 @@ export default {
             this.disabledAnswer = false
           })
       }
+    },
+    authorMessage (participants, message) {
+      return participants.find(x => x.user_id === message.user_id).user
     }
   }
 }
