@@ -183,6 +183,9 @@ export default {
       Object.keys(setFilters).forEach(key => {
         this.parameters[key] = setFilters[key]
       })
+      if (this.infinite) {
+        this.parameters.page = 1
+      }
       this.updateProductList()
     },
     nextPage: function () {
