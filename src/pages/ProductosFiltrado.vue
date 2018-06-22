@@ -5,7 +5,7 @@
       v-if="banner",
       :banner="banner")
     .layout-inner(v-else)
-      h1.title_section {{ queryObject.name }}
+      h1.title_section(v-html="queryObject ? queryObject.name : 'Productos'")
     section.section_product
       GridProducto(
         :preFilter='filter'
@@ -86,6 +86,10 @@ export default {
 
       if (this.type === 'campanas' && this.queryObject) {
         return { 'filter[campaign_ids]': this.queryObject.id }
+      }
+
+      if (this.type === undefined) {
+        return {}
       }
     }
   },

@@ -232,6 +232,11 @@ const router = new Router({
       props: {type: 'campanas', slug: 'closet-room'}
     },
     {
+      path: '/shop',
+      name: 'productos-filtrado',
+      component: ProductosFiltrado
+    },
+    {
       path: '/shop/:type/:slug',
       name: 'productos-filtrado',
       component: ProductosFiltrado,
