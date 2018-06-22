@@ -233,7 +233,7 @@ const router = new Router({
     },
     {
       path: '/shop',
-      name: 'productos-filtrado',
+      name: 'productos',
       component: ProductosFiltrado
     },
     {

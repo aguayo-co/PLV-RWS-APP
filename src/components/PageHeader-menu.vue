@@ -30,7 +30,7 @@ nav.page-menu
                       v-for="(grandChildren, indexG) in children.children.concat().sort((a, b) => { return a.name.toLowerCase().localeCompare(b.name.toLowerCase()) })")
                       router-link.subitem__link(
                         @click.stop="toggleNav"
-                        :to="{ name: 'categoria', params: {slug: grandChildren.url.split('/')[3], type: grandChildren.url.split('/')[2]}} ") {{ grandChildren.name }}
+                        :to="{ name: 'productos-filtrado', params: {slug: grandChildren.url.split('/')[3], type: grandChildren.url.split('/')[2]}} ") {{ grandChildren.name }}
               //-:to="grandChildren.url || '#'") {{ grandChildren.url.split('/') }}
               //- Nivel 2: Promo
               .menu-promo(v-if="banner")
