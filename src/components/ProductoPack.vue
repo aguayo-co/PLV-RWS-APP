@@ -27,7 +27,7 @@
         h1.detail__title Pack Primavera
         //- {{ product.title }}
       .detail__value.detail__value_box
-        p.detail__price.txt-light ${{ product.price }}
+        p.detail__price.txt-light ${{ product.sale_price }}
         .detail__value_col
           p.detail__through.through ${{ product.original_price }}
           p.detail__txt (Descuento de 25.37%)

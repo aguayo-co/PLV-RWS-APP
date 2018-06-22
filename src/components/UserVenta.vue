@@ -20,7 +20,7 @@
             .card__header
               h3.card__title {{ product.title }}
               p.card__size Talla: {{ product.size.name }}
-            p.card__price $ {{ product.price | currency }}
+            p.card__price $ {{ product.sale_price | currency }}
             .card__user-data
               p Compradora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.order.user_id }}"> {{ sale.order.user.first_name }} {{ sale.order.user.last_name }}</router-link>
               p(v-if="phone") Teléfono: {{ phone }}

@@ -76,7 +76,9 @@
               //- brand/price
               .slot__info
                 .slot__brand {{ product.brand.name }}
-                .slot__price ${{ product.price | currency }}
+                div(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
+                .through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+                .slot__price ${{ product.sale_price | currency }}
 
             //- user: picture/first_name/last_name
             a.slot__user(
