@@ -22,7 +22,7 @@
 
   .layout-inner
     Loader(v-if="loading")
-    .list(v-else-if="!Object.keys(sales).length")
+    .list(v-else-if="isShoppingCart && !Object.keys(sales).length")
       .list__grid
         .list__content
           //-Compra: Envío y pago: 1a Cliente Registrado, logueado
