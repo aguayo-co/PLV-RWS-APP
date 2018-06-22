@@ -27,12 +27,13 @@ import campaignsAPI from '@/api/campaigns'
 import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
-  name: 'Category',
+  name: 'ProductosFiltrado',
   components: {
     BannerHero,
     GridProducto,
     ButtonSticky
   },
+  props: ['type', 'slug'],
   data () {
     return {
       loading: true,
@@ -46,29 +47,21 @@ export default {
       'brands'
     ]),
     queryObject () {
-      if (this.queryType === 'categorias') {
+      if (this.type === 'categorias') {
         const category = this.flattenedCategories.filter(x => x.slug === this.slug)[0]
         this.loadBannerCategory()
         return category
       }
 
-      if (this.queryType === 'marcas') {
+      if (this.type === 'marcas') {
         const brand = this.brands.filter(x => x.slug === this.slug)[0]
         this.loadBannerBrand()
         return brand
       }
 
-      if (this.queryType === 'campanas') {
+      if (this.type === 'campanas') {
         return this.campaign
       }
-    },
-    queryType () {
-      // - Checks if query corresponds to brand or category
-      return this.$route.params.type
-    },
-    slug () {
-      // - Gets the slug URL parameter
-      return this.$route.params.slug
     },
     flattenedCategories () {
       // - Gets an array with all categories on the first level (no nesting)
@@ -83,15 +76,15 @@ export default {
       return flattened
     },
     filter () {
-      if (this.queryType === 'categorias' && this.queryObject) {
+      if (this.type === 'categorias' && this.queryObject) {
         return { 'filter[category_id]': this.queryObject.id }
       }
 
-      if (this.queryType === 'marcas' && this.queryObject) {
+      if (this.type === 'marcas' && this.queryObject) {
         return { 'filter[brand_id]': this.queryObject.id }
       }
 
-      if (this.queryType === 'campanas' && this.queryObject) {
+      if (this.type === 'campanas' && this.queryObject) {
         return { 'filter[campaign_ids]': this.queryObject.id }
       }
     }
@@ -99,7 +92,7 @@ export default {
   methods: {
     loadCampaign () {
       this.campaign = null
-      if (this.queryType !== 'campanas') {
+      if (this.type !== 'campanas') {
         return
       }
 
@@ -126,7 +119,7 @@ export default {
     }
   },
   created () {
-    if (this.queryType !== 'campanas') {
+    if (this.type !== 'campanas') {
       this.loading = false
       return
     }
@@ -134,8 +127,8 @@ export default {
     this.loadCampaign()
   },
   watch: {
-    queryType () {
-      if (this.queryType !== 'campanas') {
+    type () {
+      if (this.type !== 'campanas') {
         this.loading = false
         return
       }

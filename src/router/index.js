@@ -23,7 +23,6 @@ import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaTerminos from '@/pages/AyudaTerminos'
-import Categoria from '@/pages/Categoria'
 import Closet from '@/pages/Closet'
 import CompraGuest from '@/pages/CompraGuest'
 import Contenido from '@/pages/Contenido'
@@ -33,6 +32,7 @@ import Instashop from '@/pages/Instashop'
 import PasswordRecoverySet from '@/pages/PasswordRecoverySet'
 import PasswordRequest from '@/pages/PasswordRequest'
 import Producto from '@/pages/Producto'
+import ProductosFiltrado from '@/pages/ProductosFiltrado'
 import PublicarVenta from '@/pages/PublicarVenta'
 import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
 import Search from '@/pages/Search'
@@ -199,19 +199,43 @@ const router = new Router({
       }
     },
     {
-      path: '/shop/:type/:slug',
-      name: 'categoria',
-      component: Categoria
-    },
-    {
       path: '/search/:query',
       name: 'search',
       component: Search
+    },
+    // Instashop debe ser de primer nivel.
+    // Tiene su propia página.
+    // Si una usuaria llega a la campaña, redirigir
+    // a primer nivel.
+    {
+      path: '/shop/campanas/instashop',
+      redirect: '/instashop'
     },
     {
       path: '/instashop',
       name: 'Instashop',
       component: Instashop
+    },
+    // Closet room es una campaña, sin página propia
+    // pero que la URL debe ser de primer nivel.
+    // SI la usuaria visita la campaña, redirigir a primer nivel.
+    // La ruta de primer nivel es un alias a la página
+    // estándar de campañas.
+    {
+      path: '/shop/campanas/closet-room',
+      redirect: 'closet-room'
+    },
+    {
+      path: '/closet-room',
+      name: 'closet-room',
+      component: ProductosFiltrado,
+      props: {type: 'campanas', slug: 'closet-room'}
+    },
+    {
+      path: '/shop/:type/:slug',
+      name: 'productos-filtrado',
+      component: ProductosFiltrado,
+      props: true
     },
     {
       path: '/prilovers',
