@@ -235,33 +235,35 @@
                           span Ninguno
 
                 .form__row(
-                  :class='{ "is-danger": errorLog.calculatedSize }')
+                  :class='{ "is-danger": errorLog.size_id }')
                   label.form__label(
+                    ref='size_id'
                     for="productSize") Ingresa la talla de tu producto (ej: 38, S, 3XL)
                   span.help(
-                    v-if="errorLog.calculatedSize"
-                  ) {{ errorLog.calculatedSize }}
-                  .form-asisted__box
-                    input.form-asisted__model(
-                      ref='calculatedSize'
-                      v-model="size",
-                      id="productSize",
-                      type="text",
-                      maxlength="3"
-                      @keydown='assistedSize',
-                      :disabled='uniqueSize')
-                    .form-asisted__value(
-                      :class='{ "active": !uniqueSize }')
-                      span.form-asisted__item {{ displayedSize.charAt(0) }}
-                      span.form-asisted__item {{ displayedSize.charAt(1) }}
-                      span.form-asisted__item {{ displayedSize.charAt(2) }}
+                    v-if="errorLog.size_id"
+                  ) {{ errorLog.size_id }}
+                  MultiSelect(
+                    id="productSize"
+                    @open="errorLog.size_id = null",
+                    v-model="size",
+                    :options="sizes",
+                    :multiple="false",
+                    group-values="children",
+                    group-label="name",
+                    track-by="id"
+                    label="name"
+                    :group-select="false",
+                    placeholder="Escribe para buscar",
+                    selectLabel="Seleccionar",
+                    deselectLabel="Eliminar"
+                  )
+                    span(slot="noResult").
+                      Ups, no encontramos la talla.
                 .form__row.form__row_check
                   input.form__input-check(
                     v-model='uniqueSize'
                     type="checkbox"
-                    id='sizeU',
-                    @change='uniqueSizeSelect'
-                    checked)
+                    id='sizeU')
                   label.form__label.form__label_check.i-ok(
                     for='sizeU') ¿ó tu producto es talla única?
                 .form__row(
@@ -345,7 +347,7 @@
                       .slot__lead
                         .slot__title {{ product.title }}
                         .slot__size
-                          .slot__size-txt {{ calculatedSize }}
+                          .slot__size-txt(v-html="size ? size.name : ''")
 
                       //- brand/price
                       .slot__info
@@ -402,6 +404,7 @@
 <script>
 import productAPI from '@/api/product'
 import { mapState } from 'vuex'
+import MultiSelect from 'vue-multiselect'
 
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
@@ -426,10 +429,6 @@ const editableProperties = [
 const initialData = () => {
   return {
     saving: null,
-    displayedSize: '',
-    calculatedSize: '',
-    size: null,
-    uniqueSize: false,
     images: (() => [])(),
     imagesToDelete: (() => [])(),
     toggleImages: (() => [
@@ -458,6 +457,9 @@ const initialData = () => {
 
 export default {
   name: 'EditarProducto',
+  components: {
+    MultiSelect
+  },
   data () {
     return {
       ...initialData(),
@@ -465,6 +467,26 @@ export default {
     }
   },
   computed: {
+    size: {
+      set (size) {
+        this.product.size_id = size ? size.id : null
+      },
+      get () {
+        return this.getSizeBy('id', this.product.size_id)
+      }
+    },
+    uniqueSize: {
+      set (value) {
+        if (!value) {
+          this.product.size_id = null
+          return
+        }
+        this.size = this.getSizeBy('name', 'U')
+      },
+      get () {
+        return this.size && this.size.name === 'U'
+      }
+    },
     isOwner () {
       return this.product.user_id === this.user.id
     },
@@ -486,7 +508,9 @@ export default {
       const nonIndexed = []
       this.product.images.forEach(url => {
         const name = url.split('/').slice(-1)[0]
-        const matches = name.match(/^([0-9]+)-/)
+        // Match an index between 0 and 3
+        // Anything else, consider out of index.
+        const matches = name.match(/^([0-3])-/)
         if (matches &&
           !indexed[parseInt(matches[1])]) {
           indexed[matches[1]] = url
@@ -509,19 +533,26 @@ export default {
     productAPI.getProductAuthById(this.$route.params.productId)
       .then(response => {
         this.product = response.data
-        this.initialSize()
       })
       .finally(e => {
         this.loading = false
       })
   },
   methods: {
-    initialSize () {
-      this.calculatedSize = this.product.size.name
-      for (var i = 0; i < 3 - this.calculatedSize.length; i++) {
-        this.displayedSize += '-'
+    getSizeBy (key, search) {
+      if (!key || !search) {
+        return null
       }
-      this.displayedSize += this.calculatedSize
+      let foundSize = null
+      this.sizes.some(group => {
+        return group.children.some(size => {
+          if (size[key] === search) {
+            foundSize = size
+            return true
+          }
+        })
+      })
+      return foundSize
     },
     async updateProduct () {
       const modalUpdating = {
@@ -540,13 +571,17 @@ export default {
 
       patchProduct.images = {}
       patchProduct.images_remove = []
-      let blob
+      // Para mantener el orden de las imágenes, recorremos el arreglo de imágenes nuevas
+      // y las ponémos con el indice en el que le usuario la ubicó.
       for (let index = 0; index < this.images.length; index++) {
         if (this.images[index] && this.images[index].hasImage()) {
-          blob = await this.images[index].promisedBlob()
+          const blob = await this.images[index].promisedBlob()
           patchProduct.images[index] = blob
-          const imageName = this.product.images[index].split('/').slice(-1)[0]
-          patchProduct.images_remove.push(imageName)
+          // Verificamos las imágenes ordenadas y si existía una en esa posición, la eliminamos.
+          if (this.sortedImages[index]) {
+            const imageName = this.sortedImages[index].split('/').slice(-1)[0]
+            patchProduct.images_remove.push(imageName)
+          }
         }
       }
 
@@ -573,10 +608,12 @@ export default {
           Object.keys(data).forEach(key => {
             this[key] = data[key]
           })
-          this.initialSize()
           this.$store.dispatch('ui/closeModal').then(response => {
             this.$store.dispatch('ui/showModal', modalDone)
           })
+        })
+        .finally(e => {
+          this.loading = false
         })
     },
     validateBeforeSubmit () {
@@ -589,10 +626,8 @@ export default {
       if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
-      if (!this.calculatedSize) {
-        this.errorLog.calculatedSize = 'Debes seleccionar una talla para tu producto'
-      } else {
-        if (!this.validateSize()) this.errorLog.calculatedSize = 'No podemos reconocer la talla que ingresaste. Si tu producto no tiene talla selecciona la opción "Talla única"'
+      if (!this.product.size_id) {
+        this.errorLog.size_id = 'Debes seleccionar una talla para tu producto'
       }
 
       if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
@@ -625,50 +660,6 @@ export default {
     noneColor: function (colorPosition) {
       this.product.color[colorPosition - 1] = null
       this.product.color_ids.splice(colorPosition - 1)
-    },
-    chooseSize: function (sizeId) {
-      this.sizeScheme = sizeId - 1
-      this.toggleSize = true
-    },
-    assistedSize: function (e) {
-      this.errorLog.calculatedSize = undefined
-      e.preventDefault()
-      if (e.keyCode === 8) {
-        if (this.calculatedSize) {
-          this.calculatedSize = this.calculatedSize.slice(0, -1).toUpperCase()
-        }
-      } else {
-        if (e.key && e.key.length === 1) this.calculatedSize = this.calculatedSize + e.key.toUpperCase()
-      }
-      this.displayedSize = ''
-      for (var i = 0; i < 3 - this.calculatedSize.length; i++) {
-        this.displayedSize += '-'
-      }
-      this.displayedSize += this.calculatedSize
-    },
-    uniqueSizeSelect: function (e) {
-      if (this.uniqueSize) {
-        this.calculatedSize = 'U'
-        this.displayedSize = '--U'
-      } else {
-        this.calculatedSize = ''
-        this.displayedSize = '---'
-      }
-    },
-    validateSize: function () {
-      let size = {}
-      this.sizes.forEach((element) => {
-        if (element.children.filter(x => x.name === this.calculatedSize)[0]) {
-          size = element.children.filter(x => x.name === this.calculatedSize)[0]
-        }
-      })
-      if (size.id) {
-        this.product.size_id = size.id
-        return true
-      } else {
-        this.product.size_id = null
-        return false
-      }
     },
     zoom: function (id, direction) {
       let image = this.images[id]

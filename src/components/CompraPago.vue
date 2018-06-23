@@ -31,7 +31,7 @@ section.list-slot
             h3.card__title {{ product.title }}
             p.card__brand Marca: {{ product.brand.name }}
             p.card__size Talla: {{ product.size.name }}
-          p.card__price $ {{ product.price | currency }}
+          p.card__price $ {{ product.sale_price | currency }}
           p.card__tag {{ product.condition.name }}
 
       //-info User

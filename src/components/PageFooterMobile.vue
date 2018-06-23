@@ -71,7 +71,7 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                         h3.card__title {{ product.title }}
                         p.card__size(v-if="product.size.name") Talla: {{ product.size.name }}
                         p.card__size(v-else) Talla: {{ product.size }}
-                      p.card__price ${{ product.price | currency }}
+                      p.card__price ${{ product.sale_price | currency }}
                 Dots.dark(v-if="deleting[product.id]")
                 button.box-cards__btn.i-x(v-else @click="removeFromCart(product)") Eliminar
       li.foot-nav__item.foot-nav__item_brand

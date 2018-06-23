@@ -33,7 +33,9 @@
           //- brand/price
           .slot__info
             .slot__brand {{ product.brand.name }}
-            .slot__price ${{ product.price | currency }}
+            div(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
+            .through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+            .slot__price ${{ product.sale_price | currency }}
     .section_product__footer
       p.btn__wrapper(
         v-if='!loading')

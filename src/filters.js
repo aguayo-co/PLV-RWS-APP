@@ -6,6 +6,12 @@ export default {
     Vue.filter('date', function (value) {
       return value ? Vue.moment(value).format('LL') : ''
     })
+    Vue.filter('discount', function (product) {
+      if (!product || !product.price) {
+        return 0
+      }
+      return (product.price - product.sale_price) * 100 / product.price
+    })
     Vue.filter('address', function (address) {
       if (!address) {
         return ''

@@ -20,7 +20,7 @@ section.single
                 .slot__size-txt {{ product.size.name }}
             .slot__info
               .slot__brand {{ product.brand.name }}
-              .slot__price ${{ product.price | currency }}
+              .slot__price ${{ product.sale_price | currency }}
 
       .chat__message
         .chat__message_inner(ref="chatBox")
