@@ -37,32 +37,33 @@ export default {
       product.status = STATUS_AVAILABLE
     }
 
-    // Check if there are images to remove
+    // Check if there are images to remove.
     if (Object.keys(product).includes('images_remove')) {
-      product.images_remove.forEach(name => {
-        formData.append('delete_images[]', name)
+      product.images_remove.forEach((name) => {
+        formData.append('images_remove[]', name)
       })
       delete product.images_remove
     }
 
-    // Checks if product has property new_images
-    // Ex: new_images: [ null, Blob(), null, Blob() ]
-    if (Object.keys(product).includes('new_images')) {
-      product['new_images'].forEach((item, index) => {
-        if (item) formData.append('images[' + index + ']', item)
+    // Checks if there are new images.
+    if (Object.keys(product).includes('images')) {
+      Object.keys(product.images).forEach((key) => {
+        formData.append('images[' + key + ']', product.images[key])
       })
-      delete product.new_images
+      delete product.images
+    }
+
+    // Checks if there are new images.
+    if (Object.keys(product).includes('color_ids')) {
+      product.color_ids.forEach(colorId => {
+        formData.append('color_ids[]', colorId)
+      })
+      delete product.color_ids
     }
 
     // Appends the remaining properties
     Object.keys(product).forEach((key) => {
-      if (key !== 'color_ids') {
-        formData.append(key, product[key])
-      } else {
-        product.color_ids.forEach(colorId => {
-          formData.append('color_ids[]', colorId)
-        })
-      }
+      formData.append(key, product[key])
     })
 
     return Vue.axiosAuth.patch('/api/products/' + product.id, formData)

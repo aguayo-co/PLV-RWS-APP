@@ -16,6 +16,7 @@ export default {
   },
   data () {
     return {
+      loading: true,
       order: null,
       errors: {}
     }
@@ -194,8 +195,11 @@ export default {
       this.$router.push({name: 'compra', params: { path: step }})
     },
     reloadShoppingCart () {
+      this.loading = true
       this.$store.commit('cart/clear')
-      this.$store.dispatch('cart/load')
+      this.$store.dispatch('cart/load').finally(() => {
+        this.loading = false
+      })
     },
     loadOrder () {
       this.order = null
