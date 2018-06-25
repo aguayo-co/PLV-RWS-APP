@@ -16,10 +16,10 @@ ul.pagination(v-if="pagination")
     select.form__select.form__select_small(
       name="numeroItems",
       v-model='perPage')
-        option(value="15") 15
-        option(value="30") 30
-        option(value="45") 45
-        option(value="60") 60
+        option(value="12") 12
+        option(value="24") 24
+        option(value="33") 33
+        option(value="42") 42
   li.pagination__item(
     v-if='1 < pagination.current_page')
     a.pagination__arrow.pagination__arrow_prev.i-back(
