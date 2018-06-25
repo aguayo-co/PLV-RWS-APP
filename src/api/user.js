@@ -75,16 +75,5 @@ export default {
 
   getUserById: function (userId) {
     return Vue.axios.get('/api/users/' + userId)
-  },
-
-  // Transacción de créditos
-  creditWithdrawal: function (data) {
-    const payload = {
-      user_id: data.user_id,
-      amount: data.amount,
-      transfer_status: data.transfer_status,
-      extra: data.extra
-    }
-    return Vue.axiosAuth.post('/api/credits_transactions', payload)
   }
 }

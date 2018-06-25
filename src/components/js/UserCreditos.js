@@ -1,5 +1,4 @@
 import { mapState } from 'vuex'
-import userAPI from '@/api/user'
 import transactionAPI from '@/api/creditsTransaction'
 import Pager from '@/Mixin/Pager'
 
@@ -90,7 +89,7 @@ export default {
           'reason': 'Solicitud de transferencia de créditos a tu cuenta bancaria'
         }
       }
-      userAPI.creditWithdrawal(payload)
+      transactionAPI.transferRequest(payload)
         .then(response => {
           this.$store.dispatch('user/loadUser', response.data)
           this.alertConvert = !this.alertConvert
