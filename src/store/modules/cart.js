@@ -28,6 +28,7 @@ const baseSale = {
 const baseProduct = {
   id: null,
   price: null,
+  sale_price: null,
   title: null,
   images: null
 }
