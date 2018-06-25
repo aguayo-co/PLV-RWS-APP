@@ -47,13 +47,7 @@ export default {
         return 'Movimiento de créditos'
       }
 
-      switch (reason.toLowerCase()) {
-        case 'migration':
-          return 'Migración de créditos de Prilov 1.0'
-
-        default:
-          return reason
-      }
+      return reason
     },
     getLabel (transaction) {
       if (transaction.transfer_status === 1) {
