@@ -283,6 +283,7 @@
                         v-for='brand in brands'
                         :value='brand.id'
                       ) {{ brand.name.charAt(0).toUpperCase() + brand.name.slice(1) }}
+                  span Si la marca es desconocida, selecciona "otra".
                 .form__row(
                   :class='{ "is-danger": errorLog.dimensions }')
                   label.form__label(
