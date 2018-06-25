@@ -6,19 +6,19 @@
         li.tabs__nav-item
           a.tabs__nav-link(
             @click.prevent="activeTab = 'published'",
-            :class="{tabActive: activeTab === 'published'}") Prendas Publicadas
+            :class="{tabActive: activeTab === 'published'}") Publicados
         li.tabs__nav-item
           a.tabs__nav-link(
             @click.prevent="activeTab = 'sold'",
-            :class="{tabActive: activeTab === 'sold'}") Productos vendidos
+            :class="{tabActive: activeTab === 'sold'}") Vendidos
         li.tabs__nav-item
           a.tabs__nav-link(
             @click.prevent="activeTab = 'hidden'",
-            :class="{tabActive: activeTab === 'hidden'}") Productos ocultos
+            :class="{tabActive: activeTab === 'hidden'}") Ocultos
         li.tabs__nav-item
           a.tabs__nav-link(
             @click.prevent="activeTab = 'rejected'",
-            :class="{tabActive: activeTab === 'rejected'}") Productos rechazados
+            :class="{tabActive: activeTab === 'rejected'}") Rechazados
   .tabs__content
     .tab
       Loader(v-if="loading")
