@@ -59,8 +59,11 @@
       @click.prevent="saleShippedChilexpress"
       href="#") Sí, ya lo envié.
     a.link_underline(
+      v-if="sale.shipping_label"
       target="_blank"
-      :href="sale.shipping_label") Reimprimir etiqueta de Chilexpress
+      :href="sale.shipping_label") Imprimir etiqueta de Chilexpress
+    span(
+      v-else) Chilexpress está generando la etiqueta para esta venta. Por favor consulta más tarde.
 
   .dashboard__actions(v-if="step === 'shipped'")
     form.form.dashboard__form(
