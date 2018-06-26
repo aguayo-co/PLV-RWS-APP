@@ -16,5 +16,14 @@ export default {
       'filter[transfer_status]': 0
     }
     return Vue.axiosAuth.get('/api/credits_transactions', {params})
+  },
+  transferRequest: function (data) {
+    const payload = {
+      user_id: data.user_id,
+      amount: data.amount,
+      transfer_status: data.transfer_status,
+      extra: data.extra
+    }
+    return Vue.axiosAuth.post('/api/credits_transactions', payload)
   }
 }
