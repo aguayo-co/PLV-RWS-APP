@@ -16,7 +16,7 @@
                       :alt="authorMessage(thread.participants, thread.messages[0]).first_name")
                   p.chat-bubble__txt {{ thread.messages[0].body }}
                 .chat__footer.chat__footer_main
-                  time.chat__date hace {{ thread.created_at | moment("from") }}
+                  time.chat__date {{ thread.created_at | moment("from") }}
                   span.editor__btn(@click="showAnswerBox(thread.id)") Responder
             .editor(v-if="activeAnswer.id === thread.id")
               form.editor__form
