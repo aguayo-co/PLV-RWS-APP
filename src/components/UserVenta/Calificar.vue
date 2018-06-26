@@ -18,11 +18,11 @@
   form.form.dashboard__form(@submit.prevent="setSellerRating")
     .form__row
       label.form__label(
-      for='CommentSale') Deja un comentario sobre la compradora
+      :for="'comment-sale-' + sale.id") Deja un comentario sobre la compradora
       span.help(
         v-show="errorLog.seller_comment") {{ errorLog.seller_comment }}
       input.form__textarea.form__textarea_height(
-      id='CommentSale'
+      :id="'comment-sale-' + sale.id"
       v-model="seller_comment"
       maxlength='255')
     button.btn.i-send Comentar
