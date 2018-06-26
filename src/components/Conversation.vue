@@ -56,11 +56,13 @@ section.single
                 button.chat__btn-solid.i-shipping(@click.prevent="send")
   .single__inner(v-else)
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
-    .alert-msg.i-alert-circle
+    Loader(v-if="loading")
+    .alert-msg.i-alert-circle(v-else)
       p Parece que no haces parte de esta conversación.
 </template>
 
 <script>
+import Loader from '@/components/Loader'
 import { mapState } from 'vuex'
 import threadsAPI from '@/api/thread'
 import productsAPI from '@/api/product'
@@ -74,8 +76,12 @@ export default {
       product: {},
       errorLog: {},
       newMessage: null,
-      disabledMessage: false
+      disabledMessage: false,
+      loading: true
     }
+  },
+  components: {
+    Loader
   },
   computed: {
     ...mapState(['user']),
@@ -125,6 +131,7 @@ export default {
         if (isParticipant) {
           this.thread = response.data
         }
+        this.loading = false
       })
   }
 }

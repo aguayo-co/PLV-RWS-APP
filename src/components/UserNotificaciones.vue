@@ -18,7 +18,8 @@ section.single
                 span.collection__label {{ message.product_id ? "Te hizo una pregunta en un producto" : "Te escribió un privado" }}
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
-        .alert-msg.i-smile
+        Loader(v-if="loading.unread")
+        .alert-msg.i-smile(v-else)
           p No tienes mensajes sin leer
       h2.collections__header Otros mensajes
       ul.collections__list.collections__list_off(v-if="messages.total > unread.total ")
@@ -35,12 +36,14 @@ section.single
                 span.collection__label
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
-        .alert-msg.i-smile
+        Loader(v-if="loading.messages")
+        .alert-msg.i-smile(v-else)
           p Actualmente no tienes otros mensajes o todos están sin leer.
 
 </template>
 
 <script>
+import Loader from '@/components/Loader'
 import threadsAPI from '@/api/thread'
 import { mapState } from 'vuex'
 
@@ -51,8 +54,15 @@ export default {
       unread: [],
       messages: [],
       page: 1,
-      items: 20
+      items: 20,
+      loading: {
+        unread: true,
+        messages: true
+      }
     }
+  },
+  components: {
+    Loader
   },
   computed: {
     ...mapState(['user'])
@@ -62,10 +72,12 @@ export default {
     threadsAPI.get(1, 100, filter)
       .then(response => {
         this.unread = response.data
+        this.loading.unread = false
       })
     threadsAPI.get(this.page, this.items)
       .then(response => {
         this.messages = response.data
+        this.loading.messages = false
       })
   },
   methods: {
