@@ -27,7 +27,7 @@
           img.slot__img(
             :src="product.images[0]",
             :alt="'Foto de ' + product.title")
-
+          .slot__discount(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
           //-title/dimensions
           .slot__lead
             .slot__title {{ product.title }}
@@ -38,8 +38,7 @@
           //- brand/price
           .slot__info
             .slot__brand {{ product.brand.name }}
-            div(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
-            .through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+            .slot__regular-price(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
             .slot__price ${{ product.sale_price | currency }}
 
         //- user: picture/first_name/last_name
