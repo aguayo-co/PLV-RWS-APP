@@ -5971,6 +5971,14 @@ body {
   flex-wrap: wrap;
   margin: 0 -10px; }
 
+.slot__discount {
+  padding: 12px;
+  text-align: center;
+  color: #fff;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  background-color: #f65a66; }
+
 .slot {
   position: relative; }
 

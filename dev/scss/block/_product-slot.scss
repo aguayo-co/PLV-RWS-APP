@@ -19,6 +19,14 @@
   // @include justify-content(space-between);
   margin: 0 -10px;
 }
+.slot__discount {
+  padding: 12px;
+  text-align: center;
+  color: $c-neutro;
+  font-family: $f-normal;
+  font-weight: $fw-bold;
+  background-color: $c-brand;
+}
 
 .slot {
   position: relative;
