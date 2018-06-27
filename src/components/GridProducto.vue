@@ -38,8 +38,9 @@
           //- brand/price
           .slot__info
             .slot__brand {{ product.brand.name }}
-            .slot__regular-price(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
-            .slot__price ${{ product.sale_price | currency }}
+            .slot__group_price
+              .slot__price_through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+              .slot__price ${{ product.sale_price | currency }}
 
         //- user: picture/first_name/last_name
         router-link.slot__user(

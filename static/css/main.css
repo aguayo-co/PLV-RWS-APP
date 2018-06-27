@@ -6153,11 +6153,31 @@ body {
   font-size: 10px;
   font-size: 0.625rem; }
 
+.slot__group_price {
+  text-align: right; }
+
 .slot__price {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
   font-size: 18px;
   font-size: 1.125rem; }
+
+.slot__price_through {
+  display: inline-block;
+  padding: 0 4px;
+  position: relative;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100; }
+  .slot__price_through:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    margin-top: -1px;
+    border: 1px solid #f65a66; }
 
 .slot__user {
   display: -webkit-box;
@@ -6284,7 +6304,10 @@ body {
     font-size: 1rem; }
   .slot__price {
     font-size: 32px;
-    font-size: 2rem; } }
+    font-size: 2rem; }
+  .slot__price_through {
+    font-size: 18px;
+    font-size: 1.125rem; } }
 
 @media only screen and (min-width: 1280px) {
   .product-grid_small .slot_grid {

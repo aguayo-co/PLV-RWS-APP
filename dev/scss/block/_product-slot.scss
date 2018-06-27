@@ -198,11 +198,34 @@
     padding-right: 6px;
     @include font-rem(10px);
   }
+  .slot__group_price {
+    text-align: right;
+  }
   .slot__price {
     font-family: $f-normal;
     font-weight: $fw-thin;
     @include font-rem(18px);
   }
+  .slot__price_through {
+    display: inline-block;
+    padding: 0 4px;
+    position: relative;
+    font-family: $f-normal;
+    font-weight: $fw-thin;
+      
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: block;
+      width: 100%;
+      margin-top: -1px;
+      border: 1px solid $c-brand;
+    }
+  }
+
   //- user: picture/first_name/last_name
   .slot__user {
     @include flexbox;
@@ -357,6 +380,10 @@
   .slot__price {
     @include font-rem(32px);
   }
+  .slot__price_through {
+     @include font-rem(18px);
+  }
+
 }
 
 @include media-query(big) {
