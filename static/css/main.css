@@ -5715,6 +5715,20 @@ body {
   padding-bottom: 16px;
   text-align: center; }
 
+.detail__discount {
+  display: inline-block;
+  min-width: 200px;
+  padding: 12px;
+  margin-bottom: 18px;
+  text-align: center;
+  color: #fff;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  background-color: #f65a66; }
+
+.detail__price_through .through:before {
+  content: ""; }
+
 .detail__value_box {
   display: -webkit-box;
   display: -ms-flexbox;
