@@ -4727,6 +4727,8 @@ body {
   font-size: 1.25rem;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500; }
+  .user-data__title a {
+    color: #000; }
 
 .user-data__tag:first-child {
   margin-right: 24px; }

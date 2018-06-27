@@ -86,6 +86,9 @@
     @include font-rem(20px);
     font-family: $f-fancy;
     font-weight: $fw-medium;
+    a {
+      color: $c-default;
+    }
   }
 
   //-Enlaces User
