@@ -36,8 +36,8 @@
         span(v-if="product.condition") &nbsp; {{ product.condition.name }}
       .detail__value
         .detail__discount(v-if="product.sale_price !== product.price") {{ prodyct | discount }}% de descuento
-        .detail__original-price(v-if="product.original_price") Precio original <span class="through">${{ product.original_price | currency }}</span>
-        .detail__regular-price(v-if="product.sale_price !== product.price") Precio Prilov <span class="through">${{ product.price | currency }}</span>
+        .detail__price_through(v-if="product.original_price") Precio original <span class="through_brand">${{ product.original_price | currency }}</span>
+        .detail__price_through(v-if="product.sale_price !== product.price") Precio Prilov <span class="through_brand">${{ product.price | currency }}</span>
         p.detail__price.txt-light ${{ product.sale_price | currency }}
       .detail__actions(v-if="!isOwner")
         button.detail__btn.btn.btn_solid(

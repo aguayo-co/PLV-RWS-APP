@@ -102,12 +102,23 @@
     background-color: $c-brand;
   }
   .detail__price_through {
-    .through {
-      &:before {
-        content: "";
-      }
+    
+  }
+  .through_brand {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: block;
+      width: 100%;
+      margin-top: -1px;
+      border: 1px solid $c-brand;
     }
   }
+
 
 
   .detail__value_box {

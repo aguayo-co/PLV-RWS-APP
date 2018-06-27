@@ -5726,8 +5726,18 @@ body {
   font-weight: 700;
   background-color: #f65a66; }
 
-.detail__price_through .through:before {
-  content: ""; }
+.through_brand {
+  position: relative; }
+  .through_brand:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    margin-top: -1px;
+    border: 1px solid #f65a66; }
 
 .detail__value_box {
   display: -webkit-box;
