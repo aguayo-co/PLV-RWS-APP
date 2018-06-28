@@ -7188,7 +7188,11 @@ body {
   .boxcheck__card:not(:last-child) {
     margin-right: 20px; }
   .boxcheck__box {
+    min-width: 120px;
     max-width: 160px; }
+    .boxcheck__box span {
+      display: inline-block;
+      width: 100%; }
   .boxcheck__disclaimer {
     font-size: 100%; }
   .boxcheck__tip:before {
