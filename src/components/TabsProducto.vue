@@ -30,7 +30,7 @@
           p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
       .product-grid.product-grid_small(v-else)
         article.slot.slot_grid(
-          v-for='product in products',
+          v-for='(product, index) in products',
           :class="{ 'slot_disabled' : user.vacation_mode || product.status < 10 }")
           Loader(v-if="product._loading")
           template(v-else)
@@ -59,14 +59,20 @@
                     @click.prevent="unHideProduct(product)")
                     transition(name='toggle-scale')
                       p.slot__tooltip Habilitar producto
-                  a.slot__actions-link.i-trash(
-                    @click.prevent="deleteProduct(product)")
+                  a.slot__actions-link.i-trash(@click.prevent="confirmAlert(index)")
                     transition(name='toggle-scale')
                       p.slot__tooltip Eliminar producto
                 //- Producto en proceso de compra
                 //- .slot__product-alert
                 //-   p.slot__alert-txt  Este producto está siendo comprado.
                 //-title/dimensions
+                .slot-alert__content(v-show="confirmDeleted[index]")
+                  p.slot-alert__txt.i-alert-info ¿Estás segura de eliminarlo?<br>
+                    | No podrás volver a recuperar este producto
+                  .slot-alert__group-btn
+                    button.slot-alert__btn.link_underline(
+                      @click="deleteProduct(product)") Sí
+                    button.slot-alert__btn.link_underline(@click="confirmAlert(index)") No
               .slot__lead
                 .slot__title {{ product.title }}
                 .slot__size(
