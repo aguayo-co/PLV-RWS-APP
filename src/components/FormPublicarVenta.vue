@@ -38,88 +38,91 @@ form.form.form_big(
                 :disable-drag-to-move="!mqDesk",
                 @draw='handleMainImage')
             .upfile__controls(v-show='toggleImageControls[0]')
-              button.upfile__zoom-out(
+              button.upfile__zoom-out.i-search-less.btn-tag(
                 @click.prevent="zoom(0, 'out')") Alejar
-              button.upfile__zoom-in(
+              button.upfile__zoom-in.i-search-plus.btn-tag(
                 @click.prevent="zoom(0, 'in')") Acercar
           .upfile__group
             h3.upfile__title Fotos Secundarias (opcionales)
             .upfile__grid
-              .upfile__item
-                a.upfile__delete.i-x(
-                  v-show='toggleImageControls[1]',
-                  @click='removeImage(1)')
-                  span.hide Eliminar
-                .upfile__label
-                  .upfile__text.i-upload(
-                    v-if="mqDesk") Arrastra una foto o
-                  .upfile__btn Sube una imagen
-                croppa(
-                  v-model='images[1]',
-                  :width="300",
-                  :height="450",
-                  :quality="2",
-                  placeholder="",
-                  :prevent-white-space="true",
-                  @new-image-drawn='addImage(1)',
-                  :zoom-speed="10",
-                  :disable-scroll-to-zoom="true",
-                  :disable-drag-to-move="!mqDesk")
+              .upfile__item-wrap
+                .upfile__item
+                  a.upfile__delete.i-x(
+                    v-show='toggleImageControls[1]',
+                    @click='removeImage(1)')
+                    span.hide Eliminar
+                  .upfile__label
+                    .upfile__text.i-upload(
+                      v-if="mqDesk") Arrastra una foto o
+                    .upfile__btn Sube una imagen
+                  croppa(
+                    v-model='images[1]',
+                    :width="300",
+                    :height="450",
+                    :quality="2",
+                    placeholder="",
+                    :prevent-white-space="true",
+                    @new-image-drawn='addImage(1)',
+                    :zoom-speed="10",
+                    :disable-scroll-to-zoom="true",
+                    :disable-drag-to-move="!mqDesk")
                 .upfile__controls(v-show='toggleImageControls[1]')
-                  button.upfile__zoom-out(
+                  button.upfile__zoom-out.i-search-less.btn-tag(
                     @click.prevent="zoom(1, 'out')") Alejar
-                  button.upfile__zoom-in(
+                  button.upfile__zoom-in.i-search-plus.btn-tag(
                     @click.prevent="zoom(1, 'in')") Acercar
-              .upfile__item
-                a.upfile__delete.i-x(
-                  v-show='toggleImageControls[2]',
-                  @click='removeImage(2)')
-                  span.hide Eliminar
-                .upfile__label
-                  .upfile__text.i-upload(
-                    v-if="mqTablet") Arrastra una foto o
-                  .upfile__btn Sube una imagen
-                croppa(
-                  v-model='images[2]',
-                  :width="300",
-                  :height="450",
-                  :quality="2",
-                  placeholder="",
-                  :prevent-white-space="true",
-                  @new-image-drawn='addImage(2)',
-                  :zoom-speed="10",
-                  :disable-scroll-to-zoom="true",
-                  :disable-drag-to-move="!mqDesk")
+              .upfile__item-wrap
+                .upfile__item
+                  a.upfile__delete.i-x(
+                    v-show='toggleImageControls[2]',
+                    @click='removeImage(2)')
+                    span.hide Eliminar
+                  .upfile__label
+                    .upfile__text.i-upload(
+                      v-if="mqTablet") Arrastra una foto o
+                    .upfile__btn Sube una imagen
+                  croppa(
+                    v-model='images[2]',
+                    :width="300",
+                    :height="450",
+                    :quality="2",
+                    placeholder="",
+                    :prevent-white-space="true",
+                    @new-image-drawn='addImage(2)',
+                    :zoom-speed="10",
+                    :disable-scroll-to-zoom="true",
+                    :disable-drag-to-move="!mqDesk")
                 .upfile__controls(v-show='toggleImageControls[2]')
-                  button.upfile__zoom-out(
+                  button.upfile__zoom-out.i-search-less.btn-tag(
                     @click.prevent="zoom(2, 'out')") Alejar
-                  button.upfile__zoom-in(
+                  button.upfile__zoom-in.i-search-plus.btn-tag(
                     @click.prevent="zoom(2, 'in')") Acercar
-              .upfile__item(
-                v-if="mqDesk")
-                a.upfile__delete.i-x(
-                  v-show='toggleImageControls[3]',
-                  @click='removeImage(3)')
-                  span.hide Eliminar
-                .upfile__label
-                  .upfile__text.i-upload(
-                    v-if="mqTablet") Arrastra una foto o
-                  .upfile__btn Sube una imagen
-                croppa(
-                  v-model='images[3]',
-                  :width="300",
-                  :height="450",
-                  :quality="2",
-                  placeholder="",
-                  :prevent-white-space="true",
-                  @new-image-drawn='addImage(3)',
-                  :zoom-speed="10",
-                  :disable-scroll-to-zoom="true",
-                  :disable-drag-to-move="!mqDesk")
-                .upfile__controls(v-show='toggleImageControls[2]')
-                  button.upfile__zoom-out(
+              .upfile__item-wrap
+                .upfile__item(
+                  v-if="mqDesk")
+                  a.upfile__delete.i-x(
+                    v-show='toggleImageControls[3]',
+                    @click='removeImage(3)')
+                    span.hide Eliminar
+                  .upfile__label
+                    .upfile__text.i-upload(
+                      v-if="mqTablet") Arrastra una foto o
+                    .upfile__btn Sube una imagen
+                  croppa(
+                    v-model='images[3]',
+                    :width="300",
+                    :height="450",
+                    :quality="2",
+                    placeholder="",
+                    :prevent-white-space="true",
+                    @new-image-drawn='addImage(3)',
+                    :zoom-speed="10",
+                    :disable-scroll-to-zoom="true",
+                    :disable-drag-to-move="!mqDesk")
+                .upfile__controls(v-show='toggleImageControls[3]')
+                  button.upfile__zoom-out.i-search-less.btn-tag(
                     @click.prevent="zoom(2, 'out')") Alejar
-                  button.upfile__zoom-in(
+                  button.upfile__zoom-in.i-search-plus.btn-tag(
                     @click.prevent="zoom(2, 'in')") Acercar
     .step
       //-Formulario set 1
