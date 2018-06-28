@@ -60,7 +60,7 @@ export default Base.merge({
       return valid
     },
     setBuyerRating () {
-      if (!this.validateRating) {
+      if (!this.validateRating()) {
         return
       }
 
