@@ -99,7 +99,7 @@
     color: $c-neutro;
     font-family: $f-normal;
     font-weight: $fw-bold;
-    background-color: $c-brand;
+    background-color: $c-urgent;
   }
  
   .through_brand {
@@ -113,7 +113,7 @@
       display: block;
       width: 100%;
       margin-top: -1px;
-      border: 1px solid $c-brand;
+      border: 1px solid $c-urgent;
     }
   }
 

@@ -15,6 +15,13 @@ export default {
       pagination: null,
       products: null,
       loading: true,
+      confirmDeleted: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false
+      },
       tabs: {
         rejected: '1,3',
         published: '10,19',
@@ -55,6 +62,13 @@ export default {
       }).finally(() => {
         this.$delete(product, '_loading')
       })
+    },
+    confirmAlert (id) {
+      if (this.confirmDeleted[id]) {
+        this.confirmDeleted[id] = false
+      } else {
+        this.confirmDeleted[id] = true
+      }
     },
     deleteProduct (product) {
       this.$set(product, '_loading', true)
