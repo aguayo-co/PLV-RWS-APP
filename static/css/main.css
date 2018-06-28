@@ -6414,6 +6414,7 @@ body {
   justify-content: center;
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 20px;
+  z-index: 3;
   background-color: #ffffffe8;
   border: 2px solid #f65a66; }
 

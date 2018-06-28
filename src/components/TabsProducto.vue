@@ -35,6 +35,13 @@
           Loader(v-if="product._loading")
           template(v-else)
             .slot__product-inner
+              .slot-alert__content(v-if="modalDeleteId == index")
+                p.slot-alert__txt.i-alert-info ¿Estás segura de eliminarlo?<br>
+                  | No podrás volver a recuperar este producto
+                .slot-alert__group-btn
+                  button.slot-alert__btn.link_underline(
+                    @click.stop="deleteProduct(product)") Sí
+                  button.slot-alert__btn.link_underline(@click.stop="confirmAlert(null)") No
               router-link.slot__product(
                 :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
                 :title='product.title')
@@ -66,13 +73,7 @@
                 //- .slot__product-alert
                 //-   p.slot__alert-txt  Este producto está siendo comprado.
                 //-title/dimensions
-                .slot-alert__content(v-show="confirmDeleted[index]")
-                  p.slot-alert__txt.i-alert-info ¿Estás segura de eliminarlo?<br>
-                    | No podrás volver a recuperar este producto
-                  .slot-alert__group-btn
-                    button.slot-alert__btn.link_underline(
-                      @click="deleteProduct(product)") Sí
-                    button.slot-alert__btn.link_underline(@click="confirmAlert(index)") No
+                
               .slot__lead
                 .slot__title {{ product.title }}
                 .slot__size(
@@ -87,23 +88,23 @@
                 .slot__price ${{ product.sale_price | currency }}
 
             //- user: picture/first_name/last_name
-            a.slot__user(
-              href='#',
-              :title='product.user.first_name')
-              .slot__user-img
-                .slot__avatar
-                  img.slot__picture(
-                    v-if='product.user.picture'
-                    :src='product.user.picture',
-                    :alt='product.user.first_name')
-                  span.tool-user__letter(v-else) {{ product.user.first_name.charAt(0) }}
-              .slot__user-info
-                .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
-                .group(v-if='product.user.groups.length > 0')
-                  .slot__group.i-it-girl(
-                    v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
-                  .slot__group.i-star-on(
-                    v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
+            // a.slot__user(
+            //   href='#',
+            //   :title='product.user.first_name')
+            //   .slot__user-img
+            //     .slot__avatar
+            //       img.slot__picture(
+            //         v-if='product.user.picture'
+            //         :src='product.user.picture',
+            //         :alt='product.user.first_name')
+            //       span.tool-user__letter(v-else) {{ product.user.first_name.charAt(0) }}
+            //   .slot__user-info
+            //     .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
+            //     .group(v-if='product.user.groups.length > 0')
+            //       .slot__group.i-it-girl(
+            //         v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
+            //       .slot__group.i-star-on(
+            //         v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
       Pager(v-if="products" v-model="pagination", :auth="true", v-on:paging="loading = $event")
 </template>
 

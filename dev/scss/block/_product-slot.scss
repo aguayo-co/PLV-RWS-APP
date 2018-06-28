@@ -294,6 +294,7 @@
     @include justify-content(center);
     font-family: $f-default;
     padding: 0 20px;
+    z-index: 3;
     background-color: #ffffffe8;
     border: 2px solid $c-brand;
   }
