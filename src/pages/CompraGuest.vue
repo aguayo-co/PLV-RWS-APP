@@ -133,7 +133,7 @@
                 //- List Detalle de tu compra
                 dl.data-table(v-for="product in guestCart.products")
                   dt.data-table__item {{ product.title.split(' ')[0] }}
-                  dd.data-table__value ${{ product.price | currency }}
+                  dd.data-table__value ${{ product.sale_price | currency }}
                 dl.data-total
                   dt.data-total__label Total de tu orden:
                   dd.data-total__value ${{ guestCart.total | currency }}

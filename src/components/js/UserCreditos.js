@@ -1,5 +1,4 @@
 import { mapState } from 'vuex'
-import userAPI from '@/api/user'
 import transactionAPI from '@/api/creditsTransaction'
 import Pager from '@/Mixin/Pager'
 
@@ -48,13 +47,7 @@ export default {
         return 'Movimiento de créditos'
       }
 
-      switch (reason.toLowerCase()) {
-        case 'migration':
-          return 'Migración de créditos de Prilov 1.0'
-
-        default:
-          return reason
-      }
+      return reason
     },
     getLabel (transaction) {
       if (transaction.transfer_status === 1) {
@@ -90,7 +83,7 @@ export default {
           'reason': 'Solicitud de transferencia de créditos a tu cuenta bancaria'
         }
       }
-      userAPI.creditWithdrawal(payload)
+      transactionAPI.transferRequest(payload)
         .then(response => {
           this.$store.dispatch('user/loadUser', response.data)
           this.alertConvert = !this.alertConvert

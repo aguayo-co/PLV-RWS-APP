@@ -73,22 +73,6 @@ export default {
       loading: true
     }
   },
-  methods: {
-    routeGuard: function () {
-      let route = this.$route
-      if (route.matched.some(record => record.meta.requiresAuth)) {
-        // this route requires auth, check if logged in
-        // if not, redirect to login page.
-        if (window.localStorage.getItem('userId')) {
-        } else {
-          this.$router.replace({
-            path: '/acceso-denegado',
-            query: { redirect: route.fullPath }
-          })
-        }
-      }
-    }
-  },
   computed: {
     ...mapState(['user']),
     modal () {
@@ -99,8 +83,6 @@ export default {
     }
   },
   created: function () {
-    this.routeGuard()
-    this.$moment.locale('es')
     this.$store.dispatch('ui/loadProperties')
     this.$store.dispatch('user/loadUser')
       .then(response => {

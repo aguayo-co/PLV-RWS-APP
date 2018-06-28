@@ -27,7 +27,7 @@
           img.slot__img(
             :src="product.images[0]",
             :alt="'Foto de ' + product.title")
-
+          .slot__discount(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
           //-title/dimensions
           .slot__lead
             .slot__title {{ product.title }}
@@ -38,7 +38,9 @@
           //- brand/price
           .slot__info
             .slot__brand {{ product.brand.name }}
-            .slot__price ${{ product.price | currency }}
+            .slot__group_price
+              .slot__price_through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+              .slot__price ${{ product.sale_price | currency }}
 
         //- user: picture/first_name/last_name
         router-link.slot__user(
@@ -74,10 +76,10 @@
         name="numeroItems",
         v-model='parameters.items',
         @change='updateProductList')
-          option(value="15") 15
-          option(value="21") 21
+          option(value="12") 12
+          option(value="24") 24
           option(value="33") 33
-          option(value="45") 45
+          option(value="42") 42
     li.pagination__item(
       v-if='parameters.page > lastPage')
       a.pagination__arrow.pagination__arrow_prev.i-back(
@@ -120,7 +122,7 @@ export default {
       lastPage: null,
       parameters: {
         'page': 1,
-        'items': 15,
+        'items': 12,
         'orderby': '-id'
       },
       loading: true,
@@ -206,7 +208,7 @@ export default {
     clearFilters: function () {
       this.parameters = {
         'page': 1,
-        'items': 15,
+        'items': 12,
         'orderby': this.parameters.orderby
       }
       this.applyPreFilter()

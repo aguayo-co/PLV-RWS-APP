@@ -125,7 +125,7 @@
             label.form__label.form__label_radio(
               for="SinPago")
               span.boxcheck__box
-                img(src="/static/img/logo-mercadopago.png", alt="Tu compra no requiere pago!")
+                span Sin pago
           //-end item 4
 </template>
 

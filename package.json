@@ -121,5 +121,7 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "vue-multiselect": "git+https://github.com/shentao/vue-multiselect.git#496937b"
+  }
 }

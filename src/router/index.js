@@ -226,10 +226,10 @@ const router = new Router({
       redirect: 'closet-room'
     },
     {
-      path: '/closet-room',
+      path: '/closetroom',
       name: 'closet-room',
       component: ProductosFiltrado,
-      props: {type: 'campanas', slug: 'closet-room'}
+      props: {type: 'campanas', slug: 'closetroom'}
     },
     {
       path: '/shop',

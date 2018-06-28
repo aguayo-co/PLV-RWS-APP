@@ -25,6 +25,7 @@
               :src="product.image_instagram || product.images[0]",
               :alt="product.title")
             span.slot__badge(v-if="product.status > 30") Vendido
+            .slot__discount(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
           .slot__lead
             .slot__title {{ product.title }}
             .slot__size
@@ -33,7 +34,8 @@
           //- brand/price
           .slot__info
             .slot__brand {{ product.brand.name }}
-            .slot__price ${{ product.price | currency }}
+            .slot__regular-price(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+            .slot__price ${{ product.sale_price | currency }}
     .section_product__footer
       p.btn__wrapper(
         v-if='!loading')
