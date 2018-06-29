@@ -53,15 +53,16 @@
                   v-if="!user.vacation_mode && product.status < 30"
                   :class="{ 'slot__product-actions_status': product.status < 10 }")
                   span.slot__status(v-show="product.status < 10") {{ product.status | product_status }}
+                  p.slot__actions-txt(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
                   router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
                     transition(name='toggle-scale')
                       p.slot__tooltip Editar producto
-                  a.slot__actions-link.i-view(
+                  a.slot__actions-link.i-hide(
                     v-if="product.status >= 10 && product.status < 20"
                     @click.prevent="hideProduct(product)")
                     transition(name='toggle-scale')
                       p.slot__tooltip Ocultar producto
-                  a.slot__actions-link.i-trash(
+                  a.slot__actions-link.i-view(
                     v-else-if="product.status === 20"
                     @click.prevent="unHideProduct(product)")
                     transition(name='toggle-scale')
@@ -73,7 +74,6 @@
                 //- .slot__product-alert
                 //-   p.slot__alert-txt  Este producto está siendo comprado.
                 //-title/dimensions
-                
               .slot__lead
                 .slot__title {{ product.title }}
                 .slot__size(
@@ -83,7 +83,7 @@
               //- brand/price
               .slot__info
                 .slot__brand {{ product.brand.name }}
-                div(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
+                // div(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
                 .through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
                 .slot__price ${{ product.sale_price | currency }}
 

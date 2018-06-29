@@ -493,6 +493,9 @@ template {
 .i-next-s:before {
   content: "\e936"; }
 
+.i-hide:before {
+  content: "\e918"; }
+
 /*------------------------------------*	texts links
 \*------------------------------------*/
 a {
@@ -9605,6 +9608,11 @@ body {
   padding: 6px 14px;
   background-color: #f65a66; }
 
+.slot__actions-txt {
+  width: 100%;
+  margin: 0;
+  color: #fff; }
+
 .slot__status {
   display: block;
   text-align: left;
@@ -9616,6 +9624,9 @@ body {
   .slot__actions-link:before {
     font-size: 22px;
     font-size: 1.375rem; }
+  .slot__actions-link.i-view:before, .slot__actions-link.i-hide:before {
+    font-size: 16px;
+    font-size: 1rem; }
 
 .slot__product-alert {
   position: absolute;

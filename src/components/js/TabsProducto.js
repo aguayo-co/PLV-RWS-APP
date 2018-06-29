@@ -70,6 +70,7 @@ export default {
         }
       }).finally(() => {
         this.$delete(product, '_loading')
+        this.modalDeleteId = null
       })
     },
     loadProducts () {
