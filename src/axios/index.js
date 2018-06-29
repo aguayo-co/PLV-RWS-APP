@@ -74,7 +74,7 @@ export default {
         const modal = {...baseModal()}
         modal.parameters.title = 'No estás autenticado.'
         store.dispatch('ui/showModal', modal)
-        throw new Error('No credentials founds.')
+        store.dispatch('user/logOut')
       }
       config.headers = config.headers || {}
       config.headers.Authorization = 'Bearer ' + token
