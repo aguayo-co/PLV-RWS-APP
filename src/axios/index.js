@@ -34,23 +34,27 @@ export default {
      */
     const baseErrorPopups = (error) => {
       const modal = {...baseModal()}
-      if (error.response && error.response.status === 401) {
+      if ((error.response && error.response.status === 401) || error.message === 'No credentials founds.') {
         modal.parameters.title = 'No estás autenticado.'
         store.dispatch('user/logOut')
         store.dispatch('ui/showModal', modal)
+        throw error
       }
+
       if (error.response && error.response.status === 403) {
         modal.parameters.title = 'No tiene permiso para esto.'
         store.dispatch('ui/showModal', modal)
+        throw error
       }
+
       if (error.response && error.response.status >= 500) {
         modal.parameters.title = 'Algo ha fallado, por favor revisa tu conexión e intenta nuevamente.'
         store.dispatch('ui/showModal', modal)
+        throw error
       }
-      if (!error.response) {
-        modal.parameters.title = 'Algo ha fallado, por favor revisa tu conexión e intenta nuevamente.'
-        store.dispatch('ui/showModal', modal)
-      }
+
+      modal.parameters.title = 'Algo ha fallado, intenta nuevamente.'
+      store.dispatch('ui/showModal', modal)
       throw error
     }
 
@@ -71,10 +75,7 @@ export default {
       const token = window.localStorage.getItem('token')
       const userId = window.localStorage.getItem('userId')
       if (token === null || userId === null) {
-        const modal = {...baseModal()}
-        modal.parameters.title = 'No estás autenticado.'
-        store.dispatch('ui/showModal', modal)
-        store.dispatch('user/logOut')
+        throw new Error('No credentials founds.')
       }
       config.headers = config.headers || {}
       config.headers.Authorization = 'Bearer ' + token
