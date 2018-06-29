@@ -76,10 +76,10 @@
         name="numeroItems",
         v-model='parameters.items',
         @change='updateProductList')
-          option(value="15") 15
-          option(value="21") 21
+          option(value="12") 12
+          option(value="24") 24
           option(value="33") 33
-          option(value="45") 45
+          option(value="42") 42
     li.pagination__item(
       v-if='parameters.page > lastPage')
       a.pagination__arrow.pagination__arrow_prev.i-back(
@@ -122,7 +122,7 @@ export default {
       lastPage: null,
       parameters: {
         'page': 1,
-        'items': 15,
+        'items': 12,
         'orderby': '-id'
       },
       loading: true,
@@ -208,7 +208,7 @@ export default {
     clearFilters: function () {
       this.parameters = {
         'page': 1,
-        'items': 15,
+        'items': 12,
         'orderby': this.parameters.orderby
       }
       this.applyPreFilter()
