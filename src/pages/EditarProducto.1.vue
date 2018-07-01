@@ -17,13 +17,82 @@
           .upfile
             .upfile__main.i-plus
               h3.upfile__title Foto Principal
-              UploadPhoto(ref='img0', :initialImage='sortedImages[0]')
+              .upfile__item
+                span.upfile__actions
+                  span.btn_edit(
+                    :class="{'i-edit-line': !editImg[0], 'i-x': editImg[0]}"
+                    @click.prevent="toggleImg(0)")
+                    span.hide Editar
+                img.upfile__img(
+                  v-if="!editImg[0]",
+                  :src="sortedImages[0]",
+                  :alt="'Foto de ' + product.title")
+                .upfile__edit(v-else)
+                  span.upfile__delete.i-x(
+                    v-show='toggleImages[0]',
+                    @click='removeImage(0)')
+                    span.hide Eliminar
+                  .upfile__label
+                    .upfile__text.i-upload(
+                      v-if="mqDesk") Arrastra una foto o
+                    button.upfile__btn(ref="image") Sube una imagen
+                  span.help(
+                    v-if="errorLog.image"
+                  ) {{ errorLog.image }}
+                  croppa(
+                    v-model='images[0]',
+                    :width="300",
+                    :height="450",
+                    :quality="2",
+                    placeholder="",
+                    :prevent-white-space="true",
+                    @new-image-drawn='addImage(0)',
+                    :zoom-speed="10",
+                    :disable-scroll-to-zoom="true",
+                    :disable-drag-to-move="!mqDesk")
+              .upfile__controls(v-show='toggleImages[0]')
+                button.upfile__zoom-out.i-search-less.btn-tag(
+                  @click.prevent="zoom(0, 'out')") Alejar
+                button.upfile__zoom-in.i-search-plus.btn-tag(
+                  @click.prevent="zoom(0, 'in')") Acercar
             .upfile__group
               h3.upfile__title Fotos Secundarias (opcionales)
               .upfile__grid
-                UploadPhoto(ref='img1', :initialImage='sortedImages[1]')
-                UploadPhoto(ref='img2', :initialImage='sortedImages[2]')
-                UploadPhoto(ref='img3', :initialImage='sortedImages[3]')
+                .upfile__item-wrap(v-for="i in [1, 2, 3]")
+                  .upfile__item
+                    span.upfile__actions
+                      span.btn_edit(
+                        :class="{'i-edit-line': !editImg[i], 'i-x': editImg[i]}"
+                        @click.prevent="toggleImg(i)") <small class="hide"> Editar </small>
+                    img.upfile__img(
+                      v-if="editImg[i] == false && sortedImages[i]"
+                      :src="sortedImages[i]",
+                      :alt="'Foto de ' + product.title")
+                    .upfile__edit(v-else)
+                      a.upfile__delete.i-x(
+                        v-show='toggleImages[i]',
+                        @click='removeImage(i)')
+                        span.hide Eliminar
+                      .upfile__label
+                        .upfile__text.i-upload(
+                          v-if="mqDesk") Arrastra una foto o
+                        .upfile__btn Sube una imagen
+                      croppa(
+                        v-model='images[i]',
+                        :width="300",
+                        :height="450",
+                        :quality="2",
+                        placeholder="",
+                        :prevent-white-space="true",
+                        @new-image-drawn='addImage(i)',
+                        :zoom-speed="10",
+                        :disable-scroll-to-zoom="true",
+                        :disable-drag-to-move="!mqDesk")
+                  .upfile__controls(v-show='toggleImages[i]')
+                    button.upfile__zoom-out.i-search-less.btn-tag(
+                      @click.prevent="zoom(i, 'out')") Alejar
+                    button.upfile__zoom-in.i-search-less.btn-tag(
+                      @click.prevent="zoom(i, 'in')") Acercar
       .step
         //-Formulario set 1
         .layout-inner
@@ -330,15 +399,15 @@
               label.form__label.form__label_check.i-ok(
                 for='checkTerms')
                 | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
-                .form__row.form__row_away
-                  button.btn.btn_solid(:disabled="saving") Guardar cambios
+            .form__row.form__row_away
+              button.btn.btn_solid(:disabled="saving") Guardar cambios
 </template>
 
 <script>
 import productAPI from '@/api/product'
 import { mapState } from 'vuex'
 import MultiSelect from 'vue-multiselect'
-import UploadPhoto from '../components/uploadPhoto'
+
 import Vue from 'vue'
 import Croppa from 'vue-croppa'
 Vue.component('croppa', Croppa.component)
@@ -364,6 +433,12 @@ const initialData = () => {
     saving: null,
     images: (() => [])(),
     imagesToDelete: (() => [])(),
+    toggleImages: (() => [
+      false,
+      false,
+      false,
+      false
+    ])(),
     checkTerms: true,
     errorLog: (() => { return {} })(),
     toggleColors: (() => {
@@ -385,8 +460,7 @@ const initialData = () => {
 export default {
   name: 'EditarProducto',
   components: {
-    MultiSelect,
-    UploadPhoto
+    MultiSelect
   },
   data () {
     return {
@@ -544,16 +618,9 @@ export default {
           this.loading = false
         })
     },
-    passImagesComponents () {
-      this.images[0] = this.$refs.img0.image
-      this.images[1] = this.$refs.img1.image
-      this.images[2] = this.$refs.img2.image
-      this.images[3] = this.$refs.img3.image
-    },
     validateBeforeSubmit () {
       this.saving = true
       this.errorLog = {}
-      this.passImagesComponents()
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.dimensions) this.errorLog.dimensions = 'Debes ingresar una medida para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
@@ -595,6 +662,27 @@ export default {
     noneColor: function (colorPosition) {
       this.product.color[colorPosition - 1] = null
       this.product.color_ids.splice(colorPosition - 1)
+    },
+    zoom: function (id, direction) {
+      let image = this.images[id]
+      direction === 'in' ? image.zoomIn() : image.zoomOut()
+    },
+    handleZoom: function (action, image, direction) {
+      if (action === 'set') {
+        window.zoomEvent = window.setTimeout(this.zoom(image, direction), 200)
+      } else {
+        window.clearTimeout(window.zoomEvent)
+      }
+    },
+    addImage: function (index) {
+      this.toggleImages[index] = true
+    },
+    removeImage: function (index) {
+      this.toggleImages[index] = false
+      this.images[index].remove()
+    },
+    toggleImg: function (i) {
+      this.$set(this.editImg, i, !this.editImg[i])
     }
   }
 }
