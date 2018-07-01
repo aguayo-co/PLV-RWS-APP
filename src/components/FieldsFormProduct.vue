@@ -1,3 +1,4 @@
+@@ -0,0 +1,559 @@
 <template lang="pug">
 form.form.form_big(
   id='form-publicar',
@@ -13,13 +14,13 @@ form.form.form_big(
         .upfile
           .upfile__main.i-plus
             h3.upfile__title Foto Principal
-            UploadPhoto(:errorLog='errorLog.image', v-model="images[0]")
+            UploadPhoto(ref='img0', :errorLog='errorLog.image', v-model="images[0]", :initialImage='product.images[0]')
           .upfile__group
             h3.upfile__title Fotos Secundarias (opcionales)
             .upfile__grid
-              UploadPhoto(v-model="images[1]", ref='img0')
-              UploadPhoto(v-model="images[2]")
-              UploadPhoto(v-model="images[3]")
+              UploadPhoto(v-model="images[1]", :initialImage='product.images[1]')
+              UploadPhoto(v-model="images[2]", :initialImage='product.images[2]')
+              UploadPhoto(v-model="images[3]", :initialImage='product.images[3]')
     .step
       //-Formulario set 1
       .layout-inner
@@ -160,37 +161,32 @@ form.form.form_big(
                         span.color-circle(
                           :style='{ opacity: 0 }')
                         span Ninguno
-
               .form__row(
-                :class='{ "is-danger": errorLog.calculatedSize }')
-                label.form__label(
-                  for="productSize") Ingresa la talla de tu producto (ej: 38, S, 3XL)
-                span.help(
-                  v-if="errorLog.calculatedSize"
-                ) {{ errorLog.calculatedSize }}
-                .form-asisted__box
-                  input.form-asisted__model(
+                  :class='{ "is-danger": errorLog.calculatedSize }')
+                  label.form__label(
+                    for="productSize") Ingresa la talla de tu producto (ej: 38, S, 3XL)
+                  span.help(
+                    v-if="errorLog.calculatedSize"
+                  ) {{ errorLog.calculatedSize }}
+                  MultiSelect(
                     ref='calculatedSize'
+                    id="productSize"
+                    @open="errorLog.calculatedSize = null",
                     v-model="size",
-                    id="productSize",
-                    type="text",
-                    maxlength="3"
-                    @keydown='assistedSize',
-                    :disabled='uniqueSize')
-                  .form-asisted__value(
-                    :class='{ "active": !uniqueSize }')
-                    span.form-asisted__item {{ displayedSize.charAt(0) }}
-                    span.form-asisted__item {{ displayedSize.charAt(1) }}
-                    span.form-asisted__item {{ displayedSize.charAt(2) }}
-              .form__row.form__row_check
-                input.form__input-check(
-                  v-model='uniqueSize'
-                  type="checkbox"
-                  id='sizeU',
-                  @change='uniqueSizeSelect'
-                  checked)
-                label.form__label.form__label_check.i-ok(
-                  for='sizeU') ¿ó tu producto es talla única?
+                    :value= "size"
+                    :options="sizes",
+                    :multiple="false",
+                    group-values="children",
+                    group-label="name",
+                    track-by="id",
+                    label="name",
+                    :group-select="false",
+                    placeholder="Escribe para buscar",
+                    selectLabel="Seleccionar",
+                    deselectLabel="Eliminar"
+                  )
+                    span(slot="noResult").
+                      Ups, no encontramos la talla.
               .form__row(
                 :class='{ "is-danger": errorLog.brand }')
                 label.form__label(
@@ -265,7 +261,7 @@ form.form.form_big(
                     .slot__lead
                       .slot__title {{ product.title }}
                       .slot__size
-                        .slot__size-txt {{ calculatedSize }}
+                        .slot__size-txt(v-html="size ? size.name : ''")
 
                     //- brand/price
                     .slot__info
@@ -291,7 +287,7 @@ form.form.form_big(
                         v-if='product.slot__group == 2') Prilover <span class='txt_brand'>Star</span>
 
       //-Formulario set 3
-      .layout-band.form-section_band(v-if="!hideFormSet3")
+      .layout-band.form-section_band(v-if="create")
         .layout-inner
           fieldset.form-section
             legend.subhead.form-section__title Exposición del producto
@@ -369,7 +365,25 @@ form.form.form_big(
 import { mapState } from 'vuex'
 import productAPI from '../api/product'
 // import Vue from 'vue'
+import MultiSelect from 'vue-multiselect'
 import UploadPhoto from '../components/uploadPhoto'
+
+const editableProperties = [
+  'id',
+  'user_id',
+  'title',
+  'description',
+  'category_id',
+  'condition_id',
+  'size_id',
+  'color_ids',
+  'brand_id',
+  'dimensions',
+  'price',
+  'original_price',
+  'status'
+]
+
 export default {
   name: 'FieldsFormProduct',
   data () {
@@ -379,6 +393,7 @@ export default {
       calculatedSize: '',
       size: null,
       uniqueSize: false,
+      size_id: '',
       images: [],
       imagesToUpload: [],
       imageURL: null,
@@ -407,7 +422,7 @@ export default {
       }
     }
   },
-  props: ['hideFormSet3'],
+  props: ['create', 'update'],
   computed: {
     ...mapState(['user']),
     ...mapState('ui', [
@@ -417,15 +432,71 @@ export default {
       'colors',
       'brands',
       'sizes'
-    ]),
-    toggleImageControls () {
-      return this.toggleImages
-    }
+    ])
   },
   components: {
-    UploadPhoto
+    UploadPhoto,
+    MultiSelect
+  },
+  created () {
+    this.getProduct()
   },
   methods: {
+    getProduct () {
+      this.update && productAPI.getProductAuthById(this.$route.params.productId)
+        .then(response => {
+          const {
+            user_id,
+            title,
+            description,
+            condition_id,
+            dimensions,
+            original_price,
+            price,
+            commission,
+            category_id,
+            images,
+            subcategory_id,
+            color_ids,
+            brand,
+            brand_id,
+            size,
+            size_id,
+            category,
+            status
+          } = response.data
+          this.product = {
+            ...this.product,
+            category: category.parent_id,
+            fullCategoty: category,
+            id: this.$route.params.productId,
+            user_id,
+            title,
+            description,
+            condition_id,
+            dimensions,
+            original_price,
+            price,
+            commission,
+            category_id,
+            images,
+            subcategory_id,
+            color_ids,
+            brand,
+            brand_id,
+            color: response.data.colors.map(x => x.name),
+            size,
+            size_id,
+            status
+          }
+          this.size = size
+          if (size.id === 13) this.uniqueSize = true
+          console.log(response.data.colors)
+        })
+        .finally(e => {
+          this.loading = false
+        })
+    },
     createProduct: function () {
       const modal = {
         name: 'ModalMessage',
@@ -456,6 +527,7 @@ export default {
                   } else {
                     this.$router.push('/venta-publicada/pendiente')
                   }
+                  this.saving = true
                 })
             }
           })
@@ -467,17 +539,19 @@ export default {
       this.errorLog = {}
       if (!this.images[0]) {
         this.errorLog.image = 'Carga una fotografía de tu producto'
+      } else {
+        if (!this.images[0].imageSet) this.errorLog.image = 'Carga una fotografía de tu producto'
       }
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
       if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría principal'
       if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
-      if (!this.product.color_ids[0]) this.errorLog.color = 'Debes seleccionar al menos un color'
-      if (!this.calculatedSize) {
+      if (this.product.color_ids.length === 0) this.errorLog.color = 'Debes seleccionar al menos un color'
+      if (!this.size) {
         this.errorLog.calculatedSize = 'Debes seleccionar una talla para tu producto'
       } else {
-        if (!this.validateSize()) this.errorLog.calculatedSize = 'No podemos reconocer la talla que ingresaste. Si tu producto no tiene talla selecciona la opción "Talla única"'
+        this.product.size_id = this.size.id
       }
 
       if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
@@ -509,50 +583,6 @@ export default {
     noneColor: function (colorPosition) {
       this.product.color[colorPosition - 1] = null
       this.product.color_ids.splice(colorPosition - 1)
-    },
-    chooseSize: function (sizeId) {
-      this.sizeScheme = sizeId - 1
-      this.toggleSize = true
-    },
-    assistedSize: function (e) {
-      this.errorLog.calculatedSize = undefined
-      e.preventDefault()
-      if (e.keyCode === 8) {
-        if (this.calculatedSize) {
-          this.calculatedSize = this.calculatedSize.slice(0, -1).toUpperCase()
-        }
-      } else {
-        if (e.key && e.key.length === 1) this.calculatedSize = this.calculatedSize + e.key.toUpperCase()
-      }
-      this.displayedSize = ''
-      for (var i = 0; i < 3 - this.calculatedSize.length; i++) {
-        this.displayedSize += '-'
-      }
-      this.displayedSize += this.calculatedSize
-    },
-    uniqueSizeSelect: function (e) {
-      if (this.uniqueSize) {
-        this.calculatedSize = 'U'
-        this.displayedSize = '--U'
-      } else {
-        this.calculatedSize = ''
-        this.displayedSize = '---'
-      }
-    },
-    validateSize: function () {
-      let size = {}
-      this.sizes.forEach((element) => {
-        if (element.children.filter(x => x.name === this.calculatedSize)[0]) {
-          size = element.children.filter(x => x.name === this.calculatedSize)[0]
-        }
-      })
-      if (size.id) {
-        this.product.size_id = size.id
-        return true
-      } else {
-        this.product.size_id = null
-        return false
-      }
     }
   }
 }
