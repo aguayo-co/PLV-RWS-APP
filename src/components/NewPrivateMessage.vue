@@ -15,6 +15,8 @@ section.single
                   .chat-bubble__avatar
                     img.chat-bubble__img(:src="messenger(message).picture", :alt="messenger(message).first_name")
                   p.chat-bubble__txt {{ message.body }}
+                .chat__footer.chat__footer_main
+                    time.chat__date {{ message.created_at | moment("from") }}
             .alert-msg.alert-msg_center.i-smile(v-else)
               p Escribe tu primer mensaje para iniciar la conversación.
           .chat-inner
