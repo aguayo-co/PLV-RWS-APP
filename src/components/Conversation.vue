@@ -42,7 +42,7 @@ section.single
                         img.chat-bubble__img(:src="messenger.picture", :alt="messenger.first_name")
                     p.chat-bubble__txt {{ message.body }}
                   .chat__footer.chat__footer_main
-                    time.chat__date hace {{ message.created_at | moment("from") }}
+                    time.chat__date {{ message.created_at | moment("from") }}
         .chat-inner
           form.chat__form
             label.chat__label Escribe tu mensaje aquí

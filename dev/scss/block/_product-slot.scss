@@ -25,7 +25,7 @@
   color: $c-neutro;
   font-family: $f-normal;
   font-weight: $fw-bold;
-  background-color: $c-brand;
+  background-color: $c-urgent;
 }
 
 .slot {
@@ -278,6 +278,47 @@
       padding-right: 4px;
       @include font-rem(14px);
     }
+  }
+
+/*------------------------------------*\
+	Alerta eliminr producto
+\*------------------------------------*/
+  .slot-alert__content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    font-family: $f-default;
+    padding: 0 20px;
+    z-index: 3;
+    background-color: #ffffffe8;
+    border: 2px solid $c-brand;
+  }
+  
+  .slot-alert__txt {
+    text-align: center;
+    margin: 0 0 30px;
+    @include font-rem(16px);
+    &:before {
+      display: block;
+      padding-bottom: 30px;
+      @include font-rem(60px);
+      color: $c-brand;
+    }
+  }
+
+  .slot-alert__group-btn {
+    @include flexbox;
+    @include justify-content(space-between);
+    padding: 0 10px;
+  }
+
+  .slot-alert__btn {
+    background-color: transparent;
   }
 
 // $bp-medium: 375px;

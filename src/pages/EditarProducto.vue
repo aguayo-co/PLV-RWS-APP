@@ -50,48 +50,49 @@
                     :zoom-speed="10",
                     :disable-scroll-to-zoom="true",
                     :disable-drag-to-move="!mqDesk")
-                .upfile__controls(v-show='toggleImages[0]')
-                  button.upfile__zoom-out(
-                    @click.prevent="zoom(0, 'out')") Alejar
-                  button.upfile__zoom-in(
-                    @click.prevent="zoom(0, 'in')") Acercar
+              .upfile__controls(v-show='toggleImages[0]')
+                button.upfile__zoom-out.i-search-less.btn-tag(
+                  @click.prevent="zoom(0, 'out')") Alejar
+                button.upfile__zoom-in.i-search-plus.btn-tag(
+                  @click.prevent="zoom(0, 'in')") Acercar
             .upfile__group
               h3.upfile__title Fotos Secundarias (opcionales)
               .upfile__grid
-                .upfile__item(v-for="i in [1, 2, 3]")
-                  span.upfile__actions
-                    span.btn_edit(
-                      :class="{'i-edit-line': !editImg[i], 'i-x': editImg[i]}"
-                      @click.prevent="toggleImg(i)") <small class="hide"> Editar </small>
-                  img.upfile__img(
-                    v-if="editImg[i] == false && sortedImages[i]"
-                    :src="sortedImages[i]",
-                    :alt="'Foto de ' + product.title")
-                  .upfile__edit(v-else)
-                    a.upfile__delete.i-x(
-                      v-show='toggleImages[i]',
-                      @click='removeImage(i)')
-                      span.hide Eliminar
-                    .upfile__label
-                      .upfile__text.i-upload(
-                        v-if="mqDesk") Arrastra una foto o
-                      .upfile__btn Sube una imagen
-                    croppa(
-                      v-model='images[i]',
-                      :width="300",
-                      :height="450",
-                      :quality="2",
-                      placeholder="",
-                      :prevent-white-space="true",
-                      @new-image-drawn='addImage(i)',
-                      :zoom-speed="10",
-                      :disable-scroll-to-zoom="true",
-                      :disable-drag-to-move="!mqDesk")
-                    .upfile__controls(v-show='toggleImages[i]')
-                      button.upfile__zoom-out(
-                        @click.prevent="zoom(i, 'out')") Alejar
-                      button.upfile__zoom-in(
-                        @click.prevent="zoom(i, 'in')") Acercar
+                .upfile__item-wrap(v-for="i in [1, 2, 3]")
+                  .upfile__item
+                    span.upfile__actions
+                      span.btn_edit(
+                        :class="{'i-edit-line': !editImg[i], 'i-x': editImg[i]}"
+                        @click.prevent="toggleImg(i)") <small class="hide"> Editar </small>
+                    img.upfile__img(
+                      v-if="editImg[i] == false && sortedImages[i]"
+                      :src="sortedImages[i]",
+                      :alt="'Foto de ' + product.title")
+                    .upfile__edit(v-else)
+                      a.upfile__delete.i-x(
+                        v-show='toggleImages[i]',
+                        @click='removeImage(i)')
+                        span.hide Eliminar
+                      .upfile__label
+                        .upfile__text.i-upload(
+                          v-if="mqDesk") Arrastra una foto o
+                        .upfile__btn Sube una imagen
+                      croppa(
+                        v-model='images[i]',
+                        :width="300",
+                        :height="450",
+                        :quality="2",
+                        placeholder="",
+                        :prevent-white-space="true",
+                        @new-image-drawn='addImage(i)',
+                        :zoom-speed="10",
+                        :disable-scroll-to-zoom="true",
+                        :disable-drag-to-move="!mqDesk")
+                  .upfile__controls(v-show='toggleImages[i]')
+                    button.upfile__zoom-out.i-search-less.btn-tag(
+                      @click.prevent="zoom(i, 'out')") Alejar
+                    button.upfile__zoom-in.i-search-less.btn-tag(
+                      @click.prevent="zoom(i, 'in')") Acercar
       .step
         //-Formulario set 1
         .layout-inner

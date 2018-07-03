@@ -532,5 +532,8 @@
     content: unicode($i-next-s);
   }
 }
-
-
+.i-hide {
+  &:before {
+    content: unicode($i-hide);
+  }
+}
