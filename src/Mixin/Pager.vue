@@ -11,7 +11,7 @@
 //-
 //- Ejemplo: Pager(v-model="pagination", :auth="true")
 
-ul.pagination(v-if="pagination")
+ul.pagination.pagination_bottom(v-if="pagination")
   li.pagination__select
     select.form__select.form__select_small(
       name="numeroItems",

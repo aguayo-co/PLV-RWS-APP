@@ -27,9 +27,16 @@
 }
 
 .pagination__arrow {
+  color: $c-default;
+
   &:active,
   &:focus,
   &:visited {
     color: $c-default;
   }
 }
+
+.pagination_bottom {
+  padding-top: 36px;
+}
+
