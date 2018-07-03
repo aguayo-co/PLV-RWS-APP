@@ -39,7 +39,7 @@ section.profile
               a.btn-tag.btn-tag_solid(
                 v-else
                 @click="unfollow") Siguiendo
-            li.user-data__tag
+            li.user-data__tag(v-if="user.id")
               router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: user.id }}") Enviar Mensaje
     //- About perfil
     .profile__about

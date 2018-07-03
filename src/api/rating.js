@@ -21,6 +21,23 @@ export default {
     }
     return Vue.axios.get('/api/rating_archives', { params })
   },
+  getByBuyer (buyerId, page, status = 1) {
+    const params = {
+      'filter[buyer_id]': buyerId,
+      orderby: '-id',
+      page,
+      'filter[status]': status
+    }
+    return Vue.axios.get('/api/ratings', { params })
+  },
+  getArchiveByBuyer (buyerId, page) {
+    const params = {
+      'filter[buyer_id]': buyerId,
+      orderby: '-id',
+      page
+    }
+    return Vue.axios.get('/api/rating_archives', { params })
+  },
   getPositiveByUser (userId) {
     const params = {
       status: '1',

@@ -9019,9 +9019,38 @@ body {
   border-radius: 17px;
   border: 1px solid #f65a66; }
 
+.l-column {
+  width: 96%;
+  max-width: 1080px;
+  margin: 0 auto; }
+
+.column__item {
+  padding-bottom: 32px; }
+  .column__item .btn__wrapper {
+    margin-top: 32px; }
+    .column__item .btn__wrapper:before, .column__item .btn__wrapper:after {
+      display: none; }
+
 @media only screen and (min-width: 768px) {
   .valuations .user-data__list {
-    padding-bottom: 24px; } }
+    padding-bottom: 24px; }
+  .column {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    max-width: 1280px; }
+  .column__item {
+    width: 46%;
+    padding-bottom: 64px; }
+    .column__item .alert-msg_center {
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      -moz-justify-content: start;
+      justify-content: start; } }
 
 /*------------------------------------*\
   Card 

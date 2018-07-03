@@ -20,6 +20,8 @@
   }
 }
 
+
+
 .valuations__date {
   position: relative;
   display: block;
@@ -82,6 +84,22 @@
   border-radius: 17px;
   border: 1px solid $c-brand;
 }
+.l-column {
+  width: 96%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.column__item {
+  padding-bottom: 32px;
+  .btn__wrapper {
+    margin-top: 32px;
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+}
 
 @include media-query(medium) {
   .valuations {
@@ -89,4 +107,21 @@
       padding-bottom: 24px;
     }
   }
+  //reviews
+  .column {
+    @include flexbox;
+    @include justify-content(space-between);
+    max-width: 1280px;
+  }
+
+  .column__item {
+    width: 46%;
+    padding-bottom: 64px;
+    .alert-msg_center {
+      @include justify-content(start);
+    }
+  }
+  
+
+
 }
