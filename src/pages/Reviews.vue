@@ -4,28 +4,7 @@
   .profile__user
     .column
       .column__item
-        .headline Valoraciones como compradora
-        .valuations
-          .valuations__item(
-            v-for="rating in ratings.asBuyer")
-            p.valuations__date
-              time.valuations__date-txt {{ rating.created_at | date }}
-            figure.valuations__avatar
-              img.valuations__img(
-                :src="rating.seller.picture",
-                :alt="rating.seller.first_name")
-              figcaption.valuations__name {{ rating.seller.first_name }} {{ rating.seller.last_name }}
-            p.valuations__bubble {{ rating.seller_comment }}
-          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.asBuyer.length <= 0")
-            p Esta prilover aún no tiene valoraciones como compradora.
-        template(v-if="ratings.asBuyer.length")
-          Loader(v-if="loading.asBuyer")
-          .btn__wrapper(v-else-if="loadFrom")
-            button.btn(@click="loadRatingsAsBuyer") Cargar más valoraciones
-          .btn__wrapper(v-else)
-            button.btn(disabled) Estas son todas las valoraciones
-      .column__item
-        .headline Valoraciones como Vendedora
+        .headline Reviews como Vendedora
         .valuations
           .valuations__item(
             v-for="rating in ratings.asSeller")
@@ -38,13 +17,34 @@
               figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
             p.valuations__bubble {{ rating.buyer_comment }}
           .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.asSeller.length <= 0")
-            p Esta prilover aún no tiene valoraciones como vendedora.
+            p Esta prilover aún no tiene reviews como vendedora.
         template(v-if="ratings.asSeller.length")
           Loader(v-if="loading.asSeller")
           .btn__wrapper(v-else-if="loadFrom")
-            button.btn(@click="loadRatingsAsSeller") Cargar más valoraciones
+            button.btn(@click="loadRatingsAsSeller") Cargar más reviews
           .btn__wrapper(v-else)
-            button.btn(disabled) Estas son todas las valoraciones
+            button.btn(disabled) Estas son todos los reviews
+      .column__item
+        .headline Reviews como compradora
+        .valuations
+          .valuations__item(
+            v-for="rating in ratings.asBuyer")
+            p.valuations__date
+              time.valuations__date-txt {{ rating.created_at | date }}
+            figure.valuations__avatar
+              img.valuations__img(
+                :src="rating.seller.picture",
+                :alt="rating.seller.first_name")
+              figcaption.valuations__name {{ rating.seller.first_name }} {{ rating.seller.last_name }}
+            p.valuations__bubble {{ rating.seller_comment }}
+          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.asBuyer.length <= 0")
+            p Esta prilover aún no tiene reviews como compradora.
+        template(v-if="ratings.asBuyer.length")
+          Loader(v-if="loading.asBuyer")
+          .btn__wrapper(v-else-if="loadFrom")
+            button.btn(@click="loadRatingsAsBuyer") Cargar más Reviews
+          .btn__wrapper(v-else)
+            button.btn(disabled) Estas son todos los reviews
 
 </template>
 
@@ -54,7 +54,7 @@ import usersAPI from '@/api/user'
 import ratingsAPI from '@/api/rating'
 
 export default {
-  name: 'Valoraciones',
+  name: 'Reviews',
   components: {
     UserDataCloset
   },

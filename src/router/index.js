@@ -24,7 +24,7 @@ import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaTerminos from '@/pages/AyudaTerminos'
 import Closet from '@/pages/Closet'
-import Valoraciones from '@/pages/Valoraciones'
+import Reviews from '@/pages/Reviews'
 import CompraGuest from '@/pages/CompraGuest'
 import Contenido from '@/pages/Contenido'
 import EditarProducto from '@/pages/EditarProducto'
@@ -191,9 +191,9 @@ const router = new Router({
       component: Closet
     },
     {
-      path: '/closet/:userId/valoraciones',
-      name: 'valoraciones',
-      component: Valoraciones
+      path: '/closet/:userId/reviews',
+      name: 'reviews',
+      component: Reviews
     },
     {
       path: '/compra/:path?',
