@@ -9,11 +9,7 @@ transition(name='modal-fade')
             @click='close')
             span Cerrar
         p.form__info.i-alert-info(v-if="loginError") No podemos reconocer tu usuario o contraseña.
-        form.form(
-          v-on:submit='',
-          action='#',
-          submit.prevent='validateBeforeSubmit',
-          method='post')
+        form.form(@submit.prevent='validateBeforeSubmit')
           .form__row(
             v-bind:class='{ "is-danger": errorTexts.email }')
             label.form__label(
@@ -38,8 +34,7 @@ transition(name='modal-fade')
               |¿Olvidaste tu contraseña?
               | <router-link class='link_underline' @click='close' :to="{ name: 'password' }" title='Ir a recuperar contraseña'>Recuperar contraseña.</router-link>
           .form__row.form__row_away
-            button.btn.btn_solid.btn_block(
-              @click.prevent='validateBeforeSubmit') Iniciar sesión
+            button.btn.btn_solid.btn_block Iniciar sesión
         .break
           span.break__txt O
         router-link.btn.btn_block(
