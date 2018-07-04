@@ -1,5 +1,5 @@
 import productAPI from '@/api/product'
-import Pager from '@/Mixin/Pager'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'TabsProducto',

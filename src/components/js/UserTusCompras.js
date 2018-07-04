@@ -1,5 +1,5 @@
 import UserCompra from '@/components/UserCompra'
-import Pager from '@/Mixin/Pager'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'UserTusCompras',
