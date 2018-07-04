@@ -126,6 +126,9 @@ const actions = {
   closeModal (context) {
     context.commit('closeModal')
   },
+  clearLoginAttempt (context) {
+    context.commit('clearLoginAttempt')
+  },
   loginAttempt (context) {
     context.commit('loginAttempt')
   },
@@ -164,6 +167,9 @@ const mutations = {
     state.modalWindow.enabled = false
     state.modalWindow.name = null
     state.modal = false
+  },
+  clearLoginAttempt (state) {
+    state.loginAttempts = 0
   },
   loginAttempt (state) {
     state.loginAttempts += 1

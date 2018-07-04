@@ -29,10 +29,7 @@
             h2.subhead.form-section__title.form-section__title_center ¡Cool! Estás a un paso de terminar tu compra
             .content-slot__inner.form-section__inner
               form.form(
-                v-on:submit='',
-                action='#',
-                @submit.prevent='next',
-                method='post')
+                @submit.prevent='next')
                 .form__row(v-bind:class='{ "is-danger": errorLog.email }')
                   label.form__label(
                     for='email') Por favor ingresa tu email
@@ -61,6 +58,8 @@
                       type='password')
                   .form__row
                     button.btn.btn_solid.btn_block(
+                      :disabled="loading"
+                      :class="{ 'btn_disabled' : loading }"
                       @click.prevent="login") Iniciar sesión
                 div(v-if="showForm && !userFound")
                   .alert-msg.i-smile
@@ -106,7 +105,7 @@
                         v-model='newUser.password',
                         id='password',
                         :type="viewPass ? 'text' : 'password'",
-                        @input='validatePassword')
+                        @input='validateNewPassword')
                       span.form__visible.i-view(
                         @click='visiblePass')
                       span.password-bar(
@@ -123,7 +122,8 @@
                 .form__row
                   button.btn.btn_solid.btn_block(
                     v-if="!showForm"
-                    :class="{ 'btn_disabled' : loading }",
+                    :disabled="loading"
+                    :class="{ 'btn_disabled' : loading }"
                     @click.prevent="next") Continuar
         .list__side
           .list__frame
@@ -142,18 +142,17 @@
 <script>
 import { mapState } from 'vuex'
 import usersAPI from '@/api/user'
+import LoginMixin from '@/Mixin/js/Login'
+
 export default {
   name: 'CompraGuest',
-  components: {
-  },
+  mixins: [LoginMixin],
   data () {
     return {
-      errorLog: {},
       newErrorLog: {
         passwordDetail: []
       },
       newUser: {},
-      loading: false,
       showForm: false,
       userFound: false,
       forgot: false,
@@ -163,27 +162,19 @@ export default {
   },
   computed: {
     ...mapState(['user']),
-    ...mapState(['guestCart'])
+    ...mapState(['guestCart']),
+    email () {
+      return this.newUser.email
+    },
+    password () {
+      return this.newUser.password
+    }
   },
   methods: {
     visiblePass: function () {
       this.viewPass = !this.viewPass
     },
-    validate: function () {
-      this.errorLog = {}
-      if (!this.newUser.email) {
-        this.errorLog.email = 'Debes ingresar tu email'
-      } else {
-        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.newUser.email)) {
-          this.errorLog.email = 'El email que ingresaste no parece válido.'
-        }
-      }
-      if (Object.keys(this.errorLog).length === 0) {
-        return true
-      }
-      return false
-    },
-    validatePassword: function (e) {
+    validateNewPassword: function (e) {
       this.newErrorLog = {}
       this.newErrorLog.passwordDetail = []
       if (!this.newUser.password) {
@@ -206,73 +197,33 @@ export default {
       }
     },
     next: function () {
-      if (this.validate()) {
+      if (this.validateEmail()) {
         this.loading = true
         usersAPI.checkEmail(this.newUser.email)
           .then(response => {
-            this.loading = false
             this.userFound = true
             this.showForm = true
           })
           .catch(response => {
-            this.loading = false
             this.userFound = false
             this.showForm = true
           })
+          .finally(() => {
+            this.loading = false
+          })
       }
     },
-    login: function () {
-      this.errorLog = {}
-      if (!this.newUser.password) this.errorLog.password = 'Debes ingresar tu contraseña'
-
-      if (Object.keys(this.errorLog).length === 0) {
-        const payload = {
-          email: this.newUser.email,
-          password: this.newUser.password
-        }
-        usersAPI.login(payload)
-          .then(response => {
-            this.$store.dispatch('user/setUser', response.data)
-            this.$router.push({name: 'compra'})
-            this.$store.dispatch('guestCart/merge')
-          })
-          .catch(e => {
-            var modal
-
-            if (this.$store.getters['ui/loginAttempts'] < 3) {
-              modal = {
-                name: 'ModalMessage',
-                parameters: {
-                  type: 'alert',
-                  title: '¡Ups! Parece que ocurrió un error',
-                  body: this.$getNestedObject(e, ['response', 'data', 'errors', 0])
-                }
-              }
-            } else {
-              modal = {
-                name: 'ModalMessage',
-                parameters: {
-                  type: 'alert',
-                  title: '¡Ups! Ya has intentado autenticarte varias veces',
-                  primaryButtonTitle: '¿Olvidaste tu contraseña?',
-                  primaryButtonURL: 'password'
-                }
-              }
-            }
-            this.$store.dispatch('ui/showModal', modal)
-            this.$store.dispatch('ui/loginAttempt')
-          })
-      }
+    loggedIn (response) {
+      this.$router.push({name: 'compra'})
     },
     create: function () {
-      this.validatePassword()
+      this.validateNewPassword()
       this.validateNewUser()
       if (Object.keys(this.newErrorLog).length === 1 && this.newErrorLog.passwordDetail.length === 0) {
         this.signUp()
       }
     },
     signUp: function () {
-      // console.log(this.$store.get('userAuth'))
       const payload = {
         first_name: this.newUser.first_name,
         last_name: this.newUser.last_name,

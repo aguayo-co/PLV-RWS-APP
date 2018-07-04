@@ -7,10 +7,7 @@
   //- If user is not authenticated
   .layout-inner(v-if='!authenticated && !signup')
     form.form(
-      v-on:submit='',
-      action='#',
-      submit.prevent='firstStep',
-      method='post')
+      @submit.prevent='')
       fieldset.form-section
         legend.title ¡Estás a un paso de publicar tu producto!
           p.form-section__subtitle Para publicar tu venta, ingresa tu correo
@@ -23,14 +20,15 @@
               v-if='errorLog.email') {{ errorLog.email }}
             input.form__control(
               @change="userFound = false",
-              @keyup='errorLog.email = undefined',
               v-model='newUser.email',
               id='email',
               type='email')
           .form__row.form__row_away.form__btn(
-            v-if='!login && !signup && !userFound')
+            v-if='!signup && !userFound')
             button.btn.btn_solid(
-              @click.prevent='next($event)') Continuar
+              :disabled="loading"
+              :class="{ 'btn_disabled' : loading }"
+              @click.prevent='firstStep') Continuar
         .form-section__inner(v-if='userFound')
           p.form__info.i-smile Vemos que ya tienes una cuenta, por favor ingresa tu contraseña
           .form__row(
@@ -45,7 +43,7 @@
               type='password')
           .form__row.form__row_away.form__btn
             button.btn.btn_solid(
-              @click.prevent='secondStep($event)') Ingresar
+              @click.prevent='login') Ingresar
   //- If user email not found (new user)
   FormSignUpVendedora(
     v-if='!authenticated && signup'
@@ -56,12 +54,14 @@
 <script>
 import { mapState } from 'vuex'
 import userAPI from '@/api/user'
+import LoginMixin from '@/Mixin/js/Login'
 import FormPublicarVenta from '@/components/FormPublicarVenta'
 import FormCompleteSeller from '@/components/FormCompleteSeller'
 import FormSignUpVendedora from '@/components/FormSignUpVendedora'
 
 export default {
   name: 'PublicarVenta',
+  mixins: [LoginMixin],
   components: {
     FormPublicarVenta,
     FormCompleteSeller,
@@ -69,12 +69,10 @@ export default {
   },
   data () {
     return {
-      errorLog: {},
       newUser: {},
       showForm: false,
       userFound: false,
       signup: false,
-      login: false,
       viewPass: false
     }
   },
@@ -89,32 +87,18 @@ export default {
     },
     authenticated () {
       return Boolean(this.$store.state['user'].id)
+    },
+    email () {
+      return this.newUser.email
+    },
+    password () {
+      return this.newUser.password
     }
   },
   methods: {
-    validateEmail: function (event) {
-      this.errorLog = {}
-
-      if (!this.newUser.email) {
-        this.errorLog.email = 'Debes ingresar tu email'
-      } else {
-        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.newUser.email)) {
-          this.errorLog.email = 'El email que ingresaste no parece válido.'
-        }
-      }
-      if (Object.keys(this.errorLog).length === 0) {
-        return true
-      }
-      event.target.disabled = false
-      return false
-    },
-    validatePassword: function () {
-      delete this.errorLog.password
-      if (!this.newUser.password) this.errorLog.password = 'Debes ingresar una contraseña'
-    },
-    next: function (event) {
-      event.target.disabled = true
-      if (this.validateEmail(event)) {
+    firstStep: function () {
+      if (this.validateEmail()) {
+        this.loading = true
         userAPI.checkEmail(this.newUser.email)
           .then(response => {
             this.userFound = true
@@ -125,60 +109,10 @@ export default {
             this.showForm = true
             this.signup = true
           })
+          .finally(() => {
+            this.loading = false
+          })
       }
-    },
-    firstStep: function () {
-      this.validateEmail()
-      if (Object.keys(this.errorLog).length === 0) {
-        var response = false
-        response === true ? this.login = true : this.signup = true
-      }
-    },
-    secondStep: function (event) {
-      event.target.disabled = true
-      this.validateEmail()
-      this.validatePassword()
-      if (Object.keys(this.errorLog).length === 0) {
-        this.loginUser(event)
-      }
-    },
-    loginUser: function (event) {
-      const payload = {
-        email: this.newUser.email,
-        password: this.newUser.password
-      }
-      userAPI.login(payload)
-        .then(response => {
-          this.$store.dispatch('user/setUser', response.data)
-          this.$store.dispatch('guestCart/merge')
-        })
-        .catch(e => {
-          var modal
-
-          if (this.$store.getters['ui/loginAttempts'] < 3) {
-            modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Parece que ocurrió un error',
-                body: Object.values(e.response.data.errors)[0]
-              }
-            }
-          } else {
-            modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Ya has intentado autenticarte varias veces',
-                primaryButtonTitle: '¿Olvidaste tu contraseña?',
-                primaryButtonURL: 'password'
-              }
-            }
-          }
-          this.$store.dispatch('ui/showModal', modal)
-          this.$store.dispatch('ui/loginAttempt')
-          event.target.disabled = false
-        })
     }
   }
 }

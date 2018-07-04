@@ -8,24 +8,23 @@ transition(name='modal-fade')
           .btn_close.modal__btn_close.i-x(
             @click='close')
             span Cerrar
-        p.form__info.i-alert-info(v-if="loginError") No podemos reconocer tu usuario o contraseña.
-        form.form(@submit.prevent='validateBeforeSubmit')
+        form.form(@submit.prevent='login')
           .form__row(
-            v-bind:class='{ "is-danger": errorTexts.email }')
+            v-bind:class='{ "is-danger": errorLog.email }')
             label.form__label(
               for='email') Correo
             span.help(
-              v-if="errorTexts.email") {{ errorTexts.email }}
+              v-if="errorLog.email") {{ errorLog.email }}
             input.form__control(
               v-model='email',
               id='email',
               type='email')
           .form__row(
-            v-bind:class='{ "is-danger": errorTexts.password }')
+            v-bind:class='{ "is-danger": errorLog.password }')
             label.form__label(
               for='password') Contraseña
             span.help(
-              v-if="errorTexts.password") {{ errorTexts.password }}
+              v-if="errorLog.password") {{ errorLog.password }}
             input.form__control(
               v-model='password',
               id='password',
@@ -43,69 +42,24 @@ transition(name='modal-fade')
 </template>
 
 <script>
-import userAPI from '@/api/user'
 import { mapState } from 'vuex'
+import LoginMixin from '@/Mixin/js/Login'
+
 export default {
   name: 'FormLogin',
+  mixins: [LoginMixin],
   data () {
     return {
       email: '',
-      password: '',
-      errorTexts: {},
-      loginError: false
+      password: ''
     }
   },
   computed: {
     ...mapState(['guestCart'])
   },
   methods: {
-    validateBeforeSubmit: function () {
-      this.errorTexts = {}
-
-      if (!this.email) {
-        this.errorTexts.email = 'Debes ingresar tu email'
-      } else {
-        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.email)) {
-          this.errorTexts.email = 'El email que ingresaste no parece válido.'
-        }
-      }
-
-      if (!this.password) this.errorTexts.password = 'Debes ingresar una contraseña'
-
-      if (Object.keys(this.errorTexts).length === 0) {
-        this.login()
-      }
-    },
-    login: function () {
-      this.loginError = false
-      const payload = {
-        email: this.email,
-        password: this.password
-      }
-      userAPI.login(payload)
-        .then(response => {
-          this.$store.dispatch('user/setUser', response.data).then(() => {
-            this.close()
-            this.$store.dispatch('guestCart/merge')
-          })
-        })
-        .catch((e) => {
-          if (this.$store.getters['ui/loginAttempts'] < 3) {
-            this.loginError = true
-          } else {
-            var modal = {
-              name: 'ModalMessage',
-              parameters: {
-                type: 'alert',
-                title: '¡Ups! Ya has intentado autenticarte varias veces',
-                primaryButtonTitle: '¿Olvidaste tu contraseña?',
-                primaryButtonURL: 'password'
-              }
-            }
-            this.$store.dispatch('ui/showModal', modal)
-          }
-          this.$store.dispatch('ui/loginAttempt')
-        })
+    loggedIn (response) {
+      this.close()
     },
     close: function () {
       this.$store.dispatch('ui/closeModal')
