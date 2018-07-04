@@ -15,7 +15,7 @@
       li.review-ico.btn-tag.i-less-circle(
         :class="{'review-ico_active': buyer_rating === 0}",
         @click="buyer_rating = 0; errorLog.buyer_rating = null") Normal
-  form.form.dashboard__form(@submit.prevent="setBuyerRating") 
+  form.form.dashboard__form(@submit.prevent="setBuyerRating")
     .form__row
       label.form__label(
       :for="'comment-sale-' + sale.id") Deja un comentario sobre la vendedora
