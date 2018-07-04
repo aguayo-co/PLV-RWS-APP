@@ -18,7 +18,7 @@
   form.form.dashboard__form(@submit.prevent="setSellerRating")
     .form__row
       label.form__label(
-      :for="'comment-sale-' + sale.id") Deja un comentario sobre la compradora
+      :for="'comment-sale-' + sale.id") Deja un comentario sobre la compradora. Si la compradora ya te evaluó, deberás evaluarla a ella para poder ver tu review.
       span.help(
         v-show="errorLog.seller_comment") {{ errorLog.seller_comment }}
       input.form__textarea.form__textarea_height(
