@@ -21,8 +21,8 @@ transition(name='modal-fade')
               for='passwordNew'
             ) Nueva Contraseña
             span.help(
-              v-if="errorTexts.password"
-            ) {{ errorTexts.password }}
+              v-if="errorLog.password"
+            ) {{ errorLog.password }}
             input.form__control(
               v-model="password"
               id='passwordNew'
@@ -45,7 +45,7 @@ export default {
     return {
       changed: null,
       password: null,
-      errorTexts: {}
+      errorLog: {}
     }
   },
   computed: {
@@ -53,10 +53,10 @@ export default {
   },
   methods: {
     submit: function () {
-      this.errorTexts = {}
+      this.errorLog = {}
 
       if (!this.password) {
-        this.errorTexts.password = 'Debes ingresar una contraseña'
+        this.errorLog.password = 'Debes ingresar una contraseña'
         return
       }
 
