@@ -23,6 +23,7 @@ import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaTerminos from '@/pages/AyudaTerminos'
+import Blog01 from '@/pages/Blog-01'
 import Closet from '@/pages/Closet'
 import Reviews from '@/pages/Reviews'
 import CompraGuest from '@/pages/CompraGuest'
@@ -257,6 +258,11 @@ const router = new Router({
       path: '/contenido',
       name: 'contenido',
       component: Contenido
+    },
+    {
+      path: '/apps',
+      name: 'blog01',
+      component: Blog01
     },
     {
       path: '/como-enviar',
