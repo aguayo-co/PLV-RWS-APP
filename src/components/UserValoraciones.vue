@@ -18,7 +18,9 @@ section.single
             :src="rating.buyer.picture",
             :alt="rating.buyer.first_name")
           figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
-        p.valuations__bubble {{ rating.buyer_comment }}
+        p.valuations__bubble
+          span(
+            :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.length <= 0")
         p Aún no tienes reviews.
 
