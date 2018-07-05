@@ -16,7 +16,7 @@
                 :alt="rating.buyer.first_name")
               figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
             p.valuations__bubble
-              span(
+              span.chat-bubble_ico(
                 :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
           .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.seller.length <= 0")
             p Esta prilover aún no tiene reviews como vendedora.
@@ -39,7 +39,7 @@
                 :alt="rating.seller.first_name")
               figcaption.valuations__name {{ rating.seller.first_name }} {{ rating.seller.last_name }}
             p.valuations__bubble
-              span(
+              span.chat-bubble_ico(
                 :class="{ 'i-like' : rating.seller_rating === 1, 'i-less-circle' : rating.seller_rating === 0 , 'i-like i_flip' : rating.seller_rating === -1 }") {{ rating.seller_comment }}
           .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.buyer.length <= 0")
             p Esta prilover aún no tiene reviews como compradora.

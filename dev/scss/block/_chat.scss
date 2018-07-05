@@ -24,6 +24,27 @@
   border-radius: 18px;
 }
 
+.chat-bubble_ico {
+  @include flexbox;
+  @include align-items(center);
+
+  &:before {
+    color: $c-brand;
+    padding-right: 8px;
+    @include font-rem(16px);
+
+  }
+  &.i_flip {
+    &:before {
+      padding-left: 8px;
+      padding-right: 0;
+    }
+
+  }
+
+}
+
+
 .chat-bubble__noti {
   position: relative;
   display: block;

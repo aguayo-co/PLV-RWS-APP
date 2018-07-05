@@ -8575,6 +8575,23 @@ body {
   border-style: solid;
   border-radius: 18px; }
 
+.chat-bubble_ico {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center; }
+  .chat-bubble_ico:before {
+    color: #f65a66;
+    padding-right: 8px;
+    font-size: 16px;
+    font-size: 1rem; }
+  .chat-bubble_ico.i_flip:before {
+    padding-left: 8px;
+    padding-right: 0; }
+
 .chat-bubble__noti {
   position: relative;
   display: block;
