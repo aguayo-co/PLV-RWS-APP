@@ -401,6 +401,7 @@
 
     .user-data__notify {
       @include flexbox;
+      @include align-items(center);
     }
     .user-data__list {
       padding: 4px 0;

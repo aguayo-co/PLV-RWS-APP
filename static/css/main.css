@@ -5016,7 +5016,11 @@ body {
   .user-data__notify {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -moz-align-items: center;
+    align-items: center; }
   .user-data__list {
     padding: 4px 0; }
     .user-data__list:not(:last-child) {
