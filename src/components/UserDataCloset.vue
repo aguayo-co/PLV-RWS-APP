@@ -20,10 +20,12 @@ section.profile
         .profile__actions
           //-Notificaciones
           .user-data__notify
-            ul.user-data__list
-              li.user-data__value.i-like {{ user.ratings_positive_count }}
-              li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
-              li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
+            router-link.user-data__reviews(
+              :to="'/closet/' + user.id + '/reviews'")
+              ul.user-data__list
+                li.user-data__value.i-like {{ user.ratings_positive_count }}
+                li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
+                li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
             ul.user-data__list
               li.user-data__track {{ user.followers_count }} Seguidores
               li.user-data__track {{ user.following_count }} Siguiendo

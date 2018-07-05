@@ -5021,6 +5021,8 @@ body {
     padding: 4px 0; }
     .user-data__list:not(:last-child) {
       padding-right: 34px; }
+  .user-data__reviews {
+    padding-right: 34px; }
   .user-data__actions {
     padding-top: 20px;
     text-align: left; }
