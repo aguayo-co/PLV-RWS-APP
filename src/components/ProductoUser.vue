@@ -44,8 +44,11 @@
                       :src="rating.buyer.picture",
                       :alt="rating.buyer.first_name")
                     .chat-bubble__item
-                      .chat-bubble__title.i-like {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
-                      p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
+                      .chat-bubble__title {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
+                      p.chat-bubble__txt
+                        span(
+                          :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
+
 </template>
 
 <script>
