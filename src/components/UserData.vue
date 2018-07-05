@@ -90,10 +90,12 @@ section.single
               a.btn-tag Eliminar cuenta
           //-Notificaciones
           .user-data__notify
-            ul.user-data__list
-              li.user-data__value.i-like {{ ratings_positive_count }}
-              li.user-data__value.i-like.i_flip {{ ratings_negative_count }}
-              li.user-data__value.i-less-circle {{ ratings_neutral_count }}
+            router-link.user-data__reviews(
+              :to="'/closet/' + id + '/reviews'")
+              ul.user-data__list
+                li.user-data__value.i-like {{ ratings_positive_count }}
+                li.user-data__value.i-like.i_flip {{ ratings_negative_count }}
+                li.user-data__value.i-less-circle {{ ratings_neutral_count }}
             ul.user-data__list
               li.user-data__track {{ followers_count }} Seguidores
               li.user-data__track {{ following_count }} Siguiendo
