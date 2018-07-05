@@ -1,6 +1,6 @@
 import { mapState } from 'vuex'
 import transactionAPI from '@/api/creditsTransaction'
-import Pager from '@/Mixin/Pager'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'UserCreditos',

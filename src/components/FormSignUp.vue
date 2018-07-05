@@ -8,13 +8,13 @@
       method='post'
     )
       .form__row(
-        :class='{ "is-danger": errorTexts.nombre }'
+        :class='{ "is-danger": errorLog.nombre }'
       )
         label.form__label(
           for='nombre') Nombre
         span.help(
-          v-if="errorTexts.nombre"
-        ) {{ errorTexts.nombre }}
+          v-if="errorLog.nombre"
+        ) {{ errorLog.nombre }}
         input.form__control(
           v-model='nombre',
           id='username',
@@ -22,13 +22,13 @@
           data-vv-name='nombre'
         )
       .form__row(
-        :class='{ "is-danger": errorTexts.apellidos }'
+        :class='{ "is-danger": errorLog.apellidos }'
       )
         label.form__label(
           for='apellidos') Apellidos
         span.help(
-          v-if="errorTexts.apellidos"
-        ) {{ errorTexts.apellidos }}
+          v-if="errorLog.apellidos"
+        ) {{ errorLog.apellidos }}
         input.form__control(
           v-model='apellidos',
           id='userLast',
@@ -36,13 +36,13 @@
           data-vv-name='apellidos'
         )
       .form__row(
-        :class='{ "is-danger": errorTexts.email }'
+        :class='{ "is-danger": errorLog.email }'
       )
         label.form__label(
           for='email') Correo
         span.help(
-          v-show='errorTexts.email'
-        ) {{ errorTexts.email }}
+          v-show='errorLog.email'
+        ) {{ errorLog.email }}
         input.form__control(
           v-model='email',
           id='email',
@@ -54,13 +54,13 @@
         ) {{ infoTexts.emailExist }}
           a(href='#') ¡Recupérala aquí!
       .form__row(
-        :class='{ "is-danger": errorTexts.emailConfirm }'
+        :class='{ "is-danger": errorLog.emailConfirm }'
       )
         label.form__label(
           for='emailConfirm') Confirma tu correo
         span.help(
-          v-if="errorTexts.emailConfirm"
-        ) {{ errorTexts.emailConfirm }}
+          v-if="errorLog.emailConfirm"
+        ) {{ errorLog.emailConfirm }}
         input.form__control(
           v-model='emailConfirm',
           id='emailConfirm',
@@ -68,13 +68,13 @@
           data-vv-name='emailConfirm'
         )
       .form__row(
-        :class='{ "is-danger": errorTexts.password }'
+        :class='{ "is-danger": errorLog.password }'
       )
         label.form__label(
           for='password') Contraseña
         span.help(
-          v-if="errorTexts.password"
-        ) {{ errorTexts.password }}
+          v-if="errorLog.password"
+        ) {{ errorLog.password }}
         .form__password
           input.form__control(
             v-model='password',
@@ -87,12 +87,12 @@
             @click='visiblePass')
         span.password-bar(
           v-if="password"
-          :class='"level-"+(3-errorTexts.passwordDetail.length)')
+          :class='"level-"+(3-errorLog.passwordDetail.length)')
         div.helper(
-          v-if='errorTexts.passwordDetail.length > 0')
+          v-if='errorLog.passwordDetail.length > 0')
           ul.helper__list
             li(
-              v-for='detail in errorTexts.passwordDetail') {{ detail }}
+              v-for='detail in errorLog.passwordDetail') {{ detail }}
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
           @click.prevent='validateBeforeSubmit') Registrarse
@@ -117,7 +117,7 @@ export default {
       emailConfirm: '',
       password: '',
       flagSignUp: 'SignUp',
-      errorTexts: {
+      errorLog: {
         passwordDetail: []
       },
       infoTexts: {},
@@ -165,36 +165,36 @@ export default {
         })
     },
     validateBeforeSubmit: function (e) {
-      this.errorTexts = {
+      this.errorLog = {
         passwordDetail: []
       }
       this.infoTexts = {}
 
-      if (!this.nombre) this.errorTexts.nombre = 'Debes ingresar tu nombre'
-      if (!this.apellidos) this.errorTexts.apellidos = 'Debes ingresar tus apellidos'
+      if (!this.nombre) this.errorLog.nombre = 'Debes ingresar tu nombre'
+      if (!this.apellidos) this.errorLog.apellidos = 'Debes ingresar tus apellidos'
       if (!this.email) {
-        this.errorTexts.email = 'Debes ingresar tu email'
+        this.errorLog.email = 'Debes ingresar tu email'
       } else {
         if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.email)) {
-          this.errorTexts.email = 'El email que ingresaste no parece válido.'
+          this.errorLog.email = 'El email que ingresaste no parece válido.'
         }
       }
-      if (!this.email) this.errorTexts.emailConfirm = 'Debes ingresar de nuevo tu email'
-      if (this.email !== this.emailConfirm) this.errorTexts.emailConfirm = 'Este email no coincide con el primero que ingresaste'
+      if (!this.email) this.errorLog.emailConfirm = 'Debes ingresar de nuevo tu email'
+      if (this.email !== this.emailConfirm) this.errorLog.emailConfirm = 'Este email no coincide con el primero que ingresaste'
 
       this.validatePassword(e)
 
-      if (Object.keys(this.errorTexts).length === 1 && this.errorTexts.passwordDetail.length === 0) {
+      if (Object.keys(this.errorLog).length === 1 && this.errorLog.passwordDetail.length === 0) {
         this.signUp()
       }
     },
     validatePassword: function (e) {
-      this.errorTexts.passwordDetail = []
+      this.errorLog.passwordDetail = []
 
-      if (!this.password) this.errorTexts.password = 'Debes ingresar una contraseña'
-      if (this.password.length < 8) this.errorTexts.passwordDetail.push('Tu contraseña debe tener al menos 8 caracteres')
-      if (!/[a-zA-Z]/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos una letra')
-      if (!/\d+/.test(this.password)) this.errorTexts.passwordDetail.push('Tu contraseña debe contener al menos un número')
+      if (!this.password) this.errorLog.password = 'Debes ingresar una contraseña'
+      if (this.password.length < 8) this.errorLog.passwordDetail.push('Tu contraseña debe tener al menos 8 caracteres')
+      if (!/[a-zA-Z]/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos una letra')
+      if (!/\d+/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos un número')
     },
     visiblePass: function () {
       this.viewPass = !this.viewPass
