@@ -147,7 +147,7 @@ const router = new Router({
           component: UserPriloverStar
         },
         {
-          path: 'valoraciones',
+          path: 'reviews',
           name: 'user-valoraciones',
           component: UserValoraciones
         },

@@ -2,7 +2,7 @@
 section.single
   .single__inner
     header.single__header
-      h1.single__title Valoraciones
+      h1.single__title Reviews
     Loader(v-if="!ratings.length && loading")
     .valuations(v-else)
       ul.user-data__list.user-data__list_center
@@ -20,14 +20,14 @@ section.single
           figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
         p.valuations__bubble {{ rating.buyer_comment }}
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.length <= 0")
-        p Aún no tienes valoraciones.
+        p Aún no tienes reviews.
 
   template(v-if="ratings.length")
     Loader(v-if="loading")
     .btn__wrapper(v-else-if="loadFrom")
-      button.btn(@click="loadRatings") Cargar más valoraciones
+      button.btn(@click="loadRatings") Cargar más reviews
     .btn__wrapper(v-else)
-      button.btn(disabled) Estas son todas las valoraciones
+      button.btn(disabled) Estas son todas las reviews
 </template>
 
 <script>
