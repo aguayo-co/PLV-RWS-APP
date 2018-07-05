@@ -42,6 +42,7 @@ import SignUp from '@/pages/SignUp'
 import User from '@/pages/User'
 import Compra from '@/pages/compra'
 import prilovers from '@/pages/prilovers'
+import Blog from '@/pages/Blog'
 
 import beforeEach from './beforeEach'
 
@@ -148,7 +149,7 @@ const router = new Router({
           component: UserPriloverStar
         },
         {
-          path: 'valoraciones',
+          path: 'reviews',
           name: 'user-valoraciones',
           component: UserValoraciones
         },
@@ -308,6 +309,11 @@ const router = new Router({
       path: '/terminos',
       name: 'terminos',
       component: AyudaTerminos
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: Blog
     }
   ],
   scrollBehavior (to, from, savedPosition) {

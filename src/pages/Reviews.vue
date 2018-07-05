@@ -7,7 +7,7 @@
         .headline Reviews como Vendedora
         .valuations
           .valuations__item(
-            v-for="rating in ratings.asSeller")
+            v-for="rating in ratings.seller")
             p.valuations__date
               time.valuations__date-txt {{ rating.created_at | date }}
             figure.valuations__avatar
@@ -15,20 +15,22 @@
                 :src="rating.buyer.picture",
                 :alt="rating.buyer.first_name")
               figcaption.valuations__name {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
-            p.valuations__bubble {{ rating.buyer_comment }}
-          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.asSeller.length <= 0")
+            p.valuations__bubble
+              span(
+                :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
+          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.seller.length <= 0")
             p Esta prilover aún no tiene reviews como vendedora.
-        template(v-if="ratings.asSeller.length")
-          Loader(v-if="loading.asSeller")
-          .btn__wrapper(v-else-if="loadFrom")
-            button.btn(@click="loadRatingsAsSeller") Cargar más reviews
+        template(v-if="ratings.seller.length")
+          Loader(v-if="loading.seller")
+          .btn__wrapper(v-else-if="loadMore.seller")
+            button.btn(@click="loadMoreSeller") Cargar más reviews
           .btn__wrapper(v-else)
             button.btn(disabled) Estas son todos los reviews
       .column__item
         .headline Reviews como compradora
         .valuations
           .valuations__item(
-            v-for="rating in ratings.asBuyer")
+            v-for="rating in ratings.buyer")
             p.valuations__date
               time.valuations__date-txt {{ rating.created_at | date }}
             figure.valuations__avatar
@@ -36,13 +38,15 @@
                 :src="rating.seller.picture",
                 :alt="rating.seller.first_name")
               figcaption.valuations__name {{ rating.seller.first_name }} {{ rating.seller.last_name }}
-            p.valuations__bubble {{ rating.seller_comment }}
-          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.asBuyer.length <= 0")
+            p.valuations__bubble
+              span(
+                :class="{ 'i-like' : rating.seller_rating === 1, 'i-less-circle' : rating.seller_rating === 0 , 'i-like i_flip' : rating.seller_rating === -1 }") {{ rating.seller_comment }}
+          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.buyer.length <= 0")
             p Esta prilover aún no tiene reviews como compradora.
-        template(v-if="ratings.asBuyer.length")
-          Loader(v-if="loading.asBuyer")
-          .btn__wrapper(v-else-if="loadFrom")
-            button.btn(@click="loadRatingsAsBuyer") Cargar más Reviews
+        template(v-if="ratings.buyer.length")
+          Loader(v-if="loading.buyer")
+          .btn__wrapper(v-else-if="loadMore.buyer")
+            button.btn(@click="loadMoreBuyer") Cargar más Reviews
           .btn__wrapper(v-else)
             button.btn(disabled) Estas son todos los reviews
 
@@ -62,108 +66,95 @@ export default {
     return {
       owner: {},
       ratings: {
-        asSeller: [],
-        asBuyer: []
+        seller: [],
+        buyer: [],
+        sellerNew: {},
+        sellerArchives: {},
+        buyerNew: {}
       },
-      page: 0,
       loading: {
-        asSeller: true,
-        asBuyer: true
+        seller: true,
+        buyer: true
       },
-      loadFrom: 'new'
+      page: {
+        seller: 1,
+        buyer: 1
+      },
+      loadMore: {
+        buyer: true,
+        seller: true
+      }
     }
   },
   computed: {
     userId () {
       return this.$getNestedObject(this.$store.state, ['user', 'id'])
+    },
+    ownerId () {
+      return this.$route.params.userId
     }
   },
   methods: {
-    handleArchiveApiResponseAsSeller (data) {
-      if (!data.data.length) {
-        this.loadFrom = null
-        return
-      }
-
-      this.ratings.asSeller = this.ratings.asSeller.concat(data.data)
-      if (!data.next_page_url) {
-        this.loadFrom = null
-      }
-    },
-    handleApiResponseAsSeller (data) {
-      if (!data.data.length) {
-        this.loadFrom = 'archive'
-        this.page = 0
-        this.loadRatingsAsSeller()
-        return
-      }
-      this.ratings.asSeller = this.ratings.concat(data.data)
-      if (!data.next_page_url) {
-        this.loadFrom = 'archive'
-        this.page = 0
-      }
-    },
-    handleArchiveApiResponseAsBuyer (data) {
-      if (!data.data.length) {
-        this.loadFrom = null
-        return
-      }
-
-      this.ratings.asBuyer = this.ratings.asBuyer.concat(data.data)
-      if (!data.next_page_url) {
-        this.loadFrom = null
-      }
-    },
-    handleApiResponseAsBuyer (data) {
-      if (!data.data.length) {
-        this.loadFrom = 'archive'
-        this.page = 0
-        this.loadRatingsAsBuyer()
-        return
-      }
-      this.ratings.asBuyer = this.ratings.concat(data.data)
-      if (!data.next_page_url) {
-        this.loadFrom = 'archive'
-        this.page = 0
-      }
-    },
-    loadRatingsAsSeller () {
-      if (!this.loadFrom) {
-        return
-      }
-      const api = this.loadFrom === 'new' ? ratingsAPI.getBySeller : ratingsAPI.getArchiveBySeller
-      this.loading.asSeller = true
-      api(this.owner.id, ++this.page)
+    loadRatings: function () {
+      ratingsAPI.getBySeller(this.ownerId)
         .then(response => {
-          this.loading.asSeller = false
-          if (this.loadFrom === 'new') {
-            this.handleApiResponseAsSeller(response.data)
-            return
-          }
-          this.handleArchiveApiResponseAsSeller(response.data)
+          this.ratings.sellerNew = response.data
+          this.consolidateSeller()
+        })
+      ratingsAPI.getArchiveBySeller(this.ownerId)
+        .then(response => {
+          this.ratings.sellerArchives = response.data
+          this.consolidateSeller()
+        })
+      ratingsAPI.getByBuyer(this.ownerId)
+        .then(response => {
+          this.ratings.buyerNew = response.data
+          this.ratings.buyer = response.data.data
+          this.loading.buyer = false
         })
     },
-    loadRatingsAsBuyer () {
-      if (!this.loadFrom) {
-        return
+    consolidateSeller: function () {
+      if (this.page.seller <= this.ratings.sellerNew.last_page) {
+        this.ratings.seller = this.ratings.sellerNew.data
+      } else {
+        this.ratings.seller = this.ratings.sellerArchives.data
       }
-      const api = this.loadFrom === 'new' ? ratingsAPI.getByBuyer : ratingsAPI.getArchiveByBuyer
-      this.loading.asBuyer = true
-      api(this.owner.id, ++this.page)
-        .then(response => {
-          this.loading.asBuyer = false
-          if (this.loadFrom === 'new') {
-            this.handleApiResponseAsBuyer(response.data)
-            return
-          }
-          this.handleArchiveApiResponseAsBuyer(response.data)
-        })
+      this.loading.seller = false
+    },
+    loadMoreSeller: function () {
+      this.loading.seller = true
+      if (this.page.seller < this.ratings.sellerNew.last_page) {
+        this.page.seller += 1
+        ratingsAPI.getBySeller(this.ownerId, this.page.seller)
+          .then(response => {
+            this.ratings.seller = response.data.data
+            this.loading.seller = false
+          })
+      } else {
+        this.page.seller += 1
+        ratingsAPI.getArchiveBySeller(this.ownerId, this.page.seller - this.ratings.sellerNew.last_page)
+          .then(response => {
+            this.ratings.seller = response.data.data
+            this.loading.seller = false
+          })
+      }
+    },
+    loadMoreBuyer: function () {
+      this.loading.buyer = true
+      if (this.page.buyer < this.ratings.buyerNew.last_page) {
+        this.page.buyer += 1
+        ratingsAPI.getByBuyer(this.ownerId, this.page.buyer)
+          .then(response => {
+            this.ratings.buyerNew = response.data
+            this.ratings.buyer = response.data.data
+            this.loading.buyer = false
+          })
+      }
     }
   },
-  created: function () {
-    this.loadRatingsAsSeller()
-    this.loadRatingsAsBuyer()
-    usersAPI.getUserById(this.$route.params.userId)
+  mounted: function () {
+    this.loadRatings()
+    usersAPI.getUserById(this.ownerId)
       .then(response => {
         this.owner = response.data
       })
