@@ -1,5 +1,5 @@
 <template lang="pug">
-//- Para paginar lementos se debe pasar a Pager la respuesta original
+//- Para paginar elementos se debe pasar a Pager la respuesta original
 //- del primer llamado a el API cómo "v-model". De esta se consigue la información para
 //- seguir haciendo llamados a cualquier ruta paginada.
 //- El paginador se encarga de hacer los llamados y una vez obtiene la respuesta

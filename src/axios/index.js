@@ -38,23 +38,23 @@ export default {
         modal.parameters.title = 'No estás autenticado.'
         store.dispatch('user/logOut')
         store.dispatch('ui/showModal', modal)
-        throw error
       }
 
       if (error.response && error.response.status === 403) {
         modal.parameters.title = 'No tiene permiso para esto.'
         store.dispatch('ui/showModal', modal)
-        throw error
       }
 
       if (error.response && error.response.status >= 500) {
         modal.parameters.title = 'Algo ha fallado, por favor revisa tu conexión e intenta nuevamente.'
         store.dispatch('ui/showModal', modal)
-        throw error
       }
 
-      modal.parameters.title = 'Algo ha fallado, intenta nuevamente.'
-      store.dispatch('ui/showModal', modal)
+      if (!error.response) {
+        modal.parameters.title = 'Algo ha fallado, intenta nuevamente.'
+        store.dispatch('ui/showModal', modal)
+      }
+
       throw error
     }
 

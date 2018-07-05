@@ -83,8 +83,8 @@ export default {
               ico: 'i-sale'
             },
             {
-              name: 'Valoraciones',
-              url: '/user/valoraciones',
+              name: 'Tus Reviews',
+              url: '/user/reviews',
               ico: 'i-start'
             },
             {

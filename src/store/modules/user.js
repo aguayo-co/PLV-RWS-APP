@@ -123,10 +123,11 @@ const actions = {
   logOut ({commit}) {
     commit('clear')
   },
-  setUser ({dispatch}, user) {
+  setUser ({dispatch, commit}, user) {
     window.localStorage.setItem('token', user.api_token)
     window.localStorage.setItem('userId', user.id)
     dispatch('loadUser')
+    dispatch('ui/clearLoginAttempt', null, { root: true })
   }
 }
 
