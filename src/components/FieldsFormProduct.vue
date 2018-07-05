@@ -391,36 +391,6 @@ const editableProperties = [
   'original_price',
   'status'
 ]
-
-const initialData = () => {
-  return {
-    saving: null,
-    images: (() => [])(),
-    imagesToDelete: (() => [])(),
-    toggleImages: (() => [
-      false,
-      false,
-      false,
-      false
-    ])(),
-    checkTerms: true,
-    errorLog: (() => { return {} })(),
-    toggleColors: (() => {
-      return {
-        first: false,
-        second: false
-      }
-    })(),
-    editImg: (() => [
-      false,
-      false,
-      false,
-      false
-    ])(),
-    loading: true
-  }
-}
-
 export default {
   name: 'FieldsFormProduct',
   data () {
@@ -492,56 +462,33 @@ export default {
       this.create && (this.loading = false)
       this.update && productAPI.getProductAuthById(this.$route.params.productId)
         .then(response => {
-          const {
-            user_id,
-            title,
-            description,
-            condition_id,
-            dimensions,
-            original_price,
-            price,
-            commission,
-            category_id,
-            images,
-            subcategory_id,
-            color_ids,
-            brand,
-            brand_id,
-            size,
-            size_id,
-            category,
-            status
-          } = response.data
+          const data = response.data
           this.product = {
             ...this.product,
-            category: category.parent_id,
-            fullCategoty: category,
+            category: data.category.parent_id,
+            fullCategoty: data.category,
             id: this.$route.params.productId,
-            user_id,
-            title,
-            description,
-            condition_id,
-            dimensions,
-            original_price,
-            price,
-            commission,
-            category_id,
-            images,
-            subcategory_id,
-            color_ids,
-            brand,
-            brand_id,
-            color: response.data.colors.map(x => x.name),
-            size,
-            size_id,
-            status,
-            firstImages: images
+            user_id: data.user_id,
+            title: data.title,
+            description: data.description,
+            condition_id: data.condition_id,
+            dimensions: data.dimensions,
+            original_price: data.original_price,
+            price: data.price,
+            commission: data.commission,
+            category_id: data.category_id,
+            images: data.images,
+            subcategory_id: data.subcategory_id,
+            color_ids: data.color_ids,
+            brand: data.brand,
+            brand_id: data.brand_id,
+            color: data.colors.map(x => x.name),
+            size: data.size,
+            size_id: data.size_id,
+            status: data.status,
+            firstImages: data.images
           }
-          this.size = size
-          this.data = {
-            ...initialData(),
-            product: {}
-          }
+          this.size = data.size
         })
         .finally(e => {
           this.loading = false
@@ -710,7 +657,7 @@ export default {
     chooseColor: function (colorId, colorPosition) {
       this.errorLog.color = undefined
       this.product.color[colorPosition] = this.colors[colorId].name
-      this.product.color_ids[colorPosition] = colorId
+      this.product.color_ids[colorPosition] = this.colors[colorId].id
     },
     noneColor: function (colorPosition) {
       this.product.color[colorPosition - 1] = null
