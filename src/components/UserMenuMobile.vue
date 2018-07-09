@@ -36,6 +36,7 @@ nav.user-menu
               router-link.user-nav__link(
                 :to='items.url',
                 :class='items.ico') {{ items.name }}
+                span.badge(v-if="items.notifications && user.notifications > 0") {{ user.notifications }}
           .user-nav__item
             a.user-nav__link(
               @click.prevent='logout()',
@@ -45,6 +46,7 @@ nav.user-menu
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'UserMenuMobile',
   data () {
@@ -57,7 +59,8 @@ export default {
             {
               name: 'Notificaciones',
               url: '/user/notificaciones',
-              ico: 'i-bell'
+              ico: 'i-bell',
+              notifications: true
             },
             {
               name: 'Datos Bancarios',
@@ -107,12 +110,17 @@ export default {
             {
               name: 'Tus Reviews',
               url: '/user/reviews',
-              ico: 'i-start'
+              ico: 'i-like'
             },
             {
               name: 'Método De Envío',
               url: '/user/metodos-envios',
               ico: 'i-shipping'
+            },
+            {
+              name: 'Prilover STAR',
+              url: '/user/prilover-star',
+              ico: 'i-start'
             }
           ]
         }
@@ -130,6 +138,9 @@ export default {
       this.$store.dispatch('user/logOut')
       this.$router.push({name: 'home'})
     }
+  },
+  computed: {
+    ...mapState(['user'])
   }
 }
 </script>
