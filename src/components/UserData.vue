@@ -91,7 +91,7 @@ section.single
           //-Notificaciones
           .user-data__notify
             router-link.user-data__reviews(
-              :to="'/closet/' + id + '/reviews'")
+              :to="{ name: 'reviews', params: { userId: id } }")
               ul.user-data__list
                 li.user-data__value.i-like {{ ratings_positive_count }}
                 li.user-data__value.i-like.i_flip {{ ratings_negative_count }}
