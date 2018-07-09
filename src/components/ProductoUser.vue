@@ -18,7 +18,7 @@
         .user-header__item.user-iten_grow
           h3.user-data__title
             router-link(
-              :to="{ name: 'closet', params: { userId: userData.id }}") {{ userData.first_name }} {{ userData.last_name }}
+              :to="{ name: 'closet', params: { userId: userData.id }}") {{ userData | full_name }}
           .user-data__subitem
             //-Notificaciones
             .user-data__block
@@ -44,7 +44,7 @@
                       :src="rating.buyer.picture",
                       :alt="rating.buyer.first_name")
                     .chat-bubble__item
-                      .chat-bubble__title {{ rating.buyer.first_name }} {{ rating.buyer.last_name }}
+                      .chat-bubble__title {{ rating.buyer | full_name }}
                       p.chat-bubble__txt
                         span(
                           :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
