@@ -123,9 +123,10 @@ export default {
     this.id = this.$route.params.threadId
     threadsAPI.getThreadById(this.id)
       .then(response => {
-        let isParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
-        if (isParticipant) {
+        let currentParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
+        if (currentParticipant) {
           this.thread = response.data
+          this.$store.commit('user/setUnreadCount', currentParticipant.user.unread_count)
         }
         this.loading = false
       })
