@@ -24,7 +24,7 @@
             .user-data__block
               router-link.user-data__reviews(
                 v-if="user.id",
-                :to="'/closet/' + user.id + '/reviews'")
+                :to="{ name: 'reviews', params: { userId: user.id } }")
                 ul.user-data__list
                   li.user-data__value.i-like {{ userData.ratings_positive_count }}
                   li.user-data__value.i-like.i_flip {{ userData.ratings_negative_count }}

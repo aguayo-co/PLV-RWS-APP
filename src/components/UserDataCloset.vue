@@ -21,7 +21,7 @@ section.profile
           //-Notificaciones
           .user-data__notify
             router-link.user-data__reviews(
-              :to="'/closet/' + user.id + '/reviews'")
+              :to="{ name: 'reviews', params: { userId: user.id } }")
               ul.user-data__list
                 li.user-data__value.i-like {{ user.ratings_positive_count }}
                 li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
