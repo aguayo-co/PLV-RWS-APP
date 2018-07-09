@@ -43,7 +43,6 @@ section.single
 </template>
 
 <script>
-import Loader from '@/components/Loader'
 import threadsAPI from '@/api/thread'
 import { mapState } from 'vuex'
 
@@ -60,9 +59,6 @@ export default {
         messages: true
       }
     }
-  },
-  components: {
-    Loader
   },
   computed: {
     ...mapState(['user'])
