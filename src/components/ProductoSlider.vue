@@ -51,7 +51,7 @@ section.layout-inner
                 span.tool-user__letter(
                   v-else) {{ product.user.first_name.charAt(0) }}
             .slot__user-info
-              .slot__prilover {{ product.user.first_name }} {{ product.user.last_name }}
+              .slot__prilover {{ product.user | full_name }}
               .group(v-if='product.user.groups.length > 0')
                 .slot__group.i-it-girl(
                   v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>

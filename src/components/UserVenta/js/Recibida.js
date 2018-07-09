@@ -1,5 +1,6 @@
 import Base from './Base'
 
-export default Base.merge({
-  name: 'Recibida'
-})
+export default {
+  name: 'Recibida',
+  mixins: [Base]
+}

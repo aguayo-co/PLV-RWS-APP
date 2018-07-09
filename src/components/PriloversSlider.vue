@@ -11,7 +11,7 @@
             img.slide-group__picture(
               :src='user.picture',
               :alt='user.first_name')
-          .slide-group__name {{ user.first_name }} {{ user.last_name }}
+          .slide-group__name {{ user | full_name }}
 
           .slide-group__type.i-it-girl(
             v-if='user.group_ids.indexOf(1) > -1') It <span class="txt_brand">girl</span>

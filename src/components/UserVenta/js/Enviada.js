@@ -1,7 +1,8 @@
 import Base from './Base'
 
-export default Base.merge({
+export default {
   name: 'Enviada',
+  mixins: [Base],
   computed: {
     delivered () {
       return this.sale.status === 41
@@ -18,4 +19,4 @@ export default Base.merge({
       this.sale.status = 30
     }
   }
-})
+}

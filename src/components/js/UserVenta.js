@@ -7,8 +7,9 @@ import Completada from '../UserVenta/Completada'
 import Devuelta from '../UserVenta/Devuelta'
 import Cancelada from '../UserVenta/Cancelada'
 
-export default Base.merge({
+export default {
   name: 'UserVenta',
+  mixins: [Base],
   components: {
     Pendiente,
     Pagada,
@@ -32,4 +33,4 @@ export default Base.merge({
       return this.$getNestedObject(this.order, ['shipping_information', 'address'])
     }
   }
-})
+}

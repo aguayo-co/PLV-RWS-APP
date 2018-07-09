@@ -4,7 +4,7 @@ section.single
     router-link.btn-back.i-back(
       :to="{ name: 'user-notificaciones' }") Volver
     header.single__header
-      h1.single__title {{ messenger.first_name }} {{ messenger.last_name }}
+      h1.single__title {{ messenger | full_name }}
     .chat.chat__grid
       .chat__slot(v-if="product.id")
         article.slot.slot_grid
@@ -62,7 +62,6 @@ section.single
 </template>
 
 <script>
-import Loader from '@/components/Loader'
 import { mapState } from 'vuex'
 import threadsAPI from '@/api/thread'
 import productsAPI from '@/api/product'
@@ -79,9 +78,6 @@ export default {
       disabledMessage: false,
       loading: true
     }
-  },
-  components: {
-    Loader
   },
   computed: {
     ...mapState(['user']),

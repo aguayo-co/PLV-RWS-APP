@@ -1,8 +1,9 @@
 import Base from './Base'
 import saleAPI from '@/api/sale'
 
-export default Base.merge({
+export default {
   name: 'Pagada',
+  mixins: [Base],
   data () {
     return {
       step: null,
@@ -50,4 +51,4 @@ export default Base.merge({
       this.step = step
     }
   }
-})
+}

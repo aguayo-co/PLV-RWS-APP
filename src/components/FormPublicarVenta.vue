@@ -388,7 +388,7 @@ form.form.form_big(
                           :src='product.picture',
                           :alt='product.first_name')
                     .slot__user-info
-                      .slot__prilover {{ product.first_name }} {{ product.last_name }}
+                      .slot__prilover {{ product | full_name }}
                       .slot__group.i-it-girl(
                         v-if='product.slot__group == 1') It <span class='txt_brand'>girl</span>
                       .slot__group.i-starts(
