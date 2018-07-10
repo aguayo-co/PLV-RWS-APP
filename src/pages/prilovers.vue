@@ -32,7 +32,7 @@
               :src='user.picture',
               :alt='user.first_name')
             span.tool-user__letter(v-else) {{ user.first_name.charAt(0) }}
-          h2.card__name {{ user.first_name }} {{ user.last_name }}
+          h2.card__name {{ user | full_name }}
           p.card__meta.i-bag {{ user.published_products_count }} Productos
           ul.user-data__list
             li.user-data__value.i-like {{ user.ratings_positive_count }}

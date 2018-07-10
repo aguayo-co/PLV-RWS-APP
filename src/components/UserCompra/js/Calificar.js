@@ -1,8 +1,9 @@
 import Base from './Base'
 import ratingAPI from '@/api/rating'
 
-export default Base.merge({
+export default {
   name: 'Calificar',
+  mixins: [Base],
   data: () => {
     return {
       rating: {},
@@ -78,4 +79,4 @@ export default Base.merge({
   created () {
     this.loadRating()
   }
-})
+}

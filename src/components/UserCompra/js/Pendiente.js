@@ -1,8 +1,9 @@
 import Base from './Base'
 import orderAPI from '@/api/order'
 
-export default Base.merge({
+export default {
   name: 'Pendiente',
+  mixins: [Base],
   data () {
     return {
       transfer_receipt: null,
@@ -42,4 +43,4 @@ export default Base.merge({
       })
     }
   }
-})
+}

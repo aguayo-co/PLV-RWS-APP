@@ -15,8 +15,9 @@ import prilovHelpers from './helpers'
 import prilovFilters from './filters'
 import router from './router'
 import store from './store'
-import Loader from './components/Loader'
-import Dots from './components/Dots'
+import CountDown from './components/global/CountDown'
+import Loader from './components/global/Loader'
+import Dots from './components/global/Dots'
 
 (() => {
   if (window.location.protocol === 'http:') {
@@ -42,6 +43,7 @@ import Dots from './components/Dots'
 
   Vue.component('Loader', Loader)
   Vue.component('Dots', Dots)
+  Vue.component('CountDown', CountDown)
 
   /* eslint-disable no-new */
   new Vue({

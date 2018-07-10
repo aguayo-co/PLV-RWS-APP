@@ -86,12 +86,10 @@ section.single
           ul.user-data__nav
             li.user-data__tag
               a.btn-tag(@click.prevent="changePassword") Cambiar contraseña
-            li.user-data__tag
-              a.btn-tag Eliminar cuenta
           //-Notificaciones
           .user-data__notify
             router-link.user-data__reviews(
-              :to="'/closet/' + id + '/reviews'")
+              :to="{ name: 'reviews', params: { userId: id } }")
               ul.user-data__list
                 li.user-data__value.i-like {{ ratings_positive_count }}
                 li.user-data__value.i-like.i_flip {{ ratings_negative_count }}

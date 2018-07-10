@@ -58,6 +58,10 @@ export default {
         return 'Transferencia pendiente'
       }
 
+      if (transaction.transfer_status === 99) {
+        return 'Transferencia rechazada'
+      }
+
       return null
     },
     loadTransactions () {
