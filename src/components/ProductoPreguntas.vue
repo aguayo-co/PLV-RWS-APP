@@ -59,7 +59,7 @@
                 v-model="newThread",
                 :disabled="disabledThread",
                 :class=" { 'disabled' : disabledThread }")
-              button.chat__btn-solid.i-shipping
+              button.chat__btn-solid.i-shipping Comentar
             p(v-else) Para comentar en este producto
               a(
                 href=''

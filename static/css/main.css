@@ -515,6 +515,15 @@ a {
   a:focus {
     outline-width: 0; }
 
+.link {
+  color: #000;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s; }
+  .link:hover {
+    color: #f65a66; }
+  .link:focus, .link:active {
+    color: #f65a66; }
+
 .link_underline {
   display: inline-block;
   padding-bottom: 2px;
@@ -1928,6 +1937,22 @@ body {
   .preload__spin {
     width: 20px;
     height: 20px; } }
+
+.video-box {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16/9 */
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden; }
+  .video-box iframe,
+  .video-box object,
+  .video-box embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
 
 /*------------------------------------*\
 	Transversal Elements
@@ -10368,6 +10393,12 @@ body {
       font-size: 18px;
       font-size: 1.125rem; } }
 
+.bolg__data {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 16px;
+  font-size: 1rem; }
+
 @media only screen and (min-width: 1024px) {
   .blog__out {
     width: 88%;
@@ -10415,7 +10446,10 @@ body {
       -ms-grid-row-align: center;
           align-self: center; }
   .blog-card__item {
-    padding: 30px; } }
+    padding: 30px; }
+  .bolg__data {
+    font-size: 18px;
+    font-size: 1.125rem; } }
 
 @media only screen and (min-width: 1170px) {
   .blog__picture {

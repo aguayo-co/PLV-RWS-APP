@@ -85,7 +85,7 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
         v-if='user.id')
         router-link.foot-nav__link(:to="{ name: 'user-data' }")
           figure.tool-user__grid
-            small.badge.badge_user 2
+            small.badge.badge_user(v-if="user.notifications > 0") {{ user.notifications }}
             span.tool-user__avatar
               //-vue variable Notificaciones usuario
               img.tool-user__photo(

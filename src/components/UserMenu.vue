@@ -85,12 +85,17 @@ export default {
             {
               name: 'Tus Reviews',
               url: '/user/reviews',
-              ico: 'i-start'
+              ico: 'i-like'
             },
             {
               name: 'Método De Envío',
               url: '/user/metodos-envios',
               ico: 'i-shipping'
+            },
+            {
+              name: 'Prilover STAR',
+              url: '/user/prilover-star',
+              ico: 'i-start'
             }
           ]
         }
