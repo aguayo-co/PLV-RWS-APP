@@ -1,7 +1,7 @@
 <template lang="pug">
 .tabs
   nav.tabs__nav
-    p.tabs__inner
+    .tabs__inner
       ul.tabs__nav-list
         li.tabs__nav-item
           a.tabs__nav-link(
@@ -51,8 +51,9 @@
                 .slot__bar(
                   v-if="!user.vacation_mode && product.status < 30"
                   :class="{ 'slot__product-actions_status': product.status < 10 }")
-                  .slot__product-actions.slot__actions_border
-                    span.slot__status(v-show="product.status < 10") {{ product.status | product_status }}
+                  .slot__product-actions.slot__actions_border(
+                    v-if="product.sale_price !== product.price || product.status < 10")
+                    span.slot__status(v-if="product.status < 10") {{ product.status | product_status }}
                     span.slot__status(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
                   .slot__product-actions
                     router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")

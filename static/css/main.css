@@ -6055,6 +6055,8 @@ body {
   opacity: .4; }
 
 .slot__status {
+  font-size: 10px;
+  font-size: 0.625rem;
   color: #fff; }
 
 .slot_grid {
@@ -6086,6 +6088,12 @@ body {
     .slot__ico.enableFavorite:before {
       content: "\e923"; }
 
+@media only screen and (min-width: 375px) {
+  .slot__status {
+    font-size: 12px;
+    font-size: 0.75rem;
+    color: #fff; } }
+
 @media only screen and (min-width: 560px) {
   .slot_grid {
     width: 33.333%; } }
@@ -6103,7 +6111,10 @@ body {
     height: 40px; }
     .slot__ico:before {
       font-size: 24px;
-      font-size: 1.5rem; } }
+      font-size: 1.5rem; }
+  .slot__status {
+    font-size: 14px;
+    font-size: 0.875rem; } }
 
 @media only screen and (min-width: 1024px) {
   .product-grid {
@@ -6114,6 +6125,11 @@ body {
     margin: 0 -16px; }
   .slot__ico {
     right: 24px; } }
+
+@media only screen and (min-width: 1024px) and (max-width: 1070px) {
+  .slot__status {
+    font-size: 12px;
+    font-size: 0.75rem; } }
 
 @media only screen and (min-width: 1280px) {
   .section_product {
@@ -9367,7 +9383,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 8px 14px;
+  padding: 8px;
   background-color: #f65a66; }
 
 .slot__product-actions {
@@ -9529,17 +9545,22 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
     margin-bottom: 60px;
     border-bottom: 1px solid #000; }
   .tabs__nav-item {
-    margin-right: 30px;
     font-weight: 700;
     text-transform: uppercase; }
   .tabActive {
     color: #fff;
     background-color: #000; }
   .slot__product-alert {
-    padding: 10px 14px; } }
+    padding: 10px 14px; }
+  .slot__bar {
+    padding: 8px 14px; } }
 
 @media only screen and (min-width: 768px) {
   .tabs__nav-link {
