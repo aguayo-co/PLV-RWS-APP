@@ -26,6 +26,8 @@
 	}
 
 }
+
+
 .blog_top {
 	padding-top: 30px;
 }
@@ -356,9 +358,13 @@
 	    @include font-rem(18px);
 	  }
 	}
-
-
 }
+.bolg__data {
+  font-family: $f-normal;
+  font-weight: $fw-thin;
+	@include font-rem(16px);
+}
+
 @include media-query(wide) {
 	.blog__out {
 		width: 88%;
@@ -416,7 +422,9 @@
 	.blog-card__item {
 	  padding: 30px;
 	}
-
+	.bolg__data {
+	  @include font-rem(18px);
+	}
 
 }
 @media only screen and (min-width: 1170px) {

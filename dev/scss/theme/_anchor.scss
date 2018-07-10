@@ -11,12 +11,16 @@ a {
 }
 
 .link {
+  color: $c-default;
+  transition: all 0.5s;
+
 	&:hover {
+    color: $c-brand;
 
 	}
 	&:focus,
   &:active {
-
+    color: $c-brand;
   }
 }
 

@@ -23,7 +23,6 @@ import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaTerminos from '@/pages/AyudaTerminos'
-import Blog01 from '@/pages/Blog-01'
 import Closet from '@/pages/Closet'
 import Reviews from '@/pages/Reviews'
 import CompraGuest from '@/pages/CompraGuest'
@@ -43,6 +42,10 @@ import User from '@/pages/User'
 import Compra from '@/pages/compra'
 import prilovers from '@/pages/prilovers'
 import Blog from '@/pages/Blog'
+import Blog01 from '@/pages/Blog-01'
+import Blog02 from '@/pages/Blog-02'
+import Blog03 from '@/pages/Blog-03'
+import Blog04 from '@/pages/Blog-04'
 
 import beforeEach from './beforeEach'
 
@@ -261,11 +264,6 @@ const router = new Router({
       component: Contenido
     },
     {
-      path: '/apps',
-      name: 'blog01',
-      component: Blog01
-    },
-    {
       path: '/como-enviar',
       name: 'como-enviar',
       component: AyudaComoEnviar
@@ -314,6 +312,26 @@ const router = new Router({
       path: '/blog',
       name: 'blog',
       component: Blog
+    },
+    {
+      path: '/las-cinco-apps-mas-usadas-por-fashion-bloggers-para-editar-sus-fotos',
+      name: 'blog01',
+      component: Blog01
+    },
+    {
+      path: '/la-guru-del-orden',
+      name: 'blog02',
+      component: Blog02
+    },
+    {
+      path: '/fast-fashion',
+      name: '4',
+      component: Blog03
+    },
+    {
+      path: '/te-contamos-los-tips-de-vendedoras-top-para-lograr-buenas-limpiezas-de-closet-en-prilov',
+      name: 'blog04',
+      component: Blog04
     }
   ],
   scrollBehavior (to, from, savedPosition) {
