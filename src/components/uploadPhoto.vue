@@ -49,7 +49,7 @@ export default {
   props: ['initialImage', 'errorLog'],
   methods: {
     updateImg () {
-      this.$emit('input', this.image)
+      this.$emit('input', this.image.imageSet ? this.image : undefined)
     },
     zoom: function (direction) {
       let image = this.image

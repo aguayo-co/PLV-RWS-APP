@@ -491,6 +491,7 @@ export default {
           this.size = data.size
         })
         .finally(e => {
+          this.product.images = this.sortedImages()
           this.loading = false
         })
     },
@@ -550,23 +551,17 @@ export default {
       patchProduct.images_remove = []
       // Para mantener el orden de las imágenes, recorremos el arreglo de imágenes nuevas
       // y las ponémos con el indice en el que le usuario la ubicó.
-      for (let index = 0; index < this.images.length; index++) {
-        const imageName = this.product.firstImages[index].split('/').slice(-1)[0]
-        patchProduct.images_remove.push(imageName)
-        if (this.images[index] && this.images[index].hasImage()) {
-          const blob = await this.images[index].promisedBlob()
-          patchProduct.images[index] = blob
-          // Verificamos las imágenes ordenadas y si existía una en esa posición, la eliminamos.
+
+      for (let i = 0; i < 4; i++) {
+        const initImg = this.product.firstImages[i] ? this.product.firstImages[i].split('/').slice(-1)[0] : undefined
+        const currentImg = this.images[i] ? this.images[i].img.src.split('/').slice(-1)[0] : undefined
+        const changeImage = initImg !== currentImg
+        if (currentImg && changeImage) {
+          const blob = await this.images[i].promisedBlob()
+          patchProduct.images[i] = blob
         }
+        if (initImg && changeImage) patchProduct.images_remove.push(initImg)
       }
-
-      this.product.images.forEach((url, index) => {
-        if (index > 3) {
-          const imageName = url.split('/').slice(-1)[0]
-          patchProduct.images_remove.push(imageName)
-        }
-      })
-
       const modalDone = {
         name: 'ModalMessage',
         parameters: {
@@ -578,13 +573,12 @@ export default {
       productAPI.update(patchProduct)
         .then(response => {
           this.saving = false
-          this.getProduct()
           this.$store.dispatch('ui/closeModal').then(response => {
             this.$store.dispatch('ui/showModal', modalDone)
           })
         })
         .finally(e => {
-          this.loading = false
+          this.getProduct()
         })
     },
     validateBeforeSubmit: function () {
@@ -617,42 +611,15 @@ export default {
       if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
 
       if (Object.keys(this.errorLog).length === 0) {
-        this.create && this.createProduct()
-        this.update && this.updateProduct()
+        this.create ? this.createProduct() : this.updateProduct()
       } else {
         if (Object.keys(this.errorLog)[0] === 'image') {
           this.$refs.img0.$refs.image.focus()
         } else {
           this.$refs[Object.keys(this.errorLog)[0]].focus()
-          this.saving = false
         }
         this.saving = false
       }
-    },
-    sortedImages () {
-      const indexed = []
-      const nonIndexed = []
-      this.product.images.forEach(url => {
-        const name = url.split('/').slice(-1)[0]
-        // Match an index between 0 and 3
-        // Anything else, consider out of index.
-        const matches = name.match(/^([0-3])-/)
-        if (matches &&
-          !indexed[parseInt(matches[1])]) {
-          indexed[matches[1]] = url
-          return
-        }
-        nonIndexed.push(url)
-      })
-
-      let i = 0
-      while (nonIndexed.length > 0) {
-        if (!indexed[i]) {
-          indexed[i] = nonIndexed.shift()
-        }
-        i++
-      }
-      return indexed
     },
     chooseColor: function (colorId, colorPosition) {
       this.errorLog.color = undefined
@@ -662,6 +629,37 @@ export default {
     noneColor: function (colorPosition) {
       this.product.color[colorPosition - 1] = null
       this.product.color_ids.splice(colorPosition - 1)
+    },
+    sortedImages () {
+      // Guarda la imágenes que traen índice válido.
+      const indexed = []
+      // Guarda la imágenes que no traen índice válido.
+      const nonIndexed = []
+      this.product.images.forEach(url => {
+        const name = url.split('/').slice(-1)[0]
+        // Busca imágenes con índice entre 0 y 3
+        // Cualquier otro índice, es inválido para nosotros.
+        const matches = name.match(/^([0-3])-/)
+        if (matches &&
+          !indexed[parseInt(matches[1])]) {
+          indexed[matches[1]] = url
+          return
+        }
+        nonIndexed.push(url)
+      })
+
+      // Buscamos entre las imágenes que no tienen índice y las agregamos
+      // al arreglo de las indexadas en la primera posición disponible
+      // encontrada.
+      let i = 0
+      while (nonIndexed.length > 0) {
+        if (!indexed[i]) {
+          indexed[i] = nonIndexed.shift()
+        }
+        i++
+      }
+      console.log(indexed)
+      return indexed
     }
   }
 }
