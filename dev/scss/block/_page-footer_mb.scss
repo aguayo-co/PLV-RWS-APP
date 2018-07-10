@@ -140,7 +140,7 @@
     z-index: 10;
     height: 140vh;
     padding: 20px 16px;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     color: $c-default;
     text-align: left;
     list-style: none;
@@ -151,6 +151,13 @@
     box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
     0px 16px 24px 2px rgba(0, 0, 0, 0.14),
     0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    //Fix Issue #249
+    .box-cards {
+      max-height: 86vh;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: -ms-autohiding-scrollbar
+    }
   }
 
   .foot-nav__close {
