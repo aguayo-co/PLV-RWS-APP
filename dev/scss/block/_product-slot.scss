@@ -46,9 +46,7 @@
   }
 }
 
-.slot__info_top {
-  padding-top: 18px;
-}
+
 
 .slot__status {
   color: $c-neutro;
@@ -196,6 +194,10 @@
     padding: 6px 0;
     border-top: 1px solid $c-default;
     border-bottom: 1px solid $c-default;
+    
+  }
+  .slot__info_top {
+    margin-top: 18px;
   }
 
   .slot__brand {

@@ -6054,9 +6054,6 @@ body {
 .slot_disabled .slot__user {
   opacity: .4; }
 
-.slot__info_top {
-  padding-top: 18px; }
-
 .slot__status {
   color: #fff; }
 
@@ -6184,6 +6181,9 @@ body {
   padding: 6px 0;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000; }
+
+.slot__info_top {
+  margin-top: 18px; }
 
 .slot__brand {
   padding-right: 6px;
