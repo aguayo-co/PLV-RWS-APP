@@ -325,7 +325,7 @@ const router = new Router({
     },
     {
       path: '/fast-fashion',
-      name: '4',
+      name: 'blog03',
       component: Blog03
     },
     {

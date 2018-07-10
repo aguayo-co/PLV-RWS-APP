@@ -39,23 +39,23 @@ export default {
       articles: [
         {
           title: 'Las cuatro apps más usadas por fashion bloggers para editar sus fotos.',
-          url: '#',
-          image: ''
+          url: '/las-cinco-apps-mas-usadas-por-fashion-bloggers-para-editar-sus-fotos',
+          image: '/static/img/blog-thumb-001.jpg'
         },
         {
           title: 'Marie Kondo, la gurú del orden.',
-          url: '#',
-          image: ''
+          url: '/la-guru-del-orden',
+          image: '/static/img/blog-thumb-002.jpg'
         },
         {
           title: 'Fast Fashion. Qué es y qué puedes hacer al respecto.',
-          url: '#',
-          image: ''
+          url: '/fast-fashion',
+          image: '/static/img/blog-thumb-003.jpg'
         },
         {
           title: 'Tips de vendedoras top para lograr buenas limpiezas de clóset.',
-          url: '#',
-          image: ''
+          url: '/te-contamos-los-tips-de-vendedoras-top-para-lograr-buenas-limpiezas-de-closet-en-prilov',
+          image: '/static/img/blog-thumb-004.jpg'
         }
       ]
     }

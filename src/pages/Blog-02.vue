@@ -28,13 +28,13 @@
               dt Relacionados
               dd
                 router-link.link(
-                  :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos
+                  :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos.
               dd
                 router-link.link(
-                  :to="{ name: 'blog03' }") Fast Fashion
+                  :to="{ name: 'blog03' }") Fast Fashion. Qué es y qué puedes hacer al respecto.
               dd
                 router-link.link(
-                  :to="{ name: 'blog04' }") Te contamos los tips de vendedoras top para lograr buenas limpiezas de clóset en Prilov
+                  :to="{ name: 'blog04' }") Tips de vendedoras top para lograr buenas limpiezas de clóset.
     article.blog__body
       .blog__out
         .blog__spread

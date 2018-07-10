@@ -28,13 +28,13 @@
               dt Relacionados
               dd
                 router-link.link(
-                  :to="{ name: 'blog02' }") La gurú del orden
+                  :to="{ name: 'blog02' }") Marie Kondo, la gurú del orden.
               dd
                 router-link.link(
-                  :to="{ name: 'blog03' }") Fast Fashion
+                  :to="{ name: 'blog03' }") Fast Fashion. Qué es y qué puedes hacer al respecto.
               dd
                 router-link.link(
-                  :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos
+                  :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos.
     article.blog__body
       .blog__out
         .blog__spread
