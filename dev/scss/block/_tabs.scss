@@ -36,28 +36,40 @@
   }
 }
 
-.slot__product-actions {
-  @include flexbox;
-  @include justify-content(flex-end);
-  @include align-items(center);
+.slot__bar {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 6px 14px;
+  padding: 8px 14px;
   background-color: $c-brand;
 }
 
-.slot__actions-txt {
-  width: 100%;
-  margin: 0;
-  color: $c-neutro;
+
+.slot__product-actions {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+.slot__actions_border {
+  padding-bottom:2px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba($c-neutro, .2);
+
+
 }
 
-.slot__status {
-  display: block;
-  text-align: left;
-  width: 100%;
-}
+
+// .slot__actions-txt {
+//   width: 100%;
+//   margin: 0;
+//   color: $c-neutro;
+// }
+
+// .slot__status {
+//   display: block;
+//   text-align: left;
+//   width: 100%;
+// }
 
 .slot__actions-link {
   position: relative;
@@ -88,6 +100,66 @@
   @include font-rem(12px);
   margin: 0;
 }
+
+.slot__tooltip {
+  position: absolute;
+  display: inline-block;
+  min-width: 150px;
+  right: -4px;
+  padding: 5px 14px;
+  text-align: center;
+  color: $c-default;
+  background-color: $c-neutro;
+  border: 1px solid $c-default;
+  margin: 0;
+  opacity: 0;
+  @include font-rem(12px);
+  transition: all 0.18s ease-out 0.18s;
+  pointer-events: none;
+  bottom: 150%;
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 0;
+    right: 7px;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 6px 0 6px;
+    border-color: $c-default transparent transparent transparent;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 5px 0 5px;
+    border-color: $c-neutro transparent transparent transparent;
+  }
+}
+
+.slot__actions-link {
+  // margin-left: 16px;
+  &:hover {
+    .slot__tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+}
+
 
 @media only screen and (max-width: 500px) {
   .tabs__nav-link {
@@ -149,9 +221,9 @@
     }
   }
 
-  .slot__actions-link {
-    margin-left: 24px;
-  }
+  // .slot__actions-link {
+  //   margin-left: 24px;
+  // }
   .tabs__nav-link {
     @include font-rem(16px);
   }
@@ -162,22 +234,9 @@
     display: none;
   }
 
-  .slot__product-actions {
-    padding: 10px 16px;
-  }
 
-  .slot__actions-link {
-    margin-left: 30px;
-    &:hover {
-      .slot__tooltip {
-        opacity: 1;
-        pointer-events: auto;
-        -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-        transform: translateY(0);
-      }
-    }
-  }
+
+  
 
   .tabs__nav-list {
     @include flexbox;
@@ -194,54 +253,6 @@
   .tabActive {
     color: $c-neutro;
     background-color: $c-default;
-  }
-
-  .slot__tooltip {
-    position: absolute;
-    display: inline-block;
-    min-width: 150px;
-    right: -4px;
-    padding: 5px 14px;
-    text-align: center;
-    color: $c-default;
-    background-color: $c-neutro;
-    border: 1px solid $c-default;
-    margin: 0;
-    opacity: 0;
-    @include font-rem(12px);
-    transition: all 0.18s ease-out 0.18s;
-    pointer-events: none;
-    bottom: 150%;
-    -webkit-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    transform: translateY(10px);
-    -webkit-transform-origin: top;
-    -ms-transform-origin: top;
-    transform-origin: top;
-
-    &:before {
-      content:'';
-      position: absolute;
-      bottom: -10px;
-      width: 0;
-      right: 7px;
-      height: 0;
-      border-style: solid;
-      border-width: 10px 6px 0 6px;
-      border-color: $c-default transparent transparent transparent;
-    }
-    &:after {
-      content:'';
-      position: absolute;
-      bottom: -8px;
-      right: 8px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 8px 5px 0 5px;
-      border-color: $c-neutro transparent transparent transparent;
-
-    }
   }
 
   .slot__product-alert {

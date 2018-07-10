@@ -9360,33 +9360,30 @@ body {
 .tab .slot__lead {
   min-height: 44px; }
 
+.slot__bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 14px;
+  background-color: #f65a66; }
+
 .slot__product-actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  -moz-justify-content: flex-end;
-  justify-content: flex-end;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
   -moz-align-items: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 6px 14px;
-  background-color: #f65a66; }
+  align-items: center; }
 
-.slot__actions-txt {
-  width: 100%;
-  margin: 0;
-  color: #fff; }
-
-.slot__status {
-  display: block;
-  text-align: left;
-  width: 100%; }
+.slot__actions_border {
+  padding-bottom: 2px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
 
 .slot__actions-link {
   position: relative;
@@ -9412,6 +9409,55 @@ body {
   font-size: 12px;
   font-size: 0.75rem;
   margin: 0; }
+
+.slot__tooltip {
+  position: absolute;
+  display: inline-block;
+  min-width: 150px;
+  right: -4px;
+  padding: 5px 14px;
+  text-align: center;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  margin: 0;
+  opacity: 0;
+  font-size: 12px;
+  font-size: 0.75rem;
+  -webkit-transition: all 0.18s ease-out 0.18s;
+  transition: all 0.18s ease-out 0.18s;
+  pointer-events: none;
+  bottom: 150%;
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transform-origin: top;
+  transform-origin: top; }
+  .slot__tooltip:before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 0;
+    right: 7px;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 6px 0 6px;
+    border-color: #000 transparent transparent transparent; }
+  .slot__tooltip:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 5px 0 5px;
+    border-color: #fff transparent transparent transparent; }
+
+.slot__actions-link:hover .slot__tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0);
+  transform: translateY(0); }
 
 @media only screen and (max-width: 500px) {
   .tabs__nav-link {
@@ -9469,8 +9515,6 @@ body {
       pointer-events: auto;
       -webkit-transform: translateY(0);
       transform: translateY(0); }
-  .slot__actions-link {
-    margin-left: 24px; }
   .tabs__nav-link {
     font-size: 16px;
     font-size: 1rem; } }
@@ -9478,15 +9522,6 @@ body {
 @media only screen and (min-width: 400px) {
   .tabs__nav-btn {
     display: none; }
-  .slot__product-actions {
-    padding: 10px 16px; }
-  .slot__actions-link {
-    margin-left: 30px; }
-    .slot__actions-link:hover .slot__tooltip {
-      opacity: 1;
-      pointer-events: auto;
-      -webkit-transform: translateY(0);
-      transform: translateY(0); }
   .tabs__nav-list {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -9500,48 +9535,6 @@ body {
   .tabActive {
     color: #fff;
     background-color: #000; }
-  .slot__tooltip {
-    position: absolute;
-    display: inline-block;
-    min-width: 150px;
-    right: -4px;
-    padding: 5px 14px;
-    text-align: center;
-    color: #000;
-    background-color: #fff;
-    border: 1px solid #000;
-    margin: 0;
-    opacity: 0;
-    font-size: 12px;
-    font-size: 0.75rem;
-    -webkit-transition: all 0.18s ease-out 0.18s;
-    transition: all 0.18s ease-out 0.18s;
-    pointer-events: none;
-    bottom: 150%;
-    -webkit-transform: translateY(10px);
-    transform: translateY(10px);
-    -webkit-transform-origin: top;
-    transform-origin: top; }
-    .slot__tooltip:before {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      width: 0;
-      right: 7px;
-      height: 0;
-      border-style: solid;
-      border-width: 10px 6px 0 6px;
-      border-color: #000 transparent transparent transparent; }
-    .slot__tooltip:after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      right: 8px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 8px 5px 0 5px;
-      border-color: #fff transparent transparent transparent; }
   .slot__product-alert {
     padding: 10px 14px; } }
 
