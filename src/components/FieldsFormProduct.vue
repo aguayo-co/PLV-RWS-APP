@@ -463,37 +463,40 @@ export default {
       this.update && productAPI.getProductAuthById(this.$route.params.productId)
         .then(response => {
           const data = response.data
-          this.product = {
-            ...this.product,
-            category: data.category.parent_id,
-            fullCategoty: data.category,
-            id: this.$route.params.productId,
-            user_id: data.user_id,
-            title: data.title,
-            description: data.description,
-            condition_id: data.condition_id,
-            dimensions: data.dimensions,
-            original_price: data.original_price,
-            price: data.price,
-            commission: data.commission,
-            category_id: data.category_id,
-            images: data.images,
-            subcategory_id: data.subcategory_id,
-            color_ids: data.color_ids,
-            brand: data.brand,
-            brand_id: data.brand_id,
-            color: data.colors.map(x => x.name),
-            size: data.size,
-            size_id: data.size_id,
-            status: data.status,
-            firstImages: data.images
-          }
-          this.size = data.size
+          this.setData(data)
         })
         .finally(e => {
-          this.product.images = this.sortedImages()
           this.loading = false
         })
+    },
+    setData (data) {
+      this.product = {
+        ...this.product,
+        category: data.category.parent_id,
+        fullCategoty: data.category,
+        id: this.$route.params.productId,
+        user_id: data.user_id,
+        title: data.title,
+        description: data.description,
+        condition_id: data.condition_id,
+        dimensions: data.dimensions,
+        original_price: data.original_price,
+        price: data.price,
+        commission: data.commission,
+        category_id: data.category_id,
+        images: data.images,
+        subcategory_id: data.subcategory_id,
+        color_ids: data.color_ids,
+        brand: data.brand,
+        brand_id: data.brand_id,
+        color: data.colors.map(x => x.name),
+        size: data.size,
+        size_id: data.size_id,
+        status: data.status,
+        firstImages: data.images
+      }
+      this.size = data.size
+      this.product.images = this.sortedImages()
     },
     createProduct: function () {
       const modal = {
@@ -559,6 +562,7 @@ export default {
         if (currentImg && changeImage) {
           const blob = await this.images[i].promisedBlob()
           patchProduct.images[i] = blob
+          console.log(blob)
         }
         if (initImg && changeImage) patchProduct.images_remove.push(initImg)
       }
@@ -572,13 +576,13 @@ export default {
       }
       productAPI.update(patchProduct)
         .then(response => {
-          this.saving = false
           this.$store.dispatch('ui/closeModal').then(response => {
             this.$store.dispatch('ui/showModal', modalDone)
           })
-        })
-        .finally(e => {
-          this.getProduct()
+          const data = response.data
+          this.setData(data)
+          this.loading = false
+          this.saving = false
         })
     },
     validateBeforeSubmit: function () {
@@ -658,7 +662,6 @@ export default {
         }
         i++
       }
-      console.log(indexed)
       return indexed
     }
   }
