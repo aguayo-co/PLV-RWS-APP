@@ -92,6 +92,16 @@ export default {
           this.$store.dispatch('user/loadUser', response.data)
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo
+        }).catch(e => {
+          const modal = {
+            name: 'ModalMessage',
+            parameters: {
+              type: 'alert',
+              title: 'Tuvimos un problema generando tu solicitud.',
+              body: 'Por favor refresca la página e intenta nuevamente.'
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
         })
     }
   },
