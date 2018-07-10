@@ -71,7 +71,7 @@
               alt="Me lo compro ahora, lo uso unas cuantas veces y después lo vendo en Prilov")
           .blog__copy
             .blog__subarticle
-              p Prilov está provocando en mí un comportamiento muy particular. Ahora voy a comprar y pienso: "me lo compro ahora, lo uso unas cuantas veces y después lo vendo en Prilov" 
+              p Prilov está provocando en mí un comportamiento muy particular. Ahora voy a comprar y pienso: "me lo compro ahora, lo uso unas cuantas veces y después lo vendo en Prilov".
               p Eso me encanta, porque me da la opción de tener un clóset totalmente cambiante y así las tenidas casi no se repiten. Hago limpiezas todas las semanas y sigo encontrando cosas para vender. Y lo mejor de todo, ¡sin mover un dedo!
               blockquote.blog__pullquote(
                 cite='http://prilov.html')
