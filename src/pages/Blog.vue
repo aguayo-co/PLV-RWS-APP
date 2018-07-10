@@ -19,8 +19,8 @@
                 img.slot__img(
                   :src="article.image",
                   :alt="article.title")
-              .slot__lead
-                .slot__title {{ article.title }}
+              .slot__info.slot__info_top
+                h3.slot__brand {{ article.title }}
   ButtonSticky
 </template>
 

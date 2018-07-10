@@ -48,11 +48,10 @@
                 img.slot__img(
                   :src="product.images[0]",
                   :alt="'Foto de ' + product.title")
-                
                 .slot__bar(
                   v-if="!user.vacation_mode && product.status < 30"
                   :class="{ 'slot__product-actions_status': product.status < 10 }")
-                  .slot__product-actions.slot__actions_border  
+                  .slot__product-actions.slot__actions_border
                     span.slot__status(v-show="product.status < 10") {{ product.status | product_status }}
                     span.slot__status(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
                   .slot__product-actions
@@ -86,7 +85,7 @@
               .slot__info
                 .slot__brand {{ product.brand.name }}
                 .slot__group_price
-                  .through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+                  .slot__price_through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
                   .slot__price ${{ product.sale_price | currency }}
 
       Pager(v-if="products" v-model="pagination", :auth="true", v-on:paging="loading = $event")

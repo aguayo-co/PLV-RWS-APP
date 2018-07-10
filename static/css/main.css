@@ -6054,6 +6054,9 @@ body {
 .slot_disabled .slot__user {
   opacity: .4; }
 
+.slot__info_top {
+  padding-top: 18px; }
+
 .slot__status {
   color: #fff; }
 
