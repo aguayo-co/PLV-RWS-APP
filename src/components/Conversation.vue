@@ -46,10 +46,10 @@ section.single
         .chat-inner
           form.chat__form
             label.chat__label Escribe tu mensaje aquí
-            span.help(v-if="errorLog.newMessage") {{ errorLog.newMessage }}
+            span.help(v-if="errorLog.body") {{ errorLog.body }}
             .chat__form-group
               textarea-autosize.form__textarea.chat__textarea(
-                v-model="newMessage",
+                v-model="body",
                 :disabled="disabledMessage",
                 :class=" { 'disabled' : disabledMessage }")
               .chat__btn-group
@@ -74,7 +74,7 @@ export default {
       thread: null,
       product: {},
       errorLog: {},
-      newMessage: null,
+      body: null,
       disabledMessage: false,
       loading: true
     }
@@ -99,33 +99,38 @@ export default {
   methods: {
     send: function () {
       this.errorLog = {}
-      if (!this.newMessage) {
-        this.errorLog.newMessage = '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.'
-      } else {
-        this.disabledMessage = true
-        const data = {
-          thread_id: this.thread.id,
-          user_id: this.user.id,
-          recipients: [this.thread.participants[0].user_id],
-          body: this.newMessage
-        }
-        threadsAPI.createMessage(data)
-          .then(response => {
-            this.disabledMessage = false
-            this.newMessage = ''
-            this.thread.messages.push(response.data)
-            window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
-          })
+      if (!this.body) {
+        this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
+        return
       }
+      this.disabledMessage = true
+      const data = {
+        thread_id: this.thread.id,
+        user_id: this.user.id,
+        recipients: [this.thread.participants[0].user_id],
+        body: this.body
+      }
+      threadsAPI.createMessage(data)
+        .then(response => {
+          this.body = null
+          this.thread.messages.push(response.data)
+          window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
+        }).catch((e) => {
+          // Si hay errores, mostrarlos.
+          this.$handleApiErrors(e, ['body'], this.errorLog)
+        }).finally(() => {
+          this.disabledMessage = false
+        })
     }
   },
   created: function () {
     this.id = this.$route.params.threadId
     threadsAPI.getThreadById(this.id)
       .then(response => {
-        let isParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
-        if (isParticipant) {
+        let currentParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
+        if (currentParticipant) {
           this.thread = response.data
+          this.$store.commit('user/setUnreadCount', currentParticipant.user.unread_count)
         }
         this.loading = false
       })
