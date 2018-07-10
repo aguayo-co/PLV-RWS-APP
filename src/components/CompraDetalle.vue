@@ -53,7 +53,7 @@
         .form__row
           button.btn.btn_solid.btn_block(
             @click.prevent="nextStep") Continuar
-          a(
+          a.btn-back.i-back.btn-back_top(
             v-if="shoppingCartStep"
             @click.prevent="$emit('setShoppingCartStep', null)") Volver
           compraPayU(v-if="payUPayment", :payment-data="payUPayment")

@@ -8816,6 +8816,9 @@ body {
     font-size: 10px;
     font-size: 0.625rem; }
 
+.btn-back_top {
+  margin-top: 16px; }
+
 .chat__message_inner {
   height: 330px;
   overflow: auto; }
