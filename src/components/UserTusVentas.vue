@@ -33,7 +33,7 @@ section.single
         :sale="sale"
         :key="sale.id"
         v-on:refresh-sale="setSale")
-      Pager(v-model="pagination", :auth="true" v-on:paging="loading = $event")
+    Pager(v-model="pagination", :auth="true" v-on:paging="loading = $event")
 </template>
 
 <script src="./js/UserTusVentas.js"></script>

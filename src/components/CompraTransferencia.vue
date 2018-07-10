@@ -2,7 +2,8 @@
 .modal__slot.content-slot
   .notify
     header.head_ico
-      small.ico__title.i-clock 20:00
+      small.ico__title.i-clock
+        CountDown(:time="order.payments[0].cancel_by")
       h2.title Sube el comprobante de transferencia
       //-p.subtitle_heart Aún no has finalizado tu compra. Sube tu comprobante de transferencia bancaria.
     .content-slot__inner
@@ -31,7 +32,7 @@
               span.form-file__txt {{ fileName }}
               span.form-file__btn Subir
           .notify__bottom
-            p.subtitle_heart Tienes un máximo de 20 minutos para <strong>subir</strong> tu comprobante, de lo contrario tu compra se cancelará automáticamente.
+            p.subtitle_heart Tienes un máximo de <CountDown :time="order.payments[0].cancel_by"></CountDown> para <strong>subir</strong> tu comprobante, de lo contrario tu compra se cancelará automáticamente.
             p.notify__txt Si tienes preguntas, escríbenos a contacto@prilov.com
         .notify__footer
           button.btn.btn_solid Terminar compra

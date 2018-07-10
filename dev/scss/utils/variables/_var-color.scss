@@ -6,6 +6,7 @@
 $coral-pink: #f65a66;
 $pink-dark : #D46060;
 $red       : #D0021B;
+$red-urgent: #d01345;
 $green     : #7ed321;
 $orenge    : #FFA65B;
 $white     : #fff;
@@ -28,7 +29,8 @@ $c-brand-dark : $pink-dark;
 $c-brand-light: #fcadac;
 $c-ok         : $green;
 $c-warning    : $orenge;
-$c-danger     : $red; 
+$c-danger     : $red;
+$c-urgent     : $red-urgent;
 
 $c-neutro  : $white;
 $c-neutro-2: rgba($c-neutro, .3);

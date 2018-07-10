@@ -7,7 +7,7 @@ export default {
   getBySeller (sellerId, page, status = 1) {
     const params = {
       'filter[seller_id]': sellerId,
-      orderby: '-id',
+      orderby: '-created_at',
       page,
       'filter[status]': status
     }
@@ -16,10 +16,19 @@ export default {
   getArchiveBySeller (sellerId, page) {
     const params = {
       'filter[seller_id]': sellerId,
-      orderby: '-id',
+      orderby: '-created_at',
       page
     }
     return Vue.axios.get('/api/rating_archives', { params })
+  },
+  getByBuyer (buyerId, page, status = 1) {
+    const params = {
+      'filter[buyer_id]': buyerId,
+      orderby: '-created_at',
+      page,
+      'filter[status]': status
+    }
+    return Vue.axios.get('/api/ratings', { params })
   },
   getPositiveByUser (userId) {
     const params = {

@@ -1,8 +1,9 @@
 import Base from './Base'
 import saleReturnAPI from '@/api/saleReturn'
 
-export default Base.merge({
+export default {
   name: 'Devuelta',
+  mixins: [Base],
   data () {
     return {
       sale_return: null,
@@ -51,4 +52,4 @@ export default Base.merge({
       this.sale_return.status = 0
     }
   }
-})
+}

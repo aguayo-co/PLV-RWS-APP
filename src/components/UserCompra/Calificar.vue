@@ -1,20 +1,20 @@
 <template lang="pug">
 .dashboard__actions(v-if="can_rate")
-  p Califica esta compra
+  p ¿Qué tal tu compra?
   //-Notificaciones
   span.help(
     v-show="errorLog.buyer_rating") {{ errorLog.buyer_rating }}
   .user-data__notify
     ul.user-data__list
-      li.user-data__value.i-like(
-        :class="{'user-data__value_active': buyer_rating === 1}",
-        @click="buyer_rating = 1; errorLog.buyer_rating = null")
-      li.user-data__value.i-like.i_flip(
-        :class="{'user-data__value_active': buyer_rating === -1}",
-        @click="buyer_rating = -1; errorLog.buyer_rating = null")
-      li.user-data__value.i-less-circle(
-        :class="{'user-data__value_active': buyer_rating === 0}",
-        @click="buyer_rating = 0; errorLog.buyer_rating = null")
+      li.review-ico.i-like.btn-tag(
+        :class="{'review-ico_active': buyer_rating === 1}",
+        @click="buyer_rating = 1; errorLog.buyer_rating = null") Bien
+      li.review-ico.i-like.btn-tag.i_flip(
+        :class="{'review-ico_active': buyer_rating === -1}",
+        @click="buyer_rating = -1; errorLog.buyer_rating = null") Mal
+      li.review-ico.btn-tag.i-less-circle(
+        :class="{'review-ico_active': buyer_rating === 0}",
+        @click="buyer_rating = 0; errorLog.buyer_rating = null") Normal
   form.form.dashboard__form(@submit.prevent="setBuyerRating")
     .form__row
       label.form__label(

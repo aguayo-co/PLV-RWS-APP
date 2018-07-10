@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
-import threadsAPI from '@/api/thread'
 
 const baseUserGenerator = () => {
   return {
@@ -31,7 +30,8 @@ const baseUserGenerator = () => {
     ratings_negative_count: null,
     ratings_neutral_count: null,
     ratings_positive_count: null,
-    favorites_ids: []
+    favorites_ids: [],
+    unread_count: null
   }
 }
 
@@ -57,7 +57,6 @@ const actions = {
       .then(response => {
         commit('set', response.data)
         dispatch('loadAddresses')
-        dispatch('loadNotifications')
         return response
       })
       .catch(e => {
@@ -76,14 +75,6 @@ const actions = {
       commit('setAddresses', response.data.data)
       return response
     })
-  },
-  loadNotifications ({commit, state}) {
-    let filter = { unread: '1' }
-    return threadsAPI.get(1, 100, filter)
-      .then(response => {
-        commit('setNotifications', response.data)
-        return response
-      })
   },
   update ({commit, state}, data) {
     data.id = state.id
@@ -123,10 +114,11 @@ const actions = {
   logOut ({commit}) {
     commit('clear')
   },
-  setUser ({dispatch}, user) {
+  setUser ({dispatch, commit}, user) {
     window.localStorage.setItem('token', user.api_token)
     window.localStorage.setItem('userId', user.id)
     dispatch('loadUser')
+    dispatch('ui/clearLoginAttempt', null, { root: true })
   }
 }
 
@@ -137,19 +129,19 @@ const mutations = {
       state[key] = user[key]
     })
   },
-  setAddresses: function (state, addresses) {
+  setUnreadCount (state, unreadCount) {
+    state.unread_count = unreadCount
+  },
+  setAddresses (state, addresses) {
     Object.keys(addresses).forEach(function (key) {
       const address = addresses[key]
       Vue.set(state.addresses, address.id, address)
     })
   },
-  setAddress: function (state, address) {
+  setAddress (state, address) {
     Vue.set(state.addresses, address.id, address)
   },
-  setNotifications: function (state, notifications) {
-    Vue.set(state, 'notifications', notifications.total)
-  },
-  removeAddress: function (state, address) {
+  removeAddress (state, address) {
     Vue.delete(state.addresses, address.id)
   },
   clear (state) {

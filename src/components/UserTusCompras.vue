@@ -28,7 +28,7 @@ section.single
         :sale="sale"
         :key="sale.id"
         v-on:refresh-order="refreshOrder")
-      Pager(v-model="pagination", :auth="true" v-on:paging="loading = $event")
+    Pager(v-model="pagination", :auth="true" v-on:paging="loading = $event")
 
 </template>
 

@@ -1,5 +1,5 @@
 import productAPI from '@/api/product'
-import Pager from '@/Mixin/Pager'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'TabsProducto',
@@ -15,6 +15,7 @@ export default {
       pagination: null,
       products: null,
       loading: true,
+      modalDeleteId: null,
       tabs: {
         rejected: '1,3',
         published: '10,19',
@@ -56,6 +57,9 @@ export default {
         this.$delete(product, '_loading')
       })
     },
+    confirmAlert (id) {
+      this.modalDeleteId = id
+    },
     deleteProduct (product) {
       this.$set(product, '_loading', true)
       productAPI.delete(product).then(() => {
@@ -66,6 +70,7 @@ export default {
         }
       }).finally(() => {
         this.$delete(product, '_loading')
+        this.modalDeleteId = null
       })
     },
     loadProducts () {

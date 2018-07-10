@@ -1,5 +1,5 @@
 import UserVenta from '@/components/UserVenta'
-import Pager from '@/Mixin/Pager'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'UserTusVentas',

@@ -9,8 +9,9 @@ const reasons = [
   'Otro motivo.'
 ]
 
-export default Base.merge({
+export default {
   name: 'Recibida',
+  mixins: [Base],
   data () {
     return {
       step: null,
@@ -57,4 +58,4 @@ export default Base.merge({
       this.step = step
     }
   }
-})
+}

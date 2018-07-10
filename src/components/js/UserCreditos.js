@@ -1,6 +1,6 @@
 import { mapState } from 'vuex'
 import transactionAPI from '@/api/creditsTransaction'
-import Pager from '@/Mixin/Pager'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'UserCreditos',
@@ -58,6 +58,10 @@ export default {
         return 'Transferencia pendiente'
       }
 
+      if (transaction.transfer_status === 99) {
+        return 'Transferencia rechazada'
+      }
+
       return null
     },
     loadTransactions () {
@@ -88,6 +92,16 @@ export default {
           this.$store.dispatch('user/loadUser', response.data)
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo
+        }).catch(e => {
+          const modal = {
+            name: 'ModalMessage',
+            parameters: {
+              type: 'alert',
+              title: 'Tuvimos un problema generando tu solicitud.',
+              body: 'Por favor refresca la página e intenta nuevamente.'
+            }
+          }
+          this.$store.dispatch('ui/showModal', modal)
         })
     }
   },

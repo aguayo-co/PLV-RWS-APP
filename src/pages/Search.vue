@@ -40,7 +40,10 @@ export default {
   },
   computed: {
     query () {
-      return { 'q': this.$route.params.query }
+      return {
+        'q': this.$route.params.query,
+        'filter[status]': '10,19'
+      }
     }
   },
   methods: {

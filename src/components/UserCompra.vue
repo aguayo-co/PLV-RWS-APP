@@ -22,7 +22,7 @@
               p.card__size Talla: {{ product.size.name }}
             p.card__price $ {{ product.sale_price | currency }}
             .card__user-data
-              p Vendedora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.user_id }}">  {{ sale.user.first_name }} {{ sale.user.last_name }}</router-link>
+              p Vendedora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.user_id }}">  {{ sale.user | full_name }}</router-link>
               p(v-if="sellerPhone") Teléfono: {{ sellerPhone }}
               p
                 strong Datos de la orden
