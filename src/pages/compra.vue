@@ -24,14 +24,11 @@
     Loader(v-if="loading")
     //- List paso 1:compra
     .list(v-else-if="isShoppingCart")
-      .list__grid(v-if="!Object.keys(sales).length")
-        .list__content
-          //-Compra: Envío y pago: 1a Cliente Registrado, logueado
-          section.list_step
-            //- metodos de envío
-            .compra-data_info
-              .subhead.subhead_top En este momento no tienes items en tu carro de compras
-              router-link.btn(:to="{ name: 'home' }") Ir al Shop
+      .compra-data_info(v-if="!Object.keys(sales).length")
+        //- Alerta sin productos
+        .alert-msg.alert-msg_center.alert-msg_top.i-sad En este momento no tienes items en tu carro de compras
+        .single__row
+          router-link.btn(:to="{ name: 'home' }") Ir al Shop
       //-grid
       .list__grid(v-else)
         //-list content

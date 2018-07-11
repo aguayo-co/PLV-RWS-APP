@@ -93,12 +93,7 @@
   padding-bottom: 32px;
   .btn__wrapper {
     margin-top: 32px;
-    &:before,
-    &:after {
-      display: none;
-    }
   }
-
 }
 .review-ico {
   @include flexbox;
