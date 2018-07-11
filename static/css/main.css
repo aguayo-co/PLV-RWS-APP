@@ -651,16 +651,26 @@ button {
   display: block; }
 
 .btn__wrapper {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
   text-align: center; }
   .btn__wrapper:after, .btn__wrapper:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
-    width: 25%;
+    width: 15%;
     max-width: 240px;
     height: 1px;
-    margin: 0 24px;
+    margin: 0 12px;
     border-bottom: 1px solid #000; }
   .btn__wrapper .btn {
     width: auto; }
@@ -722,7 +732,10 @@ button {
     width: auto;
     min-width: 220px; }
   .btn_block {
-    width: 100%; } }
+    width: 100%; }
+  .btn__wrapper:after, .btn__wrapper:before {
+    width: 25%;
+    margin: 0 24px; } }
 
 /*------------------------------------*\
 	Transversal Elements
@@ -9191,8 +9204,6 @@ body {
   padding-bottom: 32px; }
   .column__item .btn__wrapper {
     margin-top: 32px; }
-    .column__item .btn__wrapper:before, .column__item .btn__wrapper:after {
-      display: none; }
 
 .review-ico {
   display: -webkit-box;

@@ -31,7 +31,7 @@ section.single
                 .chat__btn-group
                   button.chat__btn-solid(v-if="savingMessage")
                     Dots
-                  button.chat__btn-solid.i-shipping(v-else @click.prevent="send")
+                  button.chat__btn-solid.i-shipping(v-else @click.prevent="send") Enviar
 </template>
 
 <script>
