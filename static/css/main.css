@@ -9353,6 +9353,7 @@ body {
 
 .pagination__item {
   display: inline-block;
+  vertical-align: middle;
   padding: 10px 16px 11px;
   margin: 0 4px;
   border: 1px solid #000; }
