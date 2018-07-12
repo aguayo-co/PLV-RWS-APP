@@ -1,3 +1,9 @@
+<style scoped>
+.swiper-container, .swiper-wrapper{
+  z-index: 0;
+}
+</style>
+
 <template lang="pug">
 .layout-inner
   .alert-msg.alert-msg_center(v-if="isOwner")
@@ -6,23 +12,22 @@
     router-link.btn(:to="{ name: 'editar-producto', params: { productId: product.id }}") editar producto
   article.detail
     .detail__gallery
-      figure.detail__picture
-        img.media-img(
-          v-if="srcActive === '' && product.images"
-          :src='product.images[0]',
-          :alt="'Foto principal ' + product.title")
-        img.media-img(
-          v-else='',
-          :src='srcActive',
-          :alt="'Foto ' + product.title")
+      swiper(ref="swiper", @slideChange="slideChange(this)")
+        swiper-slide(
+          :key='index'
+          v-for='(image,index) in product.images',
+          v-if="product.images")
+          img.media-img(
+            :src='image',
+            :alt="'Foto principal ' + product.title")
+
       //- Thumbs
-      .detail__tabs(
-        :class="{'detail__tabs_initial' :srcActive == ''}")
+      .detail__tabs
         .detail__thumb(
           v-for='(image,index) in product.images',
           :key='index',
-          :class="{'detail__thumb_active' :srcActive == image}",
-          @click='SrcActive(image)')
+          :class="{'detail__thumb_active' :imgActive == index}",
+          @click='slideImages(index)')
           img.media-img.detail__img(
             :src='image',
             :alt="'Detalle ' + product.title + ' foto ' + (index  + 1)")
@@ -69,17 +74,28 @@
 
 <script>
 import { mapState } from 'vuex'
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
 export default {
   name: 'ProductoDetalle',
   props: ['product'],
   data () {
     return {
       srcActive: '',
+      imgActive: 0,
       loading: {
         addToCart: null,
         favorite: null
+      },
+      swiperOption: {
+
       }
     }
+  },
+  components: {
+    swiper,
+    swiperSlide
   },
   computed: {
     ...mapState(['cart']),
@@ -98,9 +114,19 @@ export default {
     isOwner () {
       if (this.user.id) return this.user.id === this.product.user_id
       return false
+    },
+    swiper () {
+      return this.$refs.swiper.swiper
     }
   },
   methods: {
+    slideChange () {
+      this.imgActive = this.swiper.realIndex
+    },
+    slideImages (index) {
+      this.imgActive = index
+      this.swiper.slideTo(index)
+    },
     SrcActive: function (e) {
       this.srcActive = e
     },
