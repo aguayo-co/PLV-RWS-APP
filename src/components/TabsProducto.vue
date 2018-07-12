@@ -21,7 +21,7 @@
           li.filter__select(@click='changeTabsMobile("hidden")') Ocultos
           li.filter__select(@click='changeTabsMobile("rejected")') Rechazados
   nav.tabs__nav
-    p.tabs__inner
+    .tabs__inner
       ul.tabs__nav-list
         li.tabs__nav-item
           a.tabs__nav-link(
@@ -68,28 +68,30 @@
                 img.slot__img(
                   :src="product.images[0]",
                   :alt="'Foto de ' + product.title")
-                //- Eliminar producto
-                .slot__product-actions(
+                .slot__bar(
                   v-if="!user.vacation_mode && product.status < 30"
                   :class="{ 'slot__product-actions_status': product.status < 10 }")
-                  span.slot__status(v-show="product.status < 10") {{ product.status | product_status }}
-                  p.slot__actions-txt(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
-                  router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
-                    transition(name='toggle-scale')
-                      p.slot__tooltip Editar producto
-                  a.slot__actions-link.i-hide(
-                    v-if="product.status >= 10 && product.status < 20"
-                    @click.prevent="hideProduct(product)")
-                    transition(name='toggle-scale')
-                      p.slot__tooltip Ocultar producto
-                  a.slot__actions-link.i-view(
-                    v-else-if="product.status === 20"
-                    @click.prevent="unHideProduct(product)")
-                    transition(name='toggle-scale')
-                      p.slot__tooltip Habilitar producto
-                  a.slot__actions-link.i-trash(@click.prevent="confirmAlert(index)")
-                    transition(name='toggle-scale')
-                      p.slot__tooltip Eliminar producto
+                  .slot__product-actions.slot__actions_border(
+                    v-if="product.sale_price !== product.price || product.status < 10")
+                    span.slot__status(v-if="product.status < 10") {{ product.status | product_status }}
+                    span.slot__status(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
+                  .slot__product-actions
+                    router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
+                      transition(name='toggle-scale')
+                        p.slot__tooltip Editar producto
+                    a.slot__actions-link.i-hide(
+                      v-if="product.status >= 10 && product.status < 20"
+                      @click.prevent="hideProduct(product)")
+                      transition(name='toggle-scale')
+                        p.slot__tooltip Ocultar producto
+                    a.slot__actions-link.i-view(
+                      v-else-if="product.status === 20"
+                      @click.prevent="unHideProduct(product)")
+                      transition(name='toggle-scale')
+                        p.slot__tooltip Habilitar producto
+                    a.slot__actions-link.i-trash(@click.prevent="confirmAlert(index)")
+                      transition(name='toggle-scale')
+                        p.slot__tooltip Eliminar producto
                 //- Producto en proceso de compra
                 //- .slot__product-alert
                 //-   p.slot__alert-txt  Este producto está siendo comprado.
@@ -103,28 +105,10 @@
               //- brand/price
               .slot__info
                 .slot__brand {{ product.brand.name }}
-                // div(v-if="product.sale_price !== product.price") {{ product | discount }}% de descuento
-                .through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
-                .slot__price ${{ product.sale_price | currency }}
+                .slot__group_price
+                  .slot__price_through(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
+                  .slot__price ${{ product.sale_price | currency }}
 
-            //- user: picture/first_name/last_name
-            // a.slot__user(
-            //   href='#',
-            //   :title='product.user.first_name')
-            //   .slot__user-img
-            //     .slot__avatar
-            //       img.slot__picture(
-            //         v-if='product.user.picture'
-            //         :src='product.user.picture',
-            //         :alt='product.user.first_name')
-            //       span.tool-user__letter(v-else) {{ product.user.first_name.charAt(0) }}
-            //   .slot__user-info
-            //     .slot__prilover {{ product.user | full_name }}
-            //     .group(v-if='product.user.groups.length > 0')
-            //       .slot__group.i-it-girl(
-            //         v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
-            //       .slot__group.i-star-on(
-            //         v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
       Pager(v-if="products" v-model="pagination", :auth="true", v-on:paging="loading = $event")
 </template>
 

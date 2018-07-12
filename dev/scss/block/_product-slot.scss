@@ -47,6 +47,7 @@
 }
 
 .slot__status {
+  @include font-rem(10px);
   color: $c-neutro;
 }
 
@@ -80,6 +81,14 @@
     }
   }
 }
+// $bp-medium: 375px;
+@include media-query(small) {
+  .slot__status {
+    @include font-rem(12px);
+    color: $c-neutro;
+  }
+
+}
 
 @media only screen and (min-width: 560px) {
   .slot_grid {
@@ -110,6 +119,10 @@
       @include font-rem(24px);
     }
   }
+  .slot__status {
+    @include font-rem(14px);
+  }
+
 }
 
 // $bp-wide: 1024px;
@@ -128,6 +141,13 @@
     right: 24px;
   }
 }
+@media only screen and (min-width: 1024px) and (max-width: 1070px) {
+  .slot__status {
+    @include font-rem(12px);
+  }
+
+}
+
 
 @include media-query(big) {
   .section_product {
@@ -192,6 +212,10 @@
     padding: 6px 0;
     border-top: 1px solid $c-default;
     border-bottom: 1px solid $c-default;
+    
+  }
+  .slot__info_top {
+    margin-top: 18px;
   }
 
   .slot__brand {

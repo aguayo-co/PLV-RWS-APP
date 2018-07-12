@@ -53,7 +53,7 @@ section.single
                 :disabled="disabledMessage",
                 :class=" { 'disabled' : disabledMessage }")
               .chat__btn-group
-                button.chat__btn-solid.i-shipping(@click.prevent="send")
+                button.chat__btn-solid.i-shipping(@click.prevent="send") Enviar
   .single__inner(v-else)
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
     Loader(v-if="loading")

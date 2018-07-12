@@ -36,7 +36,7 @@ nav.user-menu
               router-link.user-nav__link(
                 :to='items.url',
                 :class='items.ico') {{ items.name }}
-                span.badge(v-if="items.notifications && user.notifications > 0") {{ user.notifications }}
+                span.badge(v-if="items.notifications && user.unread_count > 0") {{ user.unread_count }}
           .user-nav__item
             a.user-nav__link(
               @click.prevent='logout()',

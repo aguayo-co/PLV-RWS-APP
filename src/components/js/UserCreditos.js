@@ -34,12 +34,12 @@ export default {
     getTitle (transaction) {
       if (transaction.order_id) {
         const orderUrl = this.$router.resolve({name: 'compra', params: { path: transaction.order_id }}).href
-        return 'Usado en orden <a href="' + orderUrl + '">' + transaction.order_id + '</a>'
+        return 'Usado en compra #' + transaction.order_id
       }
 
       if (transaction.sale_id) {
         const tusVentasUrl = this.$router.resolve({name: 'user-tus-ventas'}).href
-        return 'Recibido por venta <a href="' + tusVentasUrl + '">' + transaction.sale_id + '</a>'
+        return 'Recibido por venta #' + transaction.sale_id
       }
 
       const reason = this.$getNestedObject(transaction, ['extra', 'reason'])

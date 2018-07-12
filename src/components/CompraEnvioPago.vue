@@ -48,7 +48,7 @@
 
     //-créditos
   section.list_step(v-if="shoppingCartStep === 'medio-de-pago'")
-    a(
+    a.btn-back.i-back.btn-back_top(
       @click.prevent="$emit('setShoppingCartStep', null)") Volver
     h3.subhead(v-if="credits") ¿Quieres usar tus créditos en esta compra?
     .pay-off(v-if="credits")

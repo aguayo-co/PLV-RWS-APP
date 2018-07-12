@@ -94,17 +94,19 @@ button {
 }
 
 .btn__wrapper {
-  display: block;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
   text-align: center;
   &:after,
   &:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
-    width: 25%;
+    width: 15%;
     max-width: 240px;
     height: 1px;
-    margin: 0 24px;
+    margin: 0 12px;
     border-bottom: 1px solid $c-default;
   }
   .btn {
@@ -177,4 +179,12 @@ button {
   .btn_block {
     width: 100%;
   }
+  .btn__wrapper {
+    &:after,
+    &:before {
+      width: 25%;
+      margin: 0 24px;
+    }
+  }
+
 }
