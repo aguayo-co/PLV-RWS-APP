@@ -53,7 +53,7 @@ export default {
         valid = false
       }
 
-      if (!this.buyer_rating) {
+      if (!this.buyer_rating && this.buyer_rating !== 0) {
         this.errorLog.buyer_rating = 'Debes seleccionar una calificación.'
         valid = false
       }
