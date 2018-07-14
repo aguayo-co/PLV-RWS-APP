@@ -6018,8 +6018,7 @@ body {
 
 @media only screen and (min-width: 1180px) {
   .detail__gallery {
-    padding-right: 30px;
-    width: 100%; }
+    padding-right: 30px; }
   .detail__picture {
     padding-left: 10px; }
   .detail__content {
