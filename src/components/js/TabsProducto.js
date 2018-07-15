@@ -21,7 +21,9 @@ export default {
         published: '10,19',
         hidden: '20,29',
         sold: '30,32'
-      }
+      },
+      tabsMobile: false,
+      tittleTabMobile: 'Publicados'
     }
   },
   methods: {
@@ -40,6 +42,13 @@ export default {
       }).finally(() => {
         this.$delete(product, '_loading')
       })
+    },
+    openTabsMobile () {
+      this.tabsMobile = !this.tabsMobile
+    },
+    changeTabsMobile (tab) {
+      this.tabsMobile = !this.tabsMobile
+      this.activeTab = tab
     },
     unHideProduct (product) {
       const data = {
@@ -96,6 +105,13 @@ export default {
   watch: {
     activeTab () {
       this.loadProducts()
+      const tabs = {
+        published: 'Publicados',
+        sold: 'Vendidos',
+        hidden: 'Ocultos',
+        rejected: 'Rechazados'
+      }
+      this.tittleTabMobile = tabs[this.activeTab]
     },
     pagination (newPagination) {
       if (newPagination && newPagination.data.length > 0) {
