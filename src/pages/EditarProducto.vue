@@ -1,9 +1,7 @@
 <template lang="pug">
   FieldsFormProduct(
-    update
-    titleMain= 'Edita la información de tu producto',
-    titleSubhead= 'Unas buenas fotos dicen más que mil palabras'
-    )
+    titleMain = 'Edita la información de tu producto',
+    titleSubhead = 'Unas buenas fotos dicen más que mil palabras')
 </template>
 
 <script>

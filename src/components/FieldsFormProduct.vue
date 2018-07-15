@@ -3,12 +3,13 @@
 .layout-page
   section.section_product(v-if='loading')
     Loader
+  section.section_product(v-else-if="!isOwner")
+    .alert
+      p.alert__txt.i-sad No puedes editar este producto porque pertenece al clóset de alguien más
   form.form.form_big(
-    v-else-if='isOwner'
+    v-else
     id='form-publicar',
-    action='#',
-    @submit.prevent='validateBeforeSubmit'
-    method='post')
+    @submit.prevent='validateBeforeSubmit')
     .layout-form
       .layout-band
         .layout-inner
@@ -16,15 +17,15 @@
             h1.title__main {{titleMain}}
             h2.title_subhead {{titleSubhead}}
           .upfile
-            .upfile__main.i-plus
+            .upfile__main.i-plus(ref='image')
               h3.upfile__title Foto Principal
-              UploadPhoto(ref='img0', :errorLog='errorLog.image', v-model="images[0]", :initialImage='product.images[0]')
+              UploadPhoto(:errorLog='errorLog.image', v-model="images[0]", :initialImage='sortedImages[0]')
             .upfile__group
               h3.upfile__title Fotos Secundarias (opcionales)
               .upfile__grid
-                UploadPhoto(v-model="images[1]", :initialImage='product.images[1]')
-                UploadPhoto(v-model="images[2]", :initialImage='product.images[2]')
-                UploadPhoto(v-model="images[3]", :initialImage='product.images[3]')
+                UploadPhoto(v-model="images[1]", :initialImage='sortedImages[1]')
+                UploadPhoto(v-model="images[2]", :initialImage='sortedImages[2]')
+                UploadPhoto(v-model="images[3]", :initialImage='sortedImages[3]')
       .step
         //-Formulario set 1
         .layout-inner
@@ -167,18 +168,17 @@
                             :style='{ opacity: 0 }')
                           span Ninguno
                 .form__row(
-                    :class='{ "is-danger": errorLog.calculatedSize }')
+                    :class='{ "is-danger": errorLog.size }')
                     label.form__label(
+                      ref='size'
                       for="productSize") Ingresa la talla de tu producto (ej: 38, S, 3XL)
                     span.help(
-                      v-if="errorLog.calculatedSize"
-                    ) {{ errorLog.calculatedSize }}
+                      v-if="errorLog.size"
+                    ) {{ errorLog.size }}
                     MultiSelect(
-                      ref='calculatedSize'
                       id="productSize"
-                      @open="errorLog.calculatedSize = null",
-                      v-model="size",
-                      :value= "size"
+                      @open="errorLog.size = null",
+                      v-model="product.size",
                       :options="sizes",
                       :multiple="false",
                       group-values="children",
@@ -188,8 +188,7 @@
                       :group-select="false",
                       placeholder="Escribe para buscar",
                       selectLabel="Seleccionar",
-                      deselectLabel="Eliminar"
-                    )
+                      deselectLabel="Eliminar")
                       span(slot="noResult").
                         Ups, no encontramos la talla.
                 .form__row(
@@ -258,15 +257,15 @@
                       :href='product.url',
                       :title='product.title')
                       img.slot__img(
-                        v-if="images[0] && images[0].hasImage()"
-                        :src="images[0].img.src"
+                        v-if="mainImage"
+                        :src="mainImage"
                         :alt='product.title')
 
                       //-title/dimensions
                       .slot__lead
                         .slot__title {{ product.title }}
                         .slot__size
-                          .slot__size-txt(v-html="size ? size.name : ''")
+                          .slot__size-txt(v-html="product.size ? product.size.name : ''")
 
                       //- brand/price
                       .slot__info
@@ -306,8 +305,7 @@
                   type='radio',
                   name='comision',
                   v-model='product.commission',
-                  value='20'
-                  checked)
+                  value='20')
                 label.form__label.form__label_radio(
                   for='comision-20')
                   strong.form__headline Comisión 20%
@@ -364,15 +362,11 @@
                 | Estoy de acuerdo con la <router-link class="form__label-link" :to="{ name: 'terminos' }">Política de privacidad</router-link> de Prilov
             .form__row.form__row_away
               button.btn.btn_solid(:disabled="saving") Continuar
-  section.section_product(v-else="!isOwner")
-    .alert
-      p.alert__txt.i-sad No puedes editar este producto porque pertenece al clóset de alguien más
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import productAPI from '../api/product'
-// import Vue from 'vue'
 import MultiSelect from 'vue-multiselect'
 import UploadPhoto from '../components/uploadPhoto'
 
@@ -397,32 +391,14 @@ export default {
     return {
       loading: true,
       saving: null,
-      displayedSize: '---',
-      calculatedSize: '',
       size: null,
-      uniqueSize: false,
-      size_id: '',
       images: [],
-      imagesToUpload: [],
-      imageURL: null,
       checkTerms: true,
       product: {
-        title: null,
-        description: null,
-        dimensions: null,
-        original_price: null,
-        price: null,
         commission: 20,
-        brand_id: null,
-        category_id: null,
-        subcategory_id: null,
         color_ids: [],
-        condition_id: null,
-        brand: null,
-        file: [],
-        color: [ null, null ],
-        images: [],
-        firstImages: []
+        color: [],
+        images: []
       },
       errorLog: {},
       toggleColors: {
@@ -431,7 +407,7 @@ export default {
       }
     }
   },
-  props: ['create', 'update', 'titleMain', 'titleSubhead'],
+  props: ['create', 'titleMain', 'titleSubhead'],
   computed: {
     ...mapState(['user']),
     ...mapState('ui', [
@@ -445,194 +421,19 @@ export default {
     isOwner () {
       if (this.create) {
         return true
-      } else {
-        return this.product.user_id === this.user.id
       }
-    }
-  },
-  components: {
-    UploadPhoto,
-    MultiSelect
-  },
-  created () {
-    this.getProduct()
-  },
-  methods: {
-    getProduct () {
-      this.create && (this.loading = false)
-      this.update && productAPI.getProductAuthById(this.$route.params.productId)
-        .then(response => {
-          const data = response.data
-          this.setData(data)
-        })
-        .finally(e => {
-          this.loading = false
-        })
+
+      return this.product.user_id === this.user.id
     },
-    setData (data) {
-      this.product = {
-        ...this.product,
-        category: data.category.parent_id,
-        fullCategoty: data.category,
-        id: this.$route.params.productId,
-        user_id: data.user_id,
-        title: data.title,
-        description: data.description,
-        condition_id: data.condition_id,
-        dimensions: data.dimensions,
-        original_price: data.original_price,
-        price: data.price,
-        commission: data.commission,
-        category_id: data.category_id,
-        images: data.images,
-        subcategory_id: data.subcategory_id,
-        color_ids: data.color_ids,
-        brand: data.brand,
-        brand_id: data.brand_id,
-        color: data.colors.map(x => x.name),
-        size: data.size,
-        size_id: data.size_id,
-        status: data.status,
-        firstImages: data.images
+    mainImage () {
+      // Si croppa está activo, devolver desde croppa.
+      if (this.images[0]) {
+        return this.images[0].hasImage() ? this.images[0].canvas.toDataURL() : null
       }
-      this.size = data.size
-      this.product.images = this.sortedImages()
-    },
-    createProduct: function () {
-      const modal = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'preload',
-          title: '¡Yees! Ya estamos cargando tu producto'
-        }
+      // Si no hay croppa, deolver imagen original, si hay una.
+      if (this.sortedImages[0]) {
+        return this.sortedImages[0]
       }
-      this.$store.dispatch('ui/showModal', modal)
-
-      this.images.forEach((image, index, array) => {
-        if (image.hasImage()) this.imagesToUpload.push(image)
-      })
-
-      this.imagesToUpload.forEach((image, index, array) => {
-        if (image.hasImage()) {
-          image.generateBlob((blob) => {
-            this.product.images.push(blob)
-            if (index === this.imagesToUpload.length - 1) {
-              this.product.user_id = this.user.id
-              productAPI.create(this.product)
-                .then(response => {
-                  this.$store.dispatch('ui/closeModal')
-                  let pending
-                  response.data.status === 0 ? pending = true : pending = false
-                  if (!pending) {
-                    this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
-                  } else {
-                    this.$router.push('/venta-publicada/pendiente')
-                  }
-                  this.saving = true
-                })
-            }
-          })
-        }
-      })
-    },
-    async updateProduct () {
-      const modalUpdating = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'preload',
-          title: '¡Yees! Ya estamos actualizando tu producto'
-        }
-      }
-      this.$store.dispatch('ui/showModal', modalUpdating)
-
-      let patchProduct = {}
-      editableProperties.forEach(key => {
-        patchProduct[key] = this.product[key]
-      })
-
-      patchProduct.images = {}
-      patchProduct.images_remove = []
-      // Para mantener el orden de las imágenes, recorremos el arreglo de imágenes nuevas
-      // y las ponémos con el indice en el que le usuario la ubicó.
-
-      for (let i = 0; i < 4; i++) {
-        const initImg = this.product.firstImages[i] ? this.product.firstImages[i].split('/').slice(-1)[0] : undefined
-        const currentImg = this.images[i] ? this.images[i].img.src.split('/').slice(-1)[0] : undefined
-        const changeImage = initImg !== currentImg
-        if (currentImg && changeImage) {
-          const blob = await this.images[i].promisedBlob()
-          patchProduct.images[i] = blob
-          console.log(blob)
-        }
-        if (initImg && changeImage) patchProduct.images_remove.push(initImg)
-      }
-      const modalDone = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'positive',
-          title: '¡Listo! Ya actualizamos tu producto',
-          body: 'Pronto validaremos los cambios para que se vean publicados en tu producto.'
-        }
-      }
-      productAPI.update(patchProduct)
-        .then(response => {
-          this.$store.dispatch('ui/closeModal').then(response => {
-            this.$store.dispatch('ui/showModal', modalDone)
-          })
-          const data = response.data
-          this.setData(data)
-          this.loading = false
-          this.saving = false
-        })
-    },
-    validateBeforeSubmit: function () {
-      this.saving = true
-      this.errorLog = {}
-      if (!this.images[0]) {
-        this.errorLog.image = 'Carga una fotografía de tu producto'
-      } else {
-        if (!this.images[0].imageSet) this.errorLog.image = 'Carga una fotografía de tu producto'
-      }
-      if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
-      if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
-      if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría principal'
-      if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
-      if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
-      if (this.product.color_ids.length === 0) this.errorLog.color = 'Debes seleccionar al menos un color'
-      if (!this.size) {
-        this.errorLog.calculatedSize = 'Debes seleccionar una talla para tu producto'
-      } else {
-        this.product.size_id = this.size.id
-      }
-
-      if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
-      if (!this.product.price) this.errorLog.price = 'Debes ingresar el precio de tu producto'
-      if (this.product.price) {
-        if (parseInt(this.product.price) > parseInt(this.product.original_price)) this.errorLog.price = 'No puedes vender un producto más caro de lo que cuesta originalmente'
-      }
-      if (!this.product.original_price) this.errorLog.original_price = 'Debes indicarnos el precio original de tu producto'
-      if (!this.product.commission) this.errorLog.commission = 'Debes escoger una opción de comisión'
-      if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
-
-      if (Object.keys(this.errorLog).length === 0) {
-        this.create ? this.createProduct() : this.updateProduct()
-      } else {
-        if (Object.keys(this.errorLog)[0] === 'image') {
-          this.$refs.img0.$refs.image.focus()
-        } else {
-          this.$refs[Object.keys(this.errorLog)[0]].focus()
-        }
-        this.saving = false
-      }
-    },
-    chooseColor: function (colorId, colorPosition) {
-      this.errorLog.color = undefined
-      this.product.color[colorPosition] = this.colors[colorId].name
-      this.product.color_ids[colorPosition] = this.colors[colorId].id
-    },
-    noneColor: function (colorPosition) {
-      this.product.color[colorPosition - 1] = null
-      this.product.color_ids.splice(colorPosition - 1)
     },
     sortedImages () {
       // Guarda la imágenes que traen índice válido.
@@ -663,6 +464,169 @@ export default {
         i++
       }
       return indexed
+    }
+  },
+  components: {
+    UploadPhoto,
+    MultiSelect
+  },
+  created () {
+    if (this.create) {
+      this.loading = false
+      return
+    }
+
+    this.getProduct()
+  },
+  methods: {
+    getProduct () {
+      productAPI.getProductAuthById(this.$route.params.productId)
+        .then(response => {
+          this.setData(response.data)
+        })
+        .finally(e => {
+          this.loading = false
+        })
+    },
+    setData (data) {
+      this.product = {
+        ...data,
+        category: data.category.parent_id,
+        color: data.colors.map(x => x.name)
+      }
+    },
+    async createProduct () {
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: '¡Yees! Ya estamos cargando tu producto'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
+
+      for (let i = 0; i < 4; i++) {
+        if (this.images[i] && this.images[i].hasImage()) {
+          this.product.images[i] = await this.images[i].promisedBlob()
+        }
+      }
+
+      this.product.user_id = this.user.id
+      productAPI.create(this.product)
+        .then(response => {
+          this.$store.dispatch('ui/closeModal')
+          let pending
+          response.data.status === 0 ? pending = true : pending = false
+          if (!pending) {
+            this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
+          } else {
+            this.$router.push('/venta-publicada/pendiente')
+          }
+        })
+    },
+    async updateProduct () {
+      const modalUpdating = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'preload',
+          title: '¡Yees! Ya estamos actualizando tu producto'
+        }
+      }
+      this.$store.dispatch('ui/showModal', modalUpdating)
+
+      let patchProduct = {}
+      editableProperties.forEach(key => {
+        patchProduct[key] = this.product[key]
+      })
+
+      patchProduct.images = {}
+      patchProduct.images_remove = []
+
+      for (let i = 0; i < 4; i++) {
+        // Si no hay croppa, dejamos ese índice quieto.
+        if (!this.images[i]) {
+          continue
+        }
+
+        // Acá ya sabemos que el usuario algo cambió,
+        // así que eliminamos la imagen que estaba en este índice.
+        const initImg = this.sortedImages[i] ? this.sortedImages[i].split('/').slice(-1)[0] : null
+        if (initImg) {
+          if (initImg) patchProduct.images_remove.push(initImg)
+        }
+
+        // Si tenemos una imagen nueva, la guardamos.
+        if (this.images[i].hasImage()) {
+          patchProduct.images[i] = await this.images[i].promisedBlob()
+        }
+      }
+
+      const modalDone = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'positive',
+          title: '¡Listo! Ya actualizamos tu producto',
+          body: 'Pronto validaremos los cambios para que se vean publicados en tu producto.'
+        }
+      }
+      productAPI.update(patchProduct)
+        .then(response => {
+          this.$store.dispatch('ui/closeModal').then(response => {
+            this.$store.dispatch('ui/showModal', modalDone)
+          })
+          this.setData(response.data)
+          this.loading = false
+          this.saving = false
+        })
+    },
+    validateBeforeSubmit: function () {
+      this.saving = true
+      this.errorLog = {}
+      if (!this.mainImage) {
+        this.errorLog.image = 'Carga una fotografía de tu producto'
+      }
+      if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
+      if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
+      if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría principal'
+      if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
+      if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
+      if (this.product.color_ids.length === 0) this.errorLog.color = 'Debes seleccionar al menos un color'
+      if (!this.product.size) {
+        this.errorLog.size = 'Debes seleccionar una talla para tu producto'
+      } else {
+        this.product.size_id = this.product.size.id
+      }
+
+      if (!this.product.brand_id) this.errorLog.brand = 'Debes seleccionar una marca para tu producto'
+      if (!this.product.price) this.errorLog.price = 'Debes ingresar el precio de tu producto'
+      if (this.product.price) {
+        if (parseInt(this.product.price) > parseInt(this.product.original_price)) this.errorLog.price = 'No puedes vender un producto más caro de lo que cuesta originalmente'
+      }
+      if (!this.product.original_price) this.errorLog.original_price = 'Debes indicarnos el precio original de tu producto'
+      if (!this.product.commission) this.errorLog.commission = 'Debes escoger una opción de comisión'
+      if (!this.checkTerms) this.errorLog.checkTerms = 'Debes aceptar nuestra política de privacidad para subir tu producto'
+
+      if (this.product.dimensions === null) this.product.dimensions = ''
+
+      if (Object.keys(this.errorLog).length === 0) {
+        this.create ? this.createProduct() : this.updateProduct()
+      } else {
+        this.saving = false
+        const ref = this.$getNestedObject(this.$refs, [Object.keys(this.errorLog)[0]])
+        if (ref) {
+          ref.scrollIntoView(true)
+          ref.focus()
+        }
+      }
+    },
+    chooseColor: function (colorId, colorPosition) {
+      this.errorLog.color = undefined
+      this.product.color[colorPosition] = this.colors[colorId].name
+      this.product.color_ids[colorPosition] = this.colors[colorId].id
+    },
+    noneColor: function (colorPosition) {
+      this.product.color[colorPosition - 1] = null
+      this.product.color_ids.splice(colorPosition - 1)
     }
   }
 }
