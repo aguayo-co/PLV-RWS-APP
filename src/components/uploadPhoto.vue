@@ -68,13 +68,6 @@ export default {
       let image = this.image
       direction === 'in' ? image.zoomIn() : image.zoomOut()
     },
-    handleZoom (action, image, direction) {
-      if (action === 'set') {
-        window.zoomEvent = window.setTimeout(this.zoom(image, direction), 200)
-      } else {
-        window.clearTimeout(window.zoomEvent)
-      }
-    },
     updateImage (event) {
       clearTimeout(this.timeoutId)
       this.timeoutId = setTimeout(() => {
