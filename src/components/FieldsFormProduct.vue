@@ -435,6 +435,10 @@ export default {
         return this.sortedImages[0]
       }
     },
+    // Images should come with names like #-@@@@@@@.ext
+    // We try to return the images using the index (#) it has in the name.
+    // This allows the user to set the images in the order that he/she wants.
+    // If the user removes the second image, that field will remain empty.
     sortedImages () {
       // Guarda la imágenes que traen índice válido.
       const indexed = []
