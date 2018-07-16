@@ -219,6 +219,7 @@
   }
 
   .slot__brand {
+    text-transform: capitalize;
     padding-right: 6px;
     @include font-rem(10px);
   }
