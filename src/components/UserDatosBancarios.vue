@@ -146,14 +146,16 @@ export default {
     },
     accountType () {
       let typeId
-      if (String(this.user.bank_account.accountType).toLowerCase().includes('corriente') || parseInt(this.user.bank_account.accountType) === 2) {
-        typeId = 2
-      } else if (String(this.user.bank_account.accountType).toLowerCase().includes('ru') || parseInt(this.user.bank_account.accountType) === 1) {
-        typeId = 1
-      } else if (String(this.user.bank_account.accountType).toLowerCase().includes('vis') || parseInt(this.user.bank_account.accountType) === 3) {
-        typeId = 3
-      } else {
-        typeId = 4
+      if (this.user.bank_account) {
+        if (String(this.user.bank_account.accountType).toLowerCase().includes('corriente') || parseInt(this.user.bank_account.accountType) === 2) {
+          typeId = 2
+        } else if (String(this.user.bank_account.accountType).toLowerCase().includes('ru') || parseInt(this.user.bank_account.accountType) === 1) {
+          typeId = 1
+        } else if (String(this.user.bank_account.accountType).toLowerCase().includes('vis') || parseInt(this.user.bank_account.accountType) === 3) {
+          typeId = 3
+        } else {
+          typeId = 4
+        }
       }
       return this.accountTypes.filter(x => x.id === typeId)[0] || {}
     },
