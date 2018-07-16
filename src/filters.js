@@ -38,5 +38,15 @@ export default {
           return 'Deshabilitado'
       }
     })
+    Vue.filter('gateway_description', function (value) {
+      switch (value) {
+        case 'mercado_pago':
+          return 'Usando MercadoPago, podrás pagar con tarjetas de crédito y/o débito.Una vez hagas click en "Ir a Pagar" será redireccionada a la plataforma segura de MercadoPago.'
+        case 'pay_u':
+          return 'Usando PayU, podrás pagar con tarjetas de crédito y/o débito. Una vez hagas click en "Ir a Pagar" será redireccionada a la plataforma segura de PayU.'
+        default:
+          return 'En el siguiente paso, te mostraremos los datos de la cuenta de Prilov para que realices la transferencia bancaria desde la página de tu banco. Una vez que haces click en “Ir a Pagar”, tendrás 20 minutos para subir el comprobante. Asegúrate de estar lista.'
+      }
+    })
   }
 }

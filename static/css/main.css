@@ -1317,19 +1317,30 @@ select {
   -ms-flex-align: center;
   -moz-align-items: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
   width: 100%;
   border: 1px solid #000; }
 
+.form-file__label {
+  padding: 11px 16px 13px;
+  color: #fff;
+  background-color: #000; }
+
 .form-file__btn {
-  width: 30%;
   color: #fff;
   background-color: #000;
   padding: 11px 20px 13px;
   text-align: center; }
 
 .form-file__txt {
-  width: 70%;
-  padding: 11px 20px 13px; }
+  padding: 11px 16px 13px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
 
 @media only screen and (min-width: 768px) {
   .form__edit_txt {
@@ -6218,6 +6229,7 @@ body {
   margin-top: 18px; }
 
 .slot__brand {
+  text-transform: capitalize;
   padding-right: 6px;
   font-size: 10px;
   font-size: 0.625rem; }

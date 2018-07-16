@@ -127,6 +127,7 @@
               span.boxcheck__box
                 span Sin pago
           //-end item 4
+        p.boxcheck__tip(v-if="gateway") {{ gateway | gateway_description }}
 </template>
 
 <script src="./js/CompraEnvioPago.js"></script>

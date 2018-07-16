@@ -15,8 +15,9 @@ section.single
           p.box-flat__value(v-if="user.credits") {{ user.credits | currency }}
           p.box-flat__value(v-else) 0
           a.link_underline(
-            v-if="user.credits >= 4000",
+            v-if="user.credits >= 4000 && user.bank_account",
             @click.prevent="toggleConvertMoney") Convertir en dinero
+    p.status.status_alert.i-alert-circle(v-if="!user.bank_account") <span class="status__txt">Para poder retirar tus créditos debes    <router-link class="link_underline" :to="{ name: 'user-datos-bancarios' }">agregar tus datos bancarios</router-link></span>
     .alert(v-if="alertConvert")
       p.alert__info.alert__info_spacing.i-alert-info Transferir a mi cuenta Tienes {{ user.credits | currency }} Créditos, ¿Deseas transferirlos?
       .form__grid_inline.form__row_away
@@ -46,7 +47,8 @@ section.single
     //- Lista de transacciones
     ul.collapsible(v-for="transaction in transactions")
       li.collapsible__item
-        .collapsible__header.i-down
+        //- arrow add class .i-down
+        .collapsible__header
           .collapsible__child
             p.collapsible__title(v-html="getTitle(transaction)")
             p.collapsible__label(

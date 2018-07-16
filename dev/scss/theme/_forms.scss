@@ -631,12 +631,20 @@ select {
 .form__file-input {
   @include flexbox;
   @include align-items(center);
+  @include justify-content(space-between);
   width: 100%;
   border: 1px solid $c-default;
 }
 
+.form-file__label {
+  padding: 11px 16px 13px;
+  color: $c-neutro;
+  background-color: $c-default;
+}
+
+
 .form-file__btn {
-  width: 30%;
+  // width: 30%;
   color: $c-neutro;
   background-color: $c-default;
   padding: 11px 20px 13px;
@@ -644,8 +652,12 @@ select {
 }
 
 .form-file__txt {
-  width: 70%;
-  padding: 11px 20px 13px;
+  padding: 11px 16px 13px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 }
 
 // $bp-medium: 768px;
