@@ -5,7 +5,7 @@
       v-if="banner",
       :banner="banner")
     .layout-inner(v-else)
-      h1.title_section(v-html="queryObject ? queryObject.name : 'Productos'")
+      h1.title_section(v-html="queryObject ? queryObject.name : 'Recién llegados'")
     section.section_product
       GridProducto(
         :preFilter='filter'

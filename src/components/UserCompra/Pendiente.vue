@@ -14,7 +14,8 @@
   .dashboard__actions(v-if="!hasReceipt")
     p Aún no has terminado tu compra, sube tu comprobante de pago.
     p Tienes:
-      span.dashboard__txt-big 10 Minutos
+      span.dashboard__txt-big
+        CountDown(:time="sale.order.payments[0].cancel_by")
       | antes de que tu compra se anule
 
   .dashboard__actions(v-else)
@@ -38,7 +39,11 @@
           v-show="errorLog.transfer_receipt") {{ errorLog.transfer_receipt }}
         .form__file-input
           span.form-file__txt {{ fileName }}
-      button.btn.form-file__btn Subir
+      button.btn.btn_solid(
+          @click.prevent=""
+          v-if="loading.upload")
+          Dots
+      button.btn.form-file__btn(v-else) Subir comprobante
 
 .dashboard__subitem(v-else)
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto

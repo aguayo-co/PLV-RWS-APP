@@ -12,15 +12,27 @@ const STATUS_AVAILABLE = 19
 export default {
   create: function (product) {
     var formData = new FormData()
+
+    // Checks if there are new images.
+    if (Object.keys(product).includes('images')) {
+      Object.keys(product.images).forEach((key) => {
+        formData.append('images[' + key + ']', product.images[key])
+      })
+      delete product.images
+    }
+
+    // Checks if there are colors.
+    if (Object.keys(product).includes('color_ids')) {
+      product.color_ids.forEach(colorId => {
+        formData.append('color_ids[]', colorId)
+      })
+      delete product.color_ids
+    }
+
     Object.keys(product).forEach((key) => {
-      if (key === 'images' || key === 'color_ids') {
-        product[key].forEach((item) => {
-          formData.append(key + '[]', item)
-        })
-      } else {
-        formData.append(key, product[key])
-      }
+      formData.append(key, product[key])
     })
+
     return Vue.axiosAuth.post('/api/products/', formData)
   },
   delete: function (product) {
@@ -53,7 +65,7 @@ export default {
       delete product.images
     }
 
-    // Checks if there are new images.
+    // Checks if there are colors.
     if (Object.keys(product).includes('color_ids')) {
       product.color_ids.forEach(colorId => {
         formData.append('color_ids[]', colorId)

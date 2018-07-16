@@ -1,5 +1,25 @@
+<style scoped>
+.tabsMobile {
+  display: none;
+}
+@media (max-width: 399px) {
+  .tabsMobile {
+    display: block;
+  }
+}
+</style>
 <template lang="pug">
 .tabs
+  nav.filter.tabsMobile
+    a.filter__btn(href="#", @click.prevent='openTabsMobile') {{tittleTabMobile}}
+    transition(name='slide-left')
+        ul.filter__list(
+        v-show="tabsMobile")
+          li.filter__select_header.i-close(@click='openTabsMobile') Sección
+          li.filter__select(@click='changeTabsMobile("published")') Publicados
+          li.filter__select(@click='changeTabsMobile("sold")') Vendidos
+          li.filter__select(@click='changeTabsMobile("hidden")') Ocultos
+          li.filter__select(@click='changeTabsMobile("rejected")') Rechazados
   nav.tabs__nav
     .tabs__inner
       ul.tabs__nav-list

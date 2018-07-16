@@ -17,26 +17,22 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                 input.foot-nav__search-input.form__control#searchMain(type='text', name='search')
                 button.btn.btn_solid.foot-nav__search-btn Buscar
             ul.foot-nav__sublist
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Vestidos
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Verano forever
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") ZARA
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Ofertas
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Joyitas premium
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Vestidos
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Verano forever
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") ZARA
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Ofertas
-              li.foot-nav__subitem
-                a.foot-nav__sublink(href="#") Joyitas premium
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'productos-filtrado', params: { type: 'categorias', slug: 'botas' }}") Botas
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'productos-filtrado', params: { type: 'categorias', slug: 'chaquetas' }}") Chaquetas
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'productos-filtrado', params: { type: 'marcas', slug: 'zara' }}") Zara
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'productos-filtrado', params: { type: 'marcas', slug: 'rapsodia' }}") Rapsodia
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'productos-filtrado', params: { type: 'marcas', slug: 'topshop' }}") Topshop
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'Instashop' }") Instashop
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(to="/shop") Recién llegados
+              li.foot-nav__subitem(@click='animSearch')
+                router-link.foot-nav__sublink(:to="{ name: 'closet-room' }") Clóset room
       li.foot-nav__item
         a.foot-nav__link(
           @click='animCart')
