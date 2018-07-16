@@ -381,8 +381,7 @@ const editableProperties = [
   'brand_id',
   'dimensions',
   'price',
-  'original_price',
-  'status'
+  'original_price'
 ]
 export default {
   name: 'FieldsFormProduct',
@@ -572,6 +571,11 @@ export default {
           body: 'Pronto validaremos los cambios para que se vean publicados en tu producto.'
         }
       }
+
+      if (this.product.status < 10) {
+        patchProduct.status = 3
+      }
+
       productAPI.update(patchProduct)
         .then(response => {
           this.$store.dispatch('ui/closeModal').then(response => {
@@ -580,6 +584,9 @@ export default {
           this.setData(response.data)
           this.loading = false
           this.saving = false
+          if (this.$route.query.redirect) {
+            this.$router.push(this.$route.query.redirect)
+          }
         })
     },
     validateBeforeSubmit: function () {
