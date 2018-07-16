@@ -41,7 +41,7 @@
           @click.prevent="zoom('in')") Acercar
       template(v-else-if='initialImage')
         button.btn-tag(
-          @click.prevent="editImage = true") Cambiar
+          @click.prevent="editImage = true") Modificar esta imagen
 </template>
 
 <script>
