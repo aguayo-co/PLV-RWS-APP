@@ -51,10 +51,14 @@ export default {
       userAPI.login(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-          this.$store.dispatch('guestCart/merge')
-          if (typeof this.loggedIn === 'function') {
-            this.loggedIn(response)
-          }
+            .then(() => {
+              this.$store.dispatch('guestCart/merge')
+              // Los componentes que definan un método `loggedIn`
+              // pueden actuar después de un login correcto.
+              if (typeof this.loggedIn === 'function') {
+                this.loggedIn(response)
+              }
+            })
         })
         .catch(e => {
           this.$store.dispatch('ui/loginAttempt')

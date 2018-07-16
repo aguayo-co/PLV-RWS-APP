@@ -48,16 +48,15 @@ const getters = {
 }
 
 const actions = {
-  loadUser ({commit, dispatch}) {
+  async loadUser ({dispatch}) {
     const userId = window.localStorage.getItem('userId')
     if (!userId) {
-      return
+      throw Error('No hay usuario a cargar.')
     }
     return userAPI.load(userId)
       .then(response => {
-        commit('set', response.data)
-        dispatch('loadAddresses')
-        return response
+        // Devolvemos promesa que devuelve usuario.
+        return dispatch('setUser', response.data)
       })
       .catch(e => {
         const code = Vue.getNestedObject(e, ['response', 'status'])
@@ -113,12 +112,22 @@ const actions = {
   },
   logOut ({commit}) {
     commit('clear')
+    commit('cart/clear', null, { root: true })
   },
   setUser ({dispatch, commit}, user) {
-    window.localStorage.setItem('token', user.api_token)
-    window.localStorage.setItem('userId', user.id)
-    dispatch('loadUser')
-    dispatch('ui/clearLoginAttempt', null, { root: true })
+    // Reinicia conteo de login,
+    // carga direcciones y unifica carros.
+    // Si todo es correcto, pasa usuario en promesa.
+    return dispatch('ui/clearLoginAttempt', null, { root: true })
+      .then(async () => {
+        if (user.api_token) {
+          window.localStorage.setItem('token', user.api_token)
+        }
+        window.localStorage.setItem('userId', user.id)
+        commit('set', user)
+        await dispatch('loadAddresses')
+        return user
+      })
   }
 }
 

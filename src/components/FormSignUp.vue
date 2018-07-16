@@ -2,10 +2,7 @@
   .form-slot
     h1.title Registro
     form.form.form_big(
-      v-on:submit='',
-      action='#',
-      submit.prevent='validateBeforeSubmit',
-      method='post'
+      @submit.prevent='validateBeforeSubmit',
     )
       .form__row(
         :class='{ "is-danger": errorLog.nombre }'
@@ -94,8 +91,7 @@
             li(
               v-for='detail in errorLog.passwordDetail') {{ detail }}
       .form__row.form__row_away
-        button.btn.btn_solid.btn_block(
-          @click.prevent='validateBeforeSubmit') Registrarse
+        button.btn.btn_solid.btn_block Registrarse
     .break
       span.break__txt O
 </template>
@@ -122,17 +118,13 @@ export default {
       },
       infoTexts: {},
       viewPass: false
-      // googleSignInParams: {
-      //   client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com'
-      // }
-
     }
   },
   computed: {
     ...mapState(['guestCart'])
   },
   methods: {
-    signUp: function () {
+    signUp () {
       // console.log(this.$store.get('userAuth'))
       const payload = {
         first_name: this.nombre,
@@ -143,8 +135,10 @@ export default {
       userAPI.create(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-          this.$router.push('user/data')
-          this.$store.dispatch('guestCart/merge')
+            .then(() => {
+              this.$store.dispatch('guestCart/merge')
+              this.$router.push('user/data')
+            })
         })
         .catch(e => {
           if (e.response.data.errors.exists) {
@@ -164,7 +158,7 @@ export default {
           this.validatePassword()
         })
     },
-    validateBeforeSubmit: function (e) {
+    validateBeforeSubmit () {
       this.errorLog = {
         passwordDetail: []
       }
@@ -175,20 +169,20 @@ export default {
       if (!this.email) {
         this.errorLog.email = 'Debes ingresar tu email'
       } else {
-        if (!/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.email)) {
+        if (!/^(?:[\w!#$%&'*+\-/=?^`{|}~]+\.)*[\w!#$%&'*+\-/=?^`{|}~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/.test(this.email)) {
           this.errorLog.email = 'El email que ingresaste no parece válido.'
         }
       }
       if (!this.email) this.errorLog.emailConfirm = 'Debes ingresar de nuevo tu email'
       if (this.email !== this.emailConfirm) this.errorLog.emailConfirm = 'Este email no coincide con el primero que ingresaste'
 
-      this.validatePassword(e)
+      this.validatePassword()
 
       if (Object.keys(this.errorLog).length === 1 && this.errorLog.passwordDetail.length === 0) {
         this.signUp()
       }
     },
-    validatePassword: function (e) {
+    validatePassword () {
       this.errorLog.passwordDetail = []
 
       if (!this.password) this.errorLog.password = 'Debes ingresar una contraseña'
@@ -196,7 +190,7 @@ export default {
       if (!/[a-zA-Z]/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos una letra')
       if (!/\d+/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos un número')
     },
-    visiblePass: function () {
+    visiblePass () {
       this.viewPass = !this.viewPass
     }
   }

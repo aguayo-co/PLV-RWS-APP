@@ -86,11 +86,10 @@ export default {
     this.$store.dispatch('ui/loadProperties')
     this.$store.dispatch('user/loadUser')
       .then(response => {
-        if (response) {
-          this.$store.dispatch('cart/load')
-        } else {
-          this.$store.dispatch('guestCart/load')
-        }
+        this.$store.dispatch('cart/load')
+      }).catch((e) => {
+        this.$store.dispatch('guestCart/load')
+      }).finally(() => {
         this.loading = false
       })
   }
