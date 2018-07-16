@@ -1,7 +1,7 @@
 export default {
   install (Vue) {
     Vue.filter('currency', function (value) {
-      if (value) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
+      if (!isNaN(value)) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
     })
     Vue.filter('date', function (value) {
       return value ? Vue.moment(value).format('LL') : ''

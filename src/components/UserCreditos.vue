@@ -29,7 +29,10 @@ section.single
         .form__row
           button.btn.btn_solid(
             title="Transferir a mi cuenta",
-            @click="confirmConvertMoney") Transferir a mi cuenta
+            :disabled="saving"
+            @click="confirmConvertMoney")
+              Dots(v-if="saving")
+              template(v-else) Transferir a mi cuenta
     .alert(v-if="alertInfo")
       p.alert__info.alert__info_spacing.i-alert-info Verás tu dinero reflejado en tu cuenta bancaria entre 1 a 4 días hábiles.
     h3.subhead Detalle de Créditos
@@ -37,7 +40,7 @@ section.single
       .dividers__item
         .dividers__grid
           p.dividers__txt Créditos ya solicitados para ser transferidos
-          p.dividers__value ${{ pendingTransferTotal|currency }}
+          p.dividers__value ${{ pendingTransferTotal | currency }}
     .alert(v-if="user.credits < 4000")
       p.alert__info.i-alert-info  Recuerda que para transferir créditos a tu cuenta bancaria, debes tener $4.000 o más en créditos.
     h3.subhead Detalle de Transacciones

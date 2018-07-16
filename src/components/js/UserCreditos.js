@@ -19,6 +19,7 @@ export default {
   },
   data () {
     return {
+      saving: false,
       pagination: null,
       transactionsPendingTransfer: [],
       transactions: [],
@@ -33,12 +34,10 @@ export default {
   methods: {
     getTitle (transaction) {
       if (transaction.order_id) {
-        const orderUrl = this.$router.resolve({name: 'compra', params: { path: transaction.order_id }}).href
         return 'Usado en compra #' + transaction.order_id
       }
 
       if (transaction.sale_id) {
-        const tusVentasUrl = this.$router.resolve({name: 'user-tus-ventas'}).href
         return 'Recibido por venta #' + transaction.sale_id
       }
 
@@ -79,6 +78,7 @@ export default {
       this.alertConvert = !this.alertConvert
     },
     confirmConvertMoney () {
+      this.saving = true
       const payload = {
         user_id: this.user.id,
         amount: -this.user.credits,
@@ -90,6 +90,8 @@ export default {
       transactionAPI.transferRequest(payload)
         .then(response => this.$store.dispatch('user/loadUser', response.data))
         .then(() => {
+          this.loadTransactions()
+          this.loadPendingTransfer()
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo
         }).catch(e => {
@@ -102,6 +104,8 @@ export default {
             }
           }
           this.$store.dispatch('ui/showModal', modal)
+        }).finally(() => {
+          this.saving = false
         })
     }
   },
