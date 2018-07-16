@@ -13,16 +13,6 @@ export default {
       }
     }
 
-    // Modal base.
-    const baseModal = () => {
-      return {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'alert'
-        }
-      }
-    }
-
     /**
      * Funciones de ayuda.
      */
@@ -33,26 +23,37 @@ export default {
      * la petición.
      */
     const baseErrorPopups = (error) => {
-      const modal = {...baseModal()}
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'alert',
+          title: ''
+        }
+      }
+
       if ((error.response && error.response.status === 401) || error.message === 'No credentials founds.') {
         modal.parameters.title = 'No estás autenticado.'
         store.dispatch('user/logOut')
         store.dispatch('ui/showModal', modal)
+        throw error
       }
 
       if (error.response && error.response.status === 403) {
         modal.parameters.title = 'No tiene permiso para esto.'
         store.dispatch('ui/showModal', modal)
+        throw error
       }
 
       if (error.response && error.response.status >= 500) {
         modal.parameters.title = 'Algo ha fallado, por favor revisa tu conexión e intenta nuevamente.'
         store.dispatch('ui/showModal', modal)
+        throw error
       }
 
       if (!error.response) {
         modal.parameters.title = 'Algo ha fallado, intenta nuevamente.'
         store.dispatch('ui/showModal', modal)
+        throw error
       }
 
       throw error
