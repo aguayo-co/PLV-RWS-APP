@@ -1,4 +1,3 @@
-@@ -0,0 +1,559 @@
 <template lang="pug">
 .layout-page
   section.section_product(v-if='loading')
