@@ -14,7 +14,8 @@
   .dashboard__actions(v-if="!hasReceipt")
     p Aún no has terminado tu compra, sube tu comprobante de pago.
     p Tienes:
-      span.dashboard__txt-big 10 Minutos
+      span.dashboard__txt-big
+        CountDown(:time="sale.order.payments[0].cancel_by")
       | antes de que tu compra se anule
 
   .dashboard__actions(v-else)
