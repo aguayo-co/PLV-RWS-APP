@@ -170,14 +170,10 @@ export default {
         this.$store.dispatch('ui/showModal', modal)
         userAPI.create(payload)
           .then(response => {
-            this.$store.dispatch('user/setUser', response.data)
-              .then(() => {
-                this.$store.dispatch('ui/closeModal')
-                this.$store.dispatch('user/loadUser')
-                this.$store.dispatch('guestCart/merge')
-              }).catch((e) => {
-                console.log(e)
-              })
+            return this.$store.dispatch('user/setUser', response.data)
+          }).then(() => {
+            this.$store.dispatch('ui/closeModal')
+            this.$store.dispatch('guestCart/merge')
           })
           .catch(e => {
             this.$store.dispatch('ui/closeModal')

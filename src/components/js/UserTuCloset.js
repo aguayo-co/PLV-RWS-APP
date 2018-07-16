@@ -59,6 +59,9 @@ export default {
       'cover',
       'followers_count',
       'following_count',
+      'ratings_positive_count',
+      'ratings_negative_count',
+      'ratings_neutral_count',
       ...Object.keys(editableProps)
     ]),
     ...mapGetters('user', [

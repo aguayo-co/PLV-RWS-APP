@@ -88,8 +88,8 @@ export default {
         }
       }
       transactionAPI.transferRequest(payload)
-        .then(response => {
-          this.$store.dispatch('user/loadUser', response.data)
+        .then(response => this.$store.dispatch('user/loadUser', response.data))
+        .then(() => {
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo
         }).catch(e => {

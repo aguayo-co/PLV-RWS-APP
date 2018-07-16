@@ -17,13 +17,13 @@ export default {
       loading: true,
       modalDeleteId: null,
       tabs: {
-        rejected: '1,3',
-        published: '10,19',
-        hidden: '20,29',
-        sold: '30,32'
+        published: {title: 'Publicados', filter: '10,19'},
+        sold: {title: 'Vendidos', filter: '30,32'},
+        hidden: {title: 'Ocultos', filter: '20,29'},
+        rejected: {title: 'Rechazados', filter: '1,2'},
+        pending: {title: 'Pendientes', filter: '0,3'}
       },
-      tabsMobile: false,
-      tittleTabMobile: 'Publicados'
+      tabsMobile: false
     }
   },
   methods: {
@@ -42,13 +42,6 @@ export default {
       }).finally(() => {
         this.$delete(product, '_loading')
       })
-    },
-    openTabsMobile () {
-      this.tabsMobile = !this.tabsMobile
-    },
-    changeTabsMobile (tab) {
-      this.tabsMobile = !this.tabsMobile
-      this.activeTab = tab
     },
     unHideProduct (product) {
       const data = {
@@ -85,7 +78,7 @@ export default {
     loadProducts () {
       this.products = null
       let filters = {}
-      filters.status = this.tabs[this.activeTab]
+      filters.status = this.tabs[this.activeTab].filter
       filters.user_id = this.user.id
       const currentLoader = this.loading = productAPI.getAuth(1, null, filters, this.orderby)
         .then((response) => {
@@ -104,14 +97,8 @@ export default {
   },
   watch: {
     activeTab () {
+      this.tabsMobile = false
       this.loadProducts()
-      const tabs = {
-        published: 'Publicados',
-        sold: 'Vendidos',
-        hidden: 'Ocultos',
-        rejected: 'Rechazados'
-      }
-      this.tittleTabMobile = tabs[this.activeTab]
     },
     pagination (newPagination) {
       if (newPagination && newPagination.data.length > 0) {
