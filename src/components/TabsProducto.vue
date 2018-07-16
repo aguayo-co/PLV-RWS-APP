@@ -61,7 +61,8 @@
                     span.slot__status(v-if="product.status < 10") {{ product.status | product_status }}
                     span.slot__status(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
                   .slot__product-actions
-                    router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
+                    router-link.slot__actions-link.i-edit-line(
+                      :to="{ name: 'editar-producto', params: { productId: product.id }, query: { redirect: $route.fullPath }}")
                       transition(name='toggle-scale')
                         p.slot__tooltip Editar producto
                     a.slot__actions-link.i-hide(
