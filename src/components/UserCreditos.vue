@@ -44,7 +44,8 @@ section.single
     //- Lista de transacciones
     ul.collapsible(v-for="transaction in transactions")
       li.collapsible__item
-        .collapsible__header.i-down
+        //- arrow add class .i-down
+        .collapsible__header
           .collapsible__child
             p.collapsible__title(v-html="getTitle(transaction)")
             p.collapsible__label(
