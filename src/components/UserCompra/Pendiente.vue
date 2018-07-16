@@ -39,6 +39,7 @@
           v-show="errorLog.transfer_receipt") {{ errorLog.transfer_receipt }}
         .form__file-input
           span.form-file__txt {{ fileName }}
+          span.form-file__label Seleccionar archivos
       button.btn.btn_solid(
           @click.prevent=""
           v-if="loading.upload")

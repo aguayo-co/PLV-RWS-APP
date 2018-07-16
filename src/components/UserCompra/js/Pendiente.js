@@ -27,7 +27,7 @@ export default {
       return this.isTransfer && (!this.hasReceipt || this.changeReceipt)
     },
     fileName () {
-      return this.transfer_receipt ? this.transfer_receipt.name : 'Selecciona archivo'
+      return this.transfer_receipt ? this.transfer_receipt.name : 'No hay archivos seleccionados'
     }
   },
   methods: {
