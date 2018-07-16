@@ -39,7 +39,11 @@
           v-show="errorLog.transfer_receipt") {{ errorLog.transfer_receipt }}
         .form__file-input
           span.form-file__txt {{ fileName }}
-      button.btn.form-file__btn Subir
+      button.btn.btn_solid(
+          @click.prevent=""
+          v-if="loading.upload")
+          Dots
+      button.btn.form-file__btn(v-else) Subir comprobante
 
 .dashboard__subitem(v-else)
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto

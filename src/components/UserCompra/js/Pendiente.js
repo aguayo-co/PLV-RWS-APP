@@ -10,6 +10,9 @@ export default {
       changeReceipt: false,
       errorLog: {
         transfer_receipt: null
+      },
+      loading: {
+        upload: false
       }
     }
   },
@@ -35,10 +38,13 @@ export default {
       this.transfer_receipt = event.target.files[0]
     },
     uploadReceipt () {
+      this.loading.upload = true
       orderAPI.uploadTransferReceipt(this.sale.order_id, this.transfer_receipt).then(response => {
+        this.loading.upload = false
         this.changeReceipt = false
         this.$emit('refresh-order', response.data)
       }).catch(e => {
+        this.loading.upload = false
         this.$handleApiErrors(e, ['transfer_receipt'], this.errorLog)
       })
     }
