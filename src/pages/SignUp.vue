@@ -19,13 +19,6 @@ export default {
     FormSignUp,
     FormSuccess,
     FormError
-  },
-  data: function () {
-    return {
-    }
-  },
-  methods: {
-
   }
 }
 </script>

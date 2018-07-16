@@ -11,34 +11,19 @@
 <template lang="pug">
 .tabs
   nav.filter.tabsMobile
-    a.filter__btn(href="#", @click.prevent='openTabsMobile') {{tittleTabMobile}}
+    a.filter__btn(href="#", @click.prevent='tabsMobile = true') {{ tabs[activeTab].title }}
     transition(name='slide-left')
         ul.filter__list(
         v-show="tabsMobile")
-          li.filter__select_header.i-close(@click='openTabsMobile') Sección
-          li.filter__select(@click='changeTabsMobile("published")') Publicados
-          li.filter__select(@click='changeTabsMobile("sold")') Vendidos
-          li.filter__select(@click='changeTabsMobile("hidden")') Ocultos
-          li.filter__select(@click='changeTabsMobile("rejected")') Rechazados
+          li.filter__select_header.i-close(@click.prevent='tabsMobile = false') Sección
+          li.filter__select(v-for="info, tab in tabs" @click.prevent="activeTab = tab") {{ info.title }}
   nav.tabs__nav
     .tabs__inner
       ul.tabs__nav-list
-        li.tabs__nav-item
+        li.tabs__nav-item(v-for="info, tab in tabs")
           a.tabs__nav-link(
-            @click.prevent="activeTab = 'published'",
-            :class="{tabActive: activeTab === 'published'}") Publicados
-        li.tabs__nav-item
-          a.tabs__nav-link(
-            @click.prevent="activeTab = 'sold'",
-            :class="{tabActive: activeTab === 'sold'}") Vendidos
-        li.tabs__nav-item
-          a.tabs__nav-link(
-            @click.prevent="activeTab = 'hidden'",
-            :class="{tabActive: activeTab === 'hidden'}") Ocultos
-        li.tabs__nav-item
-          a.tabs__nav-link(
-            @click.prevent="activeTab = 'rejected'",
-            :class="{tabActive: activeTab === 'rejected'}") Rechazados
+            @click.prevent="activeTab = tab",
+            :class="{tabActive: activeTab === tab}") {{ info.title }}
   .tabs__content
     .tab
       Loader(v-if="loading")
@@ -76,7 +61,8 @@
                     span.slot__status(v-if="product.status < 10") {{ product.status | product_status }}
                     span.slot__status(v-if="product.sale_price !== product.price") {{ product | discount }}% Off
                   .slot__product-actions
-                    router-link.slot__actions-link.i-edit-line(:to="{ name: 'editar-producto', params: { productId: product.id }}")
+                    router-link.slot__actions-link.i-edit-line(
+                      :to="{ name: 'editar-producto', params: { productId: product.id }, query: { redirect: $route.fullPath }}")
                       transition(name='toggle-scale')
                         p.slot__tooltip Editar producto
                     a.slot__actions-link.i-hide(

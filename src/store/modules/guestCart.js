@@ -13,20 +13,22 @@ const getters = {}
 // actions
 const actions = {
   load ({ commit }) {
-    if (window.localStorage.getItem('prilovCart')) {
-      commit('load')
-    }
+    commit('load')
   },
   addProduct ({ commit }, product) {
+    commit('load')
     commit('add', product)
   },
   removeProduct ({ commit }, product) {
+    commit('load')
     commit('remove', product)
   },
   merge ({dispatch, commit}) {
     let alerted = false
-    state.products.forEach((product) => {
-      dispatch('cart/addProduct', { id: product.id }, { root: true }).catch(e => {
+    commit('load')
+    commit('cart/clear', null, { root: true })
+    state.products.forEach(async (product) => {
+      await dispatch('cart/addProduct', { id: product.id }, { root: true }).catch(e => {
         if (alerted) {
           return
         }
@@ -50,8 +52,10 @@ const actions = {
 const mutations = {
   load (state) {
     const cart = JSON.parse(window.localStorage.getItem('prilovCart'))
-    state.products = cart.products
-    state.total = parseInt(cart.total)
+    if (cart) {
+      state.products = cart.products
+      state.total = parseInt(cart.total)
+    }
   },
   add (state, product) {
     state.products.push(product)

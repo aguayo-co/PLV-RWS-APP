@@ -24,7 +24,8 @@ export default {
     Vue.filter('product_status', function (value) {
       switch (value) {
         case 0:
-          return 'Pendiente'
+        case 3:
+          return 'Pendiente de aprobación'
         case 1:
           return 'Rechazado'
         case 10:
