@@ -14,7 +14,7 @@ section.profile
             v-if="user.picture"
             :src="user.picture")
           span.profile__letter(v-if="!user.picture && user.first_name") {{ user.first_name.charAt(0) }}
-        p.user-data__group.i-star-on Prilover <span class="txt_brand">Star</span>
+        p.user-data__group.i-star-on(v-if='user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
       .profile__info
         h1.user-data__title {{ user | full_name }}
         .profile__actions
