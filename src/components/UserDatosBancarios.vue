@@ -16,7 +16,7 @@ section.single
           .box-flat__lead.i-alert
             .box-flat__lead-group
               h3.box-flat__title Aún no posees datos bancarios para el pago de tus ventas
-              p.box__txt Ingresa los datos de tu cuenta bancaria para trasnferir tus ganancias de Prilov. Puedes estar tranquila que tu información bancaria estará asegurada.
+              p.box__txt Ingresa los datos de tu cuenta bancaria para transferir tus ganancias de Prilov. Puedes estar tranquila que tu información bancaria estará asegurada.
           .box-flat__button
             button.btn.box-flat__btn.btn_solid(@click="switchForm", title="Agregar medio de pago") Agregar cuenta
 

@@ -102,24 +102,24 @@ nav.filter(@click="closeFilters")
             label.filter__check.i-check(
               :for="'condition-' + condition.id") {{ condition.name }}
     //Item Región
-    li.filter__select(
-      @click.stop="OpenFilter('region')",
-      :class="{ 'filter__select_open' : dropdownState.region }",
-      v-if="!compact")
-      span.filter__arrow Región
-      transition(name='toggle-scale')
-        ul.filter__list.toggle-box(
-          v-show='dropdownState.region')
-          li.filter__item(
-            v-for="region in regions")
-            input.form__input-check(
-              @change="filterChange"
-              v-model="new_filter.region_id",
-              :value="region.admin1_code",
-              :id="'region-' + region.admin1_code",
-              type="checkbox")
-            label.filter__check.i-check(
-              :for="'region-' + region.admin1_code") {{ region.name }}
+    //- li.filter__select(
+    //-   @click.stop="OpenFilter('region')",
+    //-   :class="{ 'filter__select_open' : dropdownState.region }",
+    //-   v-if="!compact")
+    //-   span.filter__arrow Región
+    //-   transition(name='toggle-scale')
+    //-     ul.filter__list.toggle-box(
+    //-       v-show='dropdownState.region')
+    //-       li.filter__item(
+    //-         v-for="region in regions")
+    //-         input.form__input-check(
+    //-           @change="filterChange"
+    //-           v-model="new_filter.region_id",
+    //-           :value="region.admin1_code",
+    //-           :id="'region-' + region.admin1_code",
+    //-           type="checkbox")
+    //-         label.filter__check.i-check(
+    //-           :for="'region-' + region.admin1_code") {{ region.name }}
     //Item Precio
     FilterPrecio(
       :sliderPrecio="precio",

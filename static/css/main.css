@@ -6885,6 +6885,14 @@ body {
   margin: 0 0 10px 0;
   color: #707070; }
 
+.box__txt_alert {
+  color: #f65a66; }
+  .box__txt_alert .box__link {
+    color: #f65a66;
+    font-weight: 700; }
+    .box__txt_alert .box__link:hover {
+      text-decoration: underline; }
+
 .box__switch {
   padding-top: 4px; }
 

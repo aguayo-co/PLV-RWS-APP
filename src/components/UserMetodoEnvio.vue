@@ -19,9 +19,8 @@ section.single
             h3.box__title {{ method.name}}
             .box__grid
               .box__lead
-                p.box__txt(
-                  v-if="!isAllowed(method)")
-                  strong Tu dirección ingresada como favorita no permite usar este método de envío ya que estás fuera de cobertura.
+                p.box__txt.box__txt_alert(
+                  v-if="!isAllowed(method)") Para habilitar Chilexpress anda a <router-link class="box__link" :to="{ name: 'user-data'}">Tú cuenta</router-link>, e ingresa una dirección con cobertura.
                 p.box__txt {{ method.description_seller}}
               .box__switch
                 .form__switch
