@@ -57,6 +57,11 @@ export default {
           title: 'General',
           items: [
             {
+              name: 'Tu cuenta',
+              url: '/user/data',
+              ico: 'i-data'
+            },
+            {
               name: 'Notificaciones',
               url: '/user/notificaciones',
               ico: 'i-bell',
@@ -71,11 +76,6 @@ export default {
               name: 'Créditos',
               url: '/user/creditos',
               ico: 'i-credits'
-            },
-            {
-              name: 'Datos Personales',
-              url: '/user/data',
-              ico: 'i-data'
             }
           ]
         },
