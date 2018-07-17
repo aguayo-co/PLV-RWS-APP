@@ -27,6 +27,18 @@
   margin: 0 0 10px 0;
   color: $c-default-5;
 }
+.box__txt_alert {
+  color: $c-brand;
+  .box__link {
+    color: $c-brand;
+    font-weight: $fw-bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
+
 
 .box__switch {
   padding-top: 4px;
