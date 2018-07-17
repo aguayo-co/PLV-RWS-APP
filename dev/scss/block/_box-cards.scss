@@ -32,17 +32,19 @@
 
 .box-cards__head{
   position: relative;
-  border-bottom: 1px solid $c-default;
-  padding: 16px 0px;
   @include flexbox;
   @include justify-content(space-between);
   @include align-items(center);
+  padding: 16px 0px;
+
 }
 .box-cards__subhead {
   padding: 16px;
   @include flexbox;
   @include justify-content(space-between);
   @include align-items(center);
+  border-top: 1px solid $c-default;
+
 }
 
 .box-cards__title {
