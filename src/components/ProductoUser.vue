@@ -32,7 +32,7 @@
               ul.user-data__list
                 li.user-data__track {{ user.followers_count }} Seguidores
                 li.user-data__track {{ user.following_count }} Siguiendo
-                li.user-data__track(v-if="user.id && loggedUser.id !== user.id")
+                li.user-data__track(v-if="loggedUser.id && loggedUser.id !== user.id")
                   router-link.i-email(
                     :to="{ name: 'privateMessage', params: { recipientId: user.id }}",
                     title='Enviar mensaje privado') Enviar mensaje privado
