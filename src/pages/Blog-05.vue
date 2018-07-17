@@ -70,10 +70,11 @@
             p Ten en cuenta que estamos en proceso de un gran cambio y puede que no todo funcione a la perfección desde un principio. Por eso necesitamos tu paciencia y sobre todo comprensión en esta etapa.
             p Cualquier cosa que quieras reportar, felices te escuchamos.
             p Si tienes dudas o comentarios, escríbenos a <a class="link_underline" href="mailto:contacto@prilov.com">contacto@prilov.com</a> y siempre te ayudaremos.
-            p <strong>!Kisses! </strong>
-            p The Prilov Team.​
-          blockquote.blog__pullquote(
-            cite='https://prilov.html')
+            p
+              strong !Kisses!
+            p The Prilov Team.
+            blockquote.blog__pullquote(
+              cite='https://www.prilov.com')
             p.blog__quote ¡El nuevo Prilov es de ustedes!
 </template>
 
