@@ -2309,7 +2309,8 @@ body {
   height: 100%;
   display: inline-block;
   text-align: center;
-  font-size: 185%;
+  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #000; }
 
@@ -2428,7 +2429,9 @@ body {
   .page-header {
     position: fixed;
     top: 0;
-    padding: 16px 0 18px; } }
+    padding: 16px 0 18px; }
+  .tool-user__letter {
+    font-size: 185%; } }
 
 @media only screen and (min-width: 1180px) {
   .tool-user__name {
@@ -6981,13 +6984,16 @@ body {
   .box-flat {
     padding: 24px;
     margin: 0 auto 40px; }
-  .box_alert .box-flat__lead .box-flat__title {
-    text-align: left; }
-  .box_alert .box-flat__lead:before {
-    font-size: 56px;
-    font-size: 3.5rem; }
-  .box_alert .box-flat__lead .box__txt {
-    margin-bottom: 16px; }
+  .box_alert .box-flat__lead {
+    width: -o-calc(100% - 220px);
+    width: calc(100% - 220px); }
+    .box_alert .box-flat__lead .box-flat__title {
+      text-align: left; }
+    .box_alert .box-flat__lead:before {
+      font-size: 56px;
+      font-size: 3.5rem; }
+    .box_alert .box-flat__lead .box__txt {
+      margin-bottom: 16px; }
   .box_alert .box-flat__button {
     padding-right: 0; }
   .box-flat__grid {

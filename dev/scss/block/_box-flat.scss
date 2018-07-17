@@ -73,6 +73,10 @@
   }
   .box_alert {
     .box-flat__lead {
+      width: -webkit-calc(100% - 220px);
+      width: -moz-calc(100% - 220px);
+      width: -o-calc(100% - 220px);
+      width: calc(100% - 220px);
       .box-flat__title {
         text-align: left;
       }

@@ -37,7 +37,7 @@
     figure.blog-bannerprom.banner-hero
       picture.banner-hero__crop
         source.banner-hero__img(
-          media='(max-width: 640px)', srcset='static/img/blog6-002.png')
+          media='(max-width: 640px)', srcset='static/img/blog6-002-m.png')
         img.banner-slider__img(
           src='static/img/blog6-002.png')
     article.blog__body
@@ -52,7 +52,7 @@
               p Luego de marcar como <strong>Recibido</strong>, debes evaluar tu experiencia con la vendedora, dejando un comentario. Esto es muy importante para que futuras compradoras puedan confiar en las usuarias y sentirse muy seguras en comprar. Para evaluar a la vendedora, pregúntate: ¿Respondió los mensajes a tiempo? ¿Envió el producto dentro del plazo? ¿El producto era tal cual a las fotos?
               //- p ¡Disfruta tu nueva joyita!
               blockquote.blog__pullquote(
-                cite='https://prilov.html')
+                cite='https://www.prilov.com')
                 p.blog__quote ¡Disfruta tu nueva joyita!
 </template>
 

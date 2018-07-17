@@ -28,6 +28,9 @@
               dt Relacionados
               dd
                 router-link.link(
+                  :to="{ name: 'blog05' }") Todo lo que tienes que saber del nuevo Prilov.
+              dd
+                router-link.link(
                   :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos.
               dd
                 router-link.link(
@@ -53,7 +56,7 @@
             p Para decidir con qué nos quedamos debemos preguntarnos ¿Trae esto felicidad a mi vida? Al comienzo puede ser difícil, por eso recomienda hacerlo por categorías, partiendo por lo más fácil, la ropa, luego papeles y libros, otros objetos, y por últimos aquellos con un valor sentimental, como las fotos. Es necesario ordenarlo todo de una vez. Por eso si tienes tu ropa en closets distintos, o en cajas, debes asegurarte de juntar todo en un lugar antes de empezar.
             p Recuerda, la clave está en quedarse solo aquello que te hace feliz, y no decidir en base a su funcionalidad, sino de aseguro terminará en un montón al fondo de tu closet ¿Guardar ropa vieja y fea para estar en la casa? olvídalo! no porque estés en tu casa debes vestir ropa que no te gusta. Y lo que es más difícil aún (y lo digo por experiencia), no te quedes con las cosas que te da pena botar y que ya cumplieron su ciclo en tu closet. Te aseguro que en Prilov hay una nueva dueña esperando para sacarles el jugo.
           blockquote.blog__pullquote(
-            cite='https://prilov.html')
+            cite='https://www.prilov.com')
             p.blog__quote ¿Guardar ropa vieja y fea para estar en la casa? ¡olvídalo!
     article.blog__body
       .blog__out.blog__out_right
@@ -72,7 +75,7 @@
         .blog__copy
           p Para qué vamos a andar con cosas, los tips que les hemos dado hasta ahora son útiles, pero nada nuevo. Tranquilas, ya viene el mejor descubrimiento: el orden vertical. Es una manera de ordenar la ropa en tu closet que te permite aprovechar mejor el espacio y tener todo a la vista, así no tienes que revolver todo hasta encontrar lo que buscas. La clave está en doblar del modo tradicional y luego un par de veces más hasta que la ropa pueda sostenerse sola.
           blockquote.blog__pullquote(
-            cite='https://prilov.html')
+            cite='https://www.prilov.com')
             p.blog__quote Las animamos a que se hagan un tiempito y lo prueben! Nosotras lo hicimos y la diferencia se nota!
     .blog__inner
       .blog__copy

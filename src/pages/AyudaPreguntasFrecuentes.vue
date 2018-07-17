@@ -280,7 +280,7 @@
           dd.panel__body
             p Los productos son revisados por nuestro equipo antes de ser publicados. Su revisión puede demorar hasta 48 horas desde que los subiste.
             p Si alguno de tus productos fue rechazado, recibirás un mail notificándose con la razón de esto.
-            p Para que esto no te pase, no olvides revisar los <strong>consejos para lograr fotos que vendan</strong> en la sección <strong>Cómo funciona</strong>.
+            p Para que esto no te pase, no olvides revisar los <strong>consejos para lograr fotos que vendan</strong> en la sección <router-link class="link_underline" :to="{ name: 'aumentar-ventas' }">Cómo vender más</router-link>.
 
           //-2
           dt.panel__head.i-plus(

@@ -40,7 +40,7 @@
             h2.blog__headline 3. La vendedora no responde o no tiene el producto. Ponte en contacto con nosotras
             p Si la vendedora no tiene el producto que compraste, no te responde o no logras ponerte de acuerdo con ella para la entrega, entonces escríbenos a <a class="link_underline" href="mailto:contacto@prilov.com">contacto@prilov.com</a> y resolveremos tu problema.
             blockquote.blog__pullquote(
-              cite='https://prilov.html')
+              cite='https://www.prilov.com')
               p.blog__quote Ponte en contacto con nosotras y resolveremos tu problema.
 </template>
 
