@@ -27,6 +27,9 @@
               dt Relacionados
               dd
                 router-link.link(
+                  :to="{ name: 'blog05' }") Todo lo que tienes que saber del nuevo Prilov.
+              dd
+                router-link.link(
                   :to="{ name: 'blog02' }") Marie Kondo, la gurú del orden.
               dd
                 router-link.link(

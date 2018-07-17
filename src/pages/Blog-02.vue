@@ -28,6 +28,9 @@
               dt Relacionados
               dd
                 router-link.link(
+                  :to="{ name: 'blog05' }") Todo lo que tienes que saber del nuevo Prilov.
+              dd
+                router-link.link(
                   :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos.
               dd
                 router-link.link(
