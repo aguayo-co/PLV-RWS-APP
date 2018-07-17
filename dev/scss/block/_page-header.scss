@@ -135,10 +135,9 @@
     height: 100%;
     display: inline-block;
     text-align: center;
-    font-size: 185%;
+    @include font-rem(18px);
     font-family: $f-fancy;
     background-color: $c-default;
-    // border: 1px solid $c-brand;
   }
 
   
@@ -286,7 +285,9 @@
     top: 0;
     padding: 16px 0 18px;
   }
-
+  .tool-user__letter{
+    font-size: 185%;
+  }
 }
 
 // $bp-large: 1170px;
