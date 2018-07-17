@@ -137,8 +137,6 @@ export default {
       window.removeEventListener('scroll', this.handleScroll)
     },
     preFilter: function () {
-      this.loading = true
-      this.products = []
       this.applyPreFilter()
       this.updateProductList()
     }
@@ -153,17 +151,20 @@ export default {
     },
     updateProductList: function () {
       this.loading = true
+      this.products = []
       Object.keys(this.parameters).forEach(key => {
         if (!this.parameters[key]) {
           this.$delete(this.parameters, key)
         }
       })
-      productAPI.get(this.parameters)
+      const localRequest = this.loading = productAPI.get(this.parameters)
         .then((response) => {
-          this.products = response.data.data
-          this.lastPage = response.data.last_page
-          this.loading = false
-          this.$emit('doneResults', response.data.total)
+          if (localRequest === this.loading) {
+            this.products = response.data.data
+            this.lastPage = response.data.last_page
+            this.loading = false
+            this.$emit('doneResults', response.data.total)
+          }
         })
     },
     loadMoreProducts: async function (e) {
