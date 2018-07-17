@@ -170,7 +170,7 @@
           dt.panel__head.i-plus(
             @click="toggleDropdown($event)") ¿Cómo es el proceso de pago cuando quiero transferir mis créditos a mi cuenta bancaria?
           dd.panel__body
-            p ¡Puedes transferir tus créditos a tu cuenta bancaria en cualquier momento!  Sólo recuerda que <strong>debes tener más de $4.000</strong> para que sean transferidos. Para transferir tus créditos, debes hacer click en Tu Cuenta e ir a la sección <strong>Créditos</strong>. Ahora puedes ver la opción <strong>Convertir en dinero</strong>, la seleccionas y el dinero tardará entre 1 a 4 días hábiles en aparecer en la cuenta bancaria que ingresaste en Tu Cuenta Prilov.
+            p ¡Puedes transferir tus créditos a tu cuenta bancaria en cualquier momento!  Sólo recuerda que <strong>debes tener más de $4.000</strong> para que sean transferidos. Para transferir tus créditos, debes hacer click en Tu Cuenta e ir a la sección <strong>Créditos</strong>. Ahora puedes ver la opción <strong>Convertir en dinero</strong>, la seleccionas y el dinero tardará entre 1 a 5 días hábiles en aparecer en la cuenta bancaria que ingresaste en Tu Cuenta Prilov.
             p Asegúrate de ingresar tus datos bancarios antes de solicitar la transferencia de créditos. Para ingresarlos debes ir a <router-link to="/user/datos-bancarios">Datos Bancarios</router-link> desde Tu Cuenta. Hay un máximo de créditos que puedes juntar en tu cuenta. <strong>Al superar los $200,000 en créditos</strong>, automáticamente se solicitarán los créditos para ser transferidos a tu cuenta bancaria.
 
           //-5
