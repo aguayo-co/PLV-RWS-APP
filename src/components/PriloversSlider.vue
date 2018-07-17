@@ -73,7 +73,7 @@ export default {
     }
   },
   created: function () {
-    usersAPI.getUsersByGroup('3')
+    usersAPI.getUsersByGroup('2')
       .then(response => {
         this.users = response.data.data
       })
