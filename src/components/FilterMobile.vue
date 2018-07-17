@@ -151,25 +151,25 @@
                   label.filter__label-check.i-ok(:for="'condition-' + condition.id")
                 span.filter__arrow {{ condition.name }}
         //- Item Región
-        li.filter__select.i-next(
-          :class="{ 'filter__select_open' : selectedFilterOption === 'region' }",
-          @click.stop="switchFilter('region')")
-          span.filter__details(v-if="new_filter.region_id && new_filter.region_id.length > 0") {{ filterSelectedAttributes(new_filter.region_id, regions) }}
-          span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.region_id && new_filter.region_id.length > 0 }") Región
-          transition(name='slide-right')
-            ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'region'")
-              li.filter__select_header.i-back(@click.stop="switchFilter()") Región
-              li.filter__item.filter__select(
-                v-if="regions",
-                v-for="(region, index) in regions")
-                .filter__item-check
-                  input.filter__input-check(
-                    v-model="new_filter.region_id",
-                    :value="region.admin1_code",
-                    :id="'region-' + region.admin1_code",
-                    type="checkbox")
-                  label.filter__label-check.i-ok(:for="'region-' + region.admin1_code")
-                span.filter__arrow {{ region.name }}
+        //- li.filter__select.i-next(
+        //-   :class="{ 'filter__select_open' : selectedFilterOption === 'region' }",
+        //-   @click.stop="switchFilter('region')")
+        //-   span.filter__details(v-if="new_filter.region_id && new_filter.region_id.length > 0") {{ filterSelectedAttributes(new_filter.region_id, regions) }}
+        //-   span.filter__arrow(:class="{ 'filter__item_selected' : new_filter.region_id && new_filter.region_id.length > 0 }") Región
+        //-   transition(name='slide-right')
+        //-     ul.filter__sublist.toggle-box__list(v-show="selectedFilterOption === 'region'")
+        //-       li.filter__select_header.i-back(@click.stop="switchFilter()") Región
+        //-       li.filter__item.filter__select(
+        //-         v-if="regions",
+        //-         v-for="(region, index) in regions")
+        //-         .filter__item-check
+        //-           input.filter__input-check(
+        //-             v-model="new_filter.region_id",
+        //-             :value="region.admin1_code",
+        //-             :id="'region-' + region.admin1_code",
+        //-             type="checkbox")
+        //-           label.filter__label-check.i-ok(:for="'region-' + region.admin1_code")
+        //-         span.filter__arrow {{ region.name }}
         //- Item Precio
         li
           FilterPrecio(
