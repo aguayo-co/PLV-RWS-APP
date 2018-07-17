@@ -46,6 +46,7 @@ import Blog01 from '@/pages/Blog-01'
 import Blog02 from '@/pages/Blog-02'
 import Blog03 from '@/pages/Blog-03'
 import Blog04 from '@/pages/Blog-04'
+import Blog05 from '@/pages/Blog-05'
 
 import beforeEach from './beforeEach'
 
@@ -332,6 +333,11 @@ const router = new Router({
       path: '/te-contamos-los-tips-de-vendedoras-top-para-lograr-buenas-limpiezas-de-closet-en-prilov',
       name: 'blog04',
       component: Blog04
+    },
+    {
+      path: '/todo-lo-que-tienes-que-saber-del-nuevo-prilov',
+      name: 'blog05',
+      component: Blog05
     }
   ],
   scrollBehavior (to, from, savedPosition) {

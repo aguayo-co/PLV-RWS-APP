@@ -48,7 +48,7 @@
               p Estoy segura que todas tenemos algo en común: ¡AMAMOS la moda! La pregunta es, ¿realmente usamos todo nuestro clóset?
               p Soy una apasionada por la moda y me gusta cambiar de estilo constantemente. Entiendo que de una temporada a otra, mi clóset puede cambiar completamente y eso se refleja en un clóset con mucha ropa que ya no uso y que está disponible para ser vendida o intercambiada de forma regular. Lo realmente difícil es tomar la decisión de desprenderse de esa ropa que alguna vez fue tu favorita. Para hacerlo más fácil, lo mejor es preguntarse... ¿hace cuánto tiempo no lo uso? ¿Dos, tres, cuatro meses? Entonces ya no vale la pena que siga guardado ¿POR QUÉ? Si no la usas hace meses ¿Qué posibilidad hay de que las uses en los próximos meses? (Tomando en cuenta que es ropa de la estación).
               blockquote.blog__pullquote(
-                cite='http://prilov.html')
+                cite='https://prilov.html')
                 p.blog__quote ¿realmente usamos todo nuestro clóset?
     article.blog__body
       .blog__out.blog__out_right
@@ -74,7 +74,7 @@
               p Prilov está provocando en mí un comportamiento muy particular. Ahora voy a comprar y pienso: "me lo compro ahora, lo uso unas cuantas veces y después lo vendo en Prilov".
               p Eso me encanta, porque me da la opción de tener un clóset totalmente cambiante y así las tenidas casi no se repiten. Hago limpiezas todas las semanas y sigo encontrando cosas para vender. Y lo mejor de todo, ¡sin mover un dedo!
               blockquote.blog__pullquote(
-                cite='http://prilov.html')
+                cite='https://prilov.html')
                 p.blog__quote me lo compro ahora, lo uso unas cuantas veces y después lo vendo en Prilov.
 </template>
 
@@ -82,7 +82,7 @@
 import BannerTop from '@/components/BannerTop'
 
 export default {
-  name: 'Contenido',
+  name: 'Blog04',
   components: {
     BannerTop
   }
