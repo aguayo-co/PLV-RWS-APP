@@ -59,9 +59,9 @@
             .slot__prilover {{ product.user | full_name }}
             .group(v-if='product.user.groups.length > 0')
               .slot__group.i-it-girl(
-                v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
+                v-if='product.user.groups[0].slug === "it-girl"') It <span class="txt_brand">girl</span>
               .slot__group.i-star-on(
-                v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
+                v-if='product.user.groups[0].slug === "prilover-star"') Prilover <span class="txt_brand">Star</span>
     .section_product__footer(v-if="infinite")
       p.btn__wrapper(
         v-if='!loading')
