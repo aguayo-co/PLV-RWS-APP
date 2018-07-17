@@ -44,7 +44,7 @@
           .blog__copy
             p Cuéntanos qué tela es, cómo lo combinas mejor, si la talla corresponde a la realidad, el color de la foto muestra cómo es de verdad, para qué lo usaste. Mientras más detalles entregues de tu producto, más posibilidades tienes de venderlo.  ¡Todas queremos saber más!
           blockquote.blog__pullquote(
-            cite='https://prilov.html')
+            cite='https://www.prilov.com')
             p.blog__quote Mientras más detalle entregues de tu producto, más posibilidades de venderlo.
     .blog__inner
       article.blog__body.blog__body_slot

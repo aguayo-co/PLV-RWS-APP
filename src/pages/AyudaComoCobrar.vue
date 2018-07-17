@@ -35,7 +35,7 @@
             p Prilov cobrará un 20% de comisión del valor de los productos por cada venta; generándose el 80% del valor de los productos en créditos. Por ejemplo, si el precio del producto es $10.000, entonces generaremos créditos por $8.000 y quedando $2,000 como ganancia de Prilov. Transferir los créditos a tu cuenta bancaria no tiene costo.
             p En el caso que hayas elegido una comisión diferente al publicar  tu producto (25% o 30%), se aplica la misma lógica con esa comisión.
           blockquote.blog__pullquote(
-            cite='https://prilov.html')
+            cite='https://www.prilov.com')
             p.blog__quote Transferir los créditos a tu cuenta bancaria no tiene costo.
 </template>
 

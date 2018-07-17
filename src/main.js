@@ -4,6 +4,10 @@ import moment from 'moment'
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+
+// Vue Analytics Plugin
+import VueAnalytics from 'vue-analytics'
+
 import VueMoment from 'vue-moment'
 import VueTextareaAutosize from 'vue-textarea-autosize'
 
@@ -29,6 +33,14 @@ import Dots from './components/global/Dots'
   Vue.use(VueMqMixin)
 
   Vue.use(VueMoment, {moment})
+
+  // Vue Analytics Plugin
+  if (process.env.GA_TRACKING) {
+    Vue.use(VueAnalytics, {
+      id: process.env.GA_TRACKING,
+      router
+    })
+  }
 
   // Load global Axios instances.
   Vue.use(axiosPlugin, store)
