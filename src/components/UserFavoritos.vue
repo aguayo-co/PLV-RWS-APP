@@ -5,10 +5,12 @@ section.single
       h1.single__title Tus Favoritos
     .product-grid_small
       GridProducto(
-      :preFilter="this.filters",
-      :infinite="false",
-      :pager='true',
-      :compact='true')
+        v-if='hasFavorites'
+        :preFilter="this.filters",
+        :infinite="false",
+        :pager='true',
+        :compact='true')
+      template No tienes favoritos
 
 </template>
 
@@ -22,10 +24,13 @@ export default {
     GridProducto
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState('user', ['favorites_ids']),
+    hasFavorites () {
+      return this.favorites_ids && this.favorites_ids.length
+    },
     filters () {
       let filters = {
-        'filter[id]': this.user.favorites_ids.join(',')
+        'filter[id]': this.favorites_ids.join(',')
       }
       return filters
     }
