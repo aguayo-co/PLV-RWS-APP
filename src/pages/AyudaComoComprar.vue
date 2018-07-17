@@ -37,7 +37,7 @@
     figure.blog-bannerprom.banner-hero
       picture.banner-hero__crop
         source.banner-hero__img(
-          media='(max-width: 640px)', srcset='static/img/blog6-002.png')
+          media='(max-width: 640px)', srcset='static/img/blog6-002-m.png')
         img.banner-slider__img(
           src='static/img/blog6-002.png')
     article.blog__body
