@@ -4,7 +4,9 @@
 .pay-off {
   @include flexbox;
   @include flex-wrap(wrap);
-  @include justify-content(space-between);
+  // @include justify-content(space-between);
+  @include justify-content(center);
+
   max-width: 720px;
   padding: 16px 0 22px;
 }
@@ -50,6 +52,8 @@
 @include media-query(medium) {
   .pay-off {
     padding: 22px 0 40px;
+    @include justify-content(space-between);
+
   }
 
   .pay-off__label {
