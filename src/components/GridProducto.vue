@@ -16,7 +16,7 @@
     Loader(v-if="!infinite && loading")
     .product-grid(v-else)
       article.slot.slot_grid(
-        v-for='product in products')
+        v-for='product in products' :key="product.id")
         button.slot__ico.i-heart(
           v-if="user.id && user.id !== product.user_id"
           @click.prevent='setFavorite(product.id)'
@@ -137,6 +137,8 @@ export default {
       window.removeEventListener('scroll', this.handleScroll)
     },
     preFilter: function () {
+      this.loading = true
+      this.products = []
       this.applyPreFilter()
       this.updateProductList()
     }
