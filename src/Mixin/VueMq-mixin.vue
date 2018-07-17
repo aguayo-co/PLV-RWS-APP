@@ -15,10 +15,6 @@ export default {
           mqTabletMax: false,
           mqDesk: false,
           mqDeskBig: false
-          // wSM: false,
-          // wMD: false,
-          // wLG: false,
-          // wXL: false
         }
       },
       mounted () {
@@ -54,21 +50,6 @@ export default {
             deskBig: {
               min: 1280
             }
-            // sm: {
-            //   min: 560,
-            //   max: 1023
-            // },
-            // md: {
-            //   min: 1024,
-            //   max: 1439
-            // },
-            // lg: {
-            //   min: 1440,
-            //   max: 1919
-            // },
-            // xl: {
-            //   min: 1920
-            // }
           }
           this.windowWidth = w
           this.mqSmallMax = w <= mediaQuery.smallMax.max
@@ -78,10 +59,6 @@ export default {
           this.mqTabletMax = w <= mediaQuery.tabletMax.max
           this.mqDesk = w >= mediaQuery.desk.min
           this.mqDeskBig = w >= mediaQuery.deskBig.min
-          // this.wSM = w >= mediaQuery.sm.min && w <= mediaQuery.sm.max
-          // this.wMD = w >= mediaQuery.md.min && w <= mediaQuery.md.max
-          // this.wLG = w >= mediaQuery.lg.min && w <= mediaQuery.lg.max
-          // this.wXL = w >= mediaQuery.xl.min
         },
 
         getWindowHeight (event) {
