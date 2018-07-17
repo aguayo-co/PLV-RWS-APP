@@ -42,11 +42,11 @@ export default {
           url: '/todo-lo-que-tienes-que-saber-del-nuevo-prilov',
           image: '/static/img/blog-thumb-005.jpg'
         },
-        {
-          title: 'Las cuatro apps más usadas por fashion bloggers para editar sus fotos.',
-          url: '/las-cinco-apps-mas-usadas-por-fashion-bloggers-para-editar-sus-fotos',
-          image: '/static/img/blog-thumb-001.jpg'
-        },
+        // {
+        //   title: 'Las cuatro apps más usadas por fashion bloggers para editar sus fotos.',
+        //   url: '/las-cinco-apps-mas-usadas-por-fashion-bloggers-para-editar-sus-fotos',
+        //   image: '/static/img/blog-thumb-001.jpg'
+        // },
         {
           title: 'Marie Kondo, la gurú del orden.',
           url: '/la-guru-del-orden',
