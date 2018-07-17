@@ -206,7 +206,12 @@ select {
     &:before {
       content: '';
     }
+    .boxcheck__box {
+      border-color: $c-brand;
+    }
+
   }
+
 }
 
 //label de input radio

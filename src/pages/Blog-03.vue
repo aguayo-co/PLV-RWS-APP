@@ -71,7 +71,7 @@
             p Si les gustaría informarse más del tema les mega recomendamos ver un documental que se llama “True Cost”. Está en Netflix, y en él se muestra en detalle los efectos (que probablemente son muchos más de los que se imaginan) de cada parte del proceso de producción. También pueden seguir cuentas en instagram como @fash_rev y @ecoage para saber más, y por supuesto a @liviafirth, la máxima representante de la causa.
             p Las dejamos invitadísimas a que ocupen Prilov como una alternativa más amigable con el medio ambiente. Además de comprar de segunda mano, pueden darle a esas pilchas que ya le sacaron el jugo una segunda oportunidad, para que en lugar de terminar acumuladas en basurales, otra Prilover pueda sacarle provecho.
           blockquote.blog__pullquote(
-            cite='http://prilov.html')
+            cite='https://prilov.html')
             p.blog__quote Prilov: una alternativa amigable con el medio ambiente.
 </template>
 
@@ -79,7 +79,7 @@
 import BannerTop from '@/components/BannerTop'
 
 export default {
-  name: 'Contenido',
+  name: 'Blog03',
   components: {
     BannerTop
   }

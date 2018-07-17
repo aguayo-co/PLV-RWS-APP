@@ -102,7 +102,7 @@
 import BannerTop from '@/components/BannerTop'
 
 export default {
-  name: 'Contenido',
+  name: 'Blog01',
   components: {
     BannerTop
   }
