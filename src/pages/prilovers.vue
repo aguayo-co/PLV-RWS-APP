@@ -85,8 +85,8 @@ export default {
       },
       parameters: {
         page: 1,
-        orderby: '-id',
-        'filter[roles_names]': 'seller'
+        orderby: '-latest_product',
+        'filter[with_products]': '1'
       }
     }
   },

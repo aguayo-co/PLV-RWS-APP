@@ -13,9 +13,10 @@
     v-if="mqDesk",
     :compact="compact")
   .section_product__scroll
-    .product-grid
+    Loader(v-if="!infinite && loading")
+    .product-grid(v-else)
       article.slot.slot_grid(
-        v-for='product in products')
+        v-for='product in products' :key="product.id")
         button.slot__ico.i-heart(
           v-if="user.id && user.id !== product.user_id"
           @click.prevent='setFavorite(product.id)'
@@ -81,17 +82,15 @@
           option(value="33") 33
           option(value="42") 42
     li.pagination__item(
-      v-if='parameters.page > lastPage')
+      v-if='parameters.page > 1')
       a.pagination__arrow.pagination__arrow_prev.i-back(
-        @click.prevent='prevPage'
-        href="#")
+        @click.prevent='prevPage')
     li.pagination__item {{ parameters.page }}
     li.pagination__item.pagination__item_txt de {{ lastPage }}
     li.pagination__item(
         v-if='parameters.page < lastPage')
       a.pagination__arrow.pagination__arrow_next.i-next(
-        @click.prevent='nextPage'
-        href="#")
+        @click.prevent='nextPage')
 
 </template>
 
@@ -152,17 +151,20 @@ export default {
     },
     updateProductList: function () {
       this.loading = true
+      this.products = []
       Object.keys(this.parameters).forEach(key => {
         if (!this.parameters[key]) {
-          delete this.parameters[key]
+          this.$delete(this.parameters, key)
         }
       })
-      productAPI.get(this.parameters)
+      const localRequest = this.loading = productAPI.get(this.parameters)
         .then((response) => {
-          this.products = response.data.data
-          this.lastPage = response.data.last_page
-          this.loading = false
-          this.$emit('doneResults', response.data.total)
+          if (localRequest === this.loading) {
+            this.products = response.data.data
+            this.lastPage = response.data.last_page
+            this.loading = false
+            this.$emit('doneResults', response.data.total)
+          }
         })
     },
     loadMoreProducts: async function (e) {
@@ -183,7 +185,7 @@ export default {
     },
     setParameters: function (setFilters) {
       Object.keys(setFilters).forEach(key => {
-        this.parameters[key] = setFilters[key]
+        this.$set(this.parameters, key, setFilters[key])
       })
       if (this.infinite) {
         this.parameters.page = 1
@@ -201,7 +203,7 @@ export default {
     applyPreFilter: function () {
       if (this.preFilter) {
         Object.keys(this.preFilter).forEach(key => {
-          this.parameters[key] = this.preFilter[key]
+          this.$set(this.parameters, key, this.preFilter[key])
         })
       }
     },

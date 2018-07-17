@@ -34,7 +34,7 @@ section.single
               Dots(v-if="saving")
               template(v-else) Transferir a mi cuenta
     .alert(v-if="alertInfo")
-      p.alert__info.alert__info_spacing.i-alert-info Verás tu dinero reflejado en tu cuenta bancaria entre 1 a 4 días hábiles.
+      p.alert__info.alert__info_spacing.i-alert-info Verás tu dinero reflejado en tu cuenta bancaria entre 1 a 5 días hábiles.
     h3.subhead Detalle de Créditos
     .dividers
       .dividers__item
