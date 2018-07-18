@@ -1,7 +1,9 @@
 <template lang="pug">
 .banner-slider(
     v-if="slides[0]")
-  Flickity.banner-slider__container(
+  flickity.banner-slider__container(
+    ref="flickity",
+    v-images-loaded="imagesLoaded"
     :options='flickityOptions')
     //- .banner-slider__cell(v-for='slide in slides')
     .banner-slider__item(
@@ -22,10 +24,11 @@
 <script>
 import slidersAPI from '@/api/slider'
 import Flickity from 'vue-flickity'
-// import imagesLoaded from 'vue-images-loaded'
+import imagesLoaded from 'vue-images-loaded'
 
 export default {
   name: 'BannerSlider',
+  directives: { imagesLoaded },
   components: {
     Flickity
   },
@@ -47,6 +50,12 @@ export default {
         adaptiveHeight: true
         // any options from Flickity can be used
       }
+    }
+  },
+  methods: {
+    imagesLoaded: function (instance) {
+      let flickityInstance = this.$refs.flickity
+      flickityInstance.reloadCells()
     }
   },
   created: function () {
