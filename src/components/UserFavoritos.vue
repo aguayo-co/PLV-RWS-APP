@@ -10,7 +10,7 @@ section.single
         :infinite="false",
         :pager='true',
         :compact='true')
-      template No tienes favoritos
+      template(v-else) No tienes favoritos
 
 </template>
 
