@@ -55,12 +55,16 @@ export default {
   created () {
     window.addEventListener('scroll', this.handleScroll)
   },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     MenuOpen: function () {
       this.menuOpen = !this.menuOpen
     },
     handleScroll: function () {
       this.sTop = window.pageYOffset || document.documentElement.scrollTop
+      if (window.scrollY <= 0) return (this.scroll = 1)
       if (this.sTop > this.lastScrollTop) {
         this.scroll = 0
       } else {

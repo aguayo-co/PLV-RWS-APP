@@ -1,23 +1,13 @@
-<style scoped>
-.tabsMobile {
-  display: none;
-}
-@media (max-width: 399px) {
-  .tabsMobile {
-    display: block;
-  }
-}
-</style>
 <template lang="pug">
 .tabs
-  nav.filter.tabsMobile
+  nav.filter(v-if="mqMobile")
     a.filter__btn(href="#", @click.prevent='tabsMobile = true') {{ tabs[activeTab].title }}
     transition(name='slide-left')
         ul.filter__list(
         v-show="tabsMobile")
           li.filter__select_header.i-close(@click.prevent='tabsMobile = false') Sección
           li.filter__select(v-for="info, tab in tabs" @click.prevent="activeTab = tab") {{ info.title }}
-  nav.tabs__nav
+  nav.tabs__nav(v-if="mqDesk")
     .tabs__inner
       ul.tabs__nav-list
         li.tabs__nav-item(v-for="info, tab in tabs")
