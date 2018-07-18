@@ -89,12 +89,13 @@ const actions = {
       return response
     })
   },
-  createAddress ({commit, state}, data) {
+  createAddress ({dispatch, commit, state}, data) {
     data.user_id = state.id
-    return userAddressesAPI.create(data).then(response => {
-      commit('setAddress', response.data)
-      return response
-    })
+    return userAddressesAPI.create(data)
+      .then(async (response) => {
+        await dispatch('loadUser')
+        return response
+      })
   },
   updateAddress ({commit, state}, data) {
     data.user_id = state.id
