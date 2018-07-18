@@ -232,6 +232,7 @@
                       v-model='product.price'
                       type='number'
                       min=0,
+                      max=9999999
                       step=1)
                 .form__row(
                   :class='{ "is-danger": errorLog.original_price }')
@@ -247,6 +248,7 @@
                       v-model='product.original_price',
                       type='number'
                       min=0,
+                      max=9999999
                       step=1)
               .form-section__item
                 .form-section__slot.sticky
