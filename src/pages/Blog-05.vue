@@ -14,12 +14,10 @@
       article.blog__body
         .blog__spread
           .blog__copy
-            h2.blog__headline PRILOVER ¡TENEMOS UNA NOTICIA MUY ESPECIAL!
-            p Estamos muy cerca de lanzar el nuevo sitio web de Prilov. Esta semana se realizará la migración desde el Prilov antiguo al Prilov nuevo.
-            p Pero antes de que esto ocurra, es necesario que tengas en cuenta algunos puntos:
+            h2.blog__headline PRILOVER,
+            p Ahora que ya lanzamos el nuevo Prilov, es importante que tengas en cuenta algunos puntos:
             h2.blog__headline PRILOV ANTIGUO y PRILOV NUEVO:
             ul
-              li A partir de esta semana, la URL <a class="link_underline" href="https://www.prilov.com/" title="Nueva plataforma Prilov">Prilov.com</a> te llevará a la nueva plataforma.
               li Una vez que la URL prilov.com te lleve al nuevo sitio, deberás ingresar a la URL <a class="link_underline" href="https://old.prilov.com/" title="Antigua plataforma Prilov">old.prilov.com</a> para finalizar transacciones que estaban en proceso (marcar con enviado, recibido, etc).
               li Para ingresar a tu perfil en el Prilov nuevo, deberás usar el <strong>mismo usuario y contraseña</strong> con el que estabas registrada en el Prilov antiguo.
           aside.blog-side
@@ -58,6 +56,11 @@
           ul
             li El historial de tus ventas y compras, no se migrará al Prilov nuevo.
             li Si tienes ventas o compras en proceso al momento de la migración, deberán finalizarse en el <a class="link_underline" href="https://old.prilov.com/" title="Antigua plataforma Prilov">Prilov antiguo</a> (marcar como enviada, recepcionada, solicitar devolución).
+      article.blog__body.blog__body_slot
+        .blog__copy
+          h2.blog__headline ENVÍOS:
+          ul
+            li Si eres vendedora y quieres usar Chilexpress prepagado por compradora en tus envíos, entonces debes agregar tu dirección y habilitar la opción Chilexpress desde la sección "Métodos de Envío".
       article.blog__body.blog__body_slot
         .blog__copy
           h2.blog__headline CRÉDITOS:
