@@ -11,6 +11,7 @@
       v-for="address in addressesList")
       .dividers__grid.dividers__list(
         :class="{'dividers__list_active': isActive === address.id}")
+        //- Selector de dirección en carrito.
         input.form__input-radio(
           name="shippingAddress"
           :value="address.id"
@@ -21,18 +22,20 @@
         label.form__label_radio(
           v-if="inShoppingCart"
           :for="address.id") {{ address | address }}
+        //- Dirección sin selector.
         span(
           v-else="") {{ address | address }}
         span.dividers__actions
+          //- Selección de favorito, no se permite en carrito.
           a.dividers__select.i-star-on(
             v-if="!inShoppingCart"
             @click.prevent="setFavorite(address.id)",
             :class="{dividers__select_on: favorite_address_id == address.id}",
             href="#",
             title="Seleccionar Dirección") <small class="hide"> Seleccionar </small>
+          //- Edición de dirección.
           a.dividers__edit.i-edit-line(
             @click.prevent="IsActive(address.id)",
-            href="#",
             title="Editar Dirección") <small class="hide"> Editar </small>
       AddressEdit(
         v-if="isActive == address.id"
