@@ -12,10 +12,10 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
           .foot-nav__fixed(v-show='active')
             a.foot-nav__close.i-x(@click='animSearch')
             h4.foot-nav__title Buscar
-            form.foot-nav__search(action='', method='GET')
+            form.foot-nav__search(@submit.prevent="search")
               .foot-nav__search-row.i-search
-                input.foot-nav__search-input.form__control#searchMain(type='text', name='search')
-                button.btn.btn_solid.foot-nav__search-btn Buscar
+                input.foot-nav__search-input.form__control#searchMain(type='text', name='search', v-model="query")
+                input.btn.btn_solid.foot-nav__search-btn(type="submit", value="Buscar")
             ul.foot-nav__sublist
               li.foot-nav__subitem(@click='animSearch')
                 router-link.foot-nav__sublink(:to="{ name: 'productos-filtrado', params: { type: 'categorias', slug: 'botas' }}") Botas
@@ -112,7 +112,8 @@ export default {
       isActive: undefined,
       active: false,
       ProfActive: false,
-      activeCart: false
+      activeCart: false,
+      query: null
     }
   },
   methods: {
@@ -156,13 +157,17 @@ export default {
       }
       this.$store.dispatch('ui/showModal', payload)
     },
-    goToPayment () {
+    goToPayment: function () {
       this.animCart()
       if (this.user.id) {
         this.$router.push({name: 'compra'})
         return
       }
       this.$router.push({name: 'compra-guest'})
+    },
+    search: function () {
+      this.$router.push({ name: 'search', params: { query: this.query } })
+      this.animSearch()
     }
   },
   computed: {
