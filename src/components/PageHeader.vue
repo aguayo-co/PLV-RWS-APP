@@ -33,7 +33,7 @@
                     .box-cards__value
                       p.box-cards__title Total
                       span.box-cards__number ${{ shoppingCart.total | currency }}
-                    router-link.btn.btn_solid(v-if="user.id", :to="'/compra/'") Ir a Pagar
+                    router-link.btn.btn_solid(v-if="user.id", :to="{ name: 'compra' }") Ir a Pagar
                     router-link.btn.btn_solid(v-else, :to="{ name: 'compra-guest' }") Ir a Pagar
                   .box-cards__item(v-for="product in totalProducts")
                     article.list__card

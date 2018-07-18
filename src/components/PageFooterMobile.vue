@@ -45,12 +45,12 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
             h4.foot-nav__title Carrito
             .box-cards
               .box-cards__head
-                p.box-cards__title(v-if="totalProducts.length == 1") {{ totalProducts.length }} producto en tu carrito
+                p.box-cards__title(v-if="totalProducts.length == 1") 1 producto en tu carrito
                 p.box-cards__title(v-else) {{ totalProducts.length }} productos en tu carrito
               .box-cards__subhead(v-if="totalProducts.length")
                 .box-cards__value
                   p.box-cards__title Total
-                  span.box-cards__number ${{ cart.total | currency }}
+                  span.box-cards__number ${{ shoppingCart.total | currency }}
                 a.btn.btn_solid.btn_small(
                   @click.prevent="goToPayment") Ir a Pagar
               .box-cards__item(v-for="product in totalProducts")
@@ -157,14 +157,22 @@ export default {
       this.$store.dispatch('ui/showModal', payload)
     },
     goToPayment () {
-      this.$router.push({name: 'compra'})
       this.animCart()
+      if (this.user.id) {
+        this.$router.push({name: 'compra'})
+        return
+      }
+      this.$router.push({name: 'compra-guest'})
     }
   },
   computed: {
     ...mapState(['user']),
     ...mapState(['cart']),
     ...mapState(['guestCart']),
+    shoppingCart () {
+      if (this.user.id) return this.cart
+      return this.guestCart
+    },
     totalProducts () {
       if (this.user.id) return this.$store.getters['cart/products']
       return this.guestCart.products
