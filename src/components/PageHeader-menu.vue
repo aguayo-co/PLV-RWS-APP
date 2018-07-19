@@ -105,7 +105,7 @@ export default {
     bannersAPI.getBannerBySlug('menu-campaign')
       .then(response => {
         this.banner = response.data
-      })
+      }).catch(() => {})
   }
 }
 </script>
