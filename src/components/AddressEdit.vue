@@ -61,8 +61,8 @@
       .form__grid_reverse.form__row_away
         .form__row
           a.link_underline(
+            v-if="canDelete"
             @click.prevent="deleteAddress",
-            href="#",
             title="Eliminar") Eliminar dirección
         .form__grid_group
           .form__row

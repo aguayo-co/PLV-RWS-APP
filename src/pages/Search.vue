@@ -34,7 +34,7 @@ export default {
     }
   },
   watch: {
-    query: function () {
+    query () {
       this.loading = true
     }
   },

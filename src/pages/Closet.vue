@@ -1,9 +1,9 @@
 <template lang="pug">
 .layout-page
-  UserDataCloset(:user="owner" v-on:update:user="owner = $event")
+  UserDataCloset(v-if="owner" :user="owner" v-on:update:user="owner = $event")
   section.section_product
     GridProducto(
-      v-if="owner.id"
+      v-if="owner"
       :preFilter="{ 'filter[user_id]': owner.id, 'filter[status]': '10,19' }",
       :infinite="true")
 </template>
@@ -21,7 +21,7 @@ export default {
   },
   data () {
     return {
-      owner: {}
+      owner: null
     }
   },
   computed: {
