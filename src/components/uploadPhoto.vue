@@ -25,7 +25,8 @@
           :zoom-speed="10",
           :initial-image="initialImage",
           :disable-scroll-to-zoom="true",
-          :disable-drag-to-move="!mqDesk")
+          :disable-drag-to-move="!mqDesk",
+          :show-remove-button="false")
       img.upfile__img(
         :src="initialImage"
         v-else-if="initialImage")
