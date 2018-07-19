@@ -61,7 +61,9 @@ export default {
   created: function () {
     slidersAPI.getAllSlides()
       .then(response => {
-        this.slides = response.data.data
+        this.slides = response.data.data.sort(function (a, b) {
+          return a.priority - b.priority
+        })
       })
   }
 }
