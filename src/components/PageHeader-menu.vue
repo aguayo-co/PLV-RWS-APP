@@ -2,13 +2,12 @@
 nav.page-menu
   ul.menu
     li.menu__item(
-      v-if="menu.items"
-      v-for="item in menu.items")
+      v-if="items"
+      v-for="item in items")
       a.menu__link(
         v-if="!item.url"
-        href="#",
         :class="[{ 'menu__link_active' : active.menu }, {'router-link-active': $route.path.includes('/shop')}]"
-        @click="handler(item)") {{ item.name }}
+        @click="openSubmenu(item)") {{ item.name }}
       //- Nivel 2: submenu con Lista de enlaces, Promo, side de enlaces
       transition(name="slide-fade")
         .menu-level2(
@@ -20,9 +19,9 @@ nav.page-menu
               ul.submenu
                 //- EVENTO CLICK:
                 li.submenu__item(
-                  v-for= "(children, index) in item.children"
-                  :class="[{ submenu:children != selected }, { submenu__item_active:children == selected }]"
-                  @click="menuHandler(children, index)")
+                  v-for= "children in sortedChildren(item.children)"
+                  :class="[{ submenu__item_active:children == selected }]"
+                  @click="changeSubmenu(children)")
                   span.submenu__label {{ children.name }}
                   //- Nivel 3: Lista de enlaces
                   ul.submenu__list(v-show= "selected == children")
@@ -64,7 +63,7 @@ export default {
   data () {
     return {
       // show: true,
-      selected: undefined,
+      selected: null,
       banner: null,
       fixedPosition: {
         position: 'fixed',
@@ -73,31 +72,37 @@ export default {
     }
   },
   computed: {
-    ...mapState(['ui']),
-    active: function () {
+    ...mapState('ui', ['menus']),
+    active () {
       return this.$store.getters['ui/headerDropdownsVisible']
     },
-    menu () {
-      return this.ui.menus.principal ? this.ui.menus.principal : {}
+    items () {
+      return this.menus.principal ? this.menus.principal.items : {}
     }
   },
   methods: {
-    toggleNav: function () {
+    sortedChildren (children) {
+      if (!this.selected) {
+        return children
+      }
+      return [this.selected].concat(children.filter(item => item !== this.selected))
+    },
+    toggleNav () {
       this.active.menu ? this.$store.dispatch('ui/closeDropdown', { name: 'menu' }) : this.$store.dispatch('ui/closeAllDropdownsBut', { name: 'menu' })
       this.$store.dispatch('ui/switchModal')
     },
-    handler: function (item) {
+    openSubmenu (item) {
+      if (!this.selected) {
+        this.selected = item.children[0]
+      }
       this.toggleNav()
-      this.selected = item.children[0]
     },
-    menuHandler: function (children, index) {
+    changeSubmenu (children) {
       if (children.children.length > 0) {
         this.selected = children
-        var clicked = this.menu.items[0].children.splice(index, 1)
-        this.menu.items[0].children.splice(0, 0, clicked[0])
       } else {
-        this.$router.push(children.url)
         this.toggleNav()
+        this.$router.push(children.url)
       }
     }
   },
