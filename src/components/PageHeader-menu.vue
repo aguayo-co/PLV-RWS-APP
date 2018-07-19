@@ -65,7 +65,7 @@ export default {
     return {
       // show: true,
       selected: undefined,
-      banner: {},
+      banner: null,
       fixedPosition: {
         position: 'fixed',
         top: 0
