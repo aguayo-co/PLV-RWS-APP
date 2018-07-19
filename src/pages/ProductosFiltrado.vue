@@ -38,7 +38,10 @@ export default {
     return {
       loading: true,
       banner: null,
-      campaign: null
+      campaign: null,
+      baseFilter: {
+        'filter[status]': '10,19'
+      }
     }
   },
   computed: {
@@ -77,15 +80,15 @@ export default {
     },
     filter () {
       if (this.type === 'categorias' && this.queryObject) {
-        return { 'filter[category_id]': this.queryObject.id }
+        return { ...this.baseFilter, 'filter[category_id]': this.queryObject.id }
       }
 
       if (this.type === 'marcas' && this.queryObject) {
-        return { 'filter[brand_id]': this.queryObject.id }
+        return { ...this.baseFilter, 'filter[brand_id]': this.queryObject.id }
       }
 
       if (this.type === 'campanas' && this.queryObject) {
-        return { 'filter[campaign_ids]': this.queryObject.id }
+        return { ...this.baseFilter, 'filter[campaign_ids]': this.queryObject.id }
       }
 
       if (this.type === undefined) {
