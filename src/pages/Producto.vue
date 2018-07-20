@@ -1,12 +1,14 @@
  <template lang="pug">
 .layout-page
-  ProductoDetalle(:product="product")
-  ProductoUser(v-if="user.id", :user="user")
-  ProductoPreguntas(:product_id="product.id", :owner_id="user.id")
-  ProductoSlider(
-    v-if="product.category_id && product.id",
-    :category_id="product.category_id",
-    :product_id="product.id")
+  Loader(v-if="loading")
+  template(v-else-if="product")
+    ProductoDetalle(:product="product")
+    ProductoUser(:user="product.user")
+    ProductoPreguntas(:product_id="product.id", :owner_id="product.user.id")
+    ProductoSlider(
+      v-if="product.category_id && product.id",
+      :category_id="product.category_id",
+      :product_id="product.id")
 </template>
 
 <script>
@@ -38,19 +40,21 @@ export default {
   },
   data () {
     return {
-      product: {},
-      user: {}
+      loading: null,
+      product: null
     }
   },
   methods: {
     loadProduct: function () {
-      productsAPI.getProductById(this.productId)
+      const localRequest = this.loading = productsAPI.getProductById(this.productId)
         .then(response => {
-          this.product = response.data
-          this.user = this.product.user
+          if (localRequest === this.loading) {
+            this.product = response.data
+          }
         })
-        .catch(e => {
-          console.log('ERROR : ' + e)
+        .catch(() => {})
+        .finally(() => {
+          this.loading = false
         })
     }
   },

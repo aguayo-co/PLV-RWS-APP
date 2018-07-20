@@ -88,9 +88,7 @@ export default {
         addToCart: null,
         favorite: null
       },
-      swiperOption: {
-
-      }
+      swiperOption: {}
     }
   },
   components: {
