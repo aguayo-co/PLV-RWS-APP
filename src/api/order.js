@@ -32,5 +32,9 @@ export default {
   },
   payUCallback (data) {
     return Vue.axios.post('/callback/gateway/pay-u/', data)
+  },
+  mercadoPagoCallback (data) {
+    return Vue.axios.post('/callback/gateway/mercado-pago/', data)
   }
+
 }

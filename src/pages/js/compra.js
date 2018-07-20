@@ -16,7 +16,7 @@ export default {
   },
   data () {
     return {
-      loading: true,
+      loading: 0,
       order: null,
       errors: {}
     }
@@ -89,32 +89,33 @@ export default {
       return this.$getNestedObject(this.order, ['payments', 0, 'status'])
     }
   },
-  created: function () {
+  created () {
     this.reloadShoppingCart()
-    const loadOrderPromise = this.loadOrder()
 
-    if (!loadOrderPromise) {
+    if (this.$route.query.gateway) {
+      this.loading += 1
+      this.processGatewayCallback()
+        .finally(() => {
+          this.loadOrder()
+          this.loading -= 1
+        })
       return
     }
 
-    loadOrderPromise.then(() => {
-      if (this.$route.query.gateway) {
-        this.processGatewayCallback()
-      }
-    })
+    this.loadOrder()
   },
   methods: {
-    processGatewayCallback () {
-      // If Order already is out fo payment step, do nothing.
-      if (!this.isPayment) {
+    processMercadoPagoCallback () {
+      // Only send callback if rejected or approved.
+      // Other states wait for PayU to send callback.
+      const state = this.$route.query.collection_status
+      if (['approved'].indexOf(state) === -1) {
         return
       }
 
-      // For now, only process PayU callbacks.
-      if (this.$route.query.gateway !== 'pay_u') {
-        return
-      }
-
+      return orderAPI.mercadoPagoCallback(this.$route.query)
+    },
+    processPayUCallback () {
       // Only send callback if rejected or approved.
       // Other states wait for PayU to send callback.
       const state = this.$route.query.transactionState
@@ -122,9 +123,16 @@ export default {
         return
       }
 
-      orderAPI.payUCallback(this.$route.query).then(() => {
-        this.loadOrder()
-      })
+      return orderAPI.payUCallback(this.$route.query)
+    },
+    async processGatewayCallback () {
+      switch (this.$route.query.gateway) {
+        case 'pay_u':
+          return this.processPayUCallback()
+
+        case 'mercado_pago':
+          return this.processMercadoPagoCallback()
+      }
     },
     /**
      * Ejecuta validaciones para el proceso de pago.
@@ -195,19 +203,25 @@ export default {
       this.$router.push({name: 'compra', params: { path: step }})
     },
     reloadShoppingCart () {
-      this.loading = true
+      this.loading += 1
       this.$store.commit('cart/clear')
-      this.$store.dispatch('cart/load').finally(() => {
-        this.loading = false
-      })
+      this.$store.dispatch('cart/load')
+        .finally(() => {
+          this.loading -= 1
+        })
     },
     loadOrder () {
       this.order = null
       // Carga orden de URL si existe una a cargar.
       if (this.orderId) {
-        return orderAPI.load(this.orderId).then(response => {
-          this.order = response.data
-        })
+        this.loading += 1
+        return orderAPI.load(this.orderId)
+          .then(response => {
+            this.order = response.data
+          })
+          .finally(() => {
+            this.loading -= 1
+          })
       }
     }
   },
