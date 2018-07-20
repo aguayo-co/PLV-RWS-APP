@@ -10,7 +10,7 @@ section.list-slot
       v-for="product in products")
       //-link a producto
       router-link.card__product(
-        :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+        :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
         :title="'Ver detalle de ' + product.title")
 
         //-img producto

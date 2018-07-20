@@ -19,14 +19,14 @@
         .card__product
           //-img producto
           .card__figure
-            router-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+            router-link(:to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}")
               img.card__img(
                 :src="product.images[0]",
                 :alt="'Foto de ' + product.title")
 
           //-info producto
           .card__info
-            router-link.card__info-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+            router-link.card__info-link(:to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}")
               .card__header
                 h3.card__title {{ product.title }}
                 p.card__brand {{ product.brand }}

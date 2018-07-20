@@ -9,7 +9,7 @@ section.single
       .chat__slot(v-if="product.id")
         article.slot.slot_grid
           router-link.slot__product(
-            :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+            :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
             title="Ver este producto")
             img.slot__img(
               :src="product.images[0]",
