@@ -44,7 +44,7 @@ export default {
     },
     preFilter () {
       return {
-        q: this.query,
+        q: this.query ? this.query.replace(/@/g, ' ') : '',
         'filter[status]': '10,19',
         // Ordena por resultadod e búsqueda.
         orderby: null
