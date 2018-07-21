@@ -128,10 +128,10 @@ export default {
 
       this.disabledThread = true
       const data = {
-        subject: 'Pregunta de ' + this.user.id + ' para productp ' + this.productId,
+        subject: 'Pregunta de ' + this.user.id + ' para producto ' + this.productId,
         private: false,
         product_id: this.productId,
-        recipients: [this.ownerId],
+        recipients: this.user.id !== this.ownerId ? [this.ownerId] : [],
         body: this.newThread
       }
       threadsAPI.create(data)

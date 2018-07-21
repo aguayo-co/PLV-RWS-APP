@@ -82,9 +82,11 @@ export default {
   computed: {
     ...mapState(['user']),
     messenger () {
+      if (this.thread.participants.length === 1) {
+        return this.thread.participants[0].user
+      }
       return this.thread.participants.filter(x => x.user_id !== this.user.id)[0].user
     }
-
   },
   watch: {
     thread: function () {
@@ -107,7 +109,7 @@ export default {
       const data = {
         thread_id: this.thread.id,
         user_id: this.user.id,
-        recipients: [this.thread.participants[0].user_id],
+        recipients: this.thread.participants.filter(x => x.user_id !== this.user.id).map(x => x.id),
         body: this.body
       }
       threadsAPI.createMessage(data)
