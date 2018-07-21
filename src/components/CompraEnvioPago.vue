@@ -26,7 +26,7 @@
         id="form-user-phone"
         v-on:submit.prevent='updatePhone')
         .dividers__item(
-          :class="{'dividers__item_active' :editing}")
+          :class="{'dividers__item_active' :editingPhone}")
           span.help(
             v-if="allErrors.phone") {{ allErrors.phone }}
           .dividers__grid
@@ -34,12 +34,15 @@
               @input="$emit('clearError', 'phone')"
               v-model='new_phone',
               :placeholder="phone",
-              :disabled="!editing"
+              :disabled="!editingPhone"
               type='tel')
 
             span.dividers__actions
               button.btn-tag(
-                v-if="editing") Guardar
+                v-if="editingPhone"
+                :disabled="savingPhone")
+                Dots(v-if="savingPhone")
+                template(v-else) Guardar
               a.dividers__edit.i-edit-line(
                 v-if="phone"
                 @click.prevent="toggleEditPhone",
