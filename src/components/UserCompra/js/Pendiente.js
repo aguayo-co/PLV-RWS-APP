@@ -17,6 +17,9 @@ export default {
     }
   },
   computed: {
+    paymentStatus () {
+      return this.$getNestedObject(this.sale.order, ['payments', 0, 'status'])
+    },
     isTransfer () {
       return this.$getNestedObject(this.sale.order, ['payments', 0, 'gateway']) === 'Transfer'
     },
@@ -24,7 +27,7 @@ export default {
       return this.$getNestedObject(this.sale.order, ['payments', 0, 'transfer_receipt']) !== null
     },
     canUploadReceipt () {
-      return this.isTransfer && (!this.hasReceipt || this.changeReceipt)
+      return this.isTransfer && (!this.hasReceipt || this.changeReceipt || this.paymentStatus === 98)
     },
     fileName () {
       return this.transfer_receipt ? this.transfer_receipt.name : 'No hay archivos seleccionados'
