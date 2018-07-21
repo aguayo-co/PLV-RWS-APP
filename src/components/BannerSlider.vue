@@ -59,11 +59,9 @@ export default {
     }
   },
   created: function () {
-    slidersAPI.getAllSlides()
+    slidersAPI.getActiveSlides()
       .then(response => {
-        this.slides = response.data.data.sort(function (a, b) {
-          return a.priority - b.priority
-        })
+        this.slides = response.data.data
       })
   }
 }
