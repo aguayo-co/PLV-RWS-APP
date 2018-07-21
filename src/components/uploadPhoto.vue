@@ -25,7 +25,8 @@
           :zoom-speed="10",
           :initial-image="initialImage",
           :disable-scroll-to-zoom="true",
-          :disable-drag-to-move="!mqDesk")
+          :disable-drag-to-move="!mqDesk",
+          :show-remove-button="false")
       img.upfile__img(
         :src="initialImage"
         v-else-if="initialImage")
@@ -33,14 +34,18 @@
     .upfile__controls
       template(v-if='showCroppa')
         button.upfile__zoom-out.i-search-less.btn-tag(
+          type="button"
           @click.prevent="zoom('out')") Alejar
         button.btn-tag(
+          type="button"
           v-if='initialImage'
           @click.prevent="resetOriginal") Cancelar
         button.upfile__zoom-in.i-search-plus.btn-tag(
+          type="button"
           @click.prevent="zoom('in')") Acercar
       template(v-else-if='initialImage')
         button.btn-tag(
+          type="button"
           @click.prevent="editImage = true") Modificar esta imagen
 </template>
 

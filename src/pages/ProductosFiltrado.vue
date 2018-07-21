@@ -63,6 +63,7 @@ export default {
       }
 
       if (this.type === 'campanas') {
+        this.loadBannerCampaign()
         return this.campaign
       }
     },
@@ -111,6 +112,12 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    },
+    loadBannerCampaign () {
+      bannersAPI.getBannerBySlug('campana-' + this.slug)
+        .then(response => {
+          this.banner = response.data
+        }).catch(() => {})
     },
     loadBannerCategory () {
       bannersAPI.getBannerBySlug('categoria-' + this.slug)

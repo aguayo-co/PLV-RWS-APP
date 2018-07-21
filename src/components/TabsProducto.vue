@@ -38,7 +38,7 @@
                     @click.stop="deleteProduct(product)") Sí
                   button.slot-alert__btn.link_underline(@click.stop="confirmAlert(null)") No
               router-link.slot__product(
-                :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+                :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
                 :title='product.title')
                 img.slot__img(
                   :src="product.images[0]",
