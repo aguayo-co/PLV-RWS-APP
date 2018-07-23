@@ -9,7 +9,7 @@
           Loader
         .chat(v-else-if="!threads.length")
           .alert-msg.i-smile.alert-msg_top
-            p Aún no hay comentarios de este producto. Se la primera en comentar
+            p Aún no hay comentarios de este producto. Sé la primera en comentar
         .chat(v-else)
           .chat__group(v-for="(thread, index) in threads")
             .chat__line
