@@ -35,7 +35,9 @@
             p.subtitle_heart Tienes un máximo de <CountDown :time="order.payments[0].cancel_by"></CountDown> para <strong>subir</strong> tu comprobante, de lo contrario tu compra se cancelará automáticamente.
             p.notify__txt Si tienes preguntas, escríbenos a contacto@prilov.com
         .notify__footer
-          button.btn.btn_solid Terminar compra
+          button.btn.btn_solid(:disabled="uploading")
+            Dots(v-if="uploading")
+            template(v-else) Terminar compra
 </template>
 
 <script src="./js/CompraTransferencia.js"></script>
