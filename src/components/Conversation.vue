@@ -109,7 +109,7 @@ export default {
       const data = {
         thread_id: this.thread.id,
         user_id: this.user.id,
-        recipients: this.thread.participants.filter(x => x.user_id !== this.user.id).map(x => x.id),
+        recipients: this.thread.participants.filter(p => p.user_id !== this.user.id).map(p => p.user_id),
         body: this.body
       }
       threadsAPI.createMessage(data)
