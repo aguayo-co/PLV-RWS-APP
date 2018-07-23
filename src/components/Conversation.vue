@@ -44,16 +44,18 @@ section.single
                   .chat__footer.chat__footer_main
                     time.chat__date {{ message.created_at | moment("from") }}
         .chat-inner
-          form.chat__form
+          form.chat__form(@submit.prevent="send")
             label.chat__label Escribe tu mensaje aquí
             span.help(v-if="errorLog.body") {{ errorLog.body }}
             .chat__form-group
               textarea-autosize.form__textarea.chat__textarea(
                 v-model="body",
-                :disabled="disabledMessage",
-                :class=" { 'disabled' : disabledMessage }")
+                :disabled="sending",
+                :class=" { 'disabled' : sending }")
               .chat__btn-group
-                button.chat__btn-solid.i-shipping(@click.prevent="send") Enviar
+                button.chat__btn-solid(disabled v-if="sending")
+                  Dots
+                button.chat__btn-solid.i-shipping(v-else) Enviar
   .single__inner(v-else)
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
     Loader(v-if="loading")
@@ -75,7 +77,7 @@ export default {
       product: {},
       errorLog: {},
       body: null,
-      disabledMessage: false,
+      sending: false,
       loading: true
     }
   },
@@ -100,12 +102,12 @@ export default {
   },
   methods: {
     send: function () {
-      this.errorLog = {}
+      this.$delete(this.errorLog, 'body')
       if (!this.body) {
         this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
         return
       }
-      this.disabledMessage = true
+      this.sending = true
       const data = {
         thread_id: this.thread.id,
         user_id: this.user.id,
@@ -121,7 +123,7 @@ export default {
           // Si hay errores, mostrarlos.
           this.$handleApiErrors(e, ['body'], this.errorLog)
         }).finally(() => {
-          this.disabledMessage = false
+          this.sending = false
         })
     }
   },

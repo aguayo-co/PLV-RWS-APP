@@ -34,9 +34,9 @@
                     v-model="activeAnswer.content",
                     rows="1")
                   .chat__btn
-                    Dots(v-if="answering")
-                    button.chat__btn-solid.i-shipping(
-                      v-else)
+                    button.chat__btn-solid(disabled v-if="answering")
+                      Dots
+                    button.chat__btn-solid.i-shipping(v-else)
 
             .chat__line(v-for="(message, subindex) in thread.messages")
               .chat__order(
@@ -65,10 +65,9 @@
                 v-model="newThread",
                 :disabled="sending",
                 :class=" { 'disabled' : sending }")
-              button.chat__btn-solid.i-shipping(
-                :disabled="sending")
-                Dots(v-if="sending")
-                template(v-else) Comentar
+              button.chat__btn-solid(disabled v-if="sending")
+                Dots
+              button.chat__btn-solid.i-shipping(v-else) Comentar
             p(v-else) Para comentar en este producto
               a(
                 href=''
