@@ -5,7 +5,12 @@
       header.chat-band__header
         h2.subhead Comentarios de este producto
       .chat-band__grid
-        .chat(v-if="threads[0]")
+        .chat(v-if="loading")
+          Loader
+        .chat(v-else-if="!threads.length")
+          .alert-msg.i-smile.alert-msg_top
+            p Aún no hay comentarios de este producto. Se la primera en comentar
+        .chat(v-else)
           .chat__group(v-for="(thread, index) in threads")
             .chat__line
               span.chat__inner
@@ -19,16 +24,20 @@
                   time.chat__date {{ thread.created_at | moment("from") }}
                   span.editor__btn(@click="showAnswerBox(thread.id)") Responder
             .editor(v-if="activeAnswer.id === thread.id")
-              form.editor__form
+              form.editor__form(
+                @submit.prevent="addAnswer(index)")
                 span.help(v-if="errorLog.answer") {{ errorLog.answer }}
                 .chat__form-group
                   textarea-autosize.form__textarea.editor__textarea(
-                    :disabled="disabledAnswer",
-                    :class=" { 'disabled' : disabledAnswer }",
+                    :disabled="answering",
+                    :class=" { 'disabled' : answering }",
                     v-model="activeAnswer.content",
                     rows="1")
                   .chat__btn
-                    button.chat__btn-solid.i-shipping(@click.prevent="addAnswer(index)")
+                    Dots(v-if="answering")
+                    button.chat__btn-solid.i-shipping(
+                      v-else)
+
             .chat__line(v-for="(message, subindex) in thread.messages")
               .chat__order(
                 :class="{ 'chat__order_own' : message.user_id === ownerId }")
@@ -43,9 +52,6 @@
                     time.chat__date hace {{ message.created_at | moment("from") }}
             span.chat-break
               span.chat-break__bullet
-        .chat(v-else)
-          .alert-msg.i-smile.alert-msg_top
-            p Aún no hay comentarios de este producto. Se la primera en comentar
         .chat-query
           .chat_sticky
             form.chat__form(
@@ -57,9 +63,12 @@
               span.help(v-if="errorLog.body") {{ errorLog.body }}
               textarea-autosize.form__textarea.chat__textarea(
                 v-model="newThread",
-                :disabled="disabledThread",
-                :class=" { 'disabled' : disabledThread }")
-              button.chat__btn-solid.i-shipping Comentar
+                :disabled="sending",
+                :class=" { 'disabled' : sending }")
+              button.chat__btn-solid.i-shipping(
+                :disabled="sending")
+                Dots(v-if="sending")
+                template(v-else) Comentar
             p(v-else) Para comentar en este producto
               a(
                 href=''
@@ -77,13 +86,14 @@ export default {
     return {
       threads: [],
       newThread: null,
-      disabledThread: false,
-      disabledAnswer: false,
       activeAnswer: {
         id: null,
         content: null
       },
-      errorLog: {}
+      errorLog: {},
+      loading: false,
+      answering: false,
+      sending: false
     }
   },
   computed: {
@@ -105,9 +115,12 @@ export default {
   },
   methods: {
     loadThreads () {
+      this.loading = true
       threadsAPI.getByProduct(this.productId)
         .then(response => {
           this.threads = response.data.data
+        }).finally(() => {
+          this.loading = false
         })
     },
     toggle (prop) {
@@ -120,13 +133,12 @@ export default {
       this.$store.dispatch('ui/showModal', payload)
     },
     addThread () {
-      this.errorLog.body = ''
+      this.$delete(this.errorLog, 'body')
       if (!this.newThread) {
-        this.errorLog.body = '¡Ups! No podemos enviar tu pregunta si no la escribes primero.'
+        this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu pregunta si no la escribes primero.')
         return
       }
-
-      this.disabledThread = true
+      this.sending = true
       const data = {
         subject: 'Pregunta de ' + this.user.id + ' para producto ' + this.productId,
         private: false,
@@ -142,35 +154,38 @@ export default {
         }).catch(e => {
           this.$handleApiErrors(e, ['body'], this.errorLog)
         }).finally(() => {
-          this.disabledThread = false
+          this.sending = false
         })
     },
     showAnswerBox (threadId) {
       this.activeAnswer.id = threadId
       this.activeAnswer.content = ''
-      this.errorLog.answer = ''
+      this.$delete(this.errorLog, 'answer')
     },
     addAnswer (threadIndex) {
-      if (this.activeAnswer.content && this.activeAnswer.content !== '') {
-        this.errorLog.answer = ''
-        this.disabledAnswer = true
-        const data = {
-          thread_id: this.threads[threadIndex].id,
-          user_id: this.user.id,
-          recipients: [this.ownerId],
-          body: this.activeAnswer.content
-        }
-        threadsAPI.createMessage(data)
-          .then(response => {
-            this.activeAnswer.id = null
-            this.activeAnswer.content = ''
-            this.threads[threadIndex].messages.push(response.data)
-          }).catch(e => {
-            this.errorLog.answer = this.$getNestedObject(e, ['response', 'data', 'errors', 'body', 0])
-          }).finally(() => {
-            this.disabledAnswer = false
-          })
+      this.$delete(this.errorLog, 'answer')
+      if (!this.activeAnswer.content) {
+        this.$set(this.errorLog, 'answer', '¡Ups! No podemos enviar tu pregunta si no la escribes primero.')
+        return
       }
+
+      this.answering = true
+      const data = {
+        thread_id: this.threads[threadIndex].id,
+        user_id: this.user.id,
+        recipients: [this.ownerId],
+        body: this.activeAnswer.content
+      }
+      threadsAPI.createMessage(data)
+        .then(response => {
+          this.activeAnswer.id = null
+          this.activeAnswer.content = ''
+          this.threads[threadIndex].messages.push(response.data)
+        }).catch(e => {
+          this.$set(this.errorLog, 'answer', this.$getNestedObject(e, ['response', 'data', 'errors', 'body', 0]))
+        }).finally(() => {
+          this.answering = false
+        })
     },
     authorMessage (participants, message) {
       return participants.find(x => x.user_id === message.user_id).user
