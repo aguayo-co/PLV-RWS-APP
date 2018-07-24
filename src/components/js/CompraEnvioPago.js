@@ -41,7 +41,7 @@ export default {
     AddressList,
     CompraSale
   },
-  props: ['shoppingCartStep', 'errors', 'hasChilexpress'],
+  props: ['step', 'errors', 'hasChilexpress'],
   data () {
     return {
       userDataTimeout: null,

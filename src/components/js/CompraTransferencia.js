@@ -4,7 +4,7 @@ export default {
   name: 'CompraTransferencia',
   model: {
     prop: 'order',
-    event: 'refresh'
+    event: 'update'
   },
   props: ['order'],
   data () {
@@ -17,6 +17,9 @@ export default {
     }
   },
   computed: {
+    activePayment () {
+      return this.$getNestedObject(this.order, ['active_payment'])
+    },
     fileName () {
       return this.transfer_receipt ? this.transfer_receipt.name : 'no se eligió archivo'
     }
@@ -33,7 +36,7 @@ export default {
       }
       this.uploading = true
       orderAPI.uploadTransferReceipt(this.order.id, this.transfer_receipt).then(response => {
-        this.$emit('refresh', response.data)
+        this.$emit('update', response.data)
       }).catch(e => {
         this.$handleApiErrors(e, ['transfer_receipt'], this.errorLog)
       }).finally(() => {

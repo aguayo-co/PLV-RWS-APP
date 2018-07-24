@@ -82,7 +82,7 @@ export default {
       return this.$store.getters['ui/modalWindow']
     }
   },
-  created: function () {
+  created () {
     this.$store.dispatch('ui/loadProperties')
     this.$store.dispatch('user/loadUser')
       .then(response => {

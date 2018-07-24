@@ -16,7 +16,7 @@
     p Aún no has terminado tu compra, sube tu comprobante de pago.
     p Tienes:
       span.dashboard__txt-big
-        CountDown(:time="sale.order.payments[0].cancel_by")
+        CountDown(:time="activePayment.cancel_by")
       | antes de que tu compra se anule
 
   .dashboard__actions(v-else-if="paymentStatus === 98")

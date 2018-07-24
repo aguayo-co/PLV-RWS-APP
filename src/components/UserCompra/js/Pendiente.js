@@ -17,14 +17,17 @@ export default {
     }
   },
   computed: {
+    activePayment () {
+      return this.$getNestedObject(this.sale, ['order', 'active_payment'])
+    },
     paymentStatus () {
-      return this.$getNestedObject(this.sale.order, ['payments', 0, 'status'])
+      return this.$getNestedObject(this.activePayment, ['status'])
     },
     isTransfer () {
-      return this.$getNestedObject(this.sale.order, ['payments', 0, 'gateway']) === 'Transfer'
+      return this.$getNestedObject(this.activePayment, ['gateway']) === 'Transfer'
     },
     hasReceipt () {
-      return this.$getNestedObject(this.sale.order, ['payments', 0, 'transfer_receipt']) !== null
+      return this.$getNestedObject(this.activePayment, ['transfer_receipt']) !== null
     },
     canUploadReceipt () {
       return this.isTransfer && (!this.hasReceipt || this.changeReceipt || this.paymentStatus === 98)

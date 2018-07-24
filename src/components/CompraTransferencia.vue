@@ -3,14 +3,14 @@
   .notify
     header.head_ico
       small.ico__title.i-clock
-        CountDown(:time="order.payments[0].cancel_by")
+        CountDown(:time="activePayment.cancel_by")
       h2.title Sube el comprobante de transferencia
       //-p.subtitle_heart Aún no has finalizado tu compra. Sube tu comprobante de transferencia bancaria.
     .content-slot__inner
       form.form.form_file(
         @submit.prevent="uploadReceipt")
         .notify__body.notify__body_center
-          p.notify__txt Para finalizar tu compra, ingresa a la página de tu banco y haz la transferencia de ${{order.due | currency}} a la siguiente cuenta:
+          p.notify__txt Para finalizar tu compra, ingresa a la página de tu banco y haz la transferencia de ${{activePayment.request_data.amount | currency}} a la siguiente cuenta:
           .notify__txt.notify__txt_bg
             p <strong>Banco:</strong> BCI (Banco de crédito e inversiones)
             p <strong>Nº Cuenta Corriente:</strong> 61649236
@@ -32,7 +32,7 @@
               span.form-file__txt {{ fileName }}
               span.form-file__btn Subir
           .notify__bottom
-            p.subtitle_heart Tienes un máximo de <CountDown :time="order.payments[0].cancel_by"></CountDown> para <strong>subir</strong> tu comprobante, de lo contrario tu compra se cancelará automáticamente.
+            p.subtitle_heart Tienes un máximo de <CountDown :time="activePayment.cancel_by"></CountDown> para <strong>subir</strong> tu comprobante, de lo contrario tu compra se cancelará automáticamente.
             p.notify__txt Si tienes preguntas, escríbenos a contacto@prilov.com
         .notify__footer
           button.btn.btn_solid(:disabled="uploading")

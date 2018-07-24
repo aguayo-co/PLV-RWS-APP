@@ -1,46 +1,29 @@
 import { mapState } from 'vuex'
-import CompraEnvioPago from '@/components/CompraEnvioPago'
+
+import CartStep from '@/components/CartStep'
 import CompraDetalle from '@/components/CompraDetalle'
-import CompraPago from '@/components/CompraPago'
-import CompraTransferencia from '@/components/CompraTransferencia'
-import CompraCancelada from '@/components/CompraCancelada'
-import orderAPI from '@/api/order'
+import CompraEnvioPago from '@/components/CompraEnvioPago'
 
 export default {
   name: 'Compra',
   props: {
-    path: {
-      type: [String, Number],
+    step: {
+      type: [String],
       default: null
     }
   },
   data () {
     return {
-      loading: 0,
-      order: null,
+      loading: true,
       errors: {}
     }
   },
   components: {
+    CartStep,
     CompraEnvioPago,
-    CompraDetalle,
-    CompraPago,
-    CompraTransferencia,
-    CompraCancelada
+    CompraDetalle
   },
   computed: {
-    orderId () {
-      if (this.$isNumeric(this.path)) {
-        return parseInt(this.path)
-      }
-      return null
-    },
-    shoppingCartStep () {
-      if (this.$isNumeric(this.path)) {
-        return null
-      }
-      return this.path
-    },
     // Data from the shopping cart.
     ...mapState('cart', [
       'id',
@@ -51,28 +34,10 @@ export default {
       'gateway',
       'phone'
     ]),
-    orderTotal () {
-      return this.order ? this.order.due : this.due
-    },
-    // Page status.
-    isShoppingCart () {
-      return !this.orderId
-    },
-    isPayment () {
-      // paymentStatus => 1 cuando es por transferencia y está pendiente
-      // de validación por las administradoras.
-      return this.orderStatus === 20 && this.paymentStatus !== 1
-    },
-    isTransfer () {
-      return this.isPayment && this.$getNestedObject(this.order, ['payments', 0, 'gateway']) === 'Transfer'
-    },
-    isPayed () {
-      // paymentStatus => 1 cuando es por transferencia y está pendiente
-      // de validación por las administradoras.
-      return this.orderStatus === 30 || this.paymentStatus === 1
-    },
-    isCanceled () {
-      return this.orderStatus === 99
+    queryCartId () {
+      if (this.$isNumeric(this.$route.query.cartId)) {
+        return parseInt(this.$route.query.cartId)
+      }
     },
     hasChilexpress () {
       return Object.keys(this.sales).some((saleId) => {
@@ -80,60 +45,17 @@ export default {
           return true
         }
       })
-    },
-    // Data about the loaded order.
-    orderStatus () {
-      return this.$getNestedObject(this.order, ['status'])
-    },
-    paymentStatus () {
-      return this.$getNestedObject(this.order, ['payments', 0, 'status'])
     }
   },
   created () {
+    // Elimina la posibilidad del usuario a volver a adelante.
+    // Esto con le fin de que un usuario que volvió
+    // De un método de pago no pueda volver a intentar el mismo
+    // pago que ya debió ser cancelado.
+    window.history.pushState(null, null)
     this.reloadShoppingCart()
-
-    if (this.$route.query.gateway) {
-      this.loading += 1
-      this.processGatewayCallback()
-        .finally(() => {
-          this.loadOrder()
-          this.loading -= 1
-        })
-      return
-    }
-
-    this.loadOrder()
   },
   methods: {
-    processMercadoPagoCallback () {
-      // Only send callback if rejected or approved.
-      // Other states wait for PayU to send callback.
-      const state = this.$route.query.collection_status
-      if (['approved'].indexOf(state) === -1) {
-        return
-      }
-
-      return orderAPI.mercadoPagoCallback(this.$route.query)
-    },
-    processPayUCallback () {
-      // Only send callback if rejected or approved.
-      // Other states wait for PayU to send callback.
-      const state = this.$route.query.transactionState
-      if (['4', '6'].indexOf(state) === -1) {
-        return
-      }
-
-      return orderAPI.payUCallback(this.$route.query)
-    },
-    async processGatewayCallback () {
-      switch (this.$route.query.gateway) {
-        case 'pay_u':
-          return this.processPayUCallback()
-
-        case 'mercado_pago':
-          return this.processMercadoPagoCallback()
-      }
-    },
     /**
      * Ejecuta validaciones para el proceso de pago.
      * Cada validación debe pertenecer a un paso.
@@ -196,64 +118,45 @@ export default {
     clearError (field) {
       this.$delete(this.errors, field)
     },
-    setShoppingCartStep (step) {
-      if (step === this.shoppingCartStep) {
+    setStep (newStep) {
+      if (newStep === this.step) {
         return
       }
-      this.$router.push({name: 'compra', params: { path: step }})
+      this.$router.push({
+        params: { step: newStep },
+        query: { cartId: this.id }
+      })
+    },
+    ensureCartId () {
+      const cartId = this.id
+      if (this.queryCartId !== cartId) {
+        this.$router.push({query: { cartId: this.id }})
+      }
     },
     reloadShoppingCart () {
-      this.loading += 1
+      this.loading = true
       this.$store.commit('cart/clear')
       this.$store.dispatch('cart/load')
-        .finally(() => {
-          this.loading -= 1
+        .then(() => {
+          if (!Object.keys(this.sales).length && this.step) {
+            this.setStep(null)
+          }
+          this.ensureCartId()
         })
-    },
-    loadOrder () {
-      this.order = null
-      // Carga orden de URL si existe una a cargar.
-      if (this.orderId) {
-        this.loading += 1
-        return orderAPI.load(this.orderId)
-          .then(response => {
-            this.order = response.data
-          })
-          .finally(() => {
-            this.loading -= 1
-          })
-      }
+        .finally(() => {
+          this.loading = false
+        })
     }
   },
   watch: {
-    'id' (to, from) {
-      // If the ID in the URL is the one from the shopping cart,
-      // remove ID form url.
-      if (parseInt(to) === parseInt(this.orderId)) {
-        this.$router.push({name: 'compra'})
-      }
+    '$route' () {
+      this.ensureCartId()
     },
-    'status' (to, from) {
-      // If shoppingCart status is changed, then push ID to URL
-      // to load the order.
-      if (to && to !== 10) {
-        this.$router.push({name: 'compra', params: { path: this.id }})
+    'status' (status) {
+      // If shoppingCart status is changed, then change to order URL.
+      if (status && status !== 10) {
+        this.$router.push({name: 'orden', params: { step: this.id }})
       }
-    },
-    'path' (to, from) {
-      if (to === from) {
-        return
-      }
-
-      // If we changed from order to shoppingCart or viceversa
-      // reload the shopping cart.
-      if (this.orderId || this.$isNumeric(from)) {
-        this.reloadShoppingCart()
-      }
-
-      // When URL changes, reload shoppingCart
-      // and get order form url.
-      this.loadOrder()
     }
   }
 }
