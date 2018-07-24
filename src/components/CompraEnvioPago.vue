@@ -1,7 +1,7 @@
 <template lang="pug">
 .list__content
   //-Compra: Envío y pago: 1a Cliente Registrado, logueado
-  section.list_step(v-if="shoppingCartStep === null")
+  section.list_step(v-if="step === null")
     //- metodos de envío
     .compra-data_info
       .subhead.subhead_top Selecciona tu método de envío
@@ -26,7 +26,7 @@
         id="form-user-phone"
         v-on:submit.prevent='updatePhone')
         .dividers__item(
-          :class="{'dividers__item_active' :editing}")
+          :class="{'dividers__item_active' :editingPhone}")
           span.help(
             v-if="allErrors.phone") {{ allErrors.phone }}
           .dividers__grid
@@ -34,12 +34,15 @@
               @input="$emit('clearError', 'phone')"
               v-model='new_phone',
               :placeholder="phone",
-              :disabled="!editing"
+              :disabled="!editingPhone"
               type='tel')
 
             span.dividers__actions
               button.btn-tag(
-                v-if="editing") Guardar
+                v-if="editingPhone"
+                :disabled="savingPhone")
+                Dots(v-if="savingPhone")
+                template(v-else) Guardar
               a.dividers__edit.i-edit-line(
                 v-if="phone"
                 @click.prevent="toggleEditPhone",
@@ -47,9 +50,9 @@
                 title="Editar Teléfono") <small class="hide"> Editar </small>
 
     //-créditos
-  section.list_step(v-if="shoppingCartStep === 'medio-de-pago'")
+  section.list_step(v-if="step === 'medio-de-pago'")
     a.btn-back.i-back.btn-back_top(
-      @click.prevent="$emit('setShoppingCartStep', null)") Volver
+      @click.prevent="$emit('setStep', null)") Volver
     h3.subhead(v-if="credits") ¿Quieres usar tus créditos en esta compra?
     .pay-off(v-if="credits")
       .pay-off__item

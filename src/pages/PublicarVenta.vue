@@ -81,7 +81,7 @@ export default {
     ...mapState(['user']),
     seller () {
       if (this.$store.state['user'].roles) {
-        return this.$store.state['user'].roles.filter(x => x.name === 'seller')[0]
+        return this.$store.state['user'].roles.find(x => x.name === 'seller')
       }
       return false
     },

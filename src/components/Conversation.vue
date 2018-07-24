@@ -44,16 +44,18 @@ section.single
                   .chat__footer.chat__footer_main
                     time.chat__date {{ message.created_at | moment("from") }}
         .chat-inner
-          form.chat__form
+          form.chat__form(@submit.prevent="send")
             label.chat__label Escribe tu mensaje aquí
             span.help(v-if="errorLog.body") {{ errorLog.body }}
             .chat__form-group
               textarea-autosize.form__textarea.chat__textarea(
                 v-model="body",
-                :disabled="disabledMessage",
-                :class=" { 'disabled' : disabledMessage }")
+                :disabled="sending",
+                :class=" { 'disabled' : sending }")
               .chat__btn-group
-                button.chat__btn-solid.i-shipping(@click.prevent="send") Enviar
+                button.chat__btn-solid(disabled v-if="sending")
+                  Dots
+                button.chat__btn-solid.i-shipping(v-else) Enviar
   .single__inner(v-else)
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
     Loader(v-if="loading")
@@ -75,16 +77,18 @@ export default {
       product: {},
       errorLog: {},
       body: null,
-      disabledMessage: false,
+      sending: false,
       loading: true
     }
   },
   computed: {
     ...mapState(['user']),
     messenger () {
-      return this.thread.participants.filter(x => x.user_id !== this.user.id)[0].user
+      if (this.thread.participants.length === 1) {
+        return this.thread.participants[0].user
+      }
+      return this.thread.participants.find(x => x.user_id !== this.user.id).user
     }
-
   },
   watch: {
     thread: function () {
@@ -98,16 +102,16 @@ export default {
   },
   methods: {
     send: function () {
-      this.errorLog = {}
+      this.$delete(this.errorLog, 'body')
       if (!this.body) {
         this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
         return
       }
-      this.disabledMessage = true
+      this.sending = true
       const data = {
         thread_id: this.thread.id,
         user_id: this.user.id,
-        recipients: [this.thread.participants[0].user_id],
+        recipients: this.thread.participants.filter(p => p.user_id !== this.user.id).map(p => p.user_id),
         body: this.body
       }
       threadsAPI.createMessage(data)
@@ -119,7 +123,7 @@ export default {
           // Si hay errores, mostrarlos.
           this.$handleApiErrors(e, ['body'], this.errorLog)
         }).finally(() => {
-          this.disabledMessage = false
+          this.sending = false
         })
     }
   },
@@ -127,7 +131,7 @@ export default {
     this.id = this.$route.params.threadId
     threadsAPI.getThreadById(this.id)
       .then(response => {
-        let currentParticipant = response.data.participants.filter(x => x.user_id === this.user.id)[0]
+        let currentParticipant = response.data.participants.find(x => x.user_id === this.user.id)
         if (currentParticipant) {
           this.thread = response.data
           this.$store.commit('user/setUnreadCount', currentParticipant.user.unread_count)
