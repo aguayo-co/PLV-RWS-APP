@@ -51,13 +51,13 @@ export default {
     ]),
     queryObject () {
       if (this.type === 'categorias') {
-        const category = this.flattenedCategories.filter(x => x.slug === this.slug)[0]
+        const category = this.flattenedCategories.find(x => x.slug === this.slug)
         this.loadBannerCategory()
         return category
       }
 
       if (this.type === 'marcas') {
-        const brand = this.brands.filter(x => x.slug === this.slug)[0]
+        const brand = this.brands.find(x => x.slug === this.slug)
         this.loadBannerBrand()
         return brand
       }

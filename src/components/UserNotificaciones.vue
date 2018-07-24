@@ -85,7 +85,7 @@ export default {
         return thread.participants[0].user
       }
 
-      return thread.participants.filter(x => x.user_id !== this.user.id)[0].user
+      return thread.participants.find(x => x.user_id !== this.user.id).user
     }
   }
 }
