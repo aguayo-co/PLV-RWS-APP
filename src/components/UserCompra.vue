@@ -26,7 +26,6 @@
               p(v-if="sellerPhone") Teléfono: {{ sellerPhone }}
               p
                 strong Datos de la orden
-              p(v-if="phone") Teléfono: {{ phone }}
               p(v-if="address") Dirección: {{ address | address }}
               p(v-if="sale.shipping_method") Método de envío: {{ sale.shipping_method.name }}
 
