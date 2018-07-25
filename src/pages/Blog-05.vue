@@ -81,7 +81,7 @@
             p The Prilov Team.
             blockquote.blog__pullquote(
               cite='https://www.prilov.com')
-            p.blog__quote ¡El nuevo Prilov es de ustedes!
+              p.blog__quote ¡El nuevo Prilov es de ustedes!
 </template>
 
 <script>

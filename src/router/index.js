@@ -29,6 +29,7 @@ import Blog02 from '@/pages/Blog-02'
 import Blog03 from '@/pages/Blog-03'
 import Blog04 from '@/pages/Blog-04'
 import Blog05 from '@/pages/Blog-05'
+import Blog06 from '@/pages/Blog-06'
 import Closet from '@/pages/Closet'
 import CompraGuest from '@/pages/CompraGuest'
 import Contenido from '@/pages/Contenido'
@@ -348,6 +349,11 @@ const router = new Router({
       path: '/todo-lo-que-tienes-que-saber-del-nuevo-prilov',
       name: 'blog05',
       component: Blog05
+    },
+    {
+      path: '/una-historia-que-queremos-compartir',
+      name: 'blog06',
+      component: Blog06
     }
   ],
   scrollBehavior (to, from, savedPosition) {
