@@ -97,7 +97,7 @@
                     v-model='product.category_id')
                     optgroup(label='Categoría específica')
                       option(
-                        v-for='category in categories.filter(x => x.id === product.category)[0].children'
+                        v-for='category in categories.find(x => x.id === product.category).children'
                         :value='category.id'
                       ) {{ category.name }}
                 .form__row(
@@ -272,7 +272,7 @@
                       .slot__info
                         .slot__brand(
                             v-if='product.brand_id'
-                        ) {{ brands.filter(x => x.id === product.brand_id)[0].name }}
+                        ) {{ brands.find(x => x.id === product.brand_id).name }}
                         .slot__price ${{ product.price | currency }}
 
                     //- user: picture/first_name/last_name

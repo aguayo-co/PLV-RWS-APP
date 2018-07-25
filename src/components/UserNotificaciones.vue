@@ -63,7 +63,7 @@ export default {
   computed: {
     ...mapState(['user'])
   },
-  created: function () {
+  created () {
     let filter = { unread: '1' }
     threadsAPI.get(1, 100, filter)
       .then(response => {
@@ -77,20 +77,15 @@ export default {
       })
   },
   methods: {
-    isUnread: function (messageId) {
-      let result = this.unread.data.filter(x => x.id === messageId)[0]
-      if (result) {
-        return true
-      }
-      return false
+    isUnread (messageId) {
+      return this.unread.data.some(x => x.id === messageId)
     },
-    getMessenger: function (thread) {
-      let result = thread.participants.filter(x => x.user_id !== this.user.id)[0]
-      if (result) {
-        console.log(result.user)
-        return result.user
+    getMessenger (thread) {
+      if (thread.participants.length === 1) {
+        return thread.participants[0].user
       }
-      return {}
+
+      return thread.participants.find(x => x.user_id !== this.user.id).user
     }
   }
 }

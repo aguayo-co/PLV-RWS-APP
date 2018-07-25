@@ -325,21 +325,21 @@ export default {
     filterSelectedCategories: function (values) {
       let filtered = []
       values.forEach(value => {
-        filtered.push(this.flatenedCategories.filter(x => x.id === value)[0].name)
+        filtered.push(this.flatenedCategories.find(x => x.id === value).name)
       })
       return filtered.join(', ')
     },
     filterSelectedSizes: function (values) {
       let filtered = []
       values.forEach(value => {
-        filtered.push(this.flatenedSizes.filter(x => x.id === value)[0].name)
+        filtered.push(this.flatenedSizes.find(x => x.id === value).name)
       })
       return filtered.join(', ')
     },
     filterSelectedAttributes: function (values, attribute) {
       let filtered = []
       values.forEach(value => {
-        filtered.push(attribute.filter(x => x.id === value)[0].name)
+        filtered.push(attribute.find(x => x.id === value).name)
       })
       return filtered.join(', ')
     },

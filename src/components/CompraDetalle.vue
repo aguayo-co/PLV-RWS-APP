@@ -52,10 +52,17 @@
         //- Botón continuar
         .form__row
           button.btn.btn_solid.btn_block(
-            @click.prevent="nextStep") Continuar
+            v-if="step === 'medio-de-pago'"
+            @click.prevent="goToPayment") Ir a pagar
+          button.btn.btn_solid.btn_block(
+            v-else
+            @click.prevent="goToPaymentMethod") Seleccionar método de pago
+          //- Si estamos en algún paso, podemos volver.
           a.btn-back.i-back.btn-back_top(
-            v-if="shoppingCartStep"
-            @click.prevent="$emit('setShoppingCartStep', null)") Volver
+            v-if="step"
+            @click.prevent="$emit('setStep', null)") Volver
+
+          //- Componente para enviar usuario a compra de PayU.
           compraPayU(v-if="payUPayment", :payment-data="payUPayment")
         //- End botón continuar
 </template>

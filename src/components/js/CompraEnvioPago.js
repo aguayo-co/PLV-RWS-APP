@@ -41,21 +41,22 @@ export default {
     AddressList,
     CompraSale
   },
-  props: ['shoppingCartStep', 'errors', 'hasChilexpress'],
+  props: ['step', 'errors', 'hasChilexpress'],
   data () {
     return {
       userDataTimeout: null,
       editPhone: false,
       newOrderData: {...editableProps},
       errorLog: {...editableProps},
-      disabled: {...editableProps}
+      disabled: {...editableProps},
+      savingPhone: false
     }
   },
   computed: {
     allErrors () {
       return {...this.errorLog, ...this.errors}
     },
-    editing () {
+    editingPhone () {
       return this.editPhone || !this.phone
     },
     ...mapState('cart', [
@@ -93,6 +94,7 @@ export default {
         this.errorLog.phone = 'Este campo es requerido.'
         return
       }
+      this.savingPhone = true
 
       const data = {
         phone: this.new_phone
@@ -104,6 +106,8 @@ export default {
         this.new_phone = null
       }).catch((e) => {
         this.$handleApiErrors(e, ['phone'], this.errorLog)
+      }).finally(() => {
+        this.savingPhone = false
       })
     },
     /**
