@@ -62,7 +62,7 @@ section.single
               v-model="bankData.bankId")
               option(
                 v-for="bank in banks",
-                :value="bank.id") {{ bank.name }}
+                :value="bank.chileanId") {{ bank.name }}
           .form__row(:class='{ "is-danger": errorLog.description }')
             label.form__label(
               for='accountType') Selecciona tu tipo de cuenta
