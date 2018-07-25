@@ -18,7 +18,7 @@
             p.valuations__bubble
               span.chat-bubble_ico(
                 :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
-          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.seller.length <= 0")
+          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.seller && ratings.seller.length <= 0")
             p Esta prilover aún no tiene reviews como vendedora.
         template(v-if="ratings.seller.length")
           Loader(v-if="loading.seller")
@@ -41,7 +41,7 @@
             p.valuations__bubble
               span.chat-bubble_ico(
                 :class="{ 'i-like' : rating.seller_rating === 1, 'i-less-circle' : rating.seller_rating === 0 , 'i-like i_flip' : rating.seller_rating === -1 }") {{ rating.seller_comment }}
-          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.buyer.length <= 0")
+          .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-if="ratings.buyer && ratings.buyer.length <= 0")
             p Esta prilover aún no tiene reviews como compradora.
         template(v-if="ratings.buyer.length")
           Loader(v-if="loading.buyer")
@@ -114,8 +114,8 @@ export default {
         })
     },
     consolidateSeller: function () {
-      if (this.page.seller <= this.ratings.sellerNew.last_page) {
-        this.ratings.seller = this.ratings.sellerNew.data
+      if (this.page.seller <= this.ratings.sellerNew.last_page && this.ratings.sellerNew.total > 0) {
+        this.ratings.seller = {...this.ratings.sellerNew.data}
       } else {
         this.ratings.seller = this.ratings.sellerArchives.data
       }
