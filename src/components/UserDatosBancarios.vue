@@ -142,7 +142,7 @@ export default {
   computed: {
     ...mapState(['user']),
     bank () {
-      return this.banks.find(x => x.id === parseInt(this.user.bank_account.bankId)) || {}
+      return this.banks.find(x => x.chileanId === parseInt(this.user.bank_account.bankId)) || {}
     },
     accountType () {
       let typeId
