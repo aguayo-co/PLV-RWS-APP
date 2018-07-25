@@ -48,6 +48,7 @@
 .banner-hero__title {
   display: inline;
   text-transform: uppercase;
+  color: $c-default;
   font-family: $f-fancy;
   font-weight: $fw-bold;
   @include font-rem(42px);

@@ -94,9 +94,9 @@ select {
 
   .form__control {
     width: 100%;
+    height: 40px;
     padding: 0 12px;
     margin-bottom: 12px;
-    line-height: 40px;
     font-family: $f-default;
     border: 1px solid $c-default-2;
     &:disabled,

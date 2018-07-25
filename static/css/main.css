@@ -4023,6 +4023,7 @@ body {
 .banner-hero__title {
   display: inline;
   text-transform: uppercase;
+  color: #000;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-size: 42px;
@@ -6029,6 +6030,7 @@ body {
     font-size: 3rem; }
   .detail__btn {
     width: 100%;
+    display: block;
     max-width: 332px; }
   .detail__lead {
     max-width: 500px;
@@ -10713,18 +10715,14 @@ body {
 /*------------------------------------*\
 	Estilos de blog list
 \*------------------------------------*/
-.blog ul,
-.blog ol {
-  margin-left: 24px; }
-
-.blog__list {
+.blog ul {
   list-style: none;
   margin: 0 0 0 16px;
   padding-bottom: 16px; }
-  .blog__list li {
+  .blog ul li {
     position: relative;
     padding-left: 16px; }
-    .blog__list li:before {
+    .blog ul li:before {
       content: '';
       position: absolute;
       top: 10px;
@@ -10734,19 +10732,19 @@ body {
       height: 6px;
       border-radius: 50%;
       background-color: #f65a66; }
-  .blog__list ul {
+  .blog ul ul {
     margin: 0;
     padding-bottom: 0; }
 
-.blog__list-order {
+.blog ol {
   list-style: none;
   counter-reset: section;
   margin: 0;
   padding-bottom: 16px; }
-  .blog__list-order li {
+  .blog ol li {
     position: relative;
     padding-left: 24px; }
-    .blog__list-order li:before {
+    .blog ol li:before {
       counter-increment: section;
       content: counter(section);
       position: absolute;
@@ -10764,35 +10762,35 @@ body {
       font-weight: 100;
       border-radius: 50%;
       background-color: #f65a66; }
-  .blog__list-order ol {
+  .blog ol ol {
     margin: 0;
     padding-top: 16px;
     padding-bottom: 0; }
 
-li {
+.blog li {
   margin-bottom: 16px; }
 
 @media only screen and (min-width: 768px) {
-  ul.blog__list {
+  .blog ul {
     padding-bottom: 24px; }
-    ul.blog__list li {
+    .blog ul li {
       padding-left: 24px; }
-      ul.blog__list li:before {
+      .blog ul li:before {
         top: 13px;
         width: 10px;
         height: 10px; }
-  ol.blog__list-order {
+  .blog ol {
     padding-bottom: 24px; }
-    ol.blog__list-order li {
+    .blog ol li {
       padding-left: 34px; }
-      ol.blog__list-order li:before {
+      .blog ol li:before {
         top: 6px;
         width: 24px;
         height: 24px;
         line-height: 22px;
         font-size: 18px;
         font-size: 1.125rem; }
-  li {
+  .blog li {
     margin-bottom: 24px; } }
 
 /*! Flickity v2.0.11
