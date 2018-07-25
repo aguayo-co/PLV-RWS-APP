@@ -343,8 +343,10 @@
     .detail__price {
       @include font-rem(48px);
     }
+    // Fix con Block para botones
     .detail__btn {
       width: 100%;
+      display: block;
       max-width: 332px;
     }
 
