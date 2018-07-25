@@ -19,14 +19,14 @@
         .card__product
           //-img producto
           .card__figure
-            router-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+            router-link(:to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}")
               img.card__img(
                 :src="product.images[0]",
                 :alt="'Foto de ' + product.title")
 
           //-info producto
           .card__info
-            router-link.card__info-link(:to="{ name: 'product', params: { slug: product.title.toLowerCase().replace(' ', '-') + '__' + product.id }}")
+            router-link.card__info-link(:to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}")
               .card__header
                 h3.card__title {{ product.title }}
                 p.card__brand {{ product.brand }}
@@ -56,7 +56,7 @@
             label.form__label.form__label_radio(
               :for="sale.id + shippingMethod.slug")
               span.boxcheck__label
-                span {{ shippingMethod.name }}
+                span {{ shippingMethod.name }} <Dots v-if="new_shipping_method_id === shippingMethod.id"></Dots>
                 small.boxcheck__disclaimer(
                   v-if="sale.shipping_method_id == shippingMethod.id && sale.shipping_cost") &nbsp;(${{ sale.shipping_cost | currency }})
             //-nota

@@ -4,7 +4,7 @@
 import Vue from 'vue'
 
 export default {
-  getBySlug: function (slug) {
+  getBySlug (slug) {
     return Vue.axios.get('/api/campaigns/' + slug)
   }
 }

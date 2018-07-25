@@ -23,8 +23,13 @@ import AyudaDevolverProducto from '@/pages/AyudaDevolverProducto'
 import AyudaPreguntasFrecuentes from '@/pages/AyudaPreguntasFrecuentes'
 import AyudaPriloverStar from '@/pages/AyudaPriloverStar'
 import AyudaTerminos from '@/pages/AyudaTerminos'
+import Blog from '@/pages/Blog'
+import Blog01 from '@/pages/Blog-01'
+import Blog02 from '@/pages/Blog-02'
+import Blog03 from '@/pages/Blog-03'
+import Blog04 from '@/pages/Blog-04'
+import Blog05 from '@/pages/Blog-05'
 import Closet from '@/pages/Closet'
-import Reviews from '@/pages/Reviews'
 import CompraGuest from '@/pages/CompraGuest'
 import Contenido from '@/pages/Contenido'
 import EditarProducto from '@/pages/EditarProducto'
@@ -36,17 +41,13 @@ import Producto from '@/pages/Producto'
 import ProductosFiltrado from '@/pages/ProductosFiltrado'
 import PublicarVenta from '@/pages/PublicarVenta'
 import PublicarVentaPendiente from '@/pages/PublicarVentaPendiente'
+import Reviews from '@/pages/Reviews'
 import Search from '@/pages/Search'
 import SignUp from '@/pages/SignUp'
 import User from '@/pages/User'
 import Compra from '@/pages/compra'
+import Orden from '@/pages/Orden'
 import prilovers from '@/pages/prilovers'
-import Blog from '@/pages/Blog'
-import Blog01 from '@/pages/Blog-01'
-import Blog02 from '@/pages/Blog-02'
-import Blog03 from '@/pages/Blog-03'
-import Blog04 from '@/pages/Blog-04'
-import Blog05 from '@/pages/Blog-05'
 
 import beforeEach from './beforeEach'
 
@@ -133,12 +134,12 @@ const router = new Router({
           component: UserNotificaciones
         },
         {
-          path: 'notificaciones/:threadId',
+          path: 'notificaciones/:threadId(\\d+)',
           name: 'conversation',
           component: Conversation
         },
         {
-          path: 'privado/:recipientId',
+          path: 'privado/:recipientId(\\d+)',
           name: 'privateMessage',
           component: NewPrivateMessage
         },
@@ -170,7 +171,7 @@ const router = new Router({
       component: PublicarVenta
     },
     {
-      path: '/editar-producto/:productId',
+      path: '/editar-producto/:productId(\\d+)',
       name: 'editar-producto',
       component: EditarProducto,
       meta: {
@@ -192,17 +193,26 @@ const router = new Router({
       component: Producto
     },
     {
-      path: '/closet/:userId',
+      path: '/closet/:userId(\\d+)',
       name: 'closet',
       component: Closet
     },
     {
-      path: '/closet/:userId/reviews',
+      path: '/closet/:userId(\\d+)/reviews',
       name: 'reviews',
       component: Reviews
     },
     {
-      path: '/compra/:path?',
+      path: '/orden/:orderId(\\d+)',
+      name: 'orden',
+      component: Orden,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/compra/:step?',
       name: 'compra',
       component: Compra,
       props: true,

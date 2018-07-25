@@ -1,7 +1,7 @@
 <template lang="pug">
 //Paso 3: Comprobante
 section.list-slot
-  header.header_heart.i-heart-on(v-if="paymentStatus === 10")
+  header.header_heart.i-heart-on(v-if="order.status === 30")
     h2.title_heart ¡Cool! tu compra ha sido realizada
     p.subtitle_heart Ya envíamos un comprobante de compra a tu correo.
   header.header_heart.i-heart-on(v-else)
@@ -16,7 +16,7 @@ section.list-slot
       v-for="product in products")
       //-link a producto
       router-link.card__product(
-        :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+        :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
         :title="'Ver detalle de ' + product.title")
 
         //-img producto

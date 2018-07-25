@@ -1,5 +1,6 @@
 // Our shopping cart!
 import Vue from 'vue'
+import router from '@/router'
 import shoppingCartAPI from '@/api/shoppingCart'
 
 // Propiedades que son hijos directos de la orden.
@@ -62,7 +63,7 @@ const baseStateGenerator = () => {
     coupon_code: null,
     sales: {},
 
-    // Información del estado actual del carro.
+    // Información compartida en componentes sobre estado actual del carro.
     gateway: null
   }
 }
@@ -83,7 +84,8 @@ const getters = {
 
 const actions = {
   load ({commit}) {
-    return shoppingCartAPI.load().then(response => {
+    const cartId = router.currentRoute.query.cartId
+    return shoppingCartAPI.load(cartId).then(response => {
       commit('set', response.data)
       return response
     })
@@ -124,7 +126,6 @@ const mutations = {
     state['coupon_code'] = Vue.getNestedObject(cart, ['coupon', 'code'])
     state['address'] = Vue.getNestedObject(cart.shipping_information, ['address'])
     state['phone'] = Vue.getNestedObject(cart.shipping_information, ['phone'])
-    state['gateway'] = Vue.getNestedObject(cart, ['payments', 0, 'gateway']) || state.gateway
 
     const activeSales = []
 

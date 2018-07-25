@@ -6,11 +6,11 @@ section.single
     .product-grid_small
       GridProducto(
         v-if='hasFavorites'
-        :preFilter="this.filters",
+        :preFilter="filters",
         :infinite="false",
         :pager='true',
         :compact='true')
-      template No tienes favoritos
+      template(v-else) No tienes favoritos
 
 </template>
 
@@ -29,10 +29,9 @@ export default {
       return this.favorites_ids && this.favorites_ids.length
     },
     filters () {
-      let filters = {
+      return {
         'filter[id]': this.favorites_ids.join(',')
       }
-      return filters
     }
   }
 }

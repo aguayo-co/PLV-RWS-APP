@@ -9,11 +9,11 @@
       span.preload__spin.preload__spin_4
   section.section_product(v-show="hasResults && !loading")
     .filter-head
-      h3.filter-head__title {{ results }} Resultados para "{{ query.q }}"
-    GridProducto(v-if="query", :infinite="true", :preFilter="query", @doneResults="doneResults")
+      h3.filter-head__title {{ results }} Resultados para "{{ query }}"
+    GridProducto(v-if="preFilter", :infinite="true", :preFilter="preFilter", @doneResults="doneResults")
   section.section_product(v-show="!hasResults")
     .alert
-      p.alert__txt.i-sad Lo sentimos, pero no tenemos Resultados para "{{ query.q }}"
+      p.alert__txt.i-sad Lo sentimos, pero no tenemos Resultados para "{{ query }}"
 </template>
 
 <script>
@@ -34,15 +34,20 @@ export default {
     }
   },
   watch: {
-    query: function () {
+    return () {
       this.loading = true
     }
   },
   computed: {
     query () {
+      return this.$route.params.query
+    },
+    preFilter () {
       return {
-        'q': this.$route.params.query,
-        'filter[status]': '10,19'
+        q: this.query ? this.query.replace(/@/g, ' ') : '',
+        'filter[status]': '10,19',
+        // Ordena por resultadod e búsqueda.
+        orderby: null
       }
     }
   },

@@ -2,22 +2,20 @@
   .form-slot(v-if="!success")
     h1.title Crear nueva contraseña
     form.form.form_big(
-      @submit.prevent='save',
-      action='#')
+      @submit.prevent='save')
       .form__row(
         :class='{ "is-danger": errorLog.password }')
         label.form__label(
           for='password') Nueva contraseña
-        span.help(v-if="errorLog.password") {{ errorLog.password }}
-        .form__password
-          input.form__control(
-            v-model='password',
-            id='password',
-            :type="viewPass ? 'text' : 'password'",
-            @input='validatePassword'
-          )
-          span.form__visible.i-view(
-            @click='visiblePass')
+          span.help(v-if="errorLog.password") {{ errorLog.password }}
+          .form__password
+            input.form__control(
+              v-model='password',
+              id='password',
+              :type="viewPass ? 'text' : 'password'",
+              @input='validatePassword')
+            span.form__visible.i-view(
+              @click='visiblePass')
         span.password-bar(
           v-if="password",
           :class="'level-' + (3 - errorLog.passwordDetail.length)")
@@ -28,15 +26,14 @@
         :class='{ "is-danger": errorLog.passwordConfirm }')
         label.form__label(
           for='passwordConfirm') Repite tu nueva contraseña
-        span.help(v-if="errorLog.passwordConfirm") {{ errorLog.passwordConfirm }}
-        .form__password
-          input.form__control(
-            v-model='passwordConfirm',
-            id='passwordConfirm',
-            :type="viewPass ? 'text' : 'password'",
-          )
-          span.form__visible.i-view(
-            @click='visiblePass')
+          span.help(v-if="errorLog.passwordConfirm") {{ errorLog.passwordConfirm }}
+          .form__password
+            input.form__control(
+              v-model='passwordConfirm',
+              id='passwordConfirm',
+              :type="viewPass ? 'text' : 'password'")
+            span.form__visible.i-view(
+              @click='visiblePass')
       .form__row.form__row_away
         button.btn.btn_solid.btn_block(
           @click.prevent='save') Cambiar contraseña
@@ -66,10 +63,10 @@ export default {
     }
   },
   methods: {
-    visiblePass: function () {
+    visiblePass () {
       this.viewPass = !this.viewPass
     },
-    validatePassword: function (e) {
+    validatePassword () {
       this.errorLog = {}
       this.errorLog.passwordDetail = []
       if (!this.password) this.errorLog.password = 'Debes ingresar una contraseña'
@@ -77,10 +74,10 @@ export default {
       if (!/[a-zA-Z]/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos una letra')
       if (!/\d+/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos un número')
     },
-    validatePasswordConfirm: function () {
+    validatePasswordConfirm () {
       if (this.password !== this.passwordConfirm) this.errorLog.passwordConfirm = 'Las dos contraseñas no coinciden'
     },
-    save: function () {
+    save () {
       this.validatePassword()
       this.validatePasswordConfirm()
       if (Object.keys(this.errorLog).length === 1 && this.errorLog.passwordDetail.length === 0) {
@@ -90,7 +87,7 @@ export default {
           })
       }
     },
-    login: function () {
+    login () {
       const payload = {
         name: 'FormLogin'
       }

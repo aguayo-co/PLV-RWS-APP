@@ -38,7 +38,10 @@ export default {
     return {
       loading: true,
       banner: null,
-      campaign: null
+      campaign: null,
+      baseFilter: {
+        'filter[status]': '10,19'
+      }
     }
   },
   computed: {
@@ -48,18 +51,19 @@ export default {
     ]),
     queryObject () {
       if (this.type === 'categorias') {
-        const category = this.flattenedCategories.filter(x => x.slug === this.slug)[0]
+        const category = this.flattenedCategories.find(x => x.slug === this.slug)
         this.loadBannerCategory()
         return category
       }
 
       if (this.type === 'marcas') {
-        const brand = this.brands.filter(x => x.slug === this.slug)[0]
+        const brand = this.brands.find(x => x.slug === this.slug)
         this.loadBannerBrand()
         return brand
       }
 
       if (this.type === 'campanas') {
+        this.loadBannerCampaign()
         return this.campaign
       }
     },
@@ -77,15 +81,15 @@ export default {
     },
     filter () {
       if (this.type === 'categorias' && this.queryObject) {
-        return { 'filter[category_id]': this.queryObject.id }
+        return { ...this.baseFilter, 'filter[category_id]': this.queryObject.id }
       }
 
       if (this.type === 'marcas' && this.queryObject) {
-        return { 'filter[brand_id]': this.queryObject.id }
+        return { ...this.baseFilter, 'filter[brand_id]': this.queryObject.id }
       }
 
       if (this.type === 'campanas' && this.queryObject) {
-        return { 'filter[campaign_ids]': this.queryObject.id }
+        return { ...this.baseFilter, 'filter[campaign_ids]': this.queryObject.id }
       }
 
       if (this.type === undefined) {
@@ -108,6 +112,12 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    },
+    loadBannerCampaign () {
+      bannersAPI.getBannerBySlug('campana-' + this.slug)
+        .then(response => {
+          this.banner = response.data
+        }).catch(() => {})
     },
     loadBannerCategory () {
       bannersAPI.getBannerBySlug('categoria-' + this.slug)

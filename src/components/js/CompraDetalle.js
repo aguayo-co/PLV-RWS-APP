@@ -38,7 +38,7 @@ export default {
   components: {
     CompraPayU
   },
-  props: ['shoppingCartStep', 'errors'],
+  props: ['step', 'errors'],
   data () {
     return {
       payUPayment: null,
@@ -66,7 +66,7 @@ export default {
     ...createComputedProps(editableProps),
     responseUrl () {
       const a = document.createElement('a')
-      a.href = this.$router.resolve({name: 'compra', params: { path: this.id }, query: {gateway: this.gateway}}).href
+      a.href = this.$router.resolve({name: 'orden', params: { orderId: this.id }, query: {gateway: this.gateway}}).href
       return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
     }
   },
@@ -88,31 +88,19 @@ export default {
         this.disabled.coupon_code = false
       })
     },
-    /**
-     * Continúa al siguiente paso de la compra.
-     */
-    nextStep () {
-      if (this.shoppingCartStep === null) {
-        this.$emit('validate', null)
-        if (Object.keys(this.errors).length) {
-          return
-        }
-        this.continueToPaymentMethod()
+    goToPaymentMethod () {
+      this.$emit('validate', null)
+      if (Object.keys(this.errors).length) {
+        return
+      }
+      this.$emit('setStep', 'medio-de-pago')
+    },
+    goToPayment () {
+      this.$emit('validate', 'medio-de-pago')
+      if (Object.keys(this.errors).length) {
         return
       }
 
-      if (this.shoppingCartStep === 'medio-de-pago') {
-        this.$emit('validate', 'medio-de-pago')
-        if (Object.keys(this.errors).length) {
-          return
-        }
-        this.continueToPayment()
-      }
-    },
-    continueToPaymentMethod () {
-      this.$emit('setShoppingCartStep', 'medio-de-pago')
-    },
-    continueToPayment () {
       // Este es el último paso.
       const gateway = this.gateway
       let request
@@ -165,6 +153,7 @@ export default {
         }
       }
       this.$store.dispatch('ui/showModal', modal)
+
       return shoppingCartAPI.getPayment('pay_u').then((response) => {
         this.payUPayment = {
           ...response.data.request_data,
@@ -176,25 +165,23 @@ export default {
      * Genera pago de transferencia.
      */
     setTransferPayment () {
-      this.$emit('setShoppingCartStep', null)
       const modal = {
         name: 'ModalMessage',
         parameters: {
           type: 'preload',
-          title: 'Estamos confirmando tu compra.',
+          title: 'Estamos alistando compra.',
           body: 'Por favor no refresques esta página.'
         }
       }
       this.$store.dispatch('ui/showModal', modal)
-      return shoppingCartAPI.getPayment('transfer').then((response) => {
-        this.$router.push({name: 'compra', params: { path: this.id }})
+      return shoppingCartAPI.getPayment('transfer').then(() => {
+        this.$router.push({name: 'orden', params: { orderId: this.id }})
       })
     },
     /**
      * Genera pago de cuando el valor es 0.
      */
     setTransferFree () {
-      this.$emit('setShoppingCartStep', null)
       const modal = {
         name: 'ModalMessage',
         parameters: {
@@ -204,21 +191,16 @@ export default {
         }
       }
       this.$store.dispatch('ui/showModal', modal)
-      return shoppingCartAPI.getPayment('free').then((response) => {
-        this.$router.push({name: 'compra', params: { path: this.id }})
+      return shoppingCartAPI.getPayment('free').then(() => {
+        this.$router.push({name: 'orden', params: { orderId: this.id }})
       })
     }
   },
   watch: {
-    /**
-     * Calcula un timeout sin modificación para guardar
-     * used_credits en el back.
-     *
-     * Esto se eliminaría si se usa un botón para enviar el formulario.
-     */
-    due (newDue, oldDue) {
+    due (newDue) {
       if (newDue < 0) {
         this.gateway = null
+        return
       }
 
       if (this.gateway === 'free' && newDue > 0) {

@@ -23,18 +23,18 @@ section.single
             .alert-msg.alert-msg_center.i-smile(v-else)
               p Escribe tu primer mensaje para iniciar la conversación.
           .chat-inner
-            form.chat__form
+            form.chat__form(@submit.prevent="send")
               label.chat__label Escribe tu mensaje aquí
               span.help(v-if="errorLog.body") {{ errorLog.body }}
               .chat__form-group
                 textarea-autosize.form__textarea.chat__textarea(
                   v-model="body",
-                  :disabled="savingMessage",
-                  :class=" { 'disabled' : savingMessage }")
+                  :disabled="sending",
+                  :class=" { 'disabled' : sending }")
                 .chat__btn-group
-                  button.chat__btn-solid(v-if="savingMessage")
+                  button.chat__btn-solid(disabled v-if="sending")
                     Dots
-                  button.chat__btn-solid.i-shipping(v-else @click.prevent="send") Enviar
+                  button.chat__btn-solid.i-shipping(v-else) Enviar
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       loading: true,
-      savingMessage: false,
+      sending: false,
       recipientId: null,
       recipient: {},
       thread: null,
@@ -94,13 +94,13 @@ export default {
       this.thread ? this.sendMessage() : this.createThread()
     },
     sendMessage: function () {
-      this.errorLog = {}
+      this.$delete(this.errorLog, 'body')
       if (!this.body) {
-        this.errorLog.body = '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.'
+        this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
         return
       }
 
-      this.savingMessage = true
+      this.sending = true
       const data = {
         thread_id: this.thread.id,
         user_id: this.user.id,
@@ -114,17 +114,17 @@ export default {
         }).catch((e) => {
           this.$handleApiErrors(e, ['body'], this.errorLog)
         }).finally(() => {
-          this.savingMessage = false
+          this.sending = false
         })
     },
     createThread: function () {
-      this.errorLog = {}
+      this.$delete(this.errorLog, 'body')
       if (!this.body) {
-        this.errorLog.body = '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.'
+        this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
         return
       }
 
-      this.savingMessage = true
+      this.sending = true
       const data = {
         subject: 'Privado entre ' + this.user.id + ' y ' + this.recipient.id,
         private: true,
@@ -138,7 +138,7 @@ export default {
         }).catch((e) => {
           this.$handleApiErrors(e, ['body'], this.errorLog)
         }).finally(() => {
-          this.savingMessage = false
+          this.sending = false
         })
     }
   },

@@ -5,9 +5,6 @@ export default {
     address () {
       return this.$getNestedObject(this.order, ['shipping_information', 'address'])
     },
-    paymentStatus () {
-      return this.$getNestedObject(this.order, ['payments', 0, 'status'])
-    },
     products () {
       const products = {}
       // Listado de productos con información básica de la Venta y la vendedora en cada uno.

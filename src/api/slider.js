@@ -4,7 +4,11 @@
 import Vue from 'vue'
 
 export default {
-  getAllSlides: function () {
-    return Vue.axios.get('/api/sliders')
+  getActiveSlides () {
+    const params = {
+      'filter[priority]': '1,100',
+      orderby: 'priority'
+    }
+    return Vue.axios.get('/api/sliders', { params })
   }
 }

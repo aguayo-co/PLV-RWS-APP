@@ -1,6 +1,6 @@
 <template lang="pug">
 .banner-slider(
-    v-if="slides[0]")
+  v-if="slides && slides.length")
   flickity.banner-slider__container(
     ref="flickity",
     v-images-loaded="imagesLoaded"
@@ -59,7 +59,7 @@ export default {
     }
   },
   created: function () {
-    slidersAPI.getAllSlides()
+    slidersAPI.getActiveSlides()
       .then(response => {
         this.slides = response.data.data
       })

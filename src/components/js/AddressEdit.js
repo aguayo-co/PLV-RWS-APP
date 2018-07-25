@@ -1,3 +1,4 @@
+import { mapState } from 'vuex'
 import MultiSelect from 'vue-multiselect'
 
 // Cada campo editable debe estar acá.
@@ -44,7 +45,24 @@ export default {
     }
   },
   computed: {
-    ...createComputedProps(editableProps)
+    ...mapState('user', [
+      'favorite_address_id',
+      'addresses'
+    ]),
+    ...createComputedProps(editableProps),
+    canDelete () {
+      // No eliminar si es la favorita.
+      if (this.favorite_address_id === this.address.id) {
+        return false
+      }
+
+      // No eliminar si es la única.
+      if (Object.keys(this.addresses).length === 1) {
+        return false
+      }
+
+      return true
+    }
   },
   methods: {
     isValid () {

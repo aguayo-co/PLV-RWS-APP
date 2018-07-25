@@ -62,7 +62,7 @@ section.single
               v-model="bankData.bankId")
               option(
                 v-for="bank in banks",
-                :value="bank.id") {{ bank.name }}
+                :value="bank.chileanId") {{ bank.name }}
           .form__row(:class='{ "is-danger": errorLog.description }')
             label.form__label(
               for='accountType') Selecciona tu tipo de cuenta
@@ -142,7 +142,7 @@ export default {
   computed: {
     ...mapState(['user']),
     bank () {
-      return this.banks.filter(x => x.id === parseInt(this.user.bank_account.bankId))[0] || {}
+      return this.banks.find(x => x.chileanId === parseInt(this.user.bank_account.bankId)) || {}
     },
     accountType () {
       let typeId
@@ -157,7 +157,7 @@ export default {
           typeId = 4
         }
       }
-      return this.accountTypes.filter(x => x.id === typeId)[0] || {}
+      return this.accountTypes.find(x => x.id === typeId) || {}
     },
     userBankData () {
       return this.user.bank_account || {}

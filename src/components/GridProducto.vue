@@ -23,7 +23,7 @@
           :class='{ enableFavorite: user.favorites_ids.includes(product.id) }'
           title='Agrega a Favoritos') Agregar a Favoritos
         router-link.slot__product(
-          :to="{ name: 'product', params: { slug: product.title + '__' + product.id }}",
+          :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
           :title='product.title')
           img.slot__img(
             :src="product.images[0]",
