@@ -144,9 +144,9 @@ export default {
       }
       this.$store.dispatch('ui/showModal', modal)
       let data = {
-        'back_urls[success]': this.responseUrl,
-        'back_urls[pending]': this.responseUrl,
-        'back_urls[failure]': this.responseUrl
+        'back_urls[success]': this.responseUrl + '&prilov_status=success',
+        'back_urls[pending]': this.responseUrl + '&prilov_status=pending',
+        'back_urls[failure]': this.responseUrl + '&prilov_status=failure'
       }
       return shoppingCartAPI.getPayment('mercado_pago', data).then((response) => {
         window.location = response.data.request_data
