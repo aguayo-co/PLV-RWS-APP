@@ -9,19 +9,24 @@
           dt.data-table__item Total de la compra
           dd.data-table__value ${{ total | currency }}
           dt.data-table__item Costo de envío
-          dd.data-table__value {{ shipping_cost ? '$' : '-' }}{{ shipping_cost | currency }}
+          dd.data-table__value
+            template(v-if="shipping_cost") $ {{ shipping_cost | currency }}
+            template(v-else) -
           //- Estado sin creditos
-          dt.data-table__item Créditos
+          dt.data-table__item Créditos usados
           dd.data-table__value(
-            :class="{txt_brand: used_credits}"
-          ) -{{ used_credits ? '$' : '' }}{{ used_credits | currency }}
+            :class="{txt_brand: used_credits}") -
+            template(v-if="used_credits") $ {{ used_credits | currency }}
           dt.data-table__item Código de descuento
           dd.data-table__value(
-            :class="{txt_brand: coupon_discount}"
-          ) -{{ coupon_discount ? '$' : '' }}{{ coupon_discount | currency }}
+            :class="{txt_brand: coupon_discount}") -
+            template(v-if="coupon_discount") $ {{ coupon_discount | currency }}
+          template(v-if="gatewayFee")
+            dt.data-table__item Comisión {{ gatewaysNames[gateway] }}
+            dd.data-table__value $ {{ gatewayFee | currency }}
         dl.data-total
           dt.data-total__label Total de la orden:
-          dd.data-total__value ${{ due | currency }}
+          dd.data-total__value ${{ due + gatewayFee | currency }}
         //- End List Detalle de tu compra
 
         //- Código de descuento
