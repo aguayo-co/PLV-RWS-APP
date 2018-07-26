@@ -16,7 +16,7 @@
           .blog__copy
             p Hace poco más de 3 años, <strong>Andrea y Cony</strong>, las fundadoras de Prilov, pusieron sobre una hoja de cuaderno, su sueño; la plataforma de <strong>PRILOV</strong>. Todo comenzó con recursos muy limitados y una plataforma que era prácticamente un test para ver si la idea funcionaba. Hoy con casi <strong>70.000 prilovers inscritas</strong>, podemos decir que funcionó.
             p Sabemos que no todo ha sido color de rosa, y las más pacientes y comprensivas han sido <strong>ustedes</strong>. Hemos escuchado siempre sus opiniones y sobre todo, las ideas que nos comunican de mejoras en la web. Pero, no era tan fácil implementarlas. La tecnología requiere una gran inversión y no podíamos tomar ese riesgo tan temprano.
-            p <strong>Hoy sabemos que podemos llegar más lejos</strong>. Ustedes han validado el potencial que Prilov tiene y sabemos que aún queda mucho por crecer. 
+            p <strong>Hoy sabemos que podemos llegar más lejos</strong>. Ustedes han validado el potencial que Prilov tiene y sabemos que aún queda mucho por crecer.
             p Lo queremos hacer junto a una página que se ajuste a todas sus necesidades, y verdaderamente les haga la vida más fácil.
           aside.blog-side
             dl
@@ -28,6 +28,9 @@
               dd Elige la ropa que no usas y dale una segunda oportunidad. <router-link class="link_underline" :to="{ name: 'como-funciona' }">Convierte tu clóset en tu propia tienda</router-link>
             dl
               dt Relacionados
+              dd
+                router-link.link(
+                  :to="{ name: 'blog05' }") Todo lo que tienes que saber del nuevo Prilov.
               dd
                 router-link.link(
                   :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos.
@@ -61,7 +64,7 @@
           h2.blog__headline Nuevas funcionalidades
           ul
             li Versión mobile full responsive.
-            li Mayor rapidez de la página en general. 
+            li Mayor rapidez de la página en general.
             li Menor tiempo para cargar productos.
             li Integración con Chilexpress.
             li Centro de control amigable y fácil de usar.

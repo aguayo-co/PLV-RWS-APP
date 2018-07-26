@@ -27,6 +27,9 @@
               dt Relacionados
               dd
                 router-link.link(
+                  :to="{ name: 'blog06' }") Una historia que queremos compartir…
+              dd
+                router-link.link(
                   :to="{ name: 'blog05' }") Todo lo que tienes que saber del nuevo Prilov.
               dd
                 router-link.link(

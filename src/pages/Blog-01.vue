@@ -4,9 +4,8 @@
   section.blog.blog_top
     .blog__inner
       header.blog__header
-        h1.blog__title Las cuatro apps más usadas por fashion bloggers para editar sus fotos
-        p.blog__kicker ¿Cómo logran esas fotos? ¿Qué apps usan? ¿Cómo puedo tenerlas YO? En Prilov te contamos el secreto...
-        p.bolg__data <time datetime="2014-10-27">lun 27 oct 2014</time> por <a class="link_underline" href="closet/2" title="Autora Cony Sepúlveda">Cony Sepúlveda</a>
+        h1.blog__title  Una historia que queremos compartir…
+        p.bolg__data <time datetime="2014-10-27">Vie 20 jul 2018</time> por <a class="link_underline" href="closet/2" title="Autora Cony Sepúlveda">Cony Sepúlveda</a>
       article.blog__body
         .blog__spread
           .blog__copy
@@ -26,6 +25,9 @@
               dd Elige la ropa que no usas y dale una segunda oportunidad. <router-link class="link_underline" :to="{ name: 'como-funciona' }">Convierte tu clóset en tu propia tienda</router-link>
             dl
               dt Relacionados
+              dd
+                router-link.link(
+                  :to="{ name: 'blog06' }") Una historia que queremos compartir…
               dd
                 router-link.link(
                   :to="{ name: 'blog05' }") Todo lo que tienes que saber del nuevo Prilov.

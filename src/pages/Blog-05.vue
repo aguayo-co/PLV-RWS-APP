@@ -32,6 +32,9 @@
               dt Relacionados
               dd
                 router-link.link(
+                  :to="{ name: 'blog06' }") Una historia que queremos compartir…
+              dd
+                router-link.link(
                   :to="{ name: 'blog01' }") Las cuatro apps más usadas por fashion bloggers para editar sus fotos.
               dd
                 router-link.link(
