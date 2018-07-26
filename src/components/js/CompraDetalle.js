@@ -33,6 +33,11 @@ function createComputedProps (props) {
   return computed
 }
 
+const gatewaysNames = {
+  pay_u: 'PayU',
+  mercado_pago: 'Mercado Pago'
+}
+
 export default {
   name: 'CompraDetalle',
   components: {
@@ -41,6 +46,7 @@ export default {
   props: ['step', 'errors'],
   data () {
     return {
+      gatewaysNames,
       payUPayment: null,
       newOrderData: {...editableProps},
       errorLog: {...editableProps},
@@ -48,6 +54,12 @@ export default {
     }
   },
   computed: {
+    gatewayFee () {
+      if (['pay_u', 'mercado_pago'].indexOf(this.gateway) !== -1) {
+        return parseInt(this.due * 0.05)
+      }
+      return 0
+    },
     couponValid () {
       return this.coupon_code && this.newOrderData.coupon_code === null
     },
@@ -132,9 +144,9 @@ export default {
       }
       this.$store.dispatch('ui/showModal', modal)
       let data = {
-        'back_urls[success]': this.responseUrl,
-        'back_urls[pending]': this.responseUrl,
-        'back_urls[failure]': this.responseUrl
+        'back_urls[success]': this.responseUrl + '&prilov_status=success',
+        'back_urls[pending]': this.responseUrl + '&prilov_status=pending',
+        'back_urls[failure]': this.responseUrl + '&prilov_status=failure'
       }
       return shoppingCartAPI.getPayment('mercado_pago', data).then((response) => {
         window.location = response.data.request_data
