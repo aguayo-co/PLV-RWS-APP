@@ -10899,9 +10899,12 @@ http://flickity.metafizzy.co
 .banner-slider .flickity-page-dots .dot {
   position: relative;
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   margin: 0 8px;
+  background: transparent;
+  border-radius: 0;
+  opacity: 1;
   cursor: pointer; }
 
 .banner-slider .dot:before {

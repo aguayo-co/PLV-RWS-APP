@@ -106,11 +106,14 @@ http://flickity.metafizzy.co
   }
   .flickity-page-dots .dot {
     position: relative;
-    display:inline-block;
-    width:10px;
-    height:10px;
-    margin:0 8px;
-    cursor:pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 8px;
+    background: transparent;
+    border-radius: 0;
+    opacity: 1;
+    cursor: pointer;
   }
   .dot {
     &:before {
