@@ -65,8 +65,7 @@ export default {
     refreshOrder (order) {
       const sales = order.sales
       delete order.sales
-      Object.keys(sales).forEach(key => {
-        const sale = sales[key]
+      sales.forEach(sale => {
         if (!this.sales[sale.id]) {
           return
         }
