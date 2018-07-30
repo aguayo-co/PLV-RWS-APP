@@ -283,14 +283,16 @@ export default {
     applyFilters: function () {
       const filters = {}
       Object.keys(filterFields).forEach(key => {
-        if (key === 'price') {
-          filters['filter[price]'] = this.new_filter.price
-        } else {
-          filters['filter[' + key + ']'] = this.new_filter[key].join(',') || ''
+        switch (key) {
+          case 'price':
+            filters['filter[price]'] = this.new_filter.price
+            break
+
+          default:
+            filters['filter[' + key + ']'] = this.new_filter[key].join(',') || ''
         }
       })
       filters.orderby = this.new_filter.orderby
-      console.log(filters)
       this.$emit('setFilters', filters)
     }
   },

@@ -11,7 +11,15 @@
 //-
 //- Ejemplo: Pager(v-model="pagination", :auth="true")
 
-ul.pagination.pagination_bottom(v-if="pagination")
+Loader(v-if="infinite && loading")
+p.btn__wrapper(
+  v-else-if="infinite")
+  span(v-if="objects.length === 0") No hay resultados a mostrar
+  span(v-else-if="currentPage === pagination.last_page") Ya cargaste todos los resultados
+  button.btn.i-send(
+    v-else-if="!mqMobile"
+    @click='currentPage++') Ver más
+ul.pagination.pagination_bottom(v-else-if="pagination")
   li.pagination__select
     select.form__select.form__select_small(
       name="numeroItems",
@@ -21,16 +29,16 @@ ul.pagination.pagination_bottom(v-if="pagination")
         option(value="33") 33
         option(value="42") 42
   li.pagination__item(
-    v-if='1 < pagination.current_page')
+    v-if='1 < currentPage')
     a.pagination__arrow.pagination__arrow_prev.i-back(
-      @click.prevent="goTo(pagination.prev_page_url)"
+      @click.prevent="currentPage--"
       href="#")
-  li.pagination__item {{ pagination.current_page }}
+  li.pagination__item {{ currentPage }}
   li.pagination__item.pagination__item_txt de {{ pagination.last_page }}
   li.pagination__item(
-      v-if='pagination.current_page < pagination.last_page')
+      v-if='currentPage < pagination.last_page')
     a.pagination__arrow.pagination__arrow_next.i-next(
-      @click.prevent="goTo(pagination.next_page_url)"
+      @click.prevent="currentPage++"
       href="#")
 </template>
 

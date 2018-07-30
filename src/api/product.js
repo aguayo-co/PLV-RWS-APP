@@ -10,7 +10,7 @@ const STATUS_APPROVED = 10
 const STATUS_AVAILABLE = 19
 
 export default {
-  create: function (product) {
+  create (product) {
     var formData = new FormData()
 
     // Checks if there are new images.
@@ -35,10 +35,10 @@ export default {
 
     return Vue.axiosAuth.post('/api/products/', formData)
   },
-  delete: function (product) {
+  delete (product) {
     return Vue.axiosAuth.delete('/api/products/' + product.id)
   },
-  update: function (product) {
+  update (product) {
     var formData = new FormData()
 
     if (product.status === STATUS_REJECTED || product.status === STATUS_HIDDEN) {
@@ -81,11 +81,12 @@ export default {
     return Vue.axiosAuth.patch('/api/products/' + product.id, formData)
   },
 
-  get: function (params) {
+  baseURL: '/api/products',
+  get (params) {
     return Vue.axios.get('/api/products', { params })
   },
 
-  getProducts: function (page, items, filter, order, search, auth = false) {
+  getProducts (page, items, filter, order, search, auth = false) {
     const params = {}
     Object.keys(filter).forEach((key) => {
       params['filter[' + key + ']'] = filter[key]
@@ -98,35 +99,35 @@ export default {
     return axios.get('/api/products', {params})
   },
 
-  getAuth: function (page, items, filter, order, search) {
+  getAuth (page, items, filter, order, search) {
     return this.getProducts(page, items, filter, order, search, true)
   },
 
-  getProductById: function (productId) {
+  getProductById (productId) {
     return Vue.axios.get('/api/products/' + productId)
   },
 
-  getProductAuthById: function (productId) {
+  getProductAuthById (productId) {
     return Vue.axiosAuth.get('/api/products/' + productId)
   },
 
-  getProductBySlug: function (productSlug) {
+  getProductBySlug (productSlug) {
 
   },
 
-  getAllConditions: function () {
+  getAllConditions () {
     return Vue.axios.get('/api/conditions')
   },
 
-  getAllColors: function () {
+  getAllColors () {
     return Vue.axios.get('/api/colors')
   },
 
-  getAllBrands: function () {
+  getAllBrands () {
     return Vue.axios.get('/api/brands?items=500')
   },
 
-  getAllSizes: function () {
+  getAllSizes () {
     return Vue.axios.get('/api/sizes')
   }
 }
