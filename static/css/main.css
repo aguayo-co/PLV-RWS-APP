@@ -10683,23 +10683,23 @@ body {
 .blog-bannerprom .banner-hero__title {
   display: block; }
 
-.blog-side dl {
-  padding-bottom: 16px; }
-
-.blog-side dt {
-  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  font-size: 1.125rem;
-  text-transform: uppercase;
-  padding-bottom: 16px; }
-
-.blog-side dd {
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 100;
-  font-size: 16px;
-  font-size: 1rem;
-  padding-bottom: 16px; }
+.blog-side {
+  padding-top: 50px; }
+  .blog-side dl {
+    padding-bottom: 16px; }
+  .blog-side dt {
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    padding-bottom: 16px; }
+  .blog-side dd {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+    font-size: 1rem;
+    padding-bottom: 16px; }
 
 @media only screen and (min-width: 768px) {
   .blog-side {
