@@ -38,6 +38,11 @@ export default {
     return {
       articles: [
         {
+          title: 'Una historia que queremos compartir…',
+          url: '/una-historia-que-queremos-compartir',
+          image: '/static/img/blog-thumb-006.jpg'
+        },
+        {
           title: 'Todo lo que tienes que saber del nuevo Prilov',
           url: '/todo-lo-que-tienes-que-saber-del-nuevo-prilov',
           image: '/static/img/blog-thumb-005.jpg'

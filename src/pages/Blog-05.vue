@@ -80,7 +80,7 @@
             p Cualquier cosa que quieras reportar, felices te escuchamos.
             p Si tienes dudas o comentarios, escríbenos a <a class="link_underline" href="mailto:contacto@prilov.com">contacto@prilov.com</a> y siempre te ayudaremos.
             p
-              strong !Kisses!
+              strong Kisses!
             p The Prilov Team.
             blockquote.blog__pullquote(
               cite='https://www.prilov.com')
