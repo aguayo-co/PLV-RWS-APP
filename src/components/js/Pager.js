@@ -39,59 +39,51 @@ export default {
     },
     currentPage: {
       get () {
-        return parseInt(this.$route.query.page)
+        return this.$isNumeric(this.$route.query.page) ? parseInt(this.$route.query.page) : null
       },
       set (page) {
-        this.$router.replace({
-          query: {...this.$route.query, page},
-          params: {...this.$route.params, keepPosition: this.infinite}
+        const routeParams = {
+          params: {...this.$route.params, keepPosition: this.infinite},
+          query: {...this.$route.query, page}
+        }
+        if (this.infinite) {
+          this.$router.replace(routeParams)
+          return
+        }
+        this.$router.push({
+          name: this.$route.name,
+          ...routeParams
         })
       }
     },
     perPage: {
       get () {
-        return parseInt(this.$route.query.items)
+        const forcedItems = this.$getNestedObject(this.forcedParams, ['items'])
+        if (forcedItems) {
+          return forcedItems
+        }
+        return this.$isNumeric(this.$route.query.items) ? parseInt(this.$route.query.items) : null
       },
       set (items) {
-        this.$router.replace({
-          query: {...this.$route.query, items},
-          params: {...this.$route.params, keepPosition: this.infinite}
-        })
-      }
-    },
-    historyKey: {
-      get () {
-        return this.$route.query.hk
-      },
-      set (hk) {
-        this.$router.replace({
-          query: {...this.$route.query, hk},
-          params: {...this.$route.params, keepPosition: this.infinite}
+        this.$router.push({
+          name: this.$route.name,
+          params: {...this.$route.params, keepPosition: this.infinite},
+          query: {...this.$route.query, items, page: 1}
         })
       }
     },
     historyData: {
       get () {
-        if (!this.historyKey) {
-          return
-        }
-
-        let historyData = window.localStorage.getItem('hk' + this.historyKey)
+        let historyData = window.sessionStorage.getItem(this.$route.fullPath)
         if (!historyData) {
           return
         }
 
         historyData = JSON.parse(historyData)
-        if (historyData.fullPath !== this.$route.fullPath) {
-          window.localStorage.removeItem('hk' + this.historyKey)
-          return
-        }
-
         return historyData
       },
       set (data) {
-        data.fullPath = this.$route.fullPath
-        window.localStorage.setItem('hk' + this.historyKey, JSON.stringify(data))
+        window.sessionStorage.setItem(this.$route.fullPath, JSON.stringify(data))
       }
     }
   },
@@ -103,7 +95,29 @@ export default {
       }
       window.removeEventListener('scroll', this.handleScroll)
     },
-    '$route.query' () {
+    forcedParams () {
+      this.resetContent()
+    },
+    '$route.path' () {
+      this.resetContent()
+    },
+    '$route.query' (newQuery, oldQuery) {
+      // Lista de los parámetros viejos y nuevos.
+      // Con Set() aseguramos que sean únicos.
+      const allParams = [...new Set([...Object.keys(newQuery), ...Object.keys(oldQuery)])]
+      const reset = allParams.some(param => {
+        if (param === 'page') {
+          // Cuando nos pidan la primera página, siempre reiniciar.
+          return newQuery.page === 1
+        }
+        // Reiniciar cuando cambie algún parámetro.
+        return newQuery[param] !== oldQuery[param]
+      })
+      if (reset) {
+        this.resetContent()
+        return
+      }
+      // De lo contrario, cargar y el paginador decide si agregar o reemplazar.
       this.goTo()
     }
   },
@@ -111,25 +125,25 @@ export default {
     this.goTo()
   },
   methods: {
+    resetContent () {
+      this.$emit('paged', [])
+      this.pagination = null
+      this.goTo()
+    },
     handleScroll () {
       if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
-        if (this.lastPage > this.parameters.page) this.currentPage++
+        if (this.currentPage < this.pagination.last_page) this.currentPage++
       }
     },
     validateQuery () {
       const query = this.$route.query
 
-      if (query.hk === undefined) {
-        this.historyKey = Date.now()
-        return false
-      }
-
-      if (!this.$isNumeric(query.page)) {
+      if (!this.currentPage) {
         this.currentPage = 1
         return false
       }
 
-      if (!this.$isNumeric(query.items) && !this.infinite) {
+      if (!this.perPage && !this.infinite) {
         this.perPage = 12
         return false
       }
@@ -143,7 +157,7 @@ export default {
     },
     validateHistoryData () {
       // Si ya hay datos, no necesitamos historial.
-      if (this.objects && this.objects.length) {
+      if (this.pagination && this.objects && this.objects.length) {
         return true
       }
 
@@ -166,11 +180,14 @@ export default {
       return true
     },
     goTo () {
+      this.loading = true
       if (!this.validateQuery()) {
+        this.false = true
         return
       }
 
       if (!this.validateHistoryData()) {
+        this.false = true
         return
       }
 

@@ -29,11 +29,16 @@ section.single
       Loader(v-if="loading")
       UserVenta(
         v-else
-        v-for="sale in sortedSales"
+        v-for="sale in sales"
         :sale="sale"
         :key="sale.id"
         v-on:refresh-sale="setSale")
-    Pager(v-model="pagination", :auth="true" v-on:paging="loading = $event")
+    Pager(
+      v-model='sales'
+      :auth='true'
+      v-on:paging="loading = $event"
+      :forcedParams='forcedParams'
+      :baseURL="baseURL")
 </template>
 
 <script src="./js/UserTusVentas.js"></script>

@@ -9,13 +9,14 @@ export default {
   props: ['user'],
   data () {
     return {
+      baseURL: productAPI.baseURL,
       orderby: '-id',
       isActive: undefined,
       activeTab: 'published',
-      pagination: null,
-      products: null,
+      products: [],
       loading: true,
       modalDeleteId: null,
+      forcedParams: null,
       tabs: {
         published: {title: 'Publicados', filter: '10,19'},
         sold: {title: 'Vendidos', filter: '30,32'},
@@ -36,9 +37,6 @@ export default {
       productAPI.update(data).then(() => {
         const index = this.products.indexOf(product)
         this.$delete(this.products, index)
-        if (this.products.length === 0) {
-          this.products = null
-        }
       }).finally(() => {
         this.$delete(product, '_loading')
       })
@@ -52,9 +50,6 @@ export default {
       productAPI.update(data).then(() => {
         const index = this.products.indexOf(product)
         this.$delete(this.products, index)
-        if (this.products.length === 0) {
-          this.products = null
-        }
       }).finally(() => {
         this.$delete(product, '_loading')
       })
@@ -67,46 +62,26 @@ export default {
       productAPI.delete(product).then(() => {
         const index = this.products.indexOf(product)
         this.$delete(this.products, index)
-        if (this.products.length === 0) {
-          this.products = null
-        }
       }).finally(() => {
         this.$delete(product, '_loading')
         this.modalDeleteId = null
       })
     },
-    loadProducts () {
-      this.products = null
-      let filters = {}
-      filters.status = this.tabs[this.activeTab].filter
-      filters.user_id = this.user.id
-      const currentLoader = this.loading = productAPI.getAuth(1, null, filters, this.orderby)
-        .then((response) => {
-          // Maybe the user exited the current tab already
-          // Since a promise is not cancelable (yet) we ignore
-          // a callback which is not the latest one.
-          if (this.loading === currentLoader) {
-            this.pagination = response.data
-            this.loading = false
-          }
-        })
+    setParams () {
+      const forcedParams = {}
+      forcedParams['filter[status]'] = this.tabs[this.activeTab].filter
+      forcedParams['filter[user_id]'] = this.user.id
+      forcedParams['orderby'] = this.orderby
+      this.forcedParams = forcedParams
     }
   },
-  created: function () {
-    this.loadProducts()
+  created () {
+    this.setParams()
   },
   watch: {
     activeTab () {
       this.tabsMobile = false
-      this.loadProducts()
-    },
-    pagination (newPagination) {
-      if (newPagination && newPagination.data.length > 0) {
-        this.products = newPagination.data
-        return
-      }
-
-      this.products = null
+      this.setParams()
     }
   }
 }

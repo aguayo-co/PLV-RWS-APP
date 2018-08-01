@@ -10,12 +10,12 @@
         li.filter__select_header.i-close(
           @click='openFMultinivel') Ordenar productos
         li.filter__select(
-          @click="changeOrder(option.id)",
+          @click="changeAndCloseOrder(option.id)",
           v-for="option in orderOptions.options"
           :class="{ 'filter__select_check' : orderOptions.selected === option.id}")
           .filter__item-check
             input.filter__input-check(
-              @click="changeOrder(option.id)",
+              @click="changeAndCloseOrder(option.id)",
               :id="'filterSimple_' + option.id",
               type="radio",
               name="filterOrder")
@@ -174,40 +174,19 @@
         li
           FilterPrecio(
             :sliderPrecio="precio",
-            @price-change="filterChange")
+            @price-change="filterAndClose")
         li.filter__footer
           button.btn.btn_solid(
-            @click="applyAndClose") Aplicar filtros
+            @click="filterAndClose") Aplicar filtros
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import FilterPrecio from '@/components/FilterPrecio'
+import FilterMixin from './js/FilterMixin'
 
-const filterFields = {
-  category_id: null,
-  size_id: null,
-  brand_id: null,
-  color_ids: null,
-  condition_id: null,
-  region_id: null,
-  price: null
-}
 export default {
   name: 'FilterMobile',
-  props: ['filter'],
-  components: {
-    FilterPrecio
-  },
+  mixins: [FilterMixin],
   computed: {
-    ...mapState('ui', [
-      'conditions',
-      'categories',
-      'colors',
-      'brands',
-      'sizes',
-      'regions'
-    ]),
     flatenedCategories () {
       let flat = []
       if (this.categories) {
@@ -241,167 +220,74 @@ export default {
   },
   data () {
     return {
-      orderOptions: {
-        selected: 0,
-        options: [
-          { id: 0, name: 'Lo último' },
-          { id: 1, name: 'Menor precio' },
-          { id: 2, name: 'Mayor precio' },
-          { id: 3, name: 'Destacados' },
-          { id: 4, name: 'Nuestros favoritos' }
-        ]
-      },
-      precio: {
-        value: [
-          '5000',
-          '150000'
-        ],
-        width: '100%',
-        height: 1,
-        min: 5000,
-        max: 150000,
-        interval: 5000,
-        piecewise: true,
-        formatter: '$ {value}',
-        tooltip: 'false',
-        piecewiseStyle: {
-          'visibility': 'hidden'
-        },
-        bgStyle: {
-          'backgroundColor': '#000'
-        },
-        processStyle: {
-          'backgroundColor': '#fe7676'
-        },
-        sliderStyle: {
-          'boxShadow': 'none',
-          'border': '1px solid #000'
-        }
-      },
       selectedFilterOption: null,
       selectedCategory: null,
       selectedSize: null,
       openFilters: false,
       filterMultiActive: false,
-      selectedFItem: false,
-      selectState: {...filterFields},
-      new_filter: {
-        category_id: [],
-        size_id: [],
-        brand_id: [],
-        color_ids: [],
-        condition_id: [],
-        region_id: [],
-        orderby: null
-      }
-    }
-  },
-  watch: {
-    filter: function () {
-      this.setPreFilter()
+      selectedFItem: false
     }
   },
   methods: {
-    switchFilter: function (option) {
+    switchFilter (option) {
       this.selectedFilterOption = option || false
     },
-    switchFilterMb: function () {
-      this.setPreFilter()
+    switchFilterMb () {
       this.openFilters = !this.openFilters
     },
-    openFMultinivel: function () {
+    openFMultinivel () {
       this.filterMultiActive = !this.filterMultiActive
     },
-    selectedFilter: function () {
+    selectedFilter () {
       this.selectedFItem = !this.selectedFItem
     },
-    filterChange: function () {
-      if (this.precio.value[1] === 150000) {
-        this.new_filter.price = this.precio.value[0] + ',500000'
-      } else {
-        this.new_filter.price = this.precio.value[0] + ',' + this.precio.value[1]
-      }
-    },
-    filterSelectedCategories: function (values) {
+    filterSelectedCategories (values) {
       let filtered = []
       values.forEach(value => {
-        filtered.push(this.flatenedCategories.find(x => x.id === value).name)
-      })
-      return filtered.join(', ')
-    },
-    filterSelectedSizes: function (values) {
-      let filtered = []
-      values.forEach(value => {
-        filtered.push(this.flatenedSizes.find(x => x.id === value).name)
-      })
-      return filtered.join(', ')
-    },
-    filterSelectedAttributes: function (values, attribute) {
-      let filtered = []
-      values.forEach(value => {
-        filtered.push(attribute.find(x => x.id === value).name)
-      })
-      return filtered.join(', ')
-    },
-    changeOrder: function (orderOptionId) {
-      this.openFMultinivel()
-      this.orderOptions.selected = orderOptionId
-      switch (orderOptionId) {
-        case 0:
-          this.filter.orderby = '-created_at'
-          break
-        case 1:
-          this.filter.orderby = 'price'
-          break
-        case 2:
-          this.filter.orderby = '-price'
-          break
-        case 3:
-          this.filter.orderby = '-commission'
-          break
-        default:
-          this.filter.orderby = 'favorites'
-      }
-      const filters = {
-        orderby: this.filter.orderby
-      }
-      this.$emit('setFilters', filters)
-    },
-    setPreFilter: function () {
-      Object.keys(this.filter).forEach(key => {
-        if (key.includes('filter')) {
-          if (key === 'price') {
-            this.new_filter.price = this.filter[key]
-          } else {
-            const parameter = key.match(/\[(.*?)\]/)[1]
-            this.new_filter[parameter] = String(this.filter[key]).split(',').map(Number)
-          }
-        } else {
-          this.new_filter[key] = this.filter[key]
+        const category = this.flatenedCategories.find(x => x.id === value)
+        if (category) {
+          filtered.push(category.name)
         }
       })
+      return filtered.join(', ')
     },
-    applyAndClose: function () {
+    filterSelectedSizes (values) {
+      let filtered = []
+      values.forEach(value => {
+        const size = this.flatenedSizes.find(x => x.id === value)
+        if (size) {
+          filtered.push(size.name)
+        }
+      })
+      return filtered.join(', ')
+    },
+    filterSelectedAttributes (values, attribute) {
+      let filtered = []
+      values.forEach(value => {
+        const attr = attribute.find(x => x.id === value)
+        if (attr) {
+          filtered.push(attr.name)
+        }
+      })
+      return filtered.join(', ')
+    },
+    filterAndClose () {
+      this.switchFilterMb()
       this.filterChange()
+    },
+    clearFilters () {
       const filters = {}
-      Object.keys(filterFields).forEach(key => {
-        if (key === 'price') {
-          filters['filter[price]'] = this.new_filter.price
-        } else {
-          filters['filter[' + key + ']'] = this.new_filter[key].join(',') || ''
-        }
+      Object.keys(this.filterFields).forEach(key => {
+        filters['filter[' + key + ']'] = ''
       })
-      filters.orderby = this.new_filter.orderby
-      this.$emit('setFilters', filters)
+      this.setQuery(filters)
       this.switchFilterMb()
     },
-    clearFilters: function () {
-      this.$emit('clearFilters')
-      this.switchFilterMb()
+    changeAndCloseOrder (order) {
+      this.openFMultinivel()
+      this.changeOrder(order)
     }
-  },
-  mounted: function () {
-    this.setPreFilter()
+
   }
 }
 </script>

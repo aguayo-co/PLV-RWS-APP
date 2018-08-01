@@ -19,16 +19,18 @@ export default {
   },
   data () {
     return {
+      baseURL: transactionAPI.baseURL,
       saving: false,
-      pagination: null,
+      forcedParams: {
+        orderby: '-created_at'
+      },
       transactionsPendingTransfer: [],
       transactions: [],
       alertConvert: false,
       alertInfo: false
     }
   },
-  created: function () {
-    this.loadTransactions()
+  created () {
     this.loadPendingTransfer()
   },
   methods: {
@@ -63,14 +65,8 @@ export default {
 
       return null
     },
-    loadTransactions () {
-      transactionAPI.all().then((response) => {
-        this.pagination = response.data
-      })
-    },
     loadPendingTransfer () {
       transactionAPI.pending().then((response) => {
-        console.log(response)
         this.transactionsPendingTransfer = response.data.data
       })
     },
@@ -90,7 +86,8 @@ export default {
       transactionAPI.transferRequest(payload)
         .then(response => this.$store.dispatch('user/loadUser', response.data))
         .then(() => {
-          this.loadTransactions()
+          // Esto dispara cambio en forcedParams, lo que dispara el paginador.
+          this.forcedParams = {...this.forcedParams}
           this.loadPendingTransfer()
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo
@@ -107,11 +104,6 @@ export default {
         }).finally(() => {
           this.saving = false
         })
-    }
-  },
-  watch: {
-    pagination (pagination) {
-      this.transactions = pagination.data
     }
   }
 }

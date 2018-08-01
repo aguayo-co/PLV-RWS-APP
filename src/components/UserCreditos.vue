@@ -57,10 +57,14 @@ section.single
           .collapsible__child
             .collapsible__subchild
               p.collapsible__value(
-                :class="{txt_danger : transaction.amount < 0}") ${{ transaction.amount|currency }}
+                :class="{txt_danger : transaction.amount < 0}") ${{ transaction.amount | currency }}
               time.collapsible__data(
-                :datetime="transaction.created_at") {{ transaction.created_at|date }}
-    Pager(v-model="pagination", :auth="true")
+                :datetime="transaction.created_at") {{ transaction.created_at | date }}
+    Pager(
+      v-model='transactions'
+      :auth='true'
+      :forcedParams='forcedParams'
+      :baseURL="baseURL")
 </template>
 
 <script src="./js/UserCreditos.js"></script>

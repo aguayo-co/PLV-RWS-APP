@@ -3,18 +3,14 @@
   //- filter mobile
   FilterMobile(
     v-if="mqMobile",
-    @setFilters="setFilters",
-    @clearFilters="clearFilters",
     :filter="parameters")
   //- filter desktop
   FilterDesk(
-    @setFilters="setFilters",
-    :filter="parameters",
     v-if="mqDesk",
+    :filter="parameters",
     :compact="compact")
   .section_product__scroll
-    Loader(v-if="!infinite && loading")
-    .product-grid(v-else)
+    .product-grid
       article.slot.slot_grid(
         v-for='product in products' :key="product.id")
         button.slot__ico.i-heart(
@@ -65,7 +61,6 @@
   .section_product__footer
     Pager(
       v-model='products'
-      :auth='true'
       v-on:paging="loading = $event"
       :forcedParams='preFilter'
       :baseURL="baseURL"
@@ -99,7 +94,6 @@ export default {
     return {
       baseURL: productAPI.baseURL,
       products: [],
-      lastPage: null,
       parameters: {
         'orderby': '-id'
       },
@@ -114,27 +108,6 @@ export default {
       }
       this.user.favorites_ids.includes(productId) ? data.favorites_remove = [productId] : data.favorites_add = [productId]
       this.$store.dispatch('user/update', data)
-    },
-    setFilters (parameters) {
-      const query = {...this.$route.query, ...parameters}
-      this.products = []
-      query.page = 1
-      Object.keys(query).forEach(param => {
-        if (parameters[param] === '') {
-          delete query[param]
-          delete parameters[param]
-        }
-      })
-      this.parameters = parameters
-      this.$router.replace({query})
-    }
-  },
-  created () {
-    this.$router.replace({query: {...this.parameters, ...this.$route.query}})
-  },
-  watch: {
-    '$route.path' () {
-      this.products = []
     }
   }
 }

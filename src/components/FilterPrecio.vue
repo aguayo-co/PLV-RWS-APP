@@ -11,7 +11,8 @@
         v-model="sliderPrecio.value")
       .filter__tooltip
         small.filter__value ${{ sliderPrecio.value[0] }}
-        small.filter__value ${{ sliderPrecio.value[1] }} +
+        small.filter__value ${{ sliderPrecio.value[1] }}
+          template(v-if='sliderPrecio.value[1] === sliderPrecio.max')  +
 
 </template>
 

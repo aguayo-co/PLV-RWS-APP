@@ -3,14 +3,11 @@
   //- filter mobile
   FilterMobile(
     v-if="mqMobile",
-    @setFilters="setParameters",
-    @clearFilters="clearFilters",
     :filter="parameters")
   //- filter desktop
   FilterDesk(
-    @setFilters="setParameters",
-    :filter="parameters",
     v-if="mqDesk",
+    :filter="parameters",
     :compact="compact")
   .section_product__scroll
     .product-grid
@@ -36,22 +33,20 @@
             .slot__brand {{ product.brand.name }}
             .slot__regular-price(v-if="product.sale_price !== product.price") ${{ product.price | currency }}
             .slot__price ${{ product.sale_price | currency }}
-    .section_product__footer
-      p.btn__wrapper(
-        v-if='!loading')
-        span(v-if="products.length === 0") No hay productos a mostrar
-        span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
-        a.btn.i-send(
-          v-else-if="!mqMobile"
-          @click='loadMoreProducts') Ver más prendas
-      Loader(v-else)
+  .section_product__footer
+    Pager(
+      v-model='products'
+      v-on:paging="loading = $event"
+      :forcedParams='preFilter'
+      :baseURL="baseURL"
+      :infinite="infinite")
 </template>
 
 <script>
-
 import productAPI from '@/api/product'
 import FilterDesk from '@/components/FilterDesk'
 import FilterMobile from '@/components/FilterMobile'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'GridInstashop',
@@ -62,33 +57,19 @@ export default {
     'preFilter'
   ],
   components: {
+    Pager,
     FilterDesk,
     FilterMobile
   },
   data () {
     return {
+      baseURL: productAPI.baseURL,
       products: [],
-      lastPage: null,
       parameters: {
-        'page': 1,
-        'items': 12,
         'orderby': '-updated_at'
       },
       loading: true,
       enableFavorite: false
-    }
-  },
-  watch: {
-    mqMobile (mqMobile) {
-      if (mqMobile) {
-        window.addEventListener('scroll', this.handleScroll)
-        return
-      }
-      window.removeEventListener('scroll', this.handleScroll)
-    },
-    preFilter: function () {
-      this.applyPreFilter()
-      this.updateProductList()
     }
   },
   methods: {
@@ -98,72 +79,7 @@ export default {
       }
       this.user.favorites_ids.includes(productId) ? data.favorites_remove = [productId] : data.favorites_add = [productId]
       this.$store.dispatch('user/update', data)
-    },
-    updateProductList: function () {
-      this.loading = true
-      Object.keys(this.parameters).forEach(key => {
-        if (!this.parameters[key]) {
-          delete this.parameters[key]
-        }
-      })
-      productAPI.get(this.parameters)
-        .then((response) => {
-          this.products = response.data.data
-          this.lastPage = response.data.last_page
-          this.loading = false
-          this.$emit('doneResults', response.data.total)
-        })
-    },
-    loadMoreProducts: async function (e) {
-      if (this.lastPage > this.parameters.page) {
-        this.parameters.page += 1
-        this.loading = true
-        await productAPI.get(this.parameters)
-          .then((response) => {
-            this.products.push(...response.data.data)
-            this.loading = false
-          })
-      }
-    },
-    handleScroll: function (e) {
-      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
-        if (this.lastPage > this.parameters.page) this.loadMoreProducts()
-      }
-    },
-    setParameters: function (setFilters) {
-      Object.keys(setFilters).forEach(key => {
-        this.parameters[key] = setFilters[key]
-      })
-      this.updateProductList()
-    },
-    nextPage: function () {
-      this.parameters.page += 1
-      this.updateProductList()
-    },
-    prevPage: function () {
-      if (this.parameters.page > 1) this.parameters.page -= 1
-      this.updateProductList()
-    },
-    applyPreFilter: function () {
-      if (this.preFilter) {
-        Object.keys(this.preFilter).forEach(key => {
-          this.parameters[key] = this.preFilter[key]
-        })
-      }
-    },
-    clearFilters: function () {
-      this.parameters = {
-        'page': 1,
-        'items': 12,
-        'orderby': this.parameters.orderby
-      }
-      this.applyPreFilter()
-      this.updateProductList()
     }
-  },
-  created: function () {
-    this.applyPreFilter()
-    this.updateProductList()
   }
 }
 </script>
