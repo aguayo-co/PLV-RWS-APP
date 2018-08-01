@@ -47,7 +47,7 @@
     .blog__inner
       article.blog__body.blog__body_slot
         .blog__copy
-          h2.blog__headline YA LANZAMOS LA NUEVA...
+          h2.blog__headline YA LANZAMOS LA NUEVA PLATAFORMA
           p No sólo verán nuevas funcionalidades, si no también una imagen renovada que responde a las prilovers que nos acompañan hoy.
       article.blog__body.blog__body_slot
         .blog__copy
