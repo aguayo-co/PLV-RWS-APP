@@ -1,43 +1,235 @@
 export default {
   name: 'Pager',
   model: {
-    prop: 'pagination',
+    prop: 'objects',
     event: 'paged'
   },
   data () {
     return {
-      loading: null
+      loading: true,
+      pagination: null
     }
   },
   props: {
-    pagination: null,
+    forcedParams: {
+      type: Object,
+      default: () => { return {} }
+    },
+    basePath: null,
+    objects: null,
+    idKey: {
+      type: String,
+      default: 'id'
+    },
+    infinite: {
+      type: Boolean,
+      default: false
+    },
     auth: {
       type: Boolean,
       default: false
     }
   },
   computed: {
+    axios () {
+      return this.auth ? this.$axiosAuth : this.$axios
+    },
+    url () {
+      return this.axios.defaults.baseURL + this.basePath
+    },
+    fullUrl () {
+      const url = new URL(this.url)
+
+      // Usa los valores de la URL como parámetros a nuestra llamada al API.
+      const query = this.$route.query
+      Object.keys(query).forEach(param => {
+        const value = query[param]
+        url.searchParams.set(param, value)
+      })
+
+      // Sobre-escribe valores de la URL con parámetros forzados.
+      Object.keys(this.forcedParams).forEach(param => {
+        const value = this.forcedParams[param]
+        url.searchParams.set(param, value)
+      })
+
+      return url
+    },
+    currentPage: {
+      get () {
+        return this.$isNumeric(this.$route.query.page) ? parseInt(this.$route.query.page) : null
+      },
+      set (page) {
+        const routeParams = {
+          params: {...this.$route.params, keepPosition: this.infinite},
+          query: {...this.$route.query, page}
+        }
+        if (this.infinite) {
+          this.$router.replace(routeParams)
+          return
+        }
+        this.$router.push({
+          name: this.$route.name,
+          ...routeParams
+        })
+      }
+    },
     perPage: {
       get () {
-        return this.pagination.per_page
+        const forcedItems = this.$getNestedObject(this.forcedParams, ['items'])
+        if (forcedItems) {
+          return forcedItems
+        }
+        return this.$isNumeric(this.$route.query.items) ? parseInt(this.$route.query.items) : null
       },
-      set (perPage) {
-        this.goTo(this.pagination.first_page_url + '&items=' + perPage)
+      set (items) {
+        this.$router.push({
+          name: this.$route.name,
+          params: {...this.$route.params, keepPosition: this.infinite},
+          query: {...this.$route.query, items, page: 1}
+        })
+      }
+    },
+    historyData: {
+      get () {
+        let historyData = window.sessionStorage.getItem(this.fullUrl)
+        if (!historyData) {
+          return
+        }
+
+        historyData = JSON.parse(historyData)
+        return historyData
+      },
+      set (data) {
+        window.sessionStorage.setItem(this.fullUrl, JSON.stringify(data))
       }
     }
   },
+  watch: {
+    mqMobile (mqMobile) {
+      if (mqMobile) {
+        window.addEventListener('scroll', this.handleScroll)
+        return
+      }
+      window.removeEventListener('scroll', this.handleScroll)
+    },
+    forcedParams () {
+      this.resetContent()
+    },
+    '$route.path' () {
+      this.resetContent()
+    },
+    '$route.query' (newQuery, oldQuery) {
+      // Lista de los parámetros viejos y nuevos.
+      // Con Set() aseguramos que sean únicos.
+      const allParams = [...new Set([...Object.keys(newQuery), ...Object.keys(oldQuery)])]
+      const reset = allParams.some(param => {
+        if (param === 'page') {
+          // Cuando nos pidan la primera página, siempre reiniciar.
+          return newQuery.page === 1
+        }
+        // Reiniciar cuando cambie algún parámetro.
+        return newQuery[param] !== oldQuery[param]
+      })
+      if (reset) {
+        this.resetContent()
+        return
+      }
+      // De lo contrario, cargar y el paginador decide si agregar o reemplazar.
+      this.goTo()
+    }
+  },
+  created () {
+    this.goTo()
+  },
   methods: {
-    goTo (url) {
+    resetContent () {
+      this.$emit('paged', [])
+      this.pagination = null
+      this.goTo()
+    },
+    handleScroll () {
+      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
+        if (this.currentPage < this.pagination.last_page) this.currentPage++
+      }
+    },
+    validateQuery () {
+      const query = this.$route.query
+
+      if (!this.currentPage) {
+        this.currentPage = 1
+        return false
+      }
+
+      if (!this.perPage && !this.infinite) {
+        this.perPage = 12
+        return false
+      }
+
+      if (query.items !== undefined && this.infinite) {
+        this.perPage = undefined
+        return false
+      }
+
+      return true
+    },
+    validateHistoryData () {
+      // Si ya hay datos, no necesitamos historial.
+      if (this.pagination && this.objects && this.objects.length) {
+        return true
+      }
+
+      // Si hay historial, usarlo.
+      if (this.historyData) {
+        this.pagination = this.historyData.pagination
+        this.$emit('paged', this.historyData.objects)
+        return true
+      }
+
+      // Si es infinito y nos piden una página que no sea la primera,
+      // cargar la primera.
+      const query = this.$route.query
+      if (this.infinite && query.page > 1) {
+        this.currentPage = 1
+        return false
+      }
+
+      // Todo bien!
+      return true
+    },
+    goTo () {
+      this.loading = true
+      if (!this.validateQuery()) {
+        this.false = true
+        return
+      }
+
+      if (!this.validateHistoryData()) {
+        this.false = true
+        return
+      }
+
       this.$emit('paging', true)
-      const axios = this.auth ? this.$axiosAuth : this.$axios
-      const bodyRect = document.body.getBoundingClientRect()
-      const elemRect = this.$parent.$el.getBoundingClientRect()
-      const offset = elemRect.top - bodyRect.top
-      window.scrollTo(0, offset)
-      const localRequest = this.loading = axios.get(url).then((response) => {
+
+      const localRequest = this.loading = this.axios.get(this.fullUrl).then((response) => {
         if (localRequest === this.loading) {
-          // Scroll to the top of the parent element.
-          this.$emit('paged', response.data)
+          const objects = response.data.data
+          // En paginado infinito, puede que llegue un objeto repetido cuando
+          // se agregan objetos nuevos al servidor.
+          // Nos aseguramos de no agregar objetos duplicados. Usamos los nuevos.
+          if (this.infinite && this.objects) {
+            const freshObjectsIds = objects.map(object => object[this.idKey])
+            const keptObjects = this.objects.filter(object => freshObjectsIds.indexOf(object[this.idKey]) === -1)
+            objects.unshift(...keptObjects)
+          }
+
+          // Guardamos historial para mantener navegación.
+          if (this.infinite) {
+            this.historyData = {objects, pagination: response.data}
+          }
+
+          this.pagination = response.data
+          this.$emit('paged', objects)
           this.$emit('paging', null)
           this.loading = null
         }

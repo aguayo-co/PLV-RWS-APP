@@ -3,18 +3,14 @@
   //- filter mobile
   FilterMobile(
     v-if="mqMobile",
-    @setFilters="setParameters",
-    @clearFilters="clearFilters",
     :filter="parameters")
   //- filter desktop
   FilterDesk(
-    @setFilters="setParameters",
-    :filter="parameters",
     v-if="mqDesk",
+    :filter="parameters",
     :compact="compact")
   .section_product__scroll
-    Loader(v-if="!infinite && loading")
-    .product-grid(v-else)
+    .product-grid
       article.slot.slot_grid(
         v-for='product in products' :key="product.id")
         button.slot__ico.i-heart(
@@ -62,36 +58,13 @@
                 v-if='product.user.groups[0].slug === "it-girl"') It <span class="txt_brand">girl</span>
               .slot__group.i-star-on(
                 v-if='product.user.groups[0].slug === "prilover-star"') Prilover <span class="txt_brand">Star</span>
-    .section_product__footer(v-if="infinite")
-      p.btn__wrapper(
-        v-if='!loading')
-        span(v-if="products.length === 0") No hay productos a mostrar
-        span(v-else-if="lastPage === parameters.page") Ya cargaste todos los productos
-        button.btn.i-send(
-          v-else-if="!mqMobile"
-          @click='loadMoreProducts') Ver más productos
-      Loader(v-else)
-  ul.pagination(v-if="pager")
-    li.pagination__select
-      select.form__select.form__select_small(
-        name="numeroItems",
-        v-model='parameters.items',
-        @change='updateProductList')
-          option(value="12") 12
-          option(value="24") 24
-          option(value="33") 33
-          option(value="42") 42
-    li.pagination__item(
-      v-if='parameters.page > 1')
-      a.pagination__arrow.pagination__arrow_prev.i-back(
-        @click.prevent='prevPage')
-    li.pagination__item {{ parameters.page }}
-    li.pagination__item.pagination__item_txt de {{ lastPage }}
-    li.pagination__item(
-        v-if='parameters.page < lastPage')
-      a.pagination__arrow.pagination__arrow_next.i-next(
-        @click.prevent='nextPage')
-
+  .section_product__footer
+    Pager(
+      v-model='products'
+      v-on:paging="loading = $event"
+      :forcedParams='preFilter'
+      :basePath="basePath"
+      :infinite="infinite")
 </template>
 
 <script>
@@ -99,6 +72,7 @@ import { mapState } from 'vuex'
 import productAPI from '@/api/product'
 import FilterDesk from '@/components/FilterDesk'
 import FilterMobile from '@/components/FilterMobile'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'GridProducto',
@@ -109,6 +83,7 @@ export default {
     'preFilter'
   ],
   components: {
+    Pager,
     FilterDesk,
     FilterMobile
   },
@@ -117,109 +92,23 @@ export default {
   },
   data () {
     return {
+      basePath: productAPI.basePath,
       products: [],
-      lastPage: null,
       parameters: {
-        'page': 1,
-        'items': 12,
         'orderby': '-id'
       },
       loading: true,
       enableFavorite: false
     }
   },
-  watch: {
-    mqMobile (mqMobile) {
-      if (mqMobile) {
-        window.addEventListener('scroll', this.handleScroll)
-        return
-      }
-      window.removeEventListener('scroll', this.handleScroll)
-    },
-    preFilter: function () {
-      this.applyPreFilter()
-      this.updateProductList()
-    }
-  },
   methods: {
-    setFavorite: function (productId) {
+    setFavorite (productId) {
       let data = {
         id: this.user.id
       }
       this.user.favorites_ids.includes(productId) ? data.favorites_remove = [productId] : data.favorites_add = [productId]
       this.$store.dispatch('user/update', data)
-    },
-    updateProductList: function () {
-      this.loading = true
-      this.products = []
-      Object.keys(this.parameters).forEach(key => {
-        if (!this.parameters[key]) {
-          this.$delete(this.parameters, key)
-        }
-      })
-      const localRequest = this.loading = productAPI.get(this.parameters)
-        .then((response) => {
-          if (localRequest === this.loading) {
-            this.products = response.data.data
-            this.lastPage = response.data.last_page
-            this.loading = false
-            this.$emit('doneResults', response.data.total)
-          }
-        })
-    },
-    loadMoreProducts: async function (e) {
-      if (this.lastPage > this.parameters.page) {
-        this.parameters.page += 1
-        this.loading = true
-        productAPI.get(this.parameters)
-          .then((response) => {
-            this.products.push(...response.data.data)
-            this.loading = false
-          })
-      }
-    },
-    handleScroll: function (e) {
-      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
-        if (this.lastPage > this.parameters.page) this.loadMoreProducts()
-      }
-    },
-    setParameters: function (setFilters) {
-      Object.keys(setFilters).forEach(key => {
-        this.$set(this.parameters, key, setFilters[key])
-      })
-      if (this.infinite) {
-        this.parameters.page = 1
-      }
-      this.updateProductList()
-    },
-    nextPage: function () {
-      this.parameters.page += 1
-      this.updateProductList()
-    },
-    prevPage: function () {
-      if (this.parameters.page > 1) this.parameters.page -= 1
-      this.updateProductList()
-    },
-    applyPreFilter: function () {
-      if (this.preFilter) {
-        Object.keys(this.preFilter).forEach(key => {
-          this.$set(this.parameters, key, this.preFilter[key])
-        })
-      }
-    },
-    clearFilters: function () {
-      this.parameters = {
-        'page': 1,
-        'items': 12,
-        'orderby': this.parameters.orderby
-      }
-      this.applyPreFilter()
-      this.updateProductList()
     }
-  },
-  created: function () {
-    this.applyPreFilter()
-    this.updateProductList()
   }
 }
 </script>

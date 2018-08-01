@@ -24,12 +24,16 @@ section.single
       Loader(v-if="loading")
       UserCompra(
         v-else
-        v-for="sale in sortedSales"
+        v-for="sale in sales"
         :sale="sale"
         :key="sale.id"
         v-on:refresh-order="refreshOrder")
-    Pager(v-model="pagination", :auth="true" v-on:paging="loading = $event")
-
+    Pager(
+      v-model='sales'
+      :auth='true'
+      v-on:paging="loading = $event"
+      :forcedParams='forcedParams'
+      :basePath="basePath")
 </template>
 
 <script src="./js/UserTusCompras.js"></script>

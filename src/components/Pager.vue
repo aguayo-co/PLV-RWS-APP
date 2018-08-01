@@ -1,18 +1,32 @@
 <template lang="pug">
-//- Para paginar elementos se debe pasar a Pager la respuesta original
-//- del primer llamado a el API cómo "v-model". De esta se consigue la información para
-//- seguir haciendo llamados a cualquier ruta paginada.
-//- El paginador se encarga de hacer los llamados y una vez obtiene la respuesta
-//- se actializa en el componente padre la propiedad pasada.
+//- Este paginador sirve como centro de carga de cualquier modelo
+//- paginado desde Laravel. Las propiedades que acepta son:
 //-
-//- Adicionalmente se puede pasar una propiedad :auth indicando si la ruta
-//- debe hacerse de forma autenticada o no. Esta propiedad es opcional.
-//- por defecto se hacen llamados NO autenticados.
+//- baseUrl: url para hacer la carga de objetos.
+//- forcedParams: parámetros que siempre se mandan al api.
+//- idKey: nombre de la llave para usar cómo ID en los objetos cargados.
+//- infinite: Define si es paginado o infinito.
+//- auth: Define si el llamado es autenticado o anónimo.
 //-
-//- Ejemplo: Pager(v-model="pagination", :auth="true")
+//- La propiedad a usar cómo v-model es "objects".
+//-
+//- Manda al api todos los parámetros que encuentre en la URL.
+//-
+//- Emite "paging" cuando se están cargando objetos.
+//-
+//- Hace un llamado cuando detecta cambios en la URL.
 
-ul.pagination.pagination_bottom(v-if="pagination")
-  li.pagination__select
+Loader(v-if="infinite && loading")
+p.btn__wrapper(
+  v-else-if="infinite")
+  span(v-if="objects.length === 0") No hay resultados a mostrar
+  span(v-else-if="currentPage === pagination.last_page") Ya cargaste todos los resultados
+  button.btn.i-send(
+    v-else-if="!mqMobile"
+    @click='currentPage++') Ver más
+ul.pagination.pagination_bottom(v-else-if="pagination")
+  li.pagination__select(
+    v-if='!forcedParams || !forcedParams.items')
     select.form__select.form__select_small(
       name="numeroItems",
       v-model='perPage')
@@ -21,16 +35,16 @@ ul.pagination.pagination_bottom(v-if="pagination")
         option(value="33") 33
         option(value="42") 42
   li.pagination__item(
-    v-if='1 < pagination.current_page')
+    v-if='1 < currentPage')
     a.pagination__arrow.pagination__arrow_prev.i-back(
-      @click.prevent="goTo(pagination.prev_page_url)"
+      @click.prevent="currentPage--"
       href="#")
-  li.pagination__item {{ pagination.current_page }}
+  li.pagination__item {{ currentPage }}
   li.pagination__item.pagination__item_txt de {{ pagination.last_page }}
   li.pagination__item(
-      v-if='pagination.current_page < pagination.last_page')
+      v-if='currentPage < pagination.last_page')
     a.pagination__arrow.pagination__arrow_next.i-next(
-      @click.prevent="goTo(pagination.next_page_url)"
+      @click.prevent="currentPage++"
       href="#")
 </template>
 

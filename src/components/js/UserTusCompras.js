@@ -1,5 +1,6 @@
 import UserCompra from '@/components/UserCompra'
 import Pager from '@/components/Pager'
+import saleAPI from '@/api/sale'
 
 export default {
   name: 'UserTusCompras',
@@ -9,9 +10,9 @@ export default {
   },
   data: () => {
     return {
+      basePath: saleAPI.basePath,
       loading: true,
-      pagination: null,
-      sales: {},
+      sales: [],
       listActive: false,
       item: null,
       listOptions: {
@@ -24,53 +25,29 @@ export default {
       }
     }
   },
-  created () {
-    this.loadSales()
-  },
   computed: {
     totalProducts () {
       return this.$store.getters['cart/products']
     },
-    sortedSales () {
-      var sortable = []
-      Object.keys(this.sales).forEach(key => {
-        sortable.push(this.sales[key])
-      })
-
-      return sortable.sort(function (a, b) {
-        return b.id - a.id
-      })
-    }
-  },
-  methods: {
-    loadSales () {
-      const params = {
+    forcedParams () {
+      return {
         buyer: true,
         orderby: '-id',
         'filter[status]': this.listOptions.options[this.listOptions.selected].filter
       }
-      const currentLoader = this.loading = this.$axiosAuth.get('/api/sales', {params})
-        .then(response => {
-          // Make sure this is our latest request.
-          if (currentLoader === this.loading) {
-            this.pagination = response.data
-          }
-        })
-        .finally(() => {
-          if (currentLoader === this.loading) {
-            this.loading = null
-          }
-        })
-    },
+    }
+  },
+  methods: {
     refreshOrder (order) {
       const sales = order.sales
       delete order.sales
-      sales.forEach(sale => {
-        if (!this.sales[sale.id]) {
+      sales.forEach(newSale => {
+        const index = this.sales.findIndex(oldSale => oldSale.id === newSale.id)
+        if (index === -1) {
           return
         }
-        this.$set(sale, 'order', order)
-        this.$set(this.sales, sale.id, sale)
+        this.$set(newSale, 'order', order)
+        this.$set(this.sales, index, newSale)
       })
     },
     openList () {
@@ -79,16 +56,6 @@ export default {
     changeOrder (index) {
       this.listOptions.selected = index
       this.listActive = false
-      this.loadSales()
-    }
-  },
-  watch: {
-    pagination (pagination, oldPagination) {
-      this.sales = {}
-      Object.keys(pagination.data).forEach(key => {
-        const sale = pagination.data[key]
-        this.$set(this.sales, sale.id, sale)
-      })
     }
   }
 }

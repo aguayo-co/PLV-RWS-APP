@@ -134,168 +134,39 @@ nav.filter(@click="closeFilters")
         transition(name='toggle-scale')
           ul.filter__list.toggle-box(v-show="dropdownState.order")
             li.filter__item(
-              @click.stop.stop="changeOrder(option.id)"
+              @click.stop.stop="changeAndCloseOrder(option.id)"
               v-for="option in orderOptions.options") {{ option.name }}
 
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import FilterPrecio from '@/components/FilterPrecio'
+import FilterMixin from './js/FilterMixin'
 
-const filterFields = {
-  category_id: null,
-  size_id: null,
-  brand_id: null,
-  color_ids: null,
-  condition_id: null,
-  region_id: null,
-  price: null
-}
 export default {
   name: 'FilterDesk',
+  mixins: [FilterMixin],
   props: [
-    'filter',
     'compact'
   ],
-  components: {
-    FilterPrecio
-  },
-  computed: {
-    ...mapState('ui', [
-      'conditions',
-      'categories',
-      'colors',
-      'brands',
-      'sizes',
-      'regions'
-    ])
-  },
   data () {
     return {
-      orderOptions: {
-        selected: 0,
-        options: [
-          { id: 0, name: 'Lo último' },
-          { id: 1, name: 'Menor precio' },
-          { id: 2, name: 'Mayor precio' },
-          { id: 3, name: 'Destacados' },
-          { id: 4, name: 'Nuestros favoritos' }
-        ]
-      },
-      precio: {
-        value: [
-          '5000',
-          '150000'
-        ],
-        width: '100%',
-        height: 1,
-        min: 5000,
-        max: 150000,
-        interval: 5000,
-        piecewise: true,
-        formatter: '$ {value}',
-        tooltip: 'false',
-        piecewiseStyle: {
-          'visibility': 'hidden'
-        },
-        bgStyle: {
-          'backgroundColor': '#000'
-        },
-        processStyle: {
-          'backgroundColor': '#fe7676'
-        },
-        sliderStyle: {
-          'boxShadow': 'none',
-          'border': '1px solid #000'
-        }
-      },
-      dropdownState: {...filterFields},
-      active: false,
-      new_filter: {
-        category_id: [],
-        size_id: [],
-        brand_id: [],
-        color_ids: [],
-        condition_id: [],
-        region_id: [],
-        orderby: null
-      }
-    }
-  },
-  watch: {
-    filter: function () {
-      this.setPreFilter()
+      dropdownState: {...this.filterFields},
+      active: false
     }
   },
   methods: {
-    OpenFilter: function (filter) {
+    OpenFilter (filter) {
       const dropdownState = this.dropdownState[filter]
-      this.dropdownState = {...filterFields}
+      this.dropdownState = {...this.filterFields}
       this.dropdownState[filter] = !dropdownState
     },
-    closeFilters: function () {
-      this.dropdownState = {...filterFields}
+    closeFilters () {
+      this.dropdownState = {...this.filterFields}
     },
-    filterChange: function () {
-      if (this.precio.value[1] === 150000) {
-        this.new_filter.price = this.precio.value[0] + ',500000'
-      } else {
-        this.new_filter.price = this.precio.value[0] + ',' + this.precio.value[1]
-      }
-      this.applyFilters()
-    },
-    changeOrder: function (orderOptionId) {
-      this.orderOptions.selected = orderOptionId
-      switch (orderOptionId) {
-        case 0:
-          this.new_filter.orderby = '-created_at'
-          break
-        case 1:
-          this.new_filter.orderby = 'price'
-          break
-        case 2:
-          this.new_filter.orderby = '-price'
-          break
-        case 3:
-          this.new_filter.orderby = '-commission'
-          break
-        default:
-          this.new_filter.orderby = 'favorites'
-      }
-      this.dropdownState.order = false
-      this.applyFilters()
-    },
-    setPreFilter: function () {
-      Object.keys(this.filter).forEach(key => {
-        if (key.includes('filter')) {
-          if (key === 'price') {
-            this.new_filter.price = this.filter[key]
-          } else {
-            const parameter = key.match(/\[(.*?)\]/)[1]
-            this.new_filter[parameter] = String(this.filter[key]).split(',').map(Number)
-          }
-        } else {
-          this.new_filter[key] = this.filter[key]
-        }
-      })
-    },
-    applyFilters: function () {
-      const filters = {}
-      Object.keys(filterFields).forEach(key => {
-        if (key === 'price') {
-          filters['filter[price]'] = this.new_filter.price
-        } else {
-          filters['filter[' + key + ']'] = this.new_filter[key].join(',') || ''
-        }
-      })
-      filters.orderby = this.new_filter.orderby
-      console.log(filters)
-      this.$emit('setFilters', filters)
+    changeAndCloseOrder (order) {
+      this.closeFilters('order')
+      this.changeOrder(order)
     }
-  },
-  mounted: function () {
-    this.setPreFilter()
   }
 }
 </script>
