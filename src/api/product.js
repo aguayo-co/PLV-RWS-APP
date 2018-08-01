@@ -81,7 +81,7 @@ export default {
     return Vue.axiosAuth.patch('/api/products/' + product.id, formData)
   },
 
-  baseURL: '/api/products',
+  basePath: '/api/products',
   get (params) {
     return Vue.axios.get('/api/products', { params })
   },

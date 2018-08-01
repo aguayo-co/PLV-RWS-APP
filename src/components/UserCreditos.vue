@@ -64,7 +64,7 @@ section.single
       v-model='transactions'
       :auth='true'
       :forcedParams='forcedParams'
-      :baseURL="baseURL")
+      :basePath="basePath")
 </template>
 
 <script src="./js/UserCreditos.js"></script>

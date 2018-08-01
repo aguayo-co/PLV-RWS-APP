@@ -4,6 +4,7 @@
 import Vue from 'vue'
 
 export default {
+  basePath: '/api/users',
   update: function (data) {
     return Vue.axiosAuth.patch('/api/users/' + data.id, data)
   },

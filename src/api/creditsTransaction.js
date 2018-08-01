@@ -4,7 +4,7 @@
 import Vue from 'vue'
 
 export default {
-  baseURL: '/api/credits_transactions',
+  basePath: '/api/credits_transactions',
   all () {
     const params = {
       orderby: '-created_at'

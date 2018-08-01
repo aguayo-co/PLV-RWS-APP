@@ -4,7 +4,7 @@
 import Vue from 'vue'
 
 export default {
-  baseURL: '/api/sales',
+  basePath: '/api/sales',
   load: function (saleId) {
     return Vue.axiosAuth.get('/api/sales/' + saleId)
   },

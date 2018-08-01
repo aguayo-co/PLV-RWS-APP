@@ -9,7 +9,7 @@ export default {
   props: ['user'],
   data () {
     return {
-      baseURL: productAPI.baseURL,
+      basePath: productAPI.basePath,
       orderby: '-id',
       isActive: undefined,
       activeTab: 'published',

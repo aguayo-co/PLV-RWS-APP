@@ -19,7 +19,7 @@ export default {
   },
   data () {
     return {
-      baseURL: transactionAPI.baseURL,
+      basePath: transactionAPI.basePath,
       saving: false,
       forcedParams: {
         orderby: '-created_at'

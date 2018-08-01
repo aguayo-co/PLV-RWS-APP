@@ -38,7 +38,7 @@
       v-model='products'
       v-on:paging="loading = $event"
       :forcedParams='preFilter'
-      :baseURL="baseURL"
+      :basePath="basePath"
       :infinite="infinite")
 </template>
 
@@ -63,7 +63,7 @@ export default {
   },
   data () {
     return {
-      baseURL: productAPI.baseURL,
+      basePath: productAPI.basePath,
       products: [],
       parameters: {
         'orderby': '-updated_at'

@@ -10,7 +10,7 @@ export default {
   },
   data: () => {
     return {
-      baseURL: saleAPI.baseURL,
+      basePath: saleAPI.basePath,
       loading: true,
       sales: [],
       listActive: false,

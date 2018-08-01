@@ -15,7 +15,7 @@ export default {
       type: Object,
       default: () => { return {} }
     },
-    baseURL: null,
+    basePath: null,
     objects: null,
     idKey: {
       type: String,
@@ -35,7 +35,25 @@ export default {
       return this.auth ? this.$axiosAuth : this.$axios
     },
     url () {
-      return this.axios.defaults.baseURL + this.baseURL
+      return this.axios.defaults.baseURL + this.basePath
+    },
+    fullUrl () {
+      const url = new URL(this.url)
+
+      // Usa los valores de la URL como parámetros a nuestra llamada al API.
+      const query = this.$route.query
+      Object.keys(query).forEach(param => {
+        const value = query[param]
+        url.searchParams.set(param, value)
+      })
+
+      // Sobre-escribe valores de la URL con parámetros forzados.
+      Object.keys(this.forcedParams).forEach(param => {
+        const value = this.forcedParams[param]
+        url.searchParams.set(param, value)
+      })
+
+      return url
     },
     currentPage: {
       get () {
@@ -74,7 +92,7 @@ export default {
     },
     historyData: {
       get () {
-        let historyData = window.sessionStorage.getItem(this.$route.fullPath)
+        let historyData = window.sessionStorage.getItem(this.fullUrl)
         if (!historyData) {
           return
         }
@@ -83,7 +101,7 @@ export default {
         return historyData
       },
       set (data) {
-        window.sessionStorage.setItem(this.$route.fullPath, JSON.stringify(data))
+        window.sessionStorage.setItem(this.fullUrl, JSON.stringify(data))
       }
     }
   },
@@ -192,22 +210,8 @@ export default {
       }
 
       this.$emit('paging', true)
-      const url = new URL(this.url)
 
-      // Usa los valores de la URL como parámetros a nuestra llamada al API.
-      const query = this.$route.query
-      Object.keys(query).forEach(param => {
-        const value = query[param]
-        url.searchParams.set(param, value)
-      })
-
-      // Sobre-escribe valores de la URL con parámetros forzados.
-      Object.keys(this.forcedParams).forEach(param => {
-        const value = this.forcedParams[param]
-        url.searchParams.set(param, value)
-      })
-
-      const localRequest = this.loading = this.axios.get(url).then((response) => {
+      const localRequest = this.loading = this.axios.get(this.fullUrl).then((response) => {
         if (localRequest === this.loading) {
           const objects = response.data.data
           // En paginado infinito, puede que llegue un objeto repetido cuando

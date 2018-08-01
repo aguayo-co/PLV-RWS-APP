@@ -38,7 +38,7 @@ section.single
       :auth='true'
       v-on:paging="loading = $event"
       :forcedParams='forcedParams'
-      :baseURL="baseURL")
+      :basePath="basePath")
 </template>
 
 <script src="./js/UserTusVentas.js"></script>

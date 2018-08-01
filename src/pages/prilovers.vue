@@ -46,35 +46,34 @@
               v-if='user.group_ids.indexOf(2) > -1') It <span class="txt_brand">girl</span>
 
     .section_product__footer
-      p.btn__wrapper(
-        v-if='!loading')
-        span(v-if="prilovers.length === 0") No hay Prilovers a mostrar
-        span(v-else-if="lastPage === parameters.page") Ya cargaste todas las Prilovers
-        a.btn(
-          v-else-if="!mqMobile"
-          @click.prevent='loadMoreUsers') Ver más Prilovers
-      Loader(v-else)
+      Pager(
+        v-model='prilovers'
+        v-on:paging="loading = $event"
+        :forcedParams='parameters'
+        :basePath='basePath'
+        :infinite='true')
   ButtonSticky
 </template>
 
 <script>
 import BannerTop from '@/components/BannerTop'
-import usersAPI from '@/api/user'
+import userAPI from '@/api/user'
 import ButtonSticky from '@/components/ButtonSticky'
+import Pager from '@/components/Pager'
 
 export default {
   name: 'Prilovers',
   components: {
+    Pager,
     BannerTop,
     ButtonSticky
   },
   data () {
     return {
+      basePath: userAPI.basePath,
       prilovers: [],
       listActive: false,
       loading: true,
-      lastPage: null,
-      item: null,
       listOptions: {
         selected: 0,
         options: [
@@ -84,63 +83,26 @@ export default {
         ]
       },
       parameters: {
-        page: 1,
+        items: 12,
         orderby: '-latest_product',
-        'filter[with_products]': '1'
+        'filter[with_products]': 1
       }
     }
   },
-  created: function () {
-    this.updateUserList()
-  },
   methods: {
-    handleScroll (e) {
-      if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
-        if (this.lastPage > this.parameters.page) this.loadMoreUsers()
-      }
-    },
-    openList: function () {
+    openList () {
       this.listActive = !this.listActive
     },
-    changeOrder: function (listOptionId) {
+    changeOrder (listOptionId) {
+      const parameters = {...this.parameters}
       this.listOptions.selected = listOptionId
       this.listActive = false
       if (this.listOptions.selected === 0) {
-        delete this.parameters['filter[group_ids]']
+        delete parameters['filter[group_ids]']
       } else {
-        this.parameters['filter[group_ids]'] = listOptionId
+        parameters['filter[group_ids]'] = listOptionId
       }
-      this.updateUserList()
-    },
-    updateUserList (resetPage = false) {
-      if (resetPage) {
-        this.parameters.page = 1
-      }
-      this.loading = true
-      usersAPI.get(this.parameters)
-        .then((response) => {
-          this.prilovers = response.data.data
-          this.lastPage = response.data.last_page
-          this.loading = false
-        })
-    },
-    loadMoreUsers: function (e) {
-      this.parameters.page += 1
-      this.loading = true
-      usersAPI.get(this.parameters)
-        .then((response) => {
-          this.prilovers.push(...response.data.data)
-          this.loading = false
-        })
-    }
-  },
-  watch: {
-    mqMobile (mqMobile) {
-      if (mqMobile) {
-        window.addEventListener('scroll', this.handleScroll)
-        return
-      }
-      window.removeEventListener('scroll', this.handleScroll)
+      this.parameters = parameters
     }
   }
 }

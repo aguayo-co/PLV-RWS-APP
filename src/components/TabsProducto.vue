@@ -90,7 +90,7 @@
         v-model='products'
         v-on:paging='loading = $event'
         :forcedParams='forcedParams'
-        :baseURL='baseURL')
+        :basePath='basePath')
 
 </template>
 
