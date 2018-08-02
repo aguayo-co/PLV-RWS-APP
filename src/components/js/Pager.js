@@ -114,8 +114,10 @@ export default {
       }
       window.removeEventListener('scroll', this.handleScroll)
     },
-    forcedParams () {
-      this.resetContent()
+    forcedParams (newParams, oldParams) {
+      if (JSON.stringify(newParams) !== JSON.stringify(oldParams)) {
+        this.resetContent()
+      }
     },
     '$route.path' () {
       this.resetContent()
