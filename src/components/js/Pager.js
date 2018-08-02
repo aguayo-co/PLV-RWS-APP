@@ -106,6 +106,9 @@ export default {
       }
     }
   },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   watch: {
     mqMobile (mqMobile) {
       if (mqMobile) {
@@ -152,6 +155,7 @@ export default {
       this.goTo()
     },
     handleScroll () {
+      console.warn('enter')
       if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.currentPage < this.pagination.last_page) this.currentPage++
       }
