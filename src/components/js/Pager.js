@@ -1,3 +1,5 @@
+import lscache from 'lscache'
+
 export default {
   name: 'Pager',
   model: {
@@ -92,16 +94,15 @@ export default {
     },
     historyData: {
       get () {
-        let historyData = window.sessionStorage.getItem(this.fullUrl)
+        let historyData = lscache.get(this.fullUrl)
         if (!historyData) {
           return
         }
 
-        historyData = JSON.parse(historyData)
         return historyData
       },
       set (data) {
-        window.sessionStorage.setItem(this.fullUrl, JSON.stringify(data))
+        lscache.set(this.fullUrl, data, 30)
       }
     }
   },
