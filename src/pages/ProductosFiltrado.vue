@@ -10,8 +10,7 @@
       GridProducto(
         :preFilter='filter'
         :infinite='true')
-  Loader(v-if="loading")
-  .layout-inner(v-else-if="queryObject === null")
+  .layout-inner(v-if="queryObject === null")
     .layout_nofound
       .alert
         p.alert__txt.i-sad La URL que estás intentando acceder no existe
@@ -23,7 +22,6 @@ import { mapState } from 'vuex'
 import GridProducto from '@/components/GridProducto'
 import BannerHero from '@/components/BannerHero'
 import bannersAPI from '@/api/banner'
-import campaignsAPI from '@/api/campaigns'
 import ButtonSticky from '@/components/ButtonSticky'
 
 export default {
@@ -36,7 +34,6 @@ export default {
   props: ['type', 'slug'],
   data () {
     return {
-      loading: true,
       banner: null,
       campaign: null,
       baseFilter: {
@@ -47,7 +44,8 @@ export default {
   computed: {
     ...mapState('ui', [
       'categories',
-      'brands'
+      'brands',
+      'campaigns'
     ]),
     queryObject () {
       if (this.type === 'categorias') {
@@ -63,8 +61,9 @@ export default {
       }
 
       if (this.type === 'campanas') {
+        const campaign = this.campaigns.find(x => x.slug === this.slug)
         this.loadBannerCampaign()
-        return this.campaign
+        return campaign
       }
     },
     flattenedCategories () {
@@ -98,21 +97,6 @@ export default {
     }
   },
   methods: {
-    loadCampaign () {
-      this.campaign = null
-      if (this.type !== 'campanas') {
-        return
-      }
-
-      this.loading = true
-      campaignsAPI.getBySlug(this.slug)
-        .then(response => {
-          this.campaign = response.data
-        })
-        .finally(() => {
-          this.loading = false
-        })
-    },
     loadBannerCampaign () {
       bannersAPI.getBannerBySlug('campana-' + this.slug)
         .then(response => {
@@ -130,24 +114,6 @@ export default {
         .then(response => {
           this.banner = response.data
         }).catch(() => {})
-    }
-  },
-  created () {
-    if (this.type !== 'campanas') {
-      this.loading = false
-      return
-    }
-
-    this.loadCampaign()
-  },
-  watch: {
-    type () {
-      if (this.type !== 'campanas') {
-        this.loading = false
-        return
-      }
-
-      this.loadCampaign()
     }
   }
 }
