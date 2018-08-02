@@ -23,7 +23,7 @@ p.btn__wrapper(
   span(v-else-if="currentPage === pagination.last_page") Ya cargaste todos los resultados
   button.btn.i-send(
     v-else-if="!mqMobile"
-    @click='currentPage++') Ver más
+    @click='currentPage++') Ver más productos
 ul.pagination.pagination_bottom(v-else-if="pagination")
   li.pagination__select(
     v-if='!forcedParams || !forcedParams.items')
