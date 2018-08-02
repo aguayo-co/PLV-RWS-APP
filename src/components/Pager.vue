@@ -21,6 +21,9 @@ p.btn__wrapper(
   v-else-if="infinite")
   span(v-if="objects.length === 0") No hay resultados a mostrar
   span(v-else-if="currentPage === pagination.last_page") Ya cargaste todos los resultados
+  //- TODO: Pager no tiene en este momento cómo saber que elementos está cargando.
+  //- para personalizar el paginados es necesario pasarle un parámetro
+  //- que le indique que elementos está cargando.
   button.btn.i-send(
     v-else-if="!mqMobile"
     @click='currentPage++') Ver más
