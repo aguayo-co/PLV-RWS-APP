@@ -102,7 +102,7 @@ export default {
         return historyData
       },
       set (data) {
-        lscache.set(this.fullUrl, data, 120)
+        lscache.set(this.fullUrl, data, 30)
       }
     }
   },
