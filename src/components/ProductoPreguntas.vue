@@ -168,18 +168,19 @@ export default {
         return
       }
 
+      const thread = this.threads[threadIndex]
       this.answering = true
       const data = {
-        thread_id: this.threads[threadIndex].id,
+        thread_id: thread.id,
         user_id: this.user.id,
-        recipients: [this.ownerId],
+        recipients: thread.participants.filter(p => p.user_id !== this.user.id).map(p => p.user_id),
         body: this.activeAnswer.content
       }
       threadsAPI.createMessage(data)
         .then(response => {
           this.activeAnswer.id = null
           this.activeAnswer.content = ''
-          this.threads[threadIndex].messages.push(response.data)
+          thread.messages.push(response.data)
         }).catch(e => {
           this.$set(this.errorLog, 'answer', this.$getNestedObject(e, ['response', 'data', 'errors', 'body', 0]))
         }).finally(() => {
