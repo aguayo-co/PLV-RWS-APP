@@ -35,7 +35,6 @@ export default {
   data () {
     return {
       banner: null,
-      campaign: null,
       baseFilter: {
         'filter[status]': '10,19'
       }
@@ -45,7 +44,8 @@ export default {
     ...mapState('ui', [
       'categories',
       'brands',
-      'campaigns'
+      'campaigns',
+      'groups'
     ]),
     queryObject () {
       if (this.type === 'categorias') {
@@ -64,6 +64,12 @@ export default {
         const campaign = this.campaigns.find(x => x.slug === this.slug)
         this.loadBannerCampaign()
         return campaign
+      }
+
+      if (this.type === 'grupo') {
+        const group = this.groups.find(x => x.slug === this.slug)
+        this.loadBannerGroup()
+        return group
       }
     },
     flattenedCategories () {
@@ -91,12 +97,22 @@ export default {
         return { ...this.baseFilter, 'filter[campaign_ids]': this.queryObject.id }
       }
 
+      if (this.type === 'grupo' && this.queryObject) {
+        return { ...this.baseFilter, 'filter[users_groups_ids]': this.queryObject.id }
+      }
+
       if (this.type === undefined) {
         return {}
       }
     }
   },
   methods: {
+    loadBannerGroup () {
+      bannersAPI.getBannerBySlug('group-' + this.slug)
+        .then(response => {
+          this.banner = response.data
+        }).catch(() => {})
+    },
     loadBannerCampaign () {
       bannersAPI.getBannerBySlug('campana-' + this.slug)
         .then(response => {
