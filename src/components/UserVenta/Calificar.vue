@@ -1,6 +1,6 @@
 <template lang="pug">
 .dashboard__actions(v-if="can_rate")
-  p ¿Qué tal tu compra?
+  p ¿Qué tal tu venta?
   //-Notificaciones
   span.help(
     v-show="errorLog.seller_rating") {{ errorLog.seller_rating }}
