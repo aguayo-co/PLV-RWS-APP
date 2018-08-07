@@ -2,6 +2,7 @@
 import productsAPI from '@/api/product'
 import categoriesAPI from '@/api/category'
 import campaignsAPI from '@/api/campaigns'
+import groupsAPI from '@/api/groups'
 import userAddressesAPI from '@/api/userAddresses'
 import menusAPI from '@/api/menu'
 // initial state
@@ -24,6 +25,7 @@ const state = {
   colors: [],
   brands: [],
   campaigns: [],
+  groups: [],
   sizes: [],
   categories: [],
   regions: []
@@ -79,6 +81,17 @@ const actions = {
         const property = {
           name: 'campaigns',
           data: campaigns
+        }
+        commit('setProperty', { property })
+      })
+    groupsAPI.getAll()
+      .then(response => {
+        let groups = response.data.data.sort(function (a, b) {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        })
+        const property = {
+          name: 'groups',
+          data: groups
         }
         commit('setProperty', { property })
       })
