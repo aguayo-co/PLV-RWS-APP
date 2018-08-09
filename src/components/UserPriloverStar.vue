@@ -113,7 +113,7 @@ section.single
                   .form__file-input
                     span.form-file__txt no se elegió archivo
                     span.form-file__btn Subir
-              p.notify__txt Recuerda que tienes un máximo de 10 minutos para realizar tu transferencia, de lo contrario tu compra se cancelará automáticamente
+              p.notify__txt Recuerda que tienes un máximo de {{ minutesUntilCanceled }} minutos para realizar tu transferencia, de lo contrario tu compra se cancelará automáticamente
             .notify__footer
                 button.btn.btn_solid Enviar comprobante
         .step-data__box
@@ -211,10 +211,20 @@ section.single
 
 <script>
 import UserVacaciones from '@/components/UserVacaciones'
+import { mapState } from 'vuex'
+
 export default {
   name: 'UserPriloverStar',
   components: {
     UserVacaciones
+  },
+  computed: {
+    ...mapState('ui', [
+      'configs'
+    ]),
+    minutesUntilCanceled () {
+      return this.$getNestedObject(this.configs, ['payments', 'minutes_until_canceled'])
+    }
   }
 }
 </script>

@@ -2,6 +2,7 @@
 import productsAPI from '@/api/product'
 import categoriesAPI from '@/api/category'
 import campaignsAPI from '@/api/campaigns'
+import configsAPI from '@/api/configs'
 import groupsAPI from '@/api/groups'
 import userAddressesAPI from '@/api/userAddresses'
 import menusAPI from '@/api/menu'
@@ -43,6 +44,14 @@ const getters = {
 // actions
 const actions = {
   loadProperties ({ commit }) {
+    configsAPI.getAll()
+      .then(response => {
+        const property = {
+          name: 'configs',
+          data: response.data
+        }
+        commit('setProperty', { property })
+      })
     productsAPI.getAllConditions()
       .then(response => {
         const property = {

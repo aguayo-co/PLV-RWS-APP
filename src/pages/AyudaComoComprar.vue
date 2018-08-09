@@ -32,7 +32,7 @@
                 li <strong>Acuerdo con vendedora</strong>: Puede ser juntarse en persona o solicitar envío por pagar a través de una empresa de courier. Esto lo pueden coordinar luego de la compra al recibir el número de teléfono de la vendedora.
               |En el caso de que la vendedora tenga habilitado más de un método de envío, podrás elegir algunos de los dos. Si la vendedora sólo tiene un método de envío habilitado, entonces no te dará opción de elegir.
             li Si tienes algún código de descuento, debes agregarlo antes de pagar en el campo indicado.
-            li Luego haces click en <strong>Continuar</strong> para ir a pagar.  Elige el método de pago. Si eliges <strong>Transferencia bancaria</strong>, aparecerán los datos de la cuenta bancaria de Prilov. Debes hacerla desde la página de tu banco y luego, seleccionas <strong>Transferencia realizada</strong>. Tendrás un máximo de 10 minutos para realizar la transferencia desde que haces click en <strong>Pagar con transferencia</strong>. (Puedes adjuntar tu comprobante de pago como respaldo). Si eliges pago con tarjeta de crédito o débito, debes seleccionar <strong>Payu</strong> o <strong>Mercado Pago</strong> y seguir los pasos de pago.
+            li Luego haces click en <strong>Continuar</strong> para ir a pagar.  Elige el método de pago. Si eliges <strong>Transferencia bancaria</strong>, aparecerán los datos de la cuenta bancaria de Prilov. Debes hacerla desde la página de tu banco y luego, seleccionas <strong>Transferencia realizada</strong>. Tendrás un máximo de {{ minutesUntilCanceled }} minutos para realizar la transferencia desde que haces click en <strong>Pagar con transferencia</strong>. (Puedes adjuntar tu comprobante de pago como respaldo). Si eliges pago con tarjeta de crédito o débito, debes seleccionar <strong>Payu</strong> o <strong>Mercado Pago</strong> y seguir los pasos de pago.
             li Recibirás un mail de confirmación de tu compra con el número de teléfono de la vendedora para coordinar envío o entrega y la vendedora será notificada.
     figure.blog-bannerprom.banner-hero
       picture.banner-hero__crop
@@ -57,9 +57,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
-  name: 'AyudaComoComprar'
+  name: 'AyudaComoComprar',
+  computed: {
+    ...mapState('ui', [
+      'configs'
+    ]),
+    minutesUntilCanceled () {
+      return this.$getNestedObject(this.configs, ['payments', 'minutes_until_canceled'])
+    }
+  }
 }
 
 </script>
