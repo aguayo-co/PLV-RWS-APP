@@ -5,13 +5,16 @@
     nav.filtrate
       .filtrate__item
         form.filtrate(
-          @submit.prevent="updateUserList(true)")
+          @submit.prevent="changeSearch")
           .filtrate__row.i-search
             input.filtrate__input(
-              v-model="parameters.q",
+              v-model="searchQuery",
               type='search',
               name='search',
               placeholder="Buscar")
+            button(
+              style="position: absolute; left: -9999px"
+              type='submit')
       .filtrate__item
         span.filtrate__btn(
           @click.stop="openList") {{ listOptions.options[listOptions.selected].name }}
@@ -49,7 +52,7 @@
       Pager(
         v-model='prilovers'
         v-on:paging="loading = $event"
-        :forcedParams='parameters'
+        :forcedParams='computedParameters'
         :basePath='basePath'
         :infinite='true')
   ButtonSticky
@@ -70,6 +73,7 @@ export default {
   },
   data () {
     return {
+      localSearchQuery: null,
       basePath: userAPI.basePath,
       prilovers: [],
       listActive: false,
@@ -84,8 +88,23 @@ export default {
       },
       parameters: {
         items: 12,
-        orderby: '-latest_product',
         'filter[with_products]': 1
+      }
+    }
+  },
+  computed: {
+    computedParameters () {
+      if (!this.$route.query.q) {
+        return {...this.parameters, orderby: '-latest_product'}
+      }
+      return this.parameters
+    },
+    searchQuery: {
+      get () {
+        return this.localSearchQuery !== null ? this.localSearchQuery : this.$route.query.q
+      },
+      set (value) {
+        this.localSearchQuery = value
       }
     }
   },
@@ -103,6 +122,19 @@ export default {
         parameters['filter[group_ids]'] = listOptionId
       }
       this.parameters = parameters
+    },
+    changeSearch () {
+      const query = {...this.$route.query}
+      query.page = 1
+      delete query.q
+      if (this.searchQuery) {
+        query.q = this.searchQuery.replace(/@/g, ' ')
+      }
+      this.$router.push({
+        name: this.$route.name,
+        params: {...this.$route.params, keepPosition: true},
+        query
+      })
     }
   }
 }
