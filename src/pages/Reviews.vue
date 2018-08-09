@@ -1,6 +1,6 @@
 <template lang="pug">
 .layout-page
-  UserDataCloset(:user="owner" v-on:update:user="owner = $event")
+  UserDataCloset(:owner="owner")
   .profile__user
     .column
       .column__item
@@ -95,7 +95,7 @@ export default {
     }
   },
   methods: {
-    loadRatings: function () {
+    loadRatings () {
       ratingsAPI.getBySeller(this.ownerId)
         .then(response => {
           this.ratings.sellerNew = response.data
@@ -113,7 +113,7 @@ export default {
           this.loading.buyer = false
         })
     },
-    consolidateSeller: function () {
+    consolidateSeller () {
       if (this.page.seller <= this.ratings.sellerNew.last_page && this.ratings.sellerNew.total > 0) {
         this.ratings.seller = {...this.ratings.sellerNew.data}
       } else {
@@ -121,7 +121,7 @@ export default {
       }
       this.loading.seller = false
     },
-    loadMoreSeller: function () {
+    loadMoreSeller () {
       this.loading.seller = true
       if (this.page.seller < this.ratings.sellerNew.last_page) {
         this.page.seller += 1
@@ -139,7 +139,7 @@ export default {
           })
       }
     },
-    loadMoreBuyer: function () {
+    loadMoreBuyer () {
       this.loading.buyer = true
       if (this.page.buyer < this.ratings.buyerNew.last_page) {
         this.page.buyer += 1
@@ -152,7 +152,7 @@ export default {
       }
     }
   },
-  mounted: function () {
+  mounted () {
     this.loadRatings()
     usersAPI.getUserById(this.ownerId)
       .then(response => {

@@ -1,38 +1,37 @@
 <template lang="pug">
 section.profile
   .cover
-    .cover__banner(v-if="user.cover")
-      img.cover__picture(:src='user.cover')
-    .cover__banner(v-else)
+    .cover__banner
+      img.cover__picture(v-if="owner.cover" :src='owner.cover')
       //-1800 * 560
-      img.cover__picture(:src="'/static/img/cover/cover-' + coverId + '.jpg'")
+      img.cover__picture(v-else :src="'/static/img/cover/cover-' + coverId + '.jpg'")
   .profile__user
     .profile__grid
       .profile__avatar.user-item_gutter
         .user-data__avatar
           img.user-data__img(
-            v-if="user.picture"
-            :src="user.picture")
-          span.profile__letter(v-if="!user.picture && user.first_name") {{ user.first_name.charAt(0) }}
-        p.user-data__group.i-star-on(v-if='user.group_ids && user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
-        p.user-data__group.i-star-on(v-if='user.group_ids && user.group_ids.indexOf(3) > -1') It <span class="txt_brand">Girl</span>
+            v-if="owner.picture"
+            :src="owner.picture")
+          span.profile__letter(v-if="!owner.picture && owner.first_name") {{ owner.first_name.charAt(0) }}
+        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
+        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(3) > -1') It <span class="txt_brand">Girl</span>
       .profile__info
-        h1.user-data__title {{ user | full_name }}
+        h1.user-data__title {{ owner | full_name }}
         .profile__actions
           //-Notificaciones
           .user-data__notify
             router-link.user-data__reviews(
-              v-if="user.id",
-              :to="{ name: 'reviews', params: { userId: user.id } }")
+              v-if="owner.id",
+              :to="{ name: 'reviews', params: { userId: owner.id } }")
               ul.user-data__list
-                li.user-data__value.i-like {{ user.ratings_positive_count }}
-                li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
-                li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
+                li.user-data__value.i-like {{ owner.ratings_positive_count }}
+                li.user-data__value.i-like.i_flip {{ owner.ratings_negative_count }}
+                li.user-data__value.i-less-circle {{ owner.ratings_neutral_count }}
             ul.user-data__list
-              li.user-data__track {{ user.followers_count }} Seguidores
-              li.user-data__track {{ user.following_count }} Siguiendo
+              li.user-data__track {{ owner.followers_count }} Seguidores
+              li.user-data__track {{ owner.following_count }} Siguiendo
           //-Enlaces
-          ul.user-data__nav(v-if="userId && user.id !== userId")
+          ul.user-data__nav(v-if="userId && owner.id !== userId")
             li.user-data__tag
               a.btn-tag.btn-tag_solid(
                 v-if="loading")
@@ -43,12 +42,12 @@ section.profile
               a.btn-tag.btn-tag_solid(
                 v-else
                 @click="unfollow") Siguiendo
-            li.user-data__tag(v-if="user.id")
-              router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: user.id }}") Enviar Mensaje
+            li.user-data__tag(v-if="owner.id")
+              router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: owner.id }}") Enviar Mensaje
     //- About perfil
     .profile__about
       .profile__box-txt.user-data__box-txt
-        p.user-data__txt {{ user.about }}
+        p.user-data__txt {{ owner.about }}
       .user-data__rating(v-if="ratings.length >= 1")
         .chat__line
           span.chat__inner
@@ -72,11 +71,11 @@ section.profile
 import ratingsAPI from '@/api/rating'
 
 export default {
-  props: ['user'],
+  props: ['owner'],
   name: 'UserDataCloset',
   computed: {
     followed () {
-      return this.following_ids && this.following_ids.indexOf(this.user.id) !== -1
+      return this.following_ids && this.following_ids.indexOf(this.owner.id) !== -1
     },
     userId () {
       return this.$getNestedObject(this.$store.state, ['user', 'id'])
@@ -85,8 +84,8 @@ export default {
       return this.$getNestedObject(this.$store.state, ['user', 'following_ids'])
     },
     coverId () {
-      if (this.user.first_name) {
-        return (this.user.first_name.charCodeAt(0) % 7) + 1
+      if (this.owner.first_name) {
+        return (this.owner.first_name.charCodeAt(0) % 7) + 1
       }
     }
   },
@@ -98,26 +97,26 @@ export default {
     }
   },
   methods: {
-    follow: function () {
+    follow () {
       this.loading = true
       const data = {
-        following_add: [this.user.id]
+        following_add: [this.owner.id]
       }
       this.$store.dispatch('user/update', data).finally(() => {
         this.loading = false
       })
     },
-    unfollow: function () {
+    unfollow () {
       this.loading = true
       const data = {
-        following_remove: [this.user.id]
+        following_remove: [this.owner.id]
       }
       this.$store.dispatch('user/update', data).finally(() => {
         this.loading = false
       })
     }
   },
-  created: function () {
+  created () {
     ratingsAPI.getBySeller(this.$route.params.userId)
       .then(response => {
         this.ratings = response.data.data

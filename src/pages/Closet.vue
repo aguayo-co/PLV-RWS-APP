@@ -1,10 +1,9 @@
 <template lang="pug">
 .layout-page
-  UserDataCloset(v-if="owner" :user="owner" v-on:update:user="owner = $event")
+  UserDataCloset(:owner="owner")
   section.section_product
     GridProducto(
-      v-if="owner"
-      :preFilter="{ 'filter[user_id]': owner.id, 'filter[status]': '10,19' }",
+      :preFilter="{ 'filter[user_id]': ownerId, 'filter[status]': '10,19' }",
       :infinite="true")
 </template>
 
@@ -21,16 +20,16 @@ export default {
   },
   data () {
     return {
-      owner: null
+      owner: {}
     }
   },
   computed: {
-    userId () {
-      return this.$getNestedObject(this.$store.state, ['user', 'id'])
+    ownerId () {
+      return this.$route.params.userId
     }
   },
-  created: function () {
-    usersAPI.getUserById(this.$route.params.userId)
+  created () {
+    usersAPI.getUserById(this.ownerId)
       .then(response => {
         this.owner = response.data
       })
