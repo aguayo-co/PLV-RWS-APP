@@ -23,10 +23,10 @@
     p Tu pago no ha sido validado, ¿Puedes reenviar la confirmación de tu pago?
 
   .dashboard__actions(v-else)
-    p Ya nos enviaste tu comprobante de transferencia, ahora estamos validando la transacción.
+    p Tu comprobante fue subido correctamente, ahora estamos validando la transacción.
     a.link_underline(
       v-if="!canUploadReceipt"
-      @click.prevent="newReceipt") « Creo que subí el comprobante incorrecto
+      @click.prevent="newReceipt") « ¿Quieres volver a subir el comprobante?
 
   .dashboard__actions(v-if="canUploadReceipt")
     form.form.form_file(
