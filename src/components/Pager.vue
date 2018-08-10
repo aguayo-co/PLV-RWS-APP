@@ -27,7 +27,7 @@ p.btn__wrapper(
   button.btn.i-send(
     v-else-if="!mqMobile"
     @click='currentPage++') Ver más
-ul.pagination.pagination_bottom(v-else-if="pagination")
+ul.pagination.pagination_bottom(v-else-if="pagination && objects.length")
   li.pagination__select(
     v-if='!forcedParams || !forcedParams.items')
     select.form__select.form__select_small(

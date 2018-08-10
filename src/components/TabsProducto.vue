@@ -19,7 +19,7 @@
       Loader(v-if="loading")
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-else-if="activeTab !== 'published' && !products.length")
           p No tienes productos por aquí!
-      .alert-msg.alert-msg_center.alert-msg_top.i-alert(v-else-if="activeTab === 'published' && user.vacation_mode")
+      .alert-msg.alert-msg_center.alert-msg_top.i-alert(v-else-if="activeTab === 'published' && !products.length && user.vacation_mode")
           p Tienes habilitado el modo vacaciones. Todos tus productos están deshabilitados.
       .alert-msg.alert-msg_center.alert-msg_top.i-smile(v-else-if="activeTab === 'published' && !products.length")
           p Aún no hay productos en tu closet <router-link class="link_underline" :to="{ name: 'publicar-venta' }">Publica tu primer producto</router-link>
@@ -90,7 +90,7 @@
         v-model='products'
         v-on:paging='loading = $event'
         :forcedParams='forcedParams'
-        auth='true'
+        :auth='true'
         :basePath='basePath')
 
 </template>

@@ -67,11 +67,14 @@ export default {
         this.modalDeleteId = null
       })
     },
-    setParams () {
+    setParams (forceChange = false) {
       const forcedParams = {}
       forcedParams['filter[status]'] = this.tabs[this.activeTab].filter
       forcedParams['filter[user_id]'] = this.user.id
       forcedParams['orderby'] = this.orderby
+      if (forceChange) {
+        forcedParams['timestamp'] = this.$moment.now()
+      }
       this.forcedParams = forcedParams
     }
   },
@@ -79,6 +82,9 @@ export default {
     this.setParams()
   },
   watch: {
+    'user.vacation_mode' () {
+      this.setParams(true)
+    },
     activeTab () {
       this.tabsMobile = false
       this.setParams()

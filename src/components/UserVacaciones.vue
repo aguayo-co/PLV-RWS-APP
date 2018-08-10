@@ -25,8 +25,11 @@ export default {
   name: 'UserVacaciones',
   data () {
     return {
-      enabled: false
+      enabled: null
     }
+  },
+  created () {
+    this.enabled = this.vacation_mode
   },
   computed: {
     ...mapState('user', [
@@ -35,14 +38,13 @@ export default {
     ])
   },
   methods: {
-    setMode: function () {
+    setMode () {
       const data = {
         vacation_mode: this.enabled
       }
       this.$store.dispatch('user/update', data)
         .then(response => {
-          let productStatus = ''
-          this.enabled ? productStatus = 'deshabilitados' : productStatus = 'habilitados'
+          const productStatus = this.enabled ? 'deshabilitados' : 'habilitados'
           const modal = {
             name: 'ModalMessage',
             parameters: {
@@ -61,12 +63,12 @@ export default {
             }
           }
           this.$store.dispatch('ui/showModal', modal)
-          this.enabled = this.vacations_mode
+          this.enabled = this.vacation_mode
         })
     }
   },
   watch: {
-    id: function () {
+    id () {
       this.enabled = this.vacation_mode
     }
   }
