@@ -1,5 +1,5 @@
 export default {
-  install (Vue) {
+  install (Vue, store) {
     Vue.filter('currency', function (value) {
       if (!isNaN(value)) return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
     })
@@ -45,7 +45,8 @@ export default {
         case 'pay_u':
           return 'Usando PayU, podrás pagar con tarjetas de crédito y/o débito. Una vez hagas click en "Ir a Pagar" será redireccionada a la plataforma segura de PayU.'
         default:
-          return 'En el siguiente paso, te mostraremos los datos de la cuenta de Prilov para que realices la transferencia bancaria desde la página de tu banco. Una vez que haces click en “Ir a Pagar”, tendrás 60 minutos para subir el comprobante. Asegúrate de estar lista.'
+          const minutes = Vue.getNestedObject(store.state, ['ui', 'configs', 'payments', 'minutes_until_canceled'])
+          return 'En el siguiente paso, te mostraremos los datos de la cuenta de Prilov para que realices la transferencia bancaria desde la página de tu banco. Una vez que haces click en “Ir a Pagar”, tendrás ' + minutes + ' minutos para subir el comprobante. Asegúrate de estar lista.'
       }
     })
   }

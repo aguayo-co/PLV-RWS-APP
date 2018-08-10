@@ -49,7 +49,7 @@ import Dots from './components/global/Dots'
   Vue.use(prilovHelpers)
 
   // Load our filters!
-  Vue.use(prilovFilters)
+  Vue.use(prilovFilters, store)
 
   Vue.use(VueTextareaAutosize)
 
