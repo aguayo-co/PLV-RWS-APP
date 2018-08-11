@@ -2,10 +2,12 @@
 .gridlight
   //- filter mobile
   FilterMobile(
+    :extraOrderOptions='extraOrderOptions'
     v-if="mqMobile",
     :filter="parameters")
   //- filter desktop
   FilterDesk(
+    :extraOrderOptions='extraOrderOptions'
     v-if="mqDesk",
     :filter="parameters",
     :compact="compact")
@@ -63,10 +65,11 @@ export default {
   },
   data () {
     return {
+      extraOrderOptions: [{ name: 'Instashop', param: '-image_instagram_date' }],
       basePath: productAPI.basePath,
       products: [],
       parameters: {
-        'orderby': '-updated_at'
+        'orderby': '-image_instagram_date'
       },
       loading: true,
       enableFavorite: false

@@ -130,13 +130,13 @@ nav.filter(@click="closeFilters")
     ul.filter__box
       li.filter__box-select(@click.stop="OpenFilter('order')")
         span.filter__arrow
-          .filter__box-label Ordenado por <br /><strong>{{ orderOptions.options[orderOptions.selected].name }}</strong>
+          .filter__box-label Ordenado por
+            template(v-if="selectedOrderOption") <br /><strong>{{ selectedOrderOption.name }}</strong>
         transition(name='toggle-scale')
           ul.filter__list.toggle-box(v-show="dropdownState.order")
             li.filter__item(
-              @click.stop.stop="changeAndCloseOrder(option.id)"
-              v-for="option in orderOptions.options") {{ option.name }}
-
+              @click.stop.stop="changeAndCloseOrder(option)"
+              v-for="option in orderOptions") {{ option.name }}
 </template>
 
 <script>

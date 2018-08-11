@@ -13,12 +13,22 @@ const filterFields = {
 export default {
   name: 'FilterDesk',
   props: [
-    'filter'
+    'filter',
+    'extraOrderOptions'
   ],
   components: {
     FilterPrecio
   },
   computed: {
+    selectedOrderOption () {
+      return this.orderOptions.find(option => option.param === this.orderby)
+    },
+    orderOptions () {
+      if (this.extraOrderOptions) {
+        return this.localOrderOptions.concat(this.extraOrderOptions)
+      }
+      return this.localOrderOptions
+    },
     ...mapState('ui', [
       'conditions',
       'categories',
@@ -31,16 +41,13 @@ export default {
   data () {
     return {
       filterFields,
-      orderOptions: {
-        selected: 0,
-        options: [
-          { id: 0, name: 'Lo último' },
-          { id: 1, name: 'Menor precio' },
-          { id: 2, name: 'Mayor precio' },
-          { id: 3, name: 'Destacados' },
-          { id: 4, name: 'Nuestros favoritos' }
-        ]
-      },
+      localOrderOptions: [
+        { name: 'Lo último', param: '-created_at' },
+        { name: 'Menor precio', param: 'price' },
+        { name: 'Mayor precio', param: '-price' },
+        { name: 'Destacados', param: '-commission' },
+        { name: 'Nuestros favoritos', param: 'favorites' }
+      ],
       precio: {
         value: [
           '0',
@@ -160,24 +167,8 @@ export default {
       filters.orderby = this.orderby
       this.setQuery(filters)
     },
-    changeOrder (orderOptionId) {
-      this.orderOptions.selected = orderOptionId
-      switch (orderOptionId) {
-        case 0:
-          this.orderby = '-created_at'
-          break
-        case 1:
-          this.orderby = 'price'
-          break
-        case 2:
-          this.orderby = '-price'
-          break
-        case 3:
-          this.orderby = '-commission'
-          break
-        default:
-          this.orderby = 'favorites'
-      }
+    changeOrder (orderOption) {
+      this.orderby = orderOption.param
       this.applyFilters()
     }
   }

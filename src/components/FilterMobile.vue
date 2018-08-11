@@ -1,7 +1,7 @@
 <template lang="pug">
   nav.filter(
     :class="{ 'filter__nav_open':openFilters || filterMultiActive }")
-    a.filter__btn(href="#", @click.prevent='openFMultinivel') Ordenado por<br />{{ orderOptions.options[orderOptions.selected].name }}
+    a.filter__btn(href="#", @click.prevent='openFMultinivel') Ordenado por<br />{{ orderOptions[selectedOrderOption].name }}
     a.filter__btn(href="#", @click.prevent='switchFilterMb') Filtrar
     //-Item Ordenar Articulos
     transition(name='slide-left')
@@ -10,12 +10,12 @@
         li.filter__select_header.i-close(
           @click='openFMultinivel') Ordenar productos
         li.filter__select(
-          @click="changeAndCloseOrder(option.id)",
-          v-for="option in orderOptions.options"
-          :class="{ 'filter__select_check' : orderOptions.selected === option.id}")
+          @click="changeAndCloseOrder(option)",
+          v-for="option in orderOptions"
+          :class="{ 'filter__select_check' : selectedOrderOption === option.id}")
           .filter__item-check
             input.filter__input-check(
-              @click="changeAndCloseOrder(option.id)",
+              @click="changeAndCloseOrder(option)",
               :id="'filterSimple_' + option.id",
               type="radio",
               name="filterOrder")
@@ -287,7 +287,6 @@ export default {
       this.openFMultinivel()
       this.changeOrder(order)
     }
-
   }
 }
 </script>
