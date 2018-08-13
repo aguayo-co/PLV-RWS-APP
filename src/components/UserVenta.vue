@@ -22,7 +22,7 @@
               p.card__size Talla: {{ product.size.name }}
             p.card__price $ {{ product.sale_price | currency }}
             .card__user-data
-              p Compradora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.order.user_id }}"> {{ sale.order.user | full_name }}</router-link>
+              p Compradora: <router-link class="link_underline" :to="{ name: 'closet', params: { userId: sale.order.user_id }}"> {{ sale.order.user.full_name }}</router-link>
               p(v-if="phone") Teléfono: {{ phone }}
               p(v-if="address") Dirección: {{ address | address }}
               p(v-if="sale.shipping_method") Método de envío: {{ sale.shipping_method.name }}

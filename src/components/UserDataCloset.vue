@@ -16,7 +16,7 @@ section.profile
         p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
         p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(3) > -1') It <span class="txt_brand">Girl</span>
       .profile__info
-        h1.user-data__title {{ owner | full_name }}
+        h1.user-data__title {{ owner.full_name }}
         .profile__actions
           //-Notificaciones
           .user-data__notify
@@ -60,7 +60,7 @@ section.profile
               //-   .chat-bubble__title.i-like Camila Cifuentes
               //-   p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
               .chat-bubble__item
-                .chat-bubble__title {{ rating.buyer | full_name }}
+                .chat-bubble__title {{ rating.buyer.full_name }}
                 p.chat-bubble__txt
                   span.chat-bubble_ico(
                     :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}

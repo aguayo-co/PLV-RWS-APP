@@ -43,6 +43,7 @@ const baseSellerGenerator = () => {
     id: null,
     first_name: null,
     last_name: null,
+    full_name: null,
     picture: null,
     phone: null,
     shipping_methods: {}
@@ -176,7 +177,6 @@ const mutations = {
     Object.keys(baseSeller).forEach((key) => {
       Vue.set(state.sales[sale.id], 'user_' + key, user[key])
     })
-    Vue.set(state.sales[sale.id], 'user_full_name', Vue.options.filters.full_name(user))
   },
   /**
    * Almacena cada producto en el state.

@@ -14,7 +14,7 @@ section.single
             :to="{ name: 'conversation', params: { threadId: message.id }}")
             .collection__lead
               .collection__head
-                span.collection__title {{ getMessenger(message) | full_name }}
+                span.collection__title {{ getMessenger(message).full_name }}
                 span.collection__label {{ message.product_id ? "Te hizo una pregunta en un producto" : "Te escribió un privado" }}
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)
@@ -32,7 +32,7 @@ section.single
             :to="{ name: 'conversation', params: { threadId: message.id }}")
             .collection__lead
               .collection__head
-                span.collection__title {{ getMessenger(message) | full_name }}
+                span.collection__title {{ getMessenger(message).full_name }}
                 span.collection__label
               | {{ message.messages.slice(-1)[0].body }}
       .collections__list(v-else)

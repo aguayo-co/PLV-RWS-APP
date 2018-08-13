@@ -166,4 +166,4 @@
 
 </template>
 
-<script src="./js/UserTuCloset.js"></script>
+<script src="./js/UserDataTuCloset.js"></script>

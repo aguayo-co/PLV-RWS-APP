@@ -5,7 +5,7 @@ section.single
     Loader(v-if="loading")
     template(v-else)
       header.single__header
-        h1.single__title Privado con {{ recipient | full_name }}
+        h1.single__title Privado con {{ recipient.full_name }}
       .chat.chat__grid
         .chat__message
           .chat__message_inner

@@ -1,5 +1,5 @@
 /* global FormData */
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import AddressList from '@/components/AddressList'
 
 // Cada campo editable debe estar acá.
@@ -60,15 +60,13 @@ export default {
       'id',
       'picture',
       'cover',
+      'full_name',
       'followers_count',
       'following_count',
       'ratings_positive_count',
       'ratings_negative_count',
       'ratings_neutral_count',
       ...Object.keys(editableProps)
-    ]),
-    ...mapGetters('user', [
-      'full_name'
     ]),
     ...createComputedProps(editableProps)
   },

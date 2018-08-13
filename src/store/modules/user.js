@@ -9,6 +9,7 @@ const baseUserGenerator = () => {
     email: null,
     first_name: null,
     last_name: null,
+    full_name: null,
     about: null,
     cover: null,
     credits: null,
@@ -43,7 +44,6 @@ const baseStateGenerator = () => {
 }
 
 const getters = {
-  full_name: state => Vue.options.filters.full_name(state),
   roles: state => state.roles
 }
 

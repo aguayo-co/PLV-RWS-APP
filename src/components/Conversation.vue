@@ -4,7 +4,7 @@ section.single
     router-link.btn-back.i-back(
       :to="{ name: 'user-notificaciones' }") Volver
     header.single__header
-      h1.single__title {{ messenger | full_name }}
+      h1.single__title {{ messenger.full_name }}
     .chat.chat__grid
       .chat__slot(v-if="product.id")
         article.slot.slot_grid
@@ -91,7 +91,7 @@ export default {
     }
   },
   watch: {
-    thread: function () {
+    thread () {
       if (this.thread.product_id && !this.product.id) {
         productsAPI.getProductById(this.thread.product_id)
           .then(response => {
@@ -101,7 +101,7 @@ export default {
     }
   },
   methods: {
-    send: function () {
+    send () {
       this.$delete(this.errorLog, 'body')
       if (!this.body) {
         this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
@@ -127,7 +127,7 @@ export default {
         })
     }
   },
-  created: function () {
+  created () {
     this.id = this.$route.params.threadId
     threadsAPI.getThreadById(this.id)
       .then(response => {

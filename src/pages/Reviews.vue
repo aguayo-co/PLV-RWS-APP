@@ -14,7 +14,7 @@
               img.valuations__img(
                 :src="rating.buyer.picture",
                 :alt="rating.buyer.first_name")
-              figcaption.valuations__name {{ rating.buyer | full_name }}
+              figcaption.valuations__name {{ rating.buyer.full_name }}
             p.valuations__bubble
               span.chat-bubble_ico(
                 :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
@@ -37,7 +37,7 @@
               img.valuations__img(
                 :src="rating.seller.picture",
                 :alt="rating.seller.first_name")
-              figcaption.valuations__name {{ rating.seller | full_name }}
+              figcaption.valuations__name {{ rating.seller.full_name }}
             p.valuations__bubble
               span.chat-bubble_ico(
                 :class="{ 'i-like' : rating.seller_rating === 1, 'i-less-circle' : rating.seller_rating === 0 , 'i-like i_flip' : rating.seller_rating === -1 }") {{ rating.seller_comment }}

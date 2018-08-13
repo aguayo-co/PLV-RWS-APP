@@ -41,7 +41,7 @@ section.list-slot
                 :alt="product.user.first_name")
           .card__user-info
             .card__status Vendedora:
-            .card__prilover  {{ product.user | full_name }}
+            .card__prilover  {{ product.user.full_name }}
     //-End Item
 
   //-End list content

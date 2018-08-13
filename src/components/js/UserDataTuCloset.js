@@ -1,5 +1,5 @@
 /* global FormData */
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import ratingsAPI from '@/api/rating'
 
 // Cada campo editable debe estar acá.
@@ -57,15 +57,13 @@ export default {
       'picture',
       'first_name',
       'cover',
+      'full_name',
       'followers_count',
       'following_count',
       'ratings_positive_count',
       'ratings_negative_count',
       'ratings_neutral_count',
       ...Object.keys(editableProps)
-    ]),
-    ...mapGetters('user', [
-      'full_name'
     ]),
     ...createComputedProps(editableProps),
     coverId () {
