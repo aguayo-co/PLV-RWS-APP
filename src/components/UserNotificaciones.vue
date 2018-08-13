@@ -80,12 +80,11 @@ export default {
     isUnread (messageId) {
       return this.unread.data.some(x => x.id === messageId)
     },
+    allParticipants (thread) {
+      return thread.trashed_participants.concat(thread.participants)
+    },
     getMessenger (thread) {
-      if (thread.participants.length === 1) {
-        return thread.participants[0].user
-      }
-
-      return thread.participants.find(x => x.user_id !== this.user.id).user
+      return this.allParticipants(thread).find(x => x.user_id !== this.user.id).user
     }
   }
 }

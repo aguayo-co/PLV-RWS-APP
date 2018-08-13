@@ -90,10 +90,10 @@ export default {
           this.recipient = response.data
         })
     },
-    send: function () {
+    send () {
       this.thread ? this.sendMessage() : this.createThread()
     },
-    sendMessage: function () {
+    sendMessage () {
       this.$delete(this.errorLog, 'body')
       if (!this.body) {
         this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
@@ -117,7 +117,7 @@ export default {
           this.sending = false
         })
     },
-    createThread: function () {
+    createThread () {
       this.$delete(this.errorLog, 'body')
       if (!this.body) {
         this.$set(this.errorLog, 'body', '¡Ups! No podemos enviar tu mensaje si no lo escribes primero.')
@@ -142,7 +142,7 @@ export default {
         })
     }
   },
-  created: function () {
+  created () {
     this.recipientId = parseInt(this.$route.params.recipientId)
     this.loadThread().then(() => {
       if (this.thread) {

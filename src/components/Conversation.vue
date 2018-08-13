@@ -44,7 +44,9 @@ section.single
                   .chat__footer.chat__footer_main
                     time.chat__date {{ message.created_at | moment("from") }}
         .chat-inner
-          form.chat__form(@submit.prevent="send")
+          form.chat__form(
+            v-if="enabled"
+            @submit.prevent="send")
             label.chat__label Escribe tu mensaje aquí
             span.help(v-if="errorLog.body") {{ errorLog.body }}
             .chat__form-group
@@ -56,6 +58,8 @@ section.single
                 button.chat__btn-solid(disabled v-if="sending")
                   Dots
                 button.chat__btn-solid.i-shipping(v-else) Enviar
+          .alert-msg.i-alert-circle(v-else)
+            p Esta conversación ha sido cerrada.
   .single__inner(v-else)
     router-link.btn-back.i-back(:to="{ name: 'user-notificaciones' }") Volver
     Loader(v-if="loading")
@@ -83,11 +87,14 @@ export default {
   },
   computed: {
     ...mapState(['user']),
+    allParticipants () {
+      return this.thread.trashed_participants.concat(this.thread.participants)
+    },
+    enabled () {
+      return this.thread.participants.length > 1
+    },
     messenger () {
-      if (this.thread.participants.length === 1) {
-        return this.thread.participants[0].user
-      }
-      return this.thread.participants.find(x => x.user_id !== this.user.id).user
+      return this.allParticipants.find(x => x.user_id !== this.user.id).user
     }
   },
   watch: {
