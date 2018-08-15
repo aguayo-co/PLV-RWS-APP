@@ -1,10 +1,13 @@
 <template lang="pug">
 .layout-page
-  UserDataCloset(:owner="owner")
-  section.section_product
-    GridProducto(
-      :preFilter="{ 'filter[user_id]': ownerId, 'filter[status]': '10,19' }",
-      :infinite="true")
+  Loader(v-if="loading")
+  .status.status_alert.i-alert-circle(v-else-if="!owner") La cuenta de esta Prilover fue eliminada.
+  template(v-else)
+    UserDataCloset(:owner="owner")
+    section.section_product
+      GridProducto(
+        :preFilter="{ 'filter[user_id]': ownerId, 'filter[status]': '10,19' }",
+        :infinite="true")
 </template>
 
 <script>
@@ -20,7 +23,8 @@ export default {
   },
   data () {
     return {
-      owner: {}
+      owner: {},
+      loading: true
     }
   },
   computed: {
@@ -29,9 +33,19 @@ export default {
     }
   },
   created () {
-    usersAPI.getUserById(this.ownerId)
+    const localRequest = this.loading = usersAPI.getUserById(this.ownerId)
       .then(response => {
-        this.owner = response.data
+        if (localRequest === this.loading) {
+          this.owner = response.data
+        }
+      })
+      .catch(e => {
+        if (this.$getNestedObject(e, ['response', 'status']) === 404) {
+          this.owner = null
+        }
+      })
+      .finally(() => {
+        this.loading = false
       })
   }
 }

@@ -7,6 +7,7 @@ export default {
   getBySeller (sellerId, page, status = 1) {
     const params = {
       'filter[seller_id]': sellerId,
+      'filter[buyer_rating]': '-1,0,1',
       orderby: '-created_at',
       page,
       'filter[status]': status
@@ -24,6 +25,7 @@ export default {
   getByBuyer (buyerId, page, status = 1) {
     const params = {
       'filter[buyer_id]': buyerId,
+      'filter[seller_rating]': '-1,0,1',
       orderby: '-created_at',
       page,
       'filter[status]': status
