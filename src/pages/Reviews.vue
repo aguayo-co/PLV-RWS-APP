@@ -88,7 +88,7 @@ export default {
     loadMore () {
       return {
         buyer: (this.ratings.buyerNew.current_page < this.ratings.buyerNew.last_page),
-        seller: (this.ratings.sellerNew.current_page < this.ratings.sellerNew.last_page || this.ratings.sellerArchive.current_page < this.ratings.sellerArchive.last_page),
+        seller: (this.ratings.sellerNew.current_page < this.ratings.sellerNew.last_page || this.ratings.sellerArchive.current_page < this.ratings.sellerArchive.last_page)
       }
     },
     userId () {
