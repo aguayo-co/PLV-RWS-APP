@@ -28,16 +28,16 @@ section.profile
                 li.user-data__value.i-like.i_flip {{ owner.ratings_negative_count }}
                 li.user-data__value.i-less-circle {{ owner.ratings_neutral_count }}
             ul.user-data__list
-              li.user-data__track {{ owner.followers_count }} Seguidores
+              li.user-data__track {{ followers_count }} Seguidores
               li.user-data__track {{ owner.following_count }} Siguiendo
           //-Enlaces
-          ul.user-data__nav(v-if="userId && owner.id !== userId")
+          ul.user-data__nav(v-if="id && owner.id !== id")
             li.user-data__tag
               a.btn-tag.btn-tag_solid(
                 v-if="loading")
                 Dots
               a.btn-tag.btn-tag_solid(
-                v-else-if="!followed"
+                v-else-if="!follows"
                 @click="follow") Seguir
               a.btn-tag.btn-tag_solid(
                 v-else
@@ -67,26 +67,34 @@ section.profile
 </template>
 
 <script>
-
 import ratingsAPI from '@/api/rating'
+import { mapState } from 'vuex'
 
 export default {
   props: ['owner'],
   name: 'UserDataCloset',
   computed: {
-    followed () {
-      return this.following_ids && this.following_ids.indexOf(this.owner.id) !== -1
-    },
-    userId () {
-      return this.$getNestedObject(this.$store.state, ['user', 'id'])
-    },
-    following_ids () {
-      return this.$getNestedObject(this.$store.state, ['user', 'following_ids'])
+    ...mapState('user', [
+      'id',
+      'following_ids'
+    ]),
+    follows () {
+      return this.following_ids && this.following_ids.includes(this.owner.id)
     },
     coverId () {
       if (this.owner.first_name) {
         return (this.owner.first_name.charCodeAt(0) % 7) + 1
       }
+    },
+    followers_count () {
+      const seemsFollowing = this.owner.followers_ids.includes(this.id) ? 1 : 0
+      if (this.follows && !seemsFollowing) {
+        return this.owner.followers_count + 1
+      }
+      if (!this.follows && seemsFollowing) {
+        return this.owner.followers_count - 1
+      }
+      return this.owner.followers_count
     }
   },
   data () {
