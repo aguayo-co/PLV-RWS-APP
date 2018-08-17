@@ -73,7 +73,6 @@ export default {
       }
     },
     processPayUCallback () {
-      console.log(this.$route.query.polTransactionState)
       switch (this.$route.query.polTransactionState) {
         case '4':
           return orderAPI.payUCallback(this.$route.query)

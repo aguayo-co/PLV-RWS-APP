@@ -155,7 +155,6 @@ export default {
       this.goTo()
     },
     handleScroll () {
-      console.warn('enter')
       if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.currentPage < this.pagination.last_page) this.currentPage++
       }
