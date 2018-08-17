@@ -1,8 +1,8 @@
 <template lang="pug">
   nav.filter(
     :class="{ 'filter__nav_open':openFilters || filterMultiActive }")
-    a.filter__btn(href="#", @click.prevent='openFMultinivel') Ordenado por<br />{{ orderOptions[selectedOrderOption].name }}
-    a.filter__btn(href="#", @click.prevent='switchFilterMb') Filtrar
+    a.filter__btn(v-if="selectedOrderOption" @click.prevent='openFMultinivel') Ordenado por<br />{{ orderOptions[selectedOrderOption].name }}
+    a.filter__btn(@click.prevent='switchFilterMb') Filtrar
     //-Item Ordenar Articulos
     transition(name='slide-left')
       ul.filter__list(

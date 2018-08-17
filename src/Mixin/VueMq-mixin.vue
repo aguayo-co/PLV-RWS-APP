@@ -4,7 +4,7 @@ export default {
   name: 'VueMqMixin',
   install (Vue, options) {
     Vue.mixin({
-      data: function () {
+      data () {
         return {
           windowWidth: 0,
           windowHeight: 0,
@@ -17,7 +17,7 @@ export default {
           mqDeskBig: false
         }
       },
-      mounted () {
+      created () {
         this.$nextTick(function () {
           window.addEventListener('resize', this.getWindowWidth)
           window.addEventListener('resize', this.getWindowHeight)
