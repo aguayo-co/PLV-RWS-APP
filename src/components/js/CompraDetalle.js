@@ -181,7 +181,7 @@ export default {
         name: 'ModalMessage',
         parameters: {
           type: 'preload',
-          title: 'Estamos alistando compra.',
+          title: 'Estamos procesando tu compra.',
           body: 'Por favor no refresques esta página.'
         }
       }
