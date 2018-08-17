@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard__subitem(v-if="sale_return.status <= 41")
+.dashboard__subitem(v-if="sale_return.status <= 49")
   //-5
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
@@ -9,23 +9,10 @@
   .dashboard__actions
     p ¿Ya recibiste el producto de vuelta?
     a.btn.btn_solid.btn_block(
-      @click.prevent="saleReturnReceived"
-      href='#') Si, la recibí
+      @click.prevent="saleReturnCompleted") Si, lo recibí
 
-.dashboard__subitem(v-else-if="sale_return.status === 49")
-  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
-  .dashboard__status
-    p.status.status_warning.i-reload Producto en proceso de devolución
-
-  .dashboard__actions
-    p ¿Cómo recibiste el producto?
-    a.btn.btn_block(
-      @click.prevent="saleReturnCompleted"
-      href='#') Lo recibí bien
-    a.btn.btn_block(
-      @click.prevent="saleReturnAdminManagement"
-      href='#') Lo recibí en peores condiciones
-
+//- Este estado no se puede generar desde el Front desde el 17 de Ago de 2018.
+//- Se deja para mantener la compatibilidad con esta funcionalidad.
 .dashboard__subitem(v-else-if="sale_return.status === 50")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
