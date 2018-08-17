@@ -125,7 +125,6 @@ export default {
   },
   methods: {
     signUp () {
-      // console.log(this.$store.get('userAuth'))
       const payload = {
         first_name: this.nombre,
         last_name: this.apellidos,
