@@ -24,13 +24,13 @@ export default {
       if (this.sale.status < 30 || this.sale.status === 99) {
         return
       }
-      return this.$getNestedObject(this.order, ['shipping_information', 'phone'])
+      return this.$getNestedObject(this.sale.order, ['shipping_information', 'phone'])
     },
     address () {
       if (this.sale.status < 30 || this.sale.status === 99) {
         return
       }
-      return this.$getNestedObject(this.order, ['shipping_information', 'address'])
+      return this.$getNestedObject(this.sale.order, ['shipping_information', 'address'])
     }
   }
 }
