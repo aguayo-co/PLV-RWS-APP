@@ -1,3 +1,4 @@
+import { mapState } from 'vuex'
 import lscache from 'lscache'
 
 export default {
@@ -33,6 +34,9 @@ export default {
     }
   },
   computed: {
+    ...mapState('ui', [
+      'modal'
+    ]),
     axios () {
       return this.auth ? this.$axiosAuth : this.$axios
     },
@@ -155,6 +159,9 @@ export default {
       this.goTo()
     },
     handleScroll () {
+      if (this.modal) {
+        return
+      }
       if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight) && !this.loading) {
         if (this.currentPage < this.pagination.last_page) this.currentPage++
       }
