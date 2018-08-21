@@ -52,10 +52,13 @@ section.profile
         .chat__line
           span.chat__inner
             .chat__bubble-main
-              figure.chat-bubble__avatar.avatar_60
-                img.chat-bubble__img(
-                  :src="rating.buyer.picture",
-                  :alt="rating.buyer.first_name")
+              figure.chat-bubble__avatar.avatar_60(v-if="rating.buyer.picture")
+                a(:href="'/closet/' + rating.buyer.id")
+                  img.chat-bubble__img(
+                    :src="rating.buyer.picture",
+                    :alt="rating.buyer.first_name")
+              span.chat-bubble__avatar.avatar_60(v-else)
+                a(:href="'/closet/' + rating.buyer.id") {{ user.first_name.charAt(0) }}
               //- .chat-bubble__item
               //-   .chat-bubble__title.i-like Camila Cifuentes
               //-   p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
