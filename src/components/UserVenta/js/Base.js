@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     paymentDate () {
-      const date = this.$getNestedObject(this.sale, ['status_history', 20, 'date', 'date'])
+      const date = this.$getNestedObject(this.sale, ['status_history', 20, 'date'])
       return date || this.created_at
     }
   },
