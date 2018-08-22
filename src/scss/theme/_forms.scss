@@ -106,7 +106,7 @@ select {
       background-color: $c-neutro-4;
     }
   }
-  
+
   .form__edit {
     width: 100%;
     line-height: 1.6;
@@ -152,7 +152,7 @@ select {
   font-family: $f-default;
   border: 1px solid $c-default-2;
   background-color: #fff;
-  background-image: url(../../static/img/arrow-select.svg);
+  background-image: url('/static/img/arrow-select.svg');
   background-size: 11px 9px;
   background-position: 98% center;
   background-repeat: no-repeat;
@@ -217,14 +217,14 @@ select {
 //label de input radio
 .form__label_radio {
   position: relative;
-  padding-bottom: 0; 
+  padding-bottom: 0;
   padding-left: 28px;
   font-weight: $fw-regular;
 
   strong {
     display: block;
   }
-  
+
   &:before {
     position: absolute;
     top: 8px;
@@ -238,7 +238,7 @@ select {
     border-radius: 50%;
     background-color: $c-brand;
   }
- 
+
   &:after {
     content: '';
     position: absolute;
@@ -301,7 +301,7 @@ select {
     border-radius: 3px;
   }
 }
-//Input checkbox 
+//Input checkbox
 .form__input-check {
   position: absolute;
   z-index: -1;
@@ -497,7 +497,7 @@ select {
   width: 62px;
   height: 28px;
   opacity: 0;
-} 
+}
 // Unchecked
 .switch__label {
    display: block;
@@ -529,7 +529,7 @@ select {
     transition: all 0.28s cubic-bezier(.4, 0, .2, 1);
     transition-property: left, background-color;
    }
- } 
+ }
 .switch__status {
   position: absolute;
   top: 28px;
@@ -728,7 +728,7 @@ select {
 
   .form__group {
     @include flexbox;
-    @include justify-content(center); 
+    @include justify-content(center);
     .form__row {
       flex-grow: 0;
       &:not(:last-child) {
@@ -748,7 +748,7 @@ select {
 
 @media only screen and (min-width: 1080px) {
   .form__grid_reverse {
-    @include flex-direction (row); 
+    @include flex-direction (row);
     @include justify-content(space-between);
     @include align-items(center);
     .form__grid_group {
@@ -769,7 +769,7 @@ select {
         min-width: 100px;
       }
   }
-  
+
 }
 
 /*------------------------------------*\
@@ -859,7 +859,7 @@ select {
       }
     }
   }
-  
+
 .form__info {
   position: relative;
   min-height: 40px;
@@ -877,4 +877,3 @@ select {
   }
 }
 
-  

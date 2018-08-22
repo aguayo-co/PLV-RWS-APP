@@ -98,7 +98,7 @@
     border-bottom: 3px solid transparent;
     transition: all 0.3s;
     &:hover {
-      border-bottom-color: $c-brand;      
+      border-bottom-color: $c-brand;
     }
     &.active {
       border-bottom-color: $c-brand;
@@ -116,7 +116,7 @@
       position: relative;
       width: 38px;
       height: 38px;
-      background: url(../img/brand-prilov.svg) no-repeat center center $c-default;
+      background: url('/static/img/brand-prilov.svg') no-repeat center center $c-default;
       background-size: 38px 38px;
       @include font-rem(0px);
       &:before {
@@ -169,7 +169,7 @@
       padding-bottom: 4px;
       border-bottom: 2px solid $c-brand;
     }
-    
+
   }
 
   .foot-nav__title {
