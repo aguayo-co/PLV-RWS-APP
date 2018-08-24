@@ -47,8 +47,11 @@ export default {
     const handleApiErrors = function (e, fields = [], errorLog = {}) {
       let hasFieldErrors = false
       fields.forEach((field) => {
-        hasFieldErrors = true
-        Vue.set(errorLog, field, this.$getFirstError(e, field))
+        const error = this.$getFirstError(e, field)
+        if (error) {
+          hasFieldErrors = true
+          Vue.set(errorLog, field, error)
+        }
       })
 
       // Si hay errores en los campos pasados, no mostrar Modal.

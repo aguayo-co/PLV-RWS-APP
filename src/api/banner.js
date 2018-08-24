@@ -4,11 +4,11 @@
 import Vue from 'vue'
 
 export default {
-  getAllBanners: function () {
-    return Vue.axios.get('/api/banners')
+  get (params) {
+    return Vue.axios.get('/api/banners', { params })
   },
 
-  getBannerBySlug: function (slug) {
+  getBySlug (slug) {
     return Vue.axios.get('/api/banners/' + slug)
   }
 }

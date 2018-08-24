@@ -108,25 +108,25 @@ export default {
   },
   methods: {
     loadBannerGroup () {
-      bannersAPI.getBannerBySlug('group-' + this.slug)
+      bannersAPI.getBySlug('group-' + this.slug)
         .then(response => {
           this.banner = response.data
         }).catch(() => {})
     },
     loadBannerCampaign () {
-      bannersAPI.getBannerBySlug('campana-' + this.slug)
+      bannersAPI.getBySlug('campana-' + this.slug)
         .then(response => {
           this.banner = response.data
         }).catch(() => {})
     },
     loadBannerCategory () {
-      bannersAPI.getBannerBySlug('categoria-' + this.slug)
+      bannersAPI.getBySlug('categoria-' + this.slug)
         .then(response => {
           this.banner = response.data
         }).catch(() => {})
     },
     loadBannerBrand () {
-      bannersAPI.getBannerBySlug('marca-' + this.slug)
+      bannersAPI.getBySlug('marca-' + this.slug)
         .then(response => {
           this.banner = response.data
         }).catch(() => {})

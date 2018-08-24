@@ -22,10 +22,17 @@ export default {
       banners: []
     }
   },
-  created: async function () {
-    await bannersAPI.getAllBanners()
+  created () {
+    const filters = {
+      'filter[slug]': 'top-%'
+    }
+    bannersAPI.get(filters)
       .then(response => {
-        this.banners = response.data.data.filter(x => x.name.split('-')[1] === 'top')
+        if (response.data.data.length <= 3) {
+          this.banners = response.data.data
+          return
+        }
+        this.banners = response.data.data.sort(() => 0.5 - Math.random()).slice(0, 3)
       })
   }
 }

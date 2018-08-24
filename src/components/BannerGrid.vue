@@ -36,10 +36,14 @@ export default {
       banners: []
     }
   },
-  created: async function () {
-    await bannersAPI.getAllBanners()
+  created () {
+    const filters = {
+      'filter[slug]': 'home-%',
+      'items': '3'
+    }
+    bannersAPI.get(filters)
       .then(response => {
-        this.banners = response.data.data.filter(x => x.name.split('-')[0] === 'banner').slice(0, 3)
+        this.banners = response.data.data
       })
   }
 }

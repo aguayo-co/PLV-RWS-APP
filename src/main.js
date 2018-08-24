@@ -23,6 +23,8 @@ import CountDown from './components/global/CountDown'
 import Loader from './components/global/Loader'
 import Dots from './components/global/Dots'
 
+import './scss/main.scss'
+
 (() => {
   if (window.location.protocol === 'http:') {
     window.location.protocol = 'https:'

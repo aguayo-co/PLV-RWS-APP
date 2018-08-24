@@ -28,7 +28,7 @@ export default {
   computed: {
     forcedParams () {
       return {
-        orderby: '-id',
+        orderby: '-payment_date',
         'filter[status]': this.listOptions.options[this.listOptions.selected].filter
       }
     }

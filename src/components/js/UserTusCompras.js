@@ -32,7 +32,7 @@ export default {
     forcedParams () {
       return {
         buyer: true,
-        orderby: '-id',
+        orderby: '-payment_date',
         'filter[status]': this.listOptions.options[this.listOptions.selected].filter
       }
     }

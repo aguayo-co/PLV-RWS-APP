@@ -17,47 +17,48 @@ footer.page-foot.i-heart-on
               span {{ items.name }}
 
       .foot-news
-        h4.foot__title Newsletter
-        p.foot__txt Inscríbete en el Newsletter para recibir promociones, descuentos especiales y noticias.
+        template(v-if="$store.state.mcUrl")
+          h4.foot__title Newsletter
+          p.foot__txt Inscríbete en el Newsletter para recibir promociones, descuentos especiales y noticias.
 
-        form.form.foot__form(
-          action="https://prilov.us9.list-manage.com/subscribe/post?u=8b6af106f12d9ec63c8570ebb&amp;id=02225c7945"
-          method="post"
-          id="mc-embedded-subscribe-form"
-          name="mc-embedded-subscribe-form"
-          class="validate"
-          target="_blank"
-          novalidate
-        )
-          .form__row
-            label.form__label(
-              for='subscriberEmail') Correo
-            input.form__control(
-              type="email"
-              value=""
-              name="EMAIL"
-              class="required email"
-              id="mce-EMAIL"
-            )
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            div(
-              style="position: absolute; left: -5000px;"
-              aria-hidden="true")
-              input(type="text"
-              name="b_8b6af106f12d9ec63c8570ebb_02225c7945"
-              tabindex="-1"
-              value="")
-            router-link.link_underline(
-              :to="{ name: 'terminos' }") Ver Condiciones de uso
+          form.form.foot__form(
+            :action="$store.state.mcUrl"
+            method="post"
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            class="validate"
+            target="_blank"
+            novalidate
+          )
+            .form__row
+              label.form__label(
+                for='subscriberEmail') Correo
+              input.form__control(
+                type="email"
+                value=""
+                name="EMAIL"
+                class="required email"
+                id="mce-EMAIL"
+              )
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              div(
+                style="position: absolute; left: -5000px;"
+                aria-hidden="true")
+                input(type="text"
+                name="b_8b6af106f12d9ec63c8570ebb_02225c7945"
+                tabindex="-1"
+                value="")
+              router-link.link_underline(
+                :to="{ name: 'terminos' }") Ver Condiciones de uso
 
-          .form__row.form__row_away.form__btn
-            button.btn.btn_solid(
-              type="submit"
-              value="Subscribe"
-              name="subscribe"
-              id="mc-embedded-subscribe"
-              class="button"
-            ) Inscribir en el Newsletter
+            .form__row.form__row_away.form__btn
+              button.btn.btn_solid(
+                type="submit"
+                value="Subscribe"
+                name="subscribe"
+                id="mc-embedded-subscribe"
+                class="button"
+              ) Inscribir en el Newsletter
     .foot-legal
       p.foot-legal__copy Copyright © 2017 prilov.com. Todos los derechos reservados.
 

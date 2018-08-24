@@ -13,7 +13,8 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   state: {
-    apiUrl: process.env.API_URL
+    apiUrl: process.env.API_URL,
+    mcUrl: process.env.MC_URL
   },
   modules: {
     ui,
