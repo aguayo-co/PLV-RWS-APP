@@ -18,7 +18,7 @@ section.single
     .dashboard
       header.dashboard__head
         h2.dashboard__title Productos
-        h3.dashboard__title(v-if="mqTablet") Estado del producto
+        h3.dashboard__title(v-if="mqTablet") Estado de la compra
       Loader(v-if="loading")
       UserCompra(
         v-else

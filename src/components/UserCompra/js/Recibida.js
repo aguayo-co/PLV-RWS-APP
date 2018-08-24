@@ -3,10 +3,10 @@ import saleReturnAPI from '@/api/saleReturn'
 import orderAPI from '@/api/order'
 
 const reasons = [
-  'El producto era diferente a la descripción o las fotos.',
-  'No me siento a gusto con la talla o el color.',
-  'Las condiciones del producto no son las que esperaba.',
-  'Otro motivo.'
+  'No se ve como en las fotos o la descripción',
+  'No me siento a gusto con la talla o el color',
+  'Las condiciones del producto no son las que esperaba',
+  'Otro motivo'
 ]
 
 export default {

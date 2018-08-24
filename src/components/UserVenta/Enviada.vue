@@ -3,7 +3,7 @@
 .dashboard__subitem(v-if="!sale.is_chilexpress")
   .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
   .dashboard__status
-    p.status.status_check.i-check(v-if="delivered") Pedido Entregado
+    p.status.status_check.i-check(v-if="delivered") Venta entregada
     p.status.status_check.i-check(v-else) Pedido Enviado
     p.status.status_alert.i-rocket Esperando confirmación de recibido por parte de la compradora.
   //- Si tenemos información de rastréo, la mostramos.

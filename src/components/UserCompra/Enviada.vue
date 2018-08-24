@@ -1,6 +1,6 @@
 <template lang="pug">
 .dashboard__subitem
-  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
+  .dashboard__subtitle(v-if="mqTabletMax") Estado de la compra
   .dashboard__status
     p.status.status_check.i-check Compra confirmada y pago recibido
   .dashboard__status(v-if="sale.is_chilexpress")
@@ -20,14 +20,14 @@
       span  {{ trackingInfo.code }}
   //- Entregado de otra forma.
   .dashboard__status(v-else)
-    p.status.status_check.i-check La compradora ya te entregó el producto
+    p.status.status_check.i-check La vendedora ya te entregó tu compra
   .dashboard__actions
-    p ¿Ya recibiste este producto?
+    p ¿Ya recibiste tu compra?
     button.btn.btn_solid.btn_block(
-      @click.prevent='saleCompleted') Si, lo recibí y me lo quedo
+      @click.prevent='saleCompleted') Si, ya recibí y me gustó
     a.link_underline(
       @click.prevent='saleReceived'
-      href='#') ¿Algo no te gustó de tu producto?
+      href='#') ¿Quieres hacer una devolución?
 </template>
 
 <script src="./js/Enviada.js"></script>

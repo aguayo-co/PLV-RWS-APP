@@ -1,17 +1,17 @@
 <template lang="pug">
 .dashboard__subitem
-  .dashboard__subtitle(v-if="mqTabletMax") Estado del producto
+  .dashboard__subtitle(v-if="mqTabletMax") Estado de la compra
   .dashboard__status
-    p.status.status_check.i-check Producto recibido
+    p.status.status_check.i-check Compra recibida
   .dashboard__actions(v-if="!step")
-    p ¿Quieres devolver este producto a la vendedora?
+    p ¿Estás segura de hacer una devolución?
     a.btn.btn_solid.btn_block(
       @click.prevent="goToStep('return')"
-      href='#') Estoy segura de devolverlo
+      href='#') Sí, quiero hacer una devolución
     a.link_underline.link_underline_lower(
       @click.prevent="completeSale"
-      href='#') Pensándolo bien, me lo quedo.
-    p (Tienes 20h 12m para devolverlo)
+      href='#') Pensándolo bien, no quiero devolver
+    p * Si compraste más de un producto, en el siguiente paso podrás decidir cuáles quieres devolver.
 
   .dashboard__actions(v-if="step === 'return'")
     p.dashboard__lead Selecciona los productos a devolver
@@ -29,14 +29,13 @@
           :for="sale.id + 'returncheck' + product.id") {{ product.title }}
     a.btn.btn_solid.btn_block(
       @click.prevent="goToStep('reason')"
-      href='#') Estoy segura de devolverlo
+      href='#') Devolver
     a.link_underline.link_underline_lower(
       @click.prevent="goToStep(null)"
-      href='#') Pensándolo bien, me lo quedo.
-    p (Tienes 20h 12m para devolverlo)
+      href='#') Pensándolo bien, no quiero devolver
 
   .dashboard__actions(v-if="step === 'reason'")
-    p.dashboard__lead Cuéntanos los motivos de la devolución.
+    p.dashboard__lead Cuéntanos los motivos de la devolución
     span.help(
       v-show="errorLog.return_reason") {{ errorLog.return_reason }}
     ul.dashboard__list
@@ -52,10 +51,10 @@
 
     a.btn.btn_solid.btn_block(
       @click.prevent="returnSale"
-      href='#') Continuar
+      href='#') Confirmar devolución
     a.link_underline.link_underline_lower(
       @click.prevent="goToStep(null)"
-      href='#') Pensándolo bien, me lo quedo.
+      href='#') Pensándolo bien, no quiero devolver
 
 </template>
 

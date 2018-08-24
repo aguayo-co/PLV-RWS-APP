@@ -23,7 +23,7 @@ section.single
     .dashboard
       header.dashboard__head
         h2.dashboard__title Productos
-        h3.dashboard__title(v-if="mqTablet") Estado del pedido
+        h3.dashboard__title(v-if="mqTablet") Estado de la venta
       Loader(v-if="loading")
       UserVenta(
         v-else
