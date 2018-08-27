@@ -1,6 +1,7 @@
 /* global FormData */
 import { mapState } from 'vuex'
 import AddressList from '@/components/AddressList'
+import DeleteAccount from '@/components/DeleteAccount'
 
 // Cada campo editable debe estar acá.
 // Con esto se crean las propiedades computables
@@ -25,10 +26,10 @@ function createComputedProps (props) {
   let computed = {}
   Object.keys(props).forEach(function (key) {
     computed['new_' + key] = {
-      get: function () {
+      get () {
         return this.newUserData[key] !== null ? this.newUserData[key] : this[key]
       },
-      set: function (value) {
+      set (value) {
         this.newUserData[key] = value
       }
     }
@@ -71,10 +72,10 @@ export default {
     ...createComputedProps(editableProps)
   },
   methods: {
-    toggle: function (prop) {
+    toggle (prop) {
       this[prop] = !this[prop]
     },
-    updateName: function () {
+    updateName () {
       const data = {
         first_name: this.new_first_name,
         last_name: this.new_last_name
@@ -90,7 +91,7 @@ export default {
         this.$handleApiErrors(e, ['first_name', 'last_name'], this.errorLog)
       })
     },
-    updateEmail: function () {
+    updateEmail () {
       const data = {
         email: this.new_email
       }
@@ -104,7 +105,7 @@ export default {
         this.$handleApiErrors(e, ['email', 'exists'], this.errorLog)
       })
     },
-    updateAbout: function () {
+    updateAbout () {
       const data = {
         about: this.new_about
       }
@@ -117,7 +118,7 @@ export default {
         this.$handleApiErrors(e, ['about'], this.errorLog)
       })
     },
-    updatePhone: function () {
+    updatePhone () {
       const data = {
         phone: this.new_phone
       }
@@ -130,7 +131,7 @@ export default {
         this.$handleApiErrors(e, ['phone'], this.errorLog)
       })
     },
-    updatePicture: function () {
+    updatePicture () {
       if (!this.new_picture.hasImage()) {
         this.errorLog.picture = 'No has cargado una imagen.'
         return
@@ -159,8 +160,19 @@ export default {
         })
       })
     },
-    changePassword: function () {
+    changePassword () {
       this.$store.dispatch('ui/showModal', { name: 'ModalPasswordChange' })
+    },
+    deleteAccount () {
+      const modal = {
+        name: 'ModalMessage',
+        parameters: {
+          type: 'alert',
+          title: 'Eliminar cuenta',
+          component: DeleteAccount
+        }
+      }
+      this.$store.dispatch('ui/showModal', modal)
     }
   }
 }

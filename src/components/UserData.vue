@@ -86,6 +86,8 @@ section.single
           ul.user-data__nav
             li.user-data__tag
               a.btn-tag(@click.prevent="changePassword") Cambiar contraseña
+            li.user-data__tag
+              a.btn-tag(@click.prevent="deleteAccount") Eliminar cuenta
           //-Notificaciones
           .user-data__notify
             router-link.user-data__reviews(

@@ -43,9 +43,11 @@
                 @click='close')
                 span Cerrar
 
-            .notify__body.notify__body_center
+            .notify__body.notify__body_center(v-if="attributes.body")
               p {{ attributes.body }}
-            .notify__footer
+            .notify__body.notify__body_center(v-if="attributes.component")
+              component(:is="attributes.component")
+            .notify__footer(v-if="hasFooter")
               .notify__row
                 router-link.btn.btn_solid.btn_block(
                   :class='attributes.primaryButtonClass'
@@ -62,8 +64,13 @@
 export default {
   name: 'ModalMessage',
   props: ['attributes'],
+  computed: {
+    hasFooter () {
+      return this.attributes.primaryButtonTitle || this.attributes.secondaryButtonTitle
+    }
+  },
   methods: {
-    close: function () {
+    close () {
       this.$store.dispatch('ui/closeModal')
     }
   }
