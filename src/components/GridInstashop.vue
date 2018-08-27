@@ -14,7 +14,7 @@
   .section_product__scroll
     .product-grid
       //- For each producto
-      article.slot.slot_grid(v-for="product in products")
+      article.slot.slot_grid(v-for="product in products" :key="product.id")
         .slot__product-inner
           router-link.slot__product(
             :class="{ 'slot__product_sold' : product.status > 30 }",
