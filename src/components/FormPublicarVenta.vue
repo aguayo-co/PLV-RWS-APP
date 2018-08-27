@@ -1,6 +1,6 @@
 <template lang="pug">
   FieldsFormProduct(
-    create,
+    create = 'true',
     titleMain = 'Publicar un producto',
     titleSubhead = '¿No lo usas?, ¡Véndelo!')
 </template>
