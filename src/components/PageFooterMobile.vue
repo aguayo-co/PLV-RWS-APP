@@ -53,7 +53,7 @@ footer.page-foot(:class="{openSearchMb : active || activeCart}")
                   span.box-cards__number ${{ shoppingCart.total | currency }}
                 a.btn.btn_solid.btn_small(
                   @click.prevent="goToPayment") Ir a Pagar
-              .box-cards__item(v-for="product in totalProducts")
+              .box-cards__item(v-for="product in totalProducts" :key="product.id")
                 article.list__card
                   a.card__product
                     //-img producto

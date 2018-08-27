@@ -35,7 +35,7 @@
                       span.box-cards__number ${{ shoppingCart.total | currency }}
                     router-link.btn.btn_solid(v-if="user.id", :to="{ name: 'compra' }") Ir a Pagar
                     router-link.btn.btn_solid(v-else, :to="{ name: 'compra-guest' }") Ir a Pagar
-                  .box-cards__item(v-for="product in totalProducts")
+                  .box-cards__item(v-for="product in totalProducts" :key="product.id")
                     article.list__card
                       a.card__product
                         //-img producto

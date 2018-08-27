@@ -131,7 +131,7 @@
             .list__data
               .list__data-table
                 //- List Detalle de tu compra
-                dl.data-table(v-for="product in guestCart.products")
+                dl.data-table(v-for="product in guestCart.products" :key="product.id")
                   dt.data-table__item {{ product.title.split(' ')[0] }}
                   dd.data-table__value ${{ product.sale_price | currency }}
                 dl.data-total

@@ -7,7 +7,7 @@ section.list-slot
   .list-slot__content
     //-Item
     article.list__card(
-      v-for="product in products")
+      v-for="product in products" :key="product.id")
       //-link a producto
       router-link.card__product(
         :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
