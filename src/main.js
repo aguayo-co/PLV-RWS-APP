@@ -1,35 +1,31 @@
 import 'moment/locale/es'
 
+import './scss/main.scss'
+
 import moment from 'moment'
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-
-// Vue Analytics Plugin
 import VueAnalytics from 'vue-analytics'
-
 import VueMoment from 'vue-moment'
 import VueTextareaAutosize from 'vue-textarea-autosize'
 
-import VueMqMixin from '@/Mixin/VueMq-mixin'
-
 import App from './App'
+import VueMqMixin from './Mixin/VueMq-mixin'
 import axiosPlugin from './axios'
-import prilovHelpers from './helpers'
+import CountDown from './components/global/CountDown'
+import Dots from './components/global/Dots'
+import Loader from './components/global/Loader'
 import prilovFilters from './filters'
+import prilovHelpers from './helpers'
 import router from './router'
 import store from './store'
-import CountDown from './components/global/CountDown'
-import Loader from './components/global/Loader'
-import Dots from './components/global/Dots'
-
-import './scss/main.scss'
 
 (() => {
   if (window.location.protocol === 'http:') {
     window.location.protocol = 'https:'
     return
   }
+
+  Vue.config.productionTip = false
 
   /* View Media query */
   Vue.use(VueMqMixin)
@@ -59,12 +55,9 @@ import './scss/main.scss'
   Vue.component('Dots', Dots)
   Vue.component('CountDown', CountDown)
 
-  /* eslint-disable no-new */
   new Vue({
-    el: '#app',
     router,
     store,
-    components: { App },
-    template: '<App/>'
-  })
+    render: h => h(App)
+  }).$mount('#app')
 })()
