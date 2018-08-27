@@ -14,9 +14,9 @@
           .slide-group__name {{ user.full_name }}
 
           .slide-group__type.i-it-girl(
-            v-if='user.group_ids.indexOf(3) > -1') It <span class="txt_brand">girl</span>
+            v-if='user.group_ids.indexOf($store.getters["ui/itGirlId"]) !== -1') It <span class="txt_brand">girl</span>
           .slide-group__type.i-star-on(
-            v-if='user.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
+            v-if='user.group_ids.indexOf($store.getters["ui/priloverStarId"]) !== -1') Prilover <span class="txt_brand">Star</span>
       .swiper-pagination(slot='pagination')
 
     .slider-fullwide__footer(

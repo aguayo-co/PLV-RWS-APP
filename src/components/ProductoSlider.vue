@@ -52,11 +52,11 @@ section.layout-inner
                   v-else) {{ product.user.first_name.charAt(0) }}
             .slot__user-info
               .slot__prilover {{ product.user.full_name }}
-              .group(v-if='product.user.groups.length > 0')
+              .group(v-if='product.user.group_ids.length > 0')
                 .slot__group.i-it-girl(
-                  v-if='product.user.groups[0].slug === "itgirl"') It <span class="txt_brand">girl</span>
+                  v-if='product.user.group_ids.indexOf($store.getters["ui/itGirlId"]) !== -1') It <span class="txt_brand">girl</span>
                 .slot__group.i-star-on(
-                  v-if='product.user.groups[0].slug === "priloverstar"') Prilover <span class="txt_brand">Star</span>
+                  v-if='product.user.group_ids.indexOf($store.getters["ui/priloverStarId"]) !== -1') Prilover <span class="txt_brand">Star</span>
       //- Paginador Arrow
       .swiper-button-next.i-next-s(slot='button-prev')
       .swiper-button-prev.i-back-s(slot='button-next')

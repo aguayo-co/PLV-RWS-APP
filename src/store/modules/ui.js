@@ -30,7 +30,6 @@ const state = {
   sizes: [],
   categories: [],
   regions: []
-
 }
 
 // getters
@@ -38,7 +37,19 @@ const getters = {
   modal: state => state.modal,
   modalWindow: state => state.modalWindow,
   loginAttempts: state => state.loginAttempts,
-  headerDropdownsVisible: state => state.headerDropdownsVisible
+  headerDropdownsVisible: state => state.headerDropdownsVisible,
+  itGirlId: state => {
+    const group = state.groups.find(group => group.slug === 'it-girl')
+    if (group) {
+      return group.id
+    }
+  },
+  priloverStarId: state => {
+    const group = state.groups.find(group => group.slug === 'prilover-star')
+    if (group) {
+      return group.id
+    }
+  }
 }
 
 // actions
