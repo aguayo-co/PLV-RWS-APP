@@ -189,21 +189,24 @@ export default {
       data['phone'] = this.default_phone
     }
 
-    if (Object.keys(data).length > 0) {
-      // Apenas se carga la página, se hace un llamado para actualizar
-      // dirección y teléfono. Mostrar modal mientras este llamado.
-      const modal = {
-        name: 'ModalMessage',
-        parameters: {
-          type: 'preload',
-          title: 'Estamos cargando tu carrito.'
-        }
-      }
-      this.$store.dispatch('ui/showModal', modal)
+    data['coupon_code'] = null
 
-      this.$store.dispatch('cart/update', data).then(() => {
-        this.$store.dispatch('ui/closeModal')
-      })
+    // Apenas se carga la página, se hace un llamado para actualizar
+    // dirección y teléfono.
+    // Adicionalmente se elimina cualquier cupón que viniera en el carro.
+    // El usuario tiene que poner el cupón cada vez que llegue al checkout.
+    // Mostrar modal mientras este llamado.
+    const modal = {
+      name: 'ModalMessage',
+      parameters: {
+        type: 'preload',
+        title: 'Estamos cargando tu carrito.'
+      }
     }
+    this.$store.dispatch('ui/showModal', modal)
+
+    this.$store.dispatch('cart/update', data).then(() => {
+      this.$store.dispatch('ui/closeModal')
+    })
   }
 }

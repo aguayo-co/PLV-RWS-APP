@@ -83,9 +83,6 @@ export default {
     }
   },
   methods: {
-    /**
-     * Guarda el teléfono de la orden.
-     */
     updateCouponCode () {
       this.disabled.coupon_code = true
       const data = {
