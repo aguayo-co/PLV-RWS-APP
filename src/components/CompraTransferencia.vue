@@ -29,15 +29,20 @@
             span.help(
               v-show="errorLog.transfer_receipt") {{ errorLog.transfer_receipt }}
             .form__file-input
-              span.form-file__txt {{ fileName }}
-              span.form-file__btn Subir
+              span.form-file__txt
+                template(v-if="transfer_receipt") {{ transfer_receipt.name }}
+                template(v-else) no se eligió archivo
+              span.form-file__btn
+                template(v-if="transfer_receipt") Cambiar archivo
+                template(v-else) Elegir archivo
+          .notify__footer
+            button.btn.btn_solid(:disabled="uploading")
+              Dots(v-if="uploading")
+              template(v-else) Subir comprobante y terminar compra
           .notify__bottom
             p.subtitle_heart Tienes un máximo de <CountDown :time="activePayment.cancel_by"></CountDown> para <strong>subir</strong> tu comprobante, de lo contrario tu compra se cancelará automáticamente.
             p.notify__txt Si tienes preguntas, escríbenos a contacto@prilov.com
-        .notify__footer
-          button.btn.btn_solid(:disabled="uploading")
-            Dots(v-if="uploading")
-            template(v-else) Terminar compra
+
 </template>
 
 <script src="./js/CompraTransferencia.js"></script>

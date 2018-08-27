@@ -19,9 +19,6 @@ export default {
   computed: {
     activePayment () {
       return this.$getNestedObject(this.order, ['active_payment'])
-    },
-    fileName () {
-      return this.transfer_receipt ? this.transfer_receipt.name : 'no se eligió archivo'
     }
   },
   methods: {
