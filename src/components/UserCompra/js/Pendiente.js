@@ -31,9 +31,6 @@ export default {
     },
     canUploadReceipt () {
       return this.isTransfer && (!this.hasReceipt || this.changeReceipt || this.paymentStatus === 98)
-    },
-    fileName () {
-      return this.transfer_receipt ? this.transfer_receipt.name : 'No hay archivos seleccionados'
     }
   },
   methods: {
@@ -48,6 +45,7 @@ export default {
       orderAPI.uploadTransferReceipt(this.sale.order_id, this.transfer_receipt).then(response => {
         this.loading.upload = false
         this.changeReceipt = false
+        this.transfer_receipt = null
         this.$emit('refresh-order', response.data)
       }).catch(e => {
         this.loading.upload = false

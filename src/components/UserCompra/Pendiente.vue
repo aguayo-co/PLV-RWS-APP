@@ -41,10 +41,14 @@
         span.help(
           v-show="errorLog.transfer_receipt") {{ errorLog.transfer_receipt }}
         .form__file-input
-          span.form-file__txt {{ fileName }}
-          span.form-file__label Seleccionar archivos
+          span.form-file__txt
+            template(v-if="transfer_receipt") {{ transfer_receipt.name }}
+            template(v-else) No hay archivos seleccionados
+          span.form-file__label
+            template(v-if="transfer_receipt") Cambiar archivo
+            template(v-else) Seleccionar archivo
       button.btn.btn_solid(
-          @click.prevent=""
+          disabled
           v-if="loading.upload")
           Dots
       button.btn.form-file__btn(v-else) Subir comprobante
