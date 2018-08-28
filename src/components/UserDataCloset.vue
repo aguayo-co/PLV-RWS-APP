@@ -44,6 +44,8 @@ section.profile
                 @click="unfollow") Siguiendo
             li.user-data__tag(v-if="owner.id")
               router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: owner.id }}") Enviar Mensaje
+        .profile__actions(v-if="owner.location") {{ owner.location.region }}, {{ owner.location.province }}
+
     //- About perfil
     .profile__about
       .profile__box-txt.user-data__box-txt
