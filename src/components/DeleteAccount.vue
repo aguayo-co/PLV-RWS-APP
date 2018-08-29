@@ -1,12 +1,12 @@
 <template lang="pug">
 div
   template(v-if="user.credits")
-    p Aun tienes {{ user.credits }} créditos sin transferir,
-      |  tus créditos deben estar en 0 para poder eliminar tu cuenta.
+    p Aún tienes {{ user.credits | currency }} créditos sin transferir.
+      |  Tus créditos deben estar en 0 para poder eliminar tu cuenta.
     router-link.btn(:to="{name: 'user-creditos'}")  Solicitar transferencia
   template(v-else)
     p Eliminaremos toda la información asociada a tu cuenta, Esta acción no puede deshacerse.
-    p ¿Estás seguro de que deseas eliminar tu cuenta de Prilov?
+    p ¿Estás segura de que deseas eliminar tu cuenta de Prilov?
     form(@submit.prevent="deleteAccount")
       .form__grid
         .form__row
