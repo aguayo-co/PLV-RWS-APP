@@ -16,9 +16,7 @@ const baseUserGenerator = () => {
     picture: null,
     phone: null,
     favorite_address_id: null,
-    purchased_products_count: null,
     published_products_count: null,
-    sold_products_count: null,
     followers_count: null,
     followers_ids: null,
     following_count: null,
@@ -28,9 +26,9 @@ const baseUserGenerator = () => {
     shipping_method_ids: [],
     bank_account: {},
     vacation_mode: null,
-    ratings_negative_count: null,
-    ratings_neutral_count: null,
-    ratings_positive_count: null,
+    ratings_negative_total_count: null,
+    ratings_neutral_total_count: null,
+    ratings_positive_total_count: null,
     favorites_ids: [],
     unread_count: null
   }

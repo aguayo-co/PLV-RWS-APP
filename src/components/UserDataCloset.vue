@@ -24,9 +24,9 @@ section.profile
               v-if="owner.id",
               :to="{ name: 'reviews', params: { userId: owner.id } }")
               ul.user-data__list
-                li.user-data__value.i-like {{ owner.ratings_positive_count }}
-                li.user-data__value.i-like.i_flip {{ owner.ratings_negative_count }}
-                li.user-data__value.i-less-circle {{ owner.ratings_neutral_count }}
+                li.user-data__value.i-like {{ owner.ratings_positive_total_count }}
+                li.user-data__value.i-like.i_flip {{ owner.ratings_negative_total_count }}
+                li.user-data__value.i-less-circle {{ owner.ratings_neutral_total_count }}
             ul.user-data__list
               li.user-data__track {{ followers_count }} Seguidores
               li.user-data__track {{ owner.following_count }} Siguiendo

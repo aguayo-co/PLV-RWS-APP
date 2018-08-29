@@ -6,9 +6,9 @@ section.single
     Loader(v-if="!ratings.length && loading")
     .valuations(v-else)
       ul.user-data__list.user-data__list_center
-        li.user-data__value.i-like {{ user.ratings_positive_count }}
-        li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
-        li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
+        li.user-data__value.i-like {{ user.ratings_positive_total_count }}
+        li.user-data__value.i-like.i_flip {{ user.ratings_negative_total_count }}
+        li.user-data__value.i-less-circle {{ user.ratings_neutral_total_count }}
       .valuations__item(
         v-for="rating in ratings")
         p.valuations__date
