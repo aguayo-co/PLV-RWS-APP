@@ -94,6 +94,7 @@ export default {
         this.errorLog.phone = 'Este campo es requerido.'
         return
       }
+      this.$emit('isProcessing', 'phone')
       this.savingPhone = true
 
       const data = {
@@ -107,6 +108,7 @@ export default {
       }).catch((e) => {
         this.$handleApiErrors(e, ['phone'], this.errorLog)
       }).finally(() => {
+        this.$emit('isProcessing', 'phone', false)
         this.savingPhone = false
       })
     },
@@ -114,6 +116,7 @@ export default {
      * Guarda el teléfono de la orden.
      */
     updateUsedCredits () {
+      this.$emit('isProcessing', 'credits')
       this.disabled.used_credits = true
       const data = {
         used_credits: this.new_used_credits || 0
@@ -124,16 +127,21 @@ export default {
       }).catch((e) => {
         this.$handleApiErrors(e, ['used_credits'], this.errorLog)
       }).finally(() => {
+        this.$emit('isProcessing', 'credits', false)
         this.disabled.used_credits = false
       })
     },
     // Si una dirección se actualiza, se usa cómo dirección de la orden.
     updateShippingInformation (address) {
+      this.$emit('isProcessing', 'address')
       this.$emit('clearError', 'address')
       const data = {
         address_id: address.id
       }
       this.$store.dispatch('cart/update', data)
+        .finally(() => {
+          this.$emit('isProcessing', 'address', false)
+        })
     }
   },
   watch: {

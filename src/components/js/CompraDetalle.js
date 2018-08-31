@@ -43,7 +43,7 @@ export default {
   components: {
     CompraPayU
   },
-  props: ['step', 'errors'],
+  props: ['step', 'errors', 'processing'],
   data () {
     return {
       gatewaysNames,
@@ -85,6 +85,7 @@ export default {
   methods: {
     updateCouponCode () {
       this.disabled.coupon_code = true
+      this.$emit('isProcessing', 'coupon_code')
       const data = {
         coupon_code: this.new_coupon_code
       }
@@ -95,6 +96,7 @@ export default {
         this.$handleApiErrors(e, ['coupon_code'], this.errorLog)
       }).finally(() => {
         this.disabled.coupon_code = false
+        this.$emit('isProcessing', 'coupon_code', false)
       })
     },
     goToPaymentMethod () {

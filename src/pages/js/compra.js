@@ -15,6 +15,7 @@ export default {
   data () {
     return {
       loading: true,
+      processing: [],
       errors: {}
     }
   },
@@ -56,6 +57,24 @@ export default {
     this.reloadShoppingCart()
   },
   methods: {
+    /**
+     * Mantiene historial de elementos que están siendo procesados.
+     *
+     * @param {string} name
+     * @param {boolean} processing
+     */
+    isProcessing (name, processing = true) {
+      if (!processing) {
+        // Always remove any previous value.
+        this.processing = this.processing.filter(value => {
+          return value !== name
+        })
+        return
+      }
+      if (this.processing.indexOf(name) === -1) {
+        this.$set(this.processing, this.processing.length, name)
+      }
+    },
     /**
      * Ejecuta validaciones para el proceso de pago.
      * Cada validación debe pertenecer a un paso.

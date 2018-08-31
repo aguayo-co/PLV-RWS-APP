@@ -13,8 +13,8 @@ section.profile
             v-if="owner.picture"
             :src="owner.picture")
           span.profile__letter(v-if="!owner.picture && owner.first_name") {{ owner.first_name.charAt(0) }}
-        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
-        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(3) > -1') It <span class="txt_brand">Girl</span>
+        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf($store.getters["ui/priloverStarId"]) > -1') Prilover <span class="txt_brand">Star</span>
+        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf($store.getters["ui/itGirlId"]) > -1') It <span class="txt_brand">Girl</span>
       .profile__info
         h1.user-data__title {{ owner.full_name }}
         .profile__actions

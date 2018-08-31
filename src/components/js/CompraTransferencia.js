@@ -23,6 +23,7 @@ export default {
   },
   methods: {
     setReceipt (event) {
+      this.$delete(this.errorLog, 'transfer_receipt')
       this.transfer_receipt = event.target.files[0]
     },
     uploadReceipt () {

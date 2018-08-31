@@ -58,9 +58,11 @@
         .form__row
           button.btn.btn_solid.btn_block(
             v-if="step === 'medio-de-pago'"
+            :disabled="processing"
             @click.prevent="goToPayment") Ir a pagar
           button.btn.btn_solid.btn_block(
             v-else
+            :disabled="processing"
             @click.prevent="goToPaymentMethod") Seleccionar método de pago
           //- Si estamos en algún paso, podemos volver.
           a.btn-back.i-back.btn-back_top(

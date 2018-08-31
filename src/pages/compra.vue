@@ -17,18 +17,21 @@
           :errors="errors"
           :hasChilexpress="hasChilexpress"
           :step="step"
-          @setStep="setStep($event)"
-          @validate="validate($event)"
-          @clearError="clearError($event)")
+          @isProcessing="isProcessing"
+          @setStep="setStep"
+          @validate="validate"
+          @clearError="clearError")
         //-end list content
 
         //-Tabla Total
         CompraDetalle(
           :errors="errors"
           :step="step"
-          @setStep="setStep($event)"
-          @validate="validate($event)"
-          @clearError="clearError($event)")
+          :processing="processing.length > 0"
+          @isProcessing="isProcessing"
+          @setStep="setStep"
+          @validate="validate"
+          @clearError="clearError")
         //-End Tabla Total
       //-End grid
     //- End List paso 1:compra
