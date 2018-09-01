@@ -33,8 +33,7 @@
     .break
       span.break__txt O
     a.link_underline(
-      @click.prevent="saleReturnDelivered"
-      href='#') Acordé juntarme con la vendedora
+      @click.prevent="saleReturnDelivered") Acordé juntarme con la vendedora
 
 //- La compradora marcó la devolución cómo enviada.
 .dashboard__subitem(v-else-if="sale_return.status === 40")
@@ -49,8 +48,7 @@
       span  {{ tracking_code }}
     p Estamos esperando que la vendedora nos confirme que recibió la devolución.
     a.link_underline(
-      @click.prevent="askForShippingDetails"
-      href='#') « Ingresé mal el número de seguimiento o devolví de otra forma
+      @click.prevent="askForShippingDetails") « Ingresé mal el número de seguimiento o devolví de otra forma
 
 //- La compradora marcó la devolución cómo enviada.
 .dashboard__subitem(v-else-if="sale_return.status === 41")
@@ -64,8 +62,7 @@
     .break
       span.break__txt O
     a.link_underline(
-      @click.prevent="askForShippingDetails"
-      href='#') « La entregué de otra forma
+      @click.prevent="askForShippingDetails") « La entregué de otra forma
 
 .dashboard__subitem(v-else-if="sale_return.status === 49")
   .dashboard__subtitle(v-if="mqTabletMax") Estado de la compra
