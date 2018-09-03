@@ -5,6 +5,9 @@
   section.section_product(v-else-if="!isOwner")
     .alert
       p.alert__txt.i-sad No puedes editar este producto porque pertenece al clóset de alguien más
+  section.section_product(v-else-if="isSold")
+    .alert
+      p.alert__txt.i-sad No puedes editar este producto porque ya fue vendido
   form.form.form_big(
     v-else
     id='form-publicar',
@@ -424,6 +427,13 @@ export default {
       }
 
       return this.product.user_id === this.user.id
+    },
+    isSold () {
+      if (this.create) {
+        return false
+      }
+
+      return this.product.status >= 30
     },
     mainImage () {
       // Si croppa está activo, devolver desde croppa.
