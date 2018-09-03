@@ -8,7 +8,7 @@
 .layout-inner
   .alert-msg.alert-msg_center(v-if="isOwner")
     p Este es es un producto de tu clóset <router-link :to="{ name: 'user-tu-closet' }" class="link_underline"> Ir a mi Clóset</router-link>
-  .alert-msg_spacing(v-if="isOwner")
+  .alert-msg_spacing(v-if="isOwner && !isSold")
     router-link.btn(:to="{ name: 'editar-producto', params: { productId: product.id }}") editar producto
   article.detail
     .detail__gallery
@@ -112,6 +112,9 @@ export default {
     isOwner () {
       if (this.user.id) return this.user.id === this.product.user_id
       return false
+    },
+    isSold () {
+      return this.product.status >= 30
     },
     swiper () {
       return this.$refs.swiper.swiper
