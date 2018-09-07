@@ -94,6 +94,9 @@ export default {
       return this.thread.participants.length > 1
     },
     messenger () {
+      if (this.allParticipants.length === 1) {
+        return this.allParticipants[0].user
+      }
       return this.allParticipants.find(x => x.user_id !== this.user.id).user
     }
   },

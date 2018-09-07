@@ -46,5 +46,12 @@ export default {
           return 'En el siguiente paso, te mostraremos los datos de la cuenta de Prilov para que realices la transferencia bancaria desde la página de tu banco. Una vez que haces click en “Ir a Pagar”, tendrás ' + minutes + ' minutos para subir el comprobante. Asegúrate de estar lista.'
       }
     })
+
+    Vue.filter('pluralize', function (count, singular, plural = null) {
+      if (count === 1) {
+        return '1 ' + singular
+      }
+      return count + ' ' + (plural || singular + 's')
+    })
   }
 }

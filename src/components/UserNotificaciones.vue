@@ -84,7 +84,11 @@ export default {
       return thread.trashed_participants.concat(thread.participants)
     },
     getMessenger (thread) {
-      return this.allParticipants(thread).find(x => x.user_id !== this.user.id).user
+      const allParticipants = this.allParticipants(thread)
+      if (allParticipants.length === 1) {
+        return allParticipants[0].user
+      }
+      return allParticipants.find(x => x.user_id !== this.user.id).user
     }
   }
 }

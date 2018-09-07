@@ -13,8 +13,8 @@ section.profile
             v-if="owner.picture"
             :src="owner.picture")
           span.profile__letter(v-if="!owner.picture && owner.first_name") {{ owner.first_name.charAt(0) }}
-        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(1) > -1') Prilover <span class="txt_brand">Star</span>
-        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf(3) > -1') It <span class="txt_brand">Girl</span>
+        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf($store.getters["ui/priloverStarId"]) > -1') Prilover <span class="txt_brand">Star</span>
+        p.user-data__group.i-star-on(v-if='owner.group_ids && owner.group_ids.indexOf($store.getters["ui/itGirlId"]) > -1') It <span class="txt_brand">Girl</span>
       .profile__info
         h1.user-data__title {{ owner.full_name }}
         .profile__actions
@@ -24,9 +24,9 @@ section.profile
               v-if="owner.id",
               :to="{ name: 'reviews', params: { userId: owner.id } }")
               ul.user-data__list
-                li.user-data__value.i-like {{ owner.ratings_positive_count }}
-                li.user-data__value.i-like.i_flip {{ owner.ratings_negative_count }}
-                li.user-data__value.i-less-circle {{ owner.ratings_neutral_count }}
+                li.user-data__value.i-like {{ owner.ratings_positive_total_count }}
+                li.user-data__value.i-like.i_flip {{ owner.ratings_negative_total_count }}
+                li.user-data__value.i-less-circle {{ owner.ratings_neutral_total_count }}
             ul.user-data__list
               li.user-data__track {{ followers_count }} Seguidores
               li.user-data__track {{ owner.following_count }} Siguiendo

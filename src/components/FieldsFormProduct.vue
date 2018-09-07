@@ -5,6 +5,9 @@
   section.section_product(v-else-if="!isOwner")
     .alert
       p.alert__txt.i-sad No puedes editar este producto porque pertenece al clóset de alguien más
+  section.section_product(v-else-if="isSold")
+    .alert
+      p.alert__txt.i-sad No puedes editar este producto porque ya fue vendido
   form.form.form_big(
     v-else
     id='form-publicar',
@@ -425,6 +428,13 @@ export default {
 
       return this.product.user_id === this.user.id
     },
+    isSold () {
+      if (this.create) {
+        return false
+      }
+
+      return this.product.status >= 30
+    },
     mainImage () {
       // Si croppa está activo, devolver desde croppa.
       if (this.images[0]) {
@@ -523,9 +533,9 @@ export default {
           response.data.status === 0 ? pending = true : pending = false
           if (!pending) {
             this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
-          } else {
-            this.$router.push('/venta-publicada/pendiente')
+            return
           }
+          this.$router.push('/venta-publicada/pendiente')
         })
     },
     async updateProduct () {
@@ -588,7 +598,9 @@ export default {
           this.saving = false
           if (this.$route.query.redirect) {
             this.$router.push(this.$route.query.redirect)
+            return
           }
+          this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
         })
     },
     validateBeforeSubmit: function () {

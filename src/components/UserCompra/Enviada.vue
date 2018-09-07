@@ -26,8 +26,7 @@
     button.btn.btn_solid.btn_block(
       @click.prevent='saleCompleted') Si, ya recibí y me gustó
     a.link_underline(
-      @click.prevent='saleReceived'
-      href='#') ¿Quieres hacer una devolución?
+      @click.prevent='saleReceived') ¿Quieres hacer una devolución?
 </template>
 
 <script src="./js/Enviada.js"></script>

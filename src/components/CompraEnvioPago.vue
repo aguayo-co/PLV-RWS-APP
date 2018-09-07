@@ -10,7 +10,8 @@
         :errors="allErrors"
         :key="sale.id"
         :sale="sale"
-        v-on:clearError="$emit('clearError', $event)")
+        @isProcessing="$emit('isProcessing', arguments[0], arguments[1])"
+        @clearError="$emit('clearError', $event)")
 
       template(v-if='hasChilexpress')
         .subhead Dirección de envío

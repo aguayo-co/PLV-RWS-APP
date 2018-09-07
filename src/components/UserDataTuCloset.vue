@@ -117,9 +117,9 @@
           router-link.user-data__reviews(
             :to="{ name: 'reviews', params: { userId: id } }")
             ul.user-data__list
-              li.user-data__value.i-like {{ ratings_positive_count }}
-              li.user-data__value.i-like.i_flip {{ ratings_negative_count }}
-              li.user-data__value.i-less-circle {{ ratings_neutral_count }}
+              li.user-data__value.i-like {{ ratings_positive_total_count }}
+              li.user-data__value.i-like.i_flip {{ ratings_negative_total_count }}
+              li.user-data__value.i-less-circle {{ ratings_neutral_total_count }}
           ul.user-data__list
             li.user-data__track {{ followers_count }} Seguidores
             li.user-data__track {{ following_count }} Siguiendo

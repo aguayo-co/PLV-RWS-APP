@@ -64,9 +64,9 @@ export default {
       'full_name',
       'followers_count',
       'following_count',
-      'ratings_positive_count',
-      'ratings_negative_count',
-      'ratings_neutral_count',
+      'ratings_positive_total_count',
+      'ratings_negative_total_count',
+      'ratings_neutral_total_count',
       ...Object.keys(editableProps)
     ]),
     ...createComputedProps(editableProps)

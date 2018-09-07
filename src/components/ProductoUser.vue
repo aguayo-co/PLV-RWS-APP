@@ -26,9 +26,9 @@
                 v-if="user.id",
                 :to="{ name: 'reviews', params: { userId: user.id } }")
                 ul.user-data__list
-                  li.user-data__value.i-like {{ user.ratings_positive_count }}
-                  li.user-data__value.i-like.i_flip {{ user.ratings_negative_count }}
-                  li.user-data__value.i-less-circle {{ user.ratings_neutral_count }}
+                  li.user-data__value.i-like {{ user.ratings_positive_total_count }}
+                  li.user-data__value.i-like.i_flip {{ user.ratings_negative_total_count }}
+                  li.user-data__value.i-less-circle {{ user.ratings_neutral_total_count }}
               ul.user-data__list
                 li.user-data__track {{ user.followers_count }} Seguidores
                 li.user-data__track {{ user.following_count }} Siguiendo

@@ -1,5 +1,8 @@
 <template lang="pug">
-  div {{ minutesLeft }} minutos
+  div
+    template(v-if="daysLeft") {{ daysLeft | pluralize('día') }}&nbsp;
+    template(v-if="hoursLeft") {{ hoursLeft | pluralize('hora') }}&nbsp;
+    template {{ minutesLeft | pluralize('minuto') }}
 </template>
 
 <script>
@@ -9,11 +12,14 @@ export default {
   data () {
     return {
       intervalId: null,
-      minutesLeft: null
+      timeLeft: null
     }
   },
   created () {
     this.startTimer()
+  },
+  destroyed () {
+    this.clearTimer()
   },
   methods: {
     clearTimer () {
@@ -25,13 +31,22 @@ export default {
     },
     setTimeLeft () {
       if (this.countDownTo < this.$moment()) {
-        this.minutesLeft = '0'
+        this.timeLeft = this.$moment.duration(0)
         return
       }
-      this.minutesLeft = this.countDownTo.diff(this.$moment(), 'minutes')
+      this.timeLeft = this.$moment.duration(this.countDownTo.diff(this.$moment()))
     }
   },
   computed: {
+    daysLeft () {
+      return Math.floor(this.timeLeft.asDays())
+    },
+    hoursLeft () {
+      return this.timeLeft.hours()
+    },
+    minutesLeft () {
+      return this.timeLeft.minutes()
+    },
     countDownTo () {
       return this.$moment(this.time)
     }
