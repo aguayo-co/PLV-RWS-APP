@@ -1,8 +1,6 @@
 <template lang="pug">
 section.single
   .single__inner
-    .alert
-      p.alert__txt.i-alert Si tienes transacciones de creditos sin finalizar en el Prilov antiguo <a href="#" class="link_underline">gestiónalas aquí</a>
     header.single__header
       h1.single__title Tus Créditos
     .box.box_alert
