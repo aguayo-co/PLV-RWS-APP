@@ -50,25 +50,25 @@ section.profile
     .profile__about
       .profile__box-txt.user-data__box-txt
         p.user-data__txt {{ owner.about }}
-      .user-data__rating(v-if="ratings.length >= 1")
+      .user-data__rating(v-if="rating")
         .chat__line
           span.chat__inner
             .chat__bubble-main
-              figure.chat-bubble__avatar.avatar_60(v-if="rating.buyer.picture")
-                a(:href="'/closet/' + rating.buyer.id")
+              figure.chat-bubble__avatar.avatar_60(v-if="rating.rater.picture")
+                a(:href="'/closet/' + rating.rater.id")
                   img.chat-bubble__img(
-                    :src="rating.buyer.picture",
-                    :alt="rating.buyer.first_name")
+                    :src="rating.rater.picture",
+                    :alt="rating.rater.first_name")
               span.chat-bubble__avatar.avatar_60(v-else)
-                a(:href="'/closet/' + rating.buyer.id") {{ user.first_name.charAt(0) }}
+                a(:href="'/closet/' + rating.rater.id") {{ rating.rater.first_name.charAt(0) }}
               //- .chat-bubble__item
               //-   .chat-bubble__title.i-like Camila Cifuentes
               //-   p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
               .chat-bubble__item
-                .chat-bubble__title {{ rating.buyer.full_name }}
+                .chat-bubble__title {{ rating.rater.full_name }}
                 p.chat-bubble__txt
                   span.chat-bubble_ico(
-                    :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
+                    :class="{ 'i-like' : rating.rating === 1, 'i-less-circle' : rating.rating === 0 , 'i-like i_flip' : rating.rating === -1 }") {{ rating.comment }}
 </template>
 
 <script>
@@ -79,6 +79,25 @@ export default {
   props: ['owner'],
   name: 'UserDataCloset',
   computed: {
+    rating () {
+      if (!this.ratingAsSeller && !this.ratingAsBuyer) {
+        return
+      }
+
+      if (!this.ratingAsBuyer || (this.ratingAsSeller && this.ratingAsSeller.updated_at > this.ratingAsBuyer.updated_at)) {
+        return {
+          rater: this.ratingAsSeller.buyer,
+          rating: this.ratingAsSeller.buyer_rating,
+          comment: this.ratingAsSeller.buyer_comment
+        }
+      }
+
+      return {
+        rater: this.ratingAsBuyer.seller,
+        rating: this.ratingAsBuyer.seller_rating,
+        comment: this.ratingAsBuyer.seller_comment
+      }
+    },
     ...mapState('user', [
       'id',
       'following_ids'
@@ -104,8 +123,9 @@ export default {
   },
   data () {
     return {
-      ratings: [],
-      rating: {},
+      ratingAsBuyer: null,
+      ratingAsSeller: null,
+      exists: 'si',
       loading: null
     }
   },
@@ -130,10 +150,18 @@ export default {
     }
   },
   created () {
-    ratingsAPI.getBySeller(this.$route.params.userId)
+    ratingsAPI.getLatestBySeller(this.$route.params.userId)
       .then(response => {
-        this.ratings = response.data.data
-        this.rating = this.ratings[this.ratings.length - 1]
+        if (response.data.data.length) {
+          this.ratingAsSeller = response.data.data[0]
+        }
+      })
+
+    ratingsAPI.getLatestByBuyer(this.$route.params.userId)
+      .then(response => {
+        if (response.data.data.length) {
+          this.ratingAsBuyer = response.data.data[0]
+        }
       })
   }
 }
