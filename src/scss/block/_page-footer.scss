@@ -31,9 +31,8 @@
   .foot-nav {
     @include flexbox;
     @include justify-content(space-around);
-    width: 58%;
+    width: 100%;
     padding: 16px 0 40px;
-    border-right: 1px solid $c-default;
   }
   .foot-nav__list_center {
     text-align: center;
@@ -74,6 +73,7 @@
     width: 42%;
     max-width: 468px;
     padding: 16px 40px 0;
+    border-left: 1px solid $c-default;
     .foot__title {
       text-align: center;
     }

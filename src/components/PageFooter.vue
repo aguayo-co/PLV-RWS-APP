@@ -15,9 +15,8 @@ footer.page-foot.i-heart-on
               :class='items.icon',
               target="_blank")
               span {{ items.name }}
-
-      .foot-news
-        template(v-if="$store.state.mcUrl")
+      template(v-if="$store.state.mcUrl")
+        .foot-news
           h4.foot__title Newsletter
           p.foot__txt Inscríbete en el Newsletter para recibir promociones, descuentos especiales y noticias.
 
