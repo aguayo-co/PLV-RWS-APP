@@ -35,5 +35,12 @@ module.exports = {
   pluginOptions: {
     env
   },
-  devServer
+  devServer,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        flickity$: 'flickity-imagesloaded'
+      }
+    }
+  }
 }
