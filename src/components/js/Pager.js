@@ -44,7 +44,7 @@ export default {
       return this.axios.defaults.baseURL + this.basePath
     },
     fullUrl () {
-      const url = new URL(this.url)
+      const url = new window.URL(this.url)
 
       // Usa los valores de la URL como parámetros a nuestra llamada al API.
       const query = this.$route.query
@@ -213,12 +213,10 @@ export default {
     goTo () {
       this.loading = true
       if (!this.validateQuery()) {
-        this.false = true
         return
       }
 
       if (!this.validateHistoryData()) {
-        this.false = true
         return
       }
 
@@ -230,7 +228,7 @@ export default {
           // En paginado infinito, puede que llegue un objeto repetido cuando
           // se agregan objetos nuevos al servidor.
           // Nos aseguramos de no agregar objetos duplicados. Usamos los nuevos.
-          if (this.infinite && this.objects) {
+          if (this.infinite && this.objects && this.currentPage !== 1) {
             const freshObjectsIds = objects.map(object => object[this.idKey])
             const keptObjects = this.objects.filter(object => freshObjectsIds.indexOf(object[this.idKey]) === -1)
             objects.unshift(...keptObjects)
