@@ -35,7 +35,7 @@
               span.form-file__btn
                 template(v-if="transfer_receipt") Cambiar archivo
                 template(v-else) Elegir archivo
-          .notify__footer
+          .notify__footer(v-if="transfer_receipt")
             button.btn.btn_solid(:disabled="uploading")
               Dots(v-if="uploading")
               template(v-else) Subir comprobante y terminar compra
