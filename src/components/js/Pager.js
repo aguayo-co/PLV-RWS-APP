@@ -175,7 +175,7 @@ export default {
       }
 
       if (!this.perPage && !this.infinite) {
-        this.perPage = 12
+        this.perPage = 24
         return false
       }
 
