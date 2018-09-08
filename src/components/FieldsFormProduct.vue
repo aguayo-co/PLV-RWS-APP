@@ -123,8 +123,7 @@
                       ) {{ condition.name }}
                 .form__group
                   .form__row.color(
-                    :class='{ "is-danger": errorLog.color }'
-                    @click='toggleColors.first = !toggleColors.first')
+                    :class='{ "is-danger": errorLog.color }')
                     label.form__label(
                       for='product-color-first') Color principal
                     span.help(
@@ -136,7 +135,8 @@
                       type='text',
                       id='product-color-first',
                       v-model='product.color[0]',
-                      disabled)
+                      @focus='toggleColors.first = true'
+                      @blur='close("first")')
                     .toggle-select(
                       v-show='toggleColors.first')
                       ul.toggle-select__list
@@ -146,15 +146,15 @@
                           span.color-circle(
                             :style='{ backgroundColor: color.hex_code }')
                           span {{ color.name }}
-                  .form__row.color(
-                    @click='toggleColors.second = !toggleColors.second')
+                  .form__row.color
                     label.form__label(
                       for='product-color-second') Color adicional
                     input.form__select(
                       type='text',
                       id='product-color-second',
                       v-model='product.color[1]',
-                      disabled)
+                      @focus='toggleColors.second = true'
+                      @blur='close("second")')
                     .toggle-select(
                       v-show='toggleColors.second')
                       ul.toggle-select__list
@@ -493,6 +493,9 @@ export default {
     this.getProduct()
   },
   methods: {
+    close (which) {
+      window.setTimeout(() => { this.toggleColors[which] = false }, 100)
+    },
     getProduct () {
       productAPI.getProductAuthById(this.$route.params.productId)
         .then(response => {
