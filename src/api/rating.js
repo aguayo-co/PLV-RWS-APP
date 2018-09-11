@@ -18,7 +18,7 @@ export default {
           return response
         }
 
-        // Si de nuevo no llegaron rartings:
+        // Si no llegaron ratings:
         const params = {
           'filter[seller_id]': userId,
           orderby: '-created_at',

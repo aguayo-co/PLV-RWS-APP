@@ -124,21 +124,24 @@
                 .form__group
                   .form__row.color(
                     :class='{ "is-danger": errorLog.color }')
-                    label.form__label(
-                      for='product-color-first') Color principal
-                    span.help(
-                      v-if="errorLog.color"
-                    ) {{ errorLog.color }}
-                    input.form__select(
-                      @change="errorLog.color = undefined",
-                      ref='color',
-                      type='text',
-                      id='product-color-first',
-                      v-model='product.color[0]',
-                      @focus='toggleColors.first = true'
-                      @blur='close("first")')
+                    div(style="position: relative")
+                      label.form__label(
+                        for='product-color-first') Color principal
+                      span.help(
+                        v-if="errorLog.color"
+                      ) {{ errorLog.color }}
+                      input.form__select(
+                        @change="errorLog.color = undefined",
+                        ref='color',
+                        type='text',
+                        id='product-color-first',
+                        :value='product.color[0]'
+                        disabled)
+                      div(
+                        style="position: absolute; top: 0; left: 0; bottom: 0; right: 0"
+                        @click='$set(toggleColors, 0, !toggleColors[0])')
                     .toggle-select(
-                      v-show='toggleColors.first')
+                      v-show='toggleColors[0]')
                       ul.toggle-select__list
                         li.toggle-select__item(
                           v-for='(color, index) in colors',
@@ -147,16 +150,19 @@
                             :style='{ backgroundColor: color.hex_code }')
                           span {{ color.name }}
                   .form__row.color
-                    label.form__label(
-                      for='product-color-second') Color adicional
-                    input.form__select(
-                      type='text',
-                      id='product-color-second',
-                      v-model='product.color[1]',
-                      @focus='toggleColors.second = true'
-                      @blur='close("second")')
+                    div(style="position: relative")
+                      label.form__label(
+                        for='product-color-second') Color adicional
+                      input.form__select(
+                        type='text',
+                        id='product-color-second',
+                        :value='product.color[1]'
+                        disabled)
+                      div(
+                        style="position: absolute; top: 0; left: 0; bottom: 0; right: 0"
+                        @click='$set(toggleColors, 1, !toggleColors[1])')
                     .toggle-select(
-                      v-show='toggleColors.second')
+                      v-show='toggleColors[1]')
                       ul.toggle-select__list
                         li.toggle-select__item(
                           v-for='(color, index) in colors',
@@ -404,10 +410,7 @@ export default {
         images: []
       },
       errorLog: {},
-      toggleColors: {
-        first: false,
-        second: false
-      }
+      toggleColors: [false, false]
     }
   },
   props: ['create', 'titleMain', 'titleSubhead'],
@@ -493,9 +496,6 @@ export default {
     this.getProduct()
   },
   methods: {
-    close (which) {
-      window.setTimeout(() => { this.toggleColors[which] = false }, 100)
-    },
     getProduct () {
       productAPI.getProductAuthById(this.$route.params.productId)
         .then(response => {
@@ -647,6 +647,7 @@ export default {
       }
     },
     chooseColor: function (colorId, colorPosition) {
+      this.$set(this.toggleColors, colorPosition, !this.toggleColors[colorPosition])
       this.errorLog.color = undefined
       this.product.color[colorPosition] = this.colors[colorId].name
       this.product.color_ids[colorPosition] = this.colors[colorId].id
