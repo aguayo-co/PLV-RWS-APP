@@ -64,57 +64,56 @@
                 div(v-if="showForm && !userFound")
                   .alert-msg.i-smile
                     p Vemos que no tienes una cuenta. Tranquila te crearemos una rápidamente para que continues con tu compra.
-                  .form__row(:class='{ "is-danger": newErrorLog.emailConfirm }')
+                  .form__row(:class='{ "is-danger": errorLog.emailConfirm }')
                     label.form__label(
                       for='emailConfirm') Confirma tu correo
                     span.help(
-                      v-if="newErrorLog.emailConfirm"
-                    ) {{ newErrorLog.emailConfirm }}
+                      v-if="errorLog.emailConfirm"
+                    ) {{ errorLog.emailConfirm }}
                     input.form__control(
                       v-model='emailConfirm',
                       id='emailConfirm',
                       type='email')
-                  .form__row(:class='{ "is-danger": newErrorLog.first_name }')
+                  .form__row(:class='{ "is-danger": errorLog.first_name }')
                     label.form__label(
                       for='first_name') Nombres
                     span.help(
-                      v-if="newErrorLog.first_name"
-                    ) {{ newErrorLog.first_name }}
+                      v-if="errorLog.first_name"
+                    ) {{ errorLog.first_name }}
                     input.form__control(
                       v-model='newUser.first_name',
                       id='first_name',
                       type='text')
-                  .form__row(:class='{ "is-danger": newErrorLog.last_name }')
+                  .form__row(:class='{ "is-danger": errorLog.last_name }')
                     label.form__label(
                       for='last_name') Apellidos
                     span.help(
-                      v-if="newErrorLog.last_name"
-                    ) {{ newErrorLog.last_name }}
+                      v-if="errorLog.last_name"
+                    ) {{ errorLog.last_name }}
                     input.form__control(
                       v-model='newUser.last_name',
                       id='last_name',
                       type='text')
-                  .form__row(:class='{ "is-danger": newErrorLog.password }')
+                  .form__row(:class='{ "is-danger": errorLog.password }')
                     label.form__label(
                       for='password') Contraseña
                     span.help(
-                      v-if="newErrorLog.password"
-                    ) {{ newErrorLog.password }}
+                      v-if="errorLog.password"
+                    ) {{ errorLog.password }}
                     .form__password
                       input.form__control(
                         v-model='newUser.password',
                         id='password',
-                        :type="viewPass ? 'text' : 'password'",
-                        @input='validateNewPassword')
+                        :type="viewPass ? 'text' : 'password'")
                       span.form__visible.i-view(
                         @click='visiblePass')
                       span.password-bar(
                         v-if="newUser.password"
-                        :class='"level-" + (3 - newErrorLog.passwordDetail.length)')
-                      div.helper(v-if='newErrorLog.passwordDetail.length > 0')
+                        :class='"level-" + (3 - passwordSuggestions.length)')
+                      div.helper(v-if='passwordSuggestions.length > 0')
                         ul.helper__list
                           li(
-                            v-for='detail in newErrorLog.passwordDetail'
+                            v-for='detail in passwordSuggestions'
                           ) {{ detail }}
                   .form__row.form__row_away
                     button.btn.btn_solid.btn_block(
@@ -143,15 +142,14 @@
 import { mapState } from 'vuex'
 import usersAPI from '@/api/user'
 import LoginMixin from '@/Mixin/js/Login'
+import Password from '@/Mixin/js/Password'
 
 export default {
   name: 'CompraGuest',
   mixins: [LoginMixin],
   data () {
     return {
-      newErrorLog: {
-        passwordDetail: []
-      },
+      errorLog: {},
       newUser: {},
       showForm: false,
       userFound: false,
@@ -171,32 +169,21 @@ export default {
     }
   },
   methods: {
-    visiblePass: function () {
+    visiblePass () {
       this.viewPass = !this.viewPass
     },
-    validateNewPassword: function (e) {
-      this.newErrorLog = {}
-      this.newErrorLog.passwordDetail = []
-      if (!this.newUser.password) {
-        this.newErrorLog.password = 'Debes ingresar una contraseña'
-      } else {
-        if (this.newUser.password.length < 8) this.newErrorLog.passwordDetail.push('Tu contraseña debe tener al menos 8 caracteres')
-        if (!/[a-zA-Z]/.test(this.newUser.password)) this.newErrorLog.passwordDetail.push('Tu contraseña debe contener al menos una letra')
-        if (!/\d+/.test(this.newUser.password)) this.newErrorLog.passwordDetail.push('Tu contraseña debe contener al menos un número')
-      }
-    },
-    validateNewUser: function () {
-      if (!this.newUser.first_name) this.newErrorLog.first_name = 'Debes ingresar tu nombre'
-      if (!this.newUser.last_name) this.newErrorLog.last_name = 'Debes ingresar tu nombre'
+    validateNewUser () {
+      if (!this.newUser.first_name) this.$set(this.errorLog, 'first_name', 'Debes ingresar tu nombre')
+      if (!this.newUser.last_name) this.$set(this.errorLog, 'last_name', 'Debes ingresar tus apellidos')
       if (!this.emailConfirm) {
-        this.newErrorLog.emailConfirm = 'Debes confirmar tu correo electrónico'
-      } else {
-        if (this.newUser.email !== this.emailConfirm) {
-          this.newErrorLog.emailConfirm = 'Este email no coincide con el primero que ingresaste'
-        }
+        this.$set(this.errorLog, 'emailConfirm', 'Debes confirmar tu correo electrónico')
+      }
+      if (this.emailConfirm && this.newUser.email !== this.emailConfirm) {
+        this.$set(this.errorLog, 'emailConfirm', 'Este email no coincide con el primero que ingresaste')
       }
     },
-    next: function () {
+    next () {
+      this.errorLog = {}
       if (this.validateEmail()) {
         this.loading = true
         usersAPI.checkEmail(this.newUser.email)
@@ -216,14 +203,15 @@ export default {
     loggedIn (response) {
       this.$router.push({name: 'compra'})
     },
-    create: function () {
-      this.validateNewPassword()
+    create () {
+      this.errorLog = {}
+      this.validatePassword()
       this.validateNewUser()
-      if (Object.keys(this.newErrorLog).length === 1 && this.newErrorLog.passwordDetail.length === 0) {
+      if (Object.keys(this.errorLog).length === 0) {
         this.signUp()
       }
     },
-    signUp: function () {
+    signUp () {
       const payload = {
         first_name: this.newUser.first_name,
         last_name: this.newUser.last_name,
@@ -233,8 +221,10 @@ export default {
       usersAPI.create(payload)
         .then(response => {
           this.$store.dispatch('user/setUser', response.data)
-          this.$router.push({name: 'compra'})
-          this.$store.dispatch('guestCart/merge')
+            .then(() => {
+              this.$store.dispatch('guestCart/merge')
+              this.$router.push({name: 'compra'})
+            })
         })
         .catch(e => {
           const modal = {

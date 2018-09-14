@@ -50,11 +50,8 @@
 </template>
 
 <script>
-import Croppa from 'vue-croppa'
-
 export default {
   name: 'UploadPhoto',
-  components: {croppa: Croppa.component},
   data () {
     return {
       image: null,

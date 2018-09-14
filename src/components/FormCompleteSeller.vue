@@ -79,12 +79,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Croppa from 'vue-croppa'
 import AddressList from '@/components/AddressList'
 import UserMetodoEnvio from '@/components/UserMetodoEnvio'
 import { mapState } from 'vuex'
-Vue.component('croppa', Croppa.component)
 
 export default {
   name: 'FormCompleteSeller',

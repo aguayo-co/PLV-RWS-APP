@@ -18,10 +18,10 @@
               @click='visiblePass')
         span.password-bar(
           v-if="password",
-          :class="'level-' + (3 - errorLog.passwordDetail.length)")
-        div.helper(v-if='errorLog.passwordDetail.length > 0')
+          :class="'level-' + (3 - passwordSuggestions.length)")
+        div.helper(v-if='passwordSuggestions.length > 0')
           ul.helper__list
-            li(v-for='detail in errorLog.passwordDetail') {{ detail }}
+            li(v-for='detail in passwordSuggestions') {{ detail }}
       .form__row(
         :class='{ "is-danger": errorLog.passwordConfirm }')
         label.form__label(
@@ -49,16 +49,18 @@
 
 <script>
 import usersAPI from '@/api/user'
+
+import Password from '@/Mixin/js/Password'
+
 export default {
   name: 'FormPasswordRecovery',
+  mixins: [Password],
   data () {
     return {
       password: '',
       passwordConfirm: '',
       viewPass: false,
-      errorLog: {
-        passwordDetail: []
-      },
+      errorLog: {},
       success: false
     }
   },
@@ -66,21 +68,14 @@ export default {
     visiblePass () {
       this.viewPass = !this.viewPass
     },
-    validatePassword () {
-      this.errorLog = {}
-      this.errorLog.passwordDetail = []
-      if (!this.password) this.errorLog.password = 'Debes ingresar una contraseña'
-      if (this.password.length < 8) this.errorLog.passwordDetail.push('Tu contraseña debe tener al menos 8 caracteres')
-      if (!/[a-zA-Z]/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos una letra')
-      if (!/\d+/.test(this.password)) this.errorLog.passwordDetail.push('Tu contraseña debe contener al menos un número')
-    },
     validatePasswordConfirm () {
       if (this.password !== this.passwordConfirm) this.errorLog.passwordConfirm = 'Las dos contraseñas no coinciden'
     },
     save () {
+      this.errorLog = {}
       this.validatePassword()
       this.validatePasswordConfirm()
-      if (Object.keys(this.errorLog).length === 1 && this.errorLog.passwordDetail.length === 0) {
+      if (Object.keys(this.errorLog).length === 0) {
         usersAPI.passwordChange(this.$route.params.tokenString, this.$route.params.email, this.password)
           .then(response => {
             this.success = true

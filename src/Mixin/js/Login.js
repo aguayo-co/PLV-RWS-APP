@@ -1,6 +1,9 @@
 import userAPI from '@/api/user'
 
+import Password from './Password'
+
 export default {
+  mixins: [Password],
   data () {
     return {
       errorLog: {},
@@ -20,16 +23,6 @@ export default {
         this.$set(this.errorLog, 'email', 'El email que ingresaste no parece válido.')
         return false
       }
-      return true
-    },
-    validatePassword () {
-      this.$delete(this.errorLog, 'password')
-
-      if (!this.password) {
-        this.errorLog.password = this.$set(this.errorLog, 'password', 'Debes ingresar una contraseña')
-        return false
-      }
-
       return true
     },
     login () {
@@ -84,9 +77,6 @@ export default {
   watch: {
     email () {
       this.$delete(this.errorLog, 'email')
-    },
-    password () {
-      this.$delete(this.errorLog, 'password')
     }
   }
 }

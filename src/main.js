@@ -5,6 +5,7 @@ import './scss/main.scss'
 import moment from 'moment'
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
+import Croppa from 'vue-croppa'
 import VueMoment from 'vue-moment'
 import VueTextareaAutosize from 'vue-textarea-autosize'
 
@@ -54,6 +55,7 @@ import store from './store'
   Vue.component('Loader', Loader)
   Vue.component('Dots', Dots)
   Vue.component('CountDown', CountDown)
+  Vue.component('croppa', Croppa.component)
 
   new Vue({
     router,
