@@ -535,7 +535,9 @@ export default {
           let pending
           response.data.status === 0 ? pending = true : pending = false
           if (!pending) {
-            this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
+            this.$router.push({
+              name: 'product', params: { slug: this.$productSlug(response.data) }
+            })
             return
           }
           this.$router.push('/venta-publicada/pendiente')
@@ -603,7 +605,9 @@ export default {
             this.$router.push(this.$route.query.redirect)
             return
           }
-          this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
+          this.$router.push({
+            name: 'product', params: { slug: this.$productSlug(response.data) }
+          })
         })
     },
     validateBeforeSubmit: function () {

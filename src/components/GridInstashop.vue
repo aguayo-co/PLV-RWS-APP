@@ -18,7 +18,7 @@
         .slot__product-inner
           router-link.slot__product(
             :class="{ 'slot__product_sold' : product.status > 30 }",
-            :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
+            :to="{ name: 'product', params: { slug: $productSlug(product) }}",
             :title="product.title")
             img.slot__img(
               :src="product.image_instagram || product.images[0]",
