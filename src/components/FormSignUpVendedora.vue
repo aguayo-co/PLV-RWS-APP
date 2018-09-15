@@ -186,7 +186,7 @@ export default {
     },
     validateBeforeSubmit () {
       this.errorLog = {}
-      if (!this.newUser.picture.hasImage())  this.$set(this.errorLog, 'picture', 'Debes cargar una imagen para tu perfil')
+      if (!this.newUser.picture.hasImage()) this.$set(this.errorLog, 'picture', 'Debes cargar una imagen para tu perfil')
       if (!this.newUser.email) {
         this.$set(this.errorLog, 'email', 'Debes ingresar tu email')
       } else {
