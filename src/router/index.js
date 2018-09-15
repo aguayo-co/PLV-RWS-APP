@@ -191,7 +191,8 @@ const router = new Router({
     {
       path: '/producto/:slug',
       name: 'product',
-      component: Producto
+      component: Producto,
+      props: true
     },
     {
       path: '/closet/:userId(\\d+)',
