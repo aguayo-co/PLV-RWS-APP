@@ -142,7 +142,6 @@
 import { mapState } from 'vuex'
 import usersAPI from '@/api/user'
 import LoginMixin from '@/Mixin/js/Login'
-import Password from '@/Mixin/js/Password'
 
 export default {
   name: 'CompraGuest',
