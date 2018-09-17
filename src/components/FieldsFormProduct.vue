@@ -286,19 +286,18 @@
 
                     //- user: picture/first_name/last_name
                     a.slot__user(
-                      :href='product.user',
-                      :title='product.first_name')
+                      :title='user.first_name')
                       .slot__user-img
                         .slot__avatar
                           img.slot__picture(
-                            :src='product.picture',
-                            :alt='product.first_name')
+                            :src='user.picture',
+                            :alt='user.first_name')
                       .slot__user-info
-                        .slot__prilover {{ product.first_name }} {{ product.last_name }}
+                        .slot__prilover {{ user.full_name }}
                         .slot__group.i-it-girl(
-                          v-if='product.slot__group == 1') It <span class='txt_brand'>girl</span>
+                          v-if='user.group_ids.indexOf($store.getters["ui/itGirlId"]) !== -1') It <span class='txt_brand'>girl</span>
                         .slot__group.i-starts(
-                          v-if='product.slot__group == 2') Prilover <span class='txt_brand'>Star</span>
+                          v-if='user.group_ids.indexOf($store.getters["ui/priloverStarId"]) !== -1') Prilover <span class='txt_brand'>Star</span>
 
         //-Formulario set 3
         .layout-band.form-section_band(v-if="create")
