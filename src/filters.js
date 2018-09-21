@@ -10,7 +10,7 @@ export default {
       if (!product || !product.price) {
         return 0
       }
-      return (product.price - product.sale_price) * 100 / product.price
+      return parseInt((product.price - product.sale_price) * 100 / product.price)
     })
     Vue.filter('address', function (address) {
       if (!address) {
