@@ -44,22 +44,22 @@ export default {
       return this.axios.defaults.baseURL + this.basePath
     },
     fullUrl () {
-      const url = new window.URL(this.url)
+      const searchParams = new URLSearchParams()
 
       // Usa los valores de la URL como parámetros a nuestra llamada al API.
       const query = this.$route.query
       Object.keys(query).forEach(param => {
         const value = query[param]
-        url.searchParams.set(param, value)
+        searchParams.set(param, value)
       })
 
       // Sobre-escribe valores de la URL con parámetros forzados.
       Object.keys(this.forcedParams).forEach(param => {
         const value = this.forcedParams[param]
-        url.searchParams.set(param, value)
+        searchParams.set(param, value)
       })
 
-      return url
+      return this.url + '?' + searchParams
     },
     currentPage: {
       get () {
