@@ -358,8 +358,13 @@ const router = new Router({
     }
   ],
   scrollBehavior (to, from, savedPosition) {
+    console.warn(to, from, savedPosition)
     if (savedPosition) {
-      return savedPosition
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(savedPosition)
+        }, 500)
+      })
     }
 
     if (to.params.keepPosition === true) {
