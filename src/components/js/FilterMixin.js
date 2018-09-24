@@ -45,7 +45,7 @@ export default {
         { name: 'Lo último', param: '-created_at' },
         { name: 'Menor precio', param: 'price' },
         { name: 'Mayor precio', param: '-price' },
-        { name: 'Destacados', param: '-commission' },
+        { name: 'Destacados', param: '-prilov' },
         { name: 'Nuestros favoritos', param: 'favorites' }
       ],
       precio: {
