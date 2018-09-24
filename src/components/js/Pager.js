@@ -67,8 +67,8 @@ export default {
       },
       set (page) {
         const routeParams = {
-          params: {...this.$route.params, keepPosition: this.infinite},
-          query: {...this.$route.query, page}
+          params: { ...this.$route.params, keepPosition: this.infinite },
+          query: { ...this.$route.query, page }
         }
         if (this.infinite) {
           this.$router.replace(routeParams)
@@ -91,8 +91,8 @@ export default {
       set (items) {
         this.$router.push({
           name: this.$route.name,
-          params: {...this.$route.params, keepPosition: this.infinite},
-          query: {...this.$route.query, items, page: 1}
+          params: { ...this.$route.params, keepPosition: this.infinite },
+          query: { ...this.$route.query, items, page: 1 }
         })
       }
     },
@@ -236,7 +236,7 @@ export default {
 
           // Guardamos historial para mantener navegación.
           if (this.infinite) {
-            this.historyData = {objects, pagination: response.data}
+            this.historyData = { objects, pagination: response.data }
           }
 
           this.pagination = response.data
