@@ -5,12 +5,18 @@ const vuePort = process.env.VUE_PORT || null
 const vueUrl = vueHost && vuePort ? vueHost + ':' + vuePort : null
 const gaTracking = process.env.GA_TRACKING || null
 const mcUrl = process.env.MC_URL || null
+const sentryDsn = process.env.SENTRY_DSN || null
 
 const env = {
   NODE_ENV: process.env.NODE_ENV,
   API_URL: process.env.API_URL.replace(/\/$/g, ''),
+  // Google analytics tracking code.
   GA_TRACKING: gaTracking,
+  // MailChimp registration URL.
   MC_URL: mcUrl,
+  // Sentry error tracking configuration.
+  SENTRY_DSN: sentryDsn,
+  // Vue DevTools connection settings.
   VUE_HOST: vueHost,
   VUE_PORT: vuePort,
   VUE_URL: vueUrl

@@ -9,6 +9,8 @@ import Croppa from 'vue-croppa'
 import VueMoment from 'vue-moment'
 import VueTextareaAutosize from 'vue-textarea-autosize'
 
+import * as Sentry from '@sentry/browser'
+
 import App from './App'
 import VueMqMixin from './Mixin/VueMq-mixin'
 import axiosPlugin from './axios'
@@ -20,7 +22,17 @@ import prilovHelpers from './helpers'
 import router from './router'
 import store from './store'
 
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    environment: process.env.NODE_ENV,
+    integrations: [new Sentry.Integrations.Vue({ Vue })]
+  })
+}
+
 (() => {
+  // Para poder detener la ejecución (con un return),
+  // debemos estar dentro de una función.
   if (window.location.protocol === 'http:') {
     window.location.protocol = 'https:'
     return
@@ -31,7 +43,7 @@ import store from './store'
   /* View Media query */
   Vue.use(VueMqMixin)
 
-  Vue.use(VueMoment, {moment})
+  Vue.use(VueMoment, { moment })
 
   // Vue Analytics Plugin
   if (process.env.GA_TRACKING) {
