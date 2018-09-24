@@ -124,7 +124,7 @@ export default {
 
         // Rompe cuando encuentra errores en un paso.
         if (Object.keys(vm.errors).length) {
-          this.setShoppingCartStep(stepValidations._step)
+          this.setStep(stepValidations._step)
           return true
         }
 
@@ -149,7 +149,7 @@ export default {
     ensureCartId () {
       const cartId = this.id
       if (this.queryCartId !== cartId) {
-        this.$router.push({query: { cartId: this.id }})
+        this.$router.push({ query: { cartId: this.id } })
       }
     },
     reloadShoppingCart () {
@@ -174,7 +174,7 @@ export default {
     'status' (status) {
       // If shoppingCart status is changed, then change to order URL.
       if (status && status !== 10) {
-        this.$router.push({name: 'orden', params: { step: this.id }})
+        this.$router.push({ name: 'orden', params: { step: this.id } })
       }
     }
   }
