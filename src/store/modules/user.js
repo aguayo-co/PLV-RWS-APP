@@ -1,7 +1,9 @@
 // User store will be used to handle public data regarding users.
 import Vue from 'vue'
+
 import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
+import * as Sentry from '@sentry/browser'
 
 const baseUserGenerator = () => {
   return {
@@ -114,6 +116,12 @@ const actions = {
     commit('cart/clear', null, { root: true })
   },
   setUser ({ dispatch, commit }, user) {
+    Sentry.configureScope((scope) => {
+      scope.setUser({
+        id: user.id,
+        email: user.email
+      })
+    })
     // Reinicia conteo de login,
     // carga direcciones y unifica carros.
     // Si todo es correcto, pasa usuario en promesa.
@@ -159,6 +167,10 @@ const mutations = {
     })
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
+
+    Sentry.configureScope((scope) => {
+      scope.setUser()
+    })
   }
 }
 
