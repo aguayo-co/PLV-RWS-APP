@@ -280,8 +280,8 @@
                       //- brand/price
                       .slot__info
                         .slot__brand(
-                            v-if='product.brand_id'
-                        ) {{ brands.find(x => x.id === product.brand_id).name }}
+                            v-if='selectedBrand'
+                        ) {{ selectedBrand.name }}
                         .slot__price ${{ product.price | currency }}
 
                     //- user: picture/first_name/last_name
@@ -423,6 +423,9 @@ export default {
       'brands',
       'sizes'
     ]),
+    selectedBrand () {
+      return this.brands.find(x => x.id === this.product.brand_id)
+    },
     isOwner () {
       if (this.create) {
         return true
