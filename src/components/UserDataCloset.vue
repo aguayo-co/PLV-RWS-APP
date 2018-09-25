@@ -111,14 +111,15 @@ export default {
       }
     },
     followers_count () {
-      const seemsFollowing = this.owner.followers_ids.includes(this.id) ? 1 : 0
+      const seemsFollowing = this.owner.followers_ids && this.owner.followers_ids.includes(this.id)
+      const followersCount = this.owner.followers_count || 0
       if (this.follows && !seemsFollowing) {
-        return this.owner.followers_count + 1
+        return followersCount + 1
       }
       if (!this.follows && seemsFollowing) {
-        return this.owner.followers_count - 1
+        return followersCount - 1
       }
-      return this.owner.followers_count
+      return followersCount
     }
   },
   data () {
