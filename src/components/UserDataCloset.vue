@@ -112,12 +112,12 @@ export default {
     },
     followers_count () {
       const seemsFollowing = this.owner.followers_ids && this.owner.followers_ids.includes(this.id)
-      const followersCount = this.owner.followers_count || 0
+      let followersCount = this.owner.followers_count || 0
       if (this.follows && !seemsFollowing) {
-        return followersCount + 1
+        followersCount += 1
       }
       if (!this.follows && seemsFollowing) {
-        return followersCount - 1
+        followersCount -= 1
       }
       return followersCount
     }
