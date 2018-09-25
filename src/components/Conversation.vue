@@ -111,6 +111,15 @@ export default {
     }
   },
   methods: {
+    scrollDown () {
+      window.setTimeout(() => {
+        // Hay casos en que el usaurio ha salido del chat
+        // antes de hacer scroll. Revisamos que aún exista el elemento.
+        if (this.$refs.chatBox) {
+          this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight
+        }
+      }, 100)
+    },
     send () {
       this.$delete(this.errorLog, 'body')
       if (!this.body) {
@@ -127,8 +136,8 @@ export default {
       threadsAPI.createMessage(data)
         .then(response => {
           this.body = null
-          this.thread.messages.push(response.data)
-          window.setTimeout(() => { this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight }, 500)
+          this.$set(this.thread.messages, this.thread.messages.length, response.data)
+          this.scrollDown()
         }).catch((e) => {
           // Si hay errores, mostrarlos.
           this.$handleApiErrors(e, ['body'], this.errorLog)
@@ -144,6 +153,7 @@ export default {
         let currentParticipant = response.data.participants.find(x => x.user_id === this.user.id)
         if (currentParticipant) {
           this.thread = response.data
+          this.scrollDown()
           this.$store.commit('user/setUnreadCount', currentParticipant.user.unread_count)
         }
         this.loading = false
