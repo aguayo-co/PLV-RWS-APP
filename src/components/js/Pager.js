@@ -44,22 +44,25 @@ export default {
       return this.axios.defaults.baseURL + this.basePath
     },
     fullUrl () {
-      const searchParams = new URLSearchParams()
+      let queryString = ''
 
       // Usa los valores de la URL como parámetros a nuestra llamada al API.
       const query = this.$route.query
       Object.keys(query).forEach(param => {
         const value = query[param]
-        searchParams.set(param, value)
+        queryString += encodeURIComponent(param) + '=' + encodeURIComponent(value) + '&'
       })
 
       // Sobre-escribe valores de la URL con parámetros forzados.
       Object.keys(this.forcedParams).forEach(param => {
         const value = this.forcedParams[param]
-        searchParams.set(param, value)
+        queryString += encodeURIComponent(param) + '=' + encodeURIComponent(value) + '&'
       })
 
-      return this.url + '?' + searchParams
+      // Elimina ampersand final.
+      queryString = queryString.slice(0, -1)
+
+      return this.url + '?' + queryString
     },
     currentPage: {
       get () {
