@@ -47,7 +47,6 @@
           v-if='emailExist'
         ) Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?
           router-link.link_underline(
-            @click='close'
             :to="{ name: 'password' }"
             title='Ir a recuperar contraseña') ¡Recupérala aquí!
       .form__row(
@@ -136,7 +135,7 @@ export default {
             })
         })
         .catch(e => {
-          if (e.response.data.errors.exists) {
+          if (this.$getNestedObject(e, ['response', 'data', 'errors', 'exists'])) {
             this.emailExist = true
           } else {
             const modal = {
