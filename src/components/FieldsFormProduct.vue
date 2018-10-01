@@ -69,38 +69,38 @@
             .form-section__grid
               .form-section__item
                 .form__row(
-                  :class='{ "is-danger": errorLog.category }')
+                  :class='{ "is-danger": errorLog.category_parent_id }')
                   label.form__label(
                     for='product-categoria') Categoría principal
                   span.help(
-                    v-if="errorLog.category"
-                  ) {{ errorLog.category }}
+                    v-if="errorLog.category_parent_id"
+                  ) {{ errorLog.category_parent_id }}
                   select.form__select(
-                    ref='category',
+                    ref='category_parent_id',
                     id='product-categoria',
-                    v-model='product.category',
-                    @change='errorLog.category = undefined')
+                    v-model='product.category_parent_id',
+                    @change='errorLog.category_parent_id = undefined; product.category_id = null')
                     optgroup(label='Categoría principal')
                       option(
                         v-for='category in categories'
                         :value='category.id'
                       ) {{ category.name }}
                 .form__row(
-                  v-if='product.category'
-                  :class='{ "is-danger": errorLog.subcategory }')
+                  v-if='subCategories'
+                  :class='{ "is-danger": errorLog.category_id }')
                   label.form__label(
                     for='product-subcategoria') Categoría específica
                   span.help(
-                    v-if="errorLog.subcategory"
-                  ) {{ errorLog.subcategory }}
+                    v-if="errorLog.category_id"
+                  ) {{ errorLog.category_id }}
                   select.form__select(
-                    @change="errorLog.subcategory = undefined",
-                    ref='subcategory'
+                    @change="errorLog.category_id = undefined",
+                    ref='category_id'
                     id='product-subcategoria'
                     v-model='product.category_id')
                     optgroup(label='Categoría específica')
                       option(
-                        v-for='category in categories.find(x => x.id === product.category).children'
+                        v-for='category in subCategories'
                         :value='category.id'
                       ) {{ category.name }}
                 .form__row(
@@ -423,6 +423,19 @@ export default {
       'brands',
       'sizes'
     ]),
+    subCategories () {
+      if (!this.product.category_parent_id) {
+        return null
+      }
+
+      const category = this.categories.find(x => x.id === this.product.category_parent_id)
+
+      if (!category || !category.children) {
+        return null
+      }
+
+      return category.children
+    },
     selectedBrand () {
       return this.brands.find(x => x.id === this.product.brand_id)
     },
@@ -510,7 +523,7 @@ export default {
     setData (data) {
       this.product = {
         ...data,
-        category: data.category.parent_id,
+        category_parent_id: data.category.parent_id,
         color: data.colors.map(x => x.name)
       }
     },
@@ -620,8 +633,8 @@ export default {
       }
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
-      if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría principal'
-      if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
+      if (!this.product.category_parent_id) this.errorLog.category_parent_id = 'Debes seleccionar una categoría principal'
+      if (!this.product.category_id) this.errorLog.category_id = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (this.product.color_ids.length === 0) this.errorLog.color = 'Debes seleccionar al menos un color'
       if (!this.product.size) {
