@@ -134,9 +134,12 @@ export default {
     },
     '$route.query' (newQuery, oldQuery) {
       // Lista de los parámetros viejos y nuevos.
-      // Con Set() aseguramos que sean únicos.
-      const allParams = [...new Set([...Object.keys(newQuery), ...Object.keys(oldQuery)])]
-      const reset = allParams.some(param => {
+      const params = [...Object.keys(newQuery), ...Object.keys(oldQuery)]
+      const uniqueParams = params.filter((value, index, self) => {
+        return self.indexOf(value) === index
+      })
+
+      const reset = uniqueParams.some(param => {
         if (param === 'page') {
           // Cuando nos pidan la primera página, siempre reiniciar.
           return newQuery.page === 1
