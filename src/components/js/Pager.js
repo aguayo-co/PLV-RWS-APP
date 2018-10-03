@@ -249,6 +249,7 @@ export default {
           this.$emit('paged', objects)
           this.$emit('paging', null)
           this.loading = null
+          lscache.flushExpired()
         }
       })
     }
