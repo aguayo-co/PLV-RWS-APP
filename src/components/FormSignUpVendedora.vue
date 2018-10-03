@@ -168,7 +168,7 @@ export default {
         })
         .catch(e => {
           this.$store.dispatch('ui/closeModal')
-          if (e.response.data.errors.exists) {
+          if (this.$getNestedObject(e, ['response', 'data', 'errors', 'exists'])) {
             this.infoTexts.emailExist = 'Parece que este email ya está siendo usado. ¿Olvidaste tu contraseña?'
           } else {
             const modal = {
