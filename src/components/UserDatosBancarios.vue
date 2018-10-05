@@ -91,7 +91,7 @@ section.single
             .form__row
               button.btn(@click.prevent='switchForm', title='Cancelar') Cancelar
             .form__row
-              button.btn.btn_solid(@click.prevent="validate" title='Agregar método de pago') Guardar método de pago
+              button.btn.btn_solid(@click.prevent="validate" title='Agregar método de pago') Guardar
 
 </template>
 <script>

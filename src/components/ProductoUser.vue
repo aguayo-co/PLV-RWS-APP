@@ -48,6 +48,7 @@
                       p.chat-bubble__txt
                         span(
                           :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
+              router-link.btn-tag(to="#") Ver todos los reviews
 
 </template>
 
