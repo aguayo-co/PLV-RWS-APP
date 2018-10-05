@@ -150,18 +150,18 @@ export default {
   ],
   data () {
     return {
-      dropdownState: {...this.filterFields},
+      dropdownState: { ...this.filterFields },
       active: false
     }
   },
   methods: {
     OpenFilter (filter) {
       const dropdownState = this.dropdownState[filter]
-      this.dropdownState = {...this.filterFields}
+      this.dropdownState = { ...this.filterFields }
       this.dropdownState[filter] = !dropdownState
     },
     closeFilters () {
-      this.dropdownState = {...this.filterFields}
+      this.dropdownState = { ...this.filterFields }
     },
     changeAndCloseOrder (order) {
       this.closeFilters('order')

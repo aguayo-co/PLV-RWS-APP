@@ -4,7 +4,40 @@
 import Vue from 'vue'
 
 export default {
-  getBySeller (sellerId, page, status = 1) {
+  getLatestBySeller (userId) {
+    const params = {
+      'filter[seller_id]': userId,
+      'filter[buyer_rating]': '-1,0,1',
+      items: 1,
+      orderby: '-created_at',
+      'filter[status]': 1
+    }
+    return Vue.axios.get('/api/ratings', { params })
+      .then(response => {
+        if (response.data.data.length) {
+          return response
+        }
+
+        // Si no llegaron ratings:
+        const params = {
+          'filter[seller_id]': userId,
+          orderby: '-created_at',
+          items: 1
+        }
+        return Vue.axios.get('/api/rating_archives', { params })
+      })
+  },
+  getLatestByBuyer (userId) {
+    const params = {
+      'filter[buyer_id]': userId,
+      'filter[seller_rating]': '-1,0,1',
+      items: 1,
+      orderby: '-created_at',
+      'filter[status]': 1
+    }
+    return Vue.axios.get('/api/ratings', { params })
+  },
+  getBySeller (sellerId, page = 1, status = 1) {
     const params = {
       'filter[seller_id]': sellerId,
       'filter[buyer_rating]': '-1,0,1',
@@ -14,7 +47,7 @@ export default {
     }
     return Vue.axios.get('/api/ratings', { params })
   },
-  getArchiveBySeller (sellerId, page) {
+  getArchiveBySeller (sellerId, page = 1) {
     const params = {
       'filter[seller_id]': sellerId,
       orderby: '-created_at',
@@ -22,7 +55,7 @@ export default {
     }
     return Vue.axios.get('/api/rating_archives', { params })
   },
-  getByBuyer (buyerId, page, status = 1) {
+  getByBuyer (buyerId, page = 1, status = 1) {
     const params = {
       'filter[buyer_id]': buyerId,
       'filter[seller_rating]': '-1,0,1',

@@ -8,6 +8,10 @@
 
 .detail__gallery {
   width: 100%;
+  .swiper-container,
+  .swiper-wrapper {
+    z-index: 0;
+  }
 }
 .detail__tabs {
   @include flexbox;
@@ -26,7 +30,7 @@
     height: 20px;
     margin: 0 16px;
     // padding: 0 20px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background-color: $c-neutro;
     // @include font-rem(24px);
     transform: scale(.9);
@@ -101,7 +105,7 @@
     font-weight: $fw-bold;
     background-color: $c-urgent;
   }
- 
+
   .through_brand {
     position: relative;
     &:before {
@@ -362,7 +366,7 @@
 
 // $bp-medium: 1024px;
 @include media-query(wide) {
-  
+
 }
 
 // $bp-large: 1170px;

@@ -9,6 +9,13 @@
       v-if="product.category_id && product.id",
       :category_id="product.category_id",
       :product_id="product.id")
+  .layout-inner(v-else)
+    .alert-msg.alert-msg_center
+      p ¡Ups! Este producto ya no se encuentra disponible en Prilov.
+    .alert-msg_spacing
+      router-link.btn.btn_solid(
+        :to="{ name: 'productos' }",
+        title="Ir a Vitinear") Volver al Shop
 </template>
 
 <script>
@@ -21,6 +28,7 @@ import productsAPI from '@/api/product'
 
 export default {
   name: 'Producto',
+  props: ['slug'],
   components: {
     ProductoDetalle,
     ProductoPack,
@@ -29,13 +37,14 @@ export default {
     ProductoSlider
   },
   watch: {
-    '$route.params': function () {
+    '$route.params' () {
       this.loadProduct()
     }
   },
   computed: {
     productId () {
-      return this.$route.params.slug.split('__')[1]
+      const parts = this.slug.split('__')
+      return parts[parts.length - 1]
     }
   },
   data () {
@@ -45,11 +54,21 @@ export default {
     }
   },
   methods: {
-    loadProduct: function () {
+    validateUrl () {
+      if (this.slug !== this.product.slug + '__' + this.product.id) {
+        this.$router.push({
+          params: {
+            slug: this.product.slug + '__' + this.product.id
+          }
+        })
+      }
+    },
+    loadProduct () {
       const localRequest = this.loading = productsAPI.getProductById(this.productId)
         .then(response => {
           if (localRequest === this.loading) {
             this.product = response.data
+            this.validateUrl()
           }
         })
         .catch(() => {})

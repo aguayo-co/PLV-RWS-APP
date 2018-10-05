@@ -4,11 +4,7 @@
 
 @include media-query(wide) {
   .btn-sticky {
-    position: fixed\0;
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
+    position: fixed;
     position: sticky;
     right: 0;
     bottom: 20px;
@@ -17,7 +13,7 @@
     width: 100%;
     padding: 0 20px;
   }
-  
+
   .btn-sticky__link {
     display: inline-block;
     padding: 10px 17px;

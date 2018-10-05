@@ -191,7 +191,8 @@ const router = new Router({
     {
       path: '/producto/:slug',
       name: 'product',
-      component: Producto
+      component: Producto,
+      props: true
     },
     {
       path: '/closet/:userId(\\d+)',
@@ -358,7 +359,11 @@ const router = new Router({
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(savedPosition)
+        }, 500)
+      })
     }
 
     if (to.params.keepPosition === true) {

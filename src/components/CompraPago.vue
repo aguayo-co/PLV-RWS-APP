@@ -16,7 +16,7 @@ section.list-slot
       v-for="product in products" :key="product.id")
       //-link a producto
       router-link.card__product(
-        :to="{ name: 'product', params: { slug: product.slug + '__' + product.id }}",
+        :to="{ name: 'product', params: { slug: $productSlug(product) }}",
         :title="'Ver detalle de ' + product.title")
 
         //-img producto

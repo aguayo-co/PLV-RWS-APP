@@ -69,38 +69,38 @@
             .form-section__grid
               .form-section__item
                 .form__row(
-                  :class='{ "is-danger": errorLog.category }')
+                  :class='{ "is-danger": errorLog.category_parent_id }')
                   label.form__label(
                     for='product-categoria') Categoría principal
                   span.help(
-                    v-if="errorLog.category"
-                  ) {{ errorLog.category }}
+                    v-if="errorLog.category_parent_id"
+                  ) {{ errorLog.category_parent_id }}
                   select.form__select(
-                    ref='category',
+                    ref='category_parent_id',
                     id='product-categoria',
-                    v-model='product.category',
-                    @change='errorLog.category = undefined')
+                    v-model='product.category_parent_id',
+                    @change='errorLog.category_parent_id = undefined; product.category_id = null')
                     optgroup(label='Categoría principal')
                       option(
                         v-for='category in categories'
                         :value='category.id'
                       ) {{ category.name }}
                 .form__row(
-                  v-if='product.category'
-                  :class='{ "is-danger": errorLog.subcategory }')
+                  v-if='subCategories'
+                  :class='{ "is-danger": errorLog.category_id }')
                   label.form__label(
                     for='product-subcategoria') Categoría específica
                   span.help(
-                    v-if="errorLog.subcategory"
-                  ) {{ errorLog.subcategory }}
+                    v-if="errorLog.category_id"
+                  ) {{ errorLog.category_id }}
                   select.form__select(
-                    @change="errorLog.subcategory = undefined",
-                    ref='subcategory'
+                    @change="errorLog.category_id = undefined",
+                    ref='category_id'
                     id='product-subcategoria'
                     v-model='product.category_id')
                     optgroup(label='Categoría específica')
                       option(
-                        v-for='category in categories.find(x => x.id === product.category).children'
+                        v-for='category in subCategories'
                         :value='category.id'
                       ) {{ category.name }}
                 .form__row(
@@ -123,22 +123,25 @@
                       ) {{ condition.name }}
                 .form__group
                   .form__row.color(
-                    :class='{ "is-danger": errorLog.color }'
-                    @click='toggleColors.first = !toggleColors.first')
-                    label.form__label(
-                      for='product-color-first') Color principal
-                    span.help(
-                      v-if="errorLog.color"
-                    ) {{ errorLog.color }}
-                    input.form__select(
-                      @change="errorLog.color = undefined",
-                      ref='color',
-                      type='text',
-                      id='product-color-first',
-                      v-model='product.color[0]',
-                      disabled)
+                    :class='{ "is-danger": errorLog.color }')
+                    div(style="position: relative")
+                      label.form__label(
+                        for='product-color-first') Color principal
+                      span.help(
+                        v-if="errorLog.color"
+                      ) {{ errorLog.color }}
+                      input.form__select(
+                        @change="errorLog.color = undefined",
+                        ref='color',
+                        type='text',
+                        id='product-color-first',
+                        :value='product.color[0]'
+                        disabled)
+                      div(
+                        style="position: absolute; top: 0; left: 0; bottom: 0; right: 0"
+                        @click='$set(toggleColors, 0, !toggleColors[0])')
                     .toggle-select(
-                      v-show='toggleColors.first')
+                      v-show='toggleColors[0]')
                       ul.toggle-select__list
                         li.toggle-select__item(
                           v-for='(color, index) in colors',
@@ -146,17 +149,20 @@
                           span.color-circle(
                             :style='{ backgroundColor: color.hex_code }')
                           span {{ color.name }}
-                  .form__row.color(
-                    @click='toggleColors.second = !toggleColors.second')
-                    label.form__label(
-                      for='product-color-second') Color adicional
-                    input.form__select(
-                      type='text',
-                      id='product-color-second',
-                      v-model='product.color[1]',
-                      disabled)
+                  .form__row.color
+                    div(style="position: relative")
+                      label.form__label(
+                        for='product-color-second') Color adicional
+                      input.form__select(
+                        type='text',
+                        id='product-color-second',
+                        :value='product.color[1]'
+                        disabled)
+                      div(
+                        style="position: absolute; top: 0; left: 0; bottom: 0; right: 0"
+                        @click='$set(toggleColors, 1, !toggleColors[1])')
                     .toggle-select(
-                      v-show='toggleColors.second')
+                      v-show='toggleColors[1]')
                       ul.toggle-select__list
                         li.toggle-select__item(
                           v-for='(color, index) in colors',
@@ -274,25 +280,24 @@
                       //- brand/price
                       .slot__info
                         .slot__brand(
-                            v-if='product.brand_id'
-                        ) {{ brands.find(x => x.id === product.brand_id).name }}
+                            v-if='selectedBrand'
+                        ) {{ selectedBrand.name }}
                         .slot__price ${{ product.price | currency }}
 
                     //- user: picture/first_name/last_name
                     a.slot__user(
-                      :href='product.user',
-                      :title='product.first_name')
+                      :title='user.first_name')
                       .slot__user-img
                         .slot__avatar
                           img.slot__picture(
-                            :src='product.picture',
-                            :alt='product.first_name')
+                            :src='user.picture',
+                            :alt='user.first_name')
                       .slot__user-info
-                        .slot__prilover {{ product.first_name }} {{ product.last_name }}
+                        .slot__prilover {{ user.full_name }}
                         .slot__group.i-it-girl(
-                          v-if='product.slot__group == 1') It <span class='txt_brand'>girl</span>
+                          v-if='user.group_ids.indexOf($store.getters["ui/itGirlId"]) !== -1') It <span class='txt_brand'>girl</span>
                         .slot__group.i-starts(
-                          v-if='product.slot__group == 2') Prilover <span class='txt_brand'>Star</span>
+                          v-if='user.group_ids.indexOf($store.getters["ui/priloverStarId"]) !== -1') Prilover <span class='txt_brand'>Star</span>
 
         //-Formulario set 3
         .layout-band.form-section_band(v-if="create")
@@ -404,10 +409,7 @@ export default {
         images: []
       },
       errorLog: {},
-      toggleColors: {
-        first: false,
-        second: false
-      }
+      toggleColors: [false, false]
     }
   },
   props: ['create', 'titleMain', 'titleSubhead'],
@@ -421,6 +423,22 @@ export default {
       'brands',
       'sizes'
     ]),
+    subCategories () {
+      if (!this.product.category_parent_id) {
+        return null
+      }
+
+      const category = this.categories.find(x => x.id === this.product.category_parent_id)
+
+      if (!category || !category.children) {
+        return null
+      }
+
+      return category.children
+    },
+    selectedBrand () {
+      return this.brands.find(x => x.id === this.product.brand_id)
+    },
     isOwner () {
       if (this.create) {
         return true
@@ -505,7 +523,7 @@ export default {
     setData (data) {
       this.product = {
         ...data,
-        category: data.category.parent_id,
+        category_parent_id: data.category.parent_id,
         color: data.colors.map(x => x.name)
       }
     },
@@ -532,7 +550,9 @@ export default {
           let pending
           response.data.status === 0 ? pending = true : pending = false
           if (!pending) {
-            this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
+            this.$router.push({
+              name: 'product', params: { slug: this.$productSlug(response.data) }
+            })
             return
           }
           this.$router.push('/venta-publicada/pendiente')
@@ -600,7 +620,9 @@ export default {
             this.$router.push(this.$route.query.redirect)
             return
           }
-          this.$router.push('/producto/' + response.data.slug + '__' + response.data.id)
+          this.$router.push({
+            name: 'product', params: { slug: this.$productSlug(response.data) }
+          })
         })
     },
     validateBeforeSubmit: function () {
@@ -611,8 +633,8 @@ export default {
       }
       if (!this.product.title) this.errorLog.title = 'Debes ingresar un nombre para tu producto'
       if (!this.product.description) this.errorLog.description = 'Debes ingresar una descripción para tu producto'
-      if (!this.product.category) this.errorLog.category = 'Debes seleccionar una categoría principal'
-      if (!this.product.category_id) this.errorLog.subcategory = 'Debes seleccionar una categoría específica'
+      if (!this.product.category_parent_id) this.errorLog.category_parent_id = 'Debes seleccionar una categoría principal'
+      if (!this.product.category_id) this.errorLog.category_id = 'Debes seleccionar una categoría específica'
       if (!this.product.condition_id) this.errorLog.condition = 'Debes seleccionar una condición para tu producto'
       if (this.product.color_ids.length === 0) this.errorLog.color = 'Debes seleccionar al menos un color'
       if (!this.product.size) {
@@ -644,6 +666,7 @@ export default {
       }
     },
     chooseColor: function (colorId, colorPosition) {
+      this.$set(this.toggleColors, colorPosition, !this.toggleColors[colorPosition])
       this.errorLog.color = undefined
       this.product.color[colorPosition] = this.colors[colorId].name
       this.product.color_ids[colorPosition] = this.colors[colorId].id

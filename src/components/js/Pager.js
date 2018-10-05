@@ -44,22 +44,25 @@ export default {
       return this.axios.defaults.baseURL + this.basePath
     },
     fullUrl () {
-      const url = new URL(this.url)
+      let queryString = ''
 
       // Usa los valores de la URL como parámetros a nuestra llamada al API.
       const query = this.$route.query
       Object.keys(query).forEach(param => {
         const value = query[param]
-        url.searchParams.set(param, value)
+        queryString += encodeURIComponent(param) + '=' + encodeURIComponent(value) + '&'
       })
 
       // Sobre-escribe valores de la URL con parámetros forzados.
       Object.keys(this.forcedParams).forEach(param => {
         const value = this.forcedParams[param]
-        url.searchParams.set(param, value)
+        queryString += encodeURIComponent(param) + '=' + encodeURIComponent(value) + '&'
       })
 
-      return url
+      // Elimina ampersand final.
+      queryString = queryString.slice(0, -1)
+
+      return this.url + '?' + queryString
     },
     currentPage: {
       get () {
@@ -67,8 +70,8 @@ export default {
       },
       set (page) {
         const routeParams = {
-          params: {...this.$route.params, keepPosition: this.infinite},
-          query: {...this.$route.query, page}
+          params: { ...this.$route.params, keepPosition: this.infinite },
+          query: { ...this.$route.query, page }
         }
         if (this.infinite) {
           this.$router.replace(routeParams)
@@ -91,8 +94,8 @@ export default {
       set (items) {
         this.$router.push({
           name: this.$route.name,
-          params: {...this.$route.params, keepPosition: this.infinite},
-          query: {...this.$route.query, items, page: 1}
+          params: { ...this.$route.params, keepPosition: this.infinite },
+          query: { ...this.$route.query, items, page: 1 }
         })
       }
     },
@@ -131,9 +134,12 @@ export default {
     },
     '$route.query' (newQuery, oldQuery) {
       // Lista de los parámetros viejos y nuevos.
-      // Con Set() aseguramos que sean únicos.
-      const allParams = [...new Set([...Object.keys(newQuery), ...Object.keys(oldQuery)])]
-      const reset = allParams.some(param => {
+      const params = [...Object.keys(newQuery), ...Object.keys(oldQuery)]
+      const uniqueParams = params.filter((value, index, self) => {
+        return self.indexOf(value) === index
+      })
+
+      const reset = uniqueParams.some(param => {
         if (param === 'page') {
           // Cuando nos pidan la primera página, siempre reiniciar.
           return newQuery.page === 1
@@ -175,7 +181,7 @@ export default {
       }
 
       if (!this.perPage && !this.infinite) {
-        this.perPage = 12
+        this.perPage = 24
         return false
       }
 
@@ -213,12 +219,10 @@ export default {
     goTo () {
       this.loading = true
       if (!this.validateQuery()) {
-        this.false = true
         return
       }
 
       if (!this.validateHistoryData()) {
-        this.false = true
         return
       }
 
@@ -230,7 +234,7 @@ export default {
           // En paginado infinito, puede que llegue un objeto repetido cuando
           // se agregan objetos nuevos al servidor.
           // Nos aseguramos de no agregar objetos duplicados. Usamos los nuevos.
-          if (this.infinite && this.objects) {
+          if (this.infinite && this.objects && this.currentPage !== 1) {
             const freshObjectsIds = objects.map(object => object[this.idKey])
             const keptObjects = this.objects.filter(object => freshObjectsIds.indexOf(object[this.idKey]) === -1)
             objects.unshift(...keptObjects)
@@ -238,13 +242,14 @@ export default {
 
           // Guardamos historial para mantener navegación.
           if (this.infinite) {
-            this.historyData = {objects, pagination: response.data}
+            this.historyData = { objects, pagination: response.data }
           }
 
           this.pagination = response.data
           this.$emit('paged', objects)
           this.$emit('paging', null)
           this.loading = null
+          lscache.flushExpired()
         }
       })
     }

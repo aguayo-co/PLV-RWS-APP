@@ -59,13 +59,12 @@ const mutations = {
   },
   add (state, product) {
     state.products.push(product)
-    state.total += parseInt(product.sale_price)
+    state.total = state.products.reduce((total, product) => product.sale_price + total, 0)
     window.localStorage.setItem('prilovCart', JSON.stringify(state))
   },
   remove (state, product) {
-    const removedProduct = state.products.filter(x => x.id === product.id)[0]
     state.products = state.products.filter(x => x.id !== product.id)
-    state.total -= parseInt(removedProduct.sale_price)
+    state.total = state.products.reduce((total, product) => product.sale_price + total, 0)
     window.localStorage.setItem('prilovCart', JSON.stringify(state))
   },
   kill (state) {

@@ -1,7 +1,9 @@
 // User store will be used to handle public data regarding users.
 import Vue from 'vue'
+
 import userAPI from '@/api/user'
 import userAddressesAPI from '@/api/userAddresses'
+import * as Sentry from '@sentry/browser'
 
 const baseUserGenerator = () => {
   return {
@@ -22,7 +24,7 @@ const baseUserGenerator = () => {
     following_count: null,
     following_ids: null,
     roles: [],
-    groups: [],
+    group_ids: [],
     shipping_method_ids: [],
     bank_account: {},
     vacation_mode: null,
@@ -46,7 +48,7 @@ const getters = {
 }
 
 const actions = {
-  async loadUser ({dispatch}) {
+  async loadUser ({ dispatch }) {
     const userId = window.localStorage.getItem('userId')
     if (!userId) {
       throw Error('No hay usuario a cargar.')
@@ -67,27 +69,27 @@ const actions = {
         }
       })
   },
-  loadAddresses ({commit, state}) {
+  loadAddresses ({ commit, state }) {
     return userAddressesAPI.load(state.id).then(response => {
       commit('setAddresses', response.data.data)
       return response
     })
   },
-  update ({commit, state}, data) {
+  update ({ commit, state }, data) {
     data.id = state.id
     return userAPI.update(data).then(response => {
       commit('set', response.data)
       return response
     })
   },
-  updateWithFile ({commit, state}, data) {
+  updateWithFile ({ commit, state }, data) {
     data.id = state.id
     return userAPI.updateWithFile(data).then(response => {
       commit('set', response.data)
       return response
     })
   },
-  createAddress ({dispatch, commit, state}, data) {
+  createAddress ({ dispatch, state }, data) {
     data.user_id = state.id
     return userAddressesAPI.create(data)
       .then(async (response) => {
@@ -95,25 +97,31 @@ const actions = {
         return response
       })
   },
-  updateAddress ({commit, state}, data) {
+  updateAddress ({ commit, state }, data) {
     data.user_id = state.id
     return userAddressesAPI.update(data).then(response => {
       commit('setAddress', response.data)
       return response
     })
   },
-  deleteAddress ({commit, state}, data) {
+  deleteAddress ({ commit, state }, data) {
     data.user_id = state.id
     return userAddressesAPI.delete(data).then(response => {
       commit('removeAddress', data)
       return response
     })
   },
-  logOut ({commit}) {
+  logOut ({ commit }) {
     commit('clear')
     commit('cart/clear', null, { root: true })
   },
-  setUser ({dispatch, commit}, user) {
+  setUser ({ dispatch, commit }, user) {
+    Sentry.configureScope((scope) => {
+      scope.setUser({
+        id: user.id,
+        email: user.email
+      })
+    })
     // Reinicia conteo de login,
     // carga direcciones y unifica carros.
     // Si todo es correcto, pasa usuario en promesa.
@@ -159,6 +167,10 @@ const mutations = {
     })
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
+
+    Sentry.configureScope((scope) => {
+      scope.setUser()
+    })
   }
 }
 

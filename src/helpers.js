@@ -3,6 +3,15 @@ export default {
     // Evalúa si el valor es numérico
     //
     // @param  value EL valor a evaluar.
+    const productSlug = function (product) {
+      return product.slug + '__' + product.id
+    }
+    Vue.productSlug = productSlug
+    Vue.prototype.$productSlug = productSlug
+
+    // Evalúa si el valor es numérico
+    //
+    // @param  value EL valor a evaluar.
     const isNumeric = function (value) {
       if (value === null || value === undefined) {
         return false

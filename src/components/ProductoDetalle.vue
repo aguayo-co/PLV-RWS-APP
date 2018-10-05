@@ -1,9 +1,3 @@
-<style scoped>
-.swiper-container, .swiper-wrapper{
-  z-index: 0;
-}
-</style>
-
 <template lang="pug">
 .layout-inner
   .alert-msg.alert-msg_center(v-if="isOwner")

@@ -84,26 +84,26 @@ const getters = {
 }
 
 const actions = {
-  load ({commit}) {
+  load ({ commit }) {
     const cartId = router.currentRoute.query.cartId
     return shoppingCartAPI.load(cartId).then(response => {
       commit('set', response.data)
       return response
     })
   },
-  update ({commit}, data) {
+  update ({ commit }, data) {
     return shoppingCartAPI.update(data).then(response => {
       commit('set', response.data)
       return response
     })
   },
-  addProduct ({commit}, product) {
+  addProduct ({ commit }, product) {
     return shoppingCartAPI.addProducts([product.id]).then(response => {
       commit('set', response.data)
       return response
     })
   },
-  removeProduct ({commit}, product) {
+  removeProduct ({ commit }, product) {
     return shoppingCartAPI.removeProducts([product.id]).then(response => {
       commit('set', response.data)
       return response
@@ -161,9 +161,9 @@ const mutations = {
     })
     Vue.set(state.sales, newSale.id, newSale)
 
-    store.commit('cart/setSaleSeller', {sale: state.sales[newSale.id], user: sale.user})
+    store.commit('cart/setSaleSeller', { sale: state.sales[newSale.id], user: sale.user })
     Object.keys(sale.products).forEach(function (key) {
-      store.commit('cart/setSaleProduct', {sale: state.sales[newSale.id], product: sale.products[key]})
+      store.commit('cart/setSaleProduct', { sale: state.sales[newSale.id], product: sale.products[key] })
     })
   },
   /**
@@ -172,7 +172,7 @@ const mutations = {
    * @param {*} state
    * @param {*} data
    */
-  setSaleSeller (state, {sale, user}) {
+  setSaleSeller (state, { sale, user }) {
     const baseSeller = baseSellerGenerator()
     Object.keys(baseSeller).forEach((key) => {
       Vue.set(state.sales[sale.id], 'user_' + key, user[key])
@@ -184,7 +184,7 @@ const mutations = {
    * @param {*} state
    * @param {*} data
    */
-  setSaleProduct (state, {sale, product}) {
+  setSaleProduct (state, { sale, product }) {
     const newProduct = {
       size: Vue.getNestedObject(product, ['size', 'name']),
       brand: Vue.getNestedObject(product, ['brand', 'name']),

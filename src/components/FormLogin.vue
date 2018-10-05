@@ -33,7 +33,9 @@ transition(name='modal-fade')
               |¿Olvidaste tu contraseña?
               | <router-link class='link_underline' @click='close' :to="{ name: 'password' }" title='Ir a recuperar contraseña'>Recuperar contraseña.</router-link>
           .form__row.form__row_away
-            button.btn.btn_solid.btn_block Iniciar sesión
+            button.btn.btn_solid.btn_block(:disabled="loading")
+              Dots(v-if="loading")
+              template(v-else) Iniciar sesión
         .break
           span.break__txt O
         router-link.btn.btn_block(
