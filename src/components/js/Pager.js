@@ -233,6 +233,7 @@ export default {
      * Ejecuta los llamados al API asegurando no más de 1 llamado en 50ms.
      */
     goTo () {
+      this.loading = true
       // Es posible que se dispare goTo repetidamente de forma seguida.
       // Esto sobre todo al cargar una página donde diferentes componentes
       // modifican los parámetros de la URL.
@@ -241,7 +242,6 @@ export default {
       this.gotoId = window.setTimeout(this.effectiveGoTo, 50)
     },
     effectiveGoTo () {
-      this.loading = true
       if (!this.validateQuery()) {
         return
       }
