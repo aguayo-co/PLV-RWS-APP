@@ -9,6 +9,7 @@ export default {
   },
   data () {
     return {
+      gotoId: null,
       loading: true,
       pagination: null
     }
@@ -172,6 +173,11 @@ export default {
         if (this.currentPage < this.pagination.last_page) this.currentPage++
       }
     },
+    /**
+     * Valida que los parámetros estén completos y correctos.
+     * Si es necesario, modifica los parámetros lo qu dispara nuevamente
+     * el paginado.
+     */
     validateQuery () {
       const query = this.$route.query
 
@@ -192,6 +198,13 @@ export default {
 
       return true
     },
+    /**
+     * Valida si existe en caché datos a cargar para el query actual.
+     * En caso de encontrar, carga los datos.
+     *
+     * En caso de no encontrar datos, obliga al paginador infinito a cargar
+     * la primera página.
+     */
     validateHistoryData () {
       // Si ya hay datos, no necesitamos historial.
       if (this.pagination && this.objects && this.objects.length) {
@@ -216,7 +229,18 @@ export default {
       // Todo bien!
       return true
     },
+    /**
+     * Ejecuta los llamados al API asegurando no más de 1 llamado en 50ms.
+     */
     goTo () {
+      // Es posible que se dispare goTo repetidamente de forma seguida.
+      // Esto sobre todo al cargar una página donde diferentes componentes
+      // modifican los parámetros de la URL.
+      // Con este timeOut procuramos reducir llamados innecesarios al api.
+      window.clearTimeout(this.gotoId)
+      this.gotoId = window.setTimeout(this.effectiveGoTo, 50)
+    },
+    effectiveGoTo () {
       this.loading = true
       if (!this.validateQuery()) {
         return
