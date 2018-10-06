@@ -9,14 +9,14 @@ export default {
     const params = {
       orderby: '-created_at'
     }
-    return Vue.axiosAuth.get('/api/credits_transactions', {params})
+    return Vue.axiosAuth.get('/api/credits_transactions', { params })
   },
   pending () {
     const params = {
       items: 1000,
       'filter[transfer_status]': 0
     }
-    return Vue.axiosAuth.get('/api/credits_transactions', {params})
+    return Vue.axiosAuth.get('/api/credits_transactions', { params })
   },
   transferRequest: function (data) {
     const payload = {

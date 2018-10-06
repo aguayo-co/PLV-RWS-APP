@@ -95,7 +95,7 @@ export default {
     },
     computedParameters () {
       if (!this.$route.query.q) {
-        return {...this.parameters, orderby: '-latest_product'}
+        return { ...this.parameters, orderby: '-latest_product' }
       }
       return this.parameters
     },
@@ -113,7 +113,7 @@ export default {
       this.listActive = !this.listActive
     },
     changeOrder (listOptionId) {
-      const parameters = {...this.parameters}
+      const parameters = { ...this.parameters }
       this.listOptionsSelected = listOptionId
       this.listActive = false
       if (this.listOptionsSelected === 0) {
@@ -124,7 +124,7 @@ export default {
       this.parameters = parameters
     },
     changeSearch () {
-      const query = {...this.$route.query}
+      const query = { ...this.$route.query }
       query.page = 1
       delete query.q
       if (this.searchQuery) {
@@ -132,7 +132,7 @@ export default {
       }
       this.$router.push({
         name: this.$route.name,
-        params: {...this.$route.params, keepPosition: true},
+        params: { ...this.$route.params, keepPosition: true },
         query
       })
     }

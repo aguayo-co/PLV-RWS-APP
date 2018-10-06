@@ -18,11 +18,11 @@ export default {
       modalDeleteId: null,
       forcedParams: null,
       tabs: {
-        published: {title: 'Publicados', filter: '10,19'},
-        sold: {title: 'Vendidos', filter: '30,32'},
-        hidden: {title: 'Ocultos', filter: '20,29'},
-        rejected: {title: 'Rechazados', filter: '1,2'},
-        pending: {title: 'Pendientes', filter: '0,3'}
+        published: { title: 'Publicados', filter: '10,19' },
+        sold: { title: 'Vendidos', filter: '30,32' },
+        hidden: { title: 'Ocultos', filter: '20,29' },
+        rejected: { title: 'Rechazados', filter: '1,2' },
+        pending: { title: 'Pendientes', filter: '0,3' }
       },
       tabsMobile: false
     }

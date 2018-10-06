@@ -48,9 +48,9 @@ export default {
     return {
       gatewaysNames,
       payUPayment: null,
-      newOrderData: {...editableProps},
-      errorLog: {...editableProps},
-      disabled: {...editableProps}
+      newOrderData: { ...editableProps },
+      errorLog: { ...editableProps },
+      disabled: { ...editableProps }
     }
   },
   computed: {
@@ -78,7 +78,7 @@ export default {
     ...createComputedProps(editableProps),
     responseUrl () {
       const a = document.createElement('a')
-      a.href = this.$router.resolve({name: 'orden', params: { orderId: this.id }, query: {gateway: this.gateway}}).href
+      a.href = this.$router.resolve({ name: 'orden', params: { orderId: this.id }, query: { gateway: this.gateway } }).href
       return a.protocol + '//' + a.host + a.pathname + a.search + a.hash
     }
   },
@@ -186,7 +186,7 @@ export default {
       }
       this.$store.dispatch('ui/showModal', modal)
       return shoppingCartAPI.getPayment('transfer').then(() => {
-        this.$router.push({name: 'orden', params: { orderId: this.id }})
+        this.$router.push({ name: 'orden', params: { orderId: this.id } })
       })
     },
     /**
@@ -203,7 +203,7 @@ export default {
       }
       this.$store.dispatch('ui/showModal', modal)
       return shoppingCartAPI.getPayment('free').then(() => {
-        this.$router.push({name: 'orden', params: { orderId: this.id }})
+        this.$router.push({ name: 'orden', params: { orderId: this.id } })
       })
     }
   },

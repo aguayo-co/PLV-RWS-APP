@@ -46,15 +46,15 @@ export default {
     return {
       userDataTimeout: null,
       editPhone: false,
-      newOrderData: {...editableProps},
-      errorLog: {...editableProps},
-      disabled: {...editableProps},
+      newOrderData: { ...editableProps },
+      errorLog: { ...editableProps },
+      disabled: { ...editableProps },
       savingPhone: false
     }
   },
   computed: {
     allErrors () {
-      return {...this.errorLog, ...this.errors}
+      return { ...this.errorLog, ...this.errors }
     },
     editingPhone () {
       return this.editPhone || !this.phone

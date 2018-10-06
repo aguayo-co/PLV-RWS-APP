@@ -12,7 +12,7 @@ export default {
       sales: {}
     }
     salesIds.forEach(saleId => {
-      data.sales[saleId] = {status: 49}
+      data.sales[saleId] = { status: 49 }
     })
     return Vue.axiosAuth.patch('/api/orders/' + orderId, data)
   },
@@ -21,7 +21,7 @@ export default {
       sales: {}
     }
     salesIds.forEach(saleId => {
-      data.sales[saleId] = {status: 90}
+      data.sales[saleId] = { status: 90 }
     })
     return Vue.axiosAuth.patch('/api/orders/' + orderId, data)
   },

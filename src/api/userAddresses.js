@@ -15,7 +15,7 @@ export default {
     if (data.id === null) {
       return Promise.reject(new Error('Need the address ID.'))
     }
-    const payload = {...data}
+    const payload = { ...data }
     return Vue.axiosAuth.patch('/api/users/' + data.user_id + '/addresses/' + data.id, payload)
   },
 

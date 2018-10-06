@@ -200,7 +200,7 @@ export default {
       }
     },
     loggedIn (response) {
-      this.$router.push({name: 'compra'})
+      this.$router.push({ name: 'compra' })
     },
     create () {
       this.errorLog = {}
@@ -222,7 +222,7 @@ export default {
           this.$store.dispatch('user/setUser', response.data)
             .then(() => {
               this.$store.dispatch('guestCart/merge')
-              this.$router.push({name: 'compra'})
+              this.$router.push({ name: 'compra' })
             })
         })
         .catch(e => {

@@ -17,7 +17,7 @@ export default {
   props: ['sale'],
   data: () => {
     return {
-      statusMessages: {...baseStatusMessages}
+      statusMessages: { ...baseStatusMessages }
     }
   },
   components: {

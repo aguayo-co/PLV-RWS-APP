@@ -68,7 +68,7 @@ export default {
           this.$router.push({
             name: 'compra',
             params: { step: 'medio-de-pago' },
-            query: {cartId: this.orderId}
+            query: { cartId: this.orderId }
           })
       }
     },
@@ -83,7 +83,7 @@ export default {
           this.$router.push({
             name: 'compra',
             params: { step: 'medio-de-pago' },
-            query: {cartId: this.orderId}
+            query: { cartId: this.orderId }
           })
       }
     },
@@ -109,7 +109,7 @@ export default {
           // If shoppingCart status is changed, then push ID to URL
           // to load the order.
           if (order.status === 10) {
-            this.$router.push({name: 'compra'})
+            this.$router.push({ name: 'compra' })
             return
           }
 

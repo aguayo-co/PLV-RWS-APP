@@ -49,8 +49,8 @@ export default {
       editEmail: false,
       editPhone: false,
       new_picture: null,
-      newUserData: {...editableProps},
-      errorLog: {...editableProps, picture: null, exists: null}
+      newUserData: { ...editableProps },
+      errorLog: { ...editableProps, picture: null, exists: null }
     }
   },
   computed: {

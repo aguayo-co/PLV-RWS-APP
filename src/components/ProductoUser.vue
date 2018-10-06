@@ -61,7 +61,7 @@ export default {
   name: 'ProductoUser',
   props: ['user'],
   computed: {
-    ...mapState({'loggedUser': 'user'})
+    ...mapState({ 'loggedUser': 'user' })
   },
   data () {
     return {

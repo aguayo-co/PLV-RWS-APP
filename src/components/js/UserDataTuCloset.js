@@ -43,8 +43,8 @@ export default {
       editAbout: false,
       new_picture: null,
       new_cover: null, /* add Closet */
-      newUserData: {...editableProps},
-      errorLog: {...editableProps, picture: null, exists: null},
+      newUserData: { ...editableProps },
+      errorLog: { ...editableProps, picture: null, exists: null },
       ratings: {
         positive: null,
         negative: null

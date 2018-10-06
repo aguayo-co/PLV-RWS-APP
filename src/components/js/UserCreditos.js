@@ -87,7 +87,7 @@ export default {
         .then(response => this.$store.dispatch('user/loadUser', response.data))
         .then(() => {
           // Esto dispara cambio en forcedParams, lo que dispara el paginador.
-          this.forcedParams = {...this.forcedParams}
+          this.forcedParams = { ...this.forcedParams }
           this.loadPendingTransfer()
           this.alertConvert = !this.alertConvert
           this.alertInfo = !this.alertInfo

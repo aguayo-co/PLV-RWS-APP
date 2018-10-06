@@ -16,7 +16,7 @@ export default {
         const saleId = this.sale.id
         this.$emit('isProcessing', 'shippingMethod' + saleId)
         this.$emit('clearError', 'shippingMethod' + saleId)
-        const data = {sales: {}}
+        const data = { sales: {} }
         data.sales[saleId] = {
           shipping_method_id: shippingMethodId
         }

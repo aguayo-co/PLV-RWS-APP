@@ -136,7 +136,7 @@ export default {
     },
     logout: function () {
       this.$store.dispatch('user/logOut')
-      this.$router.push({name: 'home'})
+      this.$router.push({ name: 'home' })
     }
   },
   computed: {

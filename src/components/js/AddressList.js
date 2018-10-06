@@ -26,8 +26,8 @@ export default {
       isActive: '',
       regionsList: {},
       newAddress: false,
-      newAddressData: {...addressFields},
-      errorLog: {...addressFields}
+      newAddressData: { ...addressFields },
+      errorLog: { ...addressFields }
     }
   },
   computed: {
@@ -99,8 +99,8 @@ export default {
     },
     toggleNewAddress (open = null) {
       this.isActive = null
-      this.errorLog = {...addressFields}
-      this.newAddressData = {...addressFields}
+      this.errorLog = { ...addressFields }
+      this.newAddressData = { ...addressFields }
       // Si no tenemos una acción específica, cambia estado actual.
       if (open === null) {
         this.newAddress = !this.newAddress

@@ -38,6 +38,11 @@ export default {
     return {
       articles: [
         {
+          title: '#PrilovPorElMundo en Tailandia / Parte 1',
+          url: '/prilov-por-el-mundo-en-tailandia-parte-1',
+          image: '/static/img/blog-thumb-007.jpg'
+        },
+        {
           title: 'Una historia que queremos compartir…',
           url: '/una-historia-que-queremos-compartir',
           image: '/static/img/blog-thumb-006.jpg'

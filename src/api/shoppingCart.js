@@ -8,7 +8,7 @@ export default {
     // Si tenemos un ID en la URL, manda info para usar
     // esa orden como la orden en carro de compra.
     if (orderId) {
-      return Vue.axiosAuth.patch('/api/shopping_cart', {'order_id': orderId})
+      return Vue.axiosAuth.patch('/api/shopping_cart', { 'order_id': orderId })
         // Si no se puede convertir (error 422),
         // se pide un carro nuevo.
         .catch((e) => {
@@ -39,7 +39,7 @@ export default {
       gateway: gateway,
       ...data
     }
-    return Vue.axiosAuth.get('/api/shopping_cart/payment', {params})
+    return Vue.axiosAuth.get('/api/shopping_cart/payment', { params })
   },
   setAddress (addressId) {
     const payload = {

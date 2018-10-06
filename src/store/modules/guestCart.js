@@ -23,7 +23,7 @@ const actions = {
     commit('load')
     commit('remove', product)
   },
-  merge ({dispatch, commit}) {
+  merge ({ dispatch, commit }) {
     let alerted = false
     commit('load')
     commit('cart/clear', null, { root: true })

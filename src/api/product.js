@@ -96,7 +96,7 @@ export default {
     if (order) params['orderby'] = order
     if (search) params['q'] = search
     const axios = auth ? Vue.axiosAuth : Vue.axios
-    return axios.get('/api/products', {params})
+    return axios.get('/api/products', { params })
   },
 
   getAuth (page, items, filter, order, search) {

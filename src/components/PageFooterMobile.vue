@@ -160,10 +160,10 @@ export default {
     goToPayment: function () {
       this.animCart()
       if (this.user.id) {
-        this.$router.push({name: 'compra'})
+        this.$router.push({ name: 'compra' })
         return
       }
-      this.$router.push({name: 'compra-guest'})
+      this.$router.push({ name: 'compra-guest' })
     },
     search: function () {
       this.$router.push({ name: 'search', params: { query: this.query } })
