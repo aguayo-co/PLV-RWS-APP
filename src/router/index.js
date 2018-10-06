@@ -30,6 +30,7 @@ import Blog03 from '@/pages/Blog-03'
 import Blog04 from '@/pages/Blog-04'
 import Blog05 from '@/pages/Blog-05'
 import Blog06 from '@/pages/Blog-06'
+import Blog07 from '@/pages/Blog-07'
 import Closet from '@/pages/Closet'
 import CompraGuest from '@/pages/CompraGuest'
 import Contenido from '@/pages/Contenido'
@@ -253,7 +254,7 @@ const router = new Router({
       path: '/closetroom',
       name: 'closet-room',
       component: ProductosFiltrado,
-      props: {type: 'campanas', slug: 'closetroom'}
+      props: { type: 'campanas', slug: 'closetroom' }
     },
     {
       path: '/shop',
@@ -355,6 +356,11 @@ const router = new Router({
       path: '/una-historia-que-queremos-compartir',
       name: 'blog06',
       component: Blog06
+    },
+    {
+      path: '/prilov-por-el-mundo-en-tailandia-parte-1',
+      name: 'blog07',
+      component: Blog07
     }
   ],
   scrollBehavior (to, from, savedPosition) {
