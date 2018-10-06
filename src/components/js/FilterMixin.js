@@ -116,7 +116,7 @@ export default {
     setPreFilter () {
       this.$router.replace({
         params: this.$route.params,
-        query: {...this.filter, ...this.$route.query}
+        query: { ...this.filter, ...this.$route.query }
       })
     },
     readQuery () {
@@ -138,7 +138,7 @@ export default {
       })
     },
     setQuery (parameters) {
-      const query = {...this.$route.query, ...parameters}
+      const query = { ...this.$route.query, ...parameters }
       query.page = 1
       Object.keys(query).forEach(param => {
         if (parameters[param] === '' || parameters[param] === undefined || parameters[param] === null) {
@@ -148,7 +148,7 @@ export default {
       })
       this.$router.push({
         name: this.$route.name,
-        params: {...this.$route.params, keepPosition: true},
+        params: { ...this.$route.params, keepPosition: true },
         query
       })
     },
