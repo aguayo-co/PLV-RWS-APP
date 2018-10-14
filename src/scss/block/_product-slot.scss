@@ -223,6 +223,9 @@
     padding-right: 6px;
     @include font-rem(10px);
   }
+  .slot__brand_lowercase {
+    text-transform: none;
+  }
   .slot__group_price {
     text-align: right;
   }

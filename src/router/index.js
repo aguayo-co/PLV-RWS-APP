@@ -31,6 +31,7 @@ import Blog04 from '@/pages/Blog-04'
 import Blog05 from '@/pages/Blog-05'
 import Blog06 from '@/pages/Blog-06'
 import Blog07 from '@/pages/Blog-07'
+import Blog08 from '@/pages/Blog-08'
 import Closet from '@/pages/Closet'
 import CompraGuest from '@/pages/CompraGuest'
 import Contenido from '@/pages/Contenido'
@@ -361,6 +362,11 @@ const router = new Router({
       path: '/prilov-por-el-mundo-en-tailandia-parte-1',
       name: 'blog07',
       component: Blog07
+    },
+    {
+      path: '/prilov-por-el-mundo-en-tailandia-parte-2',
+      name: 'blog08',
+      component: Blog08
     }
   ],
   scrollBehavior (to, from, savedPosition) {

@@ -20,7 +20,7 @@
                   :src="article.image",
                   :alt="article.title")
               .slot__info.slot__info_top
-                h3.slot__brand {{ article.title }}
+                h3.slot__brand.slot__brand_lowercase {{ article.title }}
   ButtonSticky
 </template>
 
@@ -37,6 +37,11 @@ export default {
   data () {
     return {
       articles: [
+        {
+          title: '#PrilovPorElMundo en Tailandia / Parte 2',
+          url: '/prilov-por-el-mundo-en-tailandia-parte-2',
+          image: '/static/img/blog-thumb-008.jpg'
+        },
         {
           title: '#PrilovPorElMundo en Tailandia / Parte 1',
           url: '/prilov-por-el-mundo-en-tailandia-parte-1',
