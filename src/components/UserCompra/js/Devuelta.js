@@ -22,10 +22,13 @@ export default {
   },
   methods: {
     saleReturnDelivered () {
+      this.processing = true
       saleReturnAPI.delivered(this.sale_return.id, 'Entrega coordinada por compradora.').then(response => {
         this.sale_return = response.data
       }).catch((e) => {
         this.$handleApiErrors(e)
+      }).finally(() => {
+        this.processing = false
       })
     },
     saleReturnShipped () {
@@ -33,10 +36,13 @@ export default {
       this.errorLog.tracking_code = null
 
       if (this.shipping_company && this.tracking_code) {
+        this.processing = true
         saleReturnAPI.shipped(this.sale_return.id, this.shipping_company, this.tracking_code).then(response => {
           this.sale_return = response.data
         }).catch((e) => {
           this.$handleApiErrors(e)
+        }).finally(() => {
+          this.processing = false
         })
         return
       }

@@ -17,17 +17,23 @@ export default {
   },
   methods: {
     saleReceived () {
+      this.processing = true
       orderAPI.salesReceived(this.sale.order_id, [this.sale.id]).then(response => {
         this.$emit('refresh-order', response.data)
       }).catch((e) => {
         this.$handleApiErrors(e)
+      }).finally(() => {
+        this.processing = false
       })
     },
     saleCompleted () {
+      this.processing = true
       orderAPI.salesCompleted(this.sale.order_id, [this.sale.id]).then(response => {
         this.$emit('refresh-order', response.data)
       }).catch((e) => {
         this.$handleApiErrors(e)
+      }).finally(() => {
+        this.processing = false
       })
     }
   }

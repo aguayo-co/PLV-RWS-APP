@@ -42,6 +42,7 @@ export default {
     },
     uploadReceipt () {
       this.loading.upload = true
+      this.processing = true
       orderAPI.uploadTransferReceipt(this.sale.order_id, this.transfer_receipt).then(response => {
         this.loading.upload = false
         this.changeReceipt = false
@@ -50,6 +51,8 @@ export default {
       }).catch(e => {
         this.loading.upload = false
         this.$handleApiErrors(e, ['transfer_receipt'], this.errorLog)
+      }).finally(() => {
+        this.processing = false
       })
     }
   }

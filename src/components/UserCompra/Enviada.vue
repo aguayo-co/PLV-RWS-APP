@@ -24,8 +24,10 @@
   .dashboard__actions
     p ¿Ya recibiste tu compra?
     button.btn.btn_solid.btn_block(
+      :disabled='processing'
       @click.prevent='saleCompleted') Si, ya recibí y me gustó
     a.link_underline(
+      :disabled='processing'
       @click.prevent='saleReceived') ¿Quieres hacer una devolución?
 </template>
 

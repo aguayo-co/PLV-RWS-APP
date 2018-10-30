@@ -15,7 +15,7 @@
       span  {{ trackingInfo.code }}
     p Estamos esperando que la compradora nos confirme que recibió el pedido.
     a.link_underline(
-      href="#",
+      :disabled='processing'
       @click.prevent="askForShippingDetails") « Ingresé mal el número de seguimiento o entregué de otra forma
 
   //- De lo contrario, mostramos las notas del envío.
@@ -23,7 +23,7 @@
     p Escogiste juntarte con la compradora.
     p Estamos esperando que ella nos confirme que ya le entregaste la compra.
     a.link_underline(
-      href="#",
+      :disabled='processing'
       @click.prevent="askForShippingDetails") « Ingresé mal el número de seguimiento o entregué de otra forma
 
 //- Envíos que SI son por Chilexpress.

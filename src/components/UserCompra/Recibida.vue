@@ -6,8 +6,10 @@
   .dashboard__actions(v-if="!step")
     p ¿Estás segura de hacer una devolución?
     a.btn.btn_solid.btn_block(
+      :disabled='processing'
       @click.prevent="goToStep('return')") Sí, quiero hacer una devolución
     a.link_underline.link_underline_lower(
+      :disabled='processing'
       @click.prevent="completeSale") Pensándolo bien, no quiero devolver
     p * Si compraste más de un producto, en el siguiente paso podrás decidir cuáles quieres devolver.
 
@@ -26,8 +28,10 @@
         label.form__label_check.i-ok(
           :for="sale.id + 'returncheck' + product.id") {{ product.title }}
     a.btn.btn_solid.btn_block(
+      :disabled='processing'
       @click.prevent="goToStep('reason')") Devolver
     a.link_underline.link_underline_lower(
+      :disabled='processing'
       @click.prevent="goToStep(null)") Pensándolo bien, no quiero devolver
 
   .dashboard__actions(v-if="step === 'reason'")
@@ -46,8 +50,10 @@
           :for="sale.id + 'returnreason' + index") {{ reason }}
 
     a.btn.btn_solid.btn_block(
+      :disabled='processing'
       @click.prevent="returnSale") Confirmar devolución
     a.link_underline.link_underline_lower(
+      :disabled='processing'
       @click.prevent="goToStep(null)") Pensándolo bien, no quiero devolver
 
 </template>

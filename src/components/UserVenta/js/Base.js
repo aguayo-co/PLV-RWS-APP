@@ -17,6 +17,7 @@ export default {
   props: ['sale'],
   data: () => {
     return {
+      processing: false,
       statusMessages: { ...baseStatusMessages }
     }
   },

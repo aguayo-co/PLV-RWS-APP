@@ -33,6 +33,7 @@
     .break
       span.break__txt O
     a.link_underline(
+      :disabled='processing'
       @click.prevent="saleReturnDelivered") Acordé juntarme con la vendedora
 
 //- La compradora marcó la devolución cómo enviada.
@@ -48,6 +49,7 @@
       span  {{ tracking_code }}
     p Estamos esperando que la vendedora nos confirme que recibió la devolución.
     a.link_underline(
+      :disabled='processing'
       @click.prevent="askForShippingDetails") « Ingresé mal el número de seguimiento o devolví de otra forma
 
 //- La compradora marcó la devolución cómo enviada.
@@ -62,6 +64,7 @@
     .break
       span.break__txt O
     a.link_underline(
+      :disabled='processing'
       @click.prevent="askForShippingDetails") « La entregué de otra forma
 
 .dashboard__subitem(v-else-if="sale_return.status === 49")

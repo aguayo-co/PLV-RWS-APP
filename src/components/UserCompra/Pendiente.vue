@@ -26,6 +26,7 @@
     p Tu comprobante fue subido correctamente, ahora estamos validando la transacción.
     a.link_underline(
       v-if="!canUploadReceipt"
+      :disabled='processing'
       @click.prevent="newReceipt") « ¿Quieres volver a subir el comprobante?
 
   .dashboard__actions(v-if="canUploadReceipt")

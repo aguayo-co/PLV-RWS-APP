@@ -8,6 +8,10 @@ a {
   &:focus {
     outline-width: 0;
   }
+  &:disabled,
+  &[disabled] {
+    pointer-events: none;
+  }
 }
 
 .link {
@@ -37,6 +41,11 @@ a {
   transition: all 0.5s;
   &:hover {
     border-bottom-color: $c-default-2;
+  }
+  &:disabled,
+  &[disabled] {
+    color: $c-neutro-5;
+    border-bottom-color: $c-neutro-5;
   }
 }
 .link_circle {

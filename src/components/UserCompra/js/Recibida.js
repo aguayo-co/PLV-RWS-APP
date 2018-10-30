@@ -30,12 +30,15 @@ export default {
       const reason = reasons[this.return_reason]
 
       if (reason) {
+        this.processing = true
         saleReturnAPI.return(this.sale.id, this.to_return_ids, reason).then(response => {
           return orderAPI.load(this.sale.order_id)
         }).then(response => {
           this.$emit('refresh-order', response.data)
         }).catch((e) => {
           this.$handleApiErrors(e)
+        }).finally(() => {
+          this.processing = false
         })
         return
       }
@@ -43,10 +46,13 @@ export default {
       this.errorLog.return_reason = 'Tienes que seleccionar un motivo.'
     },
     completeSale () {
+      this.processing = true
       orderAPI.salesCompleted(this.sale.order_id, [this.sale.id]).then(response => {
         this.$emit('refresh-order', response.data)
       }).catch((e) => {
         this.$handleApiErrors(e)
+      }).finally(() => {
+        this.processing = false
       })
     },
     goToStep (step) {

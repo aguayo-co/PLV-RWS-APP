@@ -14,10 +14,13 @@ export default {
   },
   methods: {
     saleReturnCompleted () {
+      this.processing = true
       saleReturnAPI.completed(this.sale_return.id).then(response => {
         this.sale_return = response.data
       }).catch((e) => {
         this.$handleApiErrors(e)
+      }).finally(() => {
+        this.processing = false
       })
     }
   }
