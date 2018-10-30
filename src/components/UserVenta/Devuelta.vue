@@ -9,7 +9,7 @@
   .dashboard__actions
     p ¿Ya recibiste la devolución?
     a.btn.btn_solid.btn_block(
-      :disabled='!processing'
+      :disabled='processing'
       @click.prevent="saleReturnCompleted") Si, la recibí
 
 //- Este estado no se puede generar desde el Front desde el 17 de Ago de 2018.
