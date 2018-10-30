@@ -3,10 +3,10 @@
   Loader(v-if="loading")
   .status.status_alert.i-alert-circle(v-else-if="!owner") La cuenta de esta Prilover fue eliminada.
   template(v-else)
-    UserDataCloset(:owner="owner")
+    UserDataCloset(:owner="owner", linkTo='reviews')
     section.section_product
       GridProducto(
-        :preFilter="{ 'filter[user_id]': ownerId, 'filter[status]': '10,19' }",
+        :preFilter="{ 'filter[user_id]': userId, 'filter[status]': '10,19' }",
         :infinite="true")
 </template>
 
@@ -17,6 +17,7 @@ import usersAPI from '@/api/user'
 
 export default {
   name: 'Closet',
+  props: ['userId'],
   components: {
     UserDataCloset,
     GridProducto
@@ -27,26 +28,31 @@ export default {
       loading: true
     }
   },
-  computed: {
-    ownerId () {
-      return this.$route.params.userId
+  methods: {
+    loadOwner () {
+      const localRequest = this.loading = usersAPI.getUserById(this.userId)
+        .then(response => {
+          if (localRequest === this.loading) {
+            this.owner = response.data
+          }
+        })
+        .catch(e => {
+          if (this.$getNestedObject(e, ['response', 'status']) === 404) {
+            this.owner = null
+          }
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    }
+  },
+  watch: {
+    'userId' () {
+      this.loadOwner()
     }
   },
   created () {
-    const localRequest = this.loading = usersAPI.getUserById(this.ownerId)
-      .then(response => {
-        if (localRequest === this.loading) {
-          this.owner = response.data
-        }
-      })
-      .catch(e => {
-        if (this.$getNestedObject(e, ['response', 'status']) === 404) {
-          this.owner = null
-        }
-      })
-      .finally(() => {
-        this.loading = false
-      })
+    this.loadOwner()
   }
 }
 </script>

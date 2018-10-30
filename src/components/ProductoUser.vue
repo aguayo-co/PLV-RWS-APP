@@ -36,7 +36,7 @@
                   router-link.i-email(
                     :to="{ name: 'privateMessage', params: { recipientId: user.id }}",
                     title='Enviar mensaje privado') Enviar mensaje privado
-            .user-data__rating(v-if="ratings.length > 0")
+            .user-data__rating(v-if="rating")
               .chat__line
                 span.chat__inner
                   .chat__bubble-main
@@ -48,12 +48,11 @@
                       p.chat-bubble__txt
                         span(
                           :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
-              router-link.btn-tag(to="#") Ver todos los reviews
+              router-link.btn-tag(:to="{ name: 'reviews', params: { userId: user.id }}") Ver todos los reviews
 
 </template>
 
 <script>
-
 import ratingsAPI from '@/api/rating'
 import { mapState } from 'vuex'
 
@@ -65,15 +64,15 @@ export default {
   },
   data () {
     return {
-      ratings: [],
-      rating: {}
+      rating: null
     }
   },
-  created: function () {
-    ratingsAPI.getBySeller(this.user.id)
+  created () {
+    ratingsAPI.getLatestBySeller(this.user.id)
       .then(response => {
-        this.ratings = response.data.data
-        this.rating = this.ratings[this.ratings.length - 1]
+        if (response.data.data.length) {
+          this.rating = response.data.data[0]
+        }
       })
   }
 }

@@ -3,7 +3,7 @@
   Loader(v-if="loading.user")
   .status.status_alert.i-alert-circle(v-else-if="!owner") La cuenta de esta Prilover fue eliminada.
   template(v-else)
-    UserDataCloset(:owner="owner")
+    UserDataCloset(:owner="owner", linkTo='closet')
     .profile__user
       .column
         .column__item

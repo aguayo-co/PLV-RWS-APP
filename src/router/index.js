@@ -199,7 +199,8 @@ const router = new Router({
     {
       path: '/closet/:userId(\\d+)',
       name: 'closet',
-      component: Closet
+      component: Closet,
+      props: true
     },
     {
       path: '/closet/:userId(\\d+)/reviews',

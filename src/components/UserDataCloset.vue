@@ -22,7 +22,7 @@ section.profile
           .user-data__notify
             router-link.user-data__reviews(
               v-if="owner.id",
-              :to="{ name: 'reviews', params: { userId: owner.id } }")
+              :to="{ name: linkTo, params: { userId: owner.id } }")
               ul.user-data__list
                 li.user-data__value.i-like {{ owner.ratings_positive_total_count }}
                 li.user-data__value.i-like.i_flip {{ owner.ratings_negative_total_count }}
@@ -55,21 +55,20 @@ section.profile
           span.chat__inner
             .chat__bubble-main
               figure.chat-bubble__avatar.avatar_60(v-if="rating.rater.picture")
-                a(:href="'/closet/' + rating.rater.id")
+                router-link(:to="{ name: 'closet', params: { userId: rating.rater.id }}")
                   img.chat-bubble__img(
                     :src="rating.rater.picture",
                     :alt="rating.rater.first_name")
               span.chat-bubble__avatar.avatar_60(v-else)
-                a(:href="'/closet/' + rating.rater.id") {{ rating.rater.first_name.charAt(0) }}
-              //- .chat-bubble__item
-              //-   .chat-bubble__title.i-like Camila Cifuentes
-              //-   p.chat-bubble__txt Excelente vendedora. Todo rápido y confiable
+                router-link(:to="{ name: 'closet', params: { userId: rating.rater.id }}") {{ rating.rater.first_name.charAt(0) }}
               .chat-bubble__item
                 .chat-bubble__title {{ rating.rater.full_name }}
                 p.chat-bubble__txt
                   span.chat-bubble_ico(
-                    :class="{ 'i-like' : rating.buyer_rating === 1, 'i-less-circle' : rating.buyer_rating === 0 , 'i-like i_flip' : rating.buyer_rating === -1 }") {{ rating.buyer_comment }}
-              router-link.btn-tag(:to="{ name: 'privateMessage', params: { recipientId: owner.id }}")
+                    :class="{ 'i-like' : rating.rating === 1, 'i-less-circle' : rating.rating === 0 , 'i-like i_flip' : rating.rating === -1 }") {{ rating.comment }}
+        router-link.btn-tag(
+          v-if='linkTo === "reviews"'
+          :to="{ name: linkTo, params: { userId: owner.id }}") Ver todos los reviews
 </template>
 
 <script>
@@ -77,7 +76,7 @@ import ratingsAPI from '@/api/rating'
 import { mapState } from 'vuex'
 
 export default {
-  props: ['owner'],
+  props: ['owner', 'linkTo'],
   name: 'UserDataCloset',
   computed: {
     rating () {
