@@ -60,7 +60,7 @@ footer.page-foot.i-heart-on
               ) Inscribir en el Newsletter
     .foot-legal
       p.foot-legal__copy Copyright © 2018 prilov.com. Todos los derechos reservados. |
-        a(href="https://www.aguayo.co" title="UX, diseño y desarrollo por Aguayo") UX, diseño y desarrollo por Aguayo.
+        a(href="https://www.aguayo.co" class="foot-nav__link" title="UX, diseño y desarrollo por Aguayo")  UX, diseño y desarrollo por Aguayo.
 
 </template>
 
