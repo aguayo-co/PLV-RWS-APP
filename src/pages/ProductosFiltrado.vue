@@ -114,6 +114,7 @@ export default {
           return { ...this.baseFilter, 'filter[users_groups_ids]': this.queryObject.id }
         }
       }
+      return {}
     }
   },
   methods: {
