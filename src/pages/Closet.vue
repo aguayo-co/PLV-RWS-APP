@@ -1,7 +1,6 @@
 <template lang="pug">
 .layout-page
   Loader(v-if="loading")
-  .status.status_alert.i-alert-circle(v-else-if="!owner") La cuenta de esta Prilover fue eliminada.
   template(v-else)
     UserDataCloset(:owner="owner", linkTo='reviews')
     section.section_product
