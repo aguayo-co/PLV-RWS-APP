@@ -46,28 +46,43 @@ export default {
     queryObject () {
       if (this.type === 'categorias') {
         const category = this.flattenedCategories.find(x => x.slug === this.slug)
+        if (!category && this.flattenedCategories.length) {
+          this.$notFound()
+        }
         this.loadBannerCategory()
         return category
       }
 
       if (this.type === 'marcas') {
         const brand = this.brands.find(x => x.slug === this.slug)
+        if (!brand && this.brands.length) {
+          this.$notFound()
+        }
         this.loadBannerBrand()
         return brand
       }
 
       if (this.type === 'campanas') {
         const campaign = this.campaigns.find(x => x.slug === this.slug)
+        if (!campaign && this.campaigns.length) {
+          this.$notFound()
+        }
         this.loadBannerCampaign()
         return campaign
       }
 
       if (this.type === 'grupo') {
         const group = this.groups.find(x => x.slug === this.slug)
+        if (!group && this.groups.length) {
+          this.$notFound()
+        }
         this.loadBannerGroup()
         return group
       }
-      this.$notFound()
+      // Not a valid type.
+      if (this.type) {
+        this.$notFound()
+      }
     },
     flattenedCategories () {
       // - Gets an array with all categories on the first level (no nesting)
@@ -82,22 +97,23 @@ export default {
       return flattened
     },
     filter () {
-      if (this.type === 'categorias' && this.queryObject) {
-        return { ...this.baseFilter, 'filter[category_id]': this.queryObject.id }
-      }
+      if (this.queryObject) {
+        if (this.type === 'categorias') {
+          return { ...this.baseFilter, 'filter[category_id]': this.queryObject.id }
+        }
 
-      if (this.type === 'marcas' && this.queryObject) {
-        return { ...this.baseFilter, 'filter[brand_id]': this.queryObject.id }
-      }
+        if (this.type === 'marcas') {
+          return { ...this.baseFilter, 'filter[brand_id]': this.queryObject.id }
+        }
 
-      if (this.type === 'campanas' && this.queryObject) {
-        return { ...this.baseFilter, 'filter[campaign_ids]': this.queryObject.id }
-      }
+        if (this.type === 'campanas') {
+          return { ...this.baseFilter, 'filter[campaign_ids]': this.queryObject.id }
+        }
 
-      if (this.type === 'grupo' && this.queryObject) {
-        return { ...this.baseFilter, 'filter[users_groups_ids]': this.queryObject.id }
+        if (this.type === 'grupo') {
+          return { ...this.baseFilter, 'filter[users_groups_ids]': this.queryObject.id }
+        }
       }
-      this.$notFound()
     }
   },
   methods: {
