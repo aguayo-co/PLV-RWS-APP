@@ -2,6 +2,8 @@
   "root": "dist/",
   "routes": {
     "/static/*": "/static/",
+    "/not-found": "/not-found",
     "/**": "index.html"
-  }
+  },
+  "error_page": "index.html"
 }

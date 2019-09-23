@@ -1,7 +1,7 @@
  <template lang="pug">
 .layout-page
   Loader(v-if="loading")
-  template(v-else-if="product")
+  template(v-else)
     ProductoDetalle(:product="product")
     ProductoUser(:user="product.user")
     ProductoPreguntas(:product_id="product.id", :owner_id="product.user.id")
@@ -9,13 +9,6 @@
       v-if="product.category_id && product.id",
       :category_id="product.category_id",
       :product_id="product.id")
-  .layout-inner(v-else)
-    .alert-msg.alert-msg_center
-      p ¡Ups! Este producto ya no se encuentra disponible en Prilov.
-    .alert-msg_spacing
-      router-link.btn.btn_solid(
-        :to="{ name: 'productos' }",
-        title="Ir a Vitinear") Volver al Shop
 </template>
 
 <script>
@@ -68,12 +61,14 @@ export default {
         .then(response => {
           if (localRequest === this.loading) {
             this.product = response.data
+            this.loading = false
             this.validateUrl()
           }
         })
-        .catch(() => {})
-        .finally(() => {
-          this.loading = false
+        .catch(e => {
+          if (this.$getNestedObject(e, ['response', 'status']) === 404) {
+            this.$notFound()
+          }
         })
     }
   },

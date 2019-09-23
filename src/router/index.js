@@ -38,6 +38,8 @@ import Contenido from '@/pages/Contenido'
 import EditarProducto from '@/pages/EditarProducto'
 import Home from '@/pages/Home'
 import Instashop from '@/pages/Instashop'
+import PageNotFound from '@/pages/PageNotFound'
+import PageNotFoundRedirect from '@/pages/PageNotFoundRedirect'
 import PasswordRecoverySet from '@/pages/PasswordRecoverySet'
 import PasswordRequest from '@/pages/PasswordRequest'
 import Producto from '@/pages/Producto'
@@ -368,6 +370,14 @@ const router = new Router({
       path: '/prilov-por-el-mundo-en-tailandia-parte-2',
       name: 'blog08',
       component: Blog08
+    },
+    { path: '/not-found',
+      name: 'page-not-found',
+      component: PageNotFound
+    },
+    { path: '*',
+      name: 'redirect-page-not-found',
+      component: PageNotFoundRedirect
     }
   ],
   scrollBehavior (to, from, savedPosition) {

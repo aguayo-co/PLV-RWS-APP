@@ -34,15 +34,13 @@ export default {
         .then(response => {
           if (localRequest === this.loading) {
             this.owner = response.data
+            this.loading = false
           }
         })
         .catch(e => {
           if (this.$getNestedObject(e, ['response', 'status']) === 404) {
-            this.owner = null
+            this.$notFound()
           }
-        })
-        .finally(() => {
-          this.loading = false
         })
     }
   },

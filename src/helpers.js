@@ -41,6 +41,13 @@ export default {
     Vue.getFirstError = getFirstError
     Vue.prototype.$getFirstError = getFirstError
 
+    // Redirecciona a página no encontrada
+    const notFound = function () {
+      this.$router.push({ name: 'redirect-page-not-found' })
+    }
+    Vue.notFound = notFound
+    Vue.prototype.$notFound = notFound
+
     /**
      * Procesa una respuesta de axios, incorporando los mensajes de
      * error de los campos dados en el diccionario de errores.

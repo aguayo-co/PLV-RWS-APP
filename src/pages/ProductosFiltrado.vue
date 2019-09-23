@@ -10,10 +10,6 @@
       GridProducto(
         :preFilter='filter'
         :infinite='true')
-  .layout-inner(v-if="queryObject === null")
-    .layout_nofound
-      .alert
-        p.alert__txt.i-sad La URL que estás intentando acceder no existe
   ButtonSticky
 </template>
 
@@ -71,6 +67,7 @@ export default {
         this.loadBannerGroup()
         return group
       }
+      this.$notFound()
     },
     flattenedCategories () {
       // - Gets an array with all categories on the first level (no nesting)
@@ -100,10 +97,7 @@ export default {
       if (this.type === 'grupo' && this.queryObject) {
         return { ...this.baseFilter, 'filter[users_groups_ids]': this.queryObject.id }
       }
-
-      if (this.type === undefined) {
-        return {}
-      }
+      this.$notFound()
     }
   },
   methods: {

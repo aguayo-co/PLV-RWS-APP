@@ -167,16 +167,14 @@ export default {
       .then(response => {
         if (localRequest === this.loading.user) {
           this.owner = response.data
+          this.loading.user = false
           this.loadRatings()
         }
       })
       .catch(e => {
         if (this.$getNestedObject(e, ['response', 'status']) === 404) {
-          this.owner = null
+          this.$notFound()
         }
-      })
-      .finally(() => {
-        this.loading.user = false
       })
   }
 }
