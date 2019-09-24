@@ -5,7 +5,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "docker-install": "docker run -v $PWD/../:/srv/app:delegated -w /srv/app/front --rm node:10 npm install",
+    "docker-serve": "docker run -v $PWD/../:/srv/app:delegated -w /srv/app/front --rm -p '8080:8080' node:10 npm run serve"
   },
   "dependencies": {
     "flickity": "^2.1.2"
