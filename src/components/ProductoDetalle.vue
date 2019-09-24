@@ -11,7 +11,9 @@
           :key='index'
           v-for='(image,index) in product.images',
           v-if="product.images")
+          //- Swiper ends up looking funny if we don't reset after every image is loaded.
           img.media-img(
+            @load="swiper.update()",
             :src='image',
             :alt="'Foto principal ' + product.title")
 
@@ -20,7 +22,7 @@
         .detail__thumb(
           v-for='(image,index) in product.images',
           :key='index',
-          :class="{'detail__thumb_active' :imgActive == index}",
+          :class="{'detail__thumb_active' : imgActive == index}",
           @click='slideImages(index)')
           img.media-img.detail__img(
             :src='image',
