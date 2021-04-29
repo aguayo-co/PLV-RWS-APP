@@ -10,6 +10,7 @@
     "docker-serve": "docker run -v $PWD/../:/srv/app:delegated -w /srv/app/front --rm -p '8080:8080' node:10 npm run serve"
   },
   "dependencies": {
+    "chokidar": "^3.5.1",
     "flickity": "^2.1.2"
   },
   "devDependencies": {
@@ -22,7 +23,7 @@
     "eslint-plugin-html": "^4.0.6",
     "flickity-imagesloaded": "^2.0.0",
     "lscache": "^1.2.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^7.0.1",
     "vue": "^2.5.17",
     "vue-analytics": "^5.16.0",
